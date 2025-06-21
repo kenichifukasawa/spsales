@@ -73,6 +73,19 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="frmichi.Designer.vb">
+      <DependentUpon>frmichi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmichi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frminfo.Designer.vb">
+      <DependentUpon>frminfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frminfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmmain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +93,26 @@
       <DependentUpon>frmmain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmseikyuusho_soushin_ichi.Designer.vb">
+      <DependentUpon>frmseikyuusho_soushin_ichi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmseikyuusho_soushin_ichi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmseikyuusho_soushin_log.Designer.vb">
+      <DependentUpon>frmseikyuusho_soushin_log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmseikyuusho_soushin_log.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmsettei.Designer.vb">
+      <DependentUpon>frmsettei.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmsettei.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="module\m_main.vb" />
+    <Compile Include="module\m_seikyuu.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -97,8 +130,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmichi.resx">
+      <DependentUpon>frmichi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frminfo.resx">
+      <DependentUpon>frminfo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmmain.resx">
       <DependentUpon>frmmain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmseikyuusho_soushin_ichi.resx">
+      <DependentUpon>frmseikyuusho_soushin_ichi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmseikyuusho_soushin_log.resx">
+      <DependentUpon>frmseikyuusho_soushin_log.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmsettei.resx">
+      <DependentUpon>frmsettei.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
