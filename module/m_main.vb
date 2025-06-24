@@ -214,9 +214,9 @@ errsetting:
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Sql = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
+            Dim query = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
 
-            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
             da_server.Fill(ds_server, "t_set_shain_ichiran")
             Dim dt_server As DataTable = ds_server.Tables("t_set_shain_ichiran")
@@ -225,7 +225,7 @@ errsetting:
                 Return ""
             End If
 
-            Dim response = Trim(dt_server.Rows.Item(0).Item("t" + s_no.ToString))
+            Dim response = Trim(dt_server.Rows.Item(0).Item("s" + s_no.ToString))
 
             dt_server.Clear()
             ds_server.Clear()
@@ -246,14 +246,14 @@ errsetting:
             Dim conn As New SqlConnection
             conn.ConnectionString = connectionstring_sqlserver
 
-            Sql = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
+            Dim query = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
 
             Dim da As New SqlDataAdapter
-            da = New SqlDataAdapter(Sql, conn)
+            da = New SqlDataAdapter(query, conn)
             Dim ds As New DataSet
             da.Fill(ds, "t_settei")
 
-            ds.Tables("t_settei").Rows(0)("t" + s_no.ToString) = new_value
+            ds.Tables("t_settei").Rows(0)("s" + s_no.ToString) = new_value
 
             Dim cb As New SqlCommandBuilder
             cb.DataAdapter = da

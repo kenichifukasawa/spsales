@@ -36,7 +36,7 @@ Partial Class frmichiran_shain
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(626, 20)
+        Me.btn_modoru.Location = New System.Drawing.Point(468, 18)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
@@ -48,7 +48,7 @@ Partial Class frmichiran_shain
         '
         Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_sakujo.Location = New System.Drawing.Point(495, 20)
+        Me.btn_sakujo.Location = New System.Drawing.Point(337, 18)
         Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_sakujo.Name = "btn_sakujo"
         Me.btn_sakujo.Size = New System.Drawing.Size(127, 44)
@@ -67,7 +67,7 @@ Partial Class frmichiran_shain
         Me.dgv_kensakukekka.ReadOnly = True
         Me.dgv_kensakukekka.RowTemplate.Height = 24
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(740, 658)
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(582, 658)
         Me.dgv_kensakukekka.TabIndex = 0
         '
         'GroupBox1
@@ -83,7 +83,7 @@ Partial Class frmichiran_shain
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(768, 750)
+        Me.GroupBox1.Size = New System.Drawing.Size(609, 750)
         Me.GroupBox1.TabIndex = 50
         Me.GroupBox1.TabStop = False
         '
@@ -91,7 +91,7 @@ Partial Class frmichiran_shain
         '
         Me.btn_touroku.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_touroku.Location = New System.Drawing.Point(233, 20)
+        Me.btn_touroku.Location = New System.Drawing.Point(75, 18)
         Me.btn_touroku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_touroku.Name = "btn_touroku"
         Me.btn_touroku.Size = New System.Drawing.Size(127, 44)
@@ -103,7 +103,7 @@ Partial Class frmichiran_shain
         '
         Me.btn_henkou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_henkou.Location = New System.Drawing.Point(364, 20)
+        Me.btn_henkou.Location = New System.Drawing.Point(206, 18)
         Me.btn_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_henkou.Name = "btn_henkou"
         Me.btn_henkou.Size = New System.Drawing.Size(127, 44)
@@ -115,7 +115,7 @@ Partial Class frmichiran_shain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(790, 772)
+        Me.ClientSize = New System.Drawing.Size(632, 772)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmichiran_shain"
