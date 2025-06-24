@@ -206,4 +206,67 @@ errsetting:
         Exit Function
 
     End Function
+
+    Function get_settings(id As Integer, s_no As Integer) As String
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Sql = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_set_shain_ichiran")
+            Dim dt_server As DataTable = ds_server.Tables("t_set_shain_ichiran")
+
+            If dt_server.Rows.Count = 0 Then
+                Return ""
+            End If
+
+            Dim response = Trim(dt_server.Rows.Item(0).Item("t" + s_no.ToString))
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+            Return response
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return ""
+        End Try
+
+    End Function
+
+    Function update_settings(id As Integer, s_no As Integer, new_value As String) As Boolean
+
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Sql = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(Sql, conn)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_settei")
+
+            ds.Tables("t_settei").Rows(0)("t" + s_no.ToString) = new_value
+
+            Dim cb As New SqlCommandBuilder
+            cb.DataAdapter = da
+            da.Update(ds, "t_settei")
+            ds.Clear()
+
+            Return True
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+    End Function
+
 End Module
