@@ -24,7 +24,7 @@ Partial Class frmichi
     Private Sub InitializeComponent()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.btn_shokuin = New System.Windows.Forms.Button()
+        Me.btn_shain = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.btn_yuubin_bangou = New System.Windows.Forms.Button()
@@ -51,7 +51,7 @@ Partial Class frmichi
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.White
         Me.GroupBox5.Controls.Add(Me.Label4)
-        Me.GroupBox5.Controls.Add(Me.btn_shokuin)
+        Me.GroupBox5.Controls.Add(Me.btn_shain)
         Me.GroupBox5.Location = New System.Drawing.Point(188, 165)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(170, 147)
@@ -65,20 +65,20 @@ Partial Class frmichi
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(154, 54)
         Me.Label4.TabIndex = 0
-        Me.Label4.Text = "「職員」情報の管理をします。"
+        Me.Label4.Text = "「社員」情報の管理をします。"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btn_shokuin
+        'btn_shain
         '
-        Me.btn_shokuin.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shokuin.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_shokuin.Location = New System.Drawing.Point(13, 89)
-        Me.btn_shokuin.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_shokuin.Name = "btn_shokuin"
-        Me.btn_shokuin.Size = New System.Drawing.Size(147, 44)
-        Me.btn_shokuin.TabIndex = 97
-        Me.btn_shokuin.Text = "職員一覧"
-        Me.btn_shokuin.UseVisualStyleBackColor = True
+        Me.btn_shain.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_shain.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shain.Location = New System.Drawing.Point(13, 89)
+        Me.btn_shain.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_shain.Name = "btn_shain"
+        Me.btn_shain.Size = New System.Drawing.Size(147, 44)
+        Me.btn_shain.TabIndex = 97
+        Me.btn_shain.Text = "社員一覧"
+        Me.btn_shain.UseVisualStyleBackColor = True
         '
         'GroupBox4
         '
@@ -261,7 +261,7 @@ Partial Class frmichi
 
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents btn_shokuin As Button
+    Friend WithEvents btn_shain As Button
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Label3 As Label
     Friend WithEvents btn_yuubin_bangou As Button

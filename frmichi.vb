@@ -19,7 +19,7 @@
 
     End Sub
 
-    Private Sub btn_shokuin_Click(sender As Object, e As EventArgs) Handles btn_shokuin.Click
-
+    Private Sub btn_shain_Click(sender As Object, e As EventArgs) Handles btn_shain.Click
+        frmichiran_shain.ShowDialog()
     End Sub
 End Class
