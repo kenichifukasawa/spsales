@@ -75,8 +75,8 @@ Public Class frmichiran_shain
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
-            da_server.Fill(ds_server, "t_set_shain_ichiran")
-            Dim dt_server As DataTable = ds_server.Tables("t_set_shain_ichiran")
+            da_server.Fill(ds_server, "t_tenpo")
+            Dim dt_server As DataTable = ds_server.Tables("t_tenpo")
 
             Dim can_delete = True
 
@@ -105,8 +105,8 @@ Public Class frmichiran_shain
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
-            da_server.Fill(ds_server, "t_set_shain_ichiran")
-            Dim dt_server As DataTable = ds_server.Tables("t_set_shain_ichiran")
+            da_server.Fill(ds_server, "t_hacchuu")
+            Dim dt_server As DataTable = ds_server.Tables("t_hacchuu")
 
             Dim can_delete = True
 
