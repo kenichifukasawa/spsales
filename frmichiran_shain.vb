@@ -57,11 +57,74 @@ Public Class frmichiran_shain
             Exit Sub
         End If
 
+        If chk_sakujo.Checked = False Then
+            msg_go("「削除する」にチェックをつけてから実行してください。")
+            Exit Sub
+        End If
+        chk_sakujo.Checked = False
+
         Dim shain_id = Trim(dgv_kensakukekka.CurrentRow.Cells(0).Value)
         Dim shain_mei = Trim(dgv_kensakukekka.CurrentRow.Cells(1).Value)
 
-        msg_go("【TODO】使用中のため、削除できません。")
-        Exit Sub
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM tenpo WHERE shainid = '" + shain_id + "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_tenpo")
+            Dim dt_server As DataTable = ds_server.Tables("t_tenpo")
+
+            Dim can_delete = True
+
+            If dt_server.Rows.Count > 0 Then
+                can_delete = False
+            End If
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+            If Not can_delete Then
+                msg_go("この社員は店舗情報で使用しているため、削除できません。")
+                Exit Sub
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+        End Try
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuu WHERE shainid = '" + shain_id + "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_hacchuu")
+            Dim dt_server As DataTable = ds_server.Tables("t_hacchuu")
+
+            Dim can_delete = True
+
+            If dt_server.Rows.Count > 0 Then
+                can_delete = False
+            End If
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+            If Not can_delete Then
+                msg_go("この社員は納品書情報で使用しているため、削除できません。")
+                Exit Sub
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+        End Try
 
         Dim result As DialogResult = MessageBox.Show(
             "以下の社員を削除しますか？" + vbCrLf + vbCrLf + "社員ID：" + shain_id + vbCrLf + "社員名：" + shain_mei,
@@ -75,9 +138,9 @@ Public Class frmichiran_shain
             Dim conn As New SqlConnection
             conn.ConnectionString = connectionstring_sqlserver
 
-            Dim Sql As String = "SELECT * FROM shain WHERE shainid ='" + shain_id + "'"
+            Dim query = "SELECT * FROM shain WHERE shainid ='" + shain_id + "'"
 
-            Dim da As New SqlDataAdapter(Sql, conn)
+            Dim da As New SqlDataAdapter(query, conn)
             Dim ds As New DataSet
             da.Fill(ds, "t_shain")
 
@@ -109,9 +172,9 @@ Public Class frmichiran_shain
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Sql = "SELECT * FROM shain ORDER BY shainid"
+            Dim query = "SELECT * FROM shain ORDER BY shainid"
 
-            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
             da_server.Fill(ds_server, "t_set_shain_ichiran")
             Dim dt_server As DataTable = ds_server.Tables("t_set_shain_ichiran")
