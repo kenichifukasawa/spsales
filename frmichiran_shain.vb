@@ -57,6 +57,12 @@ Public Class frmichiran_shain
             Exit Sub
         End If
 
+        If chk_sakujo.Checked = False Then
+            msg_go("「削除する」にチェックをつけてから実行してください。")
+            Exit Sub
+        End If
+        chk_sakujo.Checked = False
+
         Dim shain_id = Trim(dgv_kensakukekka.CurrentRow.Cells(0).Value)
         Dim shain_mei = Trim(dgv_kensakukekka.CurrentRow.Cells(1).Value)
 

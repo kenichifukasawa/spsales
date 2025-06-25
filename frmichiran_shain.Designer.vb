@@ -28,6 +28,7 @@ Partial Class frmichiran_shain
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btn_touroku = New System.Windows.Forms.Button()
         Me.btn_henkou = New System.Windows.Forms.Button()
+        Me.chk_sakujo = New System.Windows.Forms.CheckBox()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -73,6 +74,7 @@ Partial Class frmichiran_shain
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
+        Me.GroupBox1.Controls.Add(Me.chk_sakujo)
         Me.GroupBox1.Controls.Add(Me.btn_touroku)
         Me.GroupBox1.Controls.Add(Me.btn_henkou)
         Me.GroupBox1.Controls.Add(Me.btn_sakujo)
@@ -83,7 +85,7 @@ Partial Class frmichiran_shain
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(609, 750)
+        Me.GroupBox1.Size = New System.Drawing.Size(609, 761)
         Me.GroupBox1.TabIndex = 50
         Me.GroupBox1.TabStop = False
         '
@@ -111,11 +113,21 @@ Partial Class frmichiran_shain
         Me.btn_henkou.Text = "変更"
         Me.btn_henkou.UseVisualStyleBackColor = True
         '
+        'chk_sakujo
+        '
+        Me.chk_sakujo.AutoSize = True
+        Me.chk_sakujo.Location = New System.Drawing.Point(518, 738)
+        Me.chk_sakujo.Name = "chk_sakujo"
+        Me.chk_sakujo.Size = New System.Drawing.Size(77, 18)
+        Me.chk_sakujo.TabIndex = 189
+        Me.chk_sakujo.Text = "削除する"
+        Me.chk_sakujo.UseVisualStyleBackColor = True
+        '
         'frmichiran_shain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(632, 772)
+        Me.ClientSize = New System.Drawing.Size(632, 781)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmichiran_shain"
@@ -123,6 +135,7 @@ Partial Class frmichiran_shain
         Me.Text = "社員一覧"
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -132,4 +145,5 @@ Partial Class frmichiran_shain
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents btn_touroku As Button
     Friend WithEvents btn_henkou As Button
+    Friend WithEvents chk_sakujo As CheckBox
 End Class
