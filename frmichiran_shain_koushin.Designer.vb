@@ -25,25 +25,25 @@ Partial Class frmichiran_shain_koushin
         Me.btn_koushin = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.gbx_shin = New System.Windows.Forms.GroupBox()
-        Me.txt_shain_ryaku_mei = New System.Windows.Forms.TextBox()
-        Me.txt_shain_mei = New System.Windows.Forms.TextBox()
-        Me.chk_zaishoku = New System.Windows.Forms.CheckBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.chk_zaishoku = New System.Windows.Forms.CheckBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.txt_shain_ryaku_mei = New System.Windows.Forms.TextBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.txt_shain_mei = New System.Windows.Forms.TextBox()
         Me.gbx_kyuu = New System.Windows.Forms.GroupBox()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.lbl_shain_id = New System.Windows.Forms.Label()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.lbl_zaishoku = New System.Windows.Forms.Label()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.lbl_shain_ryaku_mei = New System.Windows.Forms.Label()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.lbl_shain_mei = New System.Windows.Forms.Label()
         Me.gbx_shin.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.gbx_kyuu.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -60,7 +60,7 @@ Partial Class frmichiran_shain_koushin
         Me.btn_koushin.Name = "btn_koushin"
         Me.btn_koushin.Size = New System.Drawing.Size(647, 46)
         Me.btn_koushin.TabIndex = 165
-        Me.btn_koushin.Text = "登録 OR 更新"
+        Me.btn_koushin.Text = "登録 OR 変更"
         Me.btn_koushin.UseVisualStyleBackColor = False
         '
         'btn_modoru
@@ -89,27 +89,17 @@ Partial Class frmichiran_shain_koushin
         Me.gbx_shin.TabStop = False
         Me.gbx_shin.Text = "新社員詳細"
         '
-        'txt_shain_ryaku_mei
+        'GroupBox4
         '
-        Me.txt_shain_ryaku_mei.BackColor = System.Drawing.Color.White
-        Me.txt_shain_ryaku_mei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt_shain_ryaku_mei.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.txt_shain_ryaku_mei.Location = New System.Drawing.Point(17, 24)
-        Me.txt_shain_ryaku_mei.MaxLength = 10
-        Me.txt_shain_ryaku_mei.Name = "txt_shain_ryaku_mei"
-        Me.txt_shain_ryaku_mei.Size = New System.Drawing.Size(136, 22)
-        Me.txt_shain_ryaku_mei.TabIndex = 187
-        '
-        'txt_shain_mei
-        '
-        Me.txt_shain_mei.BackColor = System.Drawing.Color.White
-        Me.txt_shain_mei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt_shain_mei.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.txt_shain_mei.Location = New System.Drawing.Point(17, 24)
-        Me.txt_shain_mei.MaxLength = 50
-        Me.txt_shain_mei.Name = "txt_shain_mei"
-        Me.txt_shain_mei.Size = New System.Drawing.Size(270, 22)
-        Me.txt_shain_mei.TabIndex = 178
+        Me.GroupBox4.BackColor = System.Drawing.Color.White
+        Me.GroupBox4.Controls.Add(Me.chk_zaishoku)
+        Me.GroupBox4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox4.Location = New System.Drawing.Point(684, 21)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(139, 60)
+        Me.GroupBox4.TabIndex = 192
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "在職表示"
         '
         'chk_zaishoku
         '
@@ -120,18 +110,6 @@ Partial Class frmichiran_shain_koushin
         Me.chk_zaishoku.TabIndex = 188
         Me.chk_zaishoku.Text = "在職している"
         Me.chk_zaishoku.UseVisualStyleBackColor = True
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.BackColor = System.Drawing.Color.White
-        Me.GroupBox2.Controls.Add(Me.txt_shain_mei)
-        Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(198, 21)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(305, 60)
-        Me.GroupBox2.TabIndex = 190
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "社員名"
         '
         'GroupBox3
         '
@@ -145,17 +123,39 @@ Partial Class frmichiran_shain_koushin
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "社員略名"
         '
-        'GroupBox4
+        'txt_shain_ryaku_mei
         '
-        Me.GroupBox4.BackColor = System.Drawing.Color.White
-        Me.GroupBox4.Controls.Add(Me.chk_zaishoku)
-        Me.GroupBox4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(684, 21)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(139, 60)
-        Me.GroupBox4.TabIndex = 192
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "在職表示"
+        Me.txt_shain_ryaku_mei.BackColor = System.Drawing.Color.White
+        Me.txt_shain_ryaku_mei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt_shain_ryaku_mei.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.txt_shain_ryaku_mei.Location = New System.Drawing.Point(17, 24)
+        Me.txt_shain_ryaku_mei.MaxLength = 10
+        Me.txt_shain_ryaku_mei.Name = "txt_shain_ryaku_mei"
+        Me.txt_shain_ryaku_mei.Size = New System.Drawing.Size(136, 22)
+        Me.txt_shain_ryaku_mei.TabIndex = 187
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.BackColor = System.Drawing.Color.White
+        Me.GroupBox2.Controls.Add(Me.txt_shain_mei)
+        Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox2.Location = New System.Drawing.Point(198, 21)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(305, 60)
+        Me.GroupBox2.TabIndex = 190
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "社員名"
+        '
+        'txt_shain_mei
+        '
+        Me.txt_shain_mei.BackColor = System.Drawing.Color.White
+        Me.txt_shain_mei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt_shain_mei.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.txt_shain_mei.Location = New System.Drawing.Point(17, 24)
+        Me.txt_shain_mei.MaxLength = 50
+        Me.txt_shain_mei.Name = "txt_shain_mei"
+        Me.txt_shain_mei.Size = New System.Drawing.Size(270, 22)
+        Me.txt_shain_mei.TabIndex = 178
         '
         'gbx_kyuu
         '
@@ -206,6 +206,16 @@ Partial Class frmichiran_shain_koushin
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "在職表示"
         '
+        'lbl_zaishoku
+        '
+        Me.lbl_zaishoku.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.lbl_zaishoku.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_zaishoku.Location = New System.Drawing.Point(21, 24)
+        Me.lbl_zaishoku.Name = "lbl_zaishoku"
+        Me.lbl_zaishoku.Size = New System.Drawing.Size(99, 21)
+        Me.lbl_zaishoku.TabIndex = 170
+        Me.lbl_zaishoku.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'GroupBox9
         '
         Me.GroupBox9.BackColor = System.Drawing.Color.White
@@ -218,6 +228,16 @@ Partial Class frmichiran_shain_koushin
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "社員略名"
         '
+        'lbl_shain_ryaku_mei
+        '
+        Me.lbl_shain_ryaku_mei.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.lbl_shain_ryaku_mei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shain_ryaku_mei.Location = New System.Drawing.Point(14, 24)
+        Me.lbl_shain_ryaku_mei.Name = "lbl_shain_ryaku_mei"
+        Me.lbl_shain_ryaku_mei.Size = New System.Drawing.Size(139, 21)
+        Me.lbl_shain_ryaku_mei.TabIndex = 171
+        Me.lbl_shain_ryaku_mei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'GroupBox10
         '
         Me.GroupBox10.BackColor = System.Drawing.Color.White
@@ -229,26 +249,6 @@ Partial Class frmichiran_shain_koushin
         Me.GroupBox10.TabIndex = 190
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "社員名"
-        '
-        'lbl_zaishoku
-        '
-        Me.lbl_zaishoku.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.lbl_zaishoku.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_zaishoku.Location = New System.Drawing.Point(21, 24)
-        Me.lbl_zaishoku.Name = "lbl_zaishoku"
-        Me.lbl_zaishoku.Size = New System.Drawing.Size(99, 21)
-        Me.lbl_zaishoku.TabIndex = 170
-        Me.lbl_zaishoku.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lbl_shain_ryaku_mei
-        '
-        Me.lbl_shain_ryaku_mei.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.lbl_shain_ryaku_mei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shain_ryaku_mei.Location = New System.Drawing.Point(14, 24)
-        Me.lbl_shain_ryaku_mei.Name = "lbl_shain_ryaku_mei"
-        Me.lbl_shain_ryaku_mei.Size = New System.Drawing.Size(139, 21)
-        Me.lbl_shain_ryaku_mei.TabIndex = 171
-        Me.lbl_shain_ryaku_mei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lbl_shain_mei
         '
@@ -272,14 +272,14 @@ Partial Class frmichiran_shain_koushin
         Me.Controls.Add(Me.gbx_shin)
         Me.Name = "frmichiran_shain_koushin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "登録 OR 更新"
+        Me.Text = "登録 OR 変更"
         Me.gbx_shin.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.gbx_kyuu.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox8.ResumeLayout(False)

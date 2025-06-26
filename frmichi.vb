@@ -16,7 +16,7 @@
     End Sub
 
     Private Sub btn_yuubin_bangou_Click(sender As Object, e As EventArgs) Handles btn_yuubin_bangou.Click
-
+        frmichiran_yuubin.ShowDialog()
     End Sub
 
     Private Sub btn_shain_Click(sender As Object, e As EventArgs) Handles btn_shain.Click
