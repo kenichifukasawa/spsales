@@ -10,11 +10,67 @@ Public Class frmichiran_gyousha
     End Sub
 
     Private Sub btn_touroku_Click(sender As Object, e As EventArgs) Handles btn_touroku.Click
-
+        set_combo_box(is_update:=False)
+        frmichiran_gyousha_koushin.ShowDialog()
     End Sub
 
     Private Sub btn_henkou_Click(sender As Object, e As EventArgs) Handles btn_henkou.Click
+        set_combo_box(is_update:=True)
+        With frmichiran_gyousha_koushin
 
+            .Text = "変更"
+            .btn_koushin.Text = "変更"
+
+            Dim current_row = dgv_kensakukekka.CurrentRow
+            .lbl_gyousha_id.Text = current_row.Cells(0).Value
+            .txt_gyousha_mei.Text = current_row.Cells(1).Value
+            .txt_furigana.Text = current_row.Cells(2).Value
+            .lbl_juusho_1.Text = current_row.Cells(22).Value
+            .txt_juusho_2.Text = current_row.Cells(23).Value
+            .txt_tel.Text = current_row.Cells(5).Value
+            .txt_fax.Text = current_row.Cells(6).Value
+            .txt_tantousha.Text = current_row.Cells(7).Value
+            .txt_tel_keitai.Text = current_row.Cells(8).Value
+            .txt_daihyousha.Text = current_row.Cells(9).Value
+            .txt_shiharai_jouken.Text = current_row.Cells(14).Value
+            .txt_tekikaku_bangou.Text = current_row.Cells(21).Value
+            .txt_ginkou_mei.Text = current_row.Cells(24).Value
+            .txt_shiten_mei.Text = current_row.Cells(25).Value
+            .txt_kouza_bangou.Text = current_row.Cells(27).Value
+            .txt_kouza_meigi.Text = current_row.Cells(28).Value
+            .txt_bikou_1.Text = current_row.Cells(16).Value
+            .txt_bikou_2.Text = current_row.Cells(17).Value
+            .txt_bikou_3.Text = current_row.Cells(18).Value
+            .txt_mail_user.Text = current_row.Cells(29).Value
+            .txt_mail_domain.Text = current_row.Cells(30).Value
+
+            Dim yuubin_bangou = current_row.Cells(3).Value
+            Dim shiharai_houhou = dgv_kensakukekka.CurrentRow.Cells(11).Value
+            Dim shimebi = dgv_kensakukekka.CurrentRow.Cells(10).Value
+            Dim shouhizei = dgv_kensakukekka.CurrentRow.Cells(12).Value
+            Dim hasuu = dgv_kensakukekka.CurrentRow.Cells(13).Value
+
+            .cbx_yuubin_bangou.SelectedIndex = .cbx_yuubin_bangou.FindString(yuubin_bangou)
+            .cbx_shiharai_houhou.SelectedIndex = .cbx_shiharai_houhou.FindStringExact(shiharai_houhou)
+            .cbx_shimebi.SelectedIndex = .cbx_shimebi.FindStringExact(shimebi)
+            .cbx_shouhizei.SelectedIndex = .cbx_shouhizei.FindStringExact(shouhizei)
+            .cbx_hasuu.SelectedIndex = .cbx_hasuu.FindStringExact(hasuu)
+
+            Dim bank_account_type = dgv_kensakukekka.CurrentRow.Cells(26).Value
+            Select Case bank_account_type
+                Case .rbn_futsuu.Text
+                    .rbn_futsuu.Checked = True
+                Case .rbn_touza.Text
+                    .rbn_touza.Checked = True
+            End Select
+
+            Dim fuyou = dgv_kensakukekka.CurrentRow.Cells(20).Value
+            If fuyou <> "" Then
+                .chk_fuyou.Checked = True
+            End If
+
+            .ShowDialog()
+        End With
     End Sub
 
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
@@ -48,7 +104,7 @@ Public Class frmichiran_gyousha
 
                 .Rows.Clear()
                 .Columns.Clear()
-                .ColumnCount = 22
+                .ColumnCount = 31
 
                 .Columns(0).Name = "業者ID"
                 .Columns(1).Name = "業者名"
@@ -72,6 +128,15 @@ Public Class frmichiran_gyousha
                 .Columns(19).Name = "メールアドレス"
                 .Columns(20).Name = "不要"
                 .Columns(21).Name = "適格番号"
+                .Columns(22).Name = "住所１"
+                .Columns(23).Name = "住所２"
+                .Columns(24).Name = "銀行名"
+                .Columns(25).Name = "支店名"
+                .Columns(26).Name = "口座種類"
+                .Columns(27).Name = "口座番号"
+                .Columns(28).Name = "口座名義"
+                .Columns(29).Name = "メールユーザー"
+                .Columns(30).Name = "メールドメイン"
 
                 .Columns(0).Width = 75
                 .Columns(1).Width = 250
@@ -95,6 +160,15 @@ Public Class frmichiran_gyousha
                 .Columns(19).Width = 250
                 .Columns(20).Width = 75
                 .Columns(21).Width = 130
+                .Columns(22).Width = 0
+                .Columns(23).Width = 0
+                .Columns(24).Width = 0
+                .Columns(25).Width = 0
+                .Columns(26).Width = 0
+                .Columns(27).Width = 0
+                .Columns(28).Width = 0
+                .Columns(29).Width = 0
+                .Columns(30).Width = 0
 
                 .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
@@ -118,12 +192,21 @@ Public Class frmichiran_gyousha
                 .Columns(19).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(20).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(21).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(22).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(23).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(24).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(25).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(26).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(27).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(28).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(29).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(30).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
                 .Columns(1).Frozen = True
 
             End With
 
-            Dim mojiretsu(21) As String
+            Dim mojiretsu(30) As String
             For i = 0 To dt_server.Rows.Count - 1
 
                 mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("gyoushaid"))
@@ -178,26 +261,10 @@ Public Class frmichiran_gyousha
                     mojiretsu(9) = Trim(dt_server.Rows.Item(i).Item("gyoushadaihyou"))
                 End If
 
-                Dim shimebi = ""
+                Dim shimebi As String = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("gyoushashimebi")) Then
-                    Select Case Trim(dt_server.Rows.Item(i).Item("gyoushashimebi"))
-                        Case "0"
-                            shimebi = "５日"
-                        Case "1"
-                            shimebi = "１０日"
-                        Case "2"
-                            shimebi = "１５日"
-                        Case "3"
-                            shimebi = "２０日"
-                        Case "4"
-                            shimebi = "２５日"
-                        Case "5"
-                            shimebi = "月末日"
-                        Case "6"
-                            shimebi = "随時"
-                        Case Else
-                            shimebi = "エラー"
-                    End Select
+                    Dim id As String = Trim(dt_server.Rows.Item(i).Item("gyoushashimebi").ToString())
+                    shimebi = Deadline.GetNameById(id)
                 End If
                 mojiretsu(10) = shimebi
 
@@ -229,26 +296,32 @@ Public Class frmichiran_gyousha
                 End If
 
                 Dim ginkou_kouza = ""
+                Dim bank_mei = ""
+                Dim bank_shiten_mei = ""
+                Dim bank_shurui = ""
+                Dim bank_no = ""
+                Dim bank_kouza_mei = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("bankmei")) Then
-                    ginkou_kouza = Trim(dt_server.Rows.Item(i).Item("bankmei"))
+                    bank_mei = Trim(dt_server.Rows.Item(i).Item("bankmei"))
+                    ginkou_kouza = bank_mei
 
                     If Not IsDBNull(dt_server.Rows.Item(i).Item("bankshitenmei")) Then
-                        ginkou_kouza += " " + Trim(dt_server.Rows.Item(i).Item("bankshitenmei"))
+                        bank_shiten_mei = Trim(dt_server.Rows.Item(i).Item("bankshitenmei"))
+                        ginkou_kouza += " " + bank_shiten_mei
 
-                        Dim bank_shurui = ""
                         If Not IsDBNull(dt_server.Rows.Item(i).Item("bankshurui")) Then
-                            If Not IsDBNull(dt_server.Rows.Item(i).Item("bankshurui")) Then
-                                Dim id As String = Trim(dt_server.Rows.Item(i).Item("bankshurui").ToString())
-                                bank_shurui = BankAccountType.GetNameById(id)
-                            End If
-                            ginkou_kouza += " " + bank_shurui
+                            Dim id As String = Trim(dt_server.Rows.Item(i).Item("bankshurui").ToString())
+                            bank_shurui = BankAccountType.GetNameById(id)
+                        End If
+                        ginkou_kouza += " " + bank_shurui
 
-                            If Not IsDBNull(dt_server.Rows.Item(i).Item("bankno")) Then
-                                ginkou_kouza += " " + Trim(dt_server.Rows.Item(i).Item("bankno"))
+                        If Not IsDBNull(dt_server.Rows.Item(i).Item("bankno")) Then
+                            bank_no = Trim(dt_server.Rows.Item(i).Item("bankno"))
+                            ginkou_kouza += " " + bank_no
 
-                                If Not IsDBNull(dt_server.Rows.Item(i).Item("bankkouzamei")) Then
-                                    ginkou_kouza += " " + Trim(dt_server.Rows.Item(i).Item("bankkouzamei"))
-                                End If
+                            If Not IsDBNull(dt_server.Rows.Item(i).Item("bankkouzamei")) Then
+                                bank_kouza_mei = Trim(dt_server.Rows.Item(i).Item("bankkouzamei"))
+                                ginkou_kouza += " " + bank_kouza_mei
                             End If
                         End If
                     End If
@@ -296,6 +369,16 @@ Public Class frmichiran_gyousha
                     mojiretsu(21) = Trim(dt_server.Rows.Item(i).Item("tekikakubangou"))
                 End If
 
+                mojiretsu(22) = juusho_1
+                mojiretsu(23) = juusho_2
+                mojiretsu(24) = bank_mei
+                mojiretsu(25) = bank_shiten_mei
+                mojiretsu(26) = bank_shurui
+                mojiretsu(27) = bank_no
+                mojiretsu(28) = bank_kouza_mei
+                mojiretsu(29) = user_mei
+                mojiretsu(30) = domain_name
+
                 dgv_kensakukekka.Rows.Add(mojiretsu)
 
             Next
@@ -311,5 +394,18 @@ Public Class frmichiran_gyousha
 
     Private Sub chk_fuhitsuyou_hyouji_Click(sender As Object, e As EventArgs) Handles chk_fuyou_hyouji.Click
         set_gyousha_ichiran()
+    End Sub
+
+    Private Sub set_combo_box(is_update As Boolean)
+
+        With frmichiran_gyousha_koushin
+            ' TODO : 郵便番号
+
+            .cbx_shiharai_houhou.Items.AddRange(PaymentMethods.Names)
+            .cbx_shimebi.Items.AddRange(Deadline.Names)
+            .cbx_shouhizei.Items.AddRange(ConsumptionTax.Names)
+            .cbx_hasuu.Items.AddRange(Rounding.Names)
+        End With
+
     End Sub
 End Class

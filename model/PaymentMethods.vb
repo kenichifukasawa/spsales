@@ -1,16 +1,24 @@
 ﻿Public Module PaymentMethods
 
-    Public Const ID_GENKIN As String = "0"
-    Public Const ID_FURIKOMI As String = "1"
-    Public Const ID_KOGITTE As String = "2"
-    Public Const ID_TEGATA As String = "3"
-    Public Const ID_SOUSAI As String = "4"
+    Private Const ID_GENKIN As String = "0"
+    Private Const ID_FURIKOMI As String = "1"
+    Private Const ID_KOGITTE As String = "2"
+    Private Const ID_TEGATA As String = "3"
+    Private Const ID_SOUSAI As String = "4"
 
-    Public Const NAME_GENKIN As String = "現金"
-    Public Const NAME_FURIKOMI As String = "振込"
-    Public Const NAME_KOGITTE As String = "小切手"
-    Public Const NAME_TEGATA As String = "手形"
-    Public Const NAME_SOUSAI As String = "相殺"
+    Private Const NAME_GENKIN As String = "現金"
+    Private Const NAME_FURIKOMI As String = "振込"
+    Private Const NAME_KOGITTE As String = "小切手"
+    Private Const NAME_TEGATA As String = "手形"
+    Private Const NAME_SOUSAI As String = "相殺"
+
+    Public ReadOnly Names As String() = {
+        NAME_GENKIN,
+        NAME_FURIKOMI,
+        NAME_KOGITTE,
+        NAME_TEGATA,
+        NAME_SOUSAI
+    }
 
     Public ReadOnly idToName As New Dictionary(Of String, String) From {
         {ID_GENKIN, NAME_GENKIN},

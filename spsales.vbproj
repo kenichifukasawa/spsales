@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="model\BankAccountType.vb" />
     <Compile Include="model\ConsumptionTax.vb" />
+    <Compile Include="model\Deadline.vb" />
     <Compile Include="model\PaymentMethods.vb" />
     <Compile Include="model\Rounding.vb" />
     <Compile Include="module\m_main.vb" />

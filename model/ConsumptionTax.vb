@@ -1,9 +1,15 @@
 ﻿Public Module ConsumptionTax
-    Public Const ID_SHIME As String = "0"
-    Public Const ID_DENPYOU As String = "1"
 
-    Public Const NAME_SHIME As String = "〆日ごと"
-    Public Const NAME_DENPYOU As String = "伝票ごと"
+    Private Const ID_SHIME As String = "0"
+    Private Const ID_DENPYOU As String = "1"
+
+    Private Const NAME_SHIME As String = "〆日ごと"
+    Private Const NAME_DENPYOU As String = "伝票ごと"
+
+    Public ReadOnly Names As String() = {
+        NAME_SHIME,
+        NAME_DENPYOU
+    }
 
     Public ReadOnly idToName As New Dictionary(Of String, String) From {
         {ID_SHIME, NAME_SHIME},
@@ -30,4 +36,5 @@
             Return "エラー"
         End If
     End Function
+
 End Module

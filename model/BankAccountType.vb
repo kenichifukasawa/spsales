@@ -1,9 +1,15 @@
 ﻿Public Module BankAccountType
-    Public Const ID_FUTSUU As String = "0"
-    Public Const ID_TOUZA As String = "1"
 
-    Public Const NAME_FUTSUU As String = "普通"
-    Public Const NAME_TOUZA As String = "当座"
+    Private Const ID_FUTSUU As String = "0"
+    Private Const ID_TOUZA As String = "1"
+
+    Private Const NAME_FUTSUU As String = "普通"
+    Private Const NAME_TOUZA As String = "当座"
+
+    Public ReadOnly Names As String() = {
+        NAME_FUTSUU,
+        NAME_TOUZA
+    }
 
     Public ReadOnly idToName As New Dictionary(Of String, String) From {
         {ID_FUTSUU, NAME_FUTSUU},
@@ -30,5 +36,6 @@
             Return "エラー"
         End If
     End Function
+
 End Module
 
