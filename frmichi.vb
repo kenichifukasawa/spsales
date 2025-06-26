@@ -12,7 +12,7 @@
     End Sub
 
     Private Sub btn_gyousha_Click(sender As Object, e As EventArgs) Handles btn_gyousha.Click
-
+        frmichiran_gyousha.ShowDialog()
     End Sub
 
     Private Sub btn_yuubin_bangou_Click(sender As Object, e As EventArgs) Handles btn_yuubin_bangou.Click

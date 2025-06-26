@@ -23,6 +23,7 @@ Partial Class frmichiran_gyousha
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.chk_fuyou_hyouji = New System.Windows.Forms.CheckBox()
         Me.chk_sakujo = New System.Windows.Forms.CheckBox()
         Me.btn_touroku = New System.Windows.Forms.Button()
         Me.btn_henkou = New System.Windows.Forms.Button()
@@ -36,6 +37,7 @@ Partial Class frmichiran_gyousha
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
+        Me.GroupBox1.Controls.Add(Me.chk_fuyou_hyouji)
         Me.GroupBox1.Controls.Add(Me.chk_sakujo)
         Me.GroupBox1.Controls.Add(Me.btn_touroku)
         Me.GroupBox1.Controls.Add(Me.btn_henkou)
@@ -50,6 +52,16 @@ Partial Class frmichiran_gyousha
         Me.GroupBox1.Size = New System.Drawing.Size(1880, 972)
         Me.GroupBox1.TabIndex = 51
         Me.GroupBox1.TabStop = False
+        '
+        'chk_fuyou_hyouji
+        '
+        Me.chk_fuyou_hyouji.AutoSize = True
+        Me.chk_fuyou_hyouji.Location = New System.Drawing.Point(33, 31)
+        Me.chk_fuyou_hyouji.Name = "chk_fuyou_hyouji"
+        Me.chk_fuyou_hyouji.Size = New System.Drawing.Size(156, 18)
+        Me.chk_fuyou_hyouji.TabIndex = 190
+        Me.chk_fuyou_hyouji.Text = "不要な業者も表示する"
+        Me.chk_fuyou_hyouji.UseVisualStyleBackColor = True
         '
         'chk_sakujo
         '
@@ -147,4 +159,5 @@ Partial Class frmichiran_gyousha
     Friend WithEvents btn_sakujo As Button
     Friend WithEvents btn_modoru As Button
     Friend WithEvents dgv_kensakukekka As DataGridView
+    Friend WithEvents chk_fuyou_hyouji As CheckBox
 End Class
