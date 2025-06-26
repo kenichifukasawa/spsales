@@ -201,50 +201,24 @@ Public Class frmichiran_gyousha
                 End If
                 mojiretsu(10) = shimebi
 
-                Dim shiharai_houhou = ""
+                Dim shiharai_houhou As String = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shiharaihouhou")) Then
-                    Select Case Trim(dt_server.Rows.Item(i).Item("shiharaihouhou"))
-                        Case "0"
-                            shiharai_houhou = "現金"
-                        Case "1"
-                            shiharai_houhou = "振込"
-                        Case "2"
-                            shiharai_houhou = "小切手"
-                        Case "3"
-                            shiharai_houhou = "手形"
-                        Case "4"
-                            shiharai_houhou = "相殺"
-                        Case Else
-                            shiharai_houhou = "エラー"
-                    End Select
+                    Dim id As String = Trim(dt_server.Rows.Item(i).Item("shiharaihouhou").ToString())
+                    shiharai_houhou = PaymentMethods.GetNameById(id)
                 End If
                 mojiretsu(11) = shiharai_houhou
 
-                Dim shouhizei = ""
+                Dim shouhizei As String = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shouhizei")) Then
-                    Select Case Trim(dt_server.Rows.Item(i).Item("shouhizei"))
-                        Case "0"
-                            shouhizei = "〆日ごと"
-                        Case "1"
-                            shouhizei = "伝票ごと"
-                        Case Else
-                            shouhizei = "エラー"
-                    End Select
+                    Dim id As String = Trim(dt_server.Rows.Item(i).Item("shouhizei").ToString())
+                    shouhizei = ConsumptionTax.GetNameById(id)
                 End If
                 mojiretsu(12) = shouhizei
 
-                Dim hasuu = ""
+                Dim hasuu As String = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("hasuu")) Then
-                    Select Case Trim(dt_server.Rows.Item(i).Item("hasuu"))
-                        Case "0"
-                            hasuu = "切り捨て"
-                        Case "1"
-                            hasuu = "四捨五入"
-                        Case "2"
-                            hasuu = "切り上げ"
-                        Case Else
-                            hasuu = "エラー"
-                    End Select
+                    Dim id As String = Trim(dt_server.Rows.Item(i).Item("hasuu").ToString())
+                    hasuu = Rounding.GetNameById(id)
                 End If
                 mojiretsu(13) = hasuu
 
@@ -263,14 +237,10 @@ Public Class frmichiran_gyousha
 
                         Dim bank_shurui = ""
                         If Not IsDBNull(dt_server.Rows.Item(i).Item("bankshurui")) Then
-                            Select Case Trim(dt_server.Rows.Item(i).Item("bankshurui"))
-                                Case "0"
-                                    bank_shurui = "普通"
-                                Case "1"
-                                    bank_shurui = "当座"
-                                Case Else
-                                    bank_shurui = "エラー"
-                            End Select
+                            If Not IsDBNull(dt_server.Rows.Item(i).Item("bankshurui")) Then
+                                Dim id As String = Trim(dt_server.Rows.Item(i).Item("bankshurui").ToString())
+                                bank_shurui = BankAccountType.GetNameById(id)
+                            End If
                             ginkou_kouza += " " + bank_shurui
 
                             If Not IsDBNull(dt_server.Rows.Item(i).Item("bankno")) Then

@@ -147,6 +147,10 @@
     <Compile Include="frmichiran_shain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="model\BankAccountType.vb" />
+    <Compile Include="model\ConsumptionTax.vb" />
+    <Compile Include="model\PaymentMethods.vb" />
+    <Compile Include="model\Rounding.vb" />
     <Compile Include="module\m_main.vb" />
     <Compile Include="module\m_seikyuu.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -221,5 +225,6 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
