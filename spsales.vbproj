@@ -80,6 +80,18 @@
     <Compile Include="frmichi.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmichiran_gyousha.Designer.vb">
+      <DependentUpon>frmichiran_gyousha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmichiran_gyousha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmichiran_gyousha_koushin.Designer.vb">
+      <DependentUpon>frmichiran_gyousha_koushin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmichiran_gyousha_koushin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmichiran_shain_koushin.Designer.vb">
       <DependentUpon>frmichiran_shain_koushin.vb</DependentUpon>
     </Compile>
@@ -156,6 +168,12 @@
   <ItemGroup>
     <EmbeddedResource Include="frmichi.resx">
       <DependentUpon>frmichi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmichiran_gyousha.resx">
+      <DependentUpon>frmichiran_gyousha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmichiran_gyousha_koushin.resx">
+      <DependentUpon>frmichiran_gyousha_koushin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmichiran_shain_koushin.resx">
       <DependentUpon>frmichiran_shain_koushin.vb</DependentUpon>
