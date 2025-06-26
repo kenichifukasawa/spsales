@@ -32,20 +32,20 @@ Partial Class frmichiran_yuubin_koushin
         Me.btn_koushin = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.gbx_shin = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lbl_yuubin_bangou_shin = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.txt_shousai = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txt_juusho = New System.Windows.Forms.TextBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.lbl_yuubin_bangou_shin = New System.Windows.Forms.Label()
         Me.gbx_kyuu.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.gbx_shin.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbx_kyuu
@@ -116,7 +116,7 @@ Partial Class frmichiran_yuubin_koushin
         Me.GroupBox10.Size = New System.Drawing.Size(423, 60)
         Me.GroupBox10.TabIndex = 190
         Me.GroupBox10.TabStop = False
-        Me.GroupBox10.Text = "住所"
+        Me.GroupBox10.Text = "住所１"
         '
         'lbl_juusho
         '
@@ -166,6 +166,28 @@ Partial Class frmichiran_yuubin_koushin
         Me.gbx_shin.TabStop = False
         Me.gbx_shin.Text = "新郵便番号詳細"
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.BackColor = System.Drawing.Color.White
+        Me.GroupBox1.Controls.Add(Me.lbl_yuubin_bangou_shin)
+        Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(53, 21)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(139, 60)
+        Me.GroupBox1.TabIndex = 194
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "郵便番号"
+        '
+        'lbl_yuubin_bangou_shin
+        '
+        Me.lbl_yuubin_bangou_shin.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.lbl_yuubin_bangou_shin.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_yuubin_bangou_shin.Location = New System.Drawing.Point(20, 24)
+        Me.lbl_yuubin_bangou_shin.Name = "lbl_yuubin_bangou_shin"
+        Me.lbl_yuubin_bangou_shin.Size = New System.Drawing.Size(99, 21)
+        Me.lbl_yuubin_bangou_shin.TabIndex = 169
+        Me.lbl_yuubin_bangou_shin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.White
@@ -199,7 +221,7 @@ Partial Class frmichiran_yuubin_koushin
         Me.GroupBox2.Size = New System.Drawing.Size(423, 60)
         Me.GroupBox2.TabIndex = 190
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "住所"
+        Me.GroupBox2.Text = "住所１"
         '
         'txt_juusho
         '
@@ -211,28 +233,6 @@ Partial Class frmichiran_yuubin_koushin
         Me.txt_juusho.Name = "txt_juusho"
         Me.txt_juusho.Size = New System.Drawing.Size(390, 22)
         Me.txt_juusho.TabIndex = 178
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.BackColor = System.Drawing.Color.White
-        Me.GroupBox1.Controls.Add(Me.lbl_yuubin_bangou_shin)
-        Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(53, 21)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(139, 60)
-        Me.GroupBox1.TabIndex = 194
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "郵便番号"
-        '
-        'lbl_yuubin_bangou_shin
-        '
-        Me.lbl_yuubin_bangou_shin.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.lbl_yuubin_bangou_shin.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_yuubin_bangou_shin.Location = New System.Drawing.Point(20, 24)
-        Me.lbl_yuubin_bangou_shin.Name = "lbl_yuubin_bangou_shin"
-        Me.lbl_yuubin_bangou_shin.Size = New System.Drawing.Size(99, 21)
-        Me.lbl_yuubin_bangou_shin.TabIndex = 169
-        Me.lbl_yuubin_bangou_shin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmichiran_yuubin_koushin
         '
@@ -252,11 +252,11 @@ Partial Class frmichiran_yuubin_koushin
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
         Me.gbx_shin.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

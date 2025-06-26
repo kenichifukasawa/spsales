@@ -9,10 +9,6 @@ Public Class frmichiran_yuubin
         Me.Close() : Me.Dispose()
     End Sub
 
-    Private Sub btn_touroku_Click(sender As Object, e As EventArgs) Handles btn_touroku.Click
-
-    End Sub
-
     Private Sub btn_henkou_Click(sender As Object, e As EventArgs) Handles btn_henkou.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
@@ -94,14 +90,40 @@ Public Class frmichiran_yuubin
 
     End Sub
 
+    Private Sub txt_yuubin_bangou_TextChanged(sender As Object, e As EventArgs) Handles txt_yuubin_bangou.TextChanged
+        set_yuubin_ichiran()
+    End Sub
+
+    Private Sub txt_juusho_TextChanged(sender As Object, e As EventArgs) Handles txt_juusho.TextChanged
+        set_yuubin_ichiran()
+    End Sub
+
     Private Sub set_yuubin_ichiran()
+
+        Dim juusho = Trim(txt_juusho.Text)
+        Dim yuubin_bangou = Trim(txt_yuubin_bangou.Text)
 
         Try
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM mailno_m ORDER BY mailno"
+            Dim query = "SELECT * FROM mailno_m"
+
+            Dim query_where = ""
+            If juusho <> "" Then
+                query_where = " WHERE adress1 LIKE '%" + juusho + "%'"
+            End If
+
+            If yuubin_bangou <> "" Then
+                If query_where = "" Then
+                    query_where = " WHERE mailno LIKE '%" + yuubin_bangou + "%'"
+                Else
+                    query_where += " AND mailno LIKE '%" + yuubin_bangou + "%'"
+                End If
+            End If
+
+            query += query_where + " ORDER BY mailno"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -147,4 +169,5 @@ Public Class frmichiran_yuubin
         End Try
 
     End Sub
+
 End Class
