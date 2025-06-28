@@ -74,6 +74,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="frmcheck_sentaku.Designer.vb">
+      <DependentUpon>frmcheck_sentaku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmcheck_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmichi.Designer.vb">
       <DependentUpon>frmichi.vb</DependentUpon>
     </Compile>
@@ -147,6 +153,18 @@
     <Compile Include="frmichiran_shain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmshutsuryoku_sentaku.Designer.vb">
+      <DependentUpon>frmshutsuryoku_sentaku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshutsuryoku_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmshuukei_sentaku.Designer.vb">
+      <DependentUpon>frmshuukei_sentaku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshuukei_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="model\BankAccountType.vb" />
     <Compile Include="model\ConsumptionTax.vb" />
     <Compile Include="model\Deadline.vb" />
@@ -171,6 +189,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmcheck_sentaku.resx">
+      <DependentUpon>frmcheck_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmichi.resx">
       <DependentUpon>frmichi.vb</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +227,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmichiran_shain.resx">
       <DependentUpon>frmichiran_shain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshutsuryoku_sentaku.resx">
+      <DependentUpon>frmshutsuryoku_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshuukei_sentaku.resx">
+      <DependentUpon>frmshuukei_sentaku.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

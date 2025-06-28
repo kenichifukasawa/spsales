@@ -30,4 +30,24 @@
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
 
     End Sub
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+
+        frmshuukei_sentaku.ShowDialog()
+
+
+    End Sub
+
+    Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
+
+        frmshutsuryoku_sentaku.ShowDialog()
+
+
+    End Sub
+
+    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
+
+        frmcheck_sentaku.ShowDialog()
+
+    End Sub
 End Class
