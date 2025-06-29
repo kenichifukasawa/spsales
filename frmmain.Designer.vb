@@ -117,6 +117,10 @@ Partial Class frmmain
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
@@ -136,13 +140,14 @@ Partial Class frmmain
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.cmbshokuin = New System.Windows.Forms.ComboBox()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.Button18 = New System.Windows.Forms.Button()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Button16 = New System.Windows.Forms.Button()
         Me.Button17 = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Button18 = New System.Windows.Forms.Button()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -159,9 +164,11 @@ Partial Class frmmain
         Me.TabPage2.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox10.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button2
@@ -180,7 +187,7 @@ Partial Class frmmain
         '
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(1767, 12)
+        Me.Button1.Location = New System.Drawing.Point(9, 60)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(110, 44)
@@ -192,7 +199,7 @@ Partial Class frmmain
         '
         Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.Location = New System.Drawing.Point(1011, 12)
+        Me.Button3.Location = New System.Drawing.Point(119, 60)
         Me.Button3.Margin = New System.Windows.Forms.Padding(2)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(110, 44)
@@ -205,7 +212,7 @@ Partial Class frmmain
         Me.Button4.BackColor = System.Drawing.Color.MistyRose
         Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button4.Location = New System.Drawing.Point(1377, 12)
+        Me.Button4.Location = New System.Drawing.Point(138, 28)
         Me.Button4.Margin = New System.Windows.Forms.Padding(2)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(110, 44)
@@ -218,7 +225,7 @@ Partial Class frmmain
         Me.Button5.BackColor = System.Drawing.Color.Azure
         Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button5.Location = New System.Drawing.Point(124, 12)
+        Me.Button5.Location = New System.Drawing.Point(119, 12)
         Me.Button5.Margin = New System.Windows.Forms.Padding(2)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(110, 44)
@@ -231,7 +238,7 @@ Partial Class frmmain
         Me.Button6.BackColor = System.Drawing.Color.Azure
         Me.Button6.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button6.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button6.Location = New System.Drawing.Point(240, 12)
+        Me.Button6.Location = New System.Drawing.Point(230, 12)
         Me.Button6.Margin = New System.Windows.Forms.Padding(2)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(110, 44)
@@ -244,7 +251,7 @@ Partial Class frmmain
         Me.Button7.BackColor = System.Drawing.Color.Azure
         Me.Button7.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button7.Location = New System.Drawing.Point(356, 12)
+        Me.Button7.Location = New System.Drawing.Point(341, 12)
         Me.Button7.Margin = New System.Windows.Forms.Padding(2)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(110, 44)
@@ -257,7 +264,7 @@ Partial Class frmmain
         Me.Button8.BackColor = System.Drawing.Color.Azure
         Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button8.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button8.Location = New System.Drawing.Point(472, 12)
+        Me.Button8.Location = New System.Drawing.Point(452, 12)
         Me.Button8.Margin = New System.Windows.Forms.Padding(2)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(110, 44)
@@ -270,7 +277,7 @@ Partial Class frmmain
         Me.Button9.BackColor = System.Drawing.Color.MistyRose
         Me.Button9.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button9.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button9.Location = New System.Drawing.Point(1507, 12)
+        Me.Button9.Location = New System.Drawing.Point(268, 28)
         Me.Button9.Margin = New System.Windows.Forms.Padding(2)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(110, 44)
@@ -283,20 +290,16 @@ Partial Class frmmain
         Me.GroupBox1.Controls.Add(Me.Button22)
         Me.GroupBox1.Controls.Add(Me.Button21)
         Me.GroupBox1.Controls.Add(Me.Button19)
-        Me.GroupBox1.Controls.Add(Me.Button13)
-        Me.GroupBox1.Controls.Add(Me.Button12)
+        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.Button2)
         Me.GroupBox1.Controls.Add(Me.Button8)
-        Me.GroupBox1.Controls.Add(Me.Button9)
         Me.GroupBox1.Controls.Add(Me.Button7)
-        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.Button6)
         Me.GroupBox1.Controls.Add(Me.Button3)
         Me.GroupBox1.Controls.Add(Me.Button5)
-        Me.GroupBox1.Controls.Add(Me.Button4)
         Me.GroupBox1.Location = New System.Drawing.Point(7, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1888, 61)
+        Me.GroupBox1.Size = New System.Drawing.Size(568, 110)
         Me.GroupBox1.TabIndex = 150
         Me.GroupBox1.TabStop = False
         '
@@ -305,7 +308,7 @@ Partial Class frmmain
         Me.Button22.BackColor = System.Drawing.Color.Azure
         Me.Button22.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button22.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button22.Location = New System.Drawing.Point(816, 12)
+        Me.Button22.Location = New System.Drawing.Point(452, 60)
         Me.Button22.Margin = New System.Windows.Forms.Padding(2)
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(110, 44)
@@ -318,7 +321,7 @@ Partial Class frmmain
         Me.Button21.BackColor = System.Drawing.Color.Azure
         Me.Button21.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button21.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button21.Location = New System.Drawing.Point(702, 12)
+        Me.Button21.Location = New System.Drawing.Point(341, 60)
         Me.Button21.Margin = New System.Windows.Forms.Padding(2)
         Me.Button21.Name = "Button21"
         Me.Button21.Size = New System.Drawing.Size(110, 44)
@@ -331,7 +334,7 @@ Partial Class frmmain
         Me.Button19.BackColor = System.Drawing.Color.Azure
         Me.Button19.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button19.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button19.Location = New System.Drawing.Point(588, 12)
+        Me.Button19.Location = New System.Drawing.Point(229, 60)
         Me.Button19.Margin = New System.Windows.Forms.Padding(2)
         Me.Button19.Name = "Button19"
         Me.Button19.Size = New System.Drawing.Size(110, 44)
@@ -344,7 +347,7 @@ Partial Class frmmain
         Me.Button13.BackColor = System.Drawing.Color.MistyRose
         Me.Button13.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button13.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button13.Location = New System.Drawing.Point(1247, 12)
+        Me.Button13.Location = New System.Drawing.Point(8, 28)
         Me.Button13.Margin = New System.Windows.Forms.Padding(2)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(110, 44)
@@ -357,7 +360,7 @@ Partial Class frmmain
         Me.Button12.BackColor = System.Drawing.Color.MistyRose
         Me.Button12.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button12.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button12.Location = New System.Drawing.Point(1637, 12)
+        Me.Button12.Location = New System.Drawing.Point(398, 28)
         Me.Button12.Margin = New System.Windows.Forms.Padding(2)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(110, 44)
@@ -368,15 +371,19 @@ Partial Class frmmain
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox2.Controls.Add(Me.Button13)
+        Me.GroupBox2.Controls.Add(Me.Button4)
         Me.GroupBox2.Controls.Add(Me.GroupBox3)
         Me.GroupBox2.Controls.Add(Me.GroupBox20)
+        Me.GroupBox2.Controls.Add(Me.Button9)
         Me.GroupBox2.Controls.Add(Me.GroupBox13)
+        Me.GroupBox2.Controls.Add(Me.Button12)
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(1250, 69)
+        Me.GroupBox2.Location = New System.Drawing.Point(1250, 3)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(645, 914)
+        Me.GroupBox2.Size = New System.Drawing.Size(645, 980)
         Me.GroupBox2.TabIndex = 196
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "店舗情報"
@@ -387,7 +394,7 @@ Partial Class frmmain
         Me.GroupBox3.Controls.Add(Me.Button10)
         Me.GroupBox3.Controls.Add(Me.DataGridView1)
         Me.GroupBox3.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 729)
+        Me.GroupBox3.Location = New System.Drawing.Point(8, 793)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2)
@@ -430,7 +437,7 @@ Partial Class frmmain
         Me.GroupBox20.Controls.Add(Me.Button20)
         Me.GroupBox20.Controls.Add(Me.dgv_nouhinsho)
         Me.GroupBox20.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox20.Location = New System.Drawing.Point(8, 580)
+        Me.GroupBox20.Location = New System.Drawing.Point(8, 644)
         Me.GroupBox20.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox20.Name = "GroupBox20"
         Me.GroupBox20.Padding = New System.Windows.Forms.Padding(2)
@@ -514,7 +521,7 @@ Partial Class frmmain
         Me.GroupBox13.Controls.Add(Me.lbl_shimei_lbl)
         Me.GroupBox13.Controls.Add(Me.lblshimei)
         Me.GroupBox13.Controls.Add(Me.lblkojinid)
-        Me.GroupBox13.Location = New System.Drawing.Point(8, 13)
+        Me.GroupBox13.Location = New System.Drawing.Point(8, 77)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(630, 562)
         Me.GroupBox13.TabIndex = 68
@@ -997,7 +1004,7 @@ Partial Class frmmain
         Me.Button11.BackColor = System.Drawing.Color.Honeydew
         Me.Button11.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button11.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button11.Location = New System.Drawing.Point(463, 13)
+        Me.Button11.Location = New System.Drawing.Point(171, 13)
         Me.Button11.Margin = New System.Windows.Forms.Padding(2)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(89, 37)
@@ -1009,9 +1016,9 @@ Partial Class frmmain
         '
         Me.GroupBox4.Controls.Add(Me.TabControl1)
         Me.GroupBox4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(1, 69)
+        Me.GroupBox4.Location = New System.Drawing.Point(1, 118)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(576, 914)
+        Me.GroupBox4.Size = New System.Drawing.Size(576, 865)
         Me.GroupBox4.TabIndex = 197
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "検索"
@@ -1023,7 +1030,7 @@ Partial Class frmmain
         Me.TabControl1.Location = New System.Drawing.Point(6, 23)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(568, 883)
+        Me.TabControl1.Size = New System.Drawing.Size(568, 835)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -1034,7 +1041,7 @@ Partial Class frmmain
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(560, 854)
+        Me.TabPage1.Size = New System.Drawing.Size(560, 806)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "条件"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -1046,7 +1053,7 @@ Partial Class frmmain
         Me.ListBox1.ItemHeight = 15
         Me.ListBox1.Location = New System.Drawing.Point(22, 81)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(236, 754)
+        Me.ListBox1.Size = New System.Drawing.Size(236, 694)
         Me.ListBox1.TabIndex = 70
         '
         'GroupBox6
@@ -1218,7 +1225,7 @@ Partial Class frmmain
         Me.dgv_shien.ReadOnly = True
         Me.dgv_shien.RowTemplate.Height = 24
         Me.dgv_shien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv_shien.Size = New System.Drawing.Size(547, 746)
+        Me.dgv_shien.Size = New System.Drawing.Size(547, 689)
         Me.dgv_shien.TabIndex = 68
         '
         'TabPage2
@@ -1227,7 +1234,7 @@ Partial Class frmmain
         Me.TabPage2.Location = New System.Drawing.Point(4, 25)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(560, 854)
+        Me.TabPage2.Size = New System.Drawing.Size(560, 806)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "区分"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1242,7 +1249,7 @@ Partial Class frmmain
         Me.TabControl2.Location = New System.Drawing.Point(10, 13)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(544, 835)
+        Me.TabControl2.Size = New System.Drawing.Size(544, 790)
         Me.TabControl2.TabIndex = 0
         '
         'TabPage3
@@ -1250,7 +1257,7 @@ Partial Class frmmain
         Me.TabPage3.Location = New System.Drawing.Point(4, 25)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(536, 806)
+        Me.TabPage3.Size = New System.Drawing.Size(536, 761)
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "業者区分"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1260,7 +1267,7 @@ Partial Class frmmain
         Me.TabPage4.Location = New System.Drawing.Point(4, 25)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(536, 806)
+        Me.TabPage4.Size = New System.Drawing.Size(536, 761)
         Me.TabPage4.TabIndex = 1
         Me.TabPage4.Text = "商品区分１"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1269,7 +1276,7 @@ Partial Class frmmain
         '
         Me.TabPage5.Location = New System.Drawing.Point(4, 25)
         Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Size = New System.Drawing.Size(536, 806)
+        Me.TabPage5.Size = New System.Drawing.Size(536, 761)
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "商品区分２"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -1278,7 +1285,7 @@ Partial Class frmmain
         '
         Me.TabPage6.Location = New System.Drawing.Point(4, 25)
         Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Size = New System.Drawing.Size(536, 806)
+        Me.TabPage6.Size = New System.Drawing.Size(536, 761)
         Me.TabPage6.TabIndex = 3
         Me.TabPage6.Text = "商品名etc"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1287,23 +1294,70 @@ Partial Class frmmain
         '
         Me.TabPage7.Location = New System.Drawing.Point(4, 25)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(536, 806)
+        Me.TabPage7.Size = New System.Drawing.Size(536, 761)
         Me.TabPage7.TabIndex = 4
         Me.TabPage7.Text = "結果・選択"
         Me.TabPage7.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.GroupBox10)
+        Me.GroupBox5.Controls.Add(Me.CheckBox3)
+        Me.GroupBox5.Controls.Add(Me.GroupBox9)
         Me.GroupBox5.Controls.Add(Me.GroupBox8)
         Me.GroupBox5.Controls.Add(Me.GroupBox7)
         Me.GroupBox5.Controls.Add(Me.DataGridView2)
         Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(581, 69)
+        Me.GroupBox5.Location = New System.Drawing.Point(583, 3)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(664, 914)
+        Me.GroupBox5.Size = New System.Drawing.Size(664, 980)
         Me.GroupBox5.TabIndex = 198
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "納品書"
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Location = New System.Drawing.Point(446, 13)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(112, 19)
+        Me.CheckBox3.TabIndex = 202
+        Me.CheckBox3.Text = "消費税を計算"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'GroupBox9
+        '
+        Me.GroupBox9.BackColor = System.Drawing.Color.White
+        Me.GroupBox9.Controls.Add(Me.Button11)
+        Me.GroupBox9.Controls.Add(Me.ComboBox1)
+        Me.GroupBox9.Controls.Add(Me.Label30)
+        Me.GroupBox9.Location = New System.Drawing.Point(393, 18)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(264, 57)
+        Me.GroupBox9.TabIndex = 200
+        Me.GroupBox9.TabStop = False
+        Me.GroupBox9.Text = "印刷"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.BackColor = System.Drawing.Color.White
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(62, 21)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(100, 23)
+        Me.ComboBox1.TabIndex = 201
+        '
+        'Label30
+        '
+        Me.Label30.BackColor = System.Drawing.Color.White
+        Me.Label30.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label30.Location = New System.Drawing.Point(10, 24)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(46, 16)
+        Me.Label30.TabIndex = 200
+        Me.Label30.Text = "種類"
+        Me.Label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox8
         '
@@ -1320,7 +1374,7 @@ Partial Class frmmain
         Me.GroupBox8.Controls.Add(Me.Label20)
         Me.GroupBox8.Controls.Add(Me.Label15)
         Me.GroupBox8.Controls.Add(Me.Label16)
-        Me.GroupBox8.Location = New System.Drawing.Point(8, 117)
+        Me.GroupBox8.Location = New System.Drawing.Point(8, 149)
         Me.GroupBox8.Name = "GroupBox8"
         Me.GroupBox8.Size = New System.Drawing.Size(650, 79)
         Me.GroupBox8.TabIndex = 199
@@ -1330,7 +1384,7 @@ Partial Class frmmain
         '
         Me.Label27.BackColor = System.Drawing.Color.White
         Me.Label27.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label27.Location = New System.Drawing.Point(273, 18)
+        Me.Label27.Location = New System.Drawing.Point(266, 18)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(97, 16)
         Me.Label27.TabIndex = 208
@@ -1340,7 +1394,7 @@ Partial Class frmmain
         '
         Me.Label28.BackColor = System.Drawing.Color.White
         Me.Label28.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label28.Location = New System.Drawing.Point(376, 22)
+        Me.Label28.Location = New System.Drawing.Point(369, 22)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(37, 16)
         Me.Label28.TabIndex = 207
@@ -1351,7 +1405,7 @@ Partial Class frmmain
         '
         Me.Label29.BackColor = System.Drawing.Color.White
         Me.Label29.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label29.Location = New System.Drawing.Point(220, 18)
+        Me.Label29.Location = New System.Drawing.Point(213, 18)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(47, 16)
         Me.Label29.TabIndex = 206
@@ -1362,7 +1416,7 @@ Partial Class frmmain
         '
         Me.Label22.BackColor = System.Drawing.Color.White
         Me.Label22.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label22.Location = New System.Drawing.Point(70, 18)
+        Me.Label22.Location = New System.Drawing.Point(63, 18)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(97, 16)
         Me.Label22.TabIndex = 205
@@ -1372,7 +1426,7 @@ Partial Class frmmain
         '
         Me.Label23.BackColor = System.Drawing.Color.White
         Me.Label23.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label23.Location = New System.Drawing.Point(173, 22)
+        Me.Label23.Location = New System.Drawing.Point(166, 22)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(37, 16)
         Me.Label23.TabIndex = 204
@@ -1383,7 +1437,7 @@ Partial Class frmmain
         '
         Me.Label25.BackColor = System.Drawing.Color.White
         Me.Label25.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label25.Location = New System.Drawing.Point(17, 18)
+        Me.Label25.Location = New System.Drawing.Point(10, 18)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(47, 16)
         Me.Label25.TabIndex = 203
@@ -1427,7 +1481,7 @@ Partial Class frmmain
         '
         Me.Label20.BackColor = System.Drawing.Color.White
         Me.Label20.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label20.Location = New System.Drawing.Point(490, 18)
+        Me.Label20.Location = New System.Drawing.Point(483, 18)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(97, 16)
         Me.Label20.TabIndex = 198
@@ -1437,7 +1491,7 @@ Partial Class frmmain
         '
         Me.Label15.BackColor = System.Drawing.Color.White
         Me.Label15.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label15.Location = New System.Drawing.Point(593, 22)
+        Me.Label15.Location = New System.Drawing.Point(578, 22)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(37, 16)
         Me.Label15.TabIndex = 190
@@ -1448,7 +1502,7 @@ Partial Class frmmain
         '
         Me.Label16.BackColor = System.Drawing.Color.White
         Me.Label16.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label16.Location = New System.Drawing.Point(437, 18)
+        Me.Label16.Location = New System.Drawing.Point(430, 18)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(47, 16)
         Me.Label16.TabIndex = 189
@@ -1461,25 +1515,20 @@ Partial Class frmmain
         Me.GroupBox7.Controls.Add(Me.CheckBox2)
         Me.GroupBox7.Controls.Add(Me.CheckBox1)
         Me.GroupBox7.Controls.Add(Me.TextBox5)
-        Me.GroupBox7.Controls.Add(Me.Button11)
-        Me.GroupBox7.Controls.Add(Me.cmbshokuin)
-        Me.GroupBox7.Controls.Add(Me.DateTimePicker1)
         Me.GroupBox7.Controls.Add(Me.Button18)
         Me.GroupBox7.Controls.Add(Me.Label17)
-        Me.GroupBox7.Controls.Add(Me.Label18)
-        Me.GroupBox7.Controls.Add(Me.Label19)
         Me.GroupBox7.Controls.Add(Me.Button16)
         Me.GroupBox7.Controls.Add(Me.Button17)
-        Me.GroupBox7.Location = New System.Drawing.Point(8, 21)
+        Me.GroupBox7.Location = New System.Drawing.Point(8, 79)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(650, 90)
+        Me.GroupBox7.Size = New System.Drawing.Size(650, 63)
         Me.GroupBox7.TabIndex = 70
         Me.GroupBox7.TabStop = False
         '
         'CheckBox2
         '
         Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(330, 60)
+        Me.CheckBox2.Location = New System.Drawing.Point(343, 24)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(56, 19)
         Me.CheckBox2.TabIndex = 199
@@ -1489,7 +1538,7 @@ Partial Class frmmain
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(223, 60)
+        Me.CheckBox1.Location = New System.Drawing.Point(236, 24)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(75, 19)
         Me.CheckBox1.TabIndex = 197
@@ -1501,7 +1550,7 @@ Partial Class frmmain
         Me.TextBox5.BackColor = System.Drawing.Color.White
         Me.TextBox5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TextBox5.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox5.Location = New System.Drawing.Point(91, 56)
+        Me.TextBox5.Location = New System.Drawing.Point(104, 20)
         Me.TextBox5.MaxLength = 50
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(111, 22)
@@ -1512,36 +1561,23 @@ Partial Class frmmain
         Me.cmbshokuin.BackColor = System.Drawing.Color.White
         Me.cmbshokuin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbshokuin.FormattingEnabled = True
-        Me.cmbshokuin.Location = New System.Drawing.Point(293, 21)
+        Me.cmbshokuin.Location = New System.Drawing.Point(269, 22)
         Me.cmbshokuin.Name = "cmbshokuin"
-        Me.cmbshokuin.Size = New System.Drawing.Size(136, 23)
+        Me.cmbshokuin.Size = New System.Drawing.Size(104, 23)
         Me.cmbshokuin.TabIndex = 195
         '
         'DateTimePicker1
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(64, 22)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(63, 23)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(138, 22)
         Me.DateTimePicker1.TabIndex = 192
-        '
-        'Button18
-        '
-        Me.Button18.BackColor = System.Drawing.Color.Honeydew
-        Me.Button18.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button18.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button18.Location = New System.Drawing.Point(556, 49)
-        Me.Button18.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button18.Name = "Button18"
-        Me.Button18.Size = New System.Drawing.Size(89, 37)
-        Me.Button18.TabIndex = 191
-        Me.Button18.Text = "バーコード"
-        Me.Button18.UseVisualStyleBackColor = False
         '
         'Label17
         '
         Me.Label17.BackColor = System.Drawing.Color.White
         Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label17.Location = New System.Drawing.Point(7, 58)
+        Me.Label17.Location = New System.Drawing.Point(20, 22)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(87, 16)
         Me.Label17.TabIndex = 188
@@ -1552,9 +1588,9 @@ Partial Class frmmain
         '
         Me.Label18.BackColor = System.Drawing.Color.White
         Me.Label18.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label18.Location = New System.Drawing.Point(214, 26)
+        Me.Label18.Location = New System.Drawing.Point(213, 27)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(73, 16)
+        Me.Label18.Size = New System.Drawing.Size(46, 16)
         Me.Label18.TabIndex = 187
         Me.Label18.Text = "社員"
         Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1563,7 +1599,7 @@ Partial Class frmmain
         '
         Me.Label19.BackColor = System.Drawing.Color.White
         Me.Label19.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label19.Location = New System.Drawing.Point(7, 24)
+        Me.Label19.Location = New System.Drawing.Point(6, 25)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(57, 16)
         Me.Label19.TabIndex = 186
@@ -1575,10 +1611,10 @@ Partial Class frmmain
         Me.Button16.BackColor = System.Drawing.Color.Honeydew
         Me.Button16.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button16.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button16.Location = New System.Drawing.Point(463, 49)
+        Me.Button16.Location = New System.Drawing.Point(447, 13)
         Me.Button16.Margin = New System.Windows.Forms.Padding(2)
         Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(89, 37)
+        Me.Button16.Size = New System.Drawing.Size(103, 37)
         Me.Button16.TabIndex = 185
         Me.Button16.Text = "保存"
         Me.Button16.UseVisualStyleBackColor = False
@@ -1588,12 +1624,12 @@ Partial Class frmmain
         Me.Button17.BackColor = System.Drawing.Color.Honeydew
         Me.Button17.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button17.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button17.Location = New System.Drawing.Point(556, 12)
+        Me.Button17.Location = New System.Drawing.Point(557, 13)
         Me.Button17.Margin = New System.Windows.Forms.Padding(2)
         Me.Button17.Name = "Button17"
-        Me.Button17.Size = New System.Drawing.Size(89, 37)
+        Me.Button17.Size = New System.Drawing.Size(41, 37)
         Me.Button17.TabIndex = 184
-        Me.Button17.Text = "クリア"
+        Me.Button17.Text = "Cl"
         Me.Button17.UseVisualStyleBackColor = False
         '
         'DataGridView2
@@ -1601,15 +1637,41 @@ Partial Class frmmain
         Me.DataGridView2.AllowUserToAddRows = False
         Me.DataGridView2.AllowUserToDeleteRows = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(8, 201)
+        Me.DataGridView2.Location = New System.Drawing.Point(8, 233)
         Me.DataGridView2.Margin = New System.Windows.Forms.Padding(2)
         Me.DataGridView2.MultiSelect = False
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
         Me.DataGridView2.RowTemplate.Height = 24
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(651, 705)
+        Me.DataGridView2.Size = New System.Drawing.Size(651, 740)
         Me.DataGridView2.TabIndex = 67
+        '
+        'Button18
+        '
+        Me.Button18.BackColor = System.Drawing.Color.Honeydew
+        Me.Button18.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button18.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button18.Location = New System.Drawing.Point(602, 13)
+        Me.Button18.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button18.Name = "Button18"
+        Me.Button18.Size = New System.Drawing.Size(41, 37)
+        Me.Button18.TabIndex = 191
+        Me.Button18.Text = "Bar"
+        Me.Button18.UseVisualStyleBackColor = False
+        '
+        'GroupBox10
+        '
+        Me.GroupBox10.BackColor = System.Drawing.Color.White
+        Me.GroupBox10.Controls.Add(Me.cmbshokuin)
+        Me.GroupBox10.Controls.Add(Me.Label19)
+        Me.GroupBox10.Controls.Add(Me.Label18)
+        Me.GroupBox10.Controls.Add(Me.DateTimePicker1)
+        Me.GroupBox10.Location = New System.Drawing.Point(8, 18)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(379, 57)
+        Me.GroupBox10.TabIndex = 203
+        Me.GroupBox10.TabStop = False
         '
         'frmmain
         '
@@ -1641,11 +1703,14 @@ Partial Class frmmain
         Me.TabPage2.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
+        Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox8.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox10.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1771,4 +1836,9 @@ Partial Class frmmain
     Friend WithEvents Label25 As Label
     Friend WithEvents Button21 As Button
     Friend WithEvents Button22 As Button
+    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents GroupBox9 As GroupBox
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label30 As Label
+    Friend WithEvents GroupBox10 As GroupBox
 End Class
