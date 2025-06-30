@@ -464,7 +464,7 @@ Public Class frmichiran_gyousha_koushin
 
                     data_row("mailno") = yuubin_bangou
                     data_row("adress1") = juusho_1
-                    data_row("shousai") = "TODO"
+                    data_row("shousai") = GetOnlyAddress3FromZipCode(yuubin_bangou)
 
                     ds.Tables("t_mailno_m").Rows.Add(data_row)
                     da.Update(ds, "t_mailno_m")
