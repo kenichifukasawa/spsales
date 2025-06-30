@@ -761,7 +761,7 @@ Partial Class frmichiran_gyousha_koushin
         Me.lbl_juusho_1.Name = "lbl_juusho_1"
         Me.lbl_juusho_1.Size = New System.Drawing.Size(388, 21)
         Me.lbl_juusho_1.TabIndex = 195
-        Me.lbl_juusho_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_juusho_1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'GroupBox7
         '

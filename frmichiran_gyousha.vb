@@ -258,6 +258,18 @@ Public Class frmichiran_gyousha
                 .Columns(29).Width = 0
                 .Columns(30).Width = 0
 
+#If DEBUG Then
+                .Columns(22).Width = 50
+                .Columns(23).Width = 50
+                .Columns(24).Width = 50
+                .Columns(25).Width = 50
+                .Columns(26).Width = 50
+                .Columns(27).Width = 50
+                .Columns(28).Width = 50
+                .Columns(29).Width = 50
+                .Columns(30).Width = 50
+#End If
+
                 .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft

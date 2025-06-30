@@ -94,10 +94,10 @@ Public Class frmichiran_gyousha_koushin
                 Exit Sub
             ElseIf new_id = "0" Then
                 next_id = "2"
-                new_id = "01"
+                new_id = "001"
             Else
                 next_id = (CLng(new_id) + 1).ToString
-                new_id = new_id.ToString.PadLeft(2, "0"c)
+                new_id = new_id.ToString.PadLeft(3, "0"c)
             End If
 
             Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
@@ -433,11 +433,8 @@ Public Class frmichiran_gyousha_koushin
             Exit Sub
         End If
 
-        Dim juusho_1 = SearchAddress1ByZipCode(yuubin_bangou)
-        If juusho_1 = "" Then
-            Exit Sub
-        End If
-        lbl_juusho_1.Text = juusho_1
+        'lbl_juusho_1.Text = GetAddress1ByZipCode(yuubin_bangou)
+        lbl_juusho_1.Text = GetAddressFromZipCode(yuubin_bangou)
 
     End Sub
 End Class
