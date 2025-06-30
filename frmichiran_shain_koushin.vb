@@ -87,7 +87,7 @@ Public Class frmichiran_shain_koushin
 
             Dim shain_id = Trim(lbl_shain_id.Text)
             If shain_id = "" Then
-                msg_go("社員IDをが取得できませんでした。")
+                msg_go("社員IDを取得できませんでした。")
                 Exit Sub
             End If
 

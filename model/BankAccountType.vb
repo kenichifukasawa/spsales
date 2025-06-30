@@ -1,7 +1,7 @@
 ﻿Public Module BankAccountType
 
-    Private Const ID_FUTSUU As String = "0"
-    Private Const ID_TOUZA As String = "1"
+    Public Const ID_FUTSUU As String = "0"
+    Public Const ID_TOUZA As String = "1"
 
     Private Const NAME_FUTSUU As String = "普通"
     Private Const NAME_TOUZA As String = "当座"

@@ -10,12 +10,12 @@ Public Class frmichiran_gyousha
     End Sub
 
     Private Sub btn_touroku_Click(sender As Object, e As EventArgs) Handles btn_touroku.Click
-        set_combo_box(is_update:=False)
+        set_combo_box()
         frmichiran_gyousha_koushin.ShowDialog()
     End Sub
 
     Private Sub btn_henkou_Click(sender As Object, e As EventArgs) Handles btn_henkou.Click
-        set_combo_box(is_update:=True)
+        set_combo_box()
         With frmichiran_gyousha_koushin
 
             .Text = "変更"
@@ -25,6 +25,7 @@ Public Class frmichiran_gyousha
             .lbl_gyousha_id.Text = current_row.Cells(0).Value
             .txt_gyousha_mei.Text = current_row.Cells(1).Value
             .txt_furigana.Text = current_row.Cells(2).Value
+            .txt_yuubin_bangou.Text = current_row.Cells(3).Value
             .lbl_juusho_1.Text = current_row.Cells(22).Value
             .txt_juusho_2.Text = current_row.Cells(23).Value
             .txt_tel.Text = current_row.Cells(5).Value
@@ -44,13 +45,11 @@ Public Class frmichiran_gyousha
             .txt_mail_user.Text = current_row.Cells(29).Value
             .txt_mail_domain.Text = current_row.Cells(30).Value
 
-            Dim yuubin_bangou = current_row.Cells(3).Value
             Dim shiharai_houhou = dgv_kensakukekka.CurrentRow.Cells(11).Value
             Dim shimebi = dgv_kensakukekka.CurrentRow.Cells(10).Value
             Dim shouhizei = dgv_kensakukekka.CurrentRow.Cells(12).Value
             Dim hasuu = dgv_kensakukekka.CurrentRow.Cells(13).Value
 
-            .cbx_yuubin_bangou.SelectedIndex = .cbx_yuubin_bangou.FindString(yuubin_bangou)
             .cbx_shiharai_houhou.SelectedIndex = .cbx_shiharai_houhou.FindStringExact(shiharai_houhou)
             .cbx_shimebi.SelectedIndex = .cbx_shimebi.FindStringExact(shimebi)
             .cbx_shouhizei.SelectedIndex = .cbx_shouhizei.FindStringExact(shouhizei)
@@ -70,10 +69,94 @@ Public Class frmichiran_gyousha
             End If
 
             .ShowDialog()
+
         End With
+
+        set_gyousha_ichiran()
+
     End Sub
 
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
+
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        If chk_sakujo.Checked = False Then
+            msg_go("「削除する」にチェックをつけてから実行してください。")
+            Exit Sub
+        End If
+        chk_sakujo.Checked = False
+
+        Dim gyousha_id = Trim(dgv_kensakukekka.CurrentRow.Cells(0).Value)
+        Dim gyousha_mei = Trim(dgv_kensakukekka.CurrentRow.Cells(1).Value)
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM shiire WHERE gyoushaid = '" + gyousha_id + "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_tenpo")
+            Dim dt_server As DataTable = ds_server.Tables("t_tenpo")
+
+            Dim can_delete = True
+
+            If dt_server.Rows.Count > 0 Then
+                can_delete = False
+            End If
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+            If Not can_delete Then
+                msg_go("この業者は仕入情報がすでに使用されているため、削除できません。")
+                Exit Sub
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+        End Try
+
+        Dim result As DialogResult = MessageBox.Show(
+            "以下の業者を削除しますか？" + vbCrLf + vbCrLf + "業者ID：" + gyousha_id + vbCrLf + "業者名：" + gyousha_mei,
+            "SpSales",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If result = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM gyousha WHERE gyoushaid ='" + gyousha_id + "'"
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_gyousha")
+
+            If ds.Tables("t_gyousha").Rows.Count > 0 Then
+                ds.Tables("t_gyousha").Rows(0).Delete()
+
+                Dim cb As New SqlCommandBuilder(da)
+                da.Update(ds, "t_gyousha")
+                ds.Clear()
+
+                msg_go("削除しました。", 64)
+            Else
+                msg_go("該当する業者が見つかりません。")
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        set_gyousha_ichiran()
 
     End Sub
 
@@ -396,11 +479,9 @@ Public Class frmichiran_gyousha
         set_gyousha_ichiran()
     End Sub
 
-    Private Sub set_combo_box(is_update As Boolean)
+    Private Sub set_combo_box()
 
         With frmichiran_gyousha_koushin
-            ' TODO : 郵便番号
-
             .cbx_shiharai_houhou.Items.AddRange(PaymentMethods.Names)
             .cbx_shimebi.Items.AddRange(Deadline.Names)
             .cbx_shouhizei.Items.AddRange(ConsumptionTax.Names)
