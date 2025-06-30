@@ -85,7 +85,9 @@ Public Class frmichiran_gyousha_koushin
 
         If Trim(btn_koushin.Text).IndexOf("登録") <> -1 Then
 
-            Dim new_id = get_settings(id:=1, s_no:=5)
+            Dim id = 1
+            Dim s_no = 6
+            Dim new_id = get_settings(id:=id, s_no:=s_no)
             Dim next_id As String
             If new_id = "" Then
                 msg_go("IDの取得に失敗しました。")
@@ -98,7 +100,7 @@ Public Class frmichiran_gyousha_koushin
                 new_id = new_id.ToString.PadLeft(2, "0"c)
             End If
 
-            Dim response = update_settings(id:=1, s_no:=5, new_value:=next_id)
+            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
             If Not response Then
                 msg_go("IDの更新に失敗しました。")
                 Exit Sub
@@ -413,15 +415,29 @@ Public Class frmichiran_gyousha_koushin
 
     End Sub
 
-    Private Sub txt_yuubin_bangou_Enter(sender As Object, e As EventArgs) Handles txt_yuubin_bangou.Enter
-        search_juusho_1_by_yuubin_bangou()
-    End Sub
-
-    Private Sub search_juusho_1_by_yuubin_bangou()
+    Private Sub txt_yuubin_bangou_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_yuubin_bangou.KeyDown
 
         lbl_juusho_1.Text = ""
+
+        If e.KeyCode <> Keys.Enter Then
+            Exit Sub
+        End If
+
         Dim yuubin_bangou = Trim(txt_yuubin_bangou.Text)
+        If yuubin_bangou = "" Then
+            Exit Sub
+        End If
+
+        If Len(yuubin_bangou) <> 8 Or yuubin_bangou.IndexOf("-") = -1 Then
+            msg_go("(例) 405-0018 のように、'-'(ハイフン)ありの8桁で入力して下さい。")
+            Exit Sub
+        End If
+
+        Dim juusho_1 = SearchAddress1ByZipCode(yuubin_bangou)
+        If juusho_1 = "" Then
+            Exit Sub
+        End If
+        lbl_juusho_1.Text = juusho_1
 
     End Sub
-
 End Class

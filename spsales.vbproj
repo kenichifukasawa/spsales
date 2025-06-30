@@ -152,6 +152,7 @@
     <Compile Include="model\Deadline.vb" />
     <Compile Include="model\PaymentMethods.vb" />
     <Compile Include="model\Rounding.vb" />
+    <Compile Include="model\TagAndValue.vb" />
     <Compile Include="module\m_main.vb" />
     <Compile Include="module\m_seikyuu.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

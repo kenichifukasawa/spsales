@@ -26,7 +26,9 @@ Public Class frmichiran_shain_koushin
 
         If Trim(btn_koushin.Text).IndexOf("登録") <> -1 Then
 
-            Dim new_id = get_settings(id:=1, s_no:=5)
+            Dim id = 1
+            Dim s_no = 5
+            Dim new_id = get_settings(id:=id, s_no:=s_no)
             Dim next_id As String
             If new_id = "" Then
                 msg_go("IDの取得に失敗しました。")
@@ -39,7 +41,7 @@ Public Class frmichiran_shain_koushin
                 new_id = new_id.ToString.PadLeft(2, "0"c)
             End If
 
-            Dim response = update_settings(id:=1, s_no:=5, new_value:=next_id)
+            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
             If Not response Then
                 msg_go("IDの更新に失敗しました。")
                 Exit Sub
