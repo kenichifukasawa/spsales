@@ -68,6 +68,16 @@ Public Class frmichiran_gyousha_koushin
         Dim mail_user = Trim(txt_mail_user.Text)
         Dim mail_domain = Trim(txt_mail_domain.Text)
 
+        If mail_user = "" And mail_domain <> "" Then
+            msg_go("メールアドレスのユーザー（前半部分）を入力してください。")
+            Exit Sub
+        End If
+
+        If mail_user <> "" And mail_domain = "" Then
+            msg_go("メールアドレスのドメイン（後半部分）を入力してください。")
+            Exit Sub
+        End If
+
         Dim fuyou = ""
         If chk_fuyou.Checked Then
             fuyou = "1"
