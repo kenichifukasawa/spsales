@@ -21,6 +21,13 @@ Public Class frmichiran_gyousha_koushin
         End If
 
         Dim yuubin_bangou = Trim(txt_yuubin_bangou.Text)
+
+        Dim juusho_1 = Trim(lbl_juusho_1.Text)
+        If yuubin_bangou <> "" And juusho_1 = "" Then
+            msg_go("住所１を表示してください。")
+            Exit Sub
+        End If
+
         Dim juusho_2 = Trim(txt_juusho_2.Text)
         Dim tel = Trim(txt_tel.Text)
         Dim fax = Trim(txt_fax.Text)
@@ -228,7 +235,7 @@ Public Class frmichiran_gyousha_koushin
                 Exit Sub
             End Try
 
-            msg_go("登録しました。", 64)
+            msg_go("業者を登録しました。", 64)
 
         Else '変更
 
@@ -407,7 +414,70 @@ Public Class frmichiran_gyousha_koushin
                 Exit Sub
             End Try
 
-            msg_go("変更しました。", 64)
+            msg_go("業者情報を変更しました。", 64)
+
+        End If
+
+        ' TODO : 郵便番号登録
+        If yuubin_bangou <> "" Then
+
+            Dim is_tourokuzumi = False
+            Try
+
+                Dim cn_server As New SqlConnection
+                cn_server.ConnectionString = connectionstring_sqlserver
+
+                Dim query = "SELECT * FROM mailno_m WHERE mailno = '" + yuubin_bangou + "'"
+
+                Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+                Dim ds_server As New DataSet
+                da_server.Fill(ds_server, "t_mailno_m")
+                Dim dt_server As DataTable = ds_server.Tables("t_mailno_m")
+
+                Dim can_delete = True
+
+                If dt_server.Rows.Count > 0 Then
+                    is_tourokuzumi = True
+                End If
+
+                dt_server.Clear()
+                ds_server.Clear()
+
+            Catch ex As Exception
+                msg_go(ex.Message)
+            End Try
+
+            If Not is_tourokuzumi Then
+
+                Try
+
+                    Dim cn_server As New SqlConnection
+                    cn_server.ConnectionString = connectionstring_sqlserver
+
+                    Dim query = "SELECT * FROM mailno_m"
+
+                    Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+                    Dim ds As New DataSet
+                    da.Fill(ds, "t_mailno_m")
+                    Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+                    Dim data_row As DataRow = ds.Tables("t_mailno_m").NewRow()
+
+                    data_row("mailno") = yuubin_bangou
+                    data_row("adress1") = juusho_1
+                    data_row("shousai") = "TODO"
+
+                    ds.Tables("t_mailno_m").Rows.Add(data_row)
+                    da.Update(ds, "t_mailno_m")
+                    ds.Clear()
+
+                Catch ex As Exception
+                    msg_go(ex.Message)
+                    Exit Sub
+                End Try
+
+                msg_go("郵便番号も登録しました。", 64)
+
+            End If
 
         End If
 

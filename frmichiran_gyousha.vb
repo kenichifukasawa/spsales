@@ -105,8 +105,8 @@ Public Class frmichiran_gyousha
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
-            da_server.Fill(ds_server, "t_tenpo")
-            Dim dt_server As DataTable = ds_server.Tables("t_tenpo")
+            da_server.Fill(ds_server, "t_shiire")
+            Dim dt_server As DataTable = ds_server.Tables("t_shiire")
 
             Dim can_delete = True
 
