@@ -137,7 +137,7 @@ Public Class frmichiran_yuubin
                 .ColumnCount = 3
 
                 .Columns(0).Name = "郵便番号"
-                .Columns(1).Name = "住所"
+                .Columns(1).Name = "住所１"
                 .Columns(2).Name = "詳細"
 
                 .Columns(0).Width = 90
