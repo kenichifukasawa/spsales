@@ -11,7 +11,12 @@ Public Class frmichiran_gyousha
 
     Private Sub btn_touroku_Click(sender As Object, e As EventArgs) Handles btn_touroku.Click
         set_combo_box()
-        frmichiran_gyousha_koushin.ShowDialog()
+        With frmichiran_gyousha_koushin
+            .Text = "登録"
+            .btn_koushin.Text = "登録"
+            .ShowDialog()
+        End With
+        set_gyousha_ichiran()
     End Sub
 
     Private Sub btn_henkou_Click(sender As Object, e As EventArgs) Handles btn_henkou.Click
