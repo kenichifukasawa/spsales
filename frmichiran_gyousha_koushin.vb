@@ -449,6 +449,11 @@ Public Class frmichiran_gyousha_koushin
 
             If Not is_tourokuzumi Then
 
+                Dim address_3 = GetOnlyAddress3FromZipCode(yuubin_bangou)
+                If address_3 = "" Then
+                    address_3 = "以下に掲載がない場合"
+                End If
+
                 Try
 
                     Dim cn_server As New SqlConnection
@@ -464,7 +469,7 @@ Public Class frmichiran_gyousha_koushin
 
                     data_row("mailno") = yuubin_bangou
                     data_row("adress1") = juusho_1
-                    data_row("shousai") = GetOnlyAddress3FromZipCode(yuubin_bangou)
+                    data_row("shousai") = address_3
 
                     ds.Tables("t_mailno_m").Rows.Add(data_row)
                     da.Update(ds, "t_mailno_m")
@@ -475,7 +480,10 @@ Public Class frmichiran_gyousha_koushin
                     Exit Sub
                 End Try
 
-                msg_go("郵便番号も登録しました。", 64)
+                msg_go("郵便番号も登録しました。特に'詳細'が違う場合は、変更をしてください。" + vbCrLf + vbCrLf +
+                       "・郵便番号：" + yuubin_bangou + vbCrLf +
+                       "・住所１：" + juusho_1 + vbCrLf +
+                       "・詳細：" + address_3, 64)
 
             End If
 
@@ -503,7 +511,6 @@ Public Class frmichiran_gyousha_koushin
             Exit Sub
         End If
 
-        'lbl_juusho_1.Text = GetAddress1ByZipCode(yuubin_bangou)
         lbl_juusho_1.Text = GetAddressFromZipCode(yuubin_bangou)
 
     End Sub
