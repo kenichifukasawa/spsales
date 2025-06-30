@@ -1,5 +1,8 @@
 ﻿Imports System.Data.OleDb
 Imports System.Data.SqlClient
+Imports System.IO
+Imports System.Net
+Imports System.Xml
 
 Module m_main
 
@@ -159,7 +162,6 @@ Module m_main
         Dim dr_setting As OleDbDataReader
         Dim i_setting As Integer
 
-
         Setting1 = "0"
 
         On Error GoTo errsetting
@@ -170,12 +172,9 @@ Module m_main
 
         If docchi = 0 Then '読み込み
 
-
             cmd_setting.CommandText = "select * from settei where id ='" & CStr(No + 1) & "'"
 
-
             cn_setting.Open()
-
 
             dr_setting = cmd_setting.ExecuteReader()
             Do While dr_setting.Read()
@@ -186,9 +185,7 @@ Module m_main
 
         Else '書き込み
 
-
             cmd_setting.CommandText = "update settei set s" & CStr(id) & "='" & newid & "' where id='" & CStr(No + 1) & "'"
-
 
             cn_setting.Open()
 
@@ -268,5 +265,6 @@ errsetting:
         End Try
 
     End Function
+
 
 End Module

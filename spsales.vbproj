@@ -52,6 +52,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -170,6 +171,7 @@
     <Compile Include="model\Deadline.vb" />
     <Compile Include="model\PaymentMethods.vb" />
     <Compile Include="model\Rounding.vb" />
+    <Compile Include="model\TagAndValue.vb" />
     <Compile Include="module\m_main.vb" />
     <Compile Include="module\m_seikyuu.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
