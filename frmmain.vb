@@ -1,53 +1,28 @@
 ﻿Public Class frmmain
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub btn_seikyuusho_soushin_kanri_Click(sender As Object, e As EventArgs) Handles btn_seikyuusho_soushin_kanri.Click
 
         frmseikyuusho_soushin_ichi.ShowDialog()
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+    Private Sub btn_info_Click(sender As Object, e As EventArgs) Handles btn_info.Click
         frminfo.ShowDialog()
-
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
+    Private Sub btn_end_Click(sender As Object, e As EventArgs) Handles btn_end.Click
         End
-
-
-
     End Sub
 
-    Private Sub Button38_Click(sender As Object, e As EventArgs) Handles Button38.Click
-
-    End Sub
-
-    Private Sub GroupBox7_Enter(sender As Object, e As EventArgs) Handles GroupBox7.Enter
-
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-
-    End Sub
-
-    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
-
+    Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
         frmshuukei_sentaku.ShowDialog()
-
-
     End Sub
 
-    Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
-
+    Private Sub btn_shutsuryoku_Click(sender As Object, e As EventArgs) Handles btn_shutsuryoku.Click
         frmshutsuryoku_sentaku.ShowDialog()
-
-
     End Sub
 
-    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
-
+    Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
         frmcheck_sentaku.ShowDialog()
-
     End Sub
+
 End Class
