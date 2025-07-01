@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmshuturyoku_shouhin
+Partial Class frmshuturyoku_csv
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -26,12 +26,14 @@ Partial Class frmshuturyoku_shouhin
         Me.chk_mishiyou_shouhin = New System.Windows.Forms.CheckBox()
         Me.btn_csv = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
+        Me.lbl_shutsuryoku_type = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
+        Me.GroupBox1.Controls.Add(Me.lbl_shutsuryoku_type)
         Me.GroupBox1.Controls.Add(Me.chk_mishiyou_shouhin)
         Me.GroupBox1.Controls.Add(Me.btn_csv)
         Me.GroupBox1.Controls.Add(Me.btn_modoru)
@@ -40,14 +42,14 @@ Partial Class frmshuturyoku_shouhin
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(518, 73)
+        Me.GroupBox1.Size = New System.Drawing.Size(579, 105)
         Me.GroupBox1.TabIndex = 52
         Me.GroupBox1.TabStop = False
         '
         'chk_mishiyou_shouhin
         '
         Me.chk_mishiyou_shouhin.AutoSize = True
-        Me.chk_mishiyou_shouhin.Location = New System.Drawing.Point(30, 31)
+        Me.chk_mishiyou_shouhin.Location = New System.Drawing.Point(56, 71)
         Me.chk_mishiyou_shouhin.Name = "chk_mishiyou_shouhin"
         Me.chk_mishiyou_shouhin.Size = New System.Drawing.Size(199, 18)
         Me.chk_mishiyou_shouhin.TabIndex = 189
@@ -58,7 +60,7 @@ Partial Class frmshuturyoku_shouhin
         '
         Me.btn_csv.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_csv.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_csv.Location = New System.Drawing.Point(249, 18)
+        Me.btn_csv.Location = New System.Drawing.Point(309, 31)
         Me.btn_csv.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_csv.Name = "btn_csv"
         Me.btn_csv.Size = New System.Drawing.Size(127, 44)
@@ -70,7 +72,7 @@ Partial Class frmshuturyoku_shouhin
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(380, 18)
+        Me.btn_modoru.Location = New System.Drawing.Point(440, 31)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
@@ -78,16 +80,26 @@ Partial Class frmshuturyoku_shouhin
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
-        'frmshuturyoku_shouhin
+        'lbl_shutsuryoku_type
+        '
+        Me.lbl_shutsuryoku_type.Font = New System.Drawing.Font("MS UI Gothic", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shutsuryoku_type.Location = New System.Drawing.Point(26, 25)
+        Me.lbl_shutsuryoku_type.Name = "lbl_shutsuryoku_type"
+        Me.lbl_shutsuryoku_type.Size = New System.Drawing.Size(259, 32)
+        Me.lbl_shutsuryoku_type.TabIndex = 190
+        Me.lbl_shutsuryoku_type.Text = "出力データ名"
+        Me.lbl_shutsuryoku_type.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'frmshuturyoku_csv
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(541, 96)
+        Me.ClientSize = New System.Drawing.Size(599, 125)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox1)
-        Me.Name = "frmshuturyoku_shouhin"
+        Me.Name = "frmshuturyoku_csv"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "商品情報出力"
+        Me.Text = "データ出力"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -98,4 +110,5 @@ Partial Class frmshuturyoku_shouhin
     Friend WithEvents chk_mishiyou_shouhin As CheckBox
     Friend WithEvents btn_csv As Button
     Friend WithEvents btn_modoru As Button
+    Friend WithEvents lbl_shutsuryoku_type As Label
 End Class

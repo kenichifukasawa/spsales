@@ -1,4 +1,4 @@
-﻿Public Class frmshuturyoku_shouhin
+﻿Public Class frmshuturyoku_csv
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
         Me.Close() : Me.Dispose()
     End Sub
