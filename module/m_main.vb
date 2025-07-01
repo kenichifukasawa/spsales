@@ -21,6 +21,7 @@ Module m_main
     Public settei_res
 
     Public hozonsaki_path As String
+    Public DESKTOP_PATH As String
     Public result As DialogResult
 
 

@@ -23,7 +23,7 @@ Partial Class frmshuturyoku_csv
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.chk_mishiyou_shouhin = New System.Windows.Forms.CheckBox()
+        Me.chk_plus_alpha = New System.Windows.Forms.CheckBox()
         Me.btn_csv = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.lbl_shutsuryoku_type = New System.Windows.Forms.Label()
@@ -34,7 +34,7 @@ Partial Class frmshuturyoku_csv
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
         Me.GroupBox1.Controls.Add(Me.lbl_shutsuryoku_type)
-        Me.GroupBox1.Controls.Add(Me.chk_mishiyou_shouhin)
+        Me.GroupBox1.Controls.Add(Me.chk_plus_alpha)
         Me.GroupBox1.Controls.Add(Me.btn_csv)
         Me.GroupBox1.Controls.Add(Me.btn_modoru)
         Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -46,15 +46,15 @@ Partial Class frmshuturyoku_csv
         Me.GroupBox1.TabIndex = 52
         Me.GroupBox1.TabStop = False
         '
-        'chk_mishiyou_shouhin
+        'chk_plus_alpha
         '
-        Me.chk_mishiyou_shouhin.AutoSize = True
-        Me.chk_mishiyou_shouhin.Location = New System.Drawing.Point(56, 71)
-        Me.chk_mishiyou_shouhin.Name = "chk_mishiyou_shouhin"
-        Me.chk_mishiyou_shouhin.Size = New System.Drawing.Size(199, 18)
-        Me.chk_mishiyou_shouhin.TabIndex = 189
-        Me.chk_mishiyou_shouhin.Text = "使用していない商品も出力する"
-        Me.chk_mishiyou_shouhin.UseVisualStyleBackColor = True
+        Me.chk_plus_alpha.AutoSize = True
+        Me.chk_plus_alpha.Location = New System.Drawing.Point(56, 71)
+        Me.chk_plus_alpha.Name = "chk_plus_alpha"
+        Me.chk_plus_alpha.Size = New System.Drawing.Size(199, 18)
+        Me.chk_plus_alpha.TabIndex = 189
+        Me.chk_plus_alpha.Text = "使用していない商品も出力する"
+        Me.chk_plus_alpha.UseVisualStyleBackColor = True
         '
         'btn_csv
         '
@@ -107,7 +107,7 @@ Partial Class frmshuturyoku_csv
     End Sub
 
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents chk_mishiyou_shouhin As CheckBox
+    Friend WithEvents chk_plus_alpha As CheckBox
     Friend WithEvents btn_csv As Button
     Friend WithEvents btn_modoru As Button
     Friend WithEvents lbl_shutsuryoku_type As Label
