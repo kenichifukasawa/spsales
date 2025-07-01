@@ -20,7 +20,7 @@ Namespace My
 
             '総合パス
             sougou_path = GetAppPath()
-
+            DESKTOP_PATH = System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
 
             newserver(0) = "192.168.40.27" ' "153.127.48.237"
             newserver(1) = "sa"

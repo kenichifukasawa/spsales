@@ -26,19 +26,19 @@ Partial Class frmshutsuryoku_sentaku
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.btn_gyousha = New System.Windows.Forms.Button()
+        Me.btn_kurikoshizan = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btn_kubun = New System.Windows.Forms.Button()
+        Me.btn_tenpo = New System.Windows.Forms.Button()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.btn_shouhin = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btn_wella_shouhin_zaiko = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btn_wella_hanbai_jisseki = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -73,7 +73,7 @@ Partial Class frmshutsuryoku_sentaku
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.White
         Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.btn_gyousha)
+        Me.GroupBox2.Controls.Add(Me.btn_kurikoshizan)
         Me.GroupBox2.Location = New System.Drawing.Point(364, 12)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(170, 147)
@@ -90,23 +90,23 @@ Partial Class frmshutsuryoku_sentaku
         Me.Label2.Text = "「繰越残データ」情報を出力をします。"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btn_gyousha
+        'btn_kurikoshizan
         '
-        Me.btn_gyousha.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_gyousha.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_gyousha.Location = New System.Drawing.Point(13, 89)
-        Me.btn_gyousha.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_gyousha.Name = "btn_gyousha"
-        Me.btn_gyousha.Size = New System.Drawing.Size(147, 44)
-        Me.btn_gyousha.TabIndex = 97
-        Me.btn_gyousha.Text = "繰越残データ"
-        Me.btn_gyousha.UseVisualStyleBackColor = True
+        Me.btn_kurikoshizan.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_kurikoshizan.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_kurikoshizan.Location = New System.Drawing.Point(13, 89)
+        Me.btn_kurikoshizan.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_kurikoshizan.Name = "btn_kurikoshizan"
+        Me.btn_kurikoshizan.Size = New System.Drawing.Size(147, 44)
+        Me.btn_kurikoshizan.TabIndex = 97
+        Me.btn_kurikoshizan.Text = "繰越残データ"
+        Me.btn_kurikoshizan.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.btn_kubun)
+        Me.GroupBox1.Controls.Add(Me.btn_tenpo)
         Me.GroupBox1.Location = New System.Drawing.Point(188, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(170, 147)
@@ -123,17 +123,17 @@ Partial Class frmshutsuryoku_sentaku
         Me.Label1.Text = "「店舗データ」情報を出力します。"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btn_kubun
+        'btn_tenpo
         '
-        Me.btn_kubun.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_kubun.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_kubun.Location = New System.Drawing.Point(13, 89)
-        Me.btn_kubun.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_kubun.Name = "btn_kubun"
-        Me.btn_kubun.Size = New System.Drawing.Size(147, 44)
-        Me.btn_kubun.TabIndex = 97
-        Me.btn_kubun.Text = "店舗データ"
-        Me.btn_kubun.UseVisualStyleBackColor = True
+        Me.btn_tenpo.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_tenpo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_tenpo.Location = New System.Drawing.Point(13, 89)
+        Me.btn_tenpo.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_tenpo.Name = "btn_tenpo"
+        Me.btn_tenpo.Size = New System.Drawing.Size(147, 44)
+        Me.btn_tenpo.TabIndex = 97
+        Me.btn_tenpo.Text = "店舗データ"
+        Me.btn_tenpo.UseVisualStyleBackColor = True
         '
         'GroupBox16
         '
@@ -172,7 +172,7 @@ Partial Class frmshutsuryoku_sentaku
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.White
         Me.GroupBox4.Controls.Add(Me.Label3)
-        Me.GroupBox4.Controls.Add(Me.Button1)
+        Me.GroupBox4.Controls.Add(Me.btn_wella_shouhin_zaiko)
         Me.GroupBox4.Location = New System.Drawing.Point(188, 165)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(170, 147)
@@ -189,23 +189,23 @@ Partial Class frmshutsuryoku_sentaku
         Me.Label3.Text = "「ウエラ商品在庫」情報を出力します。"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'Button1
+        'btn_wella_shouhin_zaiko
         '
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(13, 89)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(147, 44)
-        Me.Button1.TabIndex = 97
-        Me.Button1.Text = "ウエラ商品在庫"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btn_wella_shouhin_zaiko.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_wella_shouhin_zaiko.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_wella_shouhin_zaiko.Location = New System.Drawing.Point(13, 89)
+        Me.btn_wella_shouhin_zaiko.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_wella_shouhin_zaiko.Name = "btn_wella_shouhin_zaiko"
+        Me.btn_wella_shouhin_zaiko.Size = New System.Drawing.Size(147, 44)
+        Me.btn_wella_shouhin_zaiko.TabIndex = 97
+        Me.btn_wella_shouhin_zaiko.Text = "ウエラ商品在庫"
+        Me.btn_wella_shouhin_zaiko.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.White
         Me.GroupBox5.Controls.Add(Me.Label4)
-        Me.GroupBox5.Controls.Add(Me.Button2)
+        Me.GroupBox5.Controls.Add(Me.btn_wella_hanbai_jisseki)
         Me.GroupBox5.Location = New System.Drawing.Point(12, 165)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(170, 147)
@@ -222,17 +222,17 @@ Partial Class frmshutsuryoku_sentaku
         Me.Label4.Text = "「ウエラ販売実績」情報を出力します。"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'Button2
+        'btn_wella_hanbai_jisseki
         '
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(13, 89)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(147, 44)
-        Me.Button2.TabIndex = 97
-        Me.Button2.Text = "ウエラ販売実績"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btn_wella_hanbai_jisseki.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_wella_hanbai_jisseki.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_wella_hanbai_jisseki.Location = New System.Drawing.Point(13, 89)
+        Me.btn_wella_hanbai_jisseki.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_wella_hanbai_jisseki.Name = "btn_wella_hanbai_jisseki"
+        Me.btn_wella_hanbai_jisseki.Size = New System.Drawing.Size(147, 44)
+        Me.btn_wella_hanbai_jisseki.TabIndex = 97
+        Me.btn_wella_hanbai_jisseki.Text = "ウエラ販売実績"
+        Me.btn_wella_hanbai_jisseki.UseVisualStyleBackColor = True
         '
         'frmshutsuryoku_sentaku
         '
@@ -263,17 +263,17 @@ Partial Class frmshutsuryoku_sentaku
     Friend WithEvents btn_modoru As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents btn_gyousha As Button
+    Friend WithEvents btn_kurikoshizan As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents btn_kubun As Button
+    Friend WithEvents btn_tenpo As Button
     Friend WithEvents GroupBox16 As GroupBox
     Friend WithEvents Label21 As Label
     Friend WithEvents btn_shouhin As Button
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btn_wella_shouhin_zaiko As Button
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btn_wella_hanbai_jisseki As Button
 End Class
