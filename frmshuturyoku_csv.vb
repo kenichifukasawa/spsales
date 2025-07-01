@@ -89,7 +89,7 @@ Public Class frmshuturyoku_csv
 
     Function output_csv_shouhin(hozon_path As String) As Boolean
 
-        Dim csv_data(17, 0) As String
+        Dim csv_data(11, 0) As String
         Dim data_count = 0
 
         Try
@@ -99,15 +99,15 @@ Public Class frmshuturyoku_csv
 
             Dim query_where = ""
             If chk_plus_alpha.Checked = False Then
-                query_where = " WHERE tenpo.kadou = '0'"
+                query_where = " WHERE shouhin.mishiyou <> '1'"
             End If
 
-            Dim query = "SELECT tenpo.*, mailno_m.adress1, shain.shainmei" +
-                " FROM shain RIGHT JOIN" +
-                " (mailno_m RIGHT JOIN tenpo ON mailno_m.mailno = tenpo.mailno)" +
-                " ON shain.shainid = tenpo.shainid" +
+            Dim query = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" +
+                " FROM shouhinkubun2" +
+                " RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" +
+                " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" +
                 query_where +
-                " ORDER BY tenpo.tenpofurigana"
+                " ORDER BY shouhin.shouhinid"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -120,155 +120,93 @@ Public Class frmshuturyoku_csv
                 Return False
             End If
 
-            ReDim csv_data(17, data_count)
-            csv_data(0, 0) = "店舗ID"
-            csv_data(1, 0) = "店舗名"
-            csv_data(2, 0) = "店舗フリガナ"
-            csv_data(3, 0) = "郵便番号"
-            csv_data(4, 0) = "住所１"
-            csv_data(5, 0) = "住所２"
-            csv_data(6, 0) = "電話番号"
-            csv_data(7, 0) = "FAX番号"
-            csv_data(8, 0) = "携帯番号"
-            csv_data(9, 0) = "代表者名"
-            csv_data(10, 0) = "担当者名"
-            csv_data(11, 0) = "従業員数"
-            csv_data(12, 0) = "〆情報"
-            csv_data(13, 0) = "Eメール"
-            csv_data(14, 0) = "備考"
-            csv_data(15, 0) = "稼動(=0)"
-            csv_data(16, 0) = "繰越金額"
-            csv_data(17, 0) = "担当社員"
+            ReDim csv_data(11, data_count)
+            csv_data(0, 0) = "商品ID"
+            csv_data(1, 0) = "商品名"
+            csv_data(2, 0) = "商品フリガナ"
+            csv_data(3, 0) = "区分１"
+            csv_data(4, 0) = "区分２"
+            csv_data(5, 0) = "バーコード"
+            csv_data(6, 0) = "価格"
+            csv_data(7, 0) = "原価"
+            csv_data(8, 0) = "現在庫"
+            csv_data(9, 0) = "未使用(=1)"
+            csv_data(10, 0) = "非課税(=1)"
+            csv_data(11, 0) = "業者区分"
 
-            For i = 1 To data_count - 1
+            For i = 0 To data_count - 1
 
                 ' TODO
-                'csv_data(0, i) = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
-                'csv_data(1, i) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
-                'csv_data(2, i) = Trim(dt_server.Rows.Item(i).Item("tenpofurigana"))
+                'csv_data(0, i + 1) = Trim(dt_server.Rows.Item(i).Item("shouhinid"))
+                'csv_data(1, i + 1) = Trim(dt_server.Rows.Item(i).Item("shouhinmei"))
+                'csv_data(2, i + 1) = Trim(dt_server.Rows.Item(i).Item("shouhinfurigana"))
+                'csv_data(3, i + 1) = Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei"))
 
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("mailno")) Then
-                '    csv_data(3, i) = Trim(dt_server.Rows.Item(i).Item("mailno"))
+                'If Not IsDBNull(dt_server.Rows.Item(i).Item("shouhinkubunmei2")) Then
+                '    csv_data(4, i + 1) = Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei2"))
                 'End If
 
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("adress1")) Then
-                '    csv_data(4, i) = Trim(dt_server.Rows.Item(i).Item("adress1"))
+                'If Not IsDBNull(dt_server.Rows.Item(i).Item("barcode")) Then
+                '    csv_data(5, i + 1) = Trim(dt_server.Rows.Item(i).Item("barcode"))
                 'End If
 
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("tenpoadress")) Then
-                '    csv_data(5, i) = Trim(dt_server.Rows.Item(i).Item("tenpoadress"))
+                'If Not IsDBNull(dt_server.Rows.Item(i).Item("kakaku")) Then
+                '    csv_data(6, i + 1) = Trim(dt_server.Rows.Item(i).Item("kakaku"))
                 'End If
 
-                'csv_data(6, i) = Trim(dt_server.Rows.Item(i).Item("tel"))
-
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("fax")) Then
-                '    csv_data(7, i) = Trim(dt_server.Rows.Item(i).Item("fax"))
+                'If Not IsDBNull(dt_server.Rows.Item(i).Item("genka")) Then
+                '    csv_data(7, i + 1) = Trim(dt_server.Rows.Item(i).Item("genka"))
                 'End If
 
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("keitai")) Then
-                '    csv_data(8, i) = Trim(dt_server.Rows.Item(i).Item("keitai"))
+                'If Not IsDBNull(dt_server.Rows.Item(i).Item("genzaikosuu")) Then
+                '    csv_data(8, i + 1) = Trim(dt_server.Rows.Item(i).Item("genzaikosuu"))
                 'End If
 
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("daihyou")) Then
-                '    csv_data(9, i) = Trim(dt_server.Rows.Item(i).Item("daihyou"))
+                'csv_data(9, i + 1) = Trim(dt_server.Rows.Item(i).Item("mishiyou"))
+
+                'If Not IsDBNull(dt_server.Rows.Item(i).Item("hikazei")) Then
+                '    csv_data(10, i + 1) = Trim(dt_server.Rows.Item(i).Item("hikazei"))
                 'End If
 
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("tantou")) Then
-                '    csv_data(10, i) = Trim(dt_server.Rows.Item(i).Item("tantou"))
+                'If Not IsDBNull(dt_server.Rows.Item(i).Item("shouhinkubunid0")) Then
+                '    csv_data(11, i + 1) = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid0"))
                 'End If
 
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("juugyouinsuu")) Then
-                '    csv_data(11, i) = Trim(dt_server.Rows.Item(i).Item("juugyouinsuu"))
-                'End If
+                ' TODO : オリジナル
+                csv_data(0, i + 1) = dt_server.Rows.Item(i).Item("shouhinid")
+                csv_data(1, i + 1) = dt_server.Rows.Item(i).Item("shouhinmei")
+                csv_data(2, i + 1) = dt_server.Rows.Item(i).Item("shouhinfurigana")
+                csv_data(3, i + 1) = dt_server.Rows.Item(i).Item("shouhinkubunmei")
 
-                'csv_data(12, i) = Deadline.GetNameById(Trim(dt_server.Rows.Item(i).Item("shimebi")))
-
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("email")) Then
-                '    csv_data(13, i) = Trim(dt_server.Rows.Item(i).Item("email"))
-                'End If
-
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
-                '    csv_data(14, i) = Trim(dt_server.Rows.Item(i).Item("bikou"))
-                'End If
-
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("kadou")) Then
-                '    csv_data(15, i) = Trim(dt_server.Rows.Item(i).Item("kadou"))
-                'End If
-
-                'If IsDBNull(dt_server.Rows.Item(i).Item("kurikoshi")) Then
-                '    csv_data(16, i) = 0
-                'Else
-                '    csv_data(16, i) = Trim(dt_server.Rows.Item(i).Item("kurikoshi"))
-                'End If
-
-                'If Not IsDBNull(dt_server.Rows.Item(i).Item("shainmei")) Then
-                '    csv_data(17, i) = Trim(dt_server.Rows.Item(i).Item("shainmei"))
-                'End If
-
-                ' TODO : trim()があるところ、ないところは規定だからなのか。とデータがNULLのところは#NULL#で書き込まれているが、""（空文字）ではなくて良いのか。
-                csv_data(0, i) = dt_server.Rows.Item(i).Item("tenpoid")
-                csv_data(1, i) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
-                csv_data(2, i) = dt_server.Rows.Item(i).Item("tenpofurigana")
-
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("mailno")) Then
-                    csv_data(3, i) = dt_server.Rows.Item(i).Item("mailno")
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("shouhinkubunmei2")) Then
+                    csv_data(4, i + 1) = dt_server.Rows.Item(i).Item("shouhinkubunmei2")
                 End If
 
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("adress1")) Then
-                    csv_data(4, i) = Trim(dt_server.Rows.Item(i).Item("adress1"))
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("barcode")) Then
+                    csv_data(5, i + 1) = dt_server.Rows.Item(i).Item("barcode")
                 End If
 
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("tenpoadress")) Then
-                    csv_data(5, i) = Trim(dt_server.Rows.Item(i).Item("tenpoadress"))
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("kakaku")) Then
+                    csv_data(6, i + 1) = dt_server.Rows.Item(i).Item("kakaku")
                 End If
 
-                csv_data(6, i) = dt_server.Rows.Item(i).Item("tel")
-
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("fax")) Then
-                    csv_data(7, i) = dt_server.Rows.Item(i).Item("fax")
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("genka")) Then
+                    csv_data(7, i + 1) = dt_server.Rows.Item(i).Item("genka")
                 End If
 
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("keitai")) Then
-                    csv_data(8, i) = dt_server.Rows.Item(i).Item("keitai")
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("genzaikosuu")) Then
+                    csv_data(8, i + 1) = dt_server.Rows.Item(i).Item("genzaikosuu")
                 End If
 
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("daihyou")) Then
-                    csv_data(9, i) = dt_server.Rows.Item(i).Item("daihyou")
+                csv_data(9, i + 1) = dt_server.Rows.Item(i).Item("mishiyou")
+
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("hikazei")) Then
+                    csv_data(10, i + 1) = dt_server.Rows.Item(i).Item("hikazei")
                 End If
 
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("tantou")) Then
-                    csv_data(10, i) = Trim(dt_server.Rows.Item(i).Item("tantou"))
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("shouhinkubunid0")) Then
+                    csv_data(11, i + 1) = dt_server.Rows.Item(i).Item("shouhinkubunid0")
                 End If
-
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("juugyouinsuu")) Then
-                    csv_data(11, i) = dt_server.Rows.Item(i).Item("juugyouinsuu")
-                End If
-
-                csv_data(12, i) = Deadline.GetNameById(Trim(dt_server.Rows.Item(i).Item("shimebi")))
-
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("email")) Then
-                    csv_data(13, i) = dt_server.Rows.Item(i).Item("email")
-                End If
-
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
-                    csv_data(14, i) = dt_server.Rows.Item(i).Item("bikou")
-                End If
-
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("kadou")) Then
-                    csv_data(15, i) = dt_server.Rows.Item(i).Item("kadou")
-                End If
-
-                If IsDBNull(dt_server.Rows.Item(i).Item("kurikoshi")) Then
-                    csv_data(16, i) = "0"
-                    'csv_data(16, i) = 0 ' TODO:これは結構大変
-                Else
-                    csv_data(16, i) = dt_server.Rows.Item(i).Item("kurikoshi")
-                End If
-
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("shainmei")) Then
-                    csv_data(17, i) = dt_server.Rows.Item(i).Item("shainmei")
-                End If
-
 
             Next
 
@@ -311,20 +249,20 @@ Public Class frmshuturyoku_csv
         '          "order by tenpo.tenpofurigana"
         '                End If
         '            Case 2  '商品情報
-        '                If chkchk = 1 Then
-        '                    sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" &
-        '            " FROM shouhinkubun2 RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin" &
-        '            " ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" &
-        '            " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
-        '            " order by shouhin.shouhinid"
-        '                Else
-        '                    sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" &
-        '            " FROM shouhinkubun2 RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin" &
-        '            " ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" &
-        '            " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
-        '            " where shouhin.mishiyou <> '1'" &
-        '            " order by shouhin.shouhinid"
-        '                End If
+        '    If chkchk = 1 Then
+        '        sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" &
+        '" FROM shouhinkubun2 RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin" &
+        '" ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" &
+        '" ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
+        '" order by shouhin.shouhinid"
+        '    Else
+        '        sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" &
+        '" FROM shouhinkubun2 RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin" &
+        '" ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" &
+        '" ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
+        '" where shouhin.mishiyou <> '1'" &
+        '" order by shouhin.shouhinid"
+        '    End If
         '            Case 3   '商品情報
         '    'sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" & _
         '            ",shouhinkubun2.wella" & _
@@ -573,133 +511,133 @@ Public Class frmshuturyoku_csv
             csv_data(16, 0) = "繰越金額"
             csv_data(17, 0) = "担当社員"
 
-            For i = 1 To data_count - 1
+            For i = 0 To data_count - 1
 
                 ' TODO
-                'csv_data(0, i) = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
-                'csv_data(1, i) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
-                'csv_data(2, i) = Trim(dt_server.Rows.Item(i).Item("tenpofurigana"))
+                'csv_data(0, i + 1) = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
+                'csv_data(1, i + 1) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+                'csv_data(2, i + 1) = Trim(dt_server.Rows.Item(i).Item("tenpofurigana"))
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("mailno")) Then
-                '    csv_data(3, i) = Trim(dt_server.Rows.Item(i).Item("mailno"))
+                '    csv_data(3, i + 1) = Trim(dt_server.Rows.Item(i).Item("mailno"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("adress1")) Then
-                '    csv_data(4, i) = Trim(dt_server.Rows.Item(i).Item("adress1"))
+                '    csv_data(4, i + 1) = Trim(dt_server.Rows.Item(i).Item("adress1"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("tenpoadress")) Then
-                '    csv_data(5, i) = Trim(dt_server.Rows.Item(i).Item("tenpoadress"))
+                '    csv_data(5, i + 1) = Trim(dt_server.Rows.Item(i).Item("tenpoadress"))
                 'End If
 
-                'csv_data(6, i) = Trim(dt_server.Rows.Item(i).Item("tel"))
+                'csv_data(6, i + 1) = Trim(dt_server.Rows.Item(i).Item("tel"))
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("fax")) Then
-                '    csv_data(7, i) = Trim(dt_server.Rows.Item(i).Item("fax"))
+                '    csv_data(7, i + 1) = Trim(dt_server.Rows.Item(i).Item("fax"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("keitai")) Then
-                '    csv_data(8, i) = Trim(dt_server.Rows.Item(i).Item("keitai"))
+                '    csv_data(8, i + 1) = Trim(dt_server.Rows.Item(i).Item("keitai"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("daihyou")) Then
-                '    csv_data(9, i) = Trim(dt_server.Rows.Item(i).Item("daihyou"))
+                '    csv_data(9, i + 1) = Trim(dt_server.Rows.Item(i).Item("daihyou"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("tantou")) Then
-                '    csv_data(10, i) = Trim(dt_server.Rows.Item(i).Item("tantou"))
+                '    csv_data(10, i + 1) = Trim(dt_server.Rows.Item(i).Item("tantou"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("juugyouinsuu")) Then
-                '    csv_data(11, i) = Trim(dt_server.Rows.Item(i).Item("juugyouinsuu"))
+                '    csv_data(11, i + 1) = Trim(dt_server.Rows.Item(i).Item("juugyouinsuu"))
                 'End If
 
-                'csv_data(12, i) = Deadline.GetNameById(Trim(dt_server.Rows.Item(i).Item("shimebi")))
+                'csv_data(12, i + 1) = Deadline.GetNameById(Trim(dt_server.Rows.Item(i).Item("shimebi")))
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("email")) Then
-                '    csv_data(13, i) = Trim(dt_server.Rows.Item(i).Item("email"))
+                '    csv_data(13, i + 1) = Trim(dt_server.Rows.Item(i).Item("email"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
-                '    csv_data(14, i) = Trim(dt_server.Rows.Item(i).Item("bikou"))
+                '    csv_data(14, i + 1) = Trim(dt_server.Rows.Item(i).Item("bikou"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("kadou")) Then
-                '    csv_data(15, i) = Trim(dt_server.Rows.Item(i).Item("kadou"))
+                '    csv_data(15, i + 1) = Trim(dt_server.Rows.Item(i).Item("kadou"))
                 'End If
 
                 'If IsDBNull(dt_server.Rows.Item(i).Item("kurikoshi")) Then
-                '    csv_data(16, i) = 0
+                '    csv_data(16, i + 1) = 0
                 'Else
-                '    csv_data(16, i) = Trim(dt_server.Rows.Item(i).Item("kurikoshi"))
+                '    csv_data(16, i + 1) = Trim(dt_server.Rows.Item(i).Item("kurikoshi"))
                 'End If
 
                 'If Not IsDBNull(dt_server.Rows.Item(i).Item("shainmei")) Then
-                '    csv_data(17, i) = Trim(dt_server.Rows.Item(i).Item("shainmei"))
+                '    csv_data(17, i + 1) = Trim(dt_server.Rows.Item(i).Item("shainmei"))
                 'End If
 
                 ' TODO : trim()があるところ、ないところは規定だからなのか。とデータがNULLのところは#NULL#で書き込まれているが、""（空文字）ではなくて良いのか。
-                csv_data(0, i) = dt_server.Rows.Item(i).Item("tenpoid")
-                csv_data(1, i) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
-                csv_data(2, i) = dt_server.Rows.Item(i).Item("tenpofurigana")
+                csv_data(0, i + 1) = dt_server.Rows.Item(i).Item("tenpoid")
+                csv_data(1, i + 1) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+                csv_data(2, i + 1) = dt_server.Rows.Item(i).Item("tenpofurigana")
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("mailno")) Then
-                    csv_data(3, i) = dt_server.Rows.Item(i).Item("mailno")
+                    csv_data(3, i + 1) = dt_server.Rows.Item(i).Item("mailno")
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("adress1")) Then
-                    csv_data(4, i) = Trim(dt_server.Rows.Item(i).Item("adress1"))
+                    csv_data(4, i + 1) = Trim(dt_server.Rows.Item(i).Item("adress1"))
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("tenpoadress")) Then
-                    csv_data(5, i) = Trim(dt_server.Rows.Item(i).Item("tenpoadress"))
+                    csv_data(5, i + 1) = Trim(dt_server.Rows.Item(i).Item("tenpoadress"))
                 End If
 
-                csv_data(6, i) = dt_server.Rows.Item(i).Item("tel")
+                csv_data(6, i + 1) = dt_server.Rows.Item(i).Item("tel")
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("fax")) Then
-                    csv_data(7, i) = dt_server.Rows.Item(i).Item("fax")
+                    csv_data(7, i + 1) = dt_server.Rows.Item(i).Item("fax")
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("keitai")) Then
-                    csv_data(8, i) = dt_server.Rows.Item(i).Item("keitai")
+                    csv_data(8, i + 1) = dt_server.Rows.Item(i).Item("keitai")
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("daihyou")) Then
-                    csv_data(9, i) = dt_server.Rows.Item(i).Item("daihyou")
+                    csv_data(9, i + 1) = dt_server.Rows.Item(i).Item("daihyou")
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("tantou")) Then
-                    csv_data(10, i) = Trim(dt_server.Rows.Item(i).Item("tantou"))
+                    csv_data(10, i + 1) = Trim(dt_server.Rows.Item(i).Item("tantou"))
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("juugyouinsuu")) Then
-                    csv_data(11, i) = dt_server.Rows.Item(i).Item("juugyouinsuu")
+                    csv_data(11, i + 1) = dt_server.Rows.Item(i).Item("juugyouinsuu")
                 End If
 
-                csv_data(12, i) = Deadline.GetNameById(Trim(dt_server.Rows.Item(i).Item("shimebi")))
+                csv_data(12, i + 1) = Deadline.GetNameById(Trim(dt_server.Rows.Item(i).Item("shimebi")))
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("email")) Then
-                    csv_data(13, i) = dt_server.Rows.Item(i).Item("email")
+                    csv_data(13, i + 1) = dt_server.Rows.Item(i).Item("email")
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
-                    csv_data(14, i) = dt_server.Rows.Item(i).Item("bikou")
+                    csv_data(14, i + 1) = dt_server.Rows.Item(i).Item("bikou")
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("kadou")) Then
-                    csv_data(15, i) = dt_server.Rows.Item(i).Item("kadou")
+                    csv_data(15, i + 1) = dt_server.Rows.Item(i).Item("kadou")
                 End If
 
                 If IsDBNull(dt_server.Rows.Item(i).Item("kurikoshi")) Then
-                    csv_data(16, i) = "0"
-                    'csv_data(16, i) = 0 ' TODO:これは結構大変
+                    csv_data(16, i + 1) = "0"
+                    'csv_data(16, i + 1) = 0 ' TODO:これは結構大変
                 Else
-                    csv_data(16, i) = dt_server.Rows.Item(i).Item("kurikoshi")
+                    csv_data(16, i + 1) = dt_server.Rows.Item(i).Item("kurikoshi")
                 End If
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shainmei")) Then
-                    csv_data(17, i) = dt_server.Rows.Item(i).Item("shainmei")
+                    csv_data(17, i + 1) = dt_server.Rows.Item(i).Item("shainmei")
                 End If
 
 
