@@ -90,7 +90,7 @@ Public Class frmshuturyoku_csv
 
     Function output_csv_tenpo(hozon_path As String) As Boolean
 
-        Dim csv_data(17, 0)
+        Dim csv_data(17, 0) As String
         Dim data_count = 0
 
         Try
@@ -260,7 +260,8 @@ Public Class frmshuturyoku_csv
                 End If
 
                 If IsDBNull(dt_server.Rows.Item(i).Item("kurikoshi")) Then
-                    csv_data(16, i) = 0
+                    csv_data(16, i) = "0"
+                    'csv_data(16, i) = 0 ' TODO:これは結構大変
                 Else
                     csv_data(16, i) = dt_server.Rows.Item(i).Item("kurikoshi")
                 End If
@@ -519,8 +520,6 @@ Public Class frmshuturyoku_csv
 
         'ret = MsgBox("指定データのエクスポートが完了しました。", 64, "総合管理システム「SPSALES」")
 
-
-
     End Function
 
     Private Function create_csv_file(csv_data(,) As String, hozon_path As String, data_count As Integer) As Boolean
@@ -573,6 +572,19 @@ Public Class frmshuturyoku_csv
 
     End Function
 
+    Private Function get_line_hairetsu(data(,) As String, colIndex As Integer) As String
+        Dim columnValues As New List(Of String)
+        For rowIndex As Integer = 0 To data.GetUpperBound(0)
+            Dim value As String = data(rowIndex, colIndex)
+            If value Is Nothing OrElse value = "" Then
+                columnValues.Add("#NULL#")
+            Else
+                columnValues.Add($"""{value}""")
+            End If
+        Next
+        Return String.Join(",", columnValues)
+    End Function
+
     'Private Function get_line_hairetsu(data(,) As String, colIndex As Integer) As String
 
     '    Dim columnValues As New List(Of String)
@@ -582,17 +594,5 @@ Public Class frmshuturyoku_csv
     '    Return String.Join(",", columnValues)
 
     'End Function
-
-    Private Function get_line_hairetsu(data(,) As String, colIndex As Integer) As String
-        If data Is Nothing Then
-            Return Nothing
-        End If
-
-        Dim columnValues As New List(Of String)
-        For rowIndex As Integer = 0 To data.GetUpperBound(0)
-            columnValues.Add($"""{data(rowIndex, colIndex)}""")
-        Next
-        Return String.Join(",", columnValues)
-    End Function
 
 End Class
