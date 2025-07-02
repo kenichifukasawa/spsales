@@ -658,9 +658,9 @@ Public Class frmshuturyoku_csv
                     Dim dt_server As DataTable = ds_server.Tables("t_hacchuu_2")
 
                     If dt_server.Rows.Count = 0 Then
-                        csv_data(5, i) = "期間内に請求書ＩＤが違う納品書が存在します。"
-                    Else
                         csv_data(5, i) = CStr(CLng(csv_data(2, i)) - CLng(csv_data(3, i)) + CLng(csv_data(4, i)))
+                    Else
+                        csv_data(5, i) = "期間内に請求書ＩＤが違う納品書が存在します。"
                     End If
 
                     dt_server.Clear()
