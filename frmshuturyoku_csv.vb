@@ -691,7 +691,7 @@ Public Class frmshuturyoku_csv
             End If
         Next i
 
-        Dim new_csv_data(6, new_data_count - 1) As String
+        Dim new_csv_data(5, new_data_count - 1) As String
         new_data_count = 0
         For i = LBound(csv_data, 2) To UBound(csv_data, 2)
             If Not (csv_data(2, i) = "0" And csv_data(3, i) = "0" And csv_data(4, i) = "0" And csv_data(5, i) = "0") Then
