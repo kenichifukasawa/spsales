@@ -23,10 +23,10 @@ Partial Class frmshuturyoku_csv
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lbl_shutsuryoku_type = New System.Windows.Forms.Label()
         Me.chk_plus_alpha = New System.Windows.Forms.CheckBox()
         Me.btn_csv = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.lbl_shutsuryoku_type = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -46,14 +46,24 @@ Partial Class frmshuturyoku_csv
         Me.GroupBox1.TabIndex = 52
         Me.GroupBox1.TabStop = False
         '
+        'lbl_shutsuryoku_type
+        '
+        Me.lbl_shutsuryoku_type.Font = New System.Drawing.Font("MS UI Gothic", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shutsuryoku_type.Location = New System.Drawing.Point(26, 25)
+        Me.lbl_shutsuryoku_type.Name = "lbl_shutsuryoku_type"
+        Me.lbl_shutsuryoku_type.Size = New System.Drawing.Size(259, 32)
+        Me.lbl_shutsuryoku_type.TabIndex = 190
+        Me.lbl_shutsuryoku_type.Text = "出力データ名"
+        Me.lbl_shutsuryoku_type.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'chk_plus_alpha
         '
         Me.chk_plus_alpha.AutoSize = True
         Me.chk_plus_alpha.Location = New System.Drawing.Point(56, 71)
         Me.chk_plus_alpha.Name = "chk_plus_alpha"
-        Me.chk_plus_alpha.Size = New System.Drawing.Size(199, 18)
+        Me.chk_plus_alpha.Size = New System.Drawing.Size(51, 18)
         Me.chk_plus_alpha.TabIndex = 189
-        Me.chk_plus_alpha.Text = "使用していない商品も出力する"
+        Me.chk_plus_alpha.Text = "+ α"
         Me.chk_plus_alpha.UseVisualStyleBackColor = True
         '
         'btn_csv
@@ -79,16 +89,6 @@ Partial Class frmshuturyoku_csv
         Me.btn_modoru.TabIndex = 32
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
-        '
-        'lbl_shutsuryoku_type
-        '
-        Me.lbl_shutsuryoku_type.Font = New System.Drawing.Font("MS UI Gothic", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shutsuryoku_type.Location = New System.Drawing.Point(26, 25)
-        Me.lbl_shutsuryoku_type.Name = "lbl_shutsuryoku_type"
-        Me.lbl_shutsuryoku_type.Size = New System.Drawing.Size(259, 32)
-        Me.lbl_shutsuryoku_type.TabIndex = 190
-        Me.lbl_shutsuryoku_type.Text = "出力データ名"
-        Me.lbl_shutsuryoku_type.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frmshuturyoku_csv
         '
