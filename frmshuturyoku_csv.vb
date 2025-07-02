@@ -367,7 +367,7 @@ Public Class frmshuturyoku_csv
                 csv_data(1, i + 1) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
 
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shimebi")) Then
-                    csv_data(6, i + 1) = Deadline.GetCsvNameById(Trim(dt_server.Rows.Item(i).Item("shimebi"))) ' TODO : 元々出力していない
+                    csv_data(6, i + 1) = Deadline.GetCsvNameById(Trim(dt_server.Rows.Item(i).Item("shimebi")))
                 End If
 
             Next
@@ -517,6 +517,8 @@ Public Class frmshuturyoku_csv
 
                 End If
 
+                csv_data(2, i) = CInt(csv_data(2, i)).ToString
+
                 dt_server.Clear()
                 ds_server.Clear()
 
@@ -560,6 +562,8 @@ Public Class frmshuturyoku_csv
                     End If
 
                 End If
+
+                csv_data(3, i) = CInt(csv_data(3, i)).ToString
 
                 dt_server.Clear()
                 ds_server.Clear()
@@ -659,7 +663,7 @@ Public Class frmshuturyoku_csv
                     Dim dt_server As DataTable = ds_server.Tables("t_hacchuu_2")
 
                     If dt_server.Rows.Count = 0 Then
-                        csv_data(5, i) = CStr(CLng(csv_data(2, i)) - CLng(csv_data(3, i)) + CLng(csv_data(4, i)))
+                        csv_data(5, i) = CStr(CInt(csv_data(2, i)) - CInt(csv_data(3, i)) + CInt(csv_data(4, i)))
                     Else
                         csv_data(5, i) = "期間内に請求書ＩＤが違う納品書が存在します。"
                     End If
@@ -679,7 +683,7 @@ Public Class frmshuturyoku_csv
 
         Next
 
-        ' 全て0のものを排除
+        ' 全て0のものとcsv_data(6, i)を排除
         Dim new_data_count As Integer = 0
         For i = LBound(csv_data, 2) To UBound(csv_data, 2)
             If Not (csv_data(2, i) = "0" And csv_data(3, i) = "0" And csv_data(4, i) = "0" And csv_data(5, i) = "0") Then
@@ -691,7 +695,7 @@ Public Class frmshuturyoku_csv
         new_data_count = 0
         For i = LBound(csv_data, 2) To UBound(csv_data, 2)
             If Not (csv_data(2, i) = "0" And csv_data(3, i) = "0" And csv_data(4, i) = "0" And csv_data(5, i) = "0") Then
-                For j = 0 To 6
+                For j = 0 To 5
                     new_csv_data(j, new_data_count) = csv_data(j, i)
                 Next j
                 new_data_count = new_data_count + 1
