@@ -987,7 +987,7 @@ Public Class frmshuturyoku_csv
         'For writecounter = 0 To datasuu
         '    If csv_data(2, writecounter) = "0" And csv_data(3, writecounter) = "0" And csv_data(4, writecounter) = "0" And csv_data(5, writecounter) = "0" Then
         '    Else
-        '        Write #1, csv_data(0, writecounter), csv_data(1, writecounter), csv_data(2, writecounter), csv_data(3, writecounter), csv_data(4, writecounter), csv_data(5, writecounter)
+        '        Write #1, csv_data(0, writecounter), csv_data(1, writecounter), csv_data(2, writecounter), csv_data(3, writecounter), csv_data(4, writecounter), csv_data(5, writecounter) ' TODO : csv_data(6, writecounter)を出力していない
         '    End If
         'Next
 
