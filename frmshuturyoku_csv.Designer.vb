@@ -22,63 +22,36 @@ Partial Class frmshuturyoku_csv
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.gbx_main = New System.Windows.Forms.GroupBox()
+        Me.lbl_shutsuryoku_type = New System.Windows.Forms.Label()
         Me.chk_plus_alpha = New System.Windows.Forms.CheckBox()
         Me.btn_csv = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.lbl_shutsuryoku_type = New System.Windows.Forms.Label()
-        Me.GroupBox1.SuspendLayout()
+        Me.gbx_shinkou_joukyou = New System.Windows.Forms.GroupBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.lbl_shinkou_percent = New System.Windows.Forms.Label()
+        Me.pgb_shinkou_joukyou = New System.Windows.Forms.ProgressBar()
+        Me.lbl_shinkou_doai = New System.Windows.Forms.Label()
+        Me.gbx_main.SuspendLayout()
+        Me.gbx_shinkou_joukyou.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox1
+        'gbx_main
         '
-        Me.GroupBox1.BackColor = System.Drawing.Color.White
-        Me.GroupBox1.Controls.Add(Me.lbl_shutsuryoku_type)
-        Me.GroupBox1.Controls.Add(Me.chk_plus_alpha)
-        Me.GroupBox1.Controls.Add(Me.btn_csv)
-        Me.GroupBox1.Controls.Add(Me.btn_modoru)
-        Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(11, 10)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(579, 105)
-        Me.GroupBox1.TabIndex = 52
-        Me.GroupBox1.TabStop = False
-        '
-        'chk_plus_alpha
-        '
-        Me.chk_plus_alpha.AutoSize = True
-        Me.chk_plus_alpha.Location = New System.Drawing.Point(56, 71)
-        Me.chk_plus_alpha.Name = "chk_plus_alpha"
-        Me.chk_plus_alpha.Size = New System.Drawing.Size(199, 18)
-        Me.chk_plus_alpha.TabIndex = 189
-        Me.chk_plus_alpha.Text = "使用していない商品も出力する"
-        Me.chk_plus_alpha.UseVisualStyleBackColor = True
-        '
-        'btn_csv
-        '
-        Me.btn_csv.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_csv.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_csv.Location = New System.Drawing.Point(309, 31)
-        Me.btn_csv.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_csv.Name = "btn_csv"
-        Me.btn_csv.Size = New System.Drawing.Size(127, 44)
-        Me.btn_csv.TabIndex = 34
-        Me.btn_csv.Text = "CSV出力"
-        Me.btn_csv.UseVisualStyleBackColor = True
-        '
-        'btn_modoru
-        '
-        Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(440, 31)
-        Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_modoru.Name = "btn_modoru"
-        Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
-        Me.btn_modoru.TabIndex = 32
-        Me.btn_modoru.Text = "戻る"
-        Me.btn_modoru.UseVisualStyleBackColor = True
+        Me.gbx_main.BackColor = System.Drawing.Color.White
+        Me.gbx_main.Controls.Add(Me.lbl_shutsuryoku_type)
+        Me.gbx_main.Controls.Add(Me.chk_plus_alpha)
+        Me.gbx_main.Controls.Add(Me.btn_csv)
+        Me.gbx_main.Controls.Add(Me.btn_modoru)
+        Me.gbx_main.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.gbx_main.Location = New System.Drawing.Point(11, 10)
+        Me.gbx_main.Margin = New System.Windows.Forms.Padding(2)
+        Me.gbx_main.Name = "gbx_main"
+        Me.gbx_main.Padding = New System.Windows.Forms.Padding(2)
+        Me.gbx_main.Size = New System.Drawing.Size(579, 132)
+        Me.gbx_main.TabIndex = 52
+        Me.gbx_main.TabStop = False
         '
         'lbl_shutsuryoku_type
         '
@@ -90,25 +63,122 @@ Partial Class frmshuturyoku_csv
         Me.lbl_shutsuryoku_type.Text = "出力データ名"
         Me.lbl_shutsuryoku_type.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'chk_plus_alpha
+        '
+        Me.chk_plus_alpha.AutoSize = True
+        Me.chk_plus_alpha.Location = New System.Drawing.Point(52, 87)
+        Me.chk_plus_alpha.Name = "chk_plus_alpha"
+        Me.chk_plus_alpha.Size = New System.Drawing.Size(51, 18)
+        Me.chk_plus_alpha.TabIndex = 189
+        Me.chk_plus_alpha.Text = "+ α"
+        Me.chk_plus_alpha.UseVisualStyleBackColor = True
+        '
+        'btn_csv
+        '
+        Me.btn_csv.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_csv.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_csv.Location = New System.Drawing.Point(307, 45)
+        Me.btn_csv.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_csv.Name = "btn_csv"
+        Me.btn_csv.Size = New System.Drawing.Size(127, 44)
+        Me.btn_csv.TabIndex = 34
+        Me.btn_csv.Text = "CSV出力"
+        Me.btn_csv.UseVisualStyleBackColor = True
+        '
+        'btn_modoru
+        '
+        Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Location = New System.Drawing.Point(438, 45)
+        Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_modoru.Name = "btn_modoru"
+        Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
+        Me.btn_modoru.TabIndex = 32
+        Me.btn_modoru.Text = "戻る"
+        Me.btn_modoru.UseVisualStyleBackColor = True
+        '
+        'gbx_shinkou_joukyou
+        '
+        Me.gbx_shinkou_joukyou.BackColor = System.Drawing.Color.LightCyan
+        Me.gbx_shinkou_joukyou.Controls.Add(Me.GroupBox5)
+        Me.gbx_shinkou_joukyou.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.gbx_shinkou_joukyou.Location = New System.Drawing.Point(138, 199)
+        Me.gbx_shinkou_joukyou.Margin = New System.Windows.Forms.Padding(2)
+        Me.gbx_shinkou_joukyou.Name = "gbx_shinkou_joukyou"
+        Me.gbx_shinkou_joukyou.Padding = New System.Windows.Forms.Padding(2)
+        Me.gbx_shinkou_joukyou.Size = New System.Drawing.Size(307, 110)
+        Me.gbx_shinkou_joukyou.TabIndex = 222
+        Me.gbx_shinkou_joukyou.TabStop = False
+        Me.gbx_shinkou_joukyou.Text = "進行状況"
+        Me.gbx_shinkou_joukyou.Visible = False
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.BackColor = System.Drawing.Color.White
+        Me.GroupBox5.Controls.Add(Me.lbl_shinkou_percent)
+        Me.GroupBox5.Controls.Add(Me.pgb_shinkou_joukyou)
+        Me.GroupBox5.Controls.Add(Me.lbl_shinkou_doai)
+        Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox5.Location = New System.Drawing.Point(20, 16)
+        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(2)
+        Me.GroupBox5.Size = New System.Drawing.Size(267, 82)
+        Me.GroupBox5.TabIndex = 222
+        Me.GroupBox5.TabStop = False
+        '
+        'lbl_shinkou_percent
+        '
+        Me.lbl_shinkou_percent.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_percent.Location = New System.Drawing.Point(20, 12)
+        Me.lbl_shinkou_percent.Name = "lbl_shinkou_percent"
+        Me.lbl_shinkou_percent.Size = New System.Drawing.Size(228, 15)
+        Me.lbl_shinkou_percent.TabIndex = 126
+        Me.lbl_shinkou_percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pgb_shinkou_joukyou
+        '
+        Me.pgb_shinkou_joukyou.Location = New System.Drawing.Point(20, 30)
+        Me.pgb_shinkou_joukyou.Name = "pgb_shinkou_joukyou"
+        Me.pgb_shinkou_joukyou.Size = New System.Drawing.Size(228, 23)
+        Me.pgb_shinkou_joukyou.TabIndex = 0
+        '
+        'lbl_shinkou_doai
+        '
+        Me.lbl_shinkou_doai.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_doai.Location = New System.Drawing.Point(20, 56)
+        Me.lbl_shinkou_doai.Name = "lbl_shinkou_doai"
+        Me.lbl_shinkou_doai.Size = New System.Drawing.Size(228, 15)
+        Me.lbl_shinkou_doai.TabIndex = 125
+        Me.lbl_shinkou_doai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'frmshuturyoku_csv
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(599, 125)
+        Me.ClientSize = New System.Drawing.Size(599, 152)
         Me.ControlBox = False
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.gbx_shinkou_joukyou)
+        Me.Controls.Add(Me.gbx_main)
         Me.Name = "frmshuturyoku_csv"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "データ出力"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.gbx_main.ResumeLayout(False)
+        Me.gbx_main.PerformLayout()
+        Me.gbx_shinkou_joukyou.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents gbx_main As GroupBox
     Friend WithEvents chk_plus_alpha As CheckBox
     Friend WithEvents btn_csv As Button
     Friend WithEvents btn_modoru As Button
     Friend WithEvents lbl_shutsuryoku_type As Label
+    Friend WithEvents gbx_shinkou_joukyou As GroupBox
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents lbl_shinkou_percent As Label
+    Friend WithEvents pgb_shinkou_joukyou As ProgressBar
+    Friend WithEvents lbl_shinkou_doai As Label
 End Class
