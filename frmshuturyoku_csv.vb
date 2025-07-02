@@ -338,7 +338,8 @@ Public Class frmshuturyoku_csv
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM tenpo ORDER BY tenpoid"
+            Dim query = "SELECT * FROM tenpo ORDER BY tenpoid" ' 本チャン
+            'Dim query = "SELECT TOP (30) * FROM tenpo ORDER BY tenpoid" ' TODO : テスト
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -697,7 +698,7 @@ Public Class frmshuturyoku_csv
             End If
         Next i
 
-        If create_csv_file(new_csv_data, hozon_path, new_data_count) Then
+        If create_csv_file(new_csv_data, hozon_path, new_data_count - 1) Then
             Return True
         Else
             Return False
