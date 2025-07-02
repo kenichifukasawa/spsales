@@ -21,6 +21,7 @@ Public Class frmshuturyoku_csv
                 Dim shitei_nen = "2023"
                 Dim shitei_tsuki = "04"
                 response = output_csv_kurikoshi(hozon_path:=hozon_path, shitei_nen:=shitei_nen, shitei_tsuki:=shitei_tsuki)
+                hide_shinkou_joukyou()
             Case "Wella売上通知データ出力"
                 msg_go("開発中")
                 Exit Sub
@@ -378,13 +379,13 @@ Public Class frmshuturyoku_csv
             Return False
         End Try
 
-        Dim debug_count = 0
+        Dim debug_counter = 0
+        show_shinkou_joukyou(data_count)
 
         Dim seikyuu_2 As Integer
 
         For i = 1 To data_count
 
-            debug_count = i
             seikyuu_2 = 0
 
             ' 請求額を算出
@@ -671,6 +672,9 @@ Public Class frmshuturyoku_csv
                 End Try
 
             End If
+
+            debug_counter += 1
+            calculate_shinkou_joukyou(debug_counter, data_count)
 
         Next
 
@@ -1387,5 +1391,39 @@ Public Class frmshuturyoku_csv
         Return String.Join(",", columnValues)
 
     End Function
+
+
+    Private Sub show_shinkou_joukyou(max_count As Integer)
+
+        gbx_shinkou_joukyou.Visible = True
+        gbx_shinkou_joukyou.BringToFront()
+        Dim x As Integer = 275
+        Dim y As Integer = (ClientSize.Height - gbx_shinkou_joukyou.Height) \ 2
+        gbx_shinkou_joukyou.Location = New Point(x, y)
+        pgb_shinkou_joukyou.Minimum = 0
+        pgb_shinkou_joukyou.Maximum = max_count
+        pgb_shinkou_joukyou.Value = 0
+        gbx_main.Enabled = False
+
+        System.Windows.Forms.Application.DoEvents()
+
+    End Sub
+
+    Private Sub hide_shinkou_joukyou()
+
+        gbx_main.Enabled = True
+        gbx_shinkou_joukyou.Visible = False
+
+    End Sub
+
+    Sub calculate_shinkou_joukyou(counter As Integer, max_count As Integer)
+
+        lbl_shinkou_doai.Text = counter.ToString("#,0") + " / " + max_count.ToString("#,0")
+        lbl_shinkou_percent.Text = "" + (CDbl(counter) / CDbl(max_count) * 100).ToString(".00") + "%"
+        pgb_shinkou_joukyou.Value = counter
+
+        System.Windows.Forms.Application.DoEvents()
+
+    End Sub
 
 End Class
