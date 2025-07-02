@@ -675,25 +675,23 @@ Public Class frmshuturyoku_csv
         Next
 
         ' 全て0のものを排除
-        Dim j As Integer
-        Dim k As Integer
         Dim new_data_count As Integer = 0
-        For j = LBound(csv_data, 2) To UBound(csv_data, 2)
-            If Not (csv_data(2, j) = "0" And csv_data(3, j) = "0" And csv_data(4, j) = "0" And csv_data(5, j) = "0") Then
+        For i = LBound(csv_data, 2) To UBound(csv_data, 2)
+            If Not (csv_data(2, i) = "0" And csv_data(3, i) = "0" And csv_data(4, i) = "0" And csv_data(5, i) = "0") Then
                 new_data_count = new_data_count + 1
             End If
-        Next j
+        Next i
 
         Dim new_csv_data(6, new_data_count - 1) As String
         new_data_count = 0
-        For j = LBound(csv_data, 2) To UBound(csv_data, 2)
-            If Not (csv_data(2, j) = "0" And csv_data(3, j) = "0" And csv_data(4, j) = "0" And csv_data(5, j) = "0") Then
-                For k = 0 To 6
-                    new_csv_data(k, new_data_count) = csv_data(k, j)
-                Next k
+        For i = LBound(csv_data, 2) To UBound(csv_data, 2)
+            If Not (csv_data(2, i) = "0" And csv_data(3, i) = "0" And csv_data(4, i) = "0" And csv_data(5, i) = "0") Then
+                For j = 0 To 6
+                    new_csv_data(j, new_data_count) = csv_data(j, i)
+                Next j
                 new_data_count = new_data_count + 1
             End If
-        Next j
+        Next i
 
         If create_csv_file(new_csv_data, hozon_path, new_data_count) Then
             Return True
