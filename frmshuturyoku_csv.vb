@@ -27,7 +27,9 @@ Public Class frmshuturyoku_csv
                 response = output_csv_kurikoshi(hozon_path:=hozon_path, shitei_nen:=shitei_nen, shitei_tsuki:=shitei_tsuki)
                 hide_shinkou_joukyou()
             Case "Wella売上通知データ出力"
+
                 response = output_csv_wella_uriage(hozon_path)
+
             Case "ウエラ商品情報出力"
                 response = output_csv_wella_shouhin(hozon_path)
             Case Else
@@ -709,6 +711,7 @@ Public Class frmshuturyoku_csv
             'Application.DoEvents() ' Windowsフォームアプリの場合
         End If
 
+        ' No.1
         ' ヘッダー
         Dim header(11) As String
         header(0) = row_counter.ToString().PadLeft(6)
@@ -814,7 +817,6 @@ Public Class frmshuturyoku_csv
                 data(6, i) = shainid.PadRight(5)
                 data(7, i) = PadRightByByte(shainmei, 20)
                 data(8, i) = henkan_tel.PadLeft(13)
-
                 data(9, i) = PadRightByByte(tenpomei, 40)
                 data(10, i) = Trim(dt_server.Rows.Item(i).Item("iraibi"))
                 data(11, i) = Trim(dt_server.Rows.Item(i).Item("hacchuuid")).PadRight(8)
@@ -872,354 +874,176 @@ Public Class frmshuturyoku_csv
             Dim sw As New System.IO.StreamWriter(file_1_path, False, enc)
             sw.Write(header_line + data_line + footer_line)
             sw.Close()
+            msg_go("データ(No.1)を出力しました。", 64)
         Catch ex As Exception
             msg_go(ex.Message)
             Return False
         End Try
 
+        ' No.2
+        row_counter = 1
 
-        ' ----------------------------------------------------------
+        ' ヘッダー
+        ReDim header(11)
+        header(0) = row_counter.ToString().PadLeft(6)
+        header(1) = "0"
+        header(2) = "W"
+        header(3) = daicode.PadRight(10)
+        header(4) = "W"
+        header(5) = hiduke_hajime
+        header(6) = hiduke_owari
+        header(7) = kyou
+        header(8) = PadRightByByte(dairiten_mei, 40)
+        header(9) = torihikisaki_code
+        header(10) = PadRightByByte(maker_mei, 14)
+        header(11) = Space(148)
+        header_line = String.Join("", header) & vbCrLf
 
+        ' データ
+        data_line = ""
+        data_count = 0
+        sougoukeigaku = 0
+        Try
 
-        '        'Dim nincode As String, s_file1 As String, s_file2 As String, f_path As String, s_hi As Integer, s_nen As Integer
-        '        'Dim f_path2 As String, daicode As String, s_nh_hajime As String, s_nh_owari As String, s_kyou As String
-        '        'Dim head_d(12), s_dairitenmei As String, s_torihikisakicode As String, s_mekamei As String, sususu As Long
-        '        'Dim data_d(), foot_d(7), gyoucounter As Long, sql_sou As String, rs_sou As New ADODB.Recordset
-        '        'Dim mototel As String, tellen As Integer, sougoukeigaku As Long
-        '        'Dim h1 As Integer, h2 As Integer, fcfc As Object, a As Object
-        '        'Dim data_d2(), sql_shuusei As String, rs_shuusei As ADODB.Recordset
-        '        'Dim henkan_tel As String
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
 
-        '        Dim sql_sou As String, rs_sou
-        '        Dim tellen As Integer
-        '        Dim h1 As Integer, h2 As Integer, fcfc As Object, a As Object
-        '        Dim data_d2(), sql_shuusei As String, rs_shuusei
+            Dim query = "SELECT hacchuu.iraibi, shouhinkubun2.wella, shain.shainmei, tenpo.tel, tenpo.tenpomei, hacchuu.hacchuuid" +
+                ", hacchuushousai.shouhinid, shouhin.shouhinmei, hacchuushousai.kosuu, hacchuushousai.tanka, hacchuushousai.kei, hacchuu.tenpoid, tenpo.shainid" +
+                " FROM shouhinkubun2" +
+                " RIGHT JOIN (shain RIGHT JOIN (shouhin RIGHT JOIN ((tenpo RIGHT JOIN hacchuu ON tenpo.tenpoid = hacchuu.tenpoid)" +
+                " LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid) ON shouhin.shouhinid = hacchuushousai.shouhinid) ON shain.shainid = tenpo.shainid) ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" +
+                " WHERE hacchuu.iraibi BETWEEN '" + hiduke_hajime + "' AND '" + hiduke_owari + "' AND shouhinkubun2.wella = '1' AND tenpo.wellaon IS NULL" &
+                " ORDER BY tenpo.tenpomei OPTION (FORCE ORDER)"
 
-        '        '    If lblpath.Caption = "" Then
-        '        '        ret = MsgBox("設定でウエラ集計保存用のパスを指定してください。", 16, "総合管理システム「SPSALES」")
-        '        '        Unload Me
-        '        'Exit Sub
-        '        '    End If
-        '        '初期値
-        '        'nincode = "001224"
-        '        'daicode = "3708001224"
-        '        's_kyou = Format(Of Date, "yyyymmddhhmm")()
-        '        's_dairitenmei = "有限会社オールビューティＡ＆Ａ"
-        '        's_torihikisakicode = "4902565"
-        '        's_mekamei = "ウエラジャパン"
-        '        'gyoucounter = 1
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_output_csv_2")
+            Dim dt_server As DataTable = ds_server.Tables("t_output_csv_2")
 
+            data_count = dt_server.Rows.Count
+            If data_count = 0 Then
+                msg_go("作成したいデータ(No.2)が存在しませんでした。")
+                dt_server.Clear()
+                ds_server.Clear()
+                Return True
+            End If
 
-        '        'If chkkikan.Value = 1 Then
-        '        '    frmkikan.Show
-        '        '    If shimenokikan = "" Then
-        '        '        ret = MsgBox("設定でウエラ集計保存用の期間を指定してから再度実行してください。", 16, "総合管理システム「SPSALES」")
-        '        '        Exit Sub
-        '        '    Else
-        '        '        s_nen = CInt(Mid(shimenokikan, 3, 2))
-        '        '        s_hi = CInt(Mid(shimenokikan, 5, 2))
-        '        '        f_path2 = Format(s_nen, "00") & Format(s_hi, "00")
-        '        '        s_nh_hajime = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "01"
-        '        '        Select Case Format(s_hi, "00")
-        '        '            Case "01", "03", "05", "07", "08", "10", "12"
-        '        '                s_nh_owari = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "31"
-        '        '            Case "04", "06", "09", "11"
-        '        '                s_nh_owari = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "30"
-        '        '            Case "02"
-        '        '                s_nh_owari = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "29"
-        '        '        End Select
-        '        '    End If
-        '        'Else
-        '        '    s_nen = CInt(Mid(Format(Of Date, "yyyy"), 3))
-        '        '    s_hi = CInt(Format(Of Date, "mm")())
-        '        '    If s_hi = 1 Then
-        '        '        s_hi = 12
-        '        '        s_nen = s_nen - 1
-        '        '    Else
-        '        '        s_hi = s_hi - 1
-        '        '    End If
-        '        '    f_path2 = Format(s_nen, "00") & Format(s_hi, "00")
-        '        '    s_nh_hajime = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "01"
-        '        '    Select Case Format(s_hi, "00")
-        '        '        Case "01", "03", "05", "07", "08", "10", "12"
-        '        '            s_nh_owari = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "31"
-        '        '        Case "04", "06", "09", "11"
-        '        '            s_nh_owari = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "30"
-        '        '        Case "02"
-        '        '            If IsDate(Year(CLng(Format(Of Date, "yyyy")())) & "/02/29") Then
-        '        '                s_nh_owari = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "29"
-        '        '            Else
-        '        '                s_nh_owari = "20" & Format(s_nen, "00") & Format(s_hi, "00") & "28"
-        '        '            End If
-        '        '    End Select
-        '        'End If
+            row_counter = 2
+            Dim data(20, data_count - 1) As String
 
-        '        'lbljoukyou.Caption = "出力データの準備中・・"
-        '        'DoEvents
+            For i = 0 To data_count - 1
 
+                Dim tenpoid = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
+                If IsDBNull(dt_server.Rows.Item(i).Item("shainid")) Then
+                    msg_go("「" & tenpoid & "」の店舗の担当社員を指定してから再度実行してください。")
+                    dt_server.Clear()
+                    ds_server.Clear()
+                    Return False
+                End If
 
-        '        '    'ファイル名作成
-        '        '    f_path = Trim(lblpath.Caption) & "\w" & nincode & "_" & f_path2 & "_オールビューティーエーアンドエー_data"
-        '        '    If Dir(f_path, vbDirectory) = "" Then
-        '        '    Set fcfc = CreateObject("Scripting.FileSystemObject")
-        '        '    Set a = fcfc.CreateFolder(f_path)
-        '        'End If
-        '        '    s_file1 = f_path & "\W" & nincode & "_" & f_path2 & ".dat"
-        '        '    s_file2 = f_path & "\S" & nincode & "_" & f_path2 & ".dat"
+                Dim shainid = Trim(dt_server.Rows.Item(i).Item("shainid"))
+                Dim shainmei = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("shainmei")) Then
+                    shainmei = Trim(dt_server.Rows.Item(i).Item("shainmei"))
+                End If
 
-        '        '    If Dir(s_file1) <> "" Then
-        '        '        Kill s_file1
-        '        '    DoEvents
-        '        '    End If
-        '        '    If Dir(s_file2) <> "" Then
-        '        '        Kill s_file2
-        '        '    DoEvents
-        '        '    End If
+                Dim tel = ""
+                Dim henkan_tel = ""
+                Dim tenpomei = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("tel")) Then
+                    tel = Trim(dt_server.Rows.Item(i).Item("tel"))
+                    henkan_tel = tel.Replace("-", "")
+                    If tel <> "" And henkan_tel.Length <> 10 And henkan_tel.Length <> 11 Then
+                        msg_go("電話番号データが10,11桁ではありません。すべて空白で出力します。" + tenpomei + ":" + tel)
+                        tel = ""
+                    End If
+                End If
 
-        '        ''ヘッド情報
-        '        'head_d(1) = PadLeft(gyoucounter, 6)
-        '        'head_d(2) = "0"
-        '        'head_d(3) = "W"
-        '        'head_d(4) = PadRight(daicode, 10)
-        '        'head_d(5) = "W"
-        '        'head_d(6) = hiduke_hajime
-        '        'head_d(7) = hiduke_owari
-        '        'head_d(8) = kyou
-        '        'head_d(9) = PadRight(dairiten_mei, 40)
-        '        'head_d(10) = torihikisaki_code
-        '        'head_d(11) = PadRight(maker_mei, 14)
-        '        'head_d(12) = Space(148)
+                Dim tanka = "0"
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("tanka")) Then
+                    tanka = Trim(dt_server.Rows.Item(i).Item("tanka").ToString)
+                End If
 
-        '        'データ情報
-        '        'lbljoukyou.Caption = "出力データ１の抽出中・・"
-        '        'DoEvents
-        '        'sql_sou = "SELECT hacchuu.iraibi, shouhinkubun2.wella, shain.shainmei, tenpo.tel, tenpo.tenpomei, hacchuu.hacchuuid," &
-        '        '        "hacchuushousai.shouhinid, shouhin.shouhinmei, hacchuushousai.kosuu, hacchuushousai.tanka, hacchuushousai.kei," &
-        '        '        "hacchuu.tenpoid, tenpo.shainid" &
-        '        '        " FROM shouhinkubun2 RIGHT JOIN (shain RIGHT JOIN (shouhin RIGHT JOIN ((tenpo RIGHT JOIN hacchuu" &
-        '        '        " ON tenpo.tenpoid = hacchuu.tenpoid) LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" &
-        '        '        " ON shouhin.shouhinid = hacchuushousai.shouhinid) ON shain.shainid = tenpo.shainid)" &
-        '        '        " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
-        '        '        " WHERE hacchuu.iraibi Between '" & hiduke_hajime & "' And '" & hiduke_owari & "'and shouhinkubun2.wella='0'" &
-        '        '        "and tenpo.wellaon is null" &
-        '        '        " order by tenpo.tenpomei OPTION (FORCE ORDER)"
-        '        'If FcSQlGet(1, rs_sou, sql_sou, WMsg) = False Then
-        '        '    'ret = MsgBox("作成したいデータ(Ｎｏ．１)が存在しませんでした。", 16, "総合管理システム「SPSALES」")
-        '        '    'lbljoukyou.Caption = ""
-        '        '    'DoEvents
-        '        '    'Exit Sub
-        '        'Else
-        '        '    rs_sou.MoveFirst
-        '        '    'gyoucounter = 2
-        '        '    sususu = 0
-        '        '    sougoukeigaku = 0
-        '        '    Do Until rs_sou.EOF
-        '        '        sususu = sususu + 1
-        '        '        ReDim Preserve data_d(24, sususu)
-        '        '        data_d(1, sususu) = PadLeft(gyoucounter, 6)
-        '        '        data_d(2, sususu) = "1"
-        '        '        data_d(3, sususu) = "W"
-        '        '        data_d(4, sususu) = PadRight(daicode, 10)
-        '        '        data_d(5, sususu) = "D"
-        '        '        data_d(6, sususu) = PadRight(Trim(rs_sou!tenpoid), 15)
-        '        '        If Trim(rs_sou!shainid) = "" Then
-        '        '            ret = MsgBox("「" & Trim(rs_sou!tenpoid) & "」の店舗の担当社員を指定してから再度実行してください。", 16, "総合管理システム「SPSALES」")
-        '        '            Exit Sub
-        '        '        End If
-        '        '        data_d(7, sususu) = PadRight(Trim(rs_sou!shainid), 5)
-        '        '        data_d(8, sususu) = PadRight(Trim(rs_sou!shainmei), 20)
-        '        '        mototel = Trim(rs_sou!tel)
-        '        '        If mototel = "" Then
-        '        '            data_d(9, sususu) = Space(13)
-        '        '        Else
+                Dim kosuu = Trim(dt_server.Rows.Item(i).Item("kosuu"))
 
-        '        '            henkan_tel = Replace(mototel, "-", "")
+                Dim kei = "0"
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("kei")) Then
+                    kei = Trim(dt_server.Rows.Item(i).Item("kei").ToString)
+                End If
+                sougoukeigaku += CInt(kei)
 
-        '        '            tellen = Len(henkan_tel)  'mototel)
-        '        '            Select Case tellen
-        '        '                Case 11
-        '        '                    data_d(9, sususu) = Space(2) & henkan_tel
-        '        '                Case 10
-        '        '                    data_d(9, sususu) = Space(3) & henkan_tel
-        '        '                Case Else
-        '        '                    ret = MsgBox("電話番号データが10,11桁ではありません。すべて空白で出力します。" & rs_sou!tenpomei & ":" & rs_sou!tel, 16, "総合管理システム「SPSALES」")
-        '        '                    data_d(9, sususu) = Space(13)
-        '        '            End Select
-        '        '        End If
-        '        '        data_d(12, sususu) = PadRight(Trim(rs_sou!tenpomei), 40)
-        '        '        data_d(13, sususu) = Trim(rs_sou!iraibi)
-        '        '        data_d(14, sususu) = PadRight(Trim(rs_sou!hacchuuid), 8)
-        '        '        data_d(15, sususu) = "D"
-        '        '        data_d(16, sususu) = PadRight(Trim(rs_sou!shouhinid), 16)
-        '        '        data_d(17, sususu) = PadRight(Trim(rs_sou!shouhinmei), 40)
-        '        '        data_d(18, sususu) = Space(20)
-        '        '        If rs_sou!tanka = 0 Then
-        '        '            data_d(19, sususu) = PadLeft("0", 6)
-        '        '            data_d(20, sususu) = PadLeft(rs_sou!kosuu, 6)
-        '        '        Else
-        '        '            data_d(19, sususu) = PadLeft(rs_sou!kosuu, 6)
-        '        '            data_d(20, sususu) = PadLeft("0", 6)
-        '        '        End If
-        '        '        data_d(21, sususu) = PadLeft(rs_sou!tanka, 8)
-        '        '        data_d(22, sususu) = PadLeft(rs_sou!kei, 10)
-        '        '        sougoukeigaku = sougoukeigaku + CLng(rs_sou!kei)
-        '        '        data_d(23, sususu) = Space(21)
-        '        '        rs_sou.MoveNext
-        '        '        gyoucounter = gyoucounter + 1
-        '        '    Loop
-        '        '    rs_sou.Close
-        '        'End If
+                data(0, i) = row_counter.ToString().PadLeft(6)
+                data(1, i) = "1"
+                data(2, i) = "W"
+                data(3, i) = daicode.PadRight(10)
+                data(4, i) = "D"
+                data(5, i) = tenpoid.PadRight(15)
+                data(6, i) = shainid.PadRight(5)
+                data(7, i) = PadRightByByte(shainmei, 20)
+                data(8, i) = henkan_tel.PadLeft(13)
+                data(9, i) = PadRightByByte(tenpomei, 40)
+                data(10, i) = Trim(dt_server.Rows.Item(i).Item("iraibi"))
+                data(11, i) = Trim(dt_server.Rows.Item(i).Item("hacchuuid")).PadRight(8)
+                data(12, i) = "D"
+                data(13, i) = Trim(dt_server.Rows.Item(i).Item("shouhinid")).PadRight(16)
+                data(14, i) = PadRightByByte(Trim(dt_server.Rows.Item(i).Item("shouhinmei")), 40)
+                data(15, i) = Space(20)
 
+                If tanka = "0" Then
+                    data(16, i) = "0".PadLeft(6)
+                    data(17, i) = kosuu.PadLeft(6)
+                Else
+                    data(16, i) = kosuu.PadLeft(6)
+                    data(17, i) = "0".PadLeft(6)
+                End If
 
-        '        ''フッタ情報
-        '        'foot_d(1) = PadLeft(gyoucounter, 6)
-        '        'foot_d(2) = "2"
-        '        'foot_d(3) = "W"
-        '        'foot_d(4) = PadRight(daicode, 10)
-        '        'foot_d(5) = PadLeft(CStr(sususu), 6)
-        '        'foot_d(6) = PadLeft(CStr(sougoukeigaku), 10)
-        '        'foot_d(7) = Space(222)
+                data(18, i) = tanka.PadLeft(8)
+                data(19, i) = kei.PadLeft(10)
+                data(20, i) = Space(21)
 
-        '        '        Dim datadata As String, cccu As Long
+                row_counter += 1
 
-        '        '        'lbljoukyou.Caption = "出力１データの書込中・・"
-        '        '        'DoEvents
+            Next
 
-        '        '        Open file_1_path For Output Access Write As 1
-        '        '    datadata = header(1) & header(2) & header(3) & header(4) & header(5) & header(6) & header(7) & header(8) & header(9) & header(10) & header(11) & header(12)
-        '        '        Print #1, datadata
-        '        '    For cccu = 1 To sususu
-        '        '            datadata = data_d(1, cccu) & data_d(2, cccu) & data_d(3, cccu) & data_d(4, cccu) & data_d(5, cccu) & data_d(6, cccu) & data_d(7, cccu) &
-        '        '        data_d(8, cccu) & data_d(9, cccu) & data_d(12, cccu) & data_d(13, cccu) & data_d(14, cccu) & data_d(15, cccu) &
-        '        '        data_d(16, cccu) & data_d(17, cccu) & data_d(18, cccu) & data_d(19, cccu) & data_d(20, cccu) & data_d(21, cccu) & data_d(22, cccu) & data_d(23, cccu)
-        '        '            Print #1, datadata
-        '        '    Next
-        '        '        datadata = footer(1) & footer(2) & footer(3) & footer(4) & footer(5) & footer(6) & footer(7)
-        '        '        Print #1, datadata
-        '        'Close #1
+            For i As Integer = 0 To data_count - 1
+                Dim row(20) As String
+                For j As Integer = 0 To 20
+                    row(j) = data(j, i)
+                Next
+                data_line += String.Join("", row) & vbCrLf
+            Next
 
-        '        'lbljoukyou.Caption = "データ１出力完了！！"
-        '        '        DoEvents
+            dt_server.Clear()
+            ds_server.Clear()
 
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
 
-        '        ReDim data_d(24, 0)
-        '        gyoucounter = 1
+        'フッター情報
+        ReDim footer(6)
+        footer(0) = row_counter.ToString.PadLeft(6)
+        footer(1) = "2"
+        footer(2) = "W"
+        footer(3) = daicode.PadRight(10)
+        footer(4) = data_count.ToString.PadLeft(6)
+        footer(5) = sougoukeigaku.ToString.PadLeft(10)
+        footer(6) = Space(222)
+        footer_line = String.Join("", footer)
 
-        '        'ヘッド情報
-        '        header(1) = PadLeft(gyoucounter, 6)
-        '        header(2) = "0"
-        '        header(3) = "W"
-        '        header(4) = PadRight(daicode, 10)
-        '        header(5) = "S"
-        '        header(6) = hiduke_hajime
-        '        header(7) = hiduke_owari
-        '        header(8) = kyou
-        '        header(9) = PadRight(dairiten_mei, 40)
-        '        header(10) = torihikisaki_code
-        '        header(11) = PadRight(maker_mei, 14)
-        '        header(12) = Space(148)
-
-        '        'データ情報
-        '        lbljoukyou.Caption = "出力データ２の抽出中・・"
-        '        DoEvents
-
-        '        sql_sou = "SELECT hacchuu.iraibi, shouhinkubun2.wella, shain.shainmei, tenpo.tel, tenpo.tenpomei, hacchuu.hacchuuid, hacchuushousai.shouhinid, shouhin.shouhinmei, hacchuushousai.kosuu, hacchuushousai.tanka, hacchuushousai.kei, hacchuu.tenpoid, tenpo.shainid" &
-        '                " FROM shouhinkubun2 RIGHT JOIN (shain RIGHT JOIN (shouhin RIGHT JOIN ((tenpo RIGHT JOIN hacchuu ON tenpo.tenpoid = hacchuu.tenpoid) LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid) ON shouhin.shouhinid = hacchuushousai.shouhinid) ON shain.shainid = tenpo.shainid) ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
-        '                " WHERE hacchuu.iraibi Between '" & hiduke_hajime & "' And '" & hiduke_owari & "'and shouhinkubun2.wella='1' and tenpo.wellaon is null" &
-        '                " order by tenpo.tenpomei  OPTION (FORCE ORDER)"
-        '        If FcSQlGet(1, rs_sou, sql_sou, WMsg) = False Then
-        '            ret = MsgBox("作成したいデータ(Ｎｏ．２)は、ありませんでした。", 16, "総合管理システム「SPSALES」")
-        '            lbljoukyou.Caption = ""
-        '            DoEvents
-        '            Exit Sub
-        '        Else
-        '            rs_sou.MoveFirst
-        '            gyoucounter = 2
-        '            sususu = 0
-        '            sougoukeigaku = 0
-        '            Do Until rs_sou.EOF
-        '                sususu = sususu + 1
-        '                ReDim Preserve data_d(24, sususu)
-        '                data_d(1, sususu) = PadLeft(gyoucounter, 6)
-        '                data_d(2, sususu) = "1"
-        '                data_d(3, sususu) = "W"
-        '                data_d(4, sususu) = PadRight(daicode, 10)
-        '                data_d(5, sususu) = "D"
-        '                data_d(6, sususu) = PadRight(Trim(rs_sou!tenpoid), 15)
-        '                data_d(7, sususu) = PadRight(Trim(rs_sou!shainid), 5)
-        '                data_d(8, sususu) = PadRight(Trim(rs_sou!shainmei), 20)
-        '                mototel = Trim(rs_sou!tel)
-        '                If mototel = "" Then
-        '                    data_d(9, sususu) = Space(13)
-        '                Else
-
-        '                    henkan_tel = Replace(mototel, "-", "")
-
-        '                    tellen = Len(henkan_tel)  'mototel)
-        '                    Select Case tellen
-        '                        Case 11
-        '                            data_d(9, sususu) = Space(2) & henkan_tel
-        '                        Case 10
-        '                            data_d(9, sususu) = Space(3) & henkan_tel
-        '                        Case Else
-        '                            ret = MsgBox("電話番号データが10,11桁ではありません。すべて空白で出力します。" & rs_sou!tenpomei & ":" & rs_sou!tel, 16, "総合管理システム「SPSALES」")
-        '                            data_d(9, sususu) = Space(13)
-        '                    End Select
-        '                End If
-        '                data_d(12, sususu) = PadRight(Trim(rs_sou!tenpomei), 40)
-        '                data_d(13, sususu) = Trim(rs_sou!iraibi)
-        '                data_d(14, sususu) = PadRight(Trim(rs_sou!hacchuuid), 8)
-        '                data_d(15, sususu) = "D"
-        '                data_d(16, sususu) = PadRight(Trim(rs_sou!shouhinid), 16)
-        '                data_d(17, sususu) = PadRight(Trim(rs_sou!shouhinmei), 40)
-        '                data_d(18, sususu) = Space(20)
-        '                If rs_sou!tanka = 0 Then
-        '                    data_d(19, sususu) = PadLeft("0", 6)
-        '                    data_d(20, sususu) = PadLeft(rs_sou!kosuu, 6)
-        '                Else
-        '                    data_d(19, sususu) = PadLeft(rs_sou!kosuu, 6)
-        '                    data_d(20, sususu) = PadLeft("0", 6)
-        '                End If
-        '                data_d(21, sususu) = PadLeft(rs_sou!tanka, 8)
-        '                data_d(22, sususu) = PadLeft(rs_sou!kei, 10)
-        '                sougoukeigaku = sougoukeigaku + CLng(rs_sou!kei)
-        '                data_d(23, sususu) = Space(21)
-        '                rs_sou.MoveNext
-        '                gyoucounter = gyoucounter + 1
-        '            Loop
-        '            rs_sou.Close
-        '        End If
-        '        'フッタ情報
-        '        footer(1) = PadLeft(gyoucounter, 6)
-        '        footer(2) = "2"
-        '        footer(3) = "W"
-        '        footer(4) = PadRight(daicode, 10)
-        '        footer(5) = PadLeft(CStr(sususu), 6)
-        '        footer(6) = PadLeft(CStr(sougoukeigaku), 10)
-        '        footer(7) = Space(222)
-
-
-        '        lbljoukyou.Caption = "出力データ２の書込中・・"
-        '        DoEvents
-
-        '        Open file_2_path For Output Access Write As 1
-        '    datadata = header(1) & header(2) & header(3) & header(4) & header(5) & header(6) & header(7) & header(8) & header(9) & header(10) & header(11) & header(12)
-        '        Print #1, datadata
-        '    For cccu = 1 To sususu
-        '            datadata = data_d(1, cccu) & data_d(2, cccu) & data_d(3, cccu) & data_d(4, cccu) & data_d(5, cccu) & data_d(6, cccu) & data_d(7, cccu) &
-        '        data_d(8, cccu) & data_d(9, cccu) & data_d(12, cccu) & data_d(13, cccu) & data_d(14, cccu) & data_d(15, cccu) &
-        '        data_d(16, cccu) & data_d(17, cccu) & data_d(18, cccu) & data_d(19, cccu) & data_d(20, cccu) & data_d(21, cccu) & data_d(22, cccu) & data_d(23, cccu)
-        '            Print #1, datadata
-        '    Next
-        '        datadata = footer(1) & footer(2) & footer(3) & footer(4) & footer(5) & footer(6) & footer(7)
-        '        Print #1, datadata
-        'Close #1
-
-        'lbljoukyou.Caption = "データ２出力完了！！"
-        '        DoEvents
-        '        ReDim data_d(0, 0)
-
-
+        '書き込み
+        Try
+            Dim enc As Encoding = Encoding.GetEncoding(encording_name)
+            Dim sw As New System.IO.StreamWriter(file_2_path, False, enc)
+            sw.Write(header_line + data_line + footer_line)
+            sw.Close()
+            msg_go("データ(No.2)を出力しました。", 64)
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
 
         Return True
 
