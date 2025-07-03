@@ -24,6 +24,7 @@
         With frmshuturyoku_csv
             .lbl_shutsuryoku_type.Text = "繰越残情報出力"
             .chk_plus_alpha.Visible = False
+            .grp_kikan_shitei.Visible = True
             .ShowDialog()
         End With
     End Sub

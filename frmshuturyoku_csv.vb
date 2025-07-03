@@ -18,8 +18,12 @@ Public Class frmshuturyoku_csv
             Case "店舗情報出力"
                 response = output_csv_tenpo(hozon_path)
             Case "繰越残情報出力"
-                Dim shitei_nen = "2023"
-                Dim shitei_tsuki = "04"
+                If cmb_nen.SelectedIndex = -1 Or cmb_tsuki.SelectedIndex = -1 Then
+                    msg_go("期間を指定してください。")
+                    Exit Sub
+                End If
+                Dim shitei_nen = Trim(cmb_nen.Text)
+                Dim shitei_tsuki = Trim(cmb_tsuki.Text)
                 response = output_csv_kurikoshi(hozon_path:=hozon_path, shitei_nen:=shitei_nen, shitei_tsuki:=shitei_tsuki)
                 hide_shinkou_joukyou()
             Case "Wella売上通知データ出力"
@@ -1431,4 +1435,18 @@ Public Class frmshuturyoku_csv
 
     End Sub
 
+    Private Sub frmshuturyoku_csv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim nen_ima As Integer = CInt(DateTime.Now.ToString("yyyy"))
+
+        cmb_nen.Items.Clear()
+        cmb_tsuki.Items.Clear()
+        For i = nen_ima - 3 To nen_ima
+            cmb_nen.Items.Add(i.ToString)
+        Next
+        For i = 1 To 12
+            cmb_tsuki.Items.Add(i.ToString("D2"))
+        Next
+
+    End Sub
 End Class
