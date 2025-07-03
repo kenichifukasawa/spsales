@@ -43,53 +43,6 @@ Public Class frmshuturyoku_csv
             msg_go("指定データのエクスポートに失敗しました。")
         End If
 
-        ' ----------------------------------------------------------
-
-        'Dim sql_csv As String, rs_csv As New ADODB.Recordset, tsuika_kaishaid As String
-        'Dim tsuika_genbaid As String, csvfailename As String, ddcounter As Long, hozonpath As String
-        'Dim fileno As Integer, iremono As String, dddata(), ddcount As Long, ddi As Long, ddcounter2 As Long
-
-        'With frmcsv
-
-        '    If frmcsv.lblshurui.Caption = "店舗情報出力" Then
-
-        '        csvfailename = hozonpath & "\店舗情報出力_" & Format(Of Date, "yyyymmdd")() & "-" & Format(Time, "hhmm") & ".txt"
-        '        If frmcsv.chkchk.Value = 1 Then
-        '            csv_csv2(1, csvfailename, 1)
-        '        Else
-        '            csv_csv2(1, csvfailename)
-        '        End If
-
-        '    ElseIf frmcsv.lblshurui.Caption = "商品情報出力" Then
-
-        '        csvfailename = hozonpath & "\商品情報出力_" & Format(Of Date, "yyyymmdd")() & "-" & Format(Time, "hhmm") & ".txt"
-        '        If frmcsv.chkchk.Value = 1 Then
-        '            csv_csv2(2, csvfailename, 1)
-        '        Else
-        '            csv_csv2(2, csvfailename)
-        '        End If
-
-        '    ElseIf frmcsv.lblshurui.Caption = "ウエラ商品情報出力" Then
-
-        '        csvfailename = hozonpath & "\ウエラ商品情報出力_" & Format(Of Date, "yyyymmdd")() & "-" & Format(Time, "hhmm") & ".txt"
-        '        csv_csv2(3, csvfailename)
-
-        '    ElseIf frmcsv.lblshurui.Caption = "繰越残情報出力" Then
-
-        '        csvfailename = hozonpath & "\繰越残情報出力_" & Format(Of Date, "yyyymmdd")() & "-" & Format(Time, "hhmm") & ".txt"
-        '        frmkikan.Show
-
-        '        If shimenokikan = "" Then
-        '            ret = MsgBox("中止しました。", 64, "総合管理システム「SPSALES」")
-        '            Exit Sub
-        '        End If
-
-        '        csv_csv3(csvfailename, Mid(shimenokikan, 1, 4), Mid(shimenokikan, 5, 2))
-
-        '    End If
-
-        'End With
-
     End Sub
 
     Function output_csv_shouhin(hozon_path As String) As Boolean
