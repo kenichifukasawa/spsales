@@ -27,8 +27,9 @@ Public Class frmshuturyoku_csv
                 response = output_csv_kurikoshi(hozon_path:=hozon_path, shitei_nen:=shitei_nen, shitei_tsuki:=shitei_tsuki)
                 hide_shinkou_joukyou()
             Case "Wella売上通知データ出力"
-                msg_go("開発中")
-                Exit Sub
+
+                response = output_csv_wella_uriage(hozon_path)
+
             Case "ウエラ商品情報出力"
                 response = output_csv_wella_shouhin(hozon_path)
             Case Else
@@ -42,53 +43,6 @@ Public Class frmshuturyoku_csv
         Else
             msg_go("指定データのエクスポートに失敗しました。")
         End If
-
-        ' ----------------------------------------------------------
-
-        'Dim sql_csv As String, rs_csv As New ADODB.Recordset, tsuika_kaishaid As String
-        'Dim tsuika_genbaid As String, csvfailename As String, ddcounter As Long, hozonpath As String
-        'Dim fileno As Integer, iremono As String, dddata(), ddcount As Long, ddi As Long, ddcounter2 As Long
-
-        'With frmcsv
-
-        '    If frmcsv.lblshurui.Caption = "店舗情報出力" Then
-
-        '        csvfailename = hozonpath & "\店舗情報出力_" & Format(Of Date, "yyyymmdd")() & "-" & Format(Time, "hhmm") & ".txt"
-        '        If frmcsv.chkchk.Value = 1 Then
-        '            csv_csv2(1, csvfailename, 1)
-        '        Else
-        '            csv_csv2(1, csvfailename)
-        '        End If
-
-        '    ElseIf frmcsv.lblshurui.Caption = "商品情報出力" Then
-
-        '        csvfailename = hozonpath & "\商品情報出力_" & Format(Of Date, "yyyymmdd")() & "-" & Format(Time, "hhmm") & ".txt"
-        '        If frmcsv.chkchk.Value = 1 Then
-        '            csv_csv2(2, csvfailename, 1)
-        '        Else
-        '            csv_csv2(2, csvfailename)
-        '        End If
-
-        '    ElseIf frmcsv.lblshurui.Caption = "ウエラ商品情報出力" Then
-
-        '        csvfailename = hozonpath & "\ウエラ商品情報出力_" & Format(Of Date, "yyyymmdd")() & "-" & Format(Time, "hhmm") & ".txt"
-        '        csv_csv2(3, csvfailename)
-
-        '    ElseIf frmcsv.lblshurui.Caption = "繰越残情報出力" Then
-
-        '        csvfailename = hozonpath & "\繰越残情報出力_" & Format(Of Date, "yyyymmdd")() & "-" & Format(Time, "hhmm") & ".txt"
-        '        frmkikan.Show
-
-        '        If shimenokikan = "" Then
-        '            ret = MsgBox("中止しました。", 64, "総合管理システム「SPSALES」")
-        '            Exit Sub
-        '        End If
-
-        '        csv_csv3(csvfailename, Mid(shimenokikan, 1, 4), Mid(shimenokikan, 5, 2))
-
-        '    End If
-
-        'End With
 
     End Sub
 
@@ -712,296 +666,386 @@ Public Class frmshuturyoku_csv
             Return False
         End If
 
-        ' ----------------------------------------------------------
+    End Function
 
-        'Open shutsu_path For Output Access Write As 1
-        'For writecounter = 0 To datasuu
-        '    If csv_data(2, writecounter) = "0" And csv_data(3, writecounter) = "0" And csv_data(4, writecounter) = "0" And csv_data(5, writecounter) = "0" Then
-        '    Else
-        '        Write #1, csv_data(0, writecounter), csv_data(1, writecounter), csv_data(2, writecounter), csv_data(3, writecounter), csv_data(4, writecounter), csv_data(5, writecounter)
-        '    End If
-        'Next
+    Function output_csv_wella_uriage(hozon_path As String) As Boolean
 
-        ' ----------------------------------------------------------
+        Dim encording_name As String = "shift_jis" ' JISコード指定
+        Dim nincode = "001224"
+        Dim daicode = "3708001224"
+        Dim kyou = Now.ToString("yyyyMMddhhmm")
+        Dim dairiten_mei = "有限会社オールビューティＡ＆Ａ"
+        Dim torihikisaki_code = "4902565"
+        Dim maker_mei = "ウエラジャパン"
+        Dim row_counter = 1
 
-        'Dim sql_sentaku As String, rs_sentaku As New ADODB.Recordset, csv_data()
-        'Dim datasuu As Long, writecounter As Long, rs_tsutsu As ADODB.Recordset, sql_tsutsu As String
-        'Dim kotoshi As String, rs_sentaku2 As New ADODB.Recordset
-        'Dim kitensiid As String, motobi2 As String, nyuukinyokujitsu As String, aaa As Integer
-        'Dim seikyuu_2 As Integer, seikyuu_2_hajimete As Integer, bbb As String
-        'Dim rs_tsutsu_7 As ADODB.Recordset, sql_tsutsu_7 As String
+        Dim shitei_nen = Trim(cmb_nen.Text)
+        Dim shitei_tsuki = Trim(cmb_tsuki.Text)
+        If chk_plus_alpha.Checked Then
+            If shitei_nen = "" Or shitei_tsuki = "" Then
+                msg_go("期間を指定してください。")
+                Return False
+            End If
+        Else
+            shitei_nen = Now.AddMonths(-1).ToString("yyyy")
+            shitei_tsuki = Now.AddMonths(-1).ToString("MM")
+        End If
 
-        ''kotoshi = Format(Date, "yyyy")
-        'kotoshi = shitenen
+        Dim file_nen_tsuki = Mid(shitei_nen, 3, 2) + shitei_tsuki
+        Dim hiduke_hajime = shitei_nen + shitei_tsuki + "01"
+        Dim hiduke_owari = shitei_nen + shitei_tsuki + get_tsuki_saishuubi(shitei_nen, shitei_tsuki)
 
-        ''hhh = kotoshi & "0101"
-        ''ooo = kotoshi & "0131"
-        'hhh = kotoshi & shitetsuki & "01"
-        'ooo = kotoshi & shitetsuki & "31"
-        'sql_sentaku = "SELECT * FROM tenpo order by tenpoid"
+        'ファイル名作成
+        Dim folder_path = DESKTOP_PATH & "\w" & nincode & "_" & file_nen_tsuki & "_オールビューティーエーアンドエー_data"
+        Directory.CreateDirectory(folder_path)
 
-        ''sql_sentaku = "SELECT * FROM tenpo  where tenpoid ='001592' or tenpoid ='001593'order by tenpoid"
+        Dim file_1_path = folder_path & "\W" & nincode & "_" & file_nen_tsuki & ".dat"
+        If System.IO.File.Exists(file_1_path) Then
+            System.IO.File.Delete(file_1_path)
+            'Application.DoEvents() ' Windowsフォームアプリの場合
+        End If
 
-        'If FcSQlGet(1, rs_sentaku2, sql_sentaku, WMsg) = False Then
-        '    'ret = MsgBox("作成したいデータが存在しません。", 16, "総合管理システム「SPSALES」")
-        '    'Exit Sub
-        'Else
-        '    'datasuu = rs_sentaku2.RecordCount
-        '    'ReDim csv_data(6, datasuu)
-        '    'csv_data(0, 0) = "店舗ID"
-        '    'csv_data(1, 0) = "店舗名"
-        '    'csv_data(2, 0) = "請求金額"
-        '    'csv_data(3, 0) = "入金金額"
-        '    'csv_data(4, 0) = "未請求額"
-        '    'csv_data(5, 0) = "繰越総額"
-        '    'csv_data(6, 0) = "〆日"
-        '    rs_sentaku2.MoveFirst
-        '    i = 1
-        '    Do Until rs_sentaku2.EOF
-        '        csv_data(0, i) = rs_sentaku2!tenpoid
-        '        csv_data(1, i) = Trim(rs_sentaku2!tenpomei)
-        '        Select Case rs_sentaku2!shimebi
-        '            Case "0"
-        '                csv_data(6, i) = "05"
-        '            Case "1"
-        '                csv_data(6, i) = "10"
-        '            Case "2"
-        '                csv_data(6, i) = "15"
-        '            Case "3"
-        '                csv_data(6, i) = "20"
-        '            Case "4"
-        '                csv_data(6, i) = "25"
-        '            Case "5"
-        '                csv_data(6, i) = "31"
-        '            Case "6"
-        '                csv_data(6, i) = "00"
-        '        End Select
-        '        i = i + 1
-        '        rs_sentaku2.MoveNext
-        '    Loop
-        '    rs_sentaku2.Close
-        'End If
+        Dim file_2_path = folder_path & "\S" & nincode & "_" & file_nen_tsuki & ".dat"
+        If System.IO.File.Exists(file_2_path) Then
+            System.IO.File.Delete(file_2_path)
+            'Application.DoEvents() ' Windowsフォームアプリの場合
+        End If
 
-        'data_base_open
+        ' No.1
+        ' ヘッダー
+        Dim header(11) As String
+        header(0) = row_counter.ToString().PadLeft(6)
+        header(1) = "0"
+        header(2) = "W"
+        header(3) = daicode.PadRight(10)
+        header(4) = "W"
+        header(5) = hiduke_hajime
+        header(6) = hiduke_owari
+        header(7) = kyou
+        header(8) = PadRightByByte(dairiten_mei, 40)
+        header(9) = torihikisaki_code
+        header(10) = PadRightByByte(maker_mei, 14)
+        header(11) = Space(148)
+        Dim header_line As String = String.Join("", header) & vbCrLf
 
-        'frmcsv.pb1.Max = datasuu
-        'frmcsv.pb1.Value = 0
-        'DoEvents
+        ' データ
+        Dim data_line As String = ""
+        Dim data_count As Integer = 0
+        Dim sougoukeigaku As Integer = 0
+        Try
 
-        'For i = 1 To datasuu
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
 
-        'seikyuu_2 = 0
-        '*******請求額を算出****************************************************
-        'motobi = kotoshi & "0101"
-        'sakibi = kotoshi & "0131"           
-        'Set rs_tsutsu = New ADODB.Recordset
-        'sql_tsutsu = "SELECT seikyuusho.hiduke, seikyuusho.tenpoid," &
-        '            "seikyuusho.seikyuukingaku, seikyuusho.seikyuushoid" &
-        '            " FROM tenpo RIGHT JOIN seikyuusho ON tenpo.tenpoid = seikyuusho.tenpoid " &
-        '            " WHERE seikyuusho.seikyuu_st='0' AND" &
-        '            " seikyuusho.hiduke Between '" & motobi & "' And '" & sakibi & "'" &
-        '            " AND seikyuusho.tenpoid='" & csv_data(0, i) & "'" &
-        '            " ORDER BY seikyuusho.hiduke DESC,seikyuusho.seikyuushoid DESC"
+            Dim query = "SELECT hacchuu.iraibi, shouhinkubun2.wella, shain.shainmei, tenpo.tel, tenpo.tenpomei, hacchuu.hacchuuid" +
+                ", hacchuushousai.shouhinid, shouhin.shouhinmei, hacchuushousai.kosuu, hacchuushousai.tanka, hacchuushousai.kei" +
+                ", hacchuu.tenpoid, tenpo.shainid" +
+                " FROM shouhinkubun2" +
+                " RIGHT JOIN" +
+                " (shain RIGHT JOIN" +
+                " (shouhin RIGHT JOIN ((tenpo RIGHT JOIN hacchuu ON tenpo.tenpoid = hacchuu.tenpoid)" +
+                " LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" +
+                " ON shouhin.shouhinid = hacchuushousai.shouhinid) ON shain.shainid = tenpo.shainid)" +
+                " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" +
+                " WHERE hacchuu.iraibi BETWEEN '" + hiduke_hajime + "' AND '" + hiduke_owari + "'" +
+                " AND shouhinkubun2.wella = '0' AND tenpo.wellaon IS NULL" +
+                " ORDER BY tenpo.tenpomei OPTION (FORCE ORDER)"
 
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_output_csv_1")
+            Dim dt_server As DataTable = ds_server.Tables("t_output_csv_1")
 
+            data_count = dt_server.Rows.Count
+            If data_count = 0 Then
+                msg_go("作成したいデータ(No.1)が存在しませんでした。")
+                dt_server.Clear()
+                ds_server.Clear()
+                Return False
+            End If
 
-        'If FcSQlGet(0, rs_tsutsu, sql_tsutsu, WMsg) = False Then
+            row_counter = 2
+            Dim data(20, data_count - 1) As String
 
-        '    If csv_data(6, i) = "00" Then
-        '    Set rs_tsutsu_7 = New ADODB.Recordset
-        '    sql_tsutsu_7 = "SELECT seikyuusho.hiduke, seikyuusho.tenpoid," &
-        '                "seikyuusho.seikyuukingaku, seikyuusho.seikyuushoid" &
-        '                " FROM tenpo RIGHT JOIN seikyuusho ON tenpo.tenpoid = seikyuusho.tenpoid " &
-        '                " WHERE seikyuusho.seikyuu_st='0' " &
-        '                " AND seikyuusho.tenpoid='" & csv_data(0, i) & "'" &
-        '                " ORDER BY seikyuusho.hiduke DESC,seikyuusho.seikyuushoid DESC"
-        '        If FcSQlGet(0, rs_tsutsu_7, sql_tsutsu_7, WMsg) = False Then
-        '            csv_data(2, i) = "0"
-        '            'motobi = kotoshi & "0101"
-        '            'motobi2 = kotoshi & "0101"
-        '            motobi = kotoshi & shitetsuki & "01"
-        '            motobi2 = kotoshi & shitetsuki & "01"
-        '            kitensiid = ""
-        '            nyuukinyokujitsu = motobi
-        '        Else
-        '            csv_data(2, i) = rs_tsutsu_7!seikyuukingaku
-        '            kitensiid = rs_tsutsu_7!seikyuushoid
-        '            motobi = CStr(rs_tsutsu_7!hiduke)
-        '            motobi2 = CStr(rs_tsutsu_7!hiduke)
-        '            bbb = Mid(motobi, 1, 6)
-        '            If Right(motobi, 2) = "31" Then
-        '                aaa = 31
-        '            Else
-        '                aaa = CInt(Right(motobi, 2)) + 1
-        '            End If
-        '            nyuukinyokujitsu = bbb & Format(aaa, "00")
-        '            rs_tsutsu_7.Close
-        '            rs_tsutsu.Close
-        '        End If
-        '    Else
-        '        csv_data(2, i) = "0"
-        '        'motobi = kotoshi & "0101"
-        '        'motobi2 = kotoshi & "0101"
-        '        motobi = kotoshi & shitetsuki & "01"
-        '        motobi2 = kotoshi & shitetsuki & "01"
-        '        kitensiid = ""
-        '        nyuukinyokujitsu = motobi
-        '    End If
+            For i = 0 To data_count - 1
 
-        'Else
+                Dim tenpoid = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
+                If IsDBNull(dt_server.Rows.Item(i).Item("shainid")) Then
+                    msg_go("「" & tenpoid & "」の店舗の担当社員を指定してから再度実行してください。")
+                    dt_server.Clear()
+                    ds_server.Clear()
+                    Return False
+                End If
 
-        '    If rs_tsutsu.RecordCount = 1 Then
-        '        csv_data(2, i) = rs_tsutsu!seikyuukingaku
-        '        kitensiid = rs_tsutsu!seikyuushoid
-        '        motobi = CStr(rs_tsutsu!hiduke)
-        '        motobi2 = CStr(rs_tsutsu!hiduke)
-        '        If Right(motobi, 2) = "31" Then
-        '            aaa = 31
-        '        Else
-        '            aaa = CInt(Right(motobi, 2)) + 1
-        '        End If
-        '        nyuukinyokujitsu = Mid(motobi, 1, 6) & Format(aaa, "00")
-        '    Else
-        '        rs_tsutsu.MoveFirst
-        '        seikyuu_2_hajimete = 0
-        '        Do Until rs_tsutsu.EOF
-        '            csv_data(2, i) = csv_data(2, i) + rs_tsutsu!seikyuukingaku
-        '            If seikyuu_2_hajimete = 0 Then
-        '                motobi2 = CStr(rs_tsutsu!hiduke)
-        '            End If
-        '            rs_tsutsu.MoveNext
-        '            seikyuu_2_hajimete = seikyuu_2_hajimete + 1
-        '        Loop
-        '        motobi = kotoshi & shitetsuki & "01"
-        '        kitensiid = ""
-        '        If Right(motobi2, 2) = "31" Then
-        '            aaa = 31
-        '        Else
-        '            aaa = CInt(Right(motobi2, 2)) + 1
-        '        End If
-        '        nyuukinyokujitsu = Mid(motobi2, 1, 6) & Format(aaa, "00")
-        '        seikyuu_2 = 1
-        '    End If
-        '    rs_tsutsu.Close
+                Dim shainid = Trim(dt_server.Rows.Item(i).Item("shainid"))
+                Dim shainmei = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("shainmei")) Then
+                    shainmei = Trim(dt_server.Rows.Item(i).Item("shainmei"))
+                End If
 
-        'End If
+                Dim tel = ""
+                Dim henkan_tel = ""
+                Dim tenpomei = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("tel")) Then
+                    tel = Trim(dt_server.Rows.Item(i).Item("tel"))
+                    henkan_tel = tel.Replace("-", "")
+                    If tel <> "" And henkan_tel.Length <> 10 And henkan_tel.Length <> 11 Then
+                        msg_go("電話番号データが10,11桁ではありません。すべて空白で出力します。" + tenpomei + ":" + tel)
+                        tel = ""
+                    End If
+                End If
 
-        ''*******入金額を算出****************************************************
+                Dim tanka = "0"
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("tanka")) Then
+                    tanka = Trim(dt_server.Rows.Item(i).Item("tanka").ToString)
+                End If
 
-        ''Set rs_tsutsu = New ADODB.Recordset
-        'If seikyuu_2 = 1 Then
-        '    sql_tsutsu = "SELECT sum(seikyuusho.seikyuukingaku) as gonyu" &
-        '                " FROM tenpo RIGHT JOIN seikyuusho ON tenpo.tenpoid = seikyuusho.tenpoid " &
-        '                " WHERE seikyuusho.seikyuu_st='1'" &
-        '                " AND seikyuusho.hiduke Between '" & motobi & "' And '" & sakibi & "'" &
-        '                " AND seikyuusho.tenpoid='" & csv_data(0, i) & "'"
-        'Else
-        '    sql_tsutsu = "SELECT sum(seikyuusho.seikyuukingaku) as gonyu" &
-        '                " FROM tenpo RIGHT JOIN seikyuusho ON tenpo.tenpoid = seikyuusho.tenpoid " &
-        '                " WHERE seikyuusho.seikyuu_st='1'" &
-        '                " AND seikyuusho.hiduke Between '" & nyuukinyokujitsu & "' And '" & sakibi & "'" &
-        '                " AND seikyuusho.tenpoid='" & csv_data(0, i) & "'"
-        'End If
-        'If FcSQlGet(0, rs_tsutsu, sql_tsutsu, WMsg) = False Then
-        '    csv_data(3, i) = "0"
-        'Else
-        '    If IsNull(rs_tsutsu!gonyu) Then
-        '        csv_data(3, i) = "0"
-        '    Else
-        '        csv_data(3, i) = rs_tsutsu!gonyu
-        '    End If
-        '    rs_tsutsu.Close
-        'End If
-        ''motobi = kotoshi & "01" & csv_data(6, i)
-        'motobi = kotoshi & shitetsuki & csv_data(6, i)
-        'If csv_data(6, i) = "31" Then
-        '    If motobi2 < motobi Then
-        '        motobi = motobi2
-        '    End If
-        'End If
+                Dim kosuu = Trim(dt_server.Rows.Item(i).Item("kosuu"))
 
-        ''*******未請求額を算出****************************************************
+                Dim kei = "0"
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("kei")) Then
+                    kei = Trim(dt_server.Rows.Item(i).Item("kei").ToString)
+                End If
+                sougoukeigaku += CInt(kei)
 
-        '        Set rs_tsutsu = New ADODB.Recordset
-        '        If seikyuu_2 = 1 Then
-        '    csv_data(4, i) = "0"
-        'Else
-        '    If kitensiid = "" Then
-        '        sql_tsutsu = "SELECT sum(hacchuu.goukei) as gomisei" &
-        '                    " FROM hacchuu" &
-        '                    " WHERE hacchuu.iraibi Between '" & motobi & "' And '" & sakibi & "'" &
-        '                    " AND hacchuu.tenpoid=" & csv_data(0, i) & ""
-        '    Else
-        '        If csv_data(6, i) = "00" Then
-        '            sql_tsutsu = "SELECT sum(hacchuu.goukei) as gomisei" &
-        '                        " FROM hacchuu" &
-        '                        " WHERE hacchuu.iraibi Between '" & nyuukinyokujitsu & "' And '" & sakibi & "'" &
-        '                        " AND (hacchuu.seikyuushoid<>'" & kitensiid & "'  or hacchuu.seikyuushoid is null)" &
-        '                        " AND hacchuu.tenpoid='" & csv_data(0, i) & "'"
-        '        Else
-        '            sql_tsutsu = "SELECT sum(hacchuu.goukei) as gomisei" &
-        '                        " FROM hacchuu" &
-        '                        " WHERE hacchuu.iraibi Between '" & motobi & "' And '" & sakibi & "'" &
-        '                        " AND (hacchuu.seikyuushoid<>'" & kitensiid & "'  or hacchuu.seikyuushoid is null)" &
-        '                        " AND hacchuu.tenpoid='" & csv_data(0, i) & "'"
-        '        End If
-        '    End If
+                data(0, i) = row_counter.ToString().PadLeft(6)
+                data(1, i) = "1"
+                data(2, i) = "W"
+                data(3, i) = daicode.PadRight(10)
+                data(4, i) = "D"
+                data(5, i) = tenpoid.PadRight(15)
+                data(6, i) = shainid.PadRight(5)
+                data(7, i) = PadRightByByte(shainmei, 20)
+                data(8, i) = henkan_tel.PadLeft(13)
+                data(9, i) = PadRightByByte(tenpomei, 40)
+                data(10, i) = Trim(dt_server.Rows.Item(i).Item("iraibi"))
+                data(11, i) = Trim(dt_server.Rows.Item(i).Item("hacchuuid")).PadRight(8)
+                data(12, i) = "D"
+                data(13, i) = Trim(dt_server.Rows.Item(i).Item("shouhinid")).PadRight(16)
+                data(14, i) = PadRightByByte(Trim(dt_server.Rows.Item(i).Item("shouhinmei")), 40)
+                data(15, i) = Space(20)
 
-        '    If FcSQlGet(0, rs_tsutsu, sql_tsutsu, WMsg) = False Then
-        '        csv_data(4, i) = "0"
-        '    Else
-        '        If IsNull(rs_tsutsu!gomisei) Then
-        '            csv_data(4, i) = "0"
-        '        Else
-        '            csv_data(4, i) = rs_tsutsu!gomisei
-        '        End If
-        '        rs_tsutsu.Close
-        '    End If
-        'End If
+                If tanka = "0" Then
+                    data(16, i) = "0".PadLeft(6)
+                    data(17, i) = kosuu.PadLeft(6)
+                Else
+                    data(16, i) = kosuu.PadLeft(6)
+                    data(17, i) = "0".PadLeft(6)
+                End If
 
+                data(18, i) = tanka.PadLeft(8)
+                data(19, i) = kei.PadLeft(10)
+                data(20, i) = Space(21)
 
-        ''閉め日からそれ以前で、請求書番号が違うチェック
-        'If seikyuu_2 = 1 Then
-        '    csv_data(5, i) = "複数の請求書があります。"
-        'Else
-        '            Set rs_tsutsu = New ADODB.Recordset
-        '            If kitensiid = "" Then
-        '        sql_tsutsu = "SELECT *" &
-        '                    " FROM hacchuu" &
-        '                    " WHERE hacchuu.iraibi Between '" & hhh & "' And '" & motobi & "'" &
-        '                    " AND hacchuu.tenpoid=" & csv_data(0, i) & ""
-        '    Else
-        '        sql_tsutsu = "SELECT *" &
-        '                    " FROM hacchuu" &
-        '                    " WHERE hacchuu.iraibi Between '" & hhh & "' And '" & motobi & "'" &
-        '                    " AND (hacchuu.seikyuushoid<>'" & kitensiid & "'  or hacchuu.seikyuushoid is null)" &
-        '                    " AND hacchuu.tenpoid='" & csv_data(0, i) & "'"
-        '    End If
-        '    If FcSQlGet(0, rs_tsutsu, sql_tsutsu, WMsg) = True Then
-        '        'MsgBox "閉め日からそれ以前で、算定する請求書番号が違うか存在しないため、発注情報に基づく金額が違います。手動で確認をしてください。ID:" & csv_data(0, i)
-        '        csv_data(5, i) = "期間内に請求書ＩＤが違う納品書が存在します。"
-        '    Else
-        '        csv_data(5, i) = CStr(CLng(csv_data(2, i)) - CLng(csv_data(3, i)) + CLng(csv_data(4, i)))
-        '    End If
-        'End If
+                row_counter += 1
 
-        'frmcsv.pb1.Value = i
-        'frmcsv.lblcounter.Caption = CStr(i) & " / " & CStr(datasuu)
-        'DoEvents
+            Next
 
-        'Next
+            For i As Integer = 0 To data_count - 1
+                Dim row(20) As String
+                For j As Integer = 0 To 20
+                    row(j) = data(j, i)
+                Next
+                data_line += String.Join("", row) & vbCrLf
+            Next
 
-        'Open shutsu_path For Output Access Write As 1
-        'For writecounter = 0 To datasuu
-        '    If csv_data(2, writecounter) = "0" And csv_data(3, writecounter) = "0" And csv_data(4, writecounter) = "0" And csv_data(5, writecounter) = "0" Then
-        '    Else
-        '        Write #1, csv_data(0, writecounter), csv_data(1, writecounter), csv_data(2, writecounter), csv_data(3, writecounter), csv_data(4, writecounter), csv_data(5, writecounter) ' TODO : csv_data(6, writecounter)を出力していない
-        '    End If
-        'Next
+            dt_server.Clear()
+            ds_server.Clear()
 
-        'Close #1
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
 
-        'ret = MsgBox("指定データのエクスポートが完了しました。", 64, "総合管理システム「SPSALES」")
+        'フッター情報
+        Dim footer(6) As String
+        footer(0) = row_counter.ToString.PadLeft(6)
+        footer(1) = "2"
+        footer(2) = "W"
+        footer(3) = daicode.PadRight(10)
+        footer(4) = data_count.ToString.PadLeft(6)
+        footer(5) = sougoukeigaku.ToString.PadLeft(10)
+        footer(6) = Space(222)
+        Dim footer_line As String = String.Join("", footer)
+
+        '書き込み
+        Try
+            Dim enc As Encoding = Encoding.GetEncoding(encording_name)
+            Dim sw As New System.IO.StreamWriter(file_1_path, False, enc)
+            sw.Write(header_line + data_line + footer_line)
+            sw.Close()
+            msg_go("データ(No.1)を出力しました。", 64)
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+        ' No.2
+        row_counter = 1
+
+        ' ヘッダー
+        ReDim header(11)
+        header(0) = row_counter.ToString().PadLeft(6)
+        header(1) = "0"
+        header(2) = "W"
+        header(3) = daicode.PadRight(10)
+        header(4) = "W"
+        header(5) = hiduke_hajime
+        header(6) = hiduke_owari
+        header(7) = kyou
+        header(8) = PadRightByByte(dairiten_mei, 40)
+        header(9) = torihikisaki_code
+        header(10) = PadRightByByte(maker_mei, 14)
+        header(11) = Space(148)
+        header_line = String.Join("", header) & vbCrLf
+
+        ' データ
+        data_line = ""
+        data_count = 0
+        sougoukeigaku = 0
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT hacchuu.iraibi, shouhinkubun2.wella, shain.shainmei, tenpo.tel, tenpo.tenpomei, hacchuu.hacchuuid" +
+                ", hacchuushousai.shouhinid, shouhin.shouhinmei, hacchuushousai.kosuu, hacchuushousai.tanka, hacchuushousai.kei, hacchuu.tenpoid, tenpo.shainid" +
+                " FROM shouhinkubun2" +
+                " RIGHT JOIN (shain RIGHT JOIN (shouhin RIGHT JOIN ((tenpo RIGHT JOIN hacchuu ON tenpo.tenpoid = hacchuu.tenpoid)" +
+                " LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid) ON shouhin.shouhinid = hacchuushousai.shouhinid) ON shain.shainid = tenpo.shainid) ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" +
+                " WHERE hacchuu.iraibi BETWEEN '" + hiduke_hajime + "' AND '" + hiduke_owari + "' AND shouhinkubun2.wella = '1' AND tenpo.wellaon IS NULL" &
+                " ORDER BY tenpo.tenpomei OPTION (FORCE ORDER)"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_output_csv_2")
+            Dim dt_server As DataTable = ds_server.Tables("t_output_csv_2")
+
+            data_count = dt_server.Rows.Count
+            If data_count = 0 Then
+                msg_go("作成したいデータ(No.2)が存在しませんでした。")
+                dt_server.Clear()
+                ds_server.Clear()
+                Return True
+            End If
+
+            row_counter = 2
+            Dim data(20, data_count - 1) As String
+
+            For i = 0 To data_count - 1
+
+                Dim tenpoid = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
+                If IsDBNull(dt_server.Rows.Item(i).Item("shainid")) Then
+                    msg_go("「" & tenpoid & "」の店舗の担当社員を指定してから再度実行してください。")
+                    dt_server.Clear()
+                    ds_server.Clear()
+                    Return False
+                End If
+
+                Dim shainid = Trim(dt_server.Rows.Item(i).Item("shainid"))
+                Dim shainmei = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("shainmei")) Then
+                    shainmei = Trim(dt_server.Rows.Item(i).Item("shainmei"))
+                End If
+
+                Dim tel = ""
+                Dim henkan_tel = ""
+                Dim tenpomei = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("tel")) Then
+                    tel = Trim(dt_server.Rows.Item(i).Item("tel"))
+                    henkan_tel = tel.Replace("-", "")
+                    If tel <> "" And henkan_tel.Length <> 10 And henkan_tel.Length <> 11 Then
+                        msg_go("電話番号データが10,11桁ではありません。すべて空白で出力します。" + tenpomei + ":" + tel)
+                        tel = ""
+                    End If
+                End If
+
+                Dim tanka = "0"
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("tanka")) Then
+                    tanka = Trim(dt_server.Rows.Item(i).Item("tanka").ToString)
+                End If
+
+                Dim kosuu = Trim(dt_server.Rows.Item(i).Item("kosuu"))
+
+                Dim kei = "0"
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("kei")) Then
+                    kei = Trim(dt_server.Rows.Item(i).Item("kei").ToString)
+                End If
+                sougoukeigaku += CInt(kei)
+
+                data(0, i) = row_counter.ToString().PadLeft(6)
+                data(1, i) = "1"
+                data(2, i) = "W"
+                data(3, i) = daicode.PadRight(10)
+                data(4, i) = "D"
+                data(5, i) = tenpoid.PadRight(15)
+                data(6, i) = shainid.PadRight(5)
+                data(7, i) = PadRightByByte(shainmei, 20)
+                data(8, i) = henkan_tel.PadLeft(13)
+                data(9, i) = PadRightByByte(tenpomei, 40)
+                data(10, i) = Trim(dt_server.Rows.Item(i).Item("iraibi"))
+                data(11, i) = Trim(dt_server.Rows.Item(i).Item("hacchuuid")).PadRight(8)
+                data(12, i) = "D"
+                data(13, i) = Trim(dt_server.Rows.Item(i).Item("shouhinid")).PadRight(16)
+                data(14, i) = PadRightByByte(Trim(dt_server.Rows.Item(i).Item("shouhinmei")), 40)
+                data(15, i) = Space(20)
+
+                If tanka = "0" Then
+                    data(16, i) = "0".PadLeft(6)
+                    data(17, i) = kosuu.PadLeft(6)
+                Else
+                    data(16, i) = kosuu.PadLeft(6)
+                    data(17, i) = "0".PadLeft(6)
+                End If
+
+                data(18, i) = tanka.PadLeft(8)
+                data(19, i) = kei.PadLeft(10)
+                data(20, i) = Space(21)
+
+                row_counter += 1
+
+            Next
+
+            For i As Integer = 0 To data_count - 1
+                Dim row(20) As String
+                For j As Integer = 0 To 20
+                    row(j) = data(j, i)
+                Next
+                data_line += String.Join("", row) & vbCrLf
+            Next
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+        'フッター情報
+        ReDim footer(6)
+        footer(0) = row_counter.ToString.PadLeft(6)
+        footer(1) = "2"
+        footer(2) = "W"
+        footer(3) = daicode.PadRight(10)
+        footer(4) = data_count.ToString.PadLeft(6)
+        footer(5) = sougoukeigaku.ToString.PadLeft(10)
+        footer(6) = Space(222)
+        footer_line = String.Join("", footer)
+
+        '書き込み
+        Try
+            Dim enc As Encoding = Encoding.GetEncoding(encording_name)
+            Dim sw As New System.IO.StreamWriter(file_2_path, False, enc)
+            sw.Write(header_line + data_line + footer_line)
+            sw.Close()
+            msg_go("データ(No.2)を出力しました。", 64)
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+        Return True
 
     End Function
 
@@ -1105,238 +1149,6 @@ Public Class frmshuturyoku_csv
             Return False
         End If
 
-        ' ----------------------------------------------------------
-
-        '        Dim sql_sentaku As String, rs_sentaku As New ADODB.Recordset, i As Long
-        '        Dim datasuu As Long, writecounter As Long, rs_tsutsu As ADODB.Recordset, sql_tsutsu As String
-        '        Dim kotoshi As String, motobi As String, hhh As String, ooo As String, ngyousuu As Long
-
-        '        kotoshi = Format(Of Date, "yyyy")()
-
-        '        Select Case csv_shurui
-        '            Case 4
-        '                datasuu = frmshuukeishouhin.gridkekka.Rows - 1
-        '            Case 1  '店舗情報
-        '                If chkchk = 1 Then
-        '                    sql_sentaku = "SELECT tenpo.*, MAILNO_M.ADRESS1, shain.shainmei " &
-        '          "FROM shain RIGHT JOIN (MAILNO_M RIGHT JOIN tenpo " &
-        '          "ON MAILNO_M.MAILNO = tenpo.mailno) ON shain.shainid = tenpo.shainid " &
-        '          "order by tenpo.tenpofurigana"
-        '                Else
-        '                    sql_sentaku = "SELECT tenpo.*, MAILNO_M.ADRESS1, shain.shainmei " &
-        '          "FROM shain RIGHT JOIN (MAILNO_M RIGHT JOIN tenpo " &
-        '          "ON MAILNO_M.MAILNO = tenpo.mailno) ON shain.shainid = tenpo.shainid " &
-        '          " where tenpo.kadou ='0'" &
-        '          "order by tenpo.tenpofurigana"
-        '                End If
-        '            Case 2  '商品情報
-        '    If chkchk = 1 Then
-        '        sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" &
-        '" FROM shouhinkubun2 RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin" &
-        '" ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" &
-        '" ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
-        '" order by shouhin.shouhinid"
-        '    Else
-        '        sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" &
-        '" FROM shouhinkubun2 RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin" &
-        '" ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" &
-        '" ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
-        '" where shouhin.mishiyou <> '1'" &
-        '" order by shouhin.shouhinid"
-        '    End If
-        '            Case 3   '商品情報
-        '    'sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" & _
-        '            ",shouhinkubun2.wella" & _
-        '            " FROM shouhinkubun2 RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin" & _
-        '            " ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" & _
-        '            " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" & _
-        '            " where shouhinkubun2.wella='0' or shouhinkubun2.wella='1'" & _
-        '            " order by shouhin.shouhinid"
-        '    sql_sentaku = "SELECT shouhin.*, shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2" &
-        '            ",shouhinkubun2.wella" &
-        '            " FROM shouhinkubun2 RIGHT JOIN (shouhinkubun RIGHT JOIN shouhin" &
-        '            " ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid)" &
-        '            " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2" &
-        '            " where shouhin.haiban is null and (shouhinkubun2.wella='0' or shouhinkubun2.wella='1')" &
-        '            " order by shouhin.shouhinid"
-        '                'haiban = Null
-        '        End Select
-        '        If csv_shurui <> 4 Then
-        '            If FcSQlGet(1, rs_sentaku, sql_sentaku, WMsg) = False Then
-        '                ret = MsgBox("作成したいデータが存在しません。", 16, "総合管理システム「SPSALES」")
-        '                Exit Sub
-        '            Else
-        '                datasuu = rs_sentaku.RecordCount
-        '                Select Case csv_shurui
-        '                    Case 1  '店舗情報
-        '                        ReDim csv_data(18, datasuu)
-        '                        csv_data(0, 0) = "店舗ID"
-        '                        csv_data(1, 0) = "店舗名"
-        '                        csv_data(2, 0) = "店舗フリガナ"
-        '                        csv_data(3, 0) = "郵便番号"
-        '                        csv_data(4, 0) = "住所１"
-        '                        csv_data(5, 0) = "住所２"
-        '                        csv_data(6, 0) = "電話番号"
-        '                        csv_data(7, 0) = "FAX番号"
-        '                        csv_data(8, 0) = "携帯番号"
-        '                        csv_data(9, 0) = "代表者名"
-        '                        csv_data(10, 0) = "担当者名"
-        '                        csv_data(11, 0) = "従業員数"
-        '                        csv_data(12, 0) = "〆情報"
-        '                        csv_data(13, 0) = "Eメール"
-        '                        csv_data(14, 0) = "備考"
-        '                        csv_data(15, 0) = "稼動(=0)"
-        '                        csv_data(16, 0) = "繰越金額"
-        '                        csv_data(17, 0) = "担当社員"
-        '                    Case 2  '商品情報
-        '                        ReDim csv_data(12, datasuu)
-        '                        csv_data(0, 0) = "商品ID"
-        '                        csv_data(1, 0) = "商品名"
-        '                        csv_data(2, 0) = "商品フリガナ"
-        '                        csv_data(3, 0) = "区分１"
-        '                        csv_data(4, 0) = "区分２"
-        '                        csv_data(5, 0) = "バーコード"
-        '                        csv_data(6, 0) = "価格"
-        '                        csv_data(7, 0) = "原価"
-        '                        csv_data(8, 0) = "現在庫"
-        '                        csv_data(9, 0) = "未使用(=1)"
-        '                        csv_data(10, 0) = "非課税(=1)"
-        '                        csv_data(11, 0) = "業者区分"
-        '                    Case 3  '商品情報
-        '                        ReDim csv_data(13, datasuu)
-        '                        csv_data(0, 0) = "商品ID"
-        '                        csv_data(1, 0) = "商品名"
-        '                        csv_data(2, 0) = "商品フリガナ"
-        '                        csv_data(3, 0) = "区分１"
-        '                        csv_data(4, 0) = "区分２"
-        '                        csv_data(5, 0) = "バーコード"
-        '                        csv_data(6, 0) = "価格"
-        '                        csv_data(7, 0) = "原価"
-        '                        csv_data(8, 0) = "現在庫"
-        '                        csv_data(9, 0) = "未使用(=1)"
-        '                        csv_data(10, 0) = "非課税(=1)"
-        '                        csv_data(11, 0) = "種類(wella=0､ｾﾊﾞ=1)"
-        '                        csv_data(12, 0) = "業者区分"
-        '                End Select
-
-        '                rs_sentaku.MoveFirst
-        '                i = 1
-        '                Do Until rs_sentaku.EOF
-        '                    Select Case csv_shurui
-        '                        Case 1  '店舗情報
-        '                            csv_data(0, i) = rs_sentaku!tenpoid
-        '                            csv_data(1, i) = Trim(rs_sentaku!tenpomei)
-        '                            csv_data(2, i) = rs_sentaku!tenpofurigana
-        '                            csv_data(3, i) = rs_sentaku!mailno
-        '                            csv_data(4, i) = Trim(rs_sentaku!adress1)
-        '                            csv_data(5, i) = Trim(rs_sentaku!tenpoadress)
-        '                            csv_data(6, i) = rs_sentaku!tel
-        '                            csv_data(7, i) = rs_sentaku!fax
-        '                            csv_data(8, i) = rs_sentaku!keitai
-        '                            csv_data(9, i) = rs_sentaku!daihyou
-        '                            csv_data(10, i) = Trim(rs_sentaku!tantou)
-        '                            csv_data(11, i) = rs_sentaku!juugyouinsuu
-        '                            Select Case CInt(rs_sentaku!shimebi)
-        '                                Case 0
-        '                                    csv_data(12, i) = "５日"
-        '                                Case 1
-        '                                    csv_data(12, i) = "１０日"
-        '                                Case 2
-        '                                    csv_data(12, i) = "１５日"
-        '                                Case 3
-        '                                    csv_data(12, i) = "２０日"
-        '                                Case 4
-        '                                    csv_data(12, i) = "２５日"
-        '                                Case 5
-        '                                    csv_data(12, i) = "月末"
-        '                                Case 6
-        '                                    csv_data(12, i) = "随時"
-        '                            End Select
-        '                            csv_data(13, i) = rs_sentaku!email
-        '                            csv_data(14, i) = rs_sentaku!bikou
-        '                            csv_data(15, i) = rs_sentaku!kadou
-        '                            If IsNull(rs_sentaku!kurikoshi) Then
-        '                                csv_data(16, i) = 0
-        '                            Else
-        '                                csv_data(16, i) = rs_sentaku!kurikoshi
-        '                            End If
-        '                            csv_data(17, i) = rs_sentaku!shainmei
-        '                        Case 2  '商品情報
-        '                            csv_data(0, i) = rs_sentaku!shouhinid
-        '                            csv_data(1, i) = rs_sentaku!shouhinmei
-        '                            csv_data(2, i) = rs_sentaku!shouhinfurigana
-        '                            csv_data(3, i) = rs_sentaku!shouhinkubunmei
-        '                            csv_data(4, i) = rs_sentaku!shouhinkubunmei2
-        '                            csv_data(5, i) = rs_sentaku!Barcode
-        '                            csv_data(6, i) = rs_sentaku!kakaku
-        '                            csv_data(7, i) = rs_sentaku!genka
-        '                            csv_data(8, i) = rs_sentaku!genzaikosuu
-        '                            csv_data(9, i) = rs_sentaku!mishiyou
-        '                            csv_data(10, i) = rs_sentaku!hikazei
-        '                            csv_data(11, i) = rs_sentaku!shouhinkubunid0
-        '                        Case 3  '商品情報
-        '                            csv_data(0, i) = rs_sentaku!shouhinid
-        '                            csv_data(1, i) = rs_sentaku!shouhinmei
-        '                            csv_data(2, i) = rs_sentaku!shouhinfurigana
-        '                            csv_data(3, i) = rs_sentaku!shouhinkubunmei
-        '                            csv_data(4, i) = rs_sentaku!shouhinkubunmei2
-        '                            csv_data(5, i) = rs_sentaku!Barcode
-        '                            csv_data(6, i) = rs_sentaku!kakaku
-        '                            csv_data(7, i) = rs_sentaku!genka
-        '                            csv_data(8, i) = rs_sentaku!genzaikosuu
-        '                            csv_data(9, i) = rs_sentaku!mishiyou
-        '                            csv_data(10, i) = rs_sentaku!hikazei
-        '                            csv_data(11, i) = rs_sentaku!wella
-        '                            csv_data(12, i) = rs_sentaku!shouhinkubunid0
-        '                    End Select
-
-        '                    i = i + 1
-        '                    rs_sentaku.MoveNext
-        '                Loop
-        '                rs_sentaku.Close
-
-        '            End If
-        '        Else
-        '            ReDim csv_data(5, datasuu)
-        '            csv_data(0, 0) = "NO"
-        '            csv_data(1, 0) = "店舗名"
-        '            csv_data(2, 0) = "商品名"
-        '            csv_data(3, 0) = "数量"
-        '            csv_data(4, 0) = "金額"
-        '            i = 1
-        '            For ngyousuu = 1 To datasuu
-        '                frmshuukeishouhin.gridkekka.Row = ngyousuu
-        '                frmshuukeishouhin.gridkekka.Col = 0
-        '                csv_data(0, ngyousuu) = Trim(frmshuukeishouhin.gridkekka.Text)
-        '                frmshuukeishouhin.gridkekka.Col = 1
-        '                csv_data(1, ngyousuu) = Trim(frmshuukeishouhin.gridkekka.Text)
-        '                frmshuukeishouhin.gridkekka.Col = 2
-        '                csv_data(2, ngyousuu) = Trim(frmshuukeishouhin.gridkekka.Text)
-        '                frmshuukeishouhin.gridkekka.Col = 3
-        '                csv_data(3, ngyousuu) = Trim(frmshuukeishouhin.gridkekka.Text)
-        '                frmshuukeishouhin.gridkekka.Col = 4
-        '                csv_data(4, ngyousuu) = Trim(frmshuukeishouhin.gridkekka.Text)
-        '            Next
-        '        End If
-
-        '        Open shutsu_path For Output Access Write As 1
-        'For writecounter = 0 To datasuu
-        '            Select Case csv_shurui
-        '                Case 1  '店舗情報
-        '                    Write #1, csv_data(0, writecounter), csv_data(1, writecounter), csv_data(2, writecounter), csv_data(3, writecounter), csv_data(4, writecounter), csv_data(5, writecounter), csv_data(6, writecounter), csv_data(7, writecounter), csv_data(8, writecounter), csv_data(9, writecounter), csv_data(10, writecounter), csv_data(11, writecounter), csv_data(12, writecounter), csv_data(13, writecounter), csv_data(14, writecounter), csv_data(15, writecounter), csv_data(16, writecounter), csv_data(17, writecounter)
-        '    Case 2  '商品情報
-        '                    Write #1, csv_data(0, writecounter), csv_data(1, writecounter), csv_data(2, writecounter), csv_data(3, writecounter), csv_data(4, writecounter), csv_data(5, writecounter), csv_data(6, writecounter), csv_data(7, writecounter), csv_data(8, writecounter), csv_data(9, writecounter), csv_data(10, writecounter), csv_data(11, writecounter)
-        '    Case 3  '商品情報
-        '                    Write #1, csv_data(0, writecounter), csv_data(1, writecounter), csv_data(2, writecounter), csv_data(3, writecounter), csv_data(4, writecounter), csv_data(5, writecounter), csv_data(6, writecounter), csv_data(7, writecounter), csv_data(8, writecounter), csv_data(9, writecounter), csv_data(10, writecounter), csv_data(11, writecounter), csv_data(12, writecounter)
-        '    Case 4
-        '                    Write #1, csv_data(0, writecounter), csv_data(1, writecounter), csv_data(2, writecounter), csv_data(3, writecounter), csv_data(4, writecounter)
-        '    End Select
-        '        Next
-
-        '        Close #1
-
-        'ret = MsgBox("指定データのエクスポートが完了しました。", 64, "総合管理システム「SPSALES」")
-
     End Function
 
     Private Function create_csv_file(csv_data(,) As String, hozon_path As String, data_count As Integer) As Boolean
@@ -1438,10 +1250,12 @@ Public Class frmshuturyoku_csv
     Private Sub frmshuturyoku_csv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim nen_ima As Integer = CInt(DateTime.Now.ToString("yyyy"))
+        'Dim sakanobori_nensuu = 3
+        Dim sakanobori_nensuu = 5
 
         cmb_nen.Items.Clear()
         cmb_tsuki.Items.Clear()
-        For i = nen_ima - 3 To nen_ima
+        For i = nen_ima - sakanobori_nensuu To nen_ima
             cmb_nen.Items.Add(i.ToString)
         Next
         For i = 1 To 12
@@ -1449,4 +1263,41 @@ Public Class frmshuturyoku_csv
         Next
 
     End Sub
+
+    Private Sub chk_plus_alpha_Click(sender As Object, e As EventArgs) Handles chk_plus_alpha.Click
+
+        Dim shurui_name = Trim(lbl_shutsuryoku_type.Text)
+        If shurui_name <> "Wella売上通知データ出力" Then
+            Exit Sub
+        End If
+
+        If chk_plus_alpha.Checked Then
+            grp_kikan_shitei.Visible = True
+        Else
+            grp_kikan_shitei.Visible = False
+            cmb_nen.SelectedIndex = -1
+            cmb_tsuki.SelectedIndex = -1
+        End If
+
+    End Sub
+
+    Private Function PadRightByByte(input As String, targetBytes As Integer, Optional enc As System.Text.Encoding = Nothing) As String
+        If enc Is Nothing Then enc = System.Text.Encoding.GetEncoding("shift_jis")
+        Dim byteLen As Integer = enc.GetByteCount(input)
+        If byteLen = targetBytes Then
+            Return input
+        ElseIf byteLen < targetBytes Then
+            ' 不足分だけスペース追加
+            Return input & New String(" "c, targetBytes - byteLen)
+        Else
+            ' 超過時はバイト単位で切り詰め
+            Dim bytes() As Byte = enc.GetBytes(input)
+            Dim cutStr As String = enc.GetString(bytes, 0, targetBytes)
+            ' 末尾が分断文字の場合、1バイト減らして再取得
+            If enc.GetByteCount(cutStr) > targetBytes Then
+                cutStr = enc.GetString(bytes, 0, targetBytes - 1)
+            End If
+            Return cutStr
+        End If
+    End Function
 End Class
