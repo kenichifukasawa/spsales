@@ -71,7 +71,7 @@ Partial Class frmshuturyoku_csv
         Me.grp_kikan_shitei.Size = New System.Drawing.Size(258, 61)
         Me.grp_kikan_shitei.TabIndex = 191
         Me.grp_kikan_shitei.TabStop = False
-        Me.grp_kikan_shitei.Text = "期間指定"
+        Me.grp_kikan_shitei.Text = "期間"
         Me.grp_kikan_shitei.Visible = False
         '
         'Label7
