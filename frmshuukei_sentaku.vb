@@ -6,7 +6,15 @@
 
     End Sub
 
-    Private Sub frmshuukei_sentaku_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub btn_shouhin_Click(sender As Object, e As EventArgs) Handles btn_shouhin.Click
+
+    End Sub
+
+    Private Sub btn_kubun_Click(sender As Object, e As EventArgs) Handles btn_kubun.Click
+
+    End Sub
+
+    Private Sub btn_gyousha_Click(sender As Object, e As EventArgs) Handles btn_gyousha.Click
 
     End Sub
 End Class
