@@ -25,4 +25,9 @@
         frmcheck_sentaku.ShowDialog()
     End Sub
 
+    Private Sub btn_tenpo_kensaku_Click(sender As Object, e As EventArgs) Handles btn_tenpo_kensaku.Click
+
+        frmkensaku.ShowDialog()
+
+    End Sub
 End Class
