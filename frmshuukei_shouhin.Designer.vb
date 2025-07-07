@@ -135,9 +135,10 @@ Partial Class frmshuukei_shouhin
         'rbn_shouhin_zaiko
         '
         Me.rbn_shouhin_zaiko.AutoSize = True
-        Me.rbn_shouhin_zaiko.Location = New System.Drawing.Point(520, 27)
+        Me.rbn_shouhin_zaiko.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.rbn_shouhin_zaiko.Location = New System.Drawing.Point(530, 27)
         Me.rbn_shouhin_zaiko.Name = "rbn_shouhin_zaiko"
-        Me.rbn_shouhin_zaiko.Size = New System.Drawing.Size(95, 18)
+        Me.rbn_shouhin_zaiko.Size = New System.Drawing.Size(100, 19)
         Me.rbn_shouhin_zaiko.TabIndex = 4
         Me.rbn_shouhin_zaiko.TabStop = True
         Me.rbn_shouhin_zaiko.Text = "商品在庫順"
@@ -146,9 +147,10 @@ Partial Class frmshuukei_shouhin
         'rbn_shouhin_uriage
         '
         Me.rbn_shouhin_uriage.AutoSize = True
-        Me.rbn_shouhin_uriage.Location = New System.Drawing.Point(401, 27)
+        Me.rbn_shouhin_uriage.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.rbn_shouhin_uriage.Location = New System.Drawing.Point(404, 27)
         Me.rbn_shouhin_uriage.Name = "rbn_shouhin_uriage"
-        Me.rbn_shouhin_uriage.Size = New System.Drawing.Size(95, 18)
+        Me.rbn_shouhin_uriage.Size = New System.Drawing.Size(100, 19)
         Me.rbn_shouhin_uriage.TabIndex = 3
         Me.rbn_shouhin_uriage.TabStop = True
         Me.rbn_shouhin_uriage.Text = "商品売上順"
@@ -157,9 +159,10 @@ Partial Class frmshuukei_shouhin
         'rbn_shouhin_shiire
         '
         Me.rbn_shouhin_shiire.AutoSize = True
-        Me.rbn_shouhin_shiire.Location = New System.Drawing.Point(282, 27)
+        Me.rbn_shouhin_shiire.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.rbn_shouhin_shiire.Location = New System.Drawing.Point(278, 27)
         Me.rbn_shouhin_shiire.Name = "rbn_shouhin_shiire"
-        Me.rbn_shouhin_shiire.Size = New System.Drawing.Size(95, 18)
+        Me.rbn_shouhin_shiire.Size = New System.Drawing.Size(100, 19)
         Me.rbn_shouhin_shiire.TabIndex = 2
         Me.rbn_shouhin_shiire.TabStop = True
         Me.rbn_shouhin_shiire.Text = "商品仕入順"
@@ -168,9 +171,10 @@ Partial Class frmshuukei_shouhin
         'rbn_shouhin_furigana
         '
         Me.rbn_shouhin_furigana.AutoSize = True
-        Me.rbn_shouhin_furigana.Location = New System.Drawing.Point(152, 27)
+        Me.rbn_shouhin_furigana.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.rbn_shouhin_furigana.Location = New System.Drawing.Point(138, 27)
         Me.rbn_shouhin_furigana.Name = "rbn_shouhin_furigana"
-        Me.rbn_shouhin_furigana.Size = New System.Drawing.Size(106, 18)
+        Me.rbn_shouhin_furigana.Size = New System.Drawing.Size(113, 19)
         Me.rbn_shouhin_furigana.TabIndex = 1
         Me.rbn_shouhin_furigana.TabStop = True
         Me.rbn_shouhin_furigana.Text = "商品フリガナ順"
@@ -179,9 +183,10 @@ Partial Class frmshuukei_shouhin
         'rbn_shouhin_id
         '
         Me.rbn_shouhin_id.AutoSize = True
-        Me.rbn_shouhin_id.Location = New System.Drawing.Point(49, 27)
+        Me.rbn_shouhin_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.rbn_shouhin_id.Location = New System.Drawing.Point(30, 27)
         Me.rbn_shouhin_id.Name = "rbn_shouhin_id"
-        Me.rbn_shouhin_id.Size = New System.Drawing.Size(79, 18)
+        Me.rbn_shouhin_id.Size = New System.Drawing.Size(84, 19)
         Me.rbn_shouhin_id.TabIndex = 0
         Me.rbn_shouhin_id.TabStop = True
         Me.rbn_shouhin_id.Text = "商品ID順"
@@ -201,10 +206,11 @@ Partial Class frmshuukei_shouhin
         '
         Me.cbx_shitei_shouhin.BackColor = System.Drawing.Color.White
         Me.cbx_shitei_shouhin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shitei_shouhin.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_shitei_shouhin.FormattingEnabled = True
-        Me.cbx_shitei_shouhin.Location = New System.Drawing.Point(19, 26)
+        Me.cbx_shitei_shouhin.Location = New System.Drawing.Point(19, 24)
         Me.cbx_shitei_shouhin.Name = "cbx_shitei_shouhin"
-        Me.cbx_shitei_shouhin.Size = New System.Drawing.Size(619, 22)
+        Me.cbx_shitei_shouhin.Size = New System.Drawing.Size(619, 24)
         Me.cbx_shitei_shouhin.TabIndex = 128
         '
         'GroupBox3
@@ -265,10 +271,11 @@ Partial Class frmshuukei_shouhin
         '
         Me.cbx_shouhin_kubun_2.BackColor = System.Drawing.Color.White
         Me.cbx_shouhin_kubun_2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shouhin_kubun_2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_shouhin_kubun_2.FormattingEnabled = True
-        Me.cbx_shouhin_kubun_2.Location = New System.Drawing.Point(19, 26)
+        Me.cbx_shouhin_kubun_2.Location = New System.Drawing.Point(19, 24)
         Me.cbx_shouhin_kubun_2.Name = "cbx_shouhin_kubun_2"
-        Me.cbx_shouhin_kubun_2.Size = New System.Drawing.Size(217, 22)
+        Me.cbx_shouhin_kubun_2.Size = New System.Drawing.Size(217, 24)
         Me.cbx_shouhin_kubun_2.TabIndex = 128
         '
         'GroupBox1
@@ -285,10 +292,11 @@ Partial Class frmshuukei_shouhin
         '
         Me.cbx_shouhin_kubun_1.BackColor = System.Drawing.Color.White
         Me.cbx_shouhin_kubun_1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shouhin_kubun_1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_shouhin_kubun_1.FormattingEnabled = True
-        Me.cbx_shouhin_kubun_1.Location = New System.Drawing.Point(19, 26)
+        Me.cbx_shouhin_kubun_1.Location = New System.Drawing.Point(19, 24)
         Me.cbx_shouhin_kubun_1.Name = "cbx_shouhin_kubun_1"
-        Me.cbx_shouhin_kubun_1.Size = New System.Drawing.Size(217, 22)
+        Me.cbx_shouhin_kubun_1.Size = New System.Drawing.Size(217, 24)
         Me.cbx_shouhin_kubun_1.TabIndex = 128
         '
         'btn_shuukei
@@ -329,10 +337,11 @@ Partial Class frmshuukei_shouhin
         '
         Me.cbx_gyousha_kubun.BackColor = System.Drawing.Color.White
         Me.cbx_gyousha_kubun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_gyousha_kubun.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_gyousha_kubun.FormattingEnabled = True
-        Me.cbx_gyousha_kubun.Location = New System.Drawing.Point(19, 26)
+        Me.cbx_gyousha_kubun.Location = New System.Drawing.Point(19, 24)
         Me.cbx_gyousha_kubun.Name = "cbx_gyousha_kubun"
-        Me.cbx_gyousha_kubun.Size = New System.Drawing.Size(217, 22)
+        Me.cbx_gyousha_kubun.Size = New System.Drawing.Size(217, 24)
         Me.cbx_gyousha_kubun.TabIndex = 128
         '
         'chk_haiban
