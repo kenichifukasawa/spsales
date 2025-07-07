@@ -18,12 +18,12 @@ Public Class frmshuturyoku_csv
             Case "店舗情報出力"
                 response = output_csv_tenpo(hozon_path)
             Case "繰越残情報出力"
-                If cmb_nen.SelectedIndex = -1 Or cmb_tsuki.SelectedIndex = -1 Then
+                If cbx_nen.SelectedIndex = -1 Or cbx_tsuki.SelectedIndex = -1 Then
                     msg_go("期間を指定してください。")
                     Exit Sub
                 End If
-                Dim shitei_nen = Trim(cmb_nen.Text)
-                Dim shitei_tsuki = Trim(cmb_tsuki.Text)
+                Dim shitei_nen = Trim(cbx_nen.Text)
+                Dim shitei_tsuki = Trim(cbx_tsuki.Text)
                 response = output_csv_kurikoshi(hozon_path:=hozon_path, shitei_nen:=shitei_nen, shitei_tsuki:=shitei_tsuki)
                 hide_shinkou_joukyou()
             Case "Wella売上通知データ出力"
@@ -679,8 +679,8 @@ Public Class frmshuturyoku_csv
         Dim maker_mei = "ウエラジャパン"
         Dim row_counter = 1
 
-        Dim shitei_nen = Trim(cmb_nen.Text)
-        Dim shitei_tsuki = Trim(cmb_tsuki.Text)
+        Dim shitei_nen = Trim(cbx_nen.Text)
+        Dim shitei_tsuki = Trim(cbx_tsuki.Text)
         If chk_plus_alpha.Checked Then
             If shitei_nen = "" Or shitei_tsuki = "" Then
                 msg_go("期間を指定してください。")
@@ -1253,13 +1253,13 @@ Public Class frmshuturyoku_csv
         'Dim sakanobori_nensuu = 3
         Dim sakanobori_nensuu = 5
 
-        cmb_nen.Items.Clear()
-        cmb_tsuki.Items.Clear()
+        cbx_nen.Items.Clear()
+        cbx_tsuki.Items.Clear()
         For i = nen_ima - sakanobori_nensuu To nen_ima
-            cmb_nen.Items.Add(i.ToString)
+            cbx_nen.Items.Add(i.ToString)
         Next
         For i = 1 To 12
-            cmb_tsuki.Items.Add(i.ToString("D2"))
+            cbx_tsuki.Items.Add(i.ToString("D2"))
         Next
 
     End Sub
@@ -1275,8 +1275,8 @@ Public Class frmshuturyoku_csv
             grp_kikan_shitei.Visible = True
         Else
             grp_kikan_shitei.Visible = False
-            cmb_nen.SelectedIndex = -1
-            cmb_tsuki.SelectedIndex = -1
+            cbx_nen.SelectedIndex = -1
+            cbx_tsuki.SelectedIndex = -1
         End If
 
     End Sub
