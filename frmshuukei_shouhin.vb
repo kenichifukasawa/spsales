@@ -242,7 +242,7 @@ Public Class frmshuukei_shouhin
         lbl_kekka.Text = ""
 
         Dim hinichi_kanshi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
-        Dim hinichi_owari = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
         Dim gyousha_kubun = Mid(Trim(cbx_gyousha_kubun.Text), 1, 2)
         Dim shouhin_kubun_1 = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         Dim shouhin_kubun_2 = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)

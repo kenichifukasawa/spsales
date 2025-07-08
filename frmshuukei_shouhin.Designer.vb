@@ -64,9 +64,7 @@ Partial Class frmshuukei_shouhin
         'gbx_main
         '
         Me.gbx_main.BackColor = System.Drawing.Color.White
-        Me.gbx_main.Controls.Add(Me.Label1)
         Me.gbx_main.Controls.Add(Me.GroupBox6)
-        Me.gbx_main.Controls.Add(Me.GroupBox5)
         Me.gbx_main.Controls.Add(Me.GroupBox4)
         Me.gbx_main.Controls.Add(Me.GroupBox3)
         Me.gbx_main.Controls.Add(Me.GroupBox2)
@@ -88,11 +86,13 @@ Partial Class frmshuukei_shouhin
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.Label1)
+        Me.GroupBox6.Controls.Add(Me.GroupBox5)
         Me.GroupBox6.Controls.Add(Me.lbl_kekka)
         Me.GroupBox6.Controls.Add(Me.dgv_kensakukekka)
-        Me.GroupBox6.Location = New System.Drawing.Point(17, 220)
+        Me.GroupBox6.Location = New System.Drawing.Point(17, 168)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1188, 735)
+        Me.GroupBox6.Size = New System.Drawing.Size(1188, 787)
         Me.GroupBox6.TabIndex = 193
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "抽出結果"
@@ -111,13 +111,13 @@ Partial Class frmshuukei_shouhin
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_kensakukekka.Location = New System.Drawing.Point(7, 58)
+        Me.dgv_kensakukekka.Location = New System.Drawing.Point(7, 75)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
         Me.dgv_kensakukekka.ReadOnly = True
         Me.dgv_kensakukekka.RowTemplate.Height = 24
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(1176, 672)
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(1176, 707)
         Me.dgv_kensakukekka.TabIndex = 192
         '
         'GroupBox5
@@ -127,12 +127,12 @@ Partial Class frmshuukei_shouhin
         Me.GroupBox5.Controls.Add(Me.rbn_shouhin_shiire)
         Me.GroupBox5.Controls.Add(Me.rbn_shouhin_furigana)
         Me.GroupBox5.Controls.Add(Me.rbn_shouhin_id)
-        Me.GroupBox5.Location = New System.Drawing.Point(17, 153)
+        Me.GroupBox5.Location = New System.Drawing.Point(242, 670)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(660, 61)
         Me.GroupBox5.TabIndex = 193
         Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "並べ替え"
+        Me.GroupBox5.Text = "並べ替え（TODO：そっくり不要？）"
         '
         'rbn_shouhin_furigana
         '
@@ -161,7 +161,7 @@ Partial Class frmshuukei_shouhin
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.cbx_shitei_shouhin)
-        Me.GroupBox4.Location = New System.Drawing.Point(17, 86)
+        Me.GroupBox4.Location = New System.Drawing.Point(17, 94)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(660, 61)
         Me.GroupBox4.TabIndex = 192
@@ -269,7 +269,7 @@ Partial Class frmshuukei_shouhin
         '
         Me.btn_shuukei.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_shuukei.Location = New System.Drawing.Point(816, 168)
+        Me.btn_shuukei.Location = New System.Drawing.Point(816, 120)
         Me.btn_shuukei.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shuukei.Name = "btn_shuukei"
         Me.btn_shuukei.Size = New System.Drawing.Size(127, 44)
@@ -281,7 +281,7 @@ Partial Class frmshuukei_shouhin
         '
         Me.btn_insatsu.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_insatsu.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_insatsu.Location = New System.Drawing.Point(685, 168)
+        Me.btn_insatsu.Location = New System.Drawing.Point(685, 120)
         Me.btn_insatsu.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_insatsu.Name = "btn_insatsu"
         Me.btn_insatsu.Size = New System.Drawing.Size(127, 44)
@@ -313,18 +313,18 @@ Partial Class frmshuukei_shouhin
         'chk_haiban
         '
         Me.chk_haiban.AutoSize = True
-        Me.chk_haiban.Location = New System.Drawing.Point(1101, 112)
+        Me.chk_haiban.Location = New System.Drawing.Point(1089, 93)
         Me.chk_haiban.Name = "chk_haiban"
-        Me.chk_haiban.Size = New System.Drawing.Size(93, 18)
+        Me.chk_haiban.Size = New System.Drawing.Size(116, 18)
         Me.chk_haiban.TabIndex = 189
-        Me.chk_haiban.Text = "廃盤を表示"
+        Me.chk_haiban.Text = "廃盤も表示する"
         Me.chk_haiban.UseVisualStyleBackColor = True
         '
         'btn_clear
         '
         Me.btn_clear.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_clear.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_clear.Location = New System.Drawing.Point(947, 168)
+        Me.btn_clear.Location = New System.Drawing.Point(947, 120)
         Me.btn_clear.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_clear.Name = "btn_clear"
         Me.btn_clear.Size = New System.Drawing.Size(127, 44)
@@ -336,7 +336,7 @@ Partial Class frmshuukei_shouhin
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(1078, 168)
+        Me.btn_modoru.Location = New System.Drawing.Point(1078, 120)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
@@ -384,7 +384,7 @@ Partial Class frmshuukei_shouhin
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(731, 119)
+        Me.Label1.Location = New System.Drawing.Point(451, 58)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(311, 15)
         Me.Label1.TabIndex = 195
@@ -403,6 +403,7 @@ Partial Class frmshuukei_shouhin
         Me.gbx_main.ResumeLayout(False)
         Me.gbx_main.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
