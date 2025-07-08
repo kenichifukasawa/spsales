@@ -11,7 +11,7 @@
     End Sub
 
     Private Sub btn_kubun_Click(sender As Object, e As EventArgs) Handles btn_kubun.Click
-
+        frmshuukei_uriage.ShowDialog()
     End Sub
 
     Private Sub btn_gyousha_Click(sender As Object, e As EventArgs) Handles btn_gyousha.Click

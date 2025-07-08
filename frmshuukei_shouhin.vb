@@ -43,6 +43,10 @@ Public Class frmshuukei_shouhin
 
     Private Sub btn_insatsu_Click(sender As Object, e As EventArgs) Handles btn_insatsu.Click
 
+        ' TODO
+        msg_go("未開発")
+        Exit Sub
+
         If dgv_kensakukekka.Rows.Count = 0 Then
             msg_go("抽出結果が表示されていません。")
             Exit Sub
