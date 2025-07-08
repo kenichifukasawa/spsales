@@ -66,15 +66,15 @@ Public Class frmshuukei_shouhin
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_shiire_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_shiire.Click
+    Private Sub rbn_shouhin_shiire_Click(sender As Object, e As EventArgs)
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_uriage_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_uriage.Click
+    Private Sub rbn_shouhin_uriage_Click(sender As Object, e As EventArgs)
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_zaiko_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_zaiko.Click
+    Private Sub rbn_shouhin_zaiko_Click(sender As Object, e As EventArgs)
         set_shouhin_shuukei()
     End Sub
 

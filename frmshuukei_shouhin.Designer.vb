@@ -27,9 +27,6 @@ Partial Class frmshuukei_shouhin
         Me.lbl_kekka = New System.Windows.Forms.Label()
         Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.rbn_shouhin_zaiko = New System.Windows.Forms.RadioButton()
-        Me.rbn_shouhin_uriage = New System.Windows.Forms.RadioButton()
-        Me.rbn_shouhin_shiire = New System.Windows.Forms.RadioButton()
         Me.rbn_shouhin_furigana = New System.Windows.Forms.RadioButton()
         Me.rbn_shouhin_id = New System.Windows.Forms.RadioButton()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -120,53 +117,14 @@ Partial Class frmshuukei_shouhin
         '
         'GroupBox5
         '
-        Me.GroupBox5.Controls.Add(Me.rbn_shouhin_zaiko)
-        Me.GroupBox5.Controls.Add(Me.rbn_shouhin_uriage)
-        Me.GroupBox5.Controls.Add(Me.rbn_shouhin_shiire)
         Me.GroupBox5.Controls.Add(Me.rbn_shouhin_furigana)
         Me.GroupBox5.Controls.Add(Me.rbn_shouhin_id)
-        Me.GroupBox5.Location = New System.Drawing.Point(17, 153)
+        Me.GroupBox5.Location = New System.Drawing.Point(685, 86)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(660, 61)
+        Me.GroupBox5.Size = New System.Drawing.Size(273, 61)
         Me.GroupBox5.TabIndex = 193
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "並べ替え"
-        '
-        'rbn_shouhin_zaiko
-        '
-        Me.rbn_shouhin_zaiko.AutoSize = True
-        Me.rbn_shouhin_zaiko.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.rbn_shouhin_zaiko.Location = New System.Drawing.Point(530, 27)
-        Me.rbn_shouhin_zaiko.Name = "rbn_shouhin_zaiko"
-        Me.rbn_shouhin_zaiko.Size = New System.Drawing.Size(100, 19)
-        Me.rbn_shouhin_zaiko.TabIndex = 4
-        Me.rbn_shouhin_zaiko.TabStop = True
-        Me.rbn_shouhin_zaiko.Text = "商品在庫順"
-        Me.rbn_shouhin_zaiko.UseVisualStyleBackColor = True
-        '
-        'rbn_shouhin_uriage
-        '
-        Me.rbn_shouhin_uriage.AutoSize = True
-        Me.rbn_shouhin_uriage.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.rbn_shouhin_uriage.Location = New System.Drawing.Point(404, 27)
-        Me.rbn_shouhin_uriage.Name = "rbn_shouhin_uriage"
-        Me.rbn_shouhin_uriage.Size = New System.Drawing.Size(100, 19)
-        Me.rbn_shouhin_uriage.TabIndex = 3
-        Me.rbn_shouhin_uriage.TabStop = True
-        Me.rbn_shouhin_uriage.Text = "商品売上順"
-        Me.rbn_shouhin_uriage.UseVisualStyleBackColor = True
-        '
-        'rbn_shouhin_shiire
-        '
-        Me.rbn_shouhin_shiire.AutoSize = True
-        Me.rbn_shouhin_shiire.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.rbn_shouhin_shiire.Location = New System.Drawing.Point(278, 27)
-        Me.rbn_shouhin_shiire.Name = "rbn_shouhin_shiire"
-        Me.rbn_shouhin_shiire.Size = New System.Drawing.Size(100, 19)
-        Me.rbn_shouhin_shiire.TabIndex = 2
-        Me.rbn_shouhin_shiire.TabStop = True
-        Me.rbn_shouhin_shiire.Text = "商品仕入順"
-        Me.rbn_shouhin_shiire.UseVisualStyleBackColor = True
         '
         'rbn_shouhin_furigana
         '
@@ -347,7 +305,7 @@ Partial Class frmshuukei_shouhin
         'chk_haiban
         '
         Me.chk_haiban.AutoSize = True
-        Me.chk_haiban.Location = New System.Drawing.Point(1101, 112)
+        Me.chk_haiban.Location = New System.Drawing.Point(1045, 116)
         Me.chk_haiban.Name = "chk_haiban"
         Me.chk_haiban.Size = New System.Drawing.Size(93, 18)
         Me.chk_haiban.TabIndex = 189
@@ -424,9 +382,6 @@ Partial Class frmshuukei_shouhin
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents cbx_shitei_shouhin As ComboBox
     Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents rbn_shouhin_zaiko As RadioButton
-    Friend WithEvents rbn_shouhin_uriage As RadioButton
-    Friend WithEvents rbn_shouhin_shiire As RadioButton
     Friend WithEvents rbn_shouhin_furigana As RadioButton
     Friend WithEvents rbn_shouhin_id As RadioButton
     Friend WithEvents GroupBox6 As GroupBox
