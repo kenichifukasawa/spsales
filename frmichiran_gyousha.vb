@@ -229,12 +229,12 @@ Public Class frmichiran_gyousha
                 .Columns(0).Width = 75
                 .Columns(1).Width = 250
                 .Columns(2).Width = 220
-                .Columns(3).Width = 90
+                .Columns(3).Width = 95
                 .Columns(4).Width = 250
-                .Columns(5).Width = 110
-                .Columns(6).Width = 110
+                .Columns(5).Width = 120
+                .Columns(6).Width = 120
                 .Columns(7).Width = 100
-                .Columns(8).Width = 110
+                .Columns(8).Width = 120
                 .Columns(9).Width = 100
                 .Columns(10).Width = 75
                 .Columns(11).Width = 80
@@ -247,7 +247,7 @@ Public Class frmichiran_gyousha
                 .Columns(18).Width = 250
                 .Columns(19).Width = 250
                 .Columns(20).Width = 75
-                .Columns(21).Width = 130
+                .Columns(21).Width = 140
                 .Columns(22).Width = 0
                 .Columns(23).Width = 0
                 .Columns(24).Width = 0
@@ -270,6 +270,8 @@ Public Class frmichiran_gyousha
                 .Columns(30).Width = 50
 #End If
 
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
                 .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
@@ -278,7 +280,7 @@ Public Class frmichiran_gyousha
                 .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter

@@ -38,14 +38,17 @@ Public Class frmshuukei_shouhin
     End Sub
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
-
-        rbn_shouhin_id.Checked = True
-
         set_shouhin_shuukei()
-
     End Sub
 
     Private Sub btn_insatsu_Click(sender As Object, e As EventArgs) Handles btn_insatsu.Click
+
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("抽出結果が表示されていません。")
+            Exit Sub
+        End If
+
+
 
     End Sub
 
@@ -58,23 +61,23 @@ Public Class frmshuukei_shouhin
         set_shitei_shouhin()
     End Sub
 
-    Private Sub rbn_shouhin_id_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_id.Click
+    Private Sub rbn_shouhin_id_Click(sender As Object, e As EventArgs)
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_furigana_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_furigana.Click
+    Private Sub rbn_shouhin_furigana_Click(sender As Object, e As EventArgs)
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_shiire_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_shiire.Click
+    Private Sub rbn_shouhin_shiire_Click(sender As Object, e As EventArgs)
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_uriage_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_uriage.Click
+    Private Sub rbn_shouhin_uriage_Click(sender As Object, e As EventArgs)
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_zaiko_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_zaiko.Click
+    Private Sub rbn_shouhin_zaiko_Click(sender As Object, e As EventArgs)
         set_shouhin_shuukei()
     End Sub
 
@@ -235,7 +238,7 @@ Public Class frmshuukei_shouhin
         lbl_kekka.Text = ""
 
         Dim hinichi_kanshi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
-        Dim hinichi_owari = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
         Dim gyousha_kubun = Mid(Trim(cbx_gyousha_kubun.Text), 1, 2)
         Dim shouhin_kubun_1 = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         Dim shouhin_kubun_2 = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
@@ -286,13 +289,7 @@ Public Class frmshuukei_shouhin
 
             End If
 
-            If rbn_shouhin_furigana.Checked = True Then
-                query += " ORDER BY shouhinfurigana,shouhinmei"
-            ElseIf rbn_shouhin_uriage.Checked = True Then
-                query += " ORDER BY shouhinfurigana,shouhinmei"
-            Else
-                query += " ORDER BY shouhinid"
-            End If
+            query += " ORDER BY shouhinid"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -487,11 +484,13 @@ Public Class frmshuukei_shouhin
             .Columns(5).Name = "現在庫数"
 
             .Columns(0).Width = 75
-            .Columns(1).Width = 100
-            .Columns(2).Width = 400
+            .Columns(1).Width = 110
+            .Columns(2).Width = 500
             .Columns(3).Width = 90
             .Columns(4).Width = 90
             .Columns(5).Width = 90
+
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
             .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -500,13 +499,17 @@ Public Class frmshuukei_shouhin
             .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
+            .Columns(3).DefaultCellStyle.Format = "#,##0"
+            .Columns(4).DefaultCellStyle.Format = "#,##0"
+            .Columns(5).DefaultCellStyle.Format = "#,##0"
+
         End With
 
         Dim hacchuu_rireki_count = 0
         Dim sum_shiire = 0
         Dim sum_uriage = 0
         Dim sum_zaiko = 0
-        Dim mojiretsu(5) As String
+        Dim mojiretsu(5)
 
         For i = 0 To shouhin_count - 1
             If (shouhin_data(3, i) <> "" And shouhin_data(3, i) <> "0") Or (shouhin_data(4, i) <> "" And shouhin_data(4, i) <> "0") Or (shouhin_data(5, i) <> "" And shouhin_data(5, i) <> "0") Then
@@ -520,21 +523,24 @@ Public Class frmshuukei_shouhin
                 If Not shouhin_data(3, i) Then
                     shiire_suu = CInt(shouhin_data(3, i))
                 End If
-                mojiretsu(3) = shiire_suu.ToString("#,##0;-#,##0")
+                'mojiretsu(3) = shiire_suu.ToString("#,##0;-#,##0")
+                mojiretsu(3) = shiire_suu
                 sum_shiire += shiire_suu
 
                 Dim uriage_suu = 0
                 If Not shouhin_data(4, i) Then
                     uriage_suu = CInt(shouhin_data(4, i))
                 End If
-                mojiretsu(4) = uriage_suu.ToString("#,##0;-#,##0")
+                'mojiretsu(4) = uriage_suu.ToString("#,##0;-#,##0")
+                mojiretsu(4) = uriage_suu
                 sum_uriage += uriage_suu
 
                 Dim zaiko_suu = 0
                 If Not shouhin_data(5, i) Then
                     zaiko_suu = CInt(shouhin_data(5, i))
                 End If
-                mojiretsu(5) = zaiko_suu.ToString("#,##0;-#,##0")
+                'mojiretsu(5) = zaiko_suu.ToString("#,##0;-#,##0")
+                mojiretsu(5) = zaiko_suu
                 sum_zaiko += zaiko_suu
 
                 dgv_kensakukekka.Rows.Add(mojiretsu)
@@ -552,4 +558,11 @@ Public Class frmshuukei_shouhin
 
     End Sub
 
+    Private Sub dgv_kensakukekka_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgv_kensakukekka.CellFormatting
+        ' 例えば4列目（インデックス3）が対象の場合
+        If e.ColumnIndex = 3 AndAlso e.Value IsNot Nothing AndAlso IsNumeric(e.Value) Then
+            e.Value = String.Format("{0:#,##0}", e.Value)
+            e.FormattingApplied = True
+        End If
+    End Sub
 End Class
