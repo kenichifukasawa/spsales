@@ -88,10 +88,11 @@ Partial Class frmshuturyoku_csv
         '
         Me.cbx_tsuki.BackColor = System.Drawing.Color.White
         Me.cbx_tsuki.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_tsuki.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_tsuki.FormattingEnabled = True
         Me.cbx_tsuki.Location = New System.Drawing.Point(148, 26)
         Me.cbx_tsuki.Name = "cbx_tsuki"
-        Me.cbx_tsuki.Size = New System.Drawing.Size(53, 22)
+        Me.cbx_tsuki.Size = New System.Drawing.Size(53, 23)
         Me.cbx_tsuki.TabIndex = 130
         '
         'Label8
@@ -108,10 +109,11 @@ Partial Class frmshuturyoku_csv
         '
         Me.cbx_nen.BackColor = System.Drawing.Color.White
         Me.cbx_nen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_nen.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_nen.FormattingEnabled = True
         Me.cbx_nen.Location = New System.Drawing.Point(36, 26)
         Me.cbx_nen.Name = "cbx_nen"
-        Me.cbx_nen.Size = New System.Drawing.Size(69, 22)
+        Me.cbx_nen.Size = New System.Drawing.Size(69, 23)
         Me.cbx_nen.TabIndex = 128
         '
         'lbl_shutsuryoku_type
@@ -127,9 +129,10 @@ Partial Class frmshuturyoku_csv
         'chk_plus_alpha
         '
         Me.chk_plus_alpha.AutoSize = True
+        Me.chk_plus_alpha.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.chk_plus_alpha.Location = New System.Drawing.Point(52, 87)
         Me.chk_plus_alpha.Name = "chk_plus_alpha"
-        Me.chk_plus_alpha.Size = New System.Drawing.Size(51, 18)
+        Me.chk_plus_alpha.Size = New System.Drawing.Size(54, 19)
         Me.chk_plus_alpha.TabIndex = 189
         Me.chk_plus_alpha.Text = "+ α"
         Me.chk_plus_alpha.UseVisualStyleBackColor = True
