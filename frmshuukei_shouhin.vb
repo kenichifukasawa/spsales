@@ -484,11 +484,13 @@ Public Class frmshuukei_shouhin
             .Columns(5).Name = "現在庫数"
 
             .Columns(0).Width = 75
-            .Columns(1).Width = 100
-            .Columns(2).Width = 400
+            .Columns(1).Width = 110
+            .Columns(2).Width = 500
             .Columns(3).Width = 90
             .Columns(4).Width = 90
             .Columns(5).Width = 90
+
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
             .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -496,6 +498,10 @@ Public Class frmshuukei_shouhin
             .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+            .Columns(3).DefaultCellStyle.Format = "#,##0"
+            .Columns(4).DefaultCellStyle.Format = "#,##0"
+            .Columns(5).DefaultCellStyle.Format = "#,##0"
 
         End With
 
@@ -552,4 +558,11 @@ Public Class frmshuukei_shouhin
 
     End Sub
 
+    Private Sub dgv_kensakukekka_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgv_kensakukekka.CellFormatting
+        ' 例えば4列目（インデックス3）が対象の場合
+        If e.ColumnIndex = 3 AndAlso e.Value IsNot Nothing AndAlso IsNumeric(e.Value) Then
+            e.Value = String.Format("{0:#,##0}", e.Value)
+            e.FormattingApplied = True
+        End If
+    End Sub
 End Class
