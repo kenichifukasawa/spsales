@@ -1215,7 +1215,7 @@ Public Class frmkojin
 
         End If
 
-        kojin_main_set(kojinid)
+        mainset(kojinid)
 
         msg_go("更新しました。", 64)
 
@@ -1228,15 +1228,15 @@ Public Class frmkojin
 
     End Sub
 
-    Private Sub TextBox8_TextChanged(sender As Object, e As EventArgs) Handles txtsecchijuusho.TextChanged
+    Private Sub TextBox8_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub TextBox34_TextChanged(sender As Object, e As EventArgs) Handles txtaki.TextChanged
+    Private Sub TextBox34_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         If cmbbank.SelectedIndex = -1 Then
             msg_go("金融機関名が選択されていません。")
             Exit Sub
@@ -1250,13 +1250,13 @@ Public Class frmkojin
         End If
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
         cmbcellid.SelectedIndex = -1
         cmbcellno.SelectedIndex = -1
 
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs)
 
         Dim s_msg As String = InputBox("パスワードを入力して下さい。", "パスワード")
 
@@ -1281,11 +1281,11 @@ Public Class frmkojin
 
             cn_shounin.ConnectionString = connectionstring_sqlserver
 
-            sql = "select * from kojin where kojinid ='" & s_kojinid & "'"
+            Sql = "select * from kojin where kojinid ='" & s_kojinid & "'"
 
 
 
-            da_shounin = New SqlDataAdapter(sql, cn_shounin)
+            da_shounin = New SqlDataAdapter(Sql, cn_shounin)
 
             da_shounin.Fill(ds_shounin, "t_jouhouhens")
 
@@ -1307,7 +1307,7 @@ Public Class frmkojin
 
 
 
-        kojin_main_set(s_kojinid)
+        mainset(s_kojinid)
 
         msg_go("更新しました。", 64)
 
@@ -1317,7 +1317,7 @@ Public Class frmkojin
 
     End Sub
 
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+    Private Sub Button5_Click(sender As Object, e As EventArgs)
 
         frmbank_shien.ShowDialog()
 
