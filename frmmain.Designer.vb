@@ -49,7 +49,6 @@ Partial Class frmmain
         Me.lblzenkaiseikyuubi = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.lblkurikoshikingaku = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblurl = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -148,6 +147,9 @@ Partial Class frmmain
         Me.btn_nouhinsho_hozon = New System.Windows.Forms.Button()
         Me.btn_nouhinsho_clear = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -169,6 +171,8 @@ Partial Class frmmain
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox11.SuspendLayout()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btn_end
@@ -212,7 +216,7 @@ Partial Class frmmain
         Me.btn_tenpo_kensaku.BackColor = System.Drawing.Color.MistyRose
         Me.btn_tenpo_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_tenpo_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_tenpo_kensaku.Location = New System.Drawing.Point(138, 28)
+        Me.btn_tenpo_kensaku.Location = New System.Drawing.Point(145, 18)
         Me.btn_tenpo_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tenpo_kensaku.Name = "btn_tenpo_kensaku"
         Me.btn_tenpo_kensaku.Size = New System.Drawing.Size(110, 44)
@@ -277,7 +281,7 @@ Partial Class frmmain
         Me.btn_tenpo_hyouji_rireki.BackColor = System.Drawing.Color.MistyRose
         Me.btn_tenpo_hyouji_rireki.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_tenpo_hyouji_rireki.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_tenpo_hyouji_rireki.Location = New System.Drawing.Point(268, 28)
+        Me.btn_tenpo_hyouji_rireki.Location = New System.Drawing.Point(272, 18)
         Me.btn_tenpo_hyouji_rireki.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tenpo_hyouji_rireki.Name = "btn_tenpo_hyouji_rireki"
         Me.btn_tenpo_hyouji_rireki.Size = New System.Drawing.Size(110, 44)
@@ -347,7 +351,7 @@ Partial Class frmmain
         Me.btn_tenpo_shinki.BackColor = System.Drawing.Color.MistyRose
         Me.btn_tenpo_shinki.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_tenpo_shinki.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_tenpo_shinki.Location = New System.Drawing.Point(8, 28)
+        Me.btn_tenpo_shinki.Location = New System.Drawing.Point(18, 18)
         Me.btn_tenpo_shinki.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tenpo_shinki.Name = "btn_tenpo_shinki"
         Me.btn_tenpo_shinki.Size = New System.Drawing.Size(110, 44)
@@ -360,7 +364,7 @@ Partial Class frmmain
         Me.btn_tenpo_denwachou.BackColor = System.Drawing.Color.MistyRose
         Me.btn_tenpo_denwachou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_tenpo_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_tenpo_denwachou.Location = New System.Drawing.Point(398, 28)
+        Me.btn_tenpo_denwachou.Location = New System.Drawing.Point(399, 18)
         Me.btn_tenpo_denwachou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tenpo_denwachou.Name = "btn_tenpo_denwachou"
         Me.btn_tenpo_denwachou.Size = New System.Drawing.Size(110, 44)
@@ -371,6 +375,7 @@ Partial Class frmmain
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox2.Controls.Add(Me.GroupBox11)
         Me.GroupBox2.Controls.Add(Me.btn_tenpo_shinki)
         Me.GroupBox2.Controls.Add(Me.btn_tenpo_kensaku)
         Me.GroupBox2.Controls.Add(Me.GroupBox3)
@@ -378,6 +383,7 @@ Partial Class frmmain
         Me.GroupBox2.Controls.Add(Me.btn_tenpo_hyouji_rireki)
         Me.GroupBox2.Controls.Add(Me.GroupBox13)
         Me.GroupBox2.Controls.Add(Me.btn_tenpo_denwachou)
+        Me.GroupBox2.Controls.Add(Me.cmb_henkou)
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(1250, 3)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
@@ -394,11 +400,11 @@ Partial Class frmmain
         Me.GroupBox3.Controls.Add(Me.btn_denpyou_henkou)
         Me.GroupBox3.Controls.Add(Me.DataGridView1)
         Me.GroupBox3.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 793)
+        Me.GroupBox3.Location = New System.Drawing.Point(8, 849)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox3.Size = New System.Drawing.Size(630, 181)
+        Me.GroupBox3.Size = New System.Drawing.Size(630, 124)
         Me.GroupBox3.TabIndex = 219
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "伝票情報"
@@ -408,7 +414,7 @@ Partial Class frmmain
         Me.btn_denpyou_henkou.BackColor = System.Drawing.Color.MistyRose
         Me.btn_denpyou_henkou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_denpyou_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_denpyou_henkou.Location = New System.Drawing.Point(537, 134)
+        Me.btn_denpyou_henkou.Location = New System.Drawing.Point(536, 80)
         Me.btn_denpyou_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denpyou_henkou.Name = "btn_denpyou_henkou"
         Me.btn_denpyou_henkou.Size = New System.Drawing.Size(85, 37)
@@ -421,14 +427,14 @@ Partial Class frmmain
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(13, 15)
+        Me.DataGridView1.Location = New System.Drawing.Point(13, 18)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(2)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowTemplate.Height = 24
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(514, 162)
+        Me.DataGridView1.Size = New System.Drawing.Size(514, 99)
         Me.DataGridView1.TabIndex = 66
         '
         'GroupBox20
@@ -437,11 +443,11 @@ Partial Class frmmain
         Me.GroupBox20.Controls.Add(Me.btn_seikyuu_nyuukin_shousai)
         Me.GroupBox20.Controls.Add(Me.dgv_nouhinsho)
         Me.GroupBox20.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox20.Location = New System.Drawing.Point(8, 644)
+        Me.GroupBox20.Location = New System.Drawing.Point(8, 720)
         Me.GroupBox20.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox20.Name = "GroupBox20"
         Me.GroupBox20.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox20.Size = New System.Drawing.Size(630, 145)
+        Me.GroupBox20.Size = New System.Drawing.Size(630, 124)
         Me.GroupBox20.TabIndex = 218
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "請求・入金情報"
@@ -451,7 +457,7 @@ Partial Class frmmain
         Me.btn_seikyuu_nyuukin_shousai.BackColor = System.Drawing.Color.MistyRose
         Me.btn_seikyuu_nyuukin_shousai.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_seikyuu_nyuukin_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_seikyuu_nyuukin_shousai.Location = New System.Drawing.Point(537, 96)
+        Me.btn_seikyuu_nyuukin_shousai.Location = New System.Drawing.Point(537, 77)
         Me.btn_seikyuu_nyuukin_shousai.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_seikyuu_nyuukin_shousai.Name = "btn_seikyuu_nyuukin_shousai"
         Me.btn_seikyuu_nyuukin_shousai.Size = New System.Drawing.Size(85, 37)
@@ -471,34 +477,32 @@ Partial Class frmmain
         Me.dgv_nouhinsho.ReadOnly = True
         Me.dgv_nouhinsho.RowTemplate.Height = 24
         Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv_nouhinsho.Size = New System.Drawing.Size(514, 118)
+        Me.dgv_nouhinsho.Size = New System.Drawing.Size(514, 99)
         Me.dgv_nouhinsho.TabIndex = 66
         '
         'GroupBox13
         '
         Me.GroupBox13.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox13.Controls.Add(Me.Label6)
+        Me.GroupBox13.Controls.Add(Me.lblhasuu)
+        Me.GroupBox13.Controls.Add(Me.Label61)
         Me.GroupBox13.Controls.Add(Me.lblzenkaiseikyuubi)
+        Me.GroupBox13.Controls.Add(Me.lblkeisanhouhou)
         Me.GroupBox13.Controls.Add(Me.Label8)
+        Me.GroupBox13.Controls.Add(Me.Label67)
         Me.GroupBox13.Controls.Add(Me.lblkurikoshikingaku)
-        Me.GroupBox13.Controls.Add(Me.Label5)
         Me.GroupBox13.Controls.Add(Me.Label3)
         Me.GroupBox13.Controls.Add(Me.lblurl)
         Me.GroupBox13.Controls.Add(Me.Label1)
         Me.GroupBox13.Controls.Add(Me.lblemail)
         Me.GroupBox13.Controls.Add(Me.Label48)
         Me.GroupBox13.Controls.Add(Me.lbltantoushain)
-        Me.GroupBox13.Controls.Add(Me.Label67)
         Me.GroupBox13.Controls.Add(Me.Label99)
-        Me.GroupBox13.Controls.Add(Me.lblkeisanhouhou)
         Me.GroupBox13.Controls.Add(Me.lblshimebi)
         Me.GroupBox13.Controls.Add(Me.Label93)
-        Me.GroupBox13.Controls.Add(Me.cmb_henkou)
         Me.GroupBox13.Controls.Add(Me.lbljuugyouinsuu)
         Me.GroupBox13.Controls.Add(Me.Label95)
-        Me.GroupBox13.Controls.Add(Me.Label61)
         Me.GroupBox13.Controls.Add(Me.lbltantousha)
-        Me.GroupBox13.Controls.Add(Me.lblhasuu)
         Me.GroupBox13.Controls.Add(Me.Label97)
         Me.GroupBox13.Controls.Add(Me.Label59)
         Me.GroupBox13.Controls.Add(Me.lblkubun)
@@ -521,9 +525,9 @@ Partial Class frmmain
         Me.GroupBox13.Controls.Add(Me.lbl_shimei_lbl)
         Me.GroupBox13.Controls.Add(Me.lbltenpomei)
         Me.GroupBox13.Controls.Add(Me.lbltenpoid)
-        Me.GroupBox13.Location = New System.Drawing.Point(8, 77)
+        Me.GroupBox13.Location = New System.Drawing.Point(8, 65)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(630, 562)
+        Me.GroupBox13.Size = New System.Drawing.Size(630, 522)
         Me.GroupBox13.TabIndex = 68
         Me.GroupBox13.TabStop = False
         '
@@ -531,7 +535,7 @@ Partial Class frmmain
         '
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(239, 522)
+        Me.Label6.Location = New System.Drawing.Point(413, 261)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(91, 16)
         Me.Label6.TabIndex = 115
@@ -542,7 +546,7 @@ Partial Class frmmain
         '
         Me.lblzenkaiseikyuubi.BackColor = System.Drawing.Color.White
         Me.lblzenkaiseikyuubi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblzenkaiseikyuubi.Location = New System.Drawing.Point(341, 519)
+        Me.lblzenkaiseikyuubi.Location = New System.Drawing.Point(515, 258)
         Me.lblzenkaiseikyuubi.Name = "lblzenkaiseikyuubi"
         Me.lblzenkaiseikyuubi.Size = New System.Drawing.Size(103, 22)
         Me.lblzenkaiseikyuubi.TabIndex = 114
@@ -552,7 +556,7 @@ Partial Class frmmain
         '
         Me.Label8.BackColor = System.Drawing.Color.White
         Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label8.Location = New System.Drawing.Point(17, 522)
+        Me.Label8.Location = New System.Drawing.Point(419, 291)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(91, 16)
         Me.Label8.TabIndex = 113
@@ -563,27 +567,17 @@ Partial Class frmmain
         '
         Me.lblkurikoshikingaku.BackColor = System.Drawing.Color.White
         Me.lblkurikoshikingaku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblkurikoshikingaku.Location = New System.Drawing.Point(114, 519)
+        Me.lblkurikoshikingaku.Location = New System.Drawing.Point(516, 288)
         Me.lblkurikoshikingaku.Name = "lblkurikoshikingaku"
         Me.lblkurikoshikingaku.Size = New System.Drawing.Size(103, 22)
         Me.lblkurikoshikingaku.TabIndex = 112
         Me.lblkurikoshikingaku.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label5
-        '
-        Me.Label5.BackColor = System.Drawing.Color.White
-        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(532, 265)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(90, 22)
-        Me.Label5.TabIndex = 111
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Label3
         '
         Me.Label3.BackColor = System.Drawing.Color.White
         Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label3.Location = New System.Drawing.Point(7, 299)
+        Me.Label3.Location = New System.Drawing.Point(7, 321)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 16)
         Me.Label3.TabIndex = 110
@@ -594,7 +588,7 @@ Partial Class frmmain
         '
         Me.lblurl.BackColor = System.Drawing.Color.White
         Me.lblurl.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblurl.Location = New System.Drawing.Point(90, 296)
+        Me.lblurl.Location = New System.Drawing.Point(90, 317)
         Me.lblurl.Name = "lblurl"
         Me.lblurl.Size = New System.Drawing.Size(532, 22)
         Me.lblurl.TabIndex = 109
@@ -604,7 +598,7 @@ Partial Class frmmain
         '
         Me.Label1.BackColor = System.Drawing.Color.White
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(7, 268)
+        Me.Label1.Location = New System.Drawing.Point(7, 291)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(77, 16)
         Me.Label1.TabIndex = 108
@@ -615,9 +609,9 @@ Partial Class frmmain
         '
         Me.lblemail.BackColor = System.Drawing.Color.White
         Me.lblemail.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblemail.Location = New System.Drawing.Point(90, 265)
+        Me.lblemail.Location = New System.Drawing.Point(90, 287)
         Me.lblemail.Name = "lblemail"
-        Me.lblemail.Size = New System.Drawing.Size(437, 22)
+        Me.lblemail.Size = New System.Drawing.Size(323, 22)
         Me.lblemail.TabIndex = 107
         Me.lblemail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -625,7 +619,7 @@ Partial Class frmmain
         '
         Me.Label48.BackColor = System.Drawing.Color.White
         Me.Label48.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label48.Location = New System.Drawing.Point(219, 237)
+        Me.Label48.Location = New System.Drawing.Point(217, 230)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(91, 16)
         Me.Label48.TabIndex = 104
@@ -636,7 +630,7 @@ Partial Class frmmain
         '
         Me.lbltantoushain.BackColor = System.Drawing.Color.White
         Me.lbltantoushain.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbltantoushain.Location = New System.Drawing.Point(317, 234)
+        Me.lbltantoushain.Location = New System.Drawing.Point(315, 227)
         Me.lbltantoushain.Name = "lbltantoushain"
         Me.lbltantoushain.Size = New System.Drawing.Size(138, 22)
         Me.lbltantoushain.TabIndex = 103
@@ -646,7 +640,7 @@ Partial Class frmmain
         '
         Me.Label67.BackColor = System.Drawing.Color.White
         Me.Label67.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label67.Location = New System.Drawing.Point(390, 330)
+        Me.Label67.Location = New System.Drawing.Point(181, 260)
         Me.Label67.Name = "Label67"
         Me.Label67.Size = New System.Drawing.Size(91, 16)
         Me.Label67.TabIndex = 94
@@ -657,7 +651,7 @@ Partial Class frmmain
         '
         Me.Label99.BackColor = System.Drawing.Color.White
         Me.Label99.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label99.Location = New System.Drawing.Point(7, 237)
+        Me.Label99.Location = New System.Drawing.Point(7, 231)
         Me.Label99.Name = "Label99"
         Me.Label99.Size = New System.Drawing.Size(77, 16)
         Me.Label99.TabIndex = 106
@@ -668,7 +662,7 @@ Partial Class frmmain
         '
         Me.lblkeisanhouhou.BackColor = System.Drawing.Color.White
         Me.lblkeisanhouhou.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblkeisanhouhou.Location = New System.Drawing.Point(490, 327)
+        Me.lblkeisanhouhou.Location = New System.Drawing.Point(281, 257)
         Me.lblkeisanhouhou.Name = "lblkeisanhouhou"
         Me.lblkeisanhouhou.Size = New System.Drawing.Size(132, 22)
         Me.lblkeisanhouhou.TabIndex = 93
@@ -678,7 +672,7 @@ Partial Class frmmain
         '
         Me.lblshimebi.BackColor = System.Drawing.Color.White
         Me.lblshimebi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblshimebi.Location = New System.Drawing.Point(90, 234)
+        Me.lblshimebi.Location = New System.Drawing.Point(90, 227)
         Me.lblshimebi.Name = "lblshimebi"
         Me.lblshimebi.Size = New System.Drawing.Size(121, 22)
         Me.lblshimebi.TabIndex = 105
@@ -688,7 +682,7 @@ Partial Class frmmain
         '
         Me.Label93.BackColor = System.Drawing.Color.White
         Me.Label93.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label93.Location = New System.Drawing.Point(463, 205)
+        Me.Label93.Location = New System.Drawing.Point(460, 200)
         Me.Label93.Name = "Label93"
         Me.Label93.Size = New System.Drawing.Size(91, 16)
         Me.Label93.TabIndex = 102
@@ -700,10 +694,10 @@ Partial Class frmmain
         Me.cmb_henkou.BackColor = System.Drawing.Color.MistyRose
         Me.cmb_henkou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmb_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmb_henkou.Location = New System.Drawing.Point(537, 513)
+        Me.cmb_henkou.Location = New System.Drawing.Point(526, 17)
         Me.cmb_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.cmb_henkou.Name = "cmb_henkou"
-        Me.cmb_henkou.Size = New System.Drawing.Size(85, 37)
+        Me.cmb_henkou.Size = New System.Drawing.Size(110, 44)
         Me.cmb_henkou.TabIndex = 106
         Me.cmb_henkou.Text = "変更"
         Me.cmb_henkou.UseVisualStyleBackColor = False
@@ -712,7 +706,7 @@ Partial Class frmmain
         '
         Me.lbljuugyouinsuu.BackColor = System.Drawing.Color.White
         Me.lbljuugyouinsuu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbljuugyouinsuu.Location = New System.Drawing.Point(559, 203)
+        Me.lbljuugyouinsuu.Location = New System.Drawing.Point(556, 198)
         Me.lbljuugyouinsuu.Name = "lbljuugyouinsuu"
         Me.lbljuugyouinsuu.Size = New System.Drawing.Size(63, 22)
         Me.lbljuugyouinsuu.TabIndex = 101
@@ -722,7 +716,7 @@ Partial Class frmmain
         '
         Me.Label95.BackColor = System.Drawing.Color.White
         Me.Label95.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label95.Location = New System.Drawing.Point(219, 206)
+        Me.Label95.Location = New System.Drawing.Point(216, 201)
         Me.Label95.Name = "Label95"
         Me.Label95.Size = New System.Drawing.Size(91, 16)
         Me.Label95.TabIndex = 100
@@ -733,9 +727,9 @@ Partial Class frmmain
         '
         Me.Label61.BackColor = System.Drawing.Color.White
         Me.Label61.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label61.Location = New System.Drawing.Point(185, 330)
+        Me.Label61.Location = New System.Drawing.Point(7, 261)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(91, 16)
+        Me.Label61.Size = New System.Drawing.Size(77, 16)
         Me.Label61.TabIndex = 88
         Me.Label61.Text = "税金端数"
         Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -744,7 +738,7 @@ Partial Class frmmain
         '
         Me.lbltantousha.BackColor = System.Drawing.Color.White
         Me.lbltantousha.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbltantousha.Location = New System.Drawing.Point(317, 203)
+        Me.lbltantousha.Location = New System.Drawing.Point(314, 198)
         Me.lbltantousha.Name = "lbltantousha"
         Me.lbltantousha.Size = New System.Drawing.Size(137, 22)
         Me.lbltantousha.TabIndex = 99
@@ -754,9 +748,9 @@ Partial Class frmmain
         '
         Me.lblhasuu.BackColor = System.Drawing.Color.White
         Me.lblhasuu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblhasuu.Location = New System.Drawing.Point(282, 327)
+        Me.lblhasuu.Location = New System.Drawing.Point(90, 257)
         Me.lblhasuu.Name = "lblhasuu"
-        Me.lblhasuu.Size = New System.Drawing.Size(103, 22)
+        Me.lblhasuu.Size = New System.Drawing.Size(87, 22)
         Me.lblhasuu.TabIndex = 87
         Me.lblhasuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -764,7 +758,7 @@ Partial Class frmmain
         '
         Me.Label97.BackColor = System.Drawing.Color.White
         Me.Label97.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label97.Location = New System.Drawing.Point(7, 206)
+        Me.Label97.Location = New System.Drawing.Point(7, 201)
         Me.Label97.Name = "Label97"
         Me.Label97.Size = New System.Drawing.Size(77, 16)
         Me.Label97.TabIndex = 98
@@ -775,7 +769,7 @@ Partial Class frmmain
         '
         Me.Label59.BackColor = System.Drawing.Color.White
         Me.Label59.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label59.Location = New System.Drawing.Point(7, 330)
+        Me.Label59.Location = New System.Drawing.Point(461, 230)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(77, 16)
         Me.Label59.TabIndex = 86
@@ -786,9 +780,9 @@ Partial Class frmmain
         '
         Me.lblkubun.BackColor = System.Drawing.Color.White
         Me.lblkubun.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblkubun.Location = New System.Drawing.Point(90, 327)
+        Me.lblkubun.Location = New System.Drawing.Point(544, 227)
         Me.lblkubun.Name = "lblkubun"
-        Me.lblkubun.Size = New System.Drawing.Size(86, 22)
+        Me.lblkubun.Size = New System.Drawing.Size(76, 22)
         Me.lblkubun.TabIndex = 85
         Me.lblkubun.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -796,7 +790,7 @@ Partial Class frmmain
         '
         Me.lbldaihyousha.BackColor = System.Drawing.Color.White
         Me.lbldaihyousha.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbldaihyousha.Location = New System.Drawing.Point(90, 203)
+        Me.lbldaihyousha.Location = New System.Drawing.Point(90, 197)
         Me.lbldaihyousha.Name = "lbldaihyousha"
         Me.lbldaihyousha.Size = New System.Drawing.Size(120, 22)
         Me.lbldaihyousha.TabIndex = 97
@@ -805,9 +799,9 @@ Partial Class frmmain
         'GroupBox15
         '
         Me.GroupBox15.Controls.Add(Me.lblbikou)
-        Me.GroupBox15.Location = New System.Drawing.Point(10, 357)
+        Me.GroupBox15.Location = New System.Drawing.Point(10, 348)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(612, 146)
+        Me.GroupBox15.Size = New System.Drawing.Size(612, 168)
         Me.GroupBox15.TabIndex = 90
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "備考"
@@ -816,9 +810,9 @@ Partial Class frmmain
         '
         Me.lblbikou.BackColor = System.Drawing.Color.White
         Me.lblbikou.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblbikou.Location = New System.Drawing.Point(6, 15)
+        Me.lblbikou.Location = New System.Drawing.Point(10, 18)
         Me.lblbikou.Name = "lblbikou"
-        Me.lblbikou.Size = New System.Drawing.Size(596, 118)
+        Me.lblbikou.Size = New System.Drawing.Size(596, 147)
         Me.lblbikou.TabIndex = 84
         Me.lblbikou.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -826,7 +820,7 @@ Partial Class frmmain
         '
         Me.Label46.BackColor = System.Drawing.Color.White
         Me.Label46.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label46.Location = New System.Drawing.Point(7, 175)
+        Me.Label46.Location = New System.Drawing.Point(7, 171)
         Me.Label46.Name = "Label46"
         Me.Label46.Size = New System.Drawing.Size(77, 16)
         Me.Label46.TabIndex = 88
@@ -837,7 +831,7 @@ Partial Class frmmain
         '
         Me.lblsoufusaki.BackColor = System.Drawing.Color.White
         Me.lblsoufusaki.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblsoufusaki.Location = New System.Drawing.Point(90, 172)
+        Me.lblsoufusaki.Location = New System.Drawing.Point(90, 167)
         Me.lblsoufusaki.Name = "lblsoufusaki"
         Me.lblsoufusaki.Size = New System.Drawing.Size(531, 22)
         Me.lblsoufusaki.TabIndex = 87
@@ -847,7 +841,7 @@ Partial Class frmmain
         '
         Me.Label40.BackColor = System.Drawing.Color.White
         Me.Label40.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label40.Location = New System.Drawing.Point(420, 144)
+        Me.Label40.Location = New System.Drawing.Point(419, 140)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(77, 16)
         Me.Label40.TabIndex = 80
@@ -858,7 +852,7 @@ Partial Class frmmain
         '
         Me.lblfax.BackColor = System.Drawing.Color.White
         Me.lblfax.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblfax.Location = New System.Drawing.Point(503, 141)
+        Me.lblfax.Location = New System.Drawing.Point(502, 137)
         Me.lblfax.Name = "lblfax"
         Me.lblfax.Size = New System.Drawing.Size(119, 22)
         Me.lblfax.TabIndex = 79
@@ -868,7 +862,7 @@ Partial Class frmmain
         '
         Me.Label38.BackColor = System.Drawing.Color.White
         Me.Label38.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label38.Location = New System.Drawing.Point(213, 144)
+        Me.Label38.Location = New System.Drawing.Point(212, 140)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(77, 16)
         Me.Label38.TabIndex = 78
@@ -879,7 +873,7 @@ Partial Class frmmain
         '
         Me.lblkeitai.BackColor = System.Drawing.Color.White
         Me.lblkeitai.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblkeitai.Location = New System.Drawing.Point(295, 141)
+        Me.lblkeitai.Location = New System.Drawing.Point(294, 137)
         Me.lblkeitai.Name = "lblkeitai"
         Me.lblkeitai.Size = New System.Drawing.Size(119, 22)
         Me.lblkeitai.TabIndex = 77
@@ -889,7 +883,7 @@ Partial Class frmmain
         '
         Me.lblyuubin.BackColor = System.Drawing.Color.White
         Me.lblyuubin.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblyuubin.Location = New System.Drawing.Point(90, 110)
+        Me.lblyuubin.Location = New System.Drawing.Point(90, 107)
         Me.lblyuubin.Name = "lblyuubin"
         Me.lblyuubin.Size = New System.Drawing.Size(70, 22)
         Me.lblyuubin.TabIndex = 73
@@ -899,7 +893,7 @@ Partial Class frmmain
         '
         Me.Label32.BackColor = System.Drawing.Color.White
         Me.Label32.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label32.Location = New System.Drawing.Point(7, 82)
+        Me.Label32.Location = New System.Drawing.Point(7, 81)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(77, 16)
         Me.Label32.TabIndex = 72
@@ -910,7 +904,7 @@ Partial Class frmmain
         '
         Me.lblinsatsumeishou.BackColor = System.Drawing.Color.White
         Me.lblinsatsumeishou.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblinsatsumeishou.Location = New System.Drawing.Point(90, 79)
+        Me.lblinsatsumeishou.Location = New System.Drawing.Point(90, 77)
         Me.lblinsatsumeishou.Name = "lblinsatsumeishou"
         Me.lblinsatsumeishou.Size = New System.Drawing.Size(532, 22)
         Me.lblinsatsumeishou.TabIndex = 71
@@ -930,7 +924,7 @@ Partial Class frmmain
         '
         Me.Label26.BackColor = System.Drawing.Color.White
         Me.Label26.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label26.Location = New System.Drawing.Point(7, 113)
+        Me.Label26.Location = New System.Drawing.Point(7, 111)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(77, 16)
         Me.Label26.TabIndex = 66
@@ -941,7 +935,7 @@ Partial Class frmmain
         '
         Me.lbljuusho.BackColor = System.Drawing.Color.White
         Me.lbljuusho.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbljuusho.Location = New System.Drawing.Point(166, 110)
+        Me.lbljuusho.Location = New System.Drawing.Point(166, 107)
         Me.lbljuusho.Name = "lbljuusho"
         Me.lbljuusho.Size = New System.Drawing.Size(455, 22)
         Me.lbljuusho.TabIndex = 65
@@ -951,7 +945,7 @@ Partial Class frmmain
         '
         Me.Label24.BackColor = System.Drawing.Color.White
         Me.Label24.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label24.Location = New System.Drawing.Point(7, 144)
+        Me.Label24.Location = New System.Drawing.Point(7, 141)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(77, 16)
         Me.Label24.TabIndex = 64
@@ -962,7 +956,7 @@ Partial Class frmmain
         '
         Me.lbltel1.BackColor = System.Drawing.Color.White
         Me.lbltel1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbltel1.Location = New System.Drawing.Point(90, 141)
+        Me.lbltel1.Location = New System.Drawing.Point(90, 137)
         Me.lbltel1.Name = "lbltel1"
         Me.lbltel1.Size = New System.Drawing.Size(119, 22)
         Me.lbltel1.TabIndex = 63
@@ -983,7 +977,7 @@ Partial Class frmmain
         '
         Me.lbltenpomei.BackColor = System.Drawing.Color.White
         Me.lbltenpomei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbltenpomei.Location = New System.Drawing.Point(90, 48)
+        Me.lbltenpomei.Location = New System.Drawing.Point(90, 47)
         Me.lbltenpomei.Name = "lbltenpomei"
         Me.lbltenpomei.Size = New System.Drawing.Size(532, 22)
         Me.lbltenpomei.TabIndex = 61
@@ -1673,6 +1667,49 @@ Partial Class frmmain
         Me.DataGridView2.Size = New System.Drawing.Size(651, 740)
         Me.DataGridView2.TabIndex = 67
         '
+        'GroupBox11
+        '
+        Me.GroupBox11.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox11.Controls.Add(Me.Button1)
+        Me.GroupBox11.Controls.Add(Me.DataGridView3)
+        Me.GroupBox11.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox11.Location = New System.Drawing.Point(8, 592)
+        Me.GroupBox11.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Padding = New System.Windows.Forms.Padding(2)
+        Me.GroupBox11.Size = New System.Drawing.Size(630, 124)
+        Me.GroupBox11.TabIndex = 220
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "ログ"
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.MistyRose
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.Location = New System.Drawing.Point(537, 77)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(85, 37)
+        Me.Button1.TabIndex = 107
+        Me.Button1.Text = "登録"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'DataGridView3
+        '
+        Me.DataGridView3.AllowUserToAddRows = False
+        Me.DataGridView3.AllowUserToDeleteRows = False
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Location = New System.Drawing.Point(13, 15)
+        Me.DataGridView3.Margin = New System.Windows.Forms.Padding(2)
+        Me.DataGridView3.MultiSelect = False
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.ReadOnly = True
+        Me.DataGridView3.RowTemplate.Height = 24
+        Me.DataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.DataGridView3.Size = New System.Drawing.Size(514, 99)
+        Me.DataGridView3.TabIndex = 66
+        '
         'frmmain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -1711,6 +1748,8 @@ Partial Class frmmain
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox11.ResumeLayout(False)
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1733,7 +1772,6 @@ Partial Class frmmain
     Friend WithEvents lblzenkaiseikyuubi As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents lblkurikoshikingaku As Label
-    Friend WithEvents Label5 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents lblurl As Label
     Friend WithEvents Label1 As Label
@@ -1841,4 +1879,7 @@ Partial Class frmmain
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label30 As Label
     Friend WithEvents GroupBox10 As GroupBox
+    Friend WithEvents GroupBox11 As GroupBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents DataGridView3 As DataGridView
 End Class

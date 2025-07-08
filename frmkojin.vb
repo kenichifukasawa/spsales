@@ -1323,4 +1323,6 @@ Public Class frmkojin
 
 
     End Sub
+
+
 End Class
