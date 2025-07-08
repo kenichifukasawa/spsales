@@ -25,9 +25,9 @@ Partial Class frmshuturyoku_csv
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.grp_kikan_shitei = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.cmb_tsuki = New System.Windows.Forms.ComboBox()
+        Me.cbx_tsuki = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.cmb_nen = New System.Windows.Forms.ComboBox()
+        Me.cbx_nen = New System.Windows.Forms.ComboBox()
         Me.lbl_shutsuryoku_type = New System.Windows.Forms.Label()
         Me.chk_plus_alpha = New System.Windows.Forms.CheckBox()
         Me.btn_csv = New System.Windows.Forms.Button()
@@ -63,15 +63,15 @@ Partial Class frmshuturyoku_csv
         'grp_kikan_shitei
         '
         Me.grp_kikan_shitei.Controls.Add(Me.Label7)
-        Me.grp_kikan_shitei.Controls.Add(Me.cmb_tsuki)
+        Me.grp_kikan_shitei.Controls.Add(Me.cbx_tsuki)
         Me.grp_kikan_shitei.Controls.Add(Me.Label8)
-        Me.grp_kikan_shitei.Controls.Add(Me.cmb_nen)
+        Me.grp_kikan_shitei.Controls.Add(Me.cbx_nen)
         Me.grp_kikan_shitei.Location = New System.Drawing.Point(309, 19)
         Me.grp_kikan_shitei.Name = "grp_kikan_shitei"
         Me.grp_kikan_shitei.Size = New System.Drawing.Size(258, 61)
         Me.grp_kikan_shitei.TabIndex = 191
         Me.grp_kikan_shitei.TabStop = False
-        Me.grp_kikan_shitei.Text = "期間指定"
+        Me.grp_kikan_shitei.Text = "期間"
         Me.grp_kikan_shitei.Visible = False
         '
         'Label7
@@ -84,15 +84,15 @@ Partial Class frmshuturyoku_csv
         Me.Label7.TabIndex = 131
         Me.Label7.Text = "月"
         '
-        'cmb_tsuki
+        'cbx_tsuki
         '
-        Me.cmb_tsuki.BackColor = System.Drawing.Color.White
-        Me.cmb_tsuki.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_tsuki.FormattingEnabled = True
-        Me.cmb_tsuki.Location = New System.Drawing.Point(148, 26)
-        Me.cmb_tsuki.Name = "cmb_tsuki"
-        Me.cmb_tsuki.Size = New System.Drawing.Size(53, 22)
-        Me.cmb_tsuki.TabIndex = 130
+        Me.cbx_tsuki.BackColor = System.Drawing.Color.White
+        Me.cbx_tsuki.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_tsuki.FormattingEnabled = True
+        Me.cbx_tsuki.Location = New System.Drawing.Point(148, 26)
+        Me.cbx_tsuki.Name = "cbx_tsuki"
+        Me.cbx_tsuki.Size = New System.Drawing.Size(53, 22)
+        Me.cbx_tsuki.TabIndex = 130
         '
         'Label8
         '
@@ -104,15 +104,15 @@ Partial Class frmshuturyoku_csv
         Me.Label8.TabIndex = 129
         Me.Label8.Text = "年"
         '
-        'cmb_nen
+        'cbx_nen
         '
-        Me.cmb_nen.BackColor = System.Drawing.Color.White
-        Me.cmb_nen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_nen.FormattingEnabled = True
-        Me.cmb_nen.Location = New System.Drawing.Point(36, 26)
-        Me.cmb_nen.Name = "cmb_nen"
-        Me.cmb_nen.Size = New System.Drawing.Size(69, 22)
-        Me.cmb_nen.TabIndex = 128
+        Me.cbx_nen.BackColor = System.Drawing.Color.White
+        Me.cbx_nen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_nen.FormattingEnabled = True
+        Me.cbx_nen.Location = New System.Drawing.Point(36, 26)
+        Me.cbx_nen.Name = "cbx_nen"
+        Me.cbx_nen.Size = New System.Drawing.Size(69, 22)
+        Me.cbx_nen.TabIndex = 128
         '
         'lbl_shutsuryoku_type
         '
@@ -246,7 +246,7 @@ Partial Class frmshuturyoku_csv
     Friend WithEvents lbl_shinkou_doai As Label
     Friend WithEvents grp_kikan_shitei As GroupBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents cmb_tsuki As ComboBox
+    Friend WithEvents cbx_tsuki As ComboBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents cmb_nen As ComboBox
+    Friend WithEvents cbx_nen As ComboBox
 End Class

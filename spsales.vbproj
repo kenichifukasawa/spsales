@@ -184,6 +184,12 @@
     <Compile Include="frmshuukei_sentaku.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmshuukei_shouhin.Designer.vb">
+      <DependentUpon>frmshuukei_shouhin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshuukei_shouhin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="model\BankAccountType.vb" />
     <Compile Include="model\ConsumptionTax.vb" />
     <Compile Include="model\Deadline.vb" />
@@ -262,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmshuukei_sentaku.resx">
       <DependentUpon>frmshuukei_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshuukei_shouhin.resx">
+      <DependentUpon>frmshuukei_shouhin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
