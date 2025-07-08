@@ -26,9 +26,6 @@ Partial Class frmshuukei_shouhin
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.lbl_kekka = New System.Windows.Forms.Label()
         Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.rbn_shouhin_furigana = New System.Windows.Forms.RadioButton()
-        Me.rbn_shouhin_id = New System.Windows.Forms.RadioButton()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.cbx_shitei_shouhin = New System.Windows.Forms.ComboBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -46,14 +43,10 @@ Partial Class frmshuukei_shouhin
         Me.chk_haiban = New System.Windows.Forms.CheckBox()
         Me.btn_clear = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.rbn_shouhin_shiire = New System.Windows.Forms.RadioButton()
-        Me.rbn_shouhin_zaiko = New System.Windows.Forms.RadioButton()
-        Me.rbn_shouhin_uriage = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -87,7 +80,6 @@ Partial Class frmshuukei_shouhin
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.Label1)
-        Me.GroupBox6.Controls.Add(Me.GroupBox5)
         Me.GroupBox6.Controls.Add(Me.lbl_kekka)
         Me.GroupBox6.Controls.Add(Me.dgv_kensakukekka)
         Me.GroupBox6.Location = New System.Drawing.Point(17, 168)
@@ -119,44 +111,6 @@ Partial Class frmshuukei_shouhin
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_kensakukekka.Size = New System.Drawing.Size(1176, 707)
         Me.dgv_kensakukekka.TabIndex = 192
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.rbn_shouhin_zaiko)
-        Me.GroupBox5.Controls.Add(Me.rbn_shouhin_uriage)
-        Me.GroupBox5.Controls.Add(Me.rbn_shouhin_shiire)
-        Me.GroupBox5.Controls.Add(Me.rbn_shouhin_furigana)
-        Me.GroupBox5.Controls.Add(Me.rbn_shouhin_id)
-        Me.GroupBox5.Location = New System.Drawing.Point(242, 670)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(660, 61)
-        Me.GroupBox5.TabIndex = 193
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "並べ替え（TODO：そっくり不要？）"
-        '
-        'rbn_shouhin_furigana
-        '
-        Me.rbn_shouhin_furigana.AutoSize = True
-        Me.rbn_shouhin_furigana.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.rbn_shouhin_furigana.Location = New System.Drawing.Point(138, 27)
-        Me.rbn_shouhin_furigana.Name = "rbn_shouhin_furigana"
-        Me.rbn_shouhin_furigana.Size = New System.Drawing.Size(113, 19)
-        Me.rbn_shouhin_furigana.TabIndex = 1
-        Me.rbn_shouhin_furigana.TabStop = True
-        Me.rbn_shouhin_furigana.Text = "商品フリガナ順"
-        Me.rbn_shouhin_furigana.UseVisualStyleBackColor = True
-        '
-        'rbn_shouhin_id
-        '
-        Me.rbn_shouhin_id.AutoSize = True
-        Me.rbn_shouhin_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.rbn_shouhin_id.Location = New System.Drawing.Point(30, 27)
-        Me.rbn_shouhin_id.Name = "rbn_shouhin_id"
-        Me.rbn_shouhin_id.Size = New System.Drawing.Size(84, 19)
-        Me.rbn_shouhin_id.TabIndex = 0
-        Me.rbn_shouhin_id.TabStop = True
-        Me.rbn_shouhin_id.Text = "商品ID順"
-        Me.rbn_shouhin_id.UseVisualStyleBackColor = True
         '
         'GroupBox4
         '
@@ -344,42 +298,6 @@ Partial Class frmshuukei_shouhin
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
-        'rbn_shouhin_shiire
-        '
-        Me.rbn_shouhin_shiire.AutoSize = True
-        Me.rbn_shouhin_shiire.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.rbn_shouhin_shiire.Location = New System.Drawing.Point(278, 27)
-        Me.rbn_shouhin_shiire.Name = "rbn_shouhin_shiire"
-        Me.rbn_shouhin_shiire.Size = New System.Drawing.Size(100, 19)
-        Me.rbn_shouhin_shiire.TabIndex = 2
-        Me.rbn_shouhin_shiire.TabStop = True
-        Me.rbn_shouhin_shiire.Text = "商品仕入順"
-        Me.rbn_shouhin_shiire.UseVisualStyleBackColor = True
-        '
-        'rbn_shouhin_zaiko
-        '
-        Me.rbn_shouhin_zaiko.AutoSize = True
-        Me.rbn_shouhin_zaiko.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.rbn_shouhin_zaiko.Location = New System.Drawing.Point(530, 27)
-        Me.rbn_shouhin_zaiko.Name = "rbn_shouhin_zaiko"
-        Me.rbn_shouhin_zaiko.Size = New System.Drawing.Size(100, 19)
-        Me.rbn_shouhin_zaiko.TabIndex = 4
-        Me.rbn_shouhin_zaiko.TabStop = True
-        Me.rbn_shouhin_zaiko.Text = "商品在庫順"
-        Me.rbn_shouhin_zaiko.UseVisualStyleBackColor = True
-        '
-        'rbn_shouhin_uriage
-        '
-        Me.rbn_shouhin_uriage.AutoSize = True
-        Me.rbn_shouhin_uriage.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.rbn_shouhin_uriage.Location = New System.Drawing.Point(404, 27)
-        Me.rbn_shouhin_uriage.Name = "rbn_shouhin_uriage"
-        Me.rbn_shouhin_uriage.Size = New System.Drawing.Size(100, 19)
-        Me.rbn_shouhin_uriage.TabIndex = 3
-        Me.rbn_shouhin_uriage.TabStop = True
-        Me.rbn_shouhin_uriage.Text = "商品売上順"
-        Me.rbn_shouhin_uriage.UseVisualStyleBackColor = True
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -405,8 +323,6 @@ Partial Class frmshuukei_shouhin
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox5.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
@@ -436,13 +352,7 @@ Partial Class frmshuukei_shouhin
     Friend WithEvents dtp_hinichi_kaishi As DateTimePicker
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents cbx_shitei_shouhin As ComboBox
-    Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents rbn_shouhin_furigana As RadioButton
-    Friend WithEvents rbn_shouhin_id As RadioButton
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents lbl_kekka As Label
-    Friend WithEvents rbn_shouhin_zaiko As RadioButton
-    Friend WithEvents rbn_shouhin_uriage As RadioButton
-    Friend WithEvents rbn_shouhin_shiire As RadioButton
     Friend WithEvents Label1 As Label
 End Class
