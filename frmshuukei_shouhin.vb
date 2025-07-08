@@ -38,11 +38,7 @@ Public Class frmshuukei_shouhin
     End Sub
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
-
-        rbn_shouhin_id.Checked = True
-
         set_shouhin_shuukei()
-
     End Sub
 
     Private Sub btn_insatsu_Click(sender As Object, e As EventArgs) Handles btn_insatsu.Click
@@ -293,13 +289,7 @@ Public Class frmshuukei_shouhin
 
             End If
 
-            If rbn_shouhin_furigana.Checked = True Then
-                query += " ORDER BY shouhinfurigana,shouhinmei"
-            ElseIf rbn_shouhin_uriage.Checked = True Then
-                query += " ORDER BY shouhinfurigana,shouhinmei"
-            Else
-                query += " ORDER BY shouhinid"
-            End If
+            query += " ORDER BY shouhinid"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -513,7 +503,7 @@ Public Class frmshuukei_shouhin
         Dim sum_shiire = 0
         Dim sum_uriage = 0
         Dim sum_zaiko = 0
-        Dim mojiretsu(5) As String
+        Dim mojiretsu(5)
 
         For i = 0 To shouhin_count - 1
             If (shouhin_data(3, i) <> "" And shouhin_data(3, i) <> "0") Or (shouhin_data(4, i) <> "" And shouhin_data(4, i) <> "0") Or (shouhin_data(5, i) <> "" And shouhin_data(5, i) <> "0") Then
@@ -527,21 +517,24 @@ Public Class frmshuukei_shouhin
                 If Not shouhin_data(3, i) Then
                     shiire_suu = CInt(shouhin_data(3, i))
                 End If
-                mojiretsu(3) = shiire_suu.ToString("#,##0;-#,##0")
+                'mojiretsu(3) = shiire_suu.ToString("#,##0;-#,##0")
+                mojiretsu(3) = shiire_suu
                 sum_shiire += shiire_suu
 
                 Dim uriage_suu = 0
                 If Not shouhin_data(4, i) Then
                     uriage_suu = CInt(shouhin_data(4, i))
                 End If
-                mojiretsu(4) = uriage_suu.ToString("#,##0;-#,##0")
+                'mojiretsu(4) = uriage_suu.ToString("#,##0;-#,##0")
+                mojiretsu(4) = uriage_suu
                 sum_uriage += uriage_suu
 
                 Dim zaiko_suu = 0
                 If Not shouhin_data(5, i) Then
                     zaiko_suu = CInt(shouhin_data(5, i))
                 End If
-                mojiretsu(5) = zaiko_suu.ToString("#,##0;-#,##0")
+                'mojiretsu(5) = zaiko_suu.ToString("#,##0;-#,##0")
+                mojiretsu(5) = zaiko_suu
                 sum_zaiko += zaiko_suu
 
                 dgv_kensakukekka.Rows.Add(mojiretsu)

@@ -44,6 +44,7 @@ Partial Class frmshuukei_shouhin
         Me.btn_clear = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +53,7 @@ Partial Class frmshuukei_shouhin
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.grp_kikan_shitei.SuspendLayout()
+        CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gbx_main
@@ -302,11 +304,16 @@ Partial Class frmshuukei_shouhin
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(451, 58)
+        Me.Label1.Location = New System.Drawing.Point(19, 55)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(311, 15)
         Me.Label1.TabIndex = 195
         Me.Label1.Text = "※列名をクリックすると並び替えることができます。"
+        '
+        'FileSystemWatcher1
+        '
+        Me.FileSystemWatcher1.EnableRaisingEvents = True
+        Me.FileSystemWatcher1.SynchronizingObject = Me
         '
         'frmshuukei_shouhin
         '
@@ -329,6 +336,7 @@ Partial Class frmshuukei_shouhin
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.grp_kikan_shitei.ResumeLayout(False)
+        CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -355,4 +363,5 @@ Partial Class frmshuukei_shouhin
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents lbl_kekka As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents FileSystemWatcher1 As IO.FileSystemWatcher
 End Class
