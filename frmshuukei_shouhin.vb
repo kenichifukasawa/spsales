@@ -47,6 +47,13 @@ Public Class frmshuukei_shouhin
 
     Private Sub btn_insatsu_Click(sender As Object, e As EventArgs) Handles btn_insatsu.Click
 
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("抽出結果が表示されていません。")
+            Exit Sub
+        End If
+
+
+
     End Sub
 
     Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
@@ -66,15 +73,15 @@ Public Class frmshuukei_shouhin
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_shiire_Click(sender As Object, e As EventArgs)
+    Private Sub rbn_shouhin_shiire_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_shiire.Click
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_uriage_Click(sender As Object, e As EventArgs)
+    Private Sub rbn_shouhin_uriage_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_uriage.Click
         set_shouhin_shuukei()
     End Sub
 
-    Private Sub rbn_shouhin_zaiko_Click(sender As Object, e As EventArgs)
+    Private Sub rbn_shouhin_zaiko_Click(sender As Object, e As EventArgs) Handles rbn_shouhin_zaiko.Click
         set_shouhin_shuukei()
     End Sub
 
