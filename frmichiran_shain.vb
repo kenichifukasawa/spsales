@@ -195,6 +195,8 @@ Public Class frmichiran_shain
                 .Columns(2).Width = 150
                 .Columns(3).Width = 75
 
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
                 .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
