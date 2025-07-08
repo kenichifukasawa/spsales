@@ -48,15 +48,15 @@ Public Class frmshuukei_uriage
             Dim dt_server As DataTable = ds_server.Tables("t_hacchuu")
 
             If dt_server.Rows.Count = 0 Then
-                lbl_nouhinsho_goukei_kingaku.Text = "0 円"
-                lbl_nouhinsho_denpyou_sousuu.Text = "0 件"
+                lbl_nouhinsho_goukei_kingaku.Text = "0円"
+                lbl_nouhinsho_denpyou_sousuu.Text = "0件"
             Else
                 If IsDBNull(dt_server.Rows.Item(0).Item("dkingaku")) Then
-                    lbl_nouhinsho_goukei_kingaku.Text = "0 円"
+                    lbl_nouhinsho_goukei_kingaku.Text = "0円"
                 Else
-                    lbl_nouhinsho_goukei_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + " 円"
+                    lbl_nouhinsho_goukei_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + "円"
                 End If
-                lbl_nouhinsho_denpyou_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + " 件"
+                lbl_nouhinsho_denpyou_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + "件"
             End If
 
             dt_server.Clear()
@@ -83,15 +83,15 @@ Public Class frmshuukei_uriage
             Dim dt_server As DataTable = ds_server.Tables("t_shiire")
 
             If dt_server.Rows.Count = 0 Then
-                lbl_shiire_denpyou_goukei_kingaku.Text = "0 円"
-                lbl_shiire_denpyou_sousuu.Text = "0 件"
+                lbl_shiire_denpyou_goukei_kingaku.Text = "0円"
+                lbl_shiire_denpyou_sousuu.Text = "0件"
             Else
                 If IsDBNull(dt_server.Rows.Item(0).Item("dkingaku")) Then
-                    lbl_shiire_denpyou_goukei_kingaku.Text = "0 円"
+                    lbl_shiire_denpyou_goukei_kingaku.Text = "0円"
                 Else
-                    lbl_shiire_denpyou_goukei_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + " 円"
+                    lbl_shiire_denpyou_goukei_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + "円"
                 End If
-                lbl_shiire_denpyou_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + " 件"
+                lbl_shiire_denpyou_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + "件"
             End If
 
             dt_server.Clear()
@@ -117,15 +117,15 @@ Public Class frmshuukei_uriage
             Dim dt_server As DataTable = ds_server.Tables("t_shukkin")
 
             If dt_server.Rows.Count = 0 Then
-                lbl_shiharai_denpyou_goukei_kingaku.Text = "0 円"
-                lbl_shiharai_denpyou_sousuu.Text = "0 件"
+                lbl_shiharai_denpyou_goukei_kingaku.Text = "0円"
+                lbl_shiharai_denpyou_sousuu.Text = "0件"
             Else
                 If IsDBNull(dt_server.Rows.Item(0).Item("dkingaku")) Then
-                    lbl_shiharai_denpyou_goukei_kingaku.Text = "0 円"
+                    lbl_shiharai_denpyou_goukei_kingaku.Text = "0円"
                 Else
-                    lbl_shiharai_denpyou_goukei_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + " 円"
+                    lbl_shiharai_denpyou_goukei_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + "円"
                 End If
-                lbl_shiharai_denpyou_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + " 件"
+                lbl_shiharai_denpyou_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + "件"
             End If
 
             dt_server.Clear()
@@ -154,30 +154,30 @@ Public Class frmshuukei_uriage
             Dim dt_server As DataTable = ds_server.Tables("t_seikyuusho")
 
             If dt_server.Rows.Count = 0 Then
-                lbl_seikyuusho_hakkou_sousuu.Text = "0 円"
-                lbl_seikyuusho_uriagegaku.Text = "0 円"
-                lbl_seikyuusho_souseikyuu_goukei.Text = "0 円"
-                lbl_seikyuusho_shouhizei_gaku.Text = "0 件"
+                lbl_seikyuusho_hakkou_sousuu.Text = "0円"
+                lbl_seikyuusho_uriagegaku.Text = "0円"
+                lbl_seikyuusho_souseikyuu_goukei.Text = "0円"
+                lbl_seikyuusho_shouhizei_gaku.Text = "0件"
             Else
                 If IsDBNull(dt_server.Rows.Item(0).Item("dshoukei")) Then
-                    lbl_seikyuusho_uriagegaku.Text = "0 円"
+                    lbl_seikyuusho_uriagegaku.Text = "0円"
                 Else
-                    lbl_seikyuusho_uriagegaku.Text = CInt(dt_server.Rows.Item(0).Item("dshoukei")).ToString("#,##0;-#,##0") + " 円"
+                    lbl_seikyuusho_uriagegaku.Text = CInt(dt_server.Rows.Item(0).Item("dshoukei")).ToString("#,##0;-#,##0") + "円"
                 End If
 
                 If IsDBNull(dt_server.Rows.Item(0).Item("dshouhizei")) Then
-                    lbl_seikyuusho_shouhizei_gaku.Text = "0 円"
+                    lbl_seikyuusho_shouhizei_gaku.Text = "0円"
                 Else
-                    lbl_seikyuusho_shouhizei_gaku.Text = CInt(dt_server.Rows.Item(0).Item("dshouhizei")).ToString("#,##0;-#,##0") + " 円"
+                    lbl_seikyuusho_shouhizei_gaku.Text = CInt(dt_server.Rows.Item(0).Item("dshouhizei")).ToString("#,##0;-#,##0") + "円"
                 End If
 
                 If IsDBNull(dt_server.Rows.Item(0).Item("dkingaku")) Then
-                    lbl_seikyuusho_souseikyuu_goukei.Text = "0 円"
+                    lbl_seikyuusho_souseikyuu_goukei.Text = "0円"
                 Else
-                    lbl_seikyuusho_souseikyuu_goukei.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + " 円"
+                    lbl_seikyuusho_souseikyuu_goukei.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + "円"
                 End If
 
-                lbl_seikyuusho_hakkou_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + " 件"
+                lbl_seikyuusho_hakkou_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + "件"
             End If
 
             dt_server.Clear()
@@ -205,15 +205,15 @@ Public Class frmshuukei_uriage
             Dim dt_server As DataTable = ds_server.Tables("t_seikyuusho")
 
             If dt_server.Rows.Count = 0 Then
-                lbl_nyuukin_goukei_kingaku.Text = "0 円"
-                lbl_nyuukin_sousuu.Text = "0 件"
+                lbl_nyuukin_goukei_kingaku.Text = "0円"
+                lbl_nyuukin_sousuu.Text = "0件"
             Else
                 If IsDBNull(dt_server.Rows.Item(0).Item("dkingaku")) Then
-                    lbl_nyuukin_goukei_kingaku.Text = "0 円"
+                    lbl_nyuukin_goukei_kingaku.Text = "0円"
                 Else
-                    lbl_nyuukin_goukei_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + " 円"
+                    lbl_nyuukin_goukei_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("dkingaku")).ToString("#,##0;-#,##0") + "円"
                 End If
-                lbl_nyuukin_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + " 件"
+                lbl_nyuukin_sousuu.Text = CInt(dt_server.Rows.Item(0).Item("dcount")).ToString("#,##0;-#,##0") + "件"
             End If
 
             dt_server.Clear()
@@ -248,7 +248,7 @@ Public Class frmshuukei_uriage
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
-            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -294,7 +294,7 @@ Public Class frmshuukei_uriage
 
     Private Function get_uriage_kingaku(shainid As String, hinichi_kaishi As String, hinichi_owari As String) As String
 
-        Dim kingaku = "0 円"
+        Dim kingaku = "0円"
 
         Try
 
@@ -312,7 +312,7 @@ Public Class frmshuukei_uriage
 
             If dt_server.Rows.Count <> 0 Then
                 If Not IsDBNull(dt_server.Rows.Item(0).Item("goukei_kingaku")) Then
-                    kingaku = CInt(dt_server.Rows.Item(0).Item("goukei_kingaku")).ToString("#,##0;-#,##0") + " 円"
+                    kingaku = CInt(dt_server.Rows.Item(0).Item("goukei_kingaku")).ToString("#,##0;-#,##0") + "円"
                 End If
             End If
 
@@ -330,7 +330,7 @@ Public Class frmshuukei_uriage
 
     Private Function get_nyuukin_kingaku(shainid As String, hinichi_kaishi As String, hinichi_owari As String) As String
 
-        Dim kingaku = "0 円"
+        Dim kingaku = "0円"
 
         Try
 
@@ -348,7 +348,7 @@ Public Class frmshuukei_uriage
 
             If dt_server.Rows.Count <> 0 Then
                 If Not IsDBNull(dt_server.Rows.Item(0).Item("goukei_kingaku")) Then
-                    kingaku = CInt(dt_server.Rows.Item(0).Item("goukei_kingaku")).ToString("#,##0;-#,##0") + " 円"
+                    kingaku = CInt(dt_server.Rows.Item(0).Item("goukei_kingaku")).ToString("#,##0;-#,##0") + "円"
                 End If
             End If
 
@@ -366,7 +366,7 @@ Public Class frmshuukei_uriage
 
     Private Function get_kurikoshi_kingaku(shainid As String, hinichi_kaishi As String, hinichi_owari As String) As String
 
-        Dim kingaku = "0 円"
+        Dim kingaku = "0円"
 
         Try
 
@@ -382,7 +382,7 @@ Public Class frmshuukei_uriage
 
             If dt_server.Rows.Count <> 0 Then
                 If Not IsDBNull(dt_server.Rows.Item(0).Item("goukei_kingaku")) Then
-                    kingaku = CInt(dt_server.Rows.Item(0).Item("goukei_kingaku")).ToString("#,##0;-#,##0") + " 円"
+                    kingaku = CInt(dt_server.Rows.Item(0).Item("goukei_kingaku")).ToString("#,##0;-#,##0") + "円"
                 End If
             End If
 
