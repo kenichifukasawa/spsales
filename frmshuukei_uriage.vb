@@ -225,10 +225,15 @@ Public Class frmshuukei_uriage
         End Try
 
         '社員別
-        'mwgmwg = InputBox("パスワードを入力してください。", "パスワード確認") ' TODO
-        'If mwgmwg <> "kamifusafusa" Then
-        '    Exit Sub
-        'End If
+        Dim pwdForm As New frmpassword()
+        If pwdForm.ShowDialog() = DialogResult.OK Then
+            Dim inputPassword As String = pwdForm.txt_password.Text
+            pwdForm.Dispose()
+            If inputPassword <> "kamifusafusa" Then
+                msg_go("パスワードが違います。")
+                Exit Sub
+            End If
+        End If
 
         With dgv_kensakukekka
 

@@ -130,6 +130,12 @@
       <DependentUpon>frmmain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmpassword.Designer.vb">
+      <DependentUpon>frmpassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmpassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmseikyuusho_soushin_ichi.Designer.vb">
       <DependentUpon>frmseikyuusho_soushin_ichi.vb</DependentUpon>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmmain.resx">
       <DependentUpon>frmmain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmpassword.resx">
+      <DependentUpon>frmpassword.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmseikyuusho_soushin_ichi.resx">
       <DependentUpon>frmseikyuusho_soushin_ichi.vb</DependentUpon>
