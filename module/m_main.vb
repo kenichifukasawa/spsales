@@ -98,6 +98,8 @@ Module m_main
 
         tenpo_seikyuurireki_set(s_tenpoid)
 
+        tenpo_log_set(s_tenpoid)
+
 
     End Sub
     Sub tenpo_hachuurireki_set(s_tenpoid As String)
@@ -106,6 +108,12 @@ Module m_main
     Sub tenpo_seikyuurireki_set(s_tenpoid As String)
 
     End Sub
+
+    Sub tenpo_log_set(s_tenpoid As String)
+
+    End Sub
+
+
     Sub tenpo_main_set(s_tenpoid As String)
 
         Try

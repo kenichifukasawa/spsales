@@ -135,6 +135,12 @@
     <Compile Include="frmkojin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmlog.Designer.vb">
+      <DependentUpon>frmlog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmlog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmmain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmkojin.resx">
       <DependentUpon>frmkojin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmlog.resx">
+      <DependentUpon>frmlog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmmain.resx">
       <DependentUpon>frmmain.vb</DependentUpon>
