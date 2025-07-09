@@ -15,6 +15,6 @@
     End Sub
 
     Private Sub btn_gyousha_Click(sender As Object, e As EventArgs) Handles btn_gyousha.Click
-
+        frmshuukei_hanbai.ShowDialog()
     End Sub
 End Class
