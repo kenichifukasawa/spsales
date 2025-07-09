@@ -717,7 +717,7 @@ Partial Class frmmain
         Me.lbltantoushain.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbltantoushain.Location = New System.Drawing.Point(315, 227)
         Me.lbltantoushain.Name = "lbltantoushain"
-        Me.lbltantoushain.Size = New System.Drawing.Size(138, 22)
+        Me.lbltantoushain.Size = New System.Drawing.Size(126, 22)
         Me.lbltantoushain.TabIndex = 103
         Me.lbltantoushain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -799,7 +799,7 @@ Partial Class frmmain
         '
         Me.Label59.BackColor = System.Drawing.Color.White
         Me.Label59.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label59.Location = New System.Drawing.Point(461, 230)
+        Me.Label59.Location = New System.Drawing.Point(448, 230)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(77, 16)
         Me.Label59.TabIndex = 86
@@ -810,9 +810,9 @@ Partial Class frmmain
         '
         Me.lblkubun.BackColor = System.Drawing.Color.White
         Me.lblkubun.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblkubun.Location = New System.Drawing.Point(544, 227)
+        Me.lblkubun.Location = New System.Drawing.Point(531, 227)
         Me.lblkubun.Name = "lblkubun"
-        Me.lblkubun.Size = New System.Drawing.Size(76, 22)
+        Me.lblkubun.Size = New System.Drawing.Size(89, 22)
         Me.lblkubun.TabIndex = 85
         Me.lblkubun.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -914,7 +914,7 @@ Partial Class frmmain
         Me.lblyuubin.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lblyuubin.Location = New System.Drawing.Point(90, 107)
         Me.lblyuubin.Name = "lblyuubin"
-        Me.lblyuubin.Size = New System.Drawing.Size(70, 22)
+        Me.lblyuubin.Size = New System.Drawing.Size(87, 22)
         Me.lblyuubin.TabIndex = 73
         Me.lblyuubin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -964,9 +964,9 @@ Partial Class frmmain
         '
         Me.lbljuusho.BackColor = System.Drawing.Color.White
         Me.lbljuusho.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbljuusho.Location = New System.Drawing.Point(166, 107)
+        Me.lbljuusho.Location = New System.Drawing.Point(184, 107)
         Me.lbljuusho.Name = "lbljuusho"
-        Me.lbljuusho.Size = New System.Drawing.Size(455, 22)
+        Me.lbljuusho.Size = New System.Drawing.Size(437, 22)
         Me.lbljuusho.TabIndex = 65
         Me.lbljuusho.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
