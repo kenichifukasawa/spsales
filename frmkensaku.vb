@@ -335,9 +335,9 @@ Public Class frmkensaku
                     .Columns(2).Name = "メモ"
                     .Columns(3).Name = "住所"
                     .Columns(0).Width = 65
-                    .Columns(1).Width = 200
-                    .Columns(2).Width = 500
-                    .Columns(3).Width = 200
+                    .Columns(1).Width = 400
+                    .Columns(2).Width = 800
+                    .Columns(3).Width = 300
                 End With
 
                 Dim i As Integer

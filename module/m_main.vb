@@ -38,6 +38,58 @@ Module m_main
     Public s_mailadress As String = ""
     Public s_mailadress_cc() As String
 
+    Function setting2(id As Integer, ByVal docchi As Integer, ByVal retsu As String, ByVal newid As String) As String
+
+        '******* サーバの設定を参照・更新　*********
+
+        Dim cn_setting2 As New SqlConnection
+        Dim da_setting2 As New SqlDataAdapter
+        Dim ds_setting2 As New DataSet
+        Dim dt_setting2 As DataTable
+        Dim cmdbuilder As New SqlCommandBuilder
+        Dim mojiretsu_setting2 As String
+
+
+        Try
+
+
+
+            cn_setting2.ConnectionString = connectionstring_sqlserver
+
+            Sql = "select * from settei where id ='" & retsu & "'"
+            setting2 = "0"
+
+
+            da_setting2 = New SqlDataAdapter(Sql, cn_setting2)
+
+            da_setting2.Fill(ds_setting2, "t_settei2")
+
+            If docchi = 0 Then '読み込み
+
+                dt_setting2 = ds_setting2.Tables("t_settei2")
+
+                mojiretsu_setting2 = dt_setting2.Rows(0)(id)
+
+                setting2 = mojiretsu_setting2
+
+            Else '書き込み
+                ds_setting2.Tables("t_settei2").Rows(0)(id) = newid
+
+                cmdbuilder.DataAdapter = da_setting2
+
+                da_setting2.Update(ds_setting2, "t_settei2")
+            End If
+            ds_setting2.Clear()
+            Exit Function
+
+
+        Catch ex As Exception
+            setting2 = "-1"
+            msg_go("設定を参照できませんでした：" & ex.Message)
+        End Try
+
+    End Function
+
     Sub mainset(s_tenpoid As String)
 
         tenpo_main_set(s_tenpoid)
@@ -114,9 +166,9 @@ Module m_main
                         .lblinsatsumeishou.Text = Trim(dt_server.Rows.Item(0).Item("insatsumei"))
                     End If
                     If IsDBNull(dt_server.Rows.Item(0).Item("mailno")) Then
-                        .lbljuusho.Text = ""
+                        .lblyuubin.Text = ""
                     Else
-                        .lbljuusho.Text = Trim(dt_server.Rows.Item(0).Item("yuubin"))
+                        .lblyuubin.Text = Trim(dt_server.Rows.Item(0).Item("mailno"))
                     End If
                     If IsDBNull(dt_server.Rows.Item(0).Item("adress1")) Then
                         .lbljuusho.Text = ""
@@ -158,7 +210,7 @@ Module m_main
                     If IsDBNull(dt_server.Rows.Item(0).Item("juugyouinsuu")) Then
                         .lbljuugyouinsuu.Text = ""
                     Else
-                        .lbljuugyouinsuu.Text = Trim(dt_server.Rows.Item(0).Item("tanjuugyouinsuutou"))
+                        .lbljuugyouinsuu.Text = Trim(dt_server.Rows.Item(0).Item("juugyouinsuu"))
                     End If
                     If IsDBNull(dt_server.Rows.Item(0).Item("email")) Then
                         .lblemail.Text = ""

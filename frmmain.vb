@@ -30,4 +30,9 @@
         frmkensaku.ShowDialog()
 
     End Sub
+
+    Private Sub lbltenpoid_Click(sender As Object, e As EventArgs) Handles lbltenpoid.Click
+
+        mainset("000087")
+    End Sub
 End Class

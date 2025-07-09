@@ -26,34 +26,34 @@ Partial Class frmkojin
         Me.Button2 = New System.Windows.Forms.Button()
         Me.b_koushin = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.txturl = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.txtemail1 = New System.Windows.Forms.TextBox()
+        Me.cmbmail = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.txtjuugyouinsuu = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txttantou = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtdaihyou = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton9 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton10 = New System.Windows.Forms.RadioButton()
+        Me.rkeisannouhinsho = New System.Windows.Forms.RadioButton()
+        Me.rkeisanseikyuusho = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton5 = New System.Windows.Forms.RadioButton()
+        Me.rkiriage = New System.Windows.Forms.RadioButton()
+        Me.rshishagonyuu = New System.Windows.Forms.RadioButton()
+        Me.rkirisute = New System.Windows.Forms.RadioButton()
         Me.txtbikou = New System.Windows.Forms.RichTextBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtnyuukingaku = New System.Windows.Forms.TextBox()
-        Me.chkyuubinflg = New System.Windows.Forms.CheckBox()
+        Me.txtzenkaiseikyuubi = New System.Windows.Forms.TextBox()
+        Me.chkueranashi = New System.Windows.Forms.CheckBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtnyuukinbi = New System.Windows.Forms.TextBox()
+        Me.txtkurikoshikin = New System.Windows.Forms.TextBox()
         Me.GroupBox12 = New System.Windows.Forms.GroupBox()
-        Me.rseikyuu6 = New System.Windows.Forms.RadioButton()
-        Me.rseikyuu3 = New System.Windows.Forms.RadioButton()
-        Me.rseikyuu1 = New System.Windows.Forms.RadioButton()
+        Me.rkubuniroiro = New System.Windows.Forms.RadioButton()
+        Me.rkubuntenpo = New System.Windows.Forms.RadioButton()
+        Me.rkubunkaisha = New System.Windows.Forms.RadioButton()
         Me.txtyuubin2 = New System.Windows.Forms.TextBox()
         Me.Label89 = New System.Windows.Forms.Label()
         Me.txtyuubin = New System.Windows.Forms.TextBox()
@@ -61,21 +61,21 @@ Partial Class frmkojin
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtjuusho2 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.chkblack = New System.Windows.Forms.CheckBox()
-        Me.comjuutaku = New System.Windows.Forms.ComboBox()
-        Me.cmbchiikikubun = New System.Windows.Forms.ComboBox()
-        Me.txtname2 = New System.Windows.Forms.TextBox()
-        Me.txtkarijuusho = New System.Windows.Forms.TextBox()
+        Me.chktorihikinashi = New System.Windows.Forms.CheckBox()
+        Me.cmbshain = New System.Windows.Forms.ComboBox()
+        Me.cmbshime = New System.Windows.Forms.ComboBox()
+        Me.txtinsatsumei = New System.Windows.Forms.TextBox()
+        Me.txtsoufusaki = New System.Windows.Forms.TextBox()
         Me.txtjuusho = New System.Windows.Forms.TextBox()
         Me.txtfax = New System.Windows.Forms.TextBox()
-        Me.txttel1 = New System.Windows.Forms.TextBox()
+        Me.txttel = New System.Windows.Forms.TextBox()
         Me.txtkeitai = New System.Windows.Forms.TextBox()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.txtfurigana = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtname = New System.Windows.Forms.TextBox()
+        Me.txttenpomei = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.lblkojinid = New System.Windows.Forms.Label()
+        Me.lbtenpoid = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -83,6 +83,7 @@ Partial Class frmkojin
         Me.Label40 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
+        Me.chkmailsoufu = New System.Windows.Forms.CheckBox()
         Me.g.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -101,7 +102,7 @@ Partial Class frmkojin
         Me.g.Margin = New System.Windows.Forms.Padding(2)
         Me.g.Name = "g"
         Me.g.Padding = New System.Windows.Forms.Padding(2)
-        Me.g.Size = New System.Drawing.Size(797, 823)
+        Me.g.Size = New System.Drawing.Size(797, 815)
         Me.g.TabIndex = 196
         Me.g.TabStop = False
         Me.g.Text = "契約情報"
@@ -134,25 +135,26 @@ Partial Class frmkojin
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.TextBox5)
+        Me.GroupBox2.Controls.Add(Me.chkmailsoufu)
+        Me.GroupBox2.Controls.Add(Me.txturl)
         Me.GroupBox2.Controls.Add(Me.Label11)
-        Me.GroupBox2.Controls.Add(Me.TextBox4)
-        Me.GroupBox2.Controls.Add(Me.ComboBox1)
+        Me.GroupBox2.Controls.Add(Me.txtemail1)
+        Me.GroupBox2.Controls.Add(Me.cmbmail)
         Me.GroupBox2.Controls.Add(Me.Label10)
-        Me.GroupBox2.Controls.Add(Me.TextBox3)
+        Me.GroupBox2.Controls.Add(Me.txtjuugyouinsuu)
         Me.GroupBox2.Controls.Add(Me.Label9)
-        Me.GroupBox2.Controls.Add(Me.TextBox2)
+        Me.GroupBox2.Controls.Add(Me.txttantou)
         Me.GroupBox2.Controls.Add(Me.Label4)
-        Me.GroupBox2.Controls.Add(Me.TextBox1)
+        Me.GroupBox2.Controls.Add(Me.txtdaihyou)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.GroupBox3)
         Me.GroupBox2.Controls.Add(Me.GroupBox1)
         Me.GroupBox2.Controls.Add(Me.txtbikou)
         Me.GroupBox2.Controls.Add(Me.Label8)
-        Me.GroupBox2.Controls.Add(Me.txtnyuukingaku)
-        Me.GroupBox2.Controls.Add(Me.chkyuubinflg)
+        Me.GroupBox2.Controls.Add(Me.txtzenkaiseikyuubi)
+        Me.GroupBox2.Controls.Add(Me.chkueranashi)
         Me.GroupBox2.Controls.Add(Me.Label6)
-        Me.GroupBox2.Controls.Add(Me.txtnyuukinbi)
+        Me.GroupBox2.Controls.Add(Me.txtkurikoshikin)
         Me.GroupBox2.Controls.Add(Me.GroupBox12)
         Me.GroupBox2.Controls.Add(Me.txtyuubin2)
         Me.GroupBox2.Controls.Add(Me.Label89)
@@ -161,21 +163,21 @@ Partial Class frmkojin
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.txtjuusho2)
         Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Controls.Add(Me.chkblack)
-        Me.GroupBox2.Controls.Add(Me.comjuutaku)
-        Me.GroupBox2.Controls.Add(Me.cmbchiikikubun)
-        Me.GroupBox2.Controls.Add(Me.txtname2)
-        Me.GroupBox2.Controls.Add(Me.txtkarijuusho)
+        Me.GroupBox2.Controls.Add(Me.chktorihikinashi)
+        Me.GroupBox2.Controls.Add(Me.cmbshain)
+        Me.GroupBox2.Controls.Add(Me.cmbshime)
+        Me.GroupBox2.Controls.Add(Me.txtinsatsumei)
+        Me.GroupBox2.Controls.Add(Me.txtsoufusaki)
         Me.GroupBox2.Controls.Add(Me.txtjuusho)
         Me.GroupBox2.Controls.Add(Me.txtfax)
-        Me.GroupBox2.Controls.Add(Me.txttel1)
+        Me.GroupBox2.Controls.Add(Me.txttel)
         Me.GroupBox2.Controls.Add(Me.txtkeitai)
         Me.GroupBox2.Controls.Add(Me.Label46)
         Me.GroupBox2.Controls.Add(Me.txtfurigana)
         Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.txtname)
+        Me.GroupBox2.Controls.Add(Me.txttenpomei)
         Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.lblkojinid)
+        Me.GroupBox2.Controls.Add(Me.lbtenpoid)
         Me.GroupBox2.Controls.Add(Me.Label23)
         Me.GroupBox2.Controls.Add(Me.Label32)
         Me.GroupBox2.Controls.Add(Me.Label24)
@@ -190,14 +192,14 @@ Partial Class frmkojin
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "契約者情報"
         '
-        'TextBox5
+        'txturl
         '
-        Me.TextBox5.ImeMode = System.Windows.Forms.ImeMode.KatakanaHalf
-        Me.TextBox5.Location = New System.Drawing.Point(99, 324)
-        Me.TextBox5.MaxLength = 80
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(659, 21)
-        Me.TextBox5.TabIndex = 144
+        Me.txturl.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txturl.Location = New System.Drawing.Point(99, 324)
+        Me.txturl.MaxLength = 80
+        Me.txturl.Name = "txturl"
+        Me.txturl.Size = New System.Drawing.Size(659, 21)
+        Me.txturl.TabIndex = 144
         '
         'Label11
         '
@@ -210,23 +212,22 @@ Partial Class frmkojin
         Me.Label11.Text = "URL"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TextBox4
+        'txtemail1
         '
-        Me.TextBox4.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox4.Location = New System.Drawing.Point(99, 293)
-        Me.TextBox4.MaxLength = 12
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(105, 21)
-        Me.TextBox4.TabIndex = 142
+        Me.txtemail1.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtemail1.Location = New System.Drawing.Point(99, 293)
+        Me.txtemail1.MaxLength = 12
+        Me.txtemail1.Name = "txtemail1"
+        Me.txtemail1.Size = New System.Drawing.Size(105, 21)
+        Me.txtemail1.TabIndex = 142
         '
-        'ComboBox1
+        'cmbmail
         '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(224, 293)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(159, 22)
-        Me.ComboBox1.TabIndex = 141
+        Me.cmbmail.FormattingEnabled = True
+        Me.cmbmail.Location = New System.Drawing.Point(224, 293)
+        Me.cmbmail.Name = "cmbmail"
+        Me.cmbmail.Size = New System.Drawing.Size(159, 22)
+        Me.cmbmail.TabIndex = 141
         '
         'Label10
         '
@@ -239,14 +240,14 @@ Partial Class frmkojin
         Me.Label10.Text = "E-Mail"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TextBox3
+        'txtjuugyouinsuu
         '
-        Me.TextBox3.ImeMode = System.Windows.Forms.ImeMode.KatakanaHalf
-        Me.TextBox3.Location = New System.Drawing.Point(714, 296)
-        Me.TextBox3.MaxLength = 80
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(44, 21)
-        Me.TextBox3.TabIndex = 139
+        Me.txtjuugyouinsuu.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtjuugyouinsuu.Location = New System.Drawing.Point(714, 296)
+        Me.txtjuugyouinsuu.MaxLength = 80
+        Me.txtjuugyouinsuu.Name = "txtjuugyouinsuu"
+        Me.txtjuugyouinsuu.Size = New System.Drawing.Size(44, 21)
+        Me.txtjuugyouinsuu.TabIndex = 139
         '
         'Label9
         '
@@ -259,14 +260,14 @@ Partial Class frmkojin
         Me.Label9.Text = "従業員数"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TextBox2
+        'txttantou
         '
-        Me.TextBox2.ImeMode = System.Windows.Forms.ImeMode.KatakanaHalf
-        Me.TextBox2.Location = New System.Drawing.Point(596, 261)
-        Me.TextBox2.MaxLength = 80
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(128, 21)
-        Me.TextBox2.TabIndex = 137
+        Me.txttantou.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.txttantou.Location = New System.Drawing.Point(596, 261)
+        Me.txttantou.MaxLength = 80
+        Me.txttantou.Name = "txttantou"
+        Me.txttantou.Size = New System.Drawing.Size(128, 21)
+        Me.txttantou.TabIndex = 137
         '
         'Label4
         '
@@ -279,14 +280,14 @@ Partial Class frmkojin
         Me.Label4.Text = "担当者"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TextBox1
+        'txtdaihyou
         '
-        Me.TextBox1.ImeMode = System.Windows.Forms.ImeMode.KatakanaHalf
-        Me.TextBox1.Location = New System.Drawing.Point(493, 296)
-        Me.TextBox1.MaxLength = 80
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(128, 21)
-        Me.TextBox1.TabIndex = 135
+        Me.txtdaihyou.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.txtdaihyou.Location = New System.Drawing.Point(493, 296)
+        Me.txtdaihyou.MaxLength = 80
+        Me.txtdaihyou.Name = "txtdaihyou"
+        Me.txtdaihyou.Size = New System.Drawing.Size(128, 21)
+        Me.txtdaihyou.TabIndex = 135
         '
         'Label3
         '
@@ -301,8 +302,8 @@ Partial Class frmkojin
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.RadioButton9)
-        Me.GroupBox3.Controls.Add(Me.RadioButton10)
+        Me.GroupBox3.Controls.Add(Me.rkeisannouhinsho)
+        Me.GroupBox3.Controls.Add(Me.rkeisanseikyuusho)
         Me.GroupBox3.Location = New System.Drawing.Point(16, 426)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(367, 60)
@@ -310,33 +311,33 @@ Partial Class frmkojin
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "計算方法"
         '
-        'RadioButton9
+        'rkeisannouhinsho
         '
-        Me.RadioButton9.AutoSize = True
-        Me.RadioButton9.Location = New System.Drawing.Point(221, 23)
-        Me.RadioButton9.Name = "RadioButton9"
-        Me.RadioButton9.Size = New System.Drawing.Size(120, 18)
-        Me.RadioButton9.TabIndex = 118
-        Me.RadioButton9.TabStop = True
-        Me.RadioButton9.Text = "納品書枚に計算"
-        Me.RadioButton9.UseVisualStyleBackColor = True
+        Me.rkeisannouhinsho.AutoSize = True
+        Me.rkeisannouhinsho.Location = New System.Drawing.Point(221, 23)
+        Me.rkeisannouhinsho.Name = "rkeisannouhinsho"
+        Me.rkeisannouhinsho.Size = New System.Drawing.Size(120, 18)
+        Me.rkeisannouhinsho.TabIndex = 118
+        Me.rkeisannouhinsho.TabStop = True
+        Me.rkeisannouhinsho.Text = "納品書枚に計算"
+        Me.rkeisannouhinsho.UseVisualStyleBackColor = True
         '
-        'RadioButton10
+        'rkeisanseikyuusho
         '
-        Me.RadioButton10.AutoSize = True
-        Me.RadioButton10.Location = New System.Drawing.Point(39, 23)
-        Me.RadioButton10.Name = "RadioButton10"
-        Me.RadioButton10.Size = New System.Drawing.Size(120, 18)
-        Me.RadioButton10.TabIndex = 117
-        Me.RadioButton10.TabStop = True
-        Me.RadioButton10.Text = "請求書毎に計算"
-        Me.RadioButton10.UseVisualStyleBackColor = True
+        Me.rkeisanseikyuusho.AutoSize = True
+        Me.rkeisanseikyuusho.Location = New System.Drawing.Point(39, 23)
+        Me.rkeisanseikyuusho.Name = "rkeisanseikyuusho"
+        Me.rkeisanseikyuusho.Size = New System.Drawing.Size(120, 18)
+        Me.rkeisanseikyuusho.TabIndex = 117
+        Me.rkeisanseikyuusho.TabStop = True
+        Me.rkeisanseikyuusho.Text = "請求書毎に計算"
+        Me.rkeisanseikyuusho.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.RadioButton3)
-        Me.GroupBox1.Controls.Add(Me.RadioButton4)
-        Me.GroupBox1.Controls.Add(Me.RadioButton5)
+        Me.GroupBox1.Controls.Add(Me.rkiriage)
+        Me.GroupBox1.Controls.Add(Me.rshishagonyuu)
+        Me.GroupBox1.Controls.Add(Me.rkirisute)
         Me.GroupBox1.Location = New System.Drawing.Point(390, 360)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(367, 60)
@@ -344,38 +345,38 @@ Partial Class frmkojin
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "税金端数"
         '
-        'RadioButton3
+        'rkiriage
         '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(269, 24)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(74, 18)
-        Me.RadioButton3.TabIndex = 119
-        Me.RadioButton3.TabStop = True
-        Me.RadioButton3.Text = "切り上げ"
-        Me.RadioButton3.UseVisualStyleBackColor = True
+        Me.rkiriage.AutoSize = True
+        Me.rkiriage.Location = New System.Drawing.Point(269, 24)
+        Me.rkiriage.Name = "rkiriage"
+        Me.rkiriage.Size = New System.Drawing.Size(74, 18)
+        Me.rkiriage.TabIndex = 119
+        Me.rkiriage.TabStop = True
+        Me.rkiriage.Text = "切り上げ"
+        Me.rkiriage.UseVisualStyleBackColor = True
         '
-        'RadioButton4
+        'rshishagonyuu
         '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Location = New System.Drawing.Point(150, 24)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(81, 18)
-        Me.RadioButton4.TabIndex = 118
-        Me.RadioButton4.TabStop = True
-        Me.RadioButton4.Text = "四捨五入"
-        Me.RadioButton4.UseVisualStyleBackColor = True
+        Me.rshishagonyuu.AutoSize = True
+        Me.rshishagonyuu.Location = New System.Drawing.Point(150, 24)
+        Me.rshishagonyuu.Name = "rshishagonyuu"
+        Me.rshishagonyuu.Size = New System.Drawing.Size(81, 18)
+        Me.rshishagonyuu.TabIndex = 118
+        Me.rshishagonyuu.TabStop = True
+        Me.rshishagonyuu.Text = "四捨五入"
+        Me.rshishagonyuu.UseVisualStyleBackColor = True
         '
-        'RadioButton5
+        'rkirisute
         '
-        Me.RadioButton5.AutoSize = True
-        Me.RadioButton5.Location = New System.Drawing.Point(46, 24)
-        Me.RadioButton5.Name = "RadioButton5"
-        Me.RadioButton5.Size = New System.Drawing.Size(73, 18)
-        Me.RadioButton5.TabIndex = 117
-        Me.RadioButton5.TabStop = True
-        Me.RadioButton5.Text = "切り捨て"
-        Me.RadioButton5.UseVisualStyleBackColor = True
+        Me.rkirisute.AutoSize = True
+        Me.rkirisute.Location = New System.Drawing.Point(46, 24)
+        Me.rkirisute.Name = "rkirisute"
+        Me.rkirisute.Size = New System.Drawing.Size(73, 18)
+        Me.rkirisute.TabIndex = 117
+        Me.rkirisute.TabStop = True
+        Me.rkirisute.Text = "切り捨て"
+        Me.rkirisute.UseVisualStyleBackColor = True
         '
         'txtbikou
         '
@@ -396,24 +397,24 @@ Partial Class frmkojin
         Me.Label8.Text = "備考"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'txtnyuukingaku
+        'txtzenkaiseikyuubi
         '
-        Me.txtnyuukingaku.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txtnyuukingaku.Location = New System.Drawing.Point(311, 497)
-        Me.txtnyuukingaku.MaxLength = 7
-        Me.txtnyuukingaku.Name = "txtnyuukingaku"
-        Me.txtnyuukingaku.Size = New System.Drawing.Size(105, 21)
-        Me.txtnyuukingaku.TabIndex = 107
+        Me.txtzenkaiseikyuubi.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtzenkaiseikyuubi.Location = New System.Drawing.Point(311, 497)
+        Me.txtzenkaiseikyuubi.MaxLength = 7
+        Me.txtzenkaiseikyuubi.Name = "txtzenkaiseikyuubi"
+        Me.txtzenkaiseikyuubi.Size = New System.Drawing.Size(105, 21)
+        Me.txtzenkaiseikyuubi.TabIndex = 107
         '
-        'chkyuubinflg
+        'chkueranashi
         '
-        Me.chkyuubinflg.AutoSize = True
-        Me.chkyuubinflg.Location = New System.Drawing.Point(493, 499)
-        Me.chkyuubinflg.Name = "chkyuubinflg"
-        Me.chkyuubinflg.Size = New System.Drawing.Size(222, 18)
-        Me.chkyuubinflg.TabIndex = 133
-        Me.chkyuubinflg.Text = "ウエラの売上報告書には計上しない"
-        Me.chkyuubinflg.UseVisualStyleBackColor = True
+        Me.chkueranashi.AutoSize = True
+        Me.chkueranashi.Location = New System.Drawing.Point(473, 501)
+        Me.chkueranashi.Name = "chkueranashi"
+        Me.chkueranashi.Size = New System.Drawing.Size(222, 18)
+        Me.chkueranashi.TabIndex = 133
+        Me.chkueranashi.Text = "ウエラの売上報告書には計上しない"
+        Me.chkueranashi.UseVisualStyleBackColor = True
         '
         'Label6
         '
@@ -426,20 +427,20 @@ Partial Class frmkojin
         Me.Label6.Text = "-"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'txtnyuukinbi
+        'txtkurikoshikin
         '
-        Me.txtnyuukinbi.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txtnyuukinbi.Location = New System.Drawing.Point(113, 497)
-        Me.txtnyuukinbi.MaxLength = 10
-        Me.txtnyuukinbi.Name = "txtnyuukinbi"
-        Me.txtnyuukinbi.Size = New System.Drawing.Size(85, 21)
-        Me.txtnyuukinbi.TabIndex = 105
+        Me.txtkurikoshikin.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtkurikoshikin.Location = New System.Drawing.Point(113, 497)
+        Me.txtkurikoshikin.MaxLength = 10
+        Me.txtkurikoshikin.Name = "txtkurikoshikin"
+        Me.txtkurikoshikin.Size = New System.Drawing.Size(85, 21)
+        Me.txtkurikoshikin.TabIndex = 105
         '
         'GroupBox12
         '
-        Me.GroupBox12.Controls.Add(Me.rseikyuu6)
-        Me.GroupBox12.Controls.Add(Me.rseikyuu3)
-        Me.GroupBox12.Controls.Add(Me.rseikyuu1)
+        Me.GroupBox12.Controls.Add(Me.rkubuniroiro)
+        Me.GroupBox12.Controls.Add(Me.rkubuntenpo)
+        Me.GroupBox12.Controls.Add(Me.rkubunkaisha)
         Me.GroupBox12.Location = New System.Drawing.Point(16, 360)
         Me.GroupBox12.Name = "GroupBox12"
         Me.GroupBox12.Size = New System.Drawing.Size(367, 60)
@@ -447,38 +448,38 @@ Partial Class frmkojin
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "区分"
         '
-        'rseikyuu6
+        'rkubuniroiro
         '
-        Me.rseikyuu6.AutoSize = True
-        Me.rseikyuu6.Location = New System.Drawing.Point(272, 24)
-        Me.rseikyuu6.Name = "rseikyuu6"
-        Me.rseikyuu6.Size = New System.Drawing.Size(69, 18)
-        Me.rseikyuu6.TabIndex = 119
-        Me.rseikyuu6.TabStop = True
-        Me.rseikyuu6.Text = "いろいろ"
-        Me.rseikyuu6.UseVisualStyleBackColor = True
+        Me.rkubuniroiro.AutoSize = True
+        Me.rkubuniroiro.Location = New System.Drawing.Point(272, 24)
+        Me.rkubuniroiro.Name = "rkubuniroiro"
+        Me.rkubuniroiro.Size = New System.Drawing.Size(69, 18)
+        Me.rkubuniroiro.TabIndex = 119
+        Me.rkubuniroiro.TabStop = True
+        Me.rkubuniroiro.Text = "いろいろ"
+        Me.rkubuniroiro.UseVisualStyleBackColor = True
         '
-        'rseikyuu3
+        'rkubuntenpo
         '
-        Me.rseikyuu3.AutoSize = True
-        Me.rseikyuu3.Location = New System.Drawing.Point(155, 24)
-        Me.rseikyuu3.Name = "rseikyuu3"
-        Me.rseikyuu3.Size = New System.Drawing.Size(81, 18)
-        Me.rseikyuu3.TabIndex = 118
-        Me.rseikyuu3.TabStop = True
-        Me.rseikyuu3.Text = "店舗単位"
-        Me.rseikyuu3.UseVisualStyleBackColor = True
+        Me.rkubuntenpo.AutoSize = True
+        Me.rkubuntenpo.Location = New System.Drawing.Point(155, 24)
+        Me.rkubuntenpo.Name = "rkubuntenpo"
+        Me.rkubuntenpo.Size = New System.Drawing.Size(81, 18)
+        Me.rkubuntenpo.TabIndex = 118
+        Me.rkubuntenpo.TabStop = True
+        Me.rkubuntenpo.Text = "店舗単位"
+        Me.rkubuntenpo.UseVisualStyleBackColor = True
         '
-        'rseikyuu1
+        'rkubunkaisha
         '
-        Me.rseikyuu1.AutoSize = True
-        Me.rseikyuu1.Location = New System.Drawing.Point(39, 24)
-        Me.rseikyuu1.Name = "rseikyuu1"
-        Me.rseikyuu1.Size = New System.Drawing.Size(81, 18)
-        Me.rseikyuu1.TabIndex = 117
-        Me.rseikyuu1.TabStop = True
-        Me.rseikyuu1.Text = "会社単位"
-        Me.rseikyuu1.UseVisualStyleBackColor = True
+        Me.rkubunkaisha.AutoSize = True
+        Me.rkubunkaisha.Location = New System.Drawing.Point(39, 24)
+        Me.rkubunkaisha.Name = "rkubunkaisha"
+        Me.rkubunkaisha.Size = New System.Drawing.Size(81, 18)
+        Me.rkubunkaisha.TabIndex = 117
+        Me.rkubunkaisha.TabStop = True
+        Me.rkubunkaisha.Text = "会社単位"
+        Me.rkubunkaisha.UseVisualStyleBackColor = True
         '
         'txtyuubin2
         '
@@ -551,51 +552,51 @@ Partial Class frmkojin
         Me.Label5.Text = "印刷名称"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'chkblack
+        'chktorihikinashi
         '
-        Me.chkblack.AutoSize = True
-        Me.chkblack.Location = New System.Drawing.Point(493, 450)
-        Me.chkblack.Name = "chkblack"
-        Me.chkblack.Size = New System.Drawing.Size(187, 18)
-        Me.chkblack.TabIndex = 113
-        Me.chkblack.Text = "現在取引してない状態である"
-        Me.chkblack.UseVisualStyleBackColor = True
+        Me.chktorihikinashi.AutoSize = True
+        Me.chktorihikinashi.Location = New System.Drawing.Point(473, 470)
+        Me.chktorihikinashi.Name = "chktorihikinashi"
+        Me.chktorihikinashi.Size = New System.Drawing.Size(187, 18)
+        Me.chktorihikinashi.TabIndex = 113
+        Me.chktorihikinashi.Text = "現在取引してない状態である"
+        Me.chktorihikinashi.UseVisualStyleBackColor = True
         '
-        'comjuutaku
+        'cmbshain
         '
-        Me.comjuutaku.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comjuutaku.FormattingEnabled = True
-        Me.comjuutaku.Location = New System.Drawing.Point(311, 261)
-        Me.comjuutaku.Name = "comjuutaku"
-        Me.comjuutaku.Size = New System.Drawing.Size(173, 22)
-        Me.comjuutaku.TabIndex = 93
+        Me.cmbshain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbshain.FormattingEnabled = True
+        Me.cmbshain.Location = New System.Drawing.Point(311, 261)
+        Me.cmbshain.Name = "cmbshain"
+        Me.cmbshain.Size = New System.Drawing.Size(173, 22)
+        Me.cmbshain.TabIndex = 93
         '
-        'cmbchiikikubun
+        'cmbshime
         '
-        Me.cmbchiikikubun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbchiikikubun.FormattingEnabled = True
-        Me.cmbchiikikubun.Location = New System.Drawing.Point(99, 261)
-        Me.cmbchiikikubun.Name = "cmbchiikikubun"
-        Me.cmbchiikikubun.Size = New System.Drawing.Size(108, 22)
-        Me.cmbchiikikubun.TabIndex = 92
+        Me.cmbshime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbshime.FormattingEnabled = True
+        Me.cmbshime.Location = New System.Drawing.Point(99, 261)
+        Me.cmbshime.Name = "cmbshime"
+        Me.cmbshime.Size = New System.Drawing.Size(108, 22)
+        Me.cmbshime.TabIndex = 92
         '
-        'txtname2
+        'txtinsatsumei
         '
-        Me.txtname2.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.txtname2.Location = New System.Drawing.Point(99, 106)
-        Me.txtname2.MaxLength = 80
-        Me.txtname2.Name = "txtname2"
-        Me.txtname2.Size = New System.Drawing.Size(659, 21)
-        Me.txtname2.TabIndex = 90
+        Me.txtinsatsumei.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.txtinsatsumei.Location = New System.Drawing.Point(99, 106)
+        Me.txtinsatsumei.MaxLength = 80
+        Me.txtinsatsumei.Name = "txtinsatsumei"
+        Me.txtinsatsumei.Size = New System.Drawing.Size(659, 21)
+        Me.txtinsatsumei.TabIndex = 90
         '
-        'txtkarijuusho
+        'txtsoufusaki
         '
-        Me.txtkarijuusho.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.txtkarijuusho.Location = New System.Drawing.Point(99, 199)
-        Me.txtkarijuusho.MaxLength = 80
-        Me.txtkarijuusho.Name = "txtkarijuusho"
-        Me.txtkarijuusho.Size = New System.Drawing.Size(659, 21)
-        Me.txtkarijuusho.TabIndex = 89
+        Me.txtsoufusaki.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.txtsoufusaki.Location = New System.Drawing.Point(99, 199)
+        Me.txtsoufusaki.MaxLength = 80
+        Me.txtsoufusaki.Name = "txtsoufusaki"
+        Me.txtsoufusaki.Size = New System.Drawing.Size(659, 21)
+        Me.txtsoufusaki.TabIndex = 89
         '
         'txtjuusho
         '
@@ -615,14 +616,14 @@ Partial Class frmkojin
         Me.txtfax.Size = New System.Drawing.Size(105, 21)
         Me.txtfax.TabIndex = 83
         '
-        'txttel1
+        'txttel
         '
-        Me.txttel1.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txttel1.Location = New System.Drawing.Point(99, 230)
-        Me.txttel1.MaxLength = 12
-        Me.txttel1.Name = "txttel1"
-        Me.txttel1.Size = New System.Drawing.Size(105, 21)
-        Me.txttel1.TabIndex = 82
+        Me.txttel.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txttel.Location = New System.Drawing.Point(99, 230)
+        Me.txttel.MaxLength = 12
+        Me.txttel.Name = "txttel"
+        Me.txttel.Size = New System.Drawing.Size(105, 21)
+        Me.txttel.TabIndex = 82
         '
         'txtkeitai
         '
@@ -664,14 +665,14 @@ Partial Class frmkojin
         Me.Label2.Text = "フリガナ"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'txtname
+        'txttenpomei
         '
-        Me.txtname.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.txtname.Location = New System.Drawing.Point(99, 75)
-        Me.txtname.MaxLength = 80
-        Me.txtname.Name = "txtname"
-        Me.txtname.Size = New System.Drawing.Size(659, 21)
-        Me.txtname.TabIndex = 64
+        Me.txttenpomei.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.txttenpomei.Location = New System.Drawing.Point(99, 75)
+        Me.txttenpomei.MaxLength = 80
+        Me.txttenpomei.Name = "txttenpomei"
+        Me.txttenpomei.Size = New System.Drawing.Size(659, 21)
+        Me.txttenpomei.TabIndex = 64
         '
         'Label1
         '
@@ -684,15 +685,15 @@ Partial Class frmkojin
         Me.Label1.Text = "店舗ID"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lblkojinid
+        'lbtenpoid
         '
-        Me.lblkojinid.BackColor = System.Drawing.Color.White
-        Me.lblkojinid.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblkojinid.Location = New System.Drawing.Point(99, 18)
-        Me.lblkojinid.Name = "lblkojinid"
-        Me.lblkojinid.Size = New System.Drawing.Size(110, 16)
-        Me.lblkojinid.TabIndex = 60
-        Me.lblkojinid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbtenpoid.BackColor = System.Drawing.Color.White
+        Me.lbtenpoid.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbtenpoid.Location = New System.Drawing.Point(99, 18)
+        Me.lbtenpoid.Name = "lbtenpoid"
+        Me.lbtenpoid.Size = New System.Drawing.Size(110, 16)
+        Me.lbtenpoid.TabIndex = 60
+        Me.lbtenpoid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label23
         '
@@ -771,11 +772,21 @@ Partial Class frmkojin
         Me.Label26.Text = "住所"
         Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'chkmailsoufu
+        '
+        Me.chkmailsoufu.AutoSize = True
+        Me.chkmailsoufu.Location = New System.Drawing.Point(473, 436)
+        Me.chkmailsoufu.Name = "chkmailsoufu"
+        Me.chkmailsoufu.Size = New System.Drawing.Size(216, 18)
+        Me.chkmailsoufu.TabIndex = 145
+        Me.chkmailsoufu.Text = "メールアドレスに請求書を送付する"
+        Me.chkmailsoufu.UseVisualStyleBackColor = True
+        '
         'frmkojin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(819, 845)
+        Me.ClientSize = New System.Drawing.Size(819, 838)
         Me.ControlBox = False
         Me.Controls.Add(Me.g)
         Me.Name = "frmkojin"
@@ -805,20 +816,20 @@ Partial Class frmkojin
     Friend WithEvents Label26 As Label
     Friend WithEvents Label24 As Label
     Friend WithEvents Label23 As Label
-    Friend WithEvents lblkojinid As Label
+    Friend WithEvents lbtenpoid As Label
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents txttel1 As TextBox
+    Friend WithEvents txttel As TextBox
     Friend WithEvents txtkeitai As TextBox
     Friend WithEvents txtfurigana As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents txtname As TextBox
+    Friend WithEvents txttenpomei As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents txtkarijuusho As TextBox
+    Friend WithEvents txtsoufusaki As TextBox
     Friend WithEvents txtjuusho As TextBox
     Friend WithEvents txtfax As TextBox
     Friend WithEvents txtjuusho2 As TextBox
-    Friend WithEvents comjuutaku As ComboBox
-    Friend WithEvents cmbchiikikubun As ComboBox
+    Friend WithEvents cmbshain As ComboBox
+    Friend WithEvents cmbshime As ComboBox
     Friend WithEvents txtbikou As RichTextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents Label6 As Label
@@ -826,33 +837,34 @@ Partial Class frmkojin
     Friend WithEvents txtyuubin As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents GroupBox12 As GroupBox
-    Friend WithEvents rseikyuu6 As RadioButton
-    Friend WithEvents rseikyuu3 As RadioButton
-    Friend WithEvents rseikyuu1 As RadioButton
-    Friend WithEvents txtnyuukingaku As TextBox
-    Friend WithEvents txtnyuukinbi As TextBox
+    Friend WithEvents rkubuniroiro As RadioButton
+    Friend WithEvents rkubuntenpo As RadioButton
+    Friend WithEvents rkubunkaisha As RadioButton
+    Friend WithEvents txtzenkaiseikyuubi As TextBox
+    Friend WithEvents txtkurikoshikin As TextBox
     Friend WithEvents Button2 As Button
     Friend WithEvents b_koushin As Button
-    Friend WithEvents chkblack As CheckBox
-    Friend WithEvents chkyuubinflg As CheckBox
+    Friend WithEvents chktorihikinashi As CheckBox
+    Friend WithEvents chkueranashi As CheckBox
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents RadioButton9 As RadioButton
-    Friend WithEvents RadioButton10 As RadioButton
+    Friend WithEvents rkeisannouhinsho As RadioButton
+    Friend WithEvents rkeisanseikyuusho As RadioButton
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents RadioButton3 As RadioButton
-    Friend WithEvents RadioButton4 As RadioButton
-    Friend WithEvents RadioButton5 As RadioButton
+    Friend WithEvents rkiriage As RadioButton
+    Friend WithEvents rshishagonyuu As RadioButton
+    Friend WithEvents rkirisute As RadioButton
     Friend WithEvents Label5 As Label
-    Friend WithEvents txtname2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtinsatsumei As TextBox
+    Friend WithEvents txtjuugyouinsuu As TextBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txttantou As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtdaihyou As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents txturl As TextBox
     Friend WithEvents Label11 As Label
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents txtemail1 As TextBox
+    Friend WithEvents cmbmail As ComboBox
     Friend WithEvents Label10 As Label
+    Friend WithEvents chkmailsoufu As CheckBox
 End Class
