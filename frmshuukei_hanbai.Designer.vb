@@ -55,6 +55,7 @@ Partial Class frmshuukei_hanbai
         Me.cbx_gyousha_kubun = New System.Windows.Forms.ComboBox()
         Me.btn_clear = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
+        Me.btn_clear_2 = New System.Windows.Forms.Button()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
@@ -69,6 +70,7 @@ Partial Class frmshuukei_hanbai
         'gbx_main
         '
         Me.gbx_main.BackColor = System.Drawing.Color.White
+        Me.gbx_main.Controls.Add(Me.btn_clear_2)
         Me.gbx_main.Controls.Add(Me.chk_shuukei_shinai_service_denpyou)
         Me.gbx_main.Controls.Add(Me.chk_shuukei_shinai_torihikinai_tenpo)
         Me.gbx_main.Controls.Add(Me.btn_shousai)
@@ -157,7 +159,7 @@ Partial Class frmshuukei_hanbai
         Me.GroupBox5.Controls.Add(Me.chk_hihyouji_torihiki_nai)
         Me.GroupBox5.Location = New System.Drawing.Point(419, 19)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(786, 61)
+        Me.GroupBox5.Size = New System.Drawing.Size(651, 61)
         Me.GroupBox5.TabIndex = 192
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "店舗名 または 担当社員"
@@ -168,9 +170,9 @@ Partial Class frmshuukei_hanbai
         Me.cbx_shain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbx_shain.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_shain.FormattingEnabled = True
-        Me.cbx_shain.Location = New System.Drawing.Point(532, 24)
+        Me.cbx_shain.Location = New System.Drawing.Point(443, 24)
         Me.cbx_shain.Name = "cbx_shain"
-        Me.cbx_shain.Size = New System.Drawing.Size(228, 24)
+        Me.cbx_shain.Size = New System.Drawing.Size(183, 24)
         Me.cbx_shain.TabIndex = 129
         '
         'cbx_tenpo
@@ -181,7 +183,7 @@ Partial Class frmshuukei_hanbai
         Me.cbx_tenpo.FormattingEnabled = True
         Me.cbx_tenpo.Location = New System.Drawing.Point(23, 24)
         Me.cbx_tenpo.Name = "cbx_tenpo"
-        Me.cbx_tenpo.Size = New System.Drawing.Size(480, 24)
+        Me.cbx_tenpo.Size = New System.Drawing.Size(397, 24)
         Me.cbx_tenpo.TabIndex = 128
         '
         'chk_hihyouji_torihiki_nai
@@ -189,7 +191,7 @@ Partial Class frmshuukei_hanbai
         Me.chk_hihyouji_torihiki_nai.AutoSize = True
         Me.chk_hihyouji_torihiki_nai.Checked = True
         Me.chk_hihyouji_torihiki_nai.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chk_hihyouji_torihiki_nai.Location = New System.Drawing.Point(333, -1)
+        Me.chk_hihyouji_torihiki_nai.Location = New System.Drawing.Point(250, -1)
         Me.chk_hihyouji_torihiki_nai.Name = "chk_hihyouji_torihiki_nai"
         Me.chk_hihyouji_torihiki_nai.Size = New System.Drawing.Size(170, 18)
         Me.chk_hihyouji_torihiki_nai.TabIndex = 189
@@ -445,6 +447,18 @@ Partial Class frmshuukei_hanbai
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
+        'btn_clear_2
+        '
+        Me.btn_clear_2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_clear_2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_clear_2.Location = New System.Drawing.Point(1073, 26)
+        Me.btn_clear_2.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_clear_2.Name = "btn_clear_2"
+        Me.btn_clear_2.Size = New System.Drawing.Size(127, 44)
+        Me.btn_clear_2.TabIndex = 199
+        Me.btn_clear_2.Text = "クリア"
+        Me.btn_clear_2.UseVisualStyleBackColor = True
+        '
         'frmshuukei_hanbai
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -504,4 +518,5 @@ Partial Class frmshuukei_hanbai
     Friend WithEvents btn_denwa_chou As Button
     Friend WithEvents btn_csv As Button
     Friend WithEvents chk_shuukei_shinai_service_denpyou As CheckBox
+    Friend WithEvents btn_clear_2 As Button
 End Class

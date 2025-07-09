@@ -3,12 +3,15 @@
 Public Class frmshuukei_hanbai
 
     Private Sub frmshuukei_hanbai_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         dtp_hinichi_kaishi.Value = Now.ToString("yyyy/MM/dd")
         dtp_hinichi_owari.Value = Now.ToString("yyyy/MM/dd")
+
         set_gyousha_kubun(1)
         set_shouhin_kubun_1(1)
         set_tenpo_name(1, chk_hihyouji_torihiki_nai.Checked)
         set_shain_name(1)
+
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -45,15 +48,14 @@ Public Class frmshuukei_hanbai
             Exit Sub
         End If
 
-        If cbx_shain.SelectedIndex <> -1 Then
-            cbx_shain.SelectedIndex = -1
-            Exit Sub
-        End If
+        set_hanbai_shuukei()
 
-        If cbx_tenpo.SelectedIndex <> -1 Then
-            cbx_tenpo.SelectedIndex = -1
-            Exit Sub
-        End If
+    End Sub
+    Private Sub btn_clear_2_Click(sender As Object, e As EventArgs) Handles btn_clear_2.Click
+
+        cbx_tenpo.SelectedIndex = -1
+        cbx_shain.SelectedIndex = -1
+        set_hanbai_shuukei()
 
     End Sub
 
