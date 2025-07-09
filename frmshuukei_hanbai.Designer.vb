@@ -22,6 +22,8 @@ Partial Class frmshuukei_hanbai
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.chk_shuukei_shinai_service_denpyou = New System.Windows.Forms.CheckBox()
         Me.chk_shuukei_shinai_torihikinai_tenpo = New System.Windows.Forms.CheckBox()
@@ -30,7 +32,7 @@ Partial Class frmshuukei_hanbai
         Me.btn_csv = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.cbx_shain = New System.Windows.Forms.ComboBox()
-        Me.cbx_tenpo_mei = New System.Windows.Forms.ComboBox()
+        Me.cbx_tenpo = New System.Windows.Forms.ComboBox()
         Me.chk_hihyouji_torihiki_nai = New System.Windows.Forms.CheckBox()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -151,7 +153,7 @@ Partial Class frmshuukei_hanbai
         'GroupBox5
         '
         Me.GroupBox5.Controls.Add(Me.cbx_shain)
-        Me.GroupBox5.Controls.Add(Me.cbx_tenpo_mei)
+        Me.GroupBox5.Controls.Add(Me.cbx_tenpo)
         Me.GroupBox5.Controls.Add(Me.chk_hihyouji_torihiki_nai)
         Me.GroupBox5.Location = New System.Drawing.Point(419, 19)
         Me.GroupBox5.Name = "GroupBox5"
@@ -171,16 +173,16 @@ Partial Class frmshuukei_hanbai
         Me.cbx_shain.Size = New System.Drawing.Size(228, 24)
         Me.cbx_shain.TabIndex = 129
         '
-        'cbx_tenpo_mei
+        'cbx_tenpo
         '
-        Me.cbx_tenpo_mei.BackColor = System.Drawing.Color.White
-        Me.cbx_tenpo_mei.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbx_tenpo_mei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cbx_tenpo_mei.FormattingEnabled = True
-        Me.cbx_tenpo_mei.Location = New System.Drawing.Point(23, 24)
-        Me.cbx_tenpo_mei.Name = "cbx_tenpo_mei"
-        Me.cbx_tenpo_mei.Size = New System.Drawing.Size(480, 24)
-        Me.cbx_tenpo_mei.TabIndex = 128
+        Me.cbx_tenpo.BackColor = System.Drawing.Color.White
+        Me.cbx_tenpo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_tenpo.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cbx_tenpo.FormattingEnabled = True
+        Me.cbx_tenpo.Location = New System.Drawing.Point(23, 24)
+        Me.cbx_tenpo.Name = "cbx_tenpo"
+        Me.cbx_tenpo.Size = New System.Drawing.Size(480, 24)
+        Me.cbx_tenpo.TabIndex = 128
         '
         'chk_hihyouji_torihiki_nai
         '
@@ -230,7 +232,23 @@ Partial Class frmshuukei_hanbai
         '
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgv_kensakukekka.Location = New System.Drawing.Point(7, 75)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
@@ -480,7 +498,7 @@ Partial Class frmshuukei_hanbai
     Friend WithEvents chk_haiban As CheckBox
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents cbx_shain As ComboBox
-    Friend WithEvents cbx_tenpo_mei As ComboBox
+    Friend WithEvents cbx_tenpo As ComboBox
     Friend WithEvents chk_shuukei_shinai_torihikinai_tenpo As CheckBox
     Friend WithEvents btn_shousai As Button
     Friend WithEvents btn_denwa_chou As Button

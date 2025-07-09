@@ -408,12 +408,10 @@ Public Class frmshuukei_shouhin
             End If
         Next
 
-        ' TODO 数での並べ替え
-
         If hacchuu_rireki_count = 0 Then
             lbl_kekka.Text = "抽出結果：　仕入商品合計数　0　個、　売上商品合計数　0　個"
         Else
-            lbl_kekka.Text = "抽出結果：　仕入合計　" & sum_shiire.ToString("#,0") & "　個、　売上合計　" & sum_uriage.ToString("#,0") & "　個 、　在庫合計　" & sum_zaiko.ToString("#,0") & "　個         "
+            lbl_kekka.Text = "抽出結果：　仕入合計　" & sum_shiire.ToString("#,0") & "　個、　売上合計　" & sum_uriage.ToString("#,0") & "　個 、　在庫合計　" & sum_zaiko.ToString("#,0") & "　個"
         End If
 
     End Sub

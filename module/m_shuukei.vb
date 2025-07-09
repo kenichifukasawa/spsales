@@ -134,7 +134,7 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_shitei_shouhin(frm_no As Integer, shouhin_kubun_1_id As String, shouhin_kubun_2_id As String, chk_haiban As Boolean)
+    Sub set_shitei_shouhin(frm_no As Integer, shouhin_kubun_1_id As String, shouhin_kubun_2_id As String, is_haiban As Boolean)
 
         Select Case frm_no
             Case 0
@@ -166,7 +166,7 @@ Module m_shuukei
                 End If
             End If
 
-            If chk_haiban = False Then
+            If is_haiban = False Then
                 If query_where = "" Then
                     query_where = " WHERE haiban IS NULL"
                 Else
@@ -201,11 +201,11 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_tenpo_name(frm_no As Integer, chk_hihyouji_torihiki_nai As Boolean)
+    Sub set_tenpo_name(frm_no As Integer, is_hihyouji_torihiki_nai As Boolean)
 
         Select Case frm_no
             Case 1
-                frmshuukei_hanbai.cbx_tenpo_mei.Items.Clear()
+                frmshuukei_hanbai.cbx_tenpo.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -219,7 +219,7 @@ Module m_shuukei
             Dim query = "SELECT tenpoid, tenpomei FROM tenpo"
 
             Dim query_where = ""
-            If chk_hihyouji_torihiki_nai Then
+            If is_hihyouji_torihiki_nai Then
                 query_where = " WHERE kadou = '0' OR kadou IS NULL"
             End If
 
@@ -231,10 +231,10 @@ Module m_shuukei
             Dim dt_server As DataTable = ds_server.Tables("t_tenpo")
 
             For i = 0 To dt_server.Rows.Count - 1
-                Dim item_name = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+                Dim item_name = Trim(dt_server.Rows.Item(i).Item("tenpoid")) + "   " + Trim(dt_server.Rows.Item(i).Item("tenpomei"))
                 Select Case frm_no
                     Case 1
-                        frmshuukei_hanbai.cbx_tenpo_mei.Items.Add(item_name)
+                        frmshuukei_hanbai.cbx_tenpo.Items.Add(item_name)
                 End Select
             Next
 
@@ -248,7 +248,7 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_tenpo_name(frm_no As Integer, chk_hihyouji_torihiki_nai As Boolean)
+    Sub set_shain_name(frm_no As Integer)
 
         Select Case frm_no
             Case 1
@@ -271,7 +271,7 @@ Module m_shuukei
             Dim dt_server As DataTable = ds_server.Tables("t_shain")
 
             For i = 0 To dt_server.Rows.Count - 1
-                Dim item_name = Trim(dt_server.Rows.Item(i).Item("shainmei"))
+                Dim item_name = Trim(dt_server.Rows.Item(i).Item("shainid")) + "   " + Trim(dt_server.Rows.Item(i).Item("shainmei"))
                 Select Case frm_no
                     Case 1
                         frmshuukei_hanbai.cbx_shain.Items.Add(item_name)
