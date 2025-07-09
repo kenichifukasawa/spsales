@@ -5,8 +5,8 @@ Public Class frmshuukei_shouhin
     Private Sub frmshuukei_shouhin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtp_hinichi_kaishi.Value = Now.ToString("yyyy/MM/dd")
         dtp_hinichi_owari.Value = Now.ToString("yyyy/MM/dd")
-        set_gyousha_kubun()
-        set_shouhin_kubun_1()
+        set_gyousha_kubun(0)
+        set_shouhin_kubun_1(0)
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -52,17 +52,21 @@ Public Class frmshuukei_shouhin
             Exit Sub
         End If
 
-
-
     End Sub
 
     Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
-        set_shouhin_kubun_2()
-        set_shitei_shouhin()
+        Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
+        set_shouhin_kubun_2(0, shouhin_kubun_1_id)
+        Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
+        Dim is_haiban = chk_haiban.Checked
+        set_shitei_shouhin(0, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
     End Sub
 
     Private Sub cbx_shouhin_kubun_2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_2.SelectedIndexChanged
-        set_shitei_shouhin()
+        Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
+        Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
+        Dim is_haiban = chk_haiban.Checked
+        set_shitei_shouhin(0, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
     End Sub
 
     Private Sub rbn_shouhin_id_Click(sender As Object, e As EventArgs)
@@ -87,154 +91,6 @@ Public Class frmshuukei_shouhin
 
     Private Sub chk_haiban_Click(sender As Object, e As EventArgs) Handles chk_haiban.Click
         set_shouhin_shuukei()
-    End Sub
-
-    Sub set_gyousha_kubun()
-
-        cbx_gyousha_kubun.Items.Clear()
-
-        Try
-
-            Dim cn_server As New SqlConnection
-            cn_server.ConnectionString = connectionstring_sqlserver
-
-            Dim query = "SELECT * FROM shouhinkubun0 ORDER BY shouhinkubunid0"
-
-            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
-            Dim ds_server As New DataSet
-            da_server.Fill(ds_server, "t_shouhinkubun0")
-            Dim dt_server As DataTable = ds_server.Tables("t_shouhinkubun0")
-
-            For i = 0 To dt_server.Rows.Count - 1
-                cbx_gyousha_kubun.Items.Add(Trim(dt_server.Rows.Item(i).Item("shouhinkubunid0")) + "   " + Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei0")))
-            Next
-
-            dt_server.Clear()
-            ds_server.Clear()
-
-        Catch ex As Exception
-            msg_go(ex.Message)
-            Exit Sub
-        End Try
-
-    End Sub
-
-    Sub set_shouhin_kubun_1()
-
-        cbx_shouhin_kubun_1.Items.Clear()
-
-        Try
-
-            Dim cn_server As New SqlConnection
-            cn_server.ConnectionString = connectionstring_sqlserver
-
-            Dim query = "SELECT * FROM shouhinkubun ORDER BY shouhinkubunid"
-
-            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
-            Dim ds_server As New DataSet
-            da_server.Fill(ds_server, "t_shouhinkubun")
-            Dim dt_server As DataTable = ds_server.Tables("t_shouhinkubun")
-
-            For i = 0 To dt_server.Rows.Count - 1
-                cbx_shouhin_kubun_1.Items.Add(Trim(dt_server.Rows.Item(i).Item("shouhinkubunid")) + "   " + Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei")))
-            Next
-
-            dt_server.Clear()
-            ds_server.Clear()
-
-        Catch ex As Exception
-            msg_go(ex.Message)
-            Exit Sub
-        End Try
-
-    End Sub
-
-    Sub set_shouhin_kubun_2()
-
-        Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
-
-        cbx_shouhin_kubun_2.Items.Clear()
-
-        Try
-
-            Dim cn_server As New SqlConnection
-            cn_server.ConnectionString = connectionstring_sqlserver
-
-            Dim query = "SELECT * FROM shouhinkubun2 WHERE shouhinkubunid = '" & shouhin_kubun_1_id & "' ORDER BY narabe"
-
-            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
-            Dim ds_server As New DataSet
-            da_server.Fill(ds_server, "t_shouhinkubun2")
-            Dim dt_server As DataTable = ds_server.Tables("t_shouhinkubun2")
-
-            For i = 0 To dt_server.Rows.Count - 1
-                cbx_shouhin_kubun_2.Items.Add(Trim(dt_server.Rows.Item(i).Item("shouhinkubunid2")) + "   " + Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei2")))
-            Next
-
-            dt_server.Clear()
-            ds_server.Clear()
-
-        Catch ex As Exception
-            msg_go(ex.Message)
-            Exit Sub
-        End Try
-
-    End Sub
-
-    Sub set_shitei_shouhin()
-
-        Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
-        Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
-
-        cbx_shitei_shouhin.Items.Clear()
-
-        Try
-
-            Dim cn_server As New SqlConnection
-            cn_server.ConnectionString = connectionstring_sqlserver
-
-            Dim query = "SELECT * FROM shouhin"
-
-            Dim query_where = ""
-            If shouhin_kubun_1_id <> "" Then
-                query_where = " WHERE shouhinkubunid = '" + shouhin_kubun_1_id + "'"
-            End If
-
-            If shouhin_kubun_2_id <> "" Then
-                If query_where = "" Then
-                    query_where = " WHERE shouhinkubunid2 = '" + shouhin_kubun_2_id + "'"
-                Else
-                    query_where += " AND shouhinkubunid2 = '" + shouhin_kubun_2_id + "'"
-                End If
-            End If
-
-            If chk_haiban.Checked = False Then
-                If query_where = "" Then
-                    query_where = " WHERE haiban IS NULL"
-                Else
-                    query_where += " AND haiban IS NULL"
-                End If
-            End If
-
-            query += query_where + " ORDER BY shouhinid"
-
-            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
-            Dim ds_server As New DataSet
-            da_server.Fill(ds_server, "t_shouhin")
-            Dim dt_server As DataTable = ds_server.Tables("t_shouhin")
-
-            For i = 0 To dt_server.Rows.Count - 1
-                cbx_shitei_shouhin.Items.Add(Trim(dt_server.Rows.Item(i).Item("shouhinid")) + "   " + Trim(dt_server.Rows.Item(i).Item("shouhinmei")))
-            Next
-
-            dt_server.Clear()
-            ds_server.Clear()
-
-        Catch ex As Exception
-            msg_go(ex.Message)
-            Exit Sub
-        End Try
-
     End Sub
 
     Private Sub set_shouhin_shuukei()
