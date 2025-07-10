@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Net
+Imports System.Text
 Imports System.Xml
 
 Module m_main
@@ -273,6 +274,73 @@ errsetting:
         Dim int_tsuki As Integer = CInt(tsuki)
         Dim tsuki_saishuubi As Integer = DateTime.DaysInMonth(int_nen, int_tsuki)
         Return tsuki_saishuubi.ToString("D2")
+
+    End Function
+
+    Function output_csv_by_data_grid_view(filePath As String, dataGridView As DataGridView, Optional columnsToExport As String() = Nothing) As Boolean
+
+        ' columnsToExportを指定しなければ、DataGridViewのものがそのまま入る
+
+        If columnsToExport Is Nothing Then
+            columnsToExport = dataGridView.Columns.Cast(Of DataGridViewColumn)().Select(Function(c) c.Name.Replace(vbCrLf, "")).ToArray()
+        End If
+
+        Try
+            ' Shift-JIS で出力（Excel のデフォルトエンコーディング）
+            Using sw As New StreamWriter(filePath, False, Encoding.GetEncoding("Shift_JIS"))
+                ' ヘッダーを書き込む
+                Dim header As String = String.Join(",", columnsToExport)
+                sw.WriteLine(header)
+
+                ' 行データを書き込む
+                For Each row As DataGridViewRow In dataGridView.Rows
+                    If Not row.IsNewRow Then
+                        Dim line As String = String.Join(",", columnsToExport.Select(
+                                                         Function(col)
+                                                             ' DataGridView の列名も同じ処理を適用して検索
+                                                             Dim column As DataGridViewColumn = dataGridView.Columns.Cast(Of DataGridViewColumn)().FirstOrDefault(Function(c) c.Name.Replace(vbCrLf, "") = col)
+                                                             If column IsNot Nothing Then
+                                                                 Dim cellObj As Object = row.Cells(column.Index).Value
+                                                                 Dim cellValue As String = ""
+                                                                 If cellObj IsNot Nothing Then
+                                                                     ' カラム型またはセル値型が数値型ならカンマ区切り
+                                                                     Dim isNumberType As Boolean =
+                                                                         (column.ValueType IsNot Nothing AndAlso
+                                                                          (column.ValueType Is GetType(Integer) OrElse
+                                                                           column.ValueType Is GetType(Int64) OrElse
+                                                                           column.ValueType Is GetType(Double) OrElse
+                                                                           column.ValueType Is GetType(Decimal) OrElse
+                                                                           column.ValueType Is GetType(Single))) OrElse
+                                                                         (TypeOf cellObj Is Integer OrElse
+                                                                          TypeOf cellObj Is Int64 OrElse
+                                                                          TypeOf cellObj Is Double OrElse
+                                                                          TypeOf cellObj Is Decimal OrElse
+                                                                          TypeOf cellObj Is Single)
+                                                                     If isNumberType Then
+                                                                         cellValue = Convert.ToDecimal(cellObj).ToString("#,0")
+                                                                     Else
+                                                                         cellValue = cellObj.ToString()
+                                                                     End If
+                                                                     Return $"""{cellValue.Replace("""", """""")}"""
+                                                                 Else
+                                                                     Return """"""
+                                                                 End If
+                                                             Else
+                                                                 Return """"""
+                                                             End If
+                                                         End Function))
+                        sw.WriteLine(line)
+                    End If
+                Next
+
+            End Using
+
+        Catch ex As Exception
+            msg_go("CSVファイル作成中にエラーが発生しました: " & ex.Message)
+            Return False
+        End Try
+
+        Return True
 
     End Function
 

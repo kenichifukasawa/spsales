@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
+Imports System.Text
 
 Public Class frmshuukei_hanbai
 
@@ -11,13 +13,6 @@ Public Class frmshuukei_hanbai
         set_shouhin_kubun_1(1)
         set_tenpo_name(1, chk_hihyouji_torihiki_nai.Checked)
         set_shain_name(1)
-
-#If DEBUG Then ' TODO:Debug
-        dtp_hinichi_kaishi.Value = Now.ToString("2025/05/01")
-        dtp_hinichi_owari.Value = Now.ToString("2025/05/31")
-        cbx_gyousha_kubun.SelectedIndex = 0
-        cbx_shain.SelectedIndex = 3
-#End If
 
     End Sub
 
@@ -173,9 +168,20 @@ Public Class frmshuukei_hanbai
 
     Private Sub btn_csv_Click(sender As Object, e As EventArgs) Handles btn_csv.Click
 
-        ' TODO
-        msg_go("未開発。frmmainの電話帳をコピーする。")
-        Exit Sub
+        Dim dataGridView = dgv_kensakukekka
+
+        If dataGridView.Rows.Count = 0 Then
+            msg_go("抽出結果が表示されていません。")
+            Exit Sub
+        End If
+
+        Dim filePath As String = DESKTOP_PATH + "\販売集計結果_" & Now.ToString("yyyyMMdd") & "-" & Now.ToString("hhmm") & ".csv"
+
+        Dim columnsToExport As String() = {"NO", "店舗名", "商品名", "数量", "金額"}
+
+        If output_csv_by_data_grid_view(filePath, dataGridView, columnsToExport) Then
+            msg_go("デスクトップにCSVファイルを作成しました。", 64)
+        End If
 
     End Sub
 
@@ -193,6 +199,10 @@ Public Class frmshuukei_hanbai
     End Sub
 
     Private Sub btn_denwa_chou_Click(sender As Object, e As EventArgs) Handles btn_denwa_chou.Click
+
+        ' TODO
+        msg_go("未開発。frmmainの電話帳をコピーする。")
+        Exit Sub
 
     End Sub
 
