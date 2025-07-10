@@ -43,10 +43,10 @@ Partial Class frmmain
         Me.dgv_log = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btn_denpyou_henkou = New System.Windows.Forms.Button()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
         Me.btn_seikyuu_nyuukin_shousai = New System.Windows.Forms.Button()
-        Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
+        Me.dgv_seikyuusho = New System.Windows.Forms.DataGridView()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.lblhasuu = New System.Windows.Forms.Label()
@@ -155,9 +155,9 @@ Partial Class frmmain
         Me.GroupBox11.SuspendLayout()
         CType(Me.dgv_log, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox20.SuspendLayout()
         CType(Me.dgv_nouhinsho, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox20.SuspendLayout()
+        CType(Me.dgv_seikyuusho, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox15.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -400,7 +400,7 @@ Partial Class frmmain
         Me.GroupBox11.Controls.Add(Me.Button1)
         Me.GroupBox11.Controls.Add(Me.dgv_log)
         Me.GroupBox11.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox11.Location = New System.Drawing.Point(8, 592)
+        Me.GroupBox11.Location = New System.Drawing.Point(8, 553)
         Me.GroupBox11.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox11.Name = "GroupBox11"
         Me.GroupBox11.Padding = New System.Windows.Forms.Padding(2)
@@ -441,7 +441,7 @@ Partial Class frmmain
         '
         Me.GroupBox3.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox3.Controls.Add(Me.btn_denpyou_henkou)
-        Me.GroupBox3.Controls.Add(Me.DataGridView1)
+        Me.GroupBox3.Controls.Add(Me.dgv_nouhinsho)
         Me.GroupBox3.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(8, 849)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
@@ -457,7 +457,7 @@ Partial Class frmmain
         Me.btn_denpyou_henkou.BackColor = System.Drawing.Color.MistyRose
         Me.btn_denpyou_henkou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_denpyou_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_denpyou_henkou.Location = New System.Drawing.Point(536, 80)
+        Me.btn_denpyou_henkou.Location = New System.Drawing.Point(537, 80)
         Me.btn_denpyou_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denpyou_henkou.Name = "btn_denpyou_henkou"
         Me.btn_denpyou_henkou.Size = New System.Drawing.Size(85, 37)
@@ -465,32 +465,32 @@ Partial Class frmmain
         Me.btn_denpyou_henkou.Text = "変更"
         Me.btn_denpyou_henkou.UseVisualStyleBackColor = False
         '
-        'DataGridView1
+        'dgv_nouhinsho
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(13, 18)
-        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(2)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(514, 99)
-        Me.DataGridView1.TabIndex = 66
+        Me.dgv_nouhinsho.AllowUserToAddRows = False
+        Me.dgv_nouhinsho.AllowUserToDeleteRows = False
+        Me.dgv_nouhinsho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_nouhinsho.Location = New System.Drawing.Point(13, 18)
+        Me.dgv_nouhinsho.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_nouhinsho.MultiSelect = False
+        Me.dgv_nouhinsho.Name = "dgv_nouhinsho"
+        Me.dgv_nouhinsho.ReadOnly = True
+        Me.dgv_nouhinsho.RowTemplate.Height = 24
+        Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_nouhinsho.Size = New System.Drawing.Size(514, 99)
+        Me.dgv_nouhinsho.TabIndex = 66
         '
         'GroupBox20
         '
         Me.GroupBox20.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox20.Controls.Add(Me.btn_seikyuu_nyuukin_shousai)
-        Me.GroupBox20.Controls.Add(Me.dgv_nouhinsho)
+        Me.GroupBox20.Controls.Add(Me.dgv_seikyuusho)
         Me.GroupBox20.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox20.Location = New System.Drawing.Point(8, 720)
+        Me.GroupBox20.Location = New System.Drawing.Point(8, 681)
         Me.GroupBox20.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox20.Name = "GroupBox20"
         Me.GroupBox20.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox20.Size = New System.Drawing.Size(630, 124)
+        Me.GroupBox20.Size = New System.Drawing.Size(630, 163)
         Me.GroupBox20.TabIndex = 218
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "請求・入金情報"
@@ -500,7 +500,7 @@ Partial Class frmmain
         Me.btn_seikyuu_nyuukin_shousai.BackColor = System.Drawing.Color.MistyRose
         Me.btn_seikyuu_nyuukin_shousai.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_seikyuu_nyuukin_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_seikyuu_nyuukin_shousai.Location = New System.Drawing.Point(537, 77)
+        Me.btn_seikyuu_nyuukin_shousai.Location = New System.Drawing.Point(537, 122)
         Me.btn_seikyuu_nyuukin_shousai.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_seikyuu_nyuukin_shousai.Name = "btn_seikyuu_nyuukin_shousai"
         Me.btn_seikyuu_nyuukin_shousai.Size = New System.Drawing.Size(85, 37)
@@ -508,20 +508,20 @@ Partial Class frmmain
         Me.btn_seikyuu_nyuukin_shousai.Text = "詳細"
         Me.btn_seikyuu_nyuukin_shousai.UseVisualStyleBackColor = False
         '
-        'dgv_nouhinsho
+        'dgv_seikyuusho
         '
-        Me.dgv_nouhinsho.AllowUserToAddRows = False
-        Me.dgv_nouhinsho.AllowUserToDeleteRows = False
-        Me.dgv_nouhinsho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_nouhinsho.Location = New System.Drawing.Point(13, 15)
-        Me.dgv_nouhinsho.Margin = New System.Windows.Forms.Padding(2)
-        Me.dgv_nouhinsho.MultiSelect = False
-        Me.dgv_nouhinsho.Name = "dgv_nouhinsho"
-        Me.dgv_nouhinsho.ReadOnly = True
-        Me.dgv_nouhinsho.RowTemplate.Height = 24
-        Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv_nouhinsho.Size = New System.Drawing.Size(514, 99)
-        Me.dgv_nouhinsho.TabIndex = 66
+        Me.dgv_seikyuusho.AllowUserToAddRows = False
+        Me.dgv_seikyuusho.AllowUserToDeleteRows = False
+        Me.dgv_seikyuusho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_seikyuusho.Location = New System.Drawing.Point(13, 15)
+        Me.dgv_seikyuusho.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_seikyuusho.MultiSelect = False
+        Me.dgv_seikyuusho.Name = "dgv_seikyuusho"
+        Me.dgv_seikyuusho.ReadOnly = True
+        Me.dgv_seikyuusho.RowTemplate.Height = 24
+        Me.dgv_seikyuusho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_seikyuusho.Size = New System.Drawing.Size(514, 144)
+        Me.dgv_seikyuusho.TabIndex = 66
         '
         'GroupBox13
         '
@@ -570,7 +570,7 @@ Partial Class frmmain
         Me.GroupBox13.Controls.Add(Me.lbltenpoid)
         Me.GroupBox13.Location = New System.Drawing.Point(8, 65)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(630, 522)
+        Me.GroupBox13.Size = New System.Drawing.Size(630, 485)
         Me.GroupBox13.TabIndex = 68
         Me.GroupBox13.TabStop = False
         '
@@ -831,7 +831,7 @@ Partial Class frmmain
         Me.GroupBox15.Controls.Add(Me.lblbikou)
         Me.GroupBox15.Location = New System.Drawing.Point(10, 348)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(612, 168)
+        Me.GroupBox15.Size = New System.Drawing.Size(612, 132)
         Me.GroupBox15.TabIndex = 90
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "備考"
@@ -842,7 +842,7 @@ Partial Class frmmain
         Me.lblbikou.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lblbikou.Location = New System.Drawing.Point(10, 18)
         Me.lblbikou.Name = "lblbikou"
-        Me.lblbikou.Size = New System.Drawing.Size(596, 147)
+        Me.lblbikou.Size = New System.Drawing.Size(596, 104)
         Me.lblbikou.TabIndex = 84
         '
         'Label46
@@ -1727,9 +1727,9 @@ Partial Class frmmain
         Me.GroupBox11.ResumeLayout(False)
         CType(Me.dgv_log, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox20.ResumeLayout(False)
         CType(Me.dgv_nouhinsho, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox20.ResumeLayout(False)
+        CType(Me.dgv_seikyuusho, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox13.ResumeLayout(False)
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
@@ -1765,7 +1765,7 @@ Partial Class frmmain
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox20 As GroupBox
-    Friend WithEvents dgv_nouhinsho As DataGridView
+    Friend WithEvents dgv_seikyuusho As DataGridView
     Friend WithEvents GroupBox13 As GroupBox
     Friend WithEvents Label6 As Label
     Friend WithEvents lblzenkaiseikyuubi As Label
@@ -1815,7 +1815,7 @@ Partial Class frmmain
     Friend WithEvents btn_tenpo_denwachou As Button
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents btn_insatsu As Button
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dgv_nouhinsho As DataGridView
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents TabControl1 As TabControl

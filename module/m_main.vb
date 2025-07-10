@@ -107,6 +107,128 @@ Module m_main
     End Sub
     Sub tenpo_seikyuurireki_set(s_tenpoid As String)
 
+        Try
+
+            Dim cn_server As New SqlConnection
+
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+
+            Sql = "SELECT * FROM seikyuusho" &
+                    " where tenpoid='" & s_tenpoid & "' ORDER BY hiduke DESC,seikyuushoid DESC"
+
+
+            Dim da_server As SqlDataAdapter
+
+            da_server = New SqlDataAdapter(Sql, cn_server)
+
+            Dim ds_server As New DataSet
+
+            da_server.Fill(ds_server, "t_shoukaii")
+
+            Dim dt_server As DataTable
+
+            dt_server = ds_server.Tables("t_shoukaii")
+
+            Dim mojiretsu(7) As String
+
+            With frmmain.dgv_seikyuusho
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 7
+                .Columns(0).Name = "日時"
+                .Columns(1).Name = "伝票NO"
+                .Columns(2).Name = "内容"
+                .Columns(3).Name = "金額"
+                .Columns(4).Name = "消費税"
+                .Columns(5).Name = "備考"
+                .Columns(6).Name = "インボイス"
+                .Columns(0).Width = 90
+                .Columns(1).Width = 90
+                .Columns(2).Width = 100
+                .Columns(3).Width = 90
+                .Columns(4).Width = 0
+                .Columns(5).Width = 100
+                .Columns(6).Width = 0
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+                '列ヘッダーの高さを変える
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 25
+
+                ' 奇数行の既定セル・スタイルの背景色を設定
+                .AlternatingRowsDefaultCellStyle.BackColor _
+                                                        = Color.LightBlue
+            End With
+
+            Dim s_kin As Decimal
+
+            For i = 0 To dt_server.Rows.Count - 1
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("seikyuushoid"))
+                mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 7, 2)
+
+                If Trim(dt_server.Rows.Item(i).Item("seikyuu_st")) = "0" Then
+                    mojiretsu(2) = "請求"
+                Else
+                    mojiretsu(2) = "入金"
+                    Select Case Trim(dt_server.Rows.Item(i).Item("seikyuutanni"))
+                        Case "0"
+                            mojiretsu(2) = mojiretsu(2) & " (現金)"
+                        Case "1"
+                            mojiretsu(2) = mojiretsu(2) & " (振込)"
+                        Case "2"
+                            mojiretsu(2) = mojiretsu(2) & " (小切手)"
+                        Case "3"
+                            mojiretsu(2) = mojiretsu(2) & " (相殺)"
+                        Case "4"
+                            mojiretsu(2) = mojiretsu(2) & " (手数料)"
+                        Case "5"
+                            mojiretsu(2) = mojiretsu(2) & " (値引)"
+                        Case "6"
+                            mojiretsu(2) = mojiretsu(2) & " (その他)"
+                        Case "7"
+                            mojiretsu(2) = mojiretsu(2) & " (クレジット)"
+                        Case Else
+                            mojiretsu(2) = "エラー"
+                    End Select
+                End If
+
+                s_kin = dt_server.Rows.Item(i).Item("seikyuukingaku")
+                mojiretsu(3) = s_kin.ToString("#,##0")
+
+                s_kin = dt_server.Rows.Item(i).Item("shouhizei")
+                mojiretsu(4) = s_kin.ToString("#,##0")
+
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("seikyuubikou")) Then
+                    mojiretsu(5) = ""
+                Else
+                    mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("seikyuubikou"))
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("invoice")) Then
+                    mojiretsu(7) = ""
+                Else
+                    mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("invoice"))
+                End If
+
+
+                frmmain.dgv_seikyuusho.Rows.Add(mojiretsu)
+            Next i
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+
+        End Try
+
     End Sub
 
     Sub tenpo_log_set(s_tenpoid As String)
