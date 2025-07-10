@@ -50,7 +50,6 @@ Public Class frmshuukei_hanbai
 
         With frmshuukei_hanbai_shousai
 
-            .lbl_tenpo_mei.Text = ""
             .lbl_shouhin_mei.Text = shouhin_name
             .lbl_kosuu.Text = CInt(suuryou).ToString("#,0") + "個"
             .lbl_kingaku.Text = CInt(kingaku).ToString("#,0") + "円"
@@ -193,6 +192,14 @@ Public Class frmshuukei_hanbai
 
     End Sub
 
+    Private Sub dtp_hinichi_kaishi_TextChanged(sender As Object, e As EventArgs) Handles dtp_hinichi_kaishi.TextChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
+    Private Sub dtp_hinichi_owari_TextChanged(sender As Object, e As EventArgs) Handles dtp_hinichi_owari.TextChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
     Private Sub cbx_tenpo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tenpo.SelectedIndexChanged
         dgv_kensakukekka.Rows.Clear()
     End Sub
@@ -227,11 +234,13 @@ Public Class frmshuukei_hanbai
     End Sub
 
     Private Sub chk_hihyouji_torihiki_nai_Click(sender As Object, e As EventArgs) Handles chk_hihyouji_torihiki_nai.Click
+        dgv_kensakukekka.Rows.Clear()
         set_tenpo_name(1, chk_hihyouji_torihiki_nai.Checked)
     End Sub
 
     Private Sub chk_haiban_Click(sender As Object, e As EventArgs) Handles chk_haiban.Click
         dgv_kensakukekka.Rows.Clear()
+        set_shouhin_kubun_1(1)
     End Sub
 
     Private Sub chk_shuukei_shinai_torihikinai_tenpo_Click(sender As Object, e As EventArgs) Handles chk_shuukei_shinai_torihikinai_tenpo.Click
@@ -286,7 +295,7 @@ Public Class frmshuukei_hanbai
             .ColumnCount = 7
 
             .Columns(0).Name = "NO"
-            .Columns(1).Name = "サロン名"
+            .Columns(1).Name = "店舗名"
             .Columns(2).Name = "商品名"
             .Columns(3).Name = "数量"
             .Columns(4).Name = "金額"
