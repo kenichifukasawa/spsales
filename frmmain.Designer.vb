@@ -40,7 +40,7 @@ Partial Class frmmain
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
+        Me.dgv_log = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btn_denpyou_henkou = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -153,7 +153,7 @@ Partial Class frmmain
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgv_log, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox20.SuspendLayout()
@@ -398,7 +398,7 @@ Partial Class frmmain
         '
         Me.GroupBox11.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox11.Controls.Add(Me.Button1)
-        Me.GroupBox11.Controls.Add(Me.DataGridView3)
+        Me.GroupBox11.Controls.Add(Me.dgv_log)
         Me.GroupBox11.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox11.Location = New System.Drawing.Point(8, 592)
         Me.GroupBox11.Margin = New System.Windows.Forms.Padding(2)
@@ -422,20 +422,20 @@ Partial Class frmmain
         Me.Button1.Text = "登録"
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'DataGridView3
+        'dgv_log
         '
-        Me.DataGridView3.AllowUserToAddRows = False
-        Me.DataGridView3.AllowUserToDeleteRows = False
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Location = New System.Drawing.Point(13, 15)
-        Me.DataGridView3.Margin = New System.Windows.Forms.Padding(2)
-        Me.DataGridView3.MultiSelect = False
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.ReadOnly = True
-        Me.DataGridView3.RowTemplate.Height = 24
-        Me.DataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView3.Size = New System.Drawing.Size(514, 99)
-        Me.DataGridView3.TabIndex = 66
+        Me.dgv_log.AllowUserToAddRows = False
+        Me.dgv_log.AllowUserToDeleteRows = False
+        Me.dgv_log.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_log.Location = New System.Drawing.Point(13, 15)
+        Me.dgv_log.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_log.MultiSelect = False
+        Me.dgv_log.Name = "dgv_log"
+        Me.dgv_log.ReadOnly = True
+        Me.dgv_log.RowTemplate.Height = 24
+        Me.dgv_log.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_log.Size = New System.Drawing.Size(514, 99)
+        Me.dgv_log.TabIndex = 66
         '
         'GroupBox3
         '
@@ -1725,7 +1725,7 @@ Partial Class frmmain
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox11.ResumeLayout(False)
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgv_log, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox20.ResumeLayout(False)
@@ -1880,5 +1880,5 @@ Partial Class frmmain
     Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents GroupBox11 As GroupBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents DataGridView3 As DataGridView
+    Friend WithEvents dgv_log As DataGridView
 End Class
