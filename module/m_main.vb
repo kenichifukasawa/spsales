@@ -39,6 +39,507 @@ Module m_main
     Public s_mailadress As String = ""
     Public s_mailadress_cc() As String
 
+    Function setting2(id As Integer, ByVal docchi As Integer, ByVal retsu As String, ByVal newid As String) As String
+
+        '******* サーバの設定を参照・更新　*********
+
+        Dim cn_setting2 As New SqlConnection
+        Dim da_setting2 As New SqlDataAdapter
+        Dim ds_setting2 As New DataSet
+        Dim dt_setting2 As DataTable
+        Dim cmdbuilder As New SqlCommandBuilder
+        Dim mojiretsu_setting2 As String
+
+
+        Try
+
+
+
+            cn_setting2.ConnectionString = connectionstring_sqlserver
+
+            Sql = "select * from settei where id ='" & retsu & "'"
+            setting2 = "0"
+
+
+            da_setting2 = New SqlDataAdapter(Sql, cn_setting2)
+
+            da_setting2.Fill(ds_setting2, "t_settei2")
+
+            If docchi = 0 Then '読み込み
+
+                dt_setting2 = ds_setting2.Tables("t_settei2")
+
+                mojiretsu_setting2 = dt_setting2.Rows(0)(id)
+
+                setting2 = mojiretsu_setting2
+
+            Else '書き込み
+                ds_setting2.Tables("t_settei2").Rows(0)(id) = newid
+
+                cmdbuilder.DataAdapter = da_setting2
+
+                da_setting2.Update(ds_setting2, "t_settei2")
+            End If
+            ds_setting2.Clear()
+            Exit Function
+
+
+        Catch ex As Exception
+            setting2 = "-1"
+            msg_go("設定を参照できませんでした：" & ex.Message)
+        End Try
+
+    End Function
+
+    Sub mainset(s_tenpoid As String)
+
+        tenpo_main_set(s_tenpoid)
+
+        tenpo_hachuurireki_set(s_tenpoid)
+
+        tenpo_seikyuurireki_set(s_tenpoid)
+
+        tenpo_log_set(s_tenpoid)
+
+
+    End Sub
+    Sub tenpo_hachuurireki_set(s_tenpoid As String)
+
+        Try
+
+            Dim cn_server As New SqlConnection
+
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+
+            Sql = "SELECT hacchuu.*,shain.ryakumei" &
+                    " FROM hacchuu right join shain" &
+                    " on hacchuu.shainid=shain.shainid" &
+                    " where tenpoid='" & s_tenpoid & "'and joukyou='0' ORDER BY iraibi DESC"
+
+
+            Dim da_server As SqlDataAdapter
+
+            da_server = New SqlDataAdapter(Sql, cn_server)
+
+            Dim ds_server As New DataSet
+
+            da_server.Fill(ds_server, "t_shoukaii")
+
+            Dim dt_server As DataTable
+
+            dt_server = ds_server.Tables("t_shoukaii")
+
+            Dim mojiretsu(5) As String
+
+            With frmmain.dgv_nouhinsho
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 5
+                .Columns(0).Name = "納品日"
+                .Columns(1).Name = "伝票NO"
+                .Columns(2).Name = "金額"
+                .Columns(3).Name = "社員名"
+                .Columns(4).Name = "納品書ID"
+                .Columns(0).Width = 90
+                .Columns(1).Width = 90
+                .Columns(2).Width = 90
+                .Columns(3).Width = 80
+                .Columns(4).Width = 100
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+                '列ヘッダーの高さを変える
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 25
+
+                ' 奇数行の既定セル・スタイルの背景色を設定
+                .AlternatingRowsDefaultCellStyle.BackColor _
+                                                        = Color.LightBlue
+            End With
+
+            Dim s_kin As Decimal
+
+            For i = 0 To dt_server.Rows.Count - 1
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
+                mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 7, 2)
+
+
+
+                s_kin = dt_server.Rows.Item(i).Item("goukei")
+                mojiretsu(2) = s_kin.ToString("#,##0")
+
+                mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("shainid")) & " " & Trim(dt_server.Rows.Item(i).Item("ryakumei"))
+
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("nouhinshoid")) Then
+                    mojiretsu(4) = ""
+                Else
+                    mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
+                End If
+
+
+
+                frmmain.dgv_nouhinsho.Rows.Add(mojiretsu)
+            Next i
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+
+        End Try
+
+    End Sub
+    Sub tenpo_seikyuurireki_set(s_tenpoid As String)
+
+        Try
+
+            Dim cn_server As New SqlConnection
+
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+
+            Sql = "SELECT * FROM seikyuusho" &
+                    " where tenpoid='" & s_tenpoid & "' ORDER BY hiduke DESC,seikyuushoid DESC"
+
+
+            Dim da_server As SqlDataAdapter
+
+            da_server = New SqlDataAdapter(Sql, cn_server)
+
+            Dim ds_server As New DataSet
+
+            da_server.Fill(ds_server, "t_shoukaii")
+
+            Dim dt_server As DataTable
+
+            dt_server = ds_server.Tables("t_shoukaii")
+
+            Dim mojiretsu(7) As String
+
+            With frmmain.dgv_seikyuusho
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 7
+                .Columns(0).Name = "日時"
+                .Columns(1).Name = "伝票NO"
+                .Columns(2).Name = "内容"
+                .Columns(3).Name = "金額"
+                .Columns(4).Name = "消費税"
+                .Columns(5).Name = "備考"
+                .Columns(6).Name = "インボイス"
+                .Columns(0).Width = 90
+                .Columns(1).Width = 90
+                .Columns(2).Width = 100
+                .Columns(3).Width = 90
+                .Columns(4).Width = 0
+                .Columns(5).Width = 100
+                .Columns(6).Width = 0
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+                '列ヘッダーの高さを変える
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 25
+
+                ' 奇数行の既定セル・スタイルの背景色を設定
+                .AlternatingRowsDefaultCellStyle.BackColor _
+                                                        = Color.LightBlue
+            End With
+
+            Dim s_kin As Decimal
+
+            For i = 0 To dt_server.Rows.Count - 1
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("seikyuushoid"))
+                mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 7, 2)
+
+                If Trim(dt_server.Rows.Item(i).Item("seikyuu_st")) = "0" Then
+                    mojiretsu(2) = "請求"
+                Else
+                    mojiretsu(2) = "入金"
+                    Select Case Trim(dt_server.Rows.Item(i).Item("seikyuutanni"))
+                        Case "0"
+                            mojiretsu(2) = mojiretsu(2) & " (現金)"
+                        Case "1"
+                            mojiretsu(2) = mojiretsu(2) & " (振込)"
+                        Case "2"
+                            mojiretsu(2) = mojiretsu(2) & " (小切手)"
+                        Case "3"
+                            mojiretsu(2) = mojiretsu(2) & " (相殺)"
+                        Case "4"
+                            mojiretsu(2) = mojiretsu(2) & " (手数料)"
+                        Case "5"
+                            mojiretsu(2) = mojiretsu(2) & " (値引)"
+                        Case "6"
+                            mojiretsu(2) = mojiretsu(2) & " (その他)"
+                        Case "7"
+                            mojiretsu(2) = mojiretsu(2) & " (クレジット)"
+                        Case Else
+                            mojiretsu(2) = "エラー"
+                    End Select
+                End If
+
+                s_kin = dt_server.Rows.Item(i).Item("seikyuukingaku")
+                mojiretsu(3) = s_kin.ToString("#,##0")
+
+                s_kin = dt_server.Rows.Item(i).Item("shouhizei")
+                mojiretsu(4) = s_kin.ToString("#,##0")
+
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("seikyuubikou")) Then
+                    mojiretsu(5) = ""
+                Else
+                    mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("seikyuubikou"))
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("invoice")) Then
+                    mojiretsu(7) = ""
+                Else
+                    mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("invoice"))
+                End If
+
+
+                frmmain.dgv_seikyuusho.Rows.Add(mojiretsu)
+            Next i
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+
+        End Try
+
+    End Sub
+
+    Sub tenpo_log_set(s_tenpoid As String)
+
+    End Sub
+
+
+    Sub tenpo_main_set(s_tenpoid As String)
+
+        Try
+
+            Dim cn_server As New SqlConnection
+
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Sql = "SELECT tenpo.*, MAILNO_M.ADRESS1, shain.shainmei" &
+                " FROM shain RIGHT JOIN (MAILNO_M RIGHT JOIN tenpo ON MAILNO_M.MAILNO = tenpo.mailno)" &
+                " ON shain.shainid = tenpo.shainid" &
+                " WHERE tenpo.tenpoid = '" & s_tenpoid & "'"
+
+
+            Dim da_server As SqlDataAdapter
+
+            da_server = New SqlDataAdapter(Sql, cn_server)
+
+            Dim ds_server As New DataSet
+
+            da_server.Fill(ds_server, "t_shoukaii")
+
+            Dim dt_server As DataTable
+
+            dt_server = ds_server.Tables("t_shoukaii")
+
+
+            'With frmmain.dgv_voip
+
+            '    .Rows.Clear()
+            '    .Columns.Clear()
+            '    .ColumnCount = 3
+            '    .Columns(0).Name = "番号"
+            '    .Columns(1).Name = "契約日"
+            '    .Columns(2).Name = ""
+            '    .Columns(0).Width = 100
+            '    .Columns(1).Width = 100
+            '    .Columns(2).Width = 0
+
+            '    .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            'End With
+
+
+            Dim mojiretsu(3) As String
+
+            If dt_server.Rows.Count <> 0 Then
+                With frmmain
+                    .lbltenpoid.Text = Trim(dt_server.Rows.Item(0).Item("tenpoid"))
+                    .lbltenpomei.Text = Trim(dt_server.Rows.Item(0).Item("tenpomei"))
+                    If IsDBNull(dt_server.Rows.Item(0).Item("tenpofurigana")) Then
+                        .lblfurigana.Text = ""
+                    Else
+                        .lblfurigana.Text = Trim(dt_server.Rows.Item(0).Item("tenpofurigana"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("insatsumei")) Then
+                        .lblinsatsumeishou.Text = ""
+                    Else
+                        .lblinsatsumeishou.Text = Trim(dt_server.Rows.Item(0).Item("insatsumei"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("mailno")) Then
+                        .lblyuubin.Text = ""
+                    Else
+                        .lblyuubin.Text = Trim(dt_server.Rows.Item(0).Item("mailno"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("adress1")) Then
+                        .lbljuusho.Text = ""
+                    Else
+                        .lbljuusho.Text = Trim(dt_server.Rows.Item(0).Item("adress1"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("tenpoadress")) Then
+                        '.lbljuusho.Text = ""
+                    Else
+                        .lbljuusho.Text = Trim(.lbljuusho.Text) & Trim(dt_server.Rows.Item(0).Item("tenpoadress"))
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("tel")) Then
+                        .lbltel1.Text = ""
+                    Else
+                        .lbltel1.Text = Trim(dt_server.Rows.Item(0).Item("tel"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("keitai")) Then
+                        .lblkeitai.Text = ""
+                    Else
+                        .lblkeitai.Text = Trim(dt_server.Rows.Item(0).Item("keitai"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("fax")) Then
+                        .lblfax.Text = ""
+                    Else
+                        .lblfax.Text = Trim(dt_server.Rows.Item(0).Item("fax"))
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("daihyou")) Then
+                        .lbldaihyousha.Text = ""
+                    Else
+                        .lbldaihyousha.Text = Trim(dt_server.Rows.Item(0).Item("daihyou"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("tantou")) Then
+                        .lbltantousha.Text = ""
+                    Else
+                        .lbltantousha.Text = Trim(dt_server.Rows.Item(0).Item("tantou"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("juugyouinsuu")) Then
+                        .lbljuugyouinsuu.Text = ""
+                    Else
+                        .lbljuugyouinsuu.Text = Trim(dt_server.Rows.Item(0).Item("juugyouinsuu"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("email")) Then
+                        .lblemail.Text = ""
+                    Else
+                        .lblemail.Text = Trim(dt_server.Rows.Item(0).Item("email"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("url")) Then
+                        .lblurl.Text = ""
+                    Else
+                        .lblurl.Text = Trim(dt_server.Rows.Item(0).Item("url"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("shimebi")) Then
+                        .lblshimebi.Text = ""
+                    Else
+                        Select Case Trim(dt_server.Rows.Item(0).Item("shimebi"))
+                            Case "0"
+                                .lblshimebi.Text = "５日"
+                            Case "1"
+                                .lblshimebi.Text = "１０日"
+                            Case "2"
+                                .lblshimebi.Text = "１５日"
+                            Case "3"
+                                .lblshimebi.Text = "２０日"
+                            Case "4"
+                                .lblshimebi.Text = "２５日"
+                            Case "5"
+                                .lblshimebi.Text = "月末"
+                            Case "6"
+                                .lblshimebi.Text = "随時"
+                            Case Else
+                                .lblshimebi.Text = "エラー"
+                        End Select
+                    End If
+
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("souhasuu")) Then
+                        .lblkeisanhouhou.Text = ""
+                    Else
+                        Select Case Trim(dt_server.Rows.Item(0).Item("souhasuu"))
+                            Case "0"
+                                .lblkeisanhouhou.Text = "請求書毎"
+                            Case "1"
+                                .lblkeisanhouhou.Text = "納品書毎"
+                            Case Else
+                                .lblkeisanhouhou.Text = "エラー"
+                        End Select
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("zeihasuu")) Then
+                        .lblhasuu.Text = ""
+                    Else
+                        Select Case Trim(dt_server.Rows.Item(0).Item("zeihasuu"))
+                            Case "0"
+                                .lblhasuu.Text = "切り捨て"
+                            Case "1"
+                                .lblhasuu.Text = "四捨五入"
+                            Case "2"
+                                .lblhasuu.Text = "切り上げ"
+                            Case Else
+                                .lblhasuu.Text = "エラー"
+                        End Select
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("kubun")) Then
+                        .lblkubun.Text = ""
+                    Else
+                        Select Case Trim(dt_server.Rows.Item(0).Item("kubun"))
+                            Case "0"
+                                .lblkubun.Text = "会社単位"
+                            Case "1"
+                                .lblkubun.Text = "店舗単位"
+                            Case "2"
+                                .lblkubun.Text = "いろいろ"
+                            Case Else
+                                .lblkubun.Text = "エラー"
+                        End Select
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("bikou")) Then
+                        .lblbikou.Text = ""
+                    Else
+                        .lblbikou.Text = Trim(dt_server.Rows.Item(0).Item("bikou"))
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("kurikoshi")) Then
+                        .lblkurikoshikingaku.Text = ""
+                    Else
+                        .lblkurikoshikingaku.Text = Trim(dt_server.Rows.Item(0).Item("kurikoshi"))
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("seikyuubi")) Then
+                        .lblzenkaiseikyuubi.Text = ""
+                    Else
+                        .lblzenkaiseikyuubi.Text = Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 7, 2)
+                    End If
+
+
+                End With
+            End If
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+
+        End Try
+
+
+    End Sub
+
     Public Function SendMail(s_from As String, ByVal strMailAdr() As String,
                             Optional ByVal strMailCC() As String = Nothing,
                             Optional ByVal strMailSubject As String = "",
