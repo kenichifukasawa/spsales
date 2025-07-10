@@ -277,7 +277,7 @@ Public Class frmkensaku
 
                 ElseIf .rnouhinshono.Checked = True Then
                     If Trim(.txtnouhinshono.Text) <> "" Then
-                        sql_moji = "nhkno = '" & Trim(.txtnouhinshono.Text) & "'"
+                        sql_moji = Trim(.txtnouhinshono.Text)
                     Else
                         msg_go("納品書NOを入力してから、再度実行してください。")
                         Exit Sub
@@ -285,7 +285,7 @@ Public Class frmkensaku
 
                 ElseIf .rseikyuushoid.Checked = True Then
                     If Trim(.txtseikyuushoid.Text) <> "" Then
-                        sql_moji = "nhkno = '" & Trim(.txtseikyuushoid.Text) & "'"
+                        sql_moji = Trim(.txtseikyuushoid.Text)
                     Else
                         msg_go("請求書ID入力してから、再度実行してください。")
                         Exit Sub
@@ -297,17 +297,28 @@ Public Class frmkensaku
                     Exit Sub
                 End If
 
-                Sql = "SELECT MAILNO_M.ADRESS1,tenpo.*,tenpo.tenpofurigana" &
+                If .rippan.Checked = True Then
+                    Sql = "SELECT MAILNO_M.ADRESS1,tenpo.*,tenpo.tenpofurigana" &
                       " FROM tenpo LEFT JOIN MAILNO_M " &
                       "ON tenpo.MAILNO = MAILNO_M.MAILNO "
 
-                Sql = Sql & " where " & sql_moji
+                    Sql = Sql & " where " & sql_moji
 
-                If .rfuri.Checked = True Then
-                    Sql = Sql & " order by tenpo.tenpofurigana"
-                Else
-                    Sql = Sql & " order by tenpo.tenpoid"
+                    If .rfuri.Checked = True Then
+                        Sql = Sql & " order by tenpo.tenpofurigana"
+                    Else
+                        Sql = Sql & " order by tenpo.tenpoid"
+                    End If
+
+                ElseIf .rnouhinshono.Checked = True Then
+                    Sql = "select * from hacchuu where hacchuuid ='" & sql_moji & "'" &
+                        " or nouhinshoid ='" & sql_moji & "'"
+
+                ElseIf .rseikyuushoid.Checked = True Then
+                    Sql = "select * from seikyuusho where seikyuushoid ='" & sql_moji & "'"
+
                 End If
+
 
                 Dim da_server As SqlDataAdapter
 
@@ -324,21 +335,22 @@ Public Class frmkensaku
 
 
                 Dim mojiretsu(5) As String
+                If .rippan.Checked = True Then
+                    With Me.dgvkekka
 
-                With Me.dgvkekka
-
-                    .Rows.Clear()
-                    .Columns.Clear()
-                    .ColumnCount = 4
-                    .Columns(0).Name = "ＩＤ"
-                    .Columns(1).Name = "店舗名"
-                    .Columns(2).Name = "メモ"
-                    .Columns(3).Name = "住所"
-                    .Columns(0).Width = 65
-                    .Columns(1).Width = 400
-                    .Columns(2).Width = 800
-                    .Columns(3).Width = 300
-                End With
+                        .Rows.Clear()
+                        .Columns.Clear()
+                        .ColumnCount = 4
+                        .Columns(0).Name = "ＩＤ"
+                        .Columns(1).Name = "店舗名"
+                        .Columns(2).Name = "メモ"
+                        .Columns(3).Name = "住所"
+                        .Columns(0).Width = 65
+                        .Columns(1).Width = 400
+                        .Columns(2).Width = 800
+                        .Columns(3).Width = 300
+                    End With
+                End If
 
                 Dim i As Integer
 
@@ -348,34 +360,58 @@ Public Class frmkensaku
                     msg_go("該当店舗は見つかりませんでした。")
                     Exit Sub
                 End If
+                If .rippan.Checked = True Then
+                    For i = 0 To dt_server.Rows.Count - 1
 
-                For i = 0 To dt_server.Rows.Count - 1
+                        mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
+                        mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+                        If IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
+                            mojiretsu(2) = ""
+                        Else
+                            mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("bikou"))
+                        End If
 
-                    mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
-                    mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
-                    If IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
-                        mojiretsu(2) = ""
-                    Else
-                        mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("bikou"))
-                    End If
-
-                    If IsDBNull(dt_server.Rows.Item(i).Item("adress1")) Then
-                        mojiretsu(3) = ""
-                    Else
-                        mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("adress1")) & Trim(dt_server.Rows.Item(i).Item("tenpoadress"))
-                    End If
-
-
-                    Me.dgvkekka.Rows.Add(mojiretsu)
+                        If IsDBNull(dt_server.Rows.Item(i).Item("adress1")) Then
+                            mojiretsu(3) = ""
+                        Else
+                            mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("adress1")) & Trim(dt_server.Rows.Item(i).Item("tenpoadress"))
+                        End If
 
 
-                Next i
+                        Me.dgvkekka.Rows.Add(mojiretsu)
+
+                    Next i
 
 
-                Me.dgvkekka.Select()
 
-                dt_server.Clear()
-                ds_server.Clear()
+                    Me.dgvkekka.Select()
+
+                    dt_server.Clear()
+                    ds_server.Clear()
+
+                Else  'If .rnouhinshono.Checked = True Then
+                    Dim n_tenpoid As String = Trim(dt_server.Rows.Item(0).Item("tenpoid"))
+
+                    dt_server.Clear()
+                    ds_server.Clear()
+
+                    mainset(n_tenpoid)
+
+                    Me.Close()
+                    Me.Dispose()
+                    'ElseIf .rseikyuushoid.Checked = True Then
+                    '    Dim n_tenpoid As String = Trim(dt_server.Rows.Item(0).Item("tenpoid"))
+
+                    '    dt_server.Clear()
+                    '    ds_server.Clear()
+
+                    '    mainset(n_tenpoid)
+
+                    '    Me.Close()
+                    '    Me.Dispose()
+                End If
+
+
 
 
             Catch ex As Exception
@@ -387,5 +423,29 @@ Public Class frmkensaku
 
 
 
+    End Sub
+
+    Private Sub txtnouhinshono_TextChanged(sender As Object, e As EventArgs) Handles txtnouhinshono.TextChanged
+
+    End Sub
+
+    Private Sub txtnouhinshono_KeyDown(sender As Object, e As KeyEventArgs) Handles txtnouhinshono.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If Trim(txtnouhinshono.Text) <> "" Then
+                Button2.PerformClick()
+            End If
+        End If
+    End Sub
+
+    Private Sub txtseikyuushoid_TextChanged(sender As Object, e As EventArgs) Handles txtseikyuushoid.TextChanged
+
+    End Sub
+
+    Private Sub txtseikyuushoid_KeyDown(sender As Object, e As KeyEventArgs) Handles txtseikyuushoid.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If Trim(txtseikyuushoid.Text) <> "" Then
+                Button2.PerformClick()
+            End If
+        End If
     End Sub
 End Class
