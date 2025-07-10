@@ -190,6 +190,12 @@
     <Compile Include="frmshuturyoku_csv.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmshuukei_hanbai.Designer.vb">
+      <DependentUpon>frmshuukei_hanbai.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshuukei_hanbai.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmshuukei_sentaku.Designer.vb">
       <DependentUpon>frmshuukei_sentaku.vb</DependentUpon>
     </Compile>
@@ -216,6 +222,7 @@
     <Compile Include="model\TagAndValue.vb" />
     <Compile Include="module\m_main.vb" />
     <Compile Include="module\m_seikyuu.vb" />
+    <Compile Include="module\m_shuukei.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -289,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmshuturyoku_csv.resx">
       <DependentUpon>frmshuturyoku_csv.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshuukei_hanbai.resx">
+      <DependentUpon>frmshuukei_hanbai.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmshuukei_sentaku.resx">
       <DependentUpon>frmshuukei_sentaku.vb</DependentUpon>
