@@ -400,11 +400,11 @@ Partial Class frmmain
         Me.GroupBox11.Controls.Add(Me.Button1)
         Me.GroupBox11.Controls.Add(Me.dgv_log)
         Me.GroupBox11.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox11.Location = New System.Drawing.Point(8, 553)
+        Me.GroupBox11.Location = New System.Drawing.Point(8, 541)
         Me.GroupBox11.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox11.Name = "GroupBox11"
         Me.GroupBox11.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox11.Size = New System.Drawing.Size(630, 124)
+        Me.GroupBox11.Size = New System.Drawing.Size(630, 108)
         Me.GroupBox11.TabIndex = 220
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "ログ"
@@ -414,7 +414,7 @@ Partial Class frmmain
         Me.Button1.BackColor = System.Drawing.Color.MistyRose
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(537, 77)
+        Me.Button1.Location = New System.Drawing.Point(537, 64)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(85, 37)
@@ -434,7 +434,7 @@ Partial Class frmmain
         Me.dgv_log.ReadOnly = True
         Me.dgv_log.RowTemplate.Height = 24
         Me.dgv_log.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv_log.Size = New System.Drawing.Size(514, 99)
+        Me.dgv_log.Size = New System.Drawing.Size(514, 86)
         Me.dgv_log.TabIndex = 66
         '
         'GroupBox3
@@ -443,11 +443,11 @@ Partial Class frmmain
         Me.GroupBox3.Controls.Add(Me.btn_denpyou_henkou)
         Me.GroupBox3.Controls.Add(Me.dgv_nouhinsho)
         Me.GroupBox3.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 849)
+        Me.GroupBox3.Location = New System.Drawing.Point(8, 820)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox3.Size = New System.Drawing.Size(630, 124)
+        Me.GroupBox3.Size = New System.Drawing.Size(630, 153)
         Me.GroupBox3.TabIndex = 219
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "伝票情報"
@@ -457,7 +457,7 @@ Partial Class frmmain
         Me.btn_denpyou_henkou.BackColor = System.Drawing.Color.MistyRose
         Me.btn_denpyou_henkou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_denpyou_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_denpyou_henkou.Location = New System.Drawing.Point(537, 80)
+        Me.btn_denpyou_henkou.Location = New System.Drawing.Point(537, 112)
         Me.btn_denpyou_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denpyou_henkou.Name = "btn_denpyou_henkou"
         Me.btn_denpyou_henkou.Size = New System.Drawing.Size(85, 37)
@@ -477,7 +477,7 @@ Partial Class frmmain
         Me.dgv_nouhinsho.ReadOnly = True
         Me.dgv_nouhinsho.RowTemplate.Height = 24
         Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv_nouhinsho.Size = New System.Drawing.Size(514, 99)
+        Me.dgv_nouhinsho.Size = New System.Drawing.Size(514, 131)
         Me.dgv_nouhinsho.TabIndex = 66
         '
         'GroupBox20
@@ -486,7 +486,7 @@ Partial Class frmmain
         Me.GroupBox20.Controls.Add(Me.btn_seikyuu_nyuukin_shousai)
         Me.GroupBox20.Controls.Add(Me.dgv_seikyuusho)
         Me.GroupBox20.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox20.Location = New System.Drawing.Point(8, 681)
+        Me.GroupBox20.Location = New System.Drawing.Point(8, 653)
         Me.GroupBox20.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox20.Name = "GroupBox20"
         Me.GroupBox20.Padding = New System.Windows.Forms.Padding(2)
@@ -570,7 +570,7 @@ Partial Class frmmain
         Me.GroupBox13.Controls.Add(Me.lbltenpoid)
         Me.GroupBox13.Location = New System.Drawing.Point(8, 65)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(630, 485)
+        Me.GroupBox13.Size = New System.Drawing.Size(630, 470)
         Me.GroupBox13.TabIndex = 68
         Me.GroupBox13.TabStop = False
         '
@@ -831,7 +831,7 @@ Partial Class frmmain
         Me.GroupBox15.Controls.Add(Me.lblbikou)
         Me.GroupBox15.Location = New System.Drawing.Point(10, 348)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(612, 132)
+        Me.GroupBox15.Size = New System.Drawing.Size(612, 122)
         Me.GroupBox15.TabIndex = 90
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "備考"
@@ -839,10 +839,10 @@ Partial Class frmmain
         'lblbikou
         '
         Me.lblbikou.BackColor = System.Drawing.Color.White
-        Me.lblbikou.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblbikou.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lblbikou.Location = New System.Drawing.Point(10, 18)
         Me.lblbikou.Name = "lblbikou"
-        Me.lblbikou.Size = New System.Drawing.Size(596, 104)
+        Me.lblbikou.Size = New System.Drawing.Size(596, 98)
         Me.lblbikou.TabIndex = 84
         '
         'Label46

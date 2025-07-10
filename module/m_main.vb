@@ -104,6 +104,96 @@ Module m_main
     End Sub
     Sub tenpo_hachuurireki_set(s_tenpoid As String)
 
+        Try
+
+            Dim cn_server As New SqlConnection
+
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+
+            Sql = "SELECT hacchuu.*,shain.ryakumei" &
+                    " FROM hacchuu right join shain" &
+                    " on hacchuu.shainid=shain.shainid" &
+                    " where tenpoid='" & s_tenpoid & "'and joukyou='0' ORDER BY iraibi DESC"
+
+
+            Dim da_server As SqlDataAdapter
+
+            da_server = New SqlDataAdapter(Sql, cn_server)
+
+            Dim ds_server As New DataSet
+
+            da_server.Fill(ds_server, "t_shoukaii")
+
+            Dim dt_server As DataTable
+
+            dt_server = ds_server.Tables("t_shoukaii")
+
+            Dim mojiretsu(5) As String
+
+            With frmmain.dgv_nouhinsho
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 5
+                .Columns(0).Name = "納品日"
+                .Columns(1).Name = "伝票NO"
+                .Columns(2).Name = "金額"
+                .Columns(3).Name = "社員名"
+                .Columns(4).Name = "納品書ID"
+                .Columns(0).Width = 90
+                .Columns(1).Width = 90
+                .Columns(2).Width = 90
+                .Columns(3).Width = 80
+                .Columns(4).Width = 100
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+                '列ヘッダーの高さを変える
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 25
+
+                ' 奇数行の既定セル・スタイルの背景色を設定
+                .AlternatingRowsDefaultCellStyle.BackColor _
+                                                        = Color.LightBlue
+            End With
+
+            Dim s_kin As Decimal
+
+            For i = 0 To dt_server.Rows.Count - 1
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
+                mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 7, 2)
+
+
+
+                s_kin = dt_server.Rows.Item(i).Item("goukei")
+                mojiretsu(2) = s_kin.ToString("#,##0")
+
+                mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("shainid")) & " " & Trim(dt_server.Rows.Item(i).Item("ryakumei"))
+
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("nouhinshoid")) Then
+                    mojiretsu(4) = ""
+                Else
+                    mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
+                End If
+
+
+
+                frmmain.dgv_nouhinsho.Rows.Add(mojiretsu)
+            Next i
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+
+        End Try
+
     End Sub
     Sub tenpo_seikyuurireki_set(s_tenpoid As String)
 
