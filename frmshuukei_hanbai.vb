@@ -12,6 +12,13 @@ Public Class frmshuukei_hanbai
         set_tenpo_name(1, chk_hihyouji_torihiki_nai.Checked)
         set_shain_name(1)
 
+#If DEBUG Then ' TODO:Debug
+        dtp_hinichi_kaishi.Value = Now.ToString("2025/05/01")
+        dtp_hinichi_owari.Value = Now.ToString("2025/05/31")
+        cbx_gyousha_kubun.SelectedIndex = 0
+        cbx_shain.SelectedIndex = 3
+#End If
+
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -19,6 +26,115 @@ Public Class frmshuukei_hanbai
     End Sub
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
+
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("集計結果が表示されていません。")
+            Exit Sub
+        End If
+
+        If dgv_kensakukekka.CurrentRow.Index = -1 Then
+            msg_go("詳細を表示したい項目を選択してから実行してください。")
+            Exit Sub
+        End If
+        Dim current_row = dgv_kensakukekka.CurrentRow
+
+        Dim hinichi_kanshi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
+
+        Dim salon_name = current_row.Cells(1).Value
+        Dim shouhin_name = current_row.Cells(2).Value
+        Dim suuryou = current_row.Cells(3).Value.ToString
+        Dim kingaku = current_row.Cells(4).Value.ToString
+        Dim shouhin_id = current_row.Cells(5).Value
+        Dim tenpo_id = current_row.Cells(6).Value
+
+        With frmshuukei_hanbai_shousai
+
+            .lbl_tenpo_mei.Text = ""
+            .lbl_shouhin_mei.Text = shouhin_name
+            .lbl_kosuu.Text = CInt(suuryou).ToString("#,0") + "個"
+            .lbl_kingaku.Text = CInt(kingaku).ToString("#,0") + "円"
+
+            With .dgv_kensakukekka
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 5
+
+                .Columns(0).Name = "NO"
+                .Columns(1).Name = "納品日"
+                .Columns(2).Name = "個数"
+                .Columns(3).Name = "単価"
+                .Columns(4).Name = "金額"
+
+                .Columns(0).Width = 60
+                .Columns(1).Width = 100
+                .Columns(2).Width = 90
+                .Columns(3).Width = 90
+                .Columns(4).Width = 90
+
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+            End With
+
+        End With
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT hacchuushousai.*, hacchuu.iraibi" +
+                " FROM tenpo RIGHT JOIN" +
+                " (hacchuu RIGHT hash JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" +
+                " ON tenpo.tenpoid = hacchuu.tenpoid" +
+                " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                " AND hacchuu.tenpoid = '" & tenpo_id & "' AND hacchuushousai.shouhinid = '" & shouhin_id & "'" +
+                " ORDER BY hacchuu.iraibi DESC"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_tenpo")
+            Dim dt_server As DataTable = ds_server.Tables("t_tenpo")
+
+            Dim mojiretsu(4)
+            For i = 0 To dt_server.Rows.Count - 1
+
+                mojiretsu(0) = (i + 1).ToString()
+                mojiretsu(1) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("iraibi").ToString()), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(2) = CInt(Trim(dt_server.Rows.Item(i).Item("kosuu"))).ToString("#,0")
+
+                Dim tanka = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("tanka")) Then
+                    tanka = CInt(Trim(dt_server.Rows.Item(i).Item("tanka")))
+                End If
+                mojiretsu(3) = tanka.ToString("#,0")
+
+                Dim kei = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("kei")) Then
+                    kei = CInt(Trim(dt_server.Rows.Item(i).Item("kei")))
+                End If
+                mojiretsu(4) = kei.ToString("#,0")
+
+                frmshuukei_hanbai_shousai.dgv_kensakukekka.Rows.Add(mojiretsu)
+
+            Next
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        frmshuukei_hanbai_shousai.ShowDialog()
 
     End Sub
 
@@ -48,14 +164,14 @@ Public Class frmshuukei_hanbai
             Exit Sub
         End If
 
-        set_hanbai_shuukei()
+        dgv_kensakukekka.Rows.Clear()
 
     End Sub
     Private Sub btn_clear_2_Click(sender As Object, e As EventArgs) Handles btn_clear_2.Click
 
         cbx_tenpo.SelectedIndex = -1
         cbx_shain.SelectedIndex = -1
-        set_hanbai_shuukei()
+        dgv_kensakukekka.Rows.Clear()
 
     End Sub
 
@@ -108,7 +224,7 @@ Public Class frmshuukei_hanbai
         Dim gyousha_kubun = Mid(Trim(cbx_gyousha_kubun.Text), 1, 2)
         Dim shouhin_kubun_1 = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         Dim shouhin_kubun_2 = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
-        Dim shitei_shouhin = Mid(Trim(cbx_shitei_shouhin.Text), 1, 10)
+        Dim shouhin_id = Mid(Trim(cbx_shitei_shouhin.Text), 1, 10)
         Dim tenpo_id = Mid(Trim(cbx_tenpo.Text), 1, 6)
         Dim shain_id = Mid(Trim(cbx_shain.Text), 1, 2)
 
@@ -212,8 +328,8 @@ Public Class frmshuukei_hanbai
                 query_where += " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "'"
                 If shouhin_kubun_2 <> "" Then
                     query_where += " AND shouhin.shouhinkubunid2 = '" & shouhin_kubun_2 & "'"
-                    If shitei_shouhin <> "" Then
-                        query_where += " AND hacchuushousai.shouhinid = '" & shitei_shouhin & "'"
+                    If shouhin_id <> "" Then
+                        query_where += " AND hacchuushousai.shouhinid = '" & shouhin_id & "'"
                     End If
                 End If
             End If
@@ -245,14 +361,14 @@ Public Class frmshuukei_hanbai
 
                 Dim goukei_suu = 0
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("goukeisuu")) Then
-                    goukei_suu += CInt(Trim(dt_server.Rows.Item(i).Item("goukeisuu")))
+                    goukei_suu = CInt(Trim(dt_server.Rows.Item(i).Item("goukeisuu")))
                 End If
                 mojiretsu(3) = goukei_suu
                 sum_goukei_suu += goukei_suu
 
                 Dim goukei_gaku = 0
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("goukeigaku")) Then
-                    goukei_gaku += CInt(Trim(dt_server.Rows.Item(i).Item("goukeigaku")))
+                    goukei_gaku = CInt(Trim(dt_server.Rows.Item(i).Item("goukeigaku")))
                 End If
                 mojiretsu(4) = goukei_gaku
                 sum_goukei_gaku += goukei_gaku
