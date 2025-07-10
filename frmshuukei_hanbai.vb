@@ -173,6 +173,10 @@ Public Class frmshuukei_hanbai
 
     Private Sub btn_csv_Click(sender As Object, e As EventArgs) Handles btn_csv.Click
 
+        ' TODO
+        msg_go("未開発。frmmainの電話帳をコピーする。")
+        Exit Sub
+
     End Sub
 
     Private Sub btn_insatsu_Click(sender As Object, e As EventArgs) Handles btn_insatsu.Click
