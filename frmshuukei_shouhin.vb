@@ -70,27 +70,28 @@ Public Class frmshuukei_shouhin
     End Sub
 
     Private Sub rbn_shouhin_id_Click(sender As Object, e As EventArgs)
-        set_shouhin_shuukei()
+        dgv_kensakukekka.Rows.Clear()
     End Sub
 
     Private Sub rbn_shouhin_furigana_Click(sender As Object, e As EventArgs)
-        set_shouhin_shuukei()
+        dgv_kensakukekka.Rows.Clear()
     End Sub
 
     Private Sub rbn_shouhin_shiire_Click(sender As Object, e As EventArgs)
-        set_shouhin_shuukei()
+        dgv_kensakukekka.Rows.Clear()
     End Sub
 
     Private Sub rbn_shouhin_uriage_Click(sender As Object, e As EventArgs)
-        set_shouhin_shuukei()
+        dgv_kensakukekka.Rows.Clear()
     End Sub
 
     Private Sub rbn_shouhin_zaiko_Click(sender As Object, e As EventArgs)
-        set_shouhin_shuukei()
+        dgv_kensakukekka.Rows.Clear()
     End Sub
 
     Private Sub chk_haiban_Click(sender As Object, e As EventArgs) Handles chk_haiban.Click
-        set_shouhin_shuukei()
+        dgv_kensakukekka.Rows.Clear()
+        set_shouhin_kubun_1(1)
     End Sub
 
     Private Sub set_shouhin_shuukei()

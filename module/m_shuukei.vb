@@ -51,8 +51,12 @@ Module m_shuukei
         Select Case frm_no
             Case 0
                 frmshuukei_shouhin.cbx_shouhin_kubun_1.Items.Clear()
+                frmshuukei_shouhin.cbx_shouhin_kubun_2.Items.Clear()
+                frmshuukei_shouhin.cbx_shitei_shouhin.Items.Clear()
             Case 1
                 frmshuukei_hanbai.cbx_shouhin_kubun_1.Items.Clear()
+                frmshuukei_hanbai.cbx_shouhin_kubun_2.Items.Clear()
+                frmshuukei_hanbai.cbx_shitei_shouhin.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub

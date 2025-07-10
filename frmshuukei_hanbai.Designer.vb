@@ -25,6 +25,7 @@ Partial Class frmshuukei_hanbai
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
+        Me.btn_clear_2 = New System.Windows.Forms.Button()
         Me.chk_shuukei_shinai_service_denpyou = New System.Windows.Forms.CheckBox()
         Me.chk_shuukei_shinai_torihikinai_tenpo = New System.Windows.Forms.CheckBox()
         Me.btn_shousai = New System.Windows.Forms.Button()
@@ -55,7 +56,6 @@ Partial Class frmshuukei_hanbai
         Me.cbx_gyousha_kubun = New System.Windows.Forms.ComboBox()
         Me.btn_clear = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.btn_clear_2 = New System.Windows.Forms.Button()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
@@ -95,6 +95,18 @@ Partial Class frmshuukei_hanbai
         Me.gbx_main.Size = New System.Drawing.Size(1220, 971)
         Me.gbx_main.TabIndex = 54
         Me.gbx_main.TabStop = False
+        '
+        'btn_clear_2
+        '
+        Me.btn_clear_2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_clear_2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_clear_2.Location = New System.Drawing.Point(1073, 26)
+        Me.btn_clear_2.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_clear_2.Name = "btn_clear_2"
+        Me.btn_clear_2.Size = New System.Drawing.Size(127, 44)
+        Me.btn_clear_2.TabIndex = 199
+        Me.btn_clear_2.Text = "クリア"
+        Me.btn_clear_2.UseVisualStyleBackColor = True
         '
         'chk_shuukei_shinai_service_denpyou
         '
@@ -446,18 +458,6 @@ Partial Class frmshuukei_hanbai
         Me.btn_modoru.TabIndex = 32
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
-        '
-        'btn_clear_2
-        '
-        Me.btn_clear_2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_clear_2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_clear_2.Location = New System.Drawing.Point(1073, 26)
-        Me.btn_clear_2.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_clear_2.Name = "btn_clear_2"
-        Me.btn_clear_2.Size = New System.Drawing.Size(127, 44)
-        Me.btn_clear_2.TabIndex = 199
-        Me.btn_clear_2.Text = "クリア"
-        Me.btn_clear_2.UseVisualStyleBackColor = True
         '
         'frmshuukei_hanbai
         '
