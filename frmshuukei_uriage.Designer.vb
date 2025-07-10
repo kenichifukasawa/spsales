@@ -22,31 +22,8 @@ Partial Class frmshuukei_uriage
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.dtp_hinichi_owari = New System.Windows.Forms.DateTimePicker()
-        Me.dtp_hinichi_kaishi = New System.Windows.Forms.DateTimePicker()
-        Me.btn_shuukei = New System.Windows.Forms.Button()
-        Me.grp_kikan_shitei = New System.Windows.Forms.GroupBox()
-        Me.btn_clear = New System.Windows.Forms.Button()
-        Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.lbl_nouhinsho_goukei_kingaku = New System.Windows.Forms.Label()
-        Me.lbl_nouhinsho_denpyou_sousuu = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.lbl_shiire_denpyou_goukei_kingaku = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.lbl_shiire_denpyou_sousuu = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.lbl_shiharai_denpyou_goukei_kingaku = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.lbl_shiharai_denpyou_sousuu = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lbl_nyuukin_sousuu = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -60,12 +37,33 @@ Partial Class frmshuukei_uriage
         Me.Label23 = New System.Windows.Forms.Label()
         Me.lbl_seikyuusho_uriagegaku = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
+        Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
+        Me.grp_kikan_shitei = New System.Windows.Forms.GroupBox()
+        Me.lbl_shiharai_denpyou_sousuu = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.lbl_shiharai_denpyou_goukei_kingaku = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lbl_shiire_denpyou_sousuu = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.lbl_shiire_denpyou_goukei_kingaku = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lbl_nouhinsho_denpyou_sousuu = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lbl_nouhinsho_goukei_kingaku = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.dtp_hinichi_owari = New System.Windows.Forms.DateTimePicker()
+        Me.dtp_hinichi_kaishi = New System.Windows.Forms.DateTimePicker()
+        Me.btn_shuukei = New System.Windows.Forms.Button()
+        Me.btn_clear = New System.Windows.Forms.Button()
+        Me.btn_modoru = New System.Windows.Forms.Button()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
-        CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox3.SuspendLayout()
-        Me.grp_kikan_shitei.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grp_kikan_shitei.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbx_main
@@ -97,267 +95,9 @@ Partial Class frmshuukei_uriage
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "集計内容"
         '
-        'dgv_kensakukekka
-        '
-        Me.dgv_kensakukekka.AllowUserToAddRows = False
-        Me.dgv_kensakukekka.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dgv_kensakukekka.Location = New System.Drawing.Point(7, 300)
-        Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
-        Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
-        Me.dgv_kensakukekka.ReadOnly = True
-        Me.dgv_kensakukekka.RowTemplate.Height = 24
-        Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(783, 399)
-        Me.dgv_kensakukekka.TabIndex = 192
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.Label2)
-        Me.GroupBox3.Controls.Add(Me.dtp_hinichi_owari)
-        Me.GroupBox3.Controls.Add(Me.dtp_hinichi_kaishi)
-        Me.GroupBox3.Location = New System.Drawing.Point(17, 19)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(396, 61)
-        Me.GroupBox3.TabIndex = 192
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "抽出期間"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.White
-        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label2.Location = New System.Drawing.Point(189, 29)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(24, 16)
-        Me.Label2.TabIndex = 259
-        Me.Label2.Text = "～"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'dtp_hinichi_owari
-        '
-        Me.dtp_hinichi_owari.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.dtp_hinichi_owari.Location = New System.Drawing.Point(219, 24)
-        Me.dtp_hinichi_owari.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.dtp_hinichi_owari.Name = "dtp_hinichi_owari"
-        Me.dtp_hinichi_owari.Size = New System.Drawing.Size(153, 23)
-        Me.dtp_hinichi_owari.TabIndex = 261
-        Me.dtp_hinichi_owari.Value = New Date(2025, 7, 4, 0, 0, 0, 0)
-        '
-        'dtp_hinichi_kaishi
-        '
-        Me.dtp_hinichi_kaishi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.dtp_hinichi_kaishi.Location = New System.Drawing.Point(30, 24)
-        Me.dtp_hinichi_kaishi.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.dtp_hinichi_kaishi.Name = "dtp_hinichi_kaishi"
-        Me.dtp_hinichi_kaishi.Size = New System.Drawing.Size(153, 23)
-        Me.dtp_hinichi_kaishi.TabIndex = 260
-        Me.dtp_hinichi_kaishi.Value = New Date(2025, 7, 4, 0, 0, 0, 0)
-        '
-        'btn_shuukei
-        '
-        Me.btn_shuukei.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_shuukei.Location = New System.Drawing.Point(418, 32)
-        Me.btn_shuukei.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_shuukei.Name = "btn_shuukei"
-        Me.btn_shuukei.Size = New System.Drawing.Size(127, 44)
-        Me.btn_shuukei.TabIndex = 194
-        Me.btn_shuukei.Text = "集計"
-        Me.btn_shuukei.UseVisualStyleBackColor = True
-        '
-        'grp_kikan_shitei
-        '
-        Me.grp_kikan_shitei.BackColor = System.Drawing.SystemColors.Control
-        Me.grp_kikan_shitei.Controls.Add(Me.lbl_shiharai_denpyou_sousuu)
-        Me.grp_kikan_shitei.Controls.Add(Me.Label13)
-        Me.grp_kikan_shitei.Controls.Add(Me.lbl_shiharai_denpyou_goukei_kingaku)
-        Me.grp_kikan_shitei.Controls.Add(Me.Label11)
-        Me.grp_kikan_shitei.Controls.Add(Me.lbl_shiire_denpyou_sousuu)
-        Me.grp_kikan_shitei.Controls.Add(Me.Label9)
-        Me.grp_kikan_shitei.Controls.Add(Me.lbl_shiire_denpyou_goukei_kingaku)
-        Me.grp_kikan_shitei.Controls.Add(Me.Label7)
-        Me.grp_kikan_shitei.Controls.Add(Me.lbl_nouhinsho_denpyou_sousuu)
-        Me.grp_kikan_shitei.Controls.Add(Me.Label5)
-        Me.grp_kikan_shitei.Controls.Add(Me.lbl_nouhinsho_goukei_kingaku)
-        Me.grp_kikan_shitei.Controls.Add(Me.Label1)
-        Me.grp_kikan_shitei.Location = New System.Drawing.Point(7, 20)
-        Me.grp_kikan_shitei.Name = "grp_kikan_shitei"
-        Me.grp_kikan_shitei.Size = New System.Drawing.Size(389, 275)
-        Me.grp_kikan_shitei.TabIndex = 191
-        Me.grp_kikan_shitei.TabStop = False
-        Me.grp_kikan_shitei.Text = "伝票集計"
-        '
-        'btn_clear
-        '
-        Me.btn_clear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_clear.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_clear.Location = New System.Drawing.Point(549, 32)
-        Me.btn_clear.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_clear.Name = "btn_clear"
-        Me.btn_clear.Size = New System.Drawing.Size(127, 44)
-        Me.btn_clear.TabIndex = 34
-        Me.btn_clear.Text = "クリア"
-        Me.btn_clear.UseVisualStyleBackColor = True
-        '
-        'btn_modoru
-        '
-        Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(680, 32)
-        Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_modoru.Name = "btn_modoru"
-        Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
-        Me.btn_modoru.TabIndex = 32
-        Me.btn_modoru.Text = "戻る"
-        Me.btn_modoru.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(20, 34)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(164, 21)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "納品書合計金額(税抜)"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbl_nouhinsho_goukei_kingaku
-        '
-        Me.lbl_nouhinsho_goukei_kingaku.BackColor = System.Drawing.Color.White
-        Me.lbl_nouhinsho_goukei_kingaku.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.lbl_nouhinsho_goukei_kingaku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_nouhinsho_goukei_kingaku.Location = New System.Drawing.Point(209, 34)
-        Me.lbl_nouhinsho_goukei_kingaku.Name = "lbl_nouhinsho_goukei_kingaku"
-        Me.lbl_nouhinsho_goukei_kingaku.Size = New System.Drawing.Size(156, 21)
-        Me.lbl_nouhinsho_goukei_kingaku.TabIndex = 1
-        Me.lbl_nouhinsho_goukei_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lbl_nouhinsho_denpyou_sousuu
-        '
-        Me.lbl_nouhinsho_denpyou_sousuu.BackColor = System.Drawing.Color.White
-        Me.lbl_nouhinsho_denpyou_sousuu.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.lbl_nouhinsho_denpyou_sousuu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_nouhinsho_denpyou_sousuu.Location = New System.Drawing.Point(209, 73)
-        Me.lbl_nouhinsho_denpyou_sousuu.Name = "lbl_nouhinsho_denpyou_sousuu"
-        Me.lbl_nouhinsho_denpyou_sousuu.Size = New System.Drawing.Size(156, 21)
-        Me.lbl_nouhinsho_denpyou_sousuu.TabIndex = 3
-        Me.lbl_nouhinsho_denpyou_sousuu.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label5
-        '
-        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(20, 73)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(164, 21)
-        Me.Label5.TabIndex = 2
-        Me.Label5.Text = "納品書伝票総数"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbl_shiire_denpyou_goukei_kingaku
-        '
-        Me.lbl_shiire_denpyou_goukei_kingaku.BackColor = System.Drawing.Color.White
-        Me.lbl_shiire_denpyou_goukei_kingaku.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.lbl_shiire_denpyou_goukei_kingaku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shiire_denpyou_goukei_kingaku.Location = New System.Drawing.Point(209, 112)
-        Me.lbl_shiire_denpyou_goukei_kingaku.Name = "lbl_shiire_denpyou_goukei_kingaku"
-        Me.lbl_shiire_denpyou_goukei_kingaku.Size = New System.Drawing.Size(156, 21)
-        Me.lbl_shiire_denpyou_goukei_kingaku.TabIndex = 5
-        Me.lbl_shiire_denpyou_goukei_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label7
-        '
-        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label7.Location = New System.Drawing.Point(20, 112)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(164, 21)
-        Me.Label7.TabIndex = 4
-        Me.Label7.Text = "仕入伝票合計金額"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbl_shiire_denpyou_sousuu
-        '
-        Me.lbl_shiire_denpyou_sousuu.BackColor = System.Drawing.Color.White
-        Me.lbl_shiire_denpyou_sousuu.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.lbl_shiire_denpyou_sousuu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shiire_denpyou_sousuu.Location = New System.Drawing.Point(209, 151)
-        Me.lbl_shiire_denpyou_sousuu.Name = "lbl_shiire_denpyou_sousuu"
-        Me.lbl_shiire_denpyou_sousuu.Size = New System.Drawing.Size(156, 21)
-        Me.lbl_shiire_denpyou_sousuu.TabIndex = 7
-        Me.lbl_shiire_denpyou_sousuu.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label9
-        '
-        Me.Label9.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label9.Location = New System.Drawing.Point(20, 151)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(164, 21)
-        Me.Label9.TabIndex = 6
-        Me.Label9.Text = "仕入伝票総数"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbl_shiharai_denpyou_goukei_kingaku
-        '
-        Me.lbl_shiharai_denpyou_goukei_kingaku.BackColor = System.Drawing.Color.White
-        Me.lbl_shiharai_denpyou_goukei_kingaku.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.lbl_shiharai_denpyou_goukei_kingaku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shiharai_denpyou_goukei_kingaku.Location = New System.Drawing.Point(209, 190)
-        Me.lbl_shiharai_denpyou_goukei_kingaku.Name = "lbl_shiharai_denpyou_goukei_kingaku"
-        Me.lbl_shiharai_denpyou_goukei_kingaku.Size = New System.Drawing.Size(156, 21)
-        Me.lbl_shiharai_denpyou_goukei_kingaku.TabIndex = 9
-        Me.lbl_shiharai_denpyou_goukei_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label11
-        '
-        Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label11.Location = New System.Drawing.Point(20, 190)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(164, 21)
-        Me.Label11.TabIndex = 8
-        Me.Label11.Text = "支払伝票合計金額"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbl_shiharai_denpyou_sousuu
-        '
-        Me.lbl_shiharai_denpyou_sousuu.BackColor = System.Drawing.Color.White
-        Me.lbl_shiharai_denpyou_sousuu.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.lbl_shiharai_denpyou_sousuu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shiharai_denpyou_sousuu.Location = New System.Drawing.Point(209, 229)
-        Me.lbl_shiharai_denpyou_sousuu.Name = "lbl_shiharai_denpyou_sousuu"
-        Me.lbl_shiharai_denpyou_sousuu.Size = New System.Drawing.Size(156, 21)
-        Me.lbl_shiharai_denpyou_sousuu.TabIndex = 11
-        Me.lbl_shiharai_denpyou_sousuu.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label13
-        '
-        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label13.Location = New System.Drawing.Point(20, 229)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(164, 21)
-        Me.Label13.TabIndex = 10
-        Me.Label13.Text = "支払伝票総数"
-        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'GroupBox1
         '
-        Me.GroupBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.GroupBox1.Controls.Add(Me.lbl_nyuukin_sousuu)
         Me.GroupBox1.Controls.Add(Me.Label10)
         Me.GroupBox1.Controls.Add(Me.lbl_nyuukin_goukei_kingaku)
@@ -503,6 +243,248 @@ Partial Class frmshuukei_uriage
         Me.Label25.Text = "請求書売上額"
         Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'dgv_kensakukekka
+        '
+        Me.dgv_kensakukekka.AllowUserToAddRows = False
+        Me.dgv_kensakukekka.AllowUserToDeleteRows = False
+        Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_kensakukekka.Location = New System.Drawing.Point(7, 300)
+        Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
+        Me.dgv_kensakukekka.ReadOnly = True
+        Me.dgv_kensakukekka.RowTemplate.Height = 24
+        Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(783, 399)
+        Me.dgv_kensakukekka.TabIndex = 192
+        '
+        'grp_kikan_shitei
+        '
+        Me.grp_kikan_shitei.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.grp_kikan_shitei.Controls.Add(Me.lbl_shiharai_denpyou_sousuu)
+        Me.grp_kikan_shitei.Controls.Add(Me.Label13)
+        Me.grp_kikan_shitei.Controls.Add(Me.lbl_shiharai_denpyou_goukei_kingaku)
+        Me.grp_kikan_shitei.Controls.Add(Me.Label11)
+        Me.grp_kikan_shitei.Controls.Add(Me.lbl_shiire_denpyou_sousuu)
+        Me.grp_kikan_shitei.Controls.Add(Me.Label9)
+        Me.grp_kikan_shitei.Controls.Add(Me.lbl_shiire_denpyou_goukei_kingaku)
+        Me.grp_kikan_shitei.Controls.Add(Me.Label7)
+        Me.grp_kikan_shitei.Controls.Add(Me.lbl_nouhinsho_denpyou_sousuu)
+        Me.grp_kikan_shitei.Controls.Add(Me.Label5)
+        Me.grp_kikan_shitei.Controls.Add(Me.lbl_nouhinsho_goukei_kingaku)
+        Me.grp_kikan_shitei.Controls.Add(Me.Label1)
+        Me.grp_kikan_shitei.Location = New System.Drawing.Point(7, 20)
+        Me.grp_kikan_shitei.Name = "grp_kikan_shitei"
+        Me.grp_kikan_shitei.Size = New System.Drawing.Size(389, 275)
+        Me.grp_kikan_shitei.TabIndex = 191
+        Me.grp_kikan_shitei.TabStop = False
+        Me.grp_kikan_shitei.Text = "伝票集計"
+        '
+        'lbl_shiharai_denpyou_sousuu
+        '
+        Me.lbl_shiharai_denpyou_sousuu.BackColor = System.Drawing.Color.White
+        Me.lbl_shiharai_denpyou_sousuu.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lbl_shiharai_denpyou_sousuu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shiharai_denpyou_sousuu.Location = New System.Drawing.Point(209, 229)
+        Me.lbl_shiharai_denpyou_sousuu.Name = "lbl_shiharai_denpyou_sousuu"
+        Me.lbl_shiharai_denpyou_sousuu.Size = New System.Drawing.Size(156, 21)
+        Me.lbl_shiharai_denpyou_sousuu.TabIndex = 11
+        Me.lbl_shiharai_denpyou_sousuu.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label13
+        '
+        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label13.Location = New System.Drawing.Point(20, 229)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(164, 21)
+        Me.Label13.TabIndex = 10
+        Me.Label13.Text = "支払伝票総数"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbl_shiharai_denpyou_goukei_kingaku
+        '
+        Me.lbl_shiharai_denpyou_goukei_kingaku.BackColor = System.Drawing.Color.White
+        Me.lbl_shiharai_denpyou_goukei_kingaku.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lbl_shiharai_denpyou_goukei_kingaku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shiharai_denpyou_goukei_kingaku.Location = New System.Drawing.Point(209, 190)
+        Me.lbl_shiharai_denpyou_goukei_kingaku.Name = "lbl_shiharai_denpyou_goukei_kingaku"
+        Me.lbl_shiharai_denpyou_goukei_kingaku.Size = New System.Drawing.Size(156, 21)
+        Me.lbl_shiharai_denpyou_goukei_kingaku.TabIndex = 9
+        Me.lbl_shiharai_denpyou_goukei_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label11
+        '
+        Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label11.Location = New System.Drawing.Point(20, 190)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(164, 21)
+        Me.Label11.TabIndex = 8
+        Me.Label11.Text = "支払伝票合計金額"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbl_shiire_denpyou_sousuu
+        '
+        Me.lbl_shiire_denpyou_sousuu.BackColor = System.Drawing.Color.White
+        Me.lbl_shiire_denpyou_sousuu.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lbl_shiire_denpyou_sousuu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shiire_denpyou_sousuu.Location = New System.Drawing.Point(209, 151)
+        Me.lbl_shiire_denpyou_sousuu.Name = "lbl_shiire_denpyou_sousuu"
+        Me.lbl_shiire_denpyou_sousuu.Size = New System.Drawing.Size(156, 21)
+        Me.lbl_shiire_denpyou_sousuu.TabIndex = 7
+        Me.lbl_shiire_denpyou_sousuu.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label9
+        '
+        Me.Label9.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label9.Location = New System.Drawing.Point(20, 151)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(164, 21)
+        Me.Label9.TabIndex = 6
+        Me.Label9.Text = "仕入伝票総数"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbl_shiire_denpyou_goukei_kingaku
+        '
+        Me.lbl_shiire_denpyou_goukei_kingaku.BackColor = System.Drawing.Color.White
+        Me.lbl_shiire_denpyou_goukei_kingaku.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lbl_shiire_denpyou_goukei_kingaku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shiire_denpyou_goukei_kingaku.Location = New System.Drawing.Point(209, 112)
+        Me.lbl_shiire_denpyou_goukei_kingaku.Name = "lbl_shiire_denpyou_goukei_kingaku"
+        Me.lbl_shiire_denpyou_goukei_kingaku.Size = New System.Drawing.Size(156, 21)
+        Me.lbl_shiire_denpyou_goukei_kingaku.TabIndex = 5
+        Me.lbl_shiire_denpyou_goukei_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label7
+        '
+        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label7.Location = New System.Drawing.Point(20, 112)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(164, 21)
+        Me.Label7.TabIndex = 4
+        Me.Label7.Text = "仕入伝票合計金額"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbl_nouhinsho_denpyou_sousuu
+        '
+        Me.lbl_nouhinsho_denpyou_sousuu.BackColor = System.Drawing.Color.White
+        Me.lbl_nouhinsho_denpyou_sousuu.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lbl_nouhinsho_denpyou_sousuu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_nouhinsho_denpyou_sousuu.Location = New System.Drawing.Point(209, 73)
+        Me.lbl_nouhinsho_denpyou_sousuu.Name = "lbl_nouhinsho_denpyou_sousuu"
+        Me.lbl_nouhinsho_denpyou_sousuu.Size = New System.Drawing.Size(156, 21)
+        Me.lbl_nouhinsho_denpyou_sousuu.TabIndex = 3
+        Me.lbl_nouhinsho_denpyou_sousuu.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label5
+        '
+        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label5.Location = New System.Drawing.Point(20, 73)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(164, 21)
+        Me.Label5.TabIndex = 2
+        Me.Label5.Text = "納品書伝票総数"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbl_nouhinsho_goukei_kingaku
+        '
+        Me.lbl_nouhinsho_goukei_kingaku.BackColor = System.Drawing.Color.White
+        Me.lbl_nouhinsho_goukei_kingaku.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lbl_nouhinsho_goukei_kingaku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_nouhinsho_goukei_kingaku.Location = New System.Drawing.Point(209, 34)
+        Me.lbl_nouhinsho_goukei_kingaku.Name = "lbl_nouhinsho_goukei_kingaku"
+        Me.lbl_nouhinsho_goukei_kingaku.Size = New System.Drawing.Size(156, 21)
+        Me.lbl_nouhinsho_goukei_kingaku.TabIndex = 1
+        Me.lbl_nouhinsho_goukei_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label1
+        '
+        Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label1.Location = New System.Drawing.Point(20, 34)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(164, 21)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "納品書合計金額(税抜)"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.Label2)
+        Me.GroupBox3.Controls.Add(Me.dtp_hinichi_owari)
+        Me.GroupBox3.Controls.Add(Me.dtp_hinichi_kaishi)
+        Me.GroupBox3.Location = New System.Drawing.Point(17, 19)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(396, 61)
+        Me.GroupBox3.TabIndex = 192
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "抽出期間"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label2.Location = New System.Drawing.Point(189, 29)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(24, 16)
+        Me.Label2.TabIndex = 259
+        Me.Label2.Text = "～"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'dtp_hinichi_owari
+        '
+        Me.dtp_hinichi_owari.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.dtp_hinichi_owari.Location = New System.Drawing.Point(219, 24)
+        Me.dtp_hinichi_owari.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.dtp_hinichi_owari.Name = "dtp_hinichi_owari"
+        Me.dtp_hinichi_owari.Size = New System.Drawing.Size(153, 23)
+        Me.dtp_hinichi_owari.TabIndex = 261
+        Me.dtp_hinichi_owari.Value = New Date(2025, 7, 4, 0, 0, 0, 0)
+        '
+        'dtp_hinichi_kaishi
+        '
+        Me.dtp_hinichi_kaishi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.dtp_hinichi_kaishi.Location = New System.Drawing.Point(30, 24)
+        Me.dtp_hinichi_kaishi.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.dtp_hinichi_kaishi.Name = "dtp_hinichi_kaishi"
+        Me.dtp_hinichi_kaishi.Size = New System.Drawing.Size(153, 23)
+        Me.dtp_hinichi_kaishi.TabIndex = 260
+        Me.dtp_hinichi_kaishi.Value = New Date(2025, 7, 4, 0, 0, 0, 0)
+        '
+        'btn_shuukei
+        '
+        Me.btn_shuukei.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shuukei.Location = New System.Drawing.Point(418, 32)
+        Me.btn_shuukei.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_shuukei.Name = "btn_shuukei"
+        Me.btn_shuukei.Size = New System.Drawing.Size(127, 44)
+        Me.btn_shuukei.TabIndex = 194
+        Me.btn_shuukei.Text = "集計"
+        Me.btn_shuukei.UseVisualStyleBackColor = True
+        '
+        'btn_clear
+        '
+        Me.btn_clear.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_clear.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_clear.Location = New System.Drawing.Point(549, 32)
+        Me.btn_clear.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_clear.Name = "btn_clear"
+        Me.btn_clear.Size = New System.Drawing.Size(127, 44)
+        Me.btn_clear.TabIndex = 34
+        Me.btn_clear.Text = "クリア"
+        Me.btn_clear.UseVisualStyleBackColor = True
+        '
+        'btn_modoru
+        '
+        Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Location = New System.Drawing.Point(680, 32)
+        Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_modoru.Name = "btn_modoru"
+        Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
+        Me.btn_modoru.TabIndex = 32
+        Me.btn_modoru.Text = "戻る"
+        Me.btn_modoru.UseVisualStyleBackColor = True
+        '
         'frmshuukei_uriage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -515,11 +497,11 @@ Partial Class frmshuukei_uriage
         Me.Text = "売上集計"
         Me.gbx_main.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grp_kikan_shitei.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
-        Me.grp_kikan_shitei.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

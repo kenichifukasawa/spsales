@@ -118,7 +118,11 @@ Public Class frmshuukei_hanbai
         End If
 
         If tenpo_id = "" And gyousha_kubun = "" Then
-            msg_go("店舗または業者区分、区分１が選択されていません。")
+            If shain_id = "" Then
+                msg_go("店舗または業者区分、区分１が選択されていません。")
+            Else
+                msg_go("業者区分、区分１が選択されていません。")
+            End If
             Exit Sub
         End If
 

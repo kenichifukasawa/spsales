@@ -178,6 +178,12 @@
     <Compile Include="frmshuukei_hanbai.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmshuukei_hanbai_shousai.Designer.vb">
+      <DependentUpon>frmshuukei_hanbai_shousai.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshuukei_hanbai_shousai.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmshuukei_sentaku.Designer.vb">
       <DependentUpon>frmshuukei_sentaku.vb</DependentUpon>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmshuukei_hanbai.resx">
       <DependentUpon>frmshuukei_hanbai.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshuukei_hanbai_shousai.resx">
+      <DependentUpon>frmshuukei_hanbai_shousai.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmshuukei_sentaku.resx">
       <DependentUpon>frmshuukei_sentaku.vb</DependentUpon>
