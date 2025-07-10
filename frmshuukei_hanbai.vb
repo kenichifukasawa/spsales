@@ -164,14 +164,11 @@ Public Class frmshuukei_hanbai
             Exit Sub
         End If
 
-        dgv_kensakukekka.Rows.Clear()
-
     End Sub
     Private Sub btn_clear_2_Click(sender As Object, e As EventArgs) Handles btn_clear_2.Click
 
         cbx_tenpo.SelectedIndex = -1
         cbx_shain.SelectedIndex = -1
-        dgv_kensakukekka.Rows.Clear()
 
     End Sub
 
@@ -196,7 +193,20 @@ Public Class frmshuukei_hanbai
 
     End Sub
 
+    Private Sub cbx_tenpo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tenpo.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
+    Private Sub cbx_shain_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shain.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
+    Private Sub cbx_gyousha_kubun_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_gyousha_kubun.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
     Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         set_shouhin_kubun_2(1, shouhin_kubun_1_id)
         Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
@@ -205,14 +215,31 @@ Public Class frmshuukei_hanbai
     End Sub
 
     Private Sub cbx_shouhin_kubun_2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_2.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
         Dim is_haiban = chk_haiban.Checked
         set_shitei_shouhin(1, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
     End Sub
 
+    Private Sub cbx_shitei_shouhin_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shitei_shouhin.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
     Private Sub chk_hihyouji_torihiki_nai_Click(sender As Object, e As EventArgs) Handles chk_hihyouji_torihiki_nai.Click
         set_tenpo_name(1, chk_hihyouji_torihiki_nai.Checked)
+    End Sub
+
+    Private Sub chk_haiban_Click(sender As Object, e As EventArgs) Handles chk_haiban.Click
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
+    Private Sub chk_shuukei_shinai_torihikinai_tenpo_Click(sender As Object, e As EventArgs) Handles chk_shuukei_shinai_torihikinai_tenpo.Click
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
+    Private Sub chk_shuukei_shinai_service_denpyou_Click(sender As Object, e As EventArgs) Handles chk_shuukei_shinai_service_denpyou.Click
+        dgv_kensakukekka.Rows.Clear()
     End Sub
 
     Private Sub set_hanbai_shuukei()
@@ -338,14 +365,15 @@ Public Class frmshuukei_hanbai
                 query_where += " AND hacchuushousai.kei <> 0"
             End If
 
-            If tenpo_id = "" And shain_id = "" Then
-                query += query_where + " GROUP BY shouhin.shouhinmei, hacchuushousai.shouhinid, hacchuu.tenpoid, tenpo.tenpomei, shouhin.haiban"
-            Else
+            If tenpo_id <> "" Or shain_id <> "" Then
                 If is_shuukei_shinai_torihikinai_tenpo = "1" Then
                     query_where += " AND (tenpo.kadou = '0' OR tenpo.kadou IS NULL) "
                 End If
-                query += query_where + " GROUP BY hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid, shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid2, shouhin.haiban"
             End If
+
+            query += query_where +
+                " GROUP BY hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid, shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid2, shouhin.haiban" +
+                " ORDER BY shouhinid"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -389,274 +417,6 @@ Public Class frmshuukei_hanbai
         End Try
 
         lbl_kekka.Text = "抽出結果：　合計数　" & sum_goukei_suu.ToString("#,0") & "　個, 合計額　" & sum_goukei_gaku.ToString("#,0") & "　円"
-
-        ' ----------------------------------------------------------
-
-        ''shouhin_shuukei(kai1, kai2, ku1, ku2, ku3, ten, newsa, newsa2, ku0, shain_id)
-        ''Sub shouhin_shuukei(hinichi_kanshi As String, hinichi_owari As String, shouhin_kubun_1 As String, shouhin_kubun_2 As String, shitei_shouhin As String, tenpo_id As String, is_shuukei_shinai_service_denpyou As String, is_shuukei_shinai_torihikinai_tenpo As String, gyousha_kubun As String, shain_id As String)
-
-
-        ''Dim query_where = ""
-        ''Dim query = ""
-
-        'If tenpo_id <> "" Then
-        '    ''query = "SELECT hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid, shouhin.shouhinmei," &
-        '    ''            "Sum(hacchuushousai.kosuu) AS goukeisuu, Sum(hacchuushousai.kei) AS goukeigaku," &
-        '    ''            "shouhin.shouhinkubunid,shouhin.shouhinkubunid2,shouhin.haiban" &
-        '    ''            " FROM shouhin RIGHT JOIN" &
-        '    ''            "(tenpo RIGHT JOIN (hacchuu RIGHT JOIN hacchuushousai ON hacchuu.hacchuuid =" &
-        '    ''            "hacchuushousai.hacchuuid) ON tenpo.tenpoid = hacchuu.tenpoid) ON shouhin.shouhinid =" &
-        '    ''            "hacchuushousai.shouhinid" &
-        '    ''            " WHERE (hacchuu.iraibi Between '" & hinichi_kanshi & "' And '" & hinichi_owari & "')" &
-        '    ''            " and hacchuu.tenpoid ='" & tenpo_id & "'"
-        '    ''If gyousha_kubun <> "" Then
-        '    ''    query_where += " and shouhin.shouhinkubunid0='" & gyousha_kubun & "'"
-        '    ''End If
-
-        '    ''If shouhin_kubun_1 <> "" Then
-        '    ''    query_where += " and shouhin.shouhinkubunid='" & shouhin_kubun_1 & "'"
-        '    ''    If shouhin_kubun_2 <> "" Then
-        '    ''        query_where += " and shouhin.shouhinkubunid2='" & shouhin_kubun_2 & "'"
-        '    ''        If shitei_shouhin <> "" Then
-        '    ''            query_where += " and hacchuushousai.shouhinid='" & shitei_shouhin & "'"
-        '    ''        End If
-        '    ''    End If
-        '    ''End If
-        '    ''If is_shuukei_shinai_service_denpyou = "1" Then
-        '    ''    query_where += " and hacchuushousai.kei<>0"
-        '    ''End If
-        '    ''If is_shuukei_shinai_torihikinai_tenpo = "1" Then
-        '    ''    query_where += " and (tenpo.kadou = '0' or tenpo.kadou is null) "
-        '    ''End If
-        '    ''query += query_where & " GROUP BY hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid, shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid2, shouhin.haiban"
-
-
-        '    frmshuukeishouhin.lblsql.Caption = query
-
-        '    If FcSQlGet(1, rs_shoushuu, query, WMsg) = False Then
-
-        '    Else
-        '        frmshuukeishouhin.gridkekka.Clear
-        '        hacchuurirekicount = rs_shoushuu.RecordCount
-        '        rs_shoushuu.MoveFirst
-
-        '        For hacchuurirekiGROW = 1 To hacchuurirekicount
-        '            With frmshuukeishouhin.gridkekka
-        '                If IsNull(rs_shoushuu!haiban) Then
-        '                Else
-        '                    .Cell(flexcpBackColor, hacchuurirekiGROW, 1, hacchuurirekiGROW, 6) = &HC0C0FF
-        '                End If
-        '                .Row = hacchuurirekiGROW
-        '                .Col = 0
-        '                .Text = Format(hacchuurirekiGROW, "000000")
-        '                .Col = 1
-        '                .Text = rs_shoushuu!tenpomei
-        '                .Col = 2
-        '                .Text = rs_shoushuu!shouhinmei
-        '                .Col = 3
-        '                If IsNull(rs_shoushuu!goukeisuu) Then
-        '                    .Text = ""
-        '                Else
-        '                    goukei_suu = goukei_suu + CLng(rs_shoushuu!goukeisuu)
-        '                    .Text = Format(rs_shoushuu!goukeisuu, "#,##0;-#,##0")
-        '                End If
-        '                .Col = 4
-        '                If IsNull(rs_shoushuu!goukeigaku) Then
-        '                    .Text = ""
-        '                Else
-        '                    goukei_gaku = goukei_gaku + CLng(rs_shoushuu!goukeigaku)
-        '                    .Text = Format(rs_shoushuu!goukeigaku, "#,##0;-#,##0")
-        '                End If
-        '                .Col = 5
-        '                .Text = rs_shoushuu!shouhinid
-        '                .Col = 6
-        '                .Text = rs_shoushuu!tenpoid
-        '            End With
-        '            rs_shoushuu.MoveNext
-        '        Next hacchuurirekiGROW
-        '        rs_shoushuu.Close
-
-        '        cnn.Close
-        '        Screen.MousePointer = vbDefault
-
-        '    End If
-
-        'Else
-
-
-        '    If shain_id <> "" Then
-
-        '        ''query = "SELECT hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid, shouhin.shouhinmei," &
-        '        ''                          "Sum(hacchuushousai.kosuu) AS goukeisuu, Sum(hacchuushousai.kei) AS goukeigaku," &
-        '        ''                          "shouhin.shouhinkubunid,shouhin.shouhinkubunid2,shouhin.haiban" &
-        '        ''                          " FROM shouhin RIGHT JOIN" &
-        '        ''                          "(tenpo RIGHT JOIN (hacchuu RIGHT JOIN hacchuushousai ON hacchuu.hacchuuid =" &
-        '        ''                          "hacchuushousai.hacchuuid) ON tenpo.tenpoid = hacchuu.tenpoid) ON shouhin.shouhinid =" &
-        '        ''                          "hacchuushousai.shouhinid" &
-        '        ''                          " WHERE (hacchuu.iraibi Between '" & hinichi_kanshi & "' And '" & hinichi_owari & "')" &
-        '        ''                          " and tenpo.shainid ='" & shain_id & "'"
-        '        ''If gyousha_kubun <> "" Then
-        '        ''    query_where += " and shouhin.shouhinkubunid0='" & gyousha_kubun & "'"
-        '        ''End If
-
-        '        ''If shouhin_kubun_1 <> "" Then
-        '        ''    query_where += " and shouhin.shouhinkubunid='" & shouhin_kubun_1 & "'"
-        '        ''    If shouhin_kubun_2 <> "" Then
-        '        ''        query_where += " and shouhin.shouhinkubunid2='" & shouhin_kubun_2 & "'"
-        '        ''        If shitei_shouhin <> "" Then
-        '        ''            query_where += " and hacchuushousai.shouhinid='" & shitei_shouhin & "'"
-        '        ''        End If
-        '        ''    End If
-        '        ''End If
-        '        ''If is_shuukei_shinai_service_denpyou = "1" Then
-        '        ''    query_where += " and hacchuushousai.kei<>0"
-        '        ''End If
-        '        ''If is_shuukei_shinai_torihikinai_tenpo = "1" Then
-        '        ''    query_where += " and (tenpo.kadou = '0' or tenpo.kadou is null) "
-        '        ''End If
-        '        ''query += query_where & " GROUP BY hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid, shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid2, shouhin.haiban"
-
-
-        '        frmshuukeishouhin.lblsql.Caption = query
-
-        '        If FcSQlGet(1, rs_shoushuu, query, WMsg) = False Then
-
-        '        Else
-        '            frmshuukeishouhin.gridkekka.Clear
-        '            hacchuurirekicount = rs_shoushuu.RecordCount
-        '            rs_shoushuu.MoveFirst
-
-        '            For hacchuurirekiGROW = 1 To hacchuurirekicount
-        '                With frmshuukeishouhin.gridkekka
-        '                    If IsNull(rs_shoushuu!haiban) Then
-        '                    Else
-        '                        .Cell(flexcpBackColor, hacchuurirekiGROW, 1, hacchuurirekiGROW, 6) = &HC0C0FF
-        '                    End If
-        '                    .Row = hacchuurirekiGROW
-        '                    .Col = 0
-        '                    .Text = Format(hacchuurirekiGROW, "000000")
-        '                    .Col = 1
-        '                    .Text = rs_shoushuu!tenpomei
-        '                    .Col = 2
-        '                    .Text = rs_shoushuu!shouhinmei
-        '                    .Col = 3
-        '                    If IsNull(rs_shoushuu!goukeisuu) Then
-        '                        .Text = ""
-        '                    Else
-        '                        goukei_suu = goukei_suu + CLng(rs_shoushuu!goukeisuu)
-        '                        .Text = Format(rs_shoushuu!goukeisuu, "#,##0;-#,##0")
-        '                    End If
-        '                    .Col = 4
-        '                    If IsNull(rs_shoushuu!goukeigaku) Then
-        '                        .Text = ""
-        '                    Else
-        '                        goukei_gaku = goukei_gaku + CLng(rs_shoushuu!goukeigaku)
-        '                        .Text = Format(rs_shoushuu!goukeigaku, "#,##0;-#,##0")
-        '                    End If
-        '                    .Col = 5
-        '                    .Text = rs_shoushuu!shouhinid
-        '                    .Col = 6
-        '                    .Text = rs_shoushuu!tenpoid
-        '                End With
-        '                rs_shoushuu.MoveNext
-        '            Next hacchuurirekiGROW
-        '            rs_shoushuu.Close
-
-        '            cnn.Close
-        '            Screen.MousePointer = vbDefault
-
-        '        End If
-
-        '    Else
-
-        '        ''query = "SELECT Sum(hacchuushousai.kosuu) AS goukeisuu, Sum(hacchuushousai.kei) AS goukeigaku," &
-        '        ''                            "hacchuu.tenpoid, shouhin.shouhinmei,hacchuushousai.shouhinid,shouhin.haiban,tenpo.tenpomei " &
-        '        ''                            " FROM shouhin RIGHT JOIN ((hacchuu left join tenpo on hacchuu.tenpoid=tenpo.tenpoid) LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" &
-        '        ''                            "ON shouhin.shouhinid = hacchuushousai.shouhinid" &
-        '        ''                            " WHERE (hacchuu.iraibi Between '" & hinichi_kanshi & "' And '" & hinichi_owari & "')"
-
-        '        ''query_where = ""
-        '        ''If gyousha_kubun <> "" Then
-        '        ''    query_where += " and shouhin.shouhinkubunid0='" & gyousha_kubun & "'"
-        '        ''End If
-        '        ''If shouhin_kubun_1 <> "" Then
-        '        ''    query_where += " and (shouhin.shouhinkubunid='" & shouhin_kubun_1 & "')"
-        '        ''    If shouhin_kubun_2 <> "" Then
-        '        ''        query_where += " and (shouhin.shouhinkubunid2='" & shouhin_kubun_2 & "')"
-        '        ''        If shitei_shouhin <> "" Then
-        '        ''            query_where += " and (hacchuushousai.shouhinid='" & shitei_shouhin & "')"
-        '        ''        End If
-        '        ''    End If
-        '        ''End If
-        '        ''query_where += query_where
-
-        '        ''If is_shuukei_shinai_service_denpyou = "1" Then
-        '        ''    query_where += " and (hacchuushousai.kei<>0)"
-        '        ''End If
-        '        ''query += query_where & " GROUP BY  shouhin.shouhinmei,hacchuushousai.shouhinid,hacchuu.tenpoid,tenpo.tenpomei,shouhin.haiban"
-
-        '        frmshuukeishouhin.lblsql.Caption = query
-
-        '        riarucount = 1
-        '        sakujosuu = 0
-        '        If FcSQlGet(1, rs_shoushuu, query, WMsg) = False Then
-
-        '        Else
-        '            frmshuukeishouhin.gridkekka.Clear
-        '            hacchuurirekicount = rs_shoushuu.RecordCount
-        '            rs_shoushuu.MoveFirst
-
-        '            For hacchuurirekiGROW = 1 To hacchuurirekicount
-        '                With frmshuukeishouhin.gridkekka
-        '                    If IsNull(rs_shoushuu!haiban) Then
-        '                    Else
-        '                        .Cell(flexcpBackColor, riarucount, 1, riarucount, 6) = &HC0C0FF
-        '                    End If
-        '                    .Row = riarucount
-        '                    .Col = 1
-
-        '                    .Text = rs_shoushuu!tenpomei
-        '                    .Col = 0
-        '                    .Text = Format(hacchuurirekiGROW, "000000")
-        '                    .Col = 2
-        '                    .Text = rs_shoushuu!shouhinmei
-        '                    .Col = 3
-        '                    If IsNull(rs_shoushuu!goukeisuu) Then
-        '                        .Text = ""
-        '                    Else
-        '                        goukei_suu = goukei_suu + CLng(rs_shoushuu!goukeisuu)
-        '                        .Text = Format(rs_shoushuu!goukeisuu, "#,##0;-#,##0")
-        '                    End If
-        '                    .Col = 4
-        '                    If IsNull(rs_shoushuu!goukeigaku) Then
-        '                        .Text = ""
-        '                    Else
-        '                        goukei_gaku = goukei_gaku + CLng(rs_shoushuu!goukeigaku)
-        '                        .Text = Format(rs_shoushuu!goukeigaku, "#,##0;-#,##0")
-        '                    End If
-        '                    .Col = 5
-        '                    .Text = rs_shoushuu!shouhinid
-        '                    .Col = 6
-        '                    .Text = rs_shoushuu!tenpoid
-        '                End With
-        '                rs_shoushuu.MoveNext
-        '                riarucount = riarucount + 1
-        '            Next hacchuurirekiGROW
-        '            rs_shoushuu.Close
-
-        '            cnn.Close
-        '            Screen.MousePointer = vbDefault
-
-        '        End If
-        '    End If
-
-        'End If
-
-        'frmshuukeishouhin.l1.Caption = goukei_suu
-        'frmshuukeishouhin.l2.Caption = Format(goukei_gaku, "#,##0;-#,##0")
-        'frmshuukeishouhin.lblgoukei.Caption = "抽出結果：　合計数　" & goukei_suu & "　個, 合計額　" & Format(goukei_gaku, "#,##0;-#,##0") & "　円"
-
-        'Exit Sub
 
     End Sub
 
