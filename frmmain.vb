@@ -35,4 +35,8 @@
 
         mainset("000087")
     End Sub
+
+    Private Sub btn_tenpo_denwachou_Click(sender As Object, e As EventArgs) Handles btn_tenpo_denwachou.Click
+        frmdenwachou.ShowDialog()
+    End Sub
 End Class
