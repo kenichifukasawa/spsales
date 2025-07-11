@@ -12,12 +12,6 @@ Public Class frmdenwachou
 
     Private Sub tcl_denwachou_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tcl_denwachou.SelectedIndexChanged
 
-        Dim currentTab As TabPage = tcl_denwachou.SelectedTab
-        If Not currentTab.Controls.Contains(dgv_kensakukekka) Then
-            dgv_kensakukekka.Parent = currentTab
-            lbl_kensuu.Parent = currentTab
-        End If
-
         set_denwachou()
 
     End Sub
@@ -25,6 +19,17 @@ Public Class frmdenwachou
     Private Sub set_denwachou()
 
         ' VB6:kokyakuichiran()
+
+        For Each page As TabPage In tcl_denwachou.TabPages
+            page.Text = page.Text.Replace("★", "")
+        Next
+        tcl_denwachou.SelectedTab.Text = "★" + tcl_denwachou.SelectedTab.Text
+
+        Dim currentTab As TabPage = tcl_denwachou.SelectedTab
+        If Not currentTab.Controls.Contains(dgv_kensakukekka) Then
+            dgv_kensakukekka.Parent = currentTab
+            lbl_kensuu.Parent = currentTab
+        End If
 
         With dgv_kensakukekka
 
