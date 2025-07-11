@@ -24,6 +24,8 @@ Partial Class frmdenwachou
     Private Sub InitializeComponent()
         Me.tcl_denwachou = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.lbl_kensuu = New System.Windows.Forms.Label()
+        Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -33,13 +35,12 @@ Partial Class frmdenwachou
         Me.TabPage8 = New System.Windows.Forms.TabPage()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
-        Me.dgv_denwachou_a = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.btn_modoru = New System.Windows.Forms.Button()
         Me.lbl_annai = New System.Windows.Forms.Label()
+        Me.btn_modoru = New System.Windows.Forms.Button()
         Me.tcl_denwachou.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        CType(Me.dgv_denwachou_a, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -61,26 +62,51 @@ Partial Class frmdenwachou
         Me.tcl_denwachou.Multiline = True
         Me.tcl_denwachou.Name = "tcl_denwachou"
         Me.tcl_denwachou.SelectedIndex = 0
-        Me.tcl_denwachou.Size = New System.Drawing.Size(743, 879)
+        Me.tcl_denwachou.Size = New System.Drawing.Size(847, 879)
         Me.tcl_denwachou.TabIndex = 0
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.dgv_denwachou_a)
+        Me.TabPage1.Controls.Add(Me.lbl_kensuu)
+        Me.TabPage1.Controls.Add(Me.dgv_kensakukekka)
         Me.TabPage1.Location = New System.Drawing.Point(26, 4)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(713, 871)
+        Me.TabPage1.Size = New System.Drawing.Size(817, 871)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "あ行"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'lbl_kensuu
+        '
+        Me.lbl_kensuu.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.lbl_kensuu.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_kensuu.Location = New System.Drawing.Point(687, 840)
+        Me.lbl_kensuu.Name = "lbl_kensuu"
+        Me.lbl_kensuu.Size = New System.Drawing.Size(113, 24)
+        Me.lbl_kensuu.TabIndex = 197
+        Me.lbl_kensuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'dgv_kensakukekka
+        '
+        Me.dgv_kensakukekka.AllowUserToAddRows = False
+        Me.dgv_kensakukekka.AllowUserToDeleteRows = False
+        Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_kensakukekka.Location = New System.Drawing.Point(5, 5)
+        Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
+        Me.dgv_kensakukekka.ReadOnly = True
+        Me.dgv_kensakukekka.RowTemplate.Height = 24
+        Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(805, 829)
+        Me.dgv_kensakukekka.TabIndex = 193
         '
         'TabPage2
         '
         Me.TabPage2.Location = New System.Drawing.Point(26, 4)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(713, 871)
+        Me.TabPage2.Size = New System.Drawing.Size(817, 871)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "か行"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -89,7 +115,7 @@ Partial Class frmdenwachou
         '
         Me.TabPage3.Location = New System.Drawing.Point(26, 4)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(713, 914)
+        Me.TabPage3.Size = New System.Drawing.Size(817, 871)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "さ行"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -98,7 +124,7 @@ Partial Class frmdenwachou
         '
         Me.TabPage4.Location = New System.Drawing.Point(26, 4)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(713, 914)
+        Me.TabPage4.Size = New System.Drawing.Size(817, 871)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "た行"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -107,7 +133,7 @@ Partial Class frmdenwachou
         '
         Me.TabPage5.Location = New System.Drawing.Point(26, 4)
         Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Size = New System.Drawing.Size(713, 914)
+        Me.TabPage5.Size = New System.Drawing.Size(817, 871)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "な行"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -116,7 +142,7 @@ Partial Class frmdenwachou
         '
         Me.TabPage6.Location = New System.Drawing.Point(26, 4)
         Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Size = New System.Drawing.Size(713, 914)
+        Me.TabPage6.Size = New System.Drawing.Size(817, 871)
         Me.TabPage6.TabIndex = 5
         Me.TabPage6.Text = "は行"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -125,7 +151,7 @@ Partial Class frmdenwachou
         '
         Me.TabPage7.Location = New System.Drawing.Point(26, 4)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(713, 914)
+        Me.TabPage7.Size = New System.Drawing.Size(817, 871)
         Me.TabPage7.TabIndex = 6
         Me.TabPage7.Text = "ま行"
         Me.TabPage7.UseVisualStyleBackColor = True
@@ -134,7 +160,7 @@ Partial Class frmdenwachou
         '
         Me.TabPage8.Location = New System.Drawing.Point(26, 4)
         Me.TabPage8.Name = "TabPage8"
-        Me.TabPage8.Size = New System.Drawing.Size(713, 914)
+        Me.TabPage8.Size = New System.Drawing.Size(817, 871)
         Me.TabPage8.TabIndex = 7
         Me.TabPage8.Text = "や行"
         Me.TabPage8.UseVisualStyleBackColor = True
@@ -143,7 +169,7 @@ Partial Class frmdenwachou
         '
         Me.TabPage9.Location = New System.Drawing.Point(26, 4)
         Me.TabPage9.Name = "TabPage9"
-        Me.TabPage9.Size = New System.Drawing.Size(713, 914)
+        Me.TabPage9.Size = New System.Drawing.Size(817, 871)
         Me.TabPage9.TabIndex = 8
         Me.TabPage9.Text = "ら行"
         Me.TabPage9.UseVisualStyleBackColor = True
@@ -152,24 +178,10 @@ Partial Class frmdenwachou
         '
         Me.TabPage10.Location = New System.Drawing.Point(26, 4)
         Me.TabPage10.Name = "TabPage10"
-        Me.TabPage10.Size = New System.Drawing.Size(713, 914)
+        Me.TabPage10.Size = New System.Drawing.Size(817, 871)
         Me.TabPage10.TabIndex = 9
         Me.TabPage10.Text = "わ・ん"
         Me.TabPage10.UseVisualStyleBackColor = True
-        '
-        'dgv_denwachou_a
-        '
-        Me.dgv_denwachou_a.AllowUserToAddRows = False
-        Me.dgv_denwachou_a.AllowUserToDeleteRows = False
-        Me.dgv_denwachou_a.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_denwachou_a.Location = New System.Drawing.Point(5, 5)
-        Me.dgv_denwachou_a.Margin = New System.Windows.Forms.Padding(2)
-        Me.dgv_denwachou_a.Name = "dgv_denwachou_a"
-        Me.dgv_denwachou_a.ReadOnly = True
-        Me.dgv_denwachou_a.RowTemplate.Height = 24
-        Me.dgv_denwachou_a.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_denwachou_a.Size = New System.Drawing.Size(703, 861)
-        Me.dgv_denwachou_a.TabIndex = 193
         '
         'GroupBox3
         '
@@ -179,15 +191,26 @@ Partial Class frmdenwachou
         Me.GroupBox3.Controls.Add(Me.btn_modoru)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(774, 970)
+        Me.GroupBox3.Size = New System.Drawing.Size(876, 970)
         Me.GroupBox3.TabIndex = 193
         Me.GroupBox3.TabStop = False
+        '
+        'lbl_annai
+        '
+        Me.lbl_annai.AutoSize = True
+        Me.lbl_annai.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_annai.ForeColor = System.Drawing.Color.Blue
+        Me.lbl_annai.Location = New System.Drawing.Point(43, 924)
+        Me.lbl_annai.Name = "lbl_annai"
+        Me.lbl_annai.Size = New System.Drawing.Size(245, 15)
+        Me.lbl_annai.TabIndex = 196
+        Me.lbl_annai.Text = "表示したい店舗をクリックしてください。"
         '
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(622, 911)
+        Me.btn_modoru.Location = New System.Drawing.Point(724, 911)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
@@ -195,22 +218,11 @@ Partial Class frmdenwachou
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
-        'lbl_annai
-        '
-        Me.lbl_annai.AutoSize = True
-        Me.lbl_annai.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_annai.ForeColor = System.Drawing.Color.Blue
-        Me.lbl_annai.Location = New System.Drawing.Point(105, 924)
-        Me.lbl_annai.Name = "lbl_annai"
-        Me.lbl_annai.Size = New System.Drawing.Size(245, 15)
-        Me.lbl_annai.TabIndex = 196
-        Me.lbl_annai.Text = "表示したい店舗をクリックしてください。"
-        '
         'frmdenwachou
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(799, 994)
+        Me.ClientSize = New System.Drawing.Size(901, 994)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox3)
         Me.Name = "frmdenwachou"
@@ -218,7 +230,7 @@ Partial Class frmdenwachou
         Me.Text = "電話帳"
         Me.tcl_denwachou.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        CType(Me.dgv_denwachou_a, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
@@ -236,8 +248,9 @@ Partial Class frmdenwachou
     Friend WithEvents TabPage8 As TabPage
     Friend WithEvents TabPage9 As TabPage
     Friend WithEvents TabPage10 As TabPage
-    Friend WithEvents dgv_denwachou_a As DataGridView
+    Friend WithEvents dgv_kensakukekka As DataGridView
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents btn_modoru As Button
     Friend WithEvents lbl_annai As Label
+    Friend WithEvents lbl_kensuu As Label
 End Class
