@@ -134,4 +134,7 @@ Public Class frmdenwachou
 
     End Sub
 
+    Private Sub dgv_kensakukekka_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_kensakukekka.CellMouseDoubleClick
+
+    End Sub
 End Class
