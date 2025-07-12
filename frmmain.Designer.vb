@@ -96,7 +96,7 @@ Partial Class frmmain
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.lstshien = New System.Windows.Forms.ListBox()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -105,11 +105,11 @@ Partial Class frmmain
         Me.Label10 = New System.Windows.Forms.Label()
         Me.btn_jouken_kensaku = New System.Windows.Forms.Button()
         Me.btn_jouken_clear = New System.Windows.Forms.Button()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.txt_yuubin_bangou = New System.Windows.Forms.TextBox()
+        Me.txtfurigana2 = New System.Windows.Forms.TextBox()
+        Me.txtfurigana = New System.Windows.Forms.TextBox()
+        Me.txtkubun2 = New System.Windows.Forms.TextBox()
+        Me.txtkubun1 = New System.Windows.Forms.TextBox()
+        Me.txtkubun = New System.Windows.Forms.TextBox()
         Me.dgv_shien = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
@@ -1071,7 +1071,7 @@ Partial Class frmmain
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.ListBox1)
+        Me.TabPage1.Controls.Add(Me.lstshien)
         Me.TabPage1.Controls.Add(Me.GroupBox6)
         Me.TabPage1.Controls.Add(Me.dgv_shien)
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
@@ -1082,15 +1082,16 @@ Partial Class frmmain
         Me.TabPage1.Text = "条件"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'ListBox1
+        'lstshien
         '
-        Me.ListBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 15
-        Me.ListBox1.Location = New System.Drawing.Point(22, 81)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(236, 694)
-        Me.ListBox1.TabIndex = 70
+        Me.lstshien.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lstshien.FormattingEnabled = True
+        Me.lstshien.ItemHeight = 15
+        Me.lstshien.Location = New System.Drawing.Point(22, 81)
+        Me.lstshien.Name = "lstshien"
+        Me.lstshien.Size = New System.Drawing.Size(236, 694)
+        Me.lstshien.TabIndex = 70
+        Me.lstshien.Visible = False
         '
         'GroupBox6
         '
@@ -1101,11 +1102,11 @@ Partial Class frmmain
         Me.GroupBox6.Controls.Add(Me.Label10)
         Me.GroupBox6.Controls.Add(Me.btn_jouken_kensaku)
         Me.GroupBox6.Controls.Add(Me.btn_jouken_clear)
-        Me.GroupBox6.Controls.Add(Me.TextBox4)
-        Me.GroupBox6.Controls.Add(Me.TextBox3)
-        Me.GroupBox6.Controls.Add(Me.TextBox2)
-        Me.GroupBox6.Controls.Add(Me.TextBox1)
-        Me.GroupBox6.Controls.Add(Me.txt_yuubin_bangou)
+        Me.GroupBox6.Controls.Add(Me.txtfurigana2)
+        Me.GroupBox6.Controls.Add(Me.txtfurigana)
+        Me.GroupBox6.Controls.Add(Me.txtkubun2)
+        Me.GroupBox6.Controls.Add(Me.txtkubun1)
+        Me.GroupBox6.Controls.Add(Me.txtkubun)
         Me.GroupBox6.Location = New System.Drawing.Point(9, 15)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(545, 72)
@@ -1194,60 +1195,60 @@ Partial Class frmmain
         Me.btn_jouken_clear.Text = "クリア"
         Me.btn_jouken_clear.UseVisualStyleBackColor = False
         '
-        'TextBox4
+        'txtfurigana2
         '
-        Me.TextBox4.BackColor = System.Drawing.Color.White
-        Me.TextBox4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox4.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.TextBox4.Location = New System.Drawing.Point(262, 38)
-        Me.TextBox4.MaxLength = 50
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(96, 22)
-        Me.TextBox4.TabIndex = 183
+        Me.txtfurigana2.BackColor = System.Drawing.Color.White
+        Me.txtfurigana2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtfurigana2.ImeMode = System.Windows.Forms.ImeMode.Hiragana
+        Me.txtfurigana2.Location = New System.Drawing.Point(262, 38)
+        Me.txtfurigana2.MaxLength = 50
+        Me.txtfurigana2.Name = "txtfurigana2"
+        Me.txtfurigana2.Size = New System.Drawing.Size(96, 22)
+        Me.txtfurigana2.TabIndex = 183
         '
-        'TextBox3
+        'txtfurigana
         '
-        Me.TextBox3.BackColor = System.Drawing.Color.White
-        Me.TextBox3.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox3.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.TextBox3.Location = New System.Drawing.Point(161, 38)
-        Me.TextBox3.MaxLength = 50
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(96, 22)
-        Me.TextBox3.TabIndex = 182
+        Me.txtfurigana.BackColor = System.Drawing.Color.White
+        Me.txtfurigana.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtfurigana.ImeMode = System.Windows.Forms.ImeMode.Hiragana
+        Me.txtfurigana.Location = New System.Drawing.Point(161, 38)
+        Me.txtfurigana.MaxLength = 50
+        Me.txtfurigana.Name = "txtfurigana"
+        Me.txtfurigana.Size = New System.Drawing.Size(96, 22)
+        Me.txtfurigana.TabIndex = 182
         '
-        'TextBox2
+        'txtkubun2
         '
-        Me.TextBox2.BackColor = System.Drawing.Color.White
-        Me.TextBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox2.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox2.Location = New System.Drawing.Point(111, 38)
-        Me.TextBox2.MaxLength = 50
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(45, 22)
-        Me.TextBox2.TabIndex = 181
+        Me.txtkubun2.BackColor = System.Drawing.Color.White
+        Me.txtkubun2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtkubun2.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtkubun2.Location = New System.Drawing.Point(111, 38)
+        Me.txtkubun2.MaxLength = 50
+        Me.txtkubun2.Name = "txtkubun2"
+        Me.txtkubun2.Size = New System.Drawing.Size(45, 22)
+        Me.txtkubun2.TabIndex = 181
         '
-        'TextBox1
+        'txtkubun1
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.White
-        Me.TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox1.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox1.Location = New System.Drawing.Point(61, 38)
-        Me.TextBox1.MaxLength = 50
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(45, 22)
-        Me.TextBox1.TabIndex = 180
+        Me.txtkubun1.BackColor = System.Drawing.Color.White
+        Me.txtkubun1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtkubun1.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtkubun1.Location = New System.Drawing.Point(61, 38)
+        Me.txtkubun1.MaxLength = 50
+        Me.txtkubun1.Name = "txtkubun1"
+        Me.txtkubun1.Size = New System.Drawing.Size(45, 22)
+        Me.txtkubun1.TabIndex = 180
         '
-        'txt_yuubin_bangou
+        'txtkubun
         '
-        Me.txt_yuubin_bangou.BackColor = System.Drawing.Color.White
-        Me.txt_yuubin_bangou.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt_yuubin_bangou.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txt_yuubin_bangou.Location = New System.Drawing.Point(10, 38)
-        Me.txt_yuubin_bangou.MaxLength = 50
-        Me.txt_yuubin_bangou.Name = "txt_yuubin_bangou"
-        Me.txt_yuubin_bangou.Size = New System.Drawing.Size(45, 22)
-        Me.txt_yuubin_bangou.TabIndex = 179
+        Me.txtkubun.BackColor = System.Drawing.Color.White
+        Me.txtkubun.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtkubun.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtkubun.Location = New System.Drawing.Point(10, 38)
+        Me.txtkubun.MaxLength = 50
+        Me.txtkubun.Name = "txtkubun"
+        Me.txtkubun.Size = New System.Drawing.Size(45, 22)
+        Me.txtkubun.TabIndex = 179
         '
         'dgv_shien
         '
@@ -1826,11 +1827,11 @@ Partial Class frmmain
     Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents btn_jouken_kensaku As Button
     Friend WithEvents btn_jouken_clear As Button
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents txt_yuubin_bangou As TextBox
+    Friend WithEvents txtfurigana2 As TextBox
+    Friend WithEvents txtfurigana As TextBox
+    Friend WithEvents txtkubun2 As TextBox
+    Friend WithEvents txtkubun1 As TextBox
+    Friend WithEvents txtkubun As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label12 As Label
@@ -1858,7 +1859,7 @@ Partial Class frmmain
     Friend WithEvents Label20 As Label
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents btn_shuukei As Button
-    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents lstshien As ListBox
     Friend WithEvents GroupBox8 As GroupBox
     Friend WithEvents TextBox7 As TextBox
     Friend WithEvents TextBox6 As TextBox
