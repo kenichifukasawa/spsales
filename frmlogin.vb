@@ -8,37 +8,43 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim PASSNYUURYOKU As String = ""
 
-        Dim settei_res3 As String, kyupas3 As String, unlsuru As Integer
+        Dim settei_res3 As String, unlsuru As Integer = 1
 
 
 
         ' レジストリを調べ、ダイアログボックスを表示する
-        settei_res3 = setting(1, 2, 0, "", 1)
+        settei_res3 = Setting1(2, 0, "", 1)
         Select Case settei_res3
             Case "-1"
-                ret = MsgBox("設定ファイルがないか、読み込めません", 16, "総合管理システム「SPSALES」")
-                unlsuru = 0
+                msg_go("設定ファイルがないか、読み込めません")
+                End
             Case Else
                 PASSNYUURYOKU = settei_res3
         End Select
 
-        If TXTPASSWORD.Text = "aanda5647" Then     '総合
-            unlsuru = 0
-        Else
-            If TXTPASSWORD.Text = PASSNYUURYOKU Then '通常
+        Select Case Trim(TXTPASSWORD.Text)
+            Case "aanda5647" '総合
                 unlsuru = 0
-            Else
-                ret = MsgBox("パスワードが違います。", 48, "総合管理システム「SPSALES」")
-                TXTPASSWORD.Text = ""
-                TXTPASSWORD.Focus()
-                Exit Sub
-            End If
-        End If
+            Case "Plot8877Ken" '管理者
+                unlsuru = 0
+            Case Else
+                If Trim(TXTPASSWORD.Text) = PASSNYUURYOKU Then '通常
+                    unlsuru = 0
+                Else
+                    msg_go("パスワードが違います。")
+                    TXTPASSWORD.Text = ""
+                    TXTPASSWORD.Focus()
+                    Exit Sub
+                End If
+        End Select
+
+
 
         If unlsuru = 0 Then
             Me.Close()
             Me.Dispose()
         End If
+
     End Sub
 
     Private Sub TXTPASSWORD_TextChanged(sender As Object, e As EventArgs) Handles TXTPASSWORD.TextChanged

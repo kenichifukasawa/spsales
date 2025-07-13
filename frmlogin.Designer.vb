@@ -69,7 +69,7 @@ Partial Class frmlogin
         'TXTPASSWORD
         '
         Me.TXTPASSWORD.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TXTPASSWORD.Location = New System.Drawing.Point(172, 74)
+        Me.TXTPASSWORD.Location = New System.Drawing.Point(152, 71)
         Me.TXTPASSWORD.Name = "TXTPASSWORD"
         Me.TXTPASSWORD.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TXTPASSWORD.Size = New System.Drawing.Size(190, 22)
@@ -79,7 +79,7 @@ Partial Class frmlogin
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(128, 49)
+        Me.Label1.Location = New System.Drawing.Point(131, 32)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(180, 15)
         Me.Label1.TabIndex = 24

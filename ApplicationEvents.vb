@@ -72,7 +72,7 @@ Namespace My
 
 
             'パスワード
-
+            frmlogin.ShowDialog()
 
 
             settei_res = Setting1(29, 0, "", 0)
