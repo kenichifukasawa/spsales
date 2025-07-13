@@ -10,6 +10,19 @@ Module m_main
     Public newserver(3) As String
     Public sougou_path As String
 
+    Public hozonsaki_path As String
+    Public DESKTOP_PATH As String
+
+    Public settei_mdb_path As String
+    Public print_mdb_path As String
+    Public ver_file_path As String
+
+    Public temp_path As String
+    Public log_path As String
+
+
+    Public kidoupassword As String
+
     Public s_soushin_data(4, 0) As String
     Public s_soushin_suu As Integer
 
@@ -21,8 +34,9 @@ Module m_main
 
     Public settei_res
 
-    Public hozonsaki_path As String
-    Public DESKTOP_PATH As String
+
+
+
     Public result As DialogResult
 
 

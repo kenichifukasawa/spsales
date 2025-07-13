@@ -18,11 +18,76 @@ Namespace My
                 End
             End If
 
+            kidoupassword = "kamifusafusa"
+
             '総合パス
             sougou_path = GetAppPath()
+
             DESKTOP_PATH = System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
 
-            newserver(0) = "192.168.40.27" ' "153.127.48.237"
+
+            ver_file_path = sougou_path & "\spsales_ver.exe"
+
+            settei_mdb_path = sougou_path & "\cliant.mdb"
+
+            print_mdb_path = sougou_path & "\print.mdb"
+
+
+            If Dir(ver_file_path) = "" Then
+                msg_go("spsales_ver.exeファイルが見つかりません。")
+                System.Windows.Forms.Application.DoEvents()
+                ' End
+            End If
+
+            If Dir(settei_mdb_path) = "" Then
+                msg_go("cliant.mdbファイルが見つかりません。")
+                System.Windows.Forms.Application.DoEvents()
+                End
+            End If
+
+            If Dir(print_mdb_path) = "" Then
+                msg_go("print.mdbファイルが見つかりません。")
+                System.Windows.Forms.Application.DoEvents()
+                'End
+            End If
+
+
+            log_path = sougou_path & "\log\"
+            If System.IO.Directory.Exists(log_path) Then
+            Else
+                System.IO.Directory.CreateDirectory(log_path)
+            End If
+
+
+            temp_path = sougou_path & "\temp"
+            If System.IO.Directory.Exists(temp_path) Then
+            Else
+                System.IO.Directory.CreateDirectory(temp_path)
+            End If
+
+
+
+            '接続文字列
+            connectionstring_mdb = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & settei_mdb_path & ";Jet OLEDB:Database Password=kamifusafusa"
+
+
+            'パスワード
+
+
+
+            settei_res = Setting1(29, 0, "", 0)
+
+            If settei_res = "0" Then
+                msg_go("PDFファイルの保存先の設定がされていません。")
+                System.Windows.Forms.Application.DoEvents()
+                End
+            Else
+                hozonsaki_path = settei_res
+            End If
+
+
+
+            newserver(0) = "133.167.100.26" ' "192.168.40.27" ' "153.127.48.237"
             newserver(1) = "sa"
             newserver(2) = "Plot8877Ken"
 
@@ -30,34 +95,6 @@ Namespace My
 
             connectionstring_sqlserver = "Data Source=" & newserver(0) & ";Initial Catalog=spsales;" &
                            "User ID=" & newserver(1) & ";Password=" & newserver(2) & ";"
-
-            Dim settei_mdb_path As String = sougou_path & "\cliant.mdb"
-            'Dim settei_mdb_path As String = "C:\Users\Administrator\Documents\開発_plot\spsales_pdf\spsales_pdf\bin\Debug\cliant.mdb"
-
-            '接続文字列
-            connectionstring_mdb = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & settei_mdb_path & ";Jet OLEDB:Database Password=kamifusafusa"
-
-            If Dir(settei_mdb_path) = "" Then
-                msg_go("cliant.mdbファイルが見つかりません。")
-                System.Windows.Forms.Application.DoEvents()
-                End
-            Else
-
-                settei_res = Setting1(29, 0, "", 0)
-
-                If settei_res = "0" Then
-                    msg_go("PDFファイルの保存先の設定がされていません。")
-                    System.Windows.Forms.Application.DoEvents()
-                    End
-                Else
-                    hozonsaki_path = settei_res
-                End If
-
-            End If
-
-
-
-
 
 
 

@@ -14,7 +14,7 @@ Public Class frmsettei
         End If
 
         'kojinに郵便局初期FLGを追加
-        Dim result2 As String = MessageBox.Show("「kubun」をリサイずしますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        Dim result2 As String = MessageBox.Show("「shouhinkubun」のリサイズとコンバートをしますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 
         If result2 = DialogResult.Yes Then
             ' 接続文字列を環境に合わせて修正してください
@@ -69,5 +69,9 @@ Public Class frmsettei
 
 
         msg_go("終了しました。", 64)
+    End Sub
+
+    Private Sub frmsettei_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
