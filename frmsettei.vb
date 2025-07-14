@@ -73,5 +73,33 @@ Public Class frmsettei
 
     Private Sub frmsettei_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+
+        'settei_res = Setting1(29, 0, "", 0)
+
+        'If settei_res = "0" Then
+        '    txtpcname.Text = ""
+        'Else
+        '    txtpcname.Text = settei_res
+        'End If
+
+        'settei_res = Setting1(29, 0, "", 0)
+
+        'If settei_res = "0" Then
+        '    txtdatapath.Text = ""
+        'Else
+        '    txtdatapath.Text = settei_res
+        'End If
+
+
+        'settei_res = Setting1(29, 0, "", 0)
+
+        'If settei_res = "0" Then
+        '    txtversionapupath.Text = ""
+        'Else
+        '    txtversionapupath.Text = settei_res
+        'End If
+
+
+
     End Sub
 End Class

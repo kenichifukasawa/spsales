@@ -75,15 +75,15 @@ Namespace My
             frmlogin.ShowDialog()
 
 
-            settei_res = Setting1(29, 0, "", 0)
+            'settei_res = Setting1(29, 0, "", 0)
 
-            If settei_res = "0" Then
-                msg_go("PDFファイルの保存先の設定がされていません。")
-                System.Windows.Forms.Application.DoEvents()
-                End
-            Else
-                hozonsaki_path = settei_res
-            End If
+            'If settei_res = "0" Then
+            '    msg_go("PDFファイルの保存先の設定がされていません。")
+            '    System.Windows.Forms.Application.DoEvents()
+            '    End
+            'Else
+            '    hozonsaki_path = settei_res
+            'End If
 
 
 
