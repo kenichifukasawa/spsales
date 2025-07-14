@@ -138,14 +138,52 @@ Public Class frmdenwachou
 
         Dim tenpo_id = dgv_kensakukekka.CurrentRow.Cells(0).Value
 
-        Dim title = Trim(Text)
-        Select Case title
-            Case "簡易検索"
+        Dim form_id = Trim(lbl_form_id.Text)
+        Select Case form_id
+            Case "0" ' メイン画面
+                mainset(tenpo_id)
+            Case "1" ' 販売集計
                 frmshuukei_hanbai.cbx_tenpo.SelectedIndex = frmshuukei_hanbai.cbx_tenpo.FindString(tenpo_id)
-                Me.Close() : Me.Dispose()
             Case Else
-
+                msg_go("不明なフォームIDです。")
+                Exit Sub
         End Select
+
+        Me.Close() : Me.Dispose()
+
+        ' ----------------------------------------------------------
+
+        'If denwacho_no = 0 Then  'メイン画面
+
+        '    If all_main_set(tenpo_id) = -1 Then
+        '        Exit Sub
+        '    End If
+
+        '    tenpo_orderchu_set_10
+
+        'ElseIf denwacho_no = 1 Then '請求書履歴のコンボ
+        '    frmseikyuurireki.cmbtenpo.ListIndex = -1
+        '    frmseikyuurireki.cmbtenpo.ListIndex = FcCmbtenpoindexGet(tenpo_id)
+        'ElseIf denwacho_no = 2 Then '入金のコンボ
+        '    frmnyuukin.cmbtenpo.ListIndex = -1
+        '    frmnyuukin.cmbtenpo.ListIndex = FcCmbtenpoindexGet(tenpo_id)
+        'ElseIf denwacho_no = 3 Then '入金のコンボ
+        '    frmketsugou.cmbtenpo3.ListIndex = -1
+        '    frmketsugou.cmbtenpo3.ListIndex = FcCmbtenpoindexGet(tenpo_id)
+        'ElseIf denwacho_no = 4 Then '入金のコンボ
+        '    frmketsugou.cmbtenpo4.ListIndex = -1
+        '    frmketsugou.cmbtenpo4.ListIndex = FcCmbtenpoindexGet(tenpo_id)
+        'ElseIf denwacho_no = 5 Then '請求書追加
+        '    shitei_open(tenpo_id)
+        'ElseIf denwacho_no = 6 Then '入金のコンボ （OK）
+        '    frmshuukeishouhin.cmbtenpo.ListIndex = -1
+        '    frmshuukeishouhin.cmbtenpo.ListIndex = FcCmbtenpoindexGet(tenpo_id)
+        'ElseIf denwacho_no = 7 Then 'のコンボ
+        '    frmkurikoshicheck.cmbtenpo.ListIndex = -1
+        '    frmkurikoshicheck.cmbtenpo.ListIndex = FcCmbtenpoindexGet(tenpo_id)
+        'End If
+
+        'Me.Hide()
 
     End Sub
 End Class

@@ -201,6 +201,7 @@ Public Class frmshuukei_hanbai
     Private Sub btn_denwa_chou_Click(sender As Object, e As EventArgs) Handles btn_denwa_chou.Click
         With frmdenwachou
             .Text = "簡易検索"
+            .lbl_form_id.Text = "1"
             .ShowDialog()
         End With
     End Sub
