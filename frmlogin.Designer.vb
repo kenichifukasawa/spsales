@@ -27,7 +27,7 @@ Partial Class frmlogin
         Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
         Me.TXTPASSWORD = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btn_ninshou = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,17 +85,17 @@ Partial Class frmlogin
         Me.Label1.TabIndex = 24
         Me.Label1.Text = "パスワードを入力してください。"
         '
-        'Button1
+        'btn_ninshou
         '
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(424, 31)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(112, 44)
-        Me.Button1.TabIndex = 33
-        Me.Button1.Text = "認証"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btn_ninshou.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_ninshou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_ninshou.Location = New System.Drawing.Point(424, 31)
+        Me.btn_ninshou.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_ninshou.Name = "btn_ninshou"
+        Me.btn_ninshou.Size = New System.Drawing.Size(112, 44)
+        Me.btn_ninshou.TabIndex = 33
+        Me.btn_ninshou.Text = "認証"
+        Me.btn_ninshou.UseVisualStyleBackColor = True
         '
         'Button2
         '
@@ -116,7 +116,7 @@ Partial Class frmlogin
         Me.ClientSize = New System.Drawing.Size(551, 161)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btn_ninshou)
         Me.Controls.Add(Me.Button2)
         Me.Name = "frmlogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -133,6 +133,6 @@ Partial Class frmlogin
     Friend WithEvents LogoPictureBox As PictureBox
     Friend WithEvents TXTPASSWORD As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btn_ninshou As Button
     Friend WithEvents Button2 As Button
 End Class

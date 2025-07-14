@@ -5,7 +5,7 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btn_ninshou.Click
         Dim PASSNYUURYOKU As String = ""
 
         Dim settei_res3 As String, unlsuru As Integer = 1
@@ -54,8 +54,15 @@
     Private Sub TXTPASSWORD_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTPASSWORD.KeyDown
         If e.KeyCode = Keys.Enter Then
             If Trim(TXTPASSWORD.Text) <> "" Then
-                Button1.PerformClick()
+                btn_ninshou.PerformClick()
             End If
         End If
+    End Sub
+
+    Private Sub frmlogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+#If DEBUG Then
+        TXTPASSWORD.Text = "8877"
+        btn_ninshou.PerformClick()
+#End If
     End Sub
 End Class
