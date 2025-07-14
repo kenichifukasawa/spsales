@@ -485,6 +485,14 @@ Public Class frmmain
     End Sub
 
     Private Sub btn_tenpo_denwachou_Click(sender As Object, e As EventArgs) Handles btn_tenpo_denwachou.Click
-        frmdenwachou.ShowDialog()
+
+        With frmdenwachou
+            .lbl_form_id.Text = "0"
+            .ShowDialog()
+        End With
+
+        ' TODO:納品書のセットの関数をここにも書く
+
     End Sub
+
 End Class

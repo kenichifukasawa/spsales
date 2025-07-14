@@ -43,7 +43,7 @@ Partial Class frmmain
         Me.dgv_log = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btn_denpyou_henkou = New System.Windows.Forms.Button()
-        Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
+        Me.dgv_denpyou = New System.Windows.Forms.DataGridView()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
         Me.btn_seikyuu_nyuukin_shousai = New System.Windows.Forms.Button()
         Me.dgv_seikyuusho = New System.Windows.Forms.DataGridView()
@@ -120,42 +120,42 @@ Partial Class frmmain
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.cmbshokuin = New System.Windows.Forms.ComboBox()
+        Me.cbx_shain = New System.Windows.Forms.ComboBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.chk__nouhinsho_shouhizei = New System.Windows.Forms.CheckBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cbx_shurui = New System.Windows.Forms.ComboBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.Label27 = New System.Windows.Forms.Label()
+        Me.lbl_shouhizei_8_percent = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
+        Me.lbl_shouhizei_10_percent = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
+        Me.lbl_nouhinsho_goukei = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.chk_nouhinsho_houkoku = New System.Windows.Forms.CheckBox()
+        Me.chk_nouhinsho_pc = New System.Windows.Forms.CheckBox()
+        Me.txt_nouhinsho_no = New System.Windows.Forms.TextBox()
         Me.btn_nouhinsho_bar = New System.Windows.Forms.Button()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.btn_nouhinsho_hozon = New System.Windows.Forms.Button()
         Me.btn_nouhinsho_clear = New System.Windows.Forms.Button()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         CType(Me.dgv_log, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
-        CType(Me.dgv_nouhinsho, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgv_denpyou, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox20.SuspendLayout()
         CType(Me.dgv_seikyuusho, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox13.SuspendLayout()
@@ -172,7 +172,7 @@ Partial Class frmmain
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgv_nouhinsho, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btn_end
@@ -441,7 +441,7 @@ Partial Class frmmain
         '
         Me.GroupBox3.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox3.Controls.Add(Me.btn_denpyou_henkou)
-        Me.GroupBox3.Controls.Add(Me.dgv_nouhinsho)
+        Me.GroupBox3.Controls.Add(Me.dgv_denpyou)
         Me.GroupBox3.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(8, 820)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
@@ -465,20 +465,20 @@ Partial Class frmmain
         Me.btn_denpyou_henkou.Text = "変更"
         Me.btn_denpyou_henkou.UseVisualStyleBackColor = False
         '
-        'dgv_nouhinsho
+        'dgv_denpyou
         '
-        Me.dgv_nouhinsho.AllowUserToAddRows = False
-        Me.dgv_nouhinsho.AllowUserToDeleteRows = False
-        Me.dgv_nouhinsho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_nouhinsho.Location = New System.Drawing.Point(13, 18)
-        Me.dgv_nouhinsho.Margin = New System.Windows.Forms.Padding(2)
-        Me.dgv_nouhinsho.MultiSelect = False
-        Me.dgv_nouhinsho.Name = "dgv_nouhinsho"
-        Me.dgv_nouhinsho.ReadOnly = True
-        Me.dgv_nouhinsho.RowTemplate.Height = 24
-        Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv_nouhinsho.Size = New System.Drawing.Size(514, 131)
-        Me.dgv_nouhinsho.TabIndex = 66
+        Me.dgv_denpyou.AllowUserToAddRows = False
+        Me.dgv_denpyou.AllowUserToDeleteRows = False
+        Me.dgv_denpyou.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_denpyou.Location = New System.Drawing.Point(13, 18)
+        Me.dgv_denpyou.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_denpyou.MultiSelect = False
+        Me.dgv_denpyou.Name = "dgv_denpyou"
+        Me.dgv_denpyou.ReadOnly = True
+        Me.dgv_denpyou.RowTemplate.Height = 24
+        Me.dgv_denpyou.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_denpyou.Size = New System.Drawing.Size(514, 131)
+        Me.dgv_denpyou.TabIndex = 66
         '
         'GroupBox20
         '
@@ -1339,11 +1339,11 @@ Partial Class frmmain
         'GroupBox5
         '
         Me.GroupBox5.Controls.Add(Me.GroupBox10)
-        Me.GroupBox5.Controls.Add(Me.CheckBox3)
+        Me.GroupBox5.Controls.Add(Me.chk__nouhinsho_shouhizei)
         Me.GroupBox5.Controls.Add(Me.GroupBox9)
         Me.GroupBox5.Controls.Add(Me.GroupBox8)
         Me.GroupBox5.Controls.Add(Me.GroupBox7)
-        Me.GroupBox5.Controls.Add(Me.DataGridView2)
+        Me.GroupBox5.Controls.Add(Me.dgv_nouhinsho)
         Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox5.Location = New System.Drawing.Point(583, 3)
         Me.GroupBox5.Name = "GroupBox5"
@@ -1355,7 +1355,7 @@ Partial Class frmmain
         'GroupBox10
         '
         Me.GroupBox10.BackColor = System.Drawing.Color.White
-        Me.GroupBox10.Controls.Add(Me.cmbshokuin)
+        Me.GroupBox10.Controls.Add(Me.cbx_shain)
         Me.GroupBox10.Controls.Add(Me.Label19)
         Me.GroupBox10.Controls.Add(Me.Label18)
         Me.GroupBox10.Controls.Add(Me.DateTimePicker1)
@@ -1365,15 +1365,15 @@ Partial Class frmmain
         Me.GroupBox10.TabIndex = 203
         Me.GroupBox10.TabStop = False
         '
-        'cmbshokuin
+        'cbx_shain
         '
-        Me.cmbshokuin.BackColor = System.Drawing.Color.White
-        Me.cmbshokuin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbshokuin.FormattingEnabled = True
-        Me.cmbshokuin.Location = New System.Drawing.Point(269, 22)
-        Me.cmbshokuin.Name = "cmbshokuin"
-        Me.cmbshokuin.Size = New System.Drawing.Size(104, 23)
-        Me.cmbshokuin.TabIndex = 195
+        Me.cbx_shain.BackColor = System.Drawing.Color.White
+        Me.cbx_shain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shain.FormattingEnabled = True
+        Me.cbx_shain.Location = New System.Drawing.Point(269, 22)
+        Me.cbx_shain.Name = "cbx_shain"
+        Me.cbx_shain.Size = New System.Drawing.Size(104, 23)
+        Me.cbx_shain.TabIndex = 195
         '
         'Label19
         '
@@ -1404,21 +1404,21 @@ Partial Class frmmain
         Me.DateTimePicker1.Size = New System.Drawing.Size(138, 22)
         Me.DateTimePicker1.TabIndex = 192
         '
-        'CheckBox3
+        'chk__nouhinsho_shouhizei
         '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(446, 13)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(112, 19)
-        Me.CheckBox3.TabIndex = 202
-        Me.CheckBox3.Text = "消費税を計算"
-        Me.CheckBox3.UseVisualStyleBackColor = True
+        Me.chk__nouhinsho_shouhizei.AutoSize = True
+        Me.chk__nouhinsho_shouhizei.Location = New System.Drawing.Point(446, 13)
+        Me.chk__nouhinsho_shouhizei.Name = "chk__nouhinsho_shouhizei"
+        Me.chk__nouhinsho_shouhizei.Size = New System.Drawing.Size(112, 19)
+        Me.chk__nouhinsho_shouhizei.TabIndex = 202
+        Me.chk__nouhinsho_shouhizei.Text = "消費税を計算"
+        Me.chk__nouhinsho_shouhizei.UseVisualStyleBackColor = True
         '
         'GroupBox9
         '
         Me.GroupBox9.BackColor = System.Drawing.Color.White
         Me.GroupBox9.Controls.Add(Me.btn_insatsu)
-        Me.GroupBox9.Controls.Add(Me.ComboBox1)
+        Me.GroupBox9.Controls.Add(Me.cbx_shurui)
         Me.GroupBox9.Controls.Add(Me.Label30)
         Me.GroupBox9.Location = New System.Drawing.Point(393, 18)
         Me.GroupBox9.Name = "GroupBox9"
@@ -1427,15 +1427,15 @@ Partial Class frmmain
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "印刷"
         '
-        'ComboBox1
+        'cbx_shurui
         '
-        Me.ComboBox1.BackColor = System.Drawing.Color.White
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(62, 21)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(100, 23)
-        Me.ComboBox1.TabIndex = 201
+        Me.cbx_shurui.BackColor = System.Drawing.Color.White
+        Me.cbx_shurui.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shurui.FormattingEnabled = True
+        Me.cbx_shurui.Location = New System.Drawing.Point(62, 21)
+        Me.cbx_shurui.Name = "cbx_shurui"
+        Me.cbx_shurui.Size = New System.Drawing.Size(100, 23)
+        Me.cbx_shurui.TabIndex = 201
         '
         'Label30
         '
@@ -1451,16 +1451,16 @@ Partial Class frmmain
         'GroupBox8
         '
         Me.GroupBox8.BackColor = System.Drawing.Color.White
-        Me.GroupBox8.Controls.Add(Me.Label27)
+        Me.GroupBox8.Controls.Add(Me.lbl_shouhizei_8_percent)
         Me.GroupBox8.Controls.Add(Me.Label28)
         Me.GroupBox8.Controls.Add(Me.Label29)
-        Me.GroupBox8.Controls.Add(Me.Label22)
+        Me.GroupBox8.Controls.Add(Me.lbl_shouhizei_10_percent)
         Me.GroupBox8.Controls.Add(Me.Label23)
         Me.GroupBox8.Controls.Add(Me.Label25)
         Me.GroupBox8.Controls.Add(Me.TextBox7)
         Me.GroupBox8.Controls.Add(Me.TextBox6)
         Me.GroupBox8.Controls.Add(Me.Label21)
-        Me.GroupBox8.Controls.Add(Me.Label20)
+        Me.GroupBox8.Controls.Add(Me.lbl_nouhinsho_goukei)
         Me.GroupBox8.Controls.Add(Me.Label15)
         Me.GroupBox8.Controls.Add(Me.Label16)
         Me.GroupBox8.Location = New System.Drawing.Point(8, 149)
@@ -1469,15 +1469,15 @@ Partial Class frmmain
         Me.GroupBox8.TabIndex = 199
         Me.GroupBox8.TabStop = False
         '
-        'Label27
+        'lbl_shouhizei_8_percent
         '
-        Me.Label27.BackColor = System.Drawing.Color.White
-        Me.Label27.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label27.Location = New System.Drawing.Point(266, 18)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(97, 16)
-        Me.Label27.TabIndex = 208
-        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_shouhizei_8_percent.BackColor = System.Drawing.Color.White
+        Me.lbl_shouhizei_8_percent.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shouhizei_8_percent.Location = New System.Drawing.Point(266, 18)
+        Me.lbl_shouhizei_8_percent.Name = "lbl_shouhizei_8_percent"
+        Me.lbl_shouhizei_8_percent.Size = New System.Drawing.Size(97, 16)
+        Me.lbl_shouhizei_8_percent.TabIndex = 208
+        Me.lbl_shouhizei_8_percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label28
         '
@@ -1501,15 +1501,15 @@ Partial Class frmmain
         Me.Label29.Text = "８％"
         Me.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label22
+        'lbl_shouhizei_10_percent
         '
-        Me.Label22.BackColor = System.Drawing.Color.White
-        Me.Label22.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label22.Location = New System.Drawing.Point(63, 18)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(97, 16)
-        Me.Label22.TabIndex = 205
-        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_shouhizei_10_percent.BackColor = System.Drawing.Color.White
+        Me.lbl_shouhizei_10_percent.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shouhizei_10_percent.Location = New System.Drawing.Point(63, 18)
+        Me.lbl_shouhizei_10_percent.Name = "lbl_shouhizei_10_percent"
+        Me.lbl_shouhizei_10_percent.Size = New System.Drawing.Size(97, 16)
+        Me.lbl_shouhizei_10_percent.TabIndex = 205
+        Me.lbl_shouhizei_10_percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label23
         '
@@ -1566,15 +1566,15 @@ Partial Class frmmain
         Me.Label21.Text = "備考"
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label20
+        'lbl_nouhinsho_goukei
         '
-        Me.Label20.BackColor = System.Drawing.Color.White
-        Me.Label20.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label20.Location = New System.Drawing.Point(483, 18)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(97, 16)
-        Me.Label20.TabIndex = 198
-        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_nouhinsho_goukei.BackColor = System.Drawing.Color.White
+        Me.lbl_nouhinsho_goukei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_nouhinsho_goukei.Location = New System.Drawing.Point(483, 18)
+        Me.lbl_nouhinsho_goukei.Name = "lbl_nouhinsho_goukei"
+        Me.lbl_nouhinsho_goukei.Size = New System.Drawing.Size(97, 16)
+        Me.lbl_nouhinsho_goukei.TabIndex = 198
+        Me.lbl_nouhinsho_goukei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label15
         '
@@ -1601,9 +1601,9 @@ Partial Class frmmain
         'GroupBox7
         '
         Me.GroupBox7.BackColor = System.Drawing.Color.White
-        Me.GroupBox7.Controls.Add(Me.CheckBox2)
-        Me.GroupBox7.Controls.Add(Me.CheckBox1)
-        Me.GroupBox7.Controls.Add(Me.TextBox5)
+        Me.GroupBox7.Controls.Add(Me.chk_nouhinsho_houkoku)
+        Me.GroupBox7.Controls.Add(Me.chk_nouhinsho_pc)
+        Me.GroupBox7.Controls.Add(Me.txt_nouhinsho_no)
         Me.GroupBox7.Controls.Add(Me.btn_nouhinsho_bar)
         Me.GroupBox7.Controls.Add(Me.Label17)
         Me.GroupBox7.Controls.Add(Me.btn_nouhinsho_hozon)
@@ -1614,36 +1614,38 @@ Partial Class frmmain
         Me.GroupBox7.TabIndex = 70
         Me.GroupBox7.TabStop = False
         '
-        'CheckBox2
+        'chk_nouhinsho_houkoku
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(343, 24)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(56, 19)
-        Me.CheckBox2.TabIndex = 199
-        Me.CheckBox2.Text = "報告"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.chk_nouhinsho_houkoku.AutoSize = True
+        Me.chk_nouhinsho_houkoku.Location = New System.Drawing.Point(343, 24)
+        Me.chk_nouhinsho_houkoku.Name = "chk_nouhinsho_houkoku"
+        Me.chk_nouhinsho_houkoku.Size = New System.Drawing.Size(56, 19)
+        Me.chk_nouhinsho_houkoku.TabIndex = 199
+        Me.chk_nouhinsho_houkoku.Text = "報告"
+        Me.chk_nouhinsho_houkoku.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'chk_nouhinsho_pc
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(236, 24)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(75, 19)
-        Me.CheckBox1.TabIndex = 197
-        Me.CheckBox1.Text = "PC登録"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chk_nouhinsho_pc.AutoSize = True
+        Me.chk_nouhinsho_pc.Checked = True
+        Me.chk_nouhinsho_pc.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chk_nouhinsho_pc.Location = New System.Drawing.Point(236, 24)
+        Me.chk_nouhinsho_pc.Name = "chk_nouhinsho_pc"
+        Me.chk_nouhinsho_pc.Size = New System.Drawing.Size(75, 19)
+        Me.chk_nouhinsho_pc.TabIndex = 197
+        Me.chk_nouhinsho_pc.Text = "PC登録"
+        Me.chk_nouhinsho_pc.UseVisualStyleBackColor = True
         '
-        'TextBox5
+        'txt_nouhinsho_no
         '
-        Me.TextBox5.BackColor = System.Drawing.Color.White
-        Me.TextBox5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox5.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox5.Location = New System.Drawing.Point(104, 20)
-        Me.TextBox5.MaxLength = 50
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(111, 22)
-        Me.TextBox5.TabIndex = 196
+        Me.txt_nouhinsho_no.BackColor = System.Drawing.Color.White
+        Me.txt_nouhinsho_no.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt_nouhinsho_no.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txt_nouhinsho_no.Location = New System.Drawing.Point(104, 20)
+        Me.txt_nouhinsho_no.MaxLength = 50
+        Me.txt_nouhinsho_no.Name = "txt_nouhinsho_no"
+        Me.txt_nouhinsho_no.Size = New System.Drawing.Size(111, 22)
+        Me.txt_nouhinsho_no.TabIndex = 196
         '
         'btn_nouhinsho_bar
         '
@@ -1695,20 +1697,20 @@ Partial Class frmmain
         Me.btn_nouhinsho_clear.Text = "Cl"
         Me.btn_nouhinsho_clear.UseVisualStyleBackColor = False
         '
-        'DataGridView2
+        'dgv_nouhinsho
         '
-        Me.DataGridView2.AllowUserToAddRows = False
-        Me.DataGridView2.AllowUserToDeleteRows = False
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(8, 233)
-        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(2)
-        Me.DataGridView2.MultiSelect = False
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.ReadOnly = True
-        Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(651, 740)
-        Me.DataGridView2.TabIndex = 67
+        Me.dgv_nouhinsho.AllowUserToAddRows = False
+        Me.dgv_nouhinsho.AllowUserToDeleteRows = False
+        Me.dgv_nouhinsho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_nouhinsho.Location = New System.Drawing.Point(8, 233)
+        Me.dgv_nouhinsho.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_nouhinsho.MultiSelect = False
+        Me.dgv_nouhinsho.Name = "dgv_nouhinsho"
+        Me.dgv_nouhinsho.ReadOnly = True
+        Me.dgv_nouhinsho.RowTemplate.Height = 24
+        Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_nouhinsho.Size = New System.Drawing.Size(651, 740)
+        Me.dgv_nouhinsho.TabIndex = 67
         '
         'frmmain
         '
@@ -1728,7 +1730,7 @@ Partial Class frmmain
         Me.GroupBox11.ResumeLayout(False)
         CType(Me.dgv_log, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
-        CType(Me.dgv_nouhinsho, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgv_denpyou, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox20.ResumeLayout(False)
         CType(Me.dgv_seikyuusho, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox13.ResumeLayout(False)
@@ -1749,7 +1751,7 @@ Partial Class frmmain
         Me.GroupBox8.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgv_nouhinsho, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1816,7 +1818,7 @@ Partial Class frmmain
     Friend WithEvents btn_tenpo_denwachou As Button
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents btn_insatsu As Button
-    Friend WithEvents dgv_nouhinsho As DataGridView
+    Friend WithEvents dgv_denpyou As DataGridView
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents TabControl1 As TabControl
@@ -1824,7 +1826,7 @@ Partial Class frmmain
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents dgv_shien As DataGridView
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents dgv_nouhinsho As DataGridView
     Friend WithEvents btn_jouken_kensaku As Button
     Friend WithEvents btn_jouken_clear As Button
     Friend WithEvents txtfurigana2 As TextBox
@@ -1853,11 +1855,11 @@ Partial Class frmmain
     Friend WithEvents Label19 As Label
     Friend WithEvents btn_nouhinsho_hozon As Button
     Friend WithEvents btn_nouhinsho_clear As Button
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents cmbshokuin As ComboBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents Label20 As Label
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents txt_nouhinsho_no As TextBox
+    Friend WithEvents cbx_shain As ComboBox
+    Friend WithEvents chk_nouhinsho_houkoku As CheckBox
+    Friend WithEvents lbl_nouhinsho_goukei As Label
+    Friend WithEvents chk_nouhinsho_pc As CheckBox
     Friend WithEvents btn_shuukei As Button
     Friend WithEvents lstshien As ListBox
     Friend WithEvents GroupBox8 As GroupBox
@@ -1866,17 +1868,17 @@ Partial Class frmmain
     Friend WithEvents Label21 As Label
     Friend WithEvents btn_denpyou_henkou As Button
     Friend WithEvents btn_seikyuu_nyuukin_shousai As Button
-    Friend WithEvents Label27 As Label
+    Friend WithEvents lbl_shouhizei_8_percent As Label
     Friend WithEvents Label28 As Label
     Friend WithEvents Label29 As Label
-    Friend WithEvents Label22 As Label
+    Friend WithEvents lbl_shouhizei_10_percent As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents Label25 As Label
     Friend WithEvents btn_shutsuryoku As Button
     Friend WithEvents btn_check As Button
-    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents chk__nouhinsho_shouhizei As CheckBox
     Friend WithEvents GroupBox9 As GroupBox
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cbx_shurui As ComboBox
     Friend WithEvents Label30 As Label
     Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents GroupBox11 As GroupBox

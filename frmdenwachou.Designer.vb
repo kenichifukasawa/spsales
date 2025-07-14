@@ -38,6 +38,7 @@ Partial Class frmdenwachou
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.lbl_annai = New System.Windows.Forms.Label()
         Me.btn_modoru = New System.Windows.Forms.Button()
+        Me.lbl_form_id = New System.Windows.Forms.Label()
         Me.tcl_denwachou.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,6 +187,7 @@ Partial Class frmdenwachou
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.White
+        Me.GroupBox3.Controls.Add(Me.lbl_form_id)
         Me.GroupBox3.Controls.Add(Me.lbl_annai)
         Me.GroupBox3.Controls.Add(Me.tcl_denwachou)
         Me.GroupBox3.Controls.Add(Me.btn_modoru)
@@ -217,6 +219,17 @@ Partial Class frmdenwachou
         Me.btn_modoru.TabIndex = 194
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
+        '
+        'lbl_form_id
+        '
+        Me.lbl_form_id.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.lbl_form_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_form_id.Location = New System.Drawing.Point(530, 919)
+        Me.lbl_form_id.Name = "lbl_form_id"
+        Me.lbl_form_id.Size = New System.Drawing.Size(113, 24)
+        Me.lbl_form_id.TabIndex = 198
+        Me.lbl_form_id.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_form_id.Visible = False
         '
         'frmdenwachou
         '
@@ -253,4 +266,5 @@ Partial Class frmdenwachou
     Friend WithEvents btn_modoru As Button
     Friend WithEvents lbl_annai As Label
     Friend WithEvents lbl_kensuu As Label
+    Friend WithEvents lbl_form_id As Label
 End Class

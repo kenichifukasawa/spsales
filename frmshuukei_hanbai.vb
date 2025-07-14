@@ -199,11 +199,11 @@ Public Class frmshuukei_hanbai
     End Sub
 
     Private Sub btn_denwa_chou_Click(sender As Object, e As EventArgs) Handles btn_denwa_chou.Click
-
-        ' TODO
-        msg_go("未開発。frmmainの電話帳をコピーする。")
-        Exit Sub
-
+        With frmdenwachou
+            .Text = "簡易検索"
+            .lbl_form_id.Text = "1"
+            .ShowDialog()
+        End With
     End Sub
 
     Private Sub dtp_hinichi_kaishi_TextChanged(sender As Object, e As EventArgs) Handles dtp_hinichi_kaishi.TextChanged
