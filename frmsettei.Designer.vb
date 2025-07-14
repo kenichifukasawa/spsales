@@ -34,6 +34,7 @@ Partial Class frmsettei
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -166,12 +167,25 @@ Partial Class frmsettei
         Me.Button2.Text = "戻る"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.Location = New System.Drawing.Point(12, 292)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(139, 44)
+        Me.Button1.TabIndex = 155
+        Me.Button1.Text = "コンバート"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmsettei
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(788, 350)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button2)
         Me.Name = "frmsettei"
@@ -195,4 +209,5 @@ Partial Class frmsettei
     Friend WithEvents Label11 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
 End Class

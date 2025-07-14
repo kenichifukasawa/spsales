@@ -1,4 +1,6 @@
-﻿Public Class frminfo
+﻿
+
+Public Class frminfo
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         End
     End Sub
@@ -22,6 +24,11 @@
     End Sub
 
     Private Sub frminfo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub LogoPictureBox_Click(sender As Object, e As EventArgs) Handles LogoPictureBox.Click
+
 
     End Sub
 End Class

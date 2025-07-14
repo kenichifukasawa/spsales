@@ -10,6 +10,19 @@ Module m_main
     Public newserver(3) As String
     Public sougou_path As String
 
+    Public hozonsaki_path As String
+    Public DESKTOP_PATH As String
+
+    Public settei_mdb_path As String
+    Public print_mdb_path As String
+    Public ver_file_path As String
+
+    Public temp_path As String
+    Public log_path As String
+
+
+    Public kidoupassword As String
+
     Public s_soushin_data(4, 0) As String
     Public s_soushin_suu As Integer
 
@@ -21,8 +34,9 @@ Module m_main
 
     Public settei_res
 
-    Public hozonsaki_path As String
-    Public DESKTOP_PATH As String
+
+
+
     Public result As DialogResult
 
 
@@ -663,7 +677,7 @@ Module m_main
 
         If docchi = 0 Then '読み込み
 
-            cmd_setting.CommandText = "select * from settei where id ='" & CStr(No + 1) & "'"
+            cmd_setting.CommandText = "select * from settei where id ='" & CStr(No) & "'"
 
             cn_setting.Open()
 
@@ -676,7 +690,7 @@ Module m_main
 
         Else '書き込み
 
-            cmd_setting.CommandText = "update settei set s" & CStr(id) & "='" & newid & "' where id='" & CStr(No + 1) & "'"
+            cmd_setting.CommandText = "update settei set s" & CStr(id) & "='" & newid & "' where id='" & CStr(No) & "'"
 
             cn_setting.Open()
 
