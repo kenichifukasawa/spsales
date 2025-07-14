@@ -24,18 +24,18 @@ Partial Class frmcheck_sentaku
     Private Sub InitializeComponent()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btn_kosuu_henkou = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btn_kurikoshi_log = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btn_kubun = New System.Windows.Forms.Button()
+        Me.btn_shouhin_log = New System.Windows.Forms.Button()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.btn_shouhin = New System.Windows.Forms.Button()
+        Me.btn_shouhin_check = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -47,7 +47,7 @@ Partial Class frmcheck_sentaku
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.White
         Me.GroupBox4.Controls.Add(Me.Label3)
-        Me.GroupBox4.Controls.Add(Me.Button1)
+        Me.GroupBox4.Controls.Add(Me.btn_kosuu_henkou)
         Me.GroupBox4.Location = New System.Drawing.Point(188, 165)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(170, 147)
@@ -64,23 +64,23 @@ Partial Class frmcheck_sentaku
         Me.Label3.Text = "「現在個数簡易変更」情報の管理をします。"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'Button1
+        'btn_kosuu_henkou
         '
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(13, 89)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(147, 44)
-        Me.Button1.TabIndex = 97
-        Me.Button1.Text = "現在個数簡易変更"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btn_kosuu_henkou.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_kosuu_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_kosuu_henkou.Location = New System.Drawing.Point(13, 89)
+        Me.btn_kosuu_henkou.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_kosuu_henkou.Name = "btn_kosuu_henkou"
+        Me.btn_kosuu_henkou.Size = New System.Drawing.Size(147, 44)
+        Me.btn_kosuu_henkou.TabIndex = 97
+        Me.btn_kosuu_henkou.Text = "現在個数簡易変更"
+        Me.btn_kosuu_henkou.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.White
         Me.GroupBox5.Controls.Add(Me.Label4)
-        Me.GroupBox5.Controls.Add(Me.Button2)
+        Me.GroupBox5.Controls.Add(Me.btn_kurikoshi_log)
         Me.GroupBox5.Location = New System.Drawing.Point(12, 165)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(170, 147)
@@ -97,17 +97,17 @@ Partial Class frmcheck_sentaku
         Me.Label4.Text = "「繰越推移ログ」情報の管理をします。"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'Button2
+        'btn_kurikoshi_log
         '
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(13, 89)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(147, 44)
-        Me.Button2.TabIndex = 97
-        Me.Button2.Text = "繰越推移ログ"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btn_kurikoshi_log.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_kurikoshi_log.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_kurikoshi_log.Location = New System.Drawing.Point(13, 89)
+        Me.btn_kurikoshi_log.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_kurikoshi_log.Name = "btn_kurikoshi_log"
+        Me.btn_kurikoshi_log.Size = New System.Drawing.Size(147, 44)
+        Me.btn_kurikoshi_log.TabIndex = 97
+        Me.btn_kurikoshi_log.Text = "繰越推移ログ"
+        Me.btn_kurikoshi_log.UseVisualStyleBackColor = True
         '
         'GroupBox3
         '
@@ -135,7 +135,7 @@ Partial Class frmcheck_sentaku
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.btn_kubun)
+        Me.GroupBox1.Controls.Add(Me.btn_shouhin_log)
         Me.GroupBox1.Location = New System.Drawing.Point(188, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(170, 147)
@@ -152,23 +152,23 @@ Partial Class frmcheck_sentaku
         Me.Label1.Text = "「商品推移ログ」情報の管理をします。"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btn_kubun
+        'btn_shouhin_log
         '
-        Me.btn_kubun.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_kubun.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_kubun.Location = New System.Drawing.Point(13, 89)
-        Me.btn_kubun.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_kubun.Name = "btn_kubun"
-        Me.btn_kubun.Size = New System.Drawing.Size(147, 44)
-        Me.btn_kubun.TabIndex = 97
-        Me.btn_kubun.Text = "商品推移ログ"
-        Me.btn_kubun.UseVisualStyleBackColor = True
+        Me.btn_shouhin_log.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_shouhin_log.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shouhin_log.Location = New System.Drawing.Point(13, 89)
+        Me.btn_shouhin_log.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_shouhin_log.Name = "btn_shouhin_log"
+        Me.btn_shouhin_log.Size = New System.Drawing.Size(147, 44)
+        Me.btn_shouhin_log.TabIndex = 97
+        Me.btn_shouhin_log.Text = "商品推移ログ"
+        Me.btn_shouhin_log.UseVisualStyleBackColor = True
         '
         'GroupBox16
         '
         Me.GroupBox16.BackColor = System.Drawing.Color.White
         Me.GroupBox16.Controls.Add(Me.Label21)
-        Me.GroupBox16.Controls.Add(Me.btn_shouhin)
+        Me.GroupBox16.Controls.Add(Me.btn_shouhin_check)
         Me.GroupBox16.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox16.Name = "GroupBox16"
         Me.GroupBox16.Size = New System.Drawing.Size(170, 147)
@@ -185,17 +185,17 @@ Partial Class frmcheck_sentaku
         Me.Label21.Text = "「商品推移チェック」情報の管理をします。"
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btn_shouhin
+        'btn_shouhin_check
         '
-        Me.btn_shouhin.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shouhin.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_shouhin.Location = New System.Drawing.Point(13, 89)
-        Me.btn_shouhin.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_shouhin.Name = "btn_shouhin"
-        Me.btn_shouhin.Size = New System.Drawing.Size(147, 44)
-        Me.btn_shouhin.TabIndex = 97
-        Me.btn_shouhin.Text = "商品推移チェック"
-        Me.btn_shouhin.UseVisualStyleBackColor = True
+        Me.btn_shouhin_check.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_shouhin_check.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shouhin_check.Location = New System.Drawing.Point(13, 89)
+        Me.btn_shouhin_check.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_shouhin_check.Name = "btn_shouhin_check"
+        Me.btn_shouhin_check.Size = New System.Drawing.Size(147, 44)
+        Me.btn_shouhin_check.TabIndex = 97
+        Me.btn_shouhin_check.Text = "商品推移チェック"
+        Me.btn_shouhin_check.UseVisualStyleBackColor = True
         '
         'frmcheck_sentaku
         '
@@ -222,16 +222,16 @@ Partial Class frmcheck_sentaku
 
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btn_kosuu_henkou As Button
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btn_kurikoshi_log As Button
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents btn_modoru As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents btn_kubun As Button
+    Friend WithEvents btn_shouhin_log As Button
     Friend WithEvents GroupBox16 As GroupBox
     Friend WithEvents Label21 As Label
-    Friend WithEvents btn_shouhin As Button
+    Friend WithEvents btn_shouhin_check As Button
 End Class
