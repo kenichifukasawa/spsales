@@ -101,38 +101,28 @@ Module m_main
 
         tenpo_log_set(s_tenpoid)
 
-
     End Sub
+
     Sub tenpo_hachuurireki_set(s_tenpoid As String)
 
         Try
 
             Dim cn_server As New SqlConnection
-
             cn_server.ConnectionString = connectionstring_sqlserver
-
 
             Sql = "SELECT hacchuu.*,shain.ryakumei" &
                     " FROM hacchuu right join shain" &
                     " on hacchuu.shainid=shain.shainid" &
                     " where tenpoid='" & s_tenpoid & "'and joukyou='0' ORDER BY iraibi DESC"
 
-
-            Dim da_server As SqlDataAdapter
-
-            da_server = New SqlDataAdapter(Sql, cn_server)
-
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
             Dim ds_server As New DataSet
-
             da_server.Fill(ds_server, "t_shoukaii")
-
-            Dim dt_server As DataTable
-
-            dt_server = ds_server.Tables("t_shoukaii")
+            Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
 
             Dim mojiretsu(5) As String
 
-            With frmmain.dgv_nouhinsho
+            With frmmain.dgv_denpyou
 
                 .Rows.Clear()
                 .Columns.Clear()
@@ -159,17 +149,16 @@ Module m_main
                 .ColumnHeadersHeight = 25
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
-                .AlternatingRowsDefaultCellStyle.BackColor _
-                                                        = Color.LightBlue
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
             End With
 
             Dim s_kin As Decimal
 
             For i = 0 To dt_server.Rows.Count - 1
+
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
                 mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 7, 2)
-
-
 
                 s_kin = dt_server.Rows.Item(i).Item("goukei")
                 mojiretsu(2) = s_kin.ToString("#,##0")
@@ -183,16 +172,15 @@ Module m_main
                     mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
                 End If
 
+                frmmain.dgv_denpyou.Rows.Add(mojiretsu)
 
-
-                frmmain.dgv_nouhinsho.Rows.Add(mojiretsu)
             Next i
+
             dt_server.Clear()
             ds_server.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)
-
         End Try
 
     End Sub

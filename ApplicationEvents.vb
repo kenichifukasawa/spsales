@@ -22,7 +22,8 @@ Namespace My
             sougou_path = GetAppPath()
             DESKTOP_PATH = System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
 
-            newserver(0) = "192.168.40.27" ' "153.127.48.237"
+            'newserver(0) = "192.168.40.27" ' "153.127.48.237"
+            newserver(0) = "133.167.100.26" ' TODO：Debug
             newserver(1) = "sa"
             newserver(2) = "Plot8877Ken"
 
