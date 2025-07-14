@@ -11,14 +11,10 @@ Public Class frmdenwachou
     End Sub
 
     Private Sub tcl_denwachou_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tcl_denwachou.SelectedIndexChanged
-
         set_denwachou()
-
     End Sub
 
     Private Sub set_denwachou()
-
-        ' VB6:kokyakuichiran()
 
         For Each page As TabPage In tcl_denwachou.TabPages
             page.Text = page.Text.Replace("★", "")
@@ -135,6 +131,21 @@ Public Class frmdenwachou
     End Sub
 
     Private Sub dgv_kensakukekka_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_kensakukekka.CellMouseDoubleClick
+
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim tenpo_id = dgv_kensakukekka.CurrentRow.Cells(0).Value
+
+        Dim title = Trim(Text)
+        Select Case title
+            Case "簡易検索"
+                frmshuukei_hanbai.cbx_tenpo.SelectedIndex = frmshuukei_hanbai.cbx_tenpo.FindString(tenpo_id)
+                Me.Close() : Me.Dispose()
+            Case Else
+
+        End Select
 
     End Sub
 End Class
