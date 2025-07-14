@@ -439,19 +439,19 @@ Public Class frmmain
 
             Dim cn_server As New SqlConnection
 
-        cn_server.ConnectionString = connectionstring_sqlserver
+            cn_server.ConnectionString = connectionstring_sqlserver
 
-        Dim da_server As SqlDataAdapter
+            Dim da_server As SqlDataAdapter
 
-        da_server = New SqlDataAdapter(Sql, cn_server)
+            da_server = New SqlDataAdapter(Sql, cn_server)
 
-        Dim ds_server As New DataSet
+            Dim ds_server As New DataSet
 
-        da_server.Fill(ds_server, "t_shoukaii")
+            da_server.Fill(ds_server, "t_shoukaii")
 
-        Dim dt_server As DataTable
+            Dim dt_server As DataTable
 
-        dt_server = ds_server.Tables("t_shoukaii")
+            dt_server = ds_server.Tables("t_shoukaii")
 
             Dim mojiretsu(4) As String
             Dim s_kin As Decimal
@@ -482,5 +482,9 @@ Public Class frmmain
         End Try
 
 
+    End Sub
+
+    Private Sub btn_tenpo_denwachou_Click(sender As Object, e As EventArgs) Handles btn_tenpo_denwachou.Click
+        frmdenwachou.ShowDialog()
     End Sub
 End Class
