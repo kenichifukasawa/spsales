@@ -73,31 +73,51 @@ Public Class frmsettei
 
     Private Sub frmsettei_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
-        'settei_res = Setting1(29, 0, "", 0)
-
-        'If settei_res = "0" Then
-        '    txtpcname.Text = ""
-        'Else
-        '    txtpcname.Text = settei_res
-        'End If
-
-        'settei_res = Setting1(29, 0, "", 0)
-
-        'If settei_res = "0" Then
-        '    txtdatapath.Text = ""
-        'Else
-        '    txtdatapath.Text = settei_res
-        'End If
+        set_shain_name(4)
 
 
-        'settei_res = Setting1(29, 0, "", 0)
+        settei_res = Setting1(2, 0, "", 0)
+        If settei_res = "0" Then
+            txtpassword.Text = ""
+        Else
+            txtpassword.Text = settei_res
+        End If
 
-        'If settei_res = "0" Then
-        '    txtversionapupath.Text = ""
-        'Else
-        '    txtversionapupath.Text = settei_res
-        'End If
+        settei_res = Setting1(3, 0, "", 0)
+        If settei_res = "0" Then
+            txtuser.Text = ""
+        Else
+            txtuser.Text = settei_res
+        End If
+
+        settei_res = Setting1(4, 0, "", 0)
+        If settei_res = "0" Then
+            cmbshain.SelectedIndex = -1
+        Else
+            cmbshain.SelectedIndex = cmbshain.FindString(settei_res)
+        End If
+
+        settei_res = Setting1(5, 0, "", 0)
+        If settei_res = "0" Then
+            txtkaisha.Text = ""
+        Else
+            txtkaisha.Text = settei_res
+        End If
+
+        settei_res = Setting1(6, 0, "", 0)
+        If settei_res = "0" Then
+            txtnouhinshoyoushi.Text = ""
+        Else
+            txtnouhinshoyoushi.Text = settei_res
+        End If
+
+        settei_res = Setting1(28, 0, "", 0)
+        If settei_res = "0" Then
+            txtseikyuushoyoushi.Text = ""
+        Else
+            txtseikyuushoyoushi.Text = settei_res
+        End If
+
 
 
 
