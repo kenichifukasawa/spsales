@@ -6,7 +6,7 @@
     End Sub
 
     Private Sub btn_shouhin_check_Click(sender As Object, e As EventArgs) Handles btn_shouhin_check.Click
-
+        frmcheck_shouhin_check.ShowDialog()
     End Sub
 
     Private Sub btn_shouhin_log_Click(sender As Object, e As EventArgs) Handles btn_shouhin_log.Click
