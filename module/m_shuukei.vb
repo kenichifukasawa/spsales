@@ -57,6 +57,10 @@ Module m_shuukei
                 frmshuukei_hanbai.cbx_shouhin_kubun_1.Items.Clear()
                 frmshuukei_hanbai.cbx_shouhin_kubun_2.Items.Clear()
                 frmshuukei_hanbai.cbx_shitei_shouhin.Items.Clear()
+            Case 2
+                frmcheck_shouhin_check.cbx_shouhin_kubun_1.Items.Clear()
+                frmcheck_shouhin_check.cbx_shouhin_kubun_2.Items.Clear()
+                frmcheck_shouhin_check.cbx_shitei_shouhin.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -81,6 +85,8 @@ Module m_shuukei
                         frmshuukei_shouhin.cbx_shouhin_kubun_1.Items.Add(item_name)
                     Case 1
                         frmshuukei_hanbai.cbx_shouhin_kubun_1.Items.Add(item_name)
+                    Case 2
+                        frmcheck_shouhin_check.cbx_shouhin_kubun_1.Items.Add(item_name)
                 End Select
             Next
 
@@ -101,6 +107,8 @@ Module m_shuukei
                 frmshuukei_shouhin.cbx_shouhin_kubun_2.Items.Clear()
             Case 1
                 frmshuukei_hanbai.cbx_shouhin_kubun_2.Items.Clear()
+            Case 2
+                frmcheck_shouhin_check.cbx_shouhin_kubun_2.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -125,6 +133,8 @@ Module m_shuukei
                         frmshuukei_shouhin.cbx_shouhin_kubun_2.Items.Add(item_name)
                     Case 1
                         frmshuukei_hanbai.cbx_shouhin_kubun_2.Items.Add(item_name)
+                    Case 2
+                        frmcheck_shouhin_check.cbx_shouhin_kubun_2.Items.Add(item_name)
                 End Select
             Next
 
@@ -138,13 +148,15 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_shitei_shouhin(frm_no As Integer, shouhin_kubun_1_id As String, shouhin_kubun_2_id As String, is_haiban As Boolean)
+    Sub set_shitei_shouhin(frm_no As Integer, shouhin_kubun_1_id As String, shouhin_kubun_2_id As String, Optional is_haiban As Boolean = True, Optional is_mishiyou_hihyouji As Boolean = False)
 
         Select Case frm_no
             Case 0
                 frmshuukei_shouhin.cbx_shitei_shouhin.Items.Clear()
             Case 1
                 frmshuukei_hanbai.cbx_shitei_shouhin.Items.Clear()
+            Case 2
+                frmcheck_shouhin_check.cbx_shitei_shouhin.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -178,6 +190,14 @@ Module m_shuukei
                 End If
             End If
 
+            If is_mishiyou_hihyouji = True Then
+                If query_where = "" Then
+                    query_where = " WHERE mishiyou = '0'"
+                Else
+                    query_where += " AND mishiyou = '0'"
+                End If
+            End If
+
             query += query_where + " ORDER BY shouhinid"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
@@ -192,6 +212,8 @@ Module m_shuukei
                         frmshuukei_shouhin.cbx_shitei_shouhin.Items.Add(item_name)
                     Case 1
                         frmshuukei_hanbai.cbx_shitei_shouhin.Items.Add(item_name)
+                    Case 2
+                        frmcheck_shouhin_check.cbx_shitei_shouhin.Items.Add(item_name)
                 End Select
             Next
 
