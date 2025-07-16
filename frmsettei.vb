@@ -73,33 +73,197 @@ Public Class frmsettei
 
     Private Sub frmsettei_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        cmb_p_nouhinsho.Items.Add("なし")
+        cmb_p_shousai.Items.Add("なし")
+        cmb_p_seikyuusho.Items.Add("なし")
+        Dim s As String
+        For Each s In System.Drawing.Printing.PrinterSettings.InstalledPrinters
+            cmb_p_nouhinsho.Items.Add(s)
+            cmb_p_shousai.Items.Add(s)
+            cmb_p_seikyuusho.Items.Add(s)
+        Next (s)
 
-        'settei_res = Setting1(29, 0, "", 0)
+        set_shain_name(4)
 
-        'If settei_res = "0" Then
-        '    txtpcname.Text = ""
-        'Else
-        '    txtpcname.Text = settei_res
-        'End If
-
-        'settei_res = Setting1(29, 0, "", 0)
-
-        'If settei_res = "0" Then
-        '    txtdatapath.Text = ""
-        'Else
-        '    txtdatapath.Text = settei_res
-        'End If
+        'プリンター
 
 
-        'settei_res = Setting1(29, 0, "", 0)
 
-        'If settei_res = "0" Then
-        '    txtversionapupath.Text = ""
-        'Else
-        '    txtversionapupath.Text = settei_res
-        'End If
+        '個人
+        settei_res = Setting1(2, 0, "", 0)
+        If settei_res = "0" Then
+            txtpassword.Text = ""
+        Else
+            txtpassword.Text = settei_res
+        End If
+
+        settei_res = Setting1(3, 0, "", 0)
+        If settei_res = "0" Then
+            txtuser.Text = ""
+        Else
+            txtuser.Text = settei_res
+        End If
+
+        settei_res = Setting1(4, 0, "", 0)
+        If settei_res = "0" Then
+            cmbshain.SelectedIndex = -1
+        Else
+            cmbshain.SelectedIndex = cmbshain.FindString(settei_res)
+        End If
+
+        settei_res = Setting1(5, 0, "", 0)
+        If settei_res = "0" Then
+            txtkaisha.Text = ""
+        Else
+            txtkaisha.Text = settei_res
+        End If
+        '印刷用紙番号
+        settei_res = Setting1(6, 0, "", 0)
+        If settei_res = "0" Then
+            txtnouhinshoyoushi.Text = ""
+        Else
+            txtnouhinshoyoushi.Text = settei_res
+        End If
+
+        settei_res = Setting1(28, 0, "", 0)
+        If settei_res = "0" Then
+            txtseikyuushoyoushi.Text = ""
+        Else
+            txtseikyuushoyoushi.Text = settei_res
+        End If
+
+        'パス
+        settei_res = Setting1(29, 0, "", 0)
+        If settei_res = "0" Then
+            txtseikyuu.Text = ""
+        Else
+            txtseikyuu.Text = settei_res
+        End If
+
+        'サーバ
+        settei_res = Setting1(20, 0, "", 0)
+        If settei_res = "0" Then
+            txtip.Text = ""
+        Else
+            txtip.Text = settei_res
+        End If
+
+        settei_res = Setting1(21, 0, "", 0)
+        If settei_res = "0" Then
+            txtdatabase.Text = ""
+        Else
+            txtdatabase.Text = settei_res
+        End If
+
+        settei_res = Setting1(22, 0, "", 0)
+        If settei_res = "0" Then
+            txtusername.Text = ""
+        Else
+            txtusername.Text = settei_res
+        End If
+
+        settei_res = Setting1(23, 0, "", 0)
+        If settei_res = "0" Then
+            txtpass.Text = ""
+        Else
+            txtpass.Text = settei_res
+        End If
+
+        'バージョンアップパス
+        settei_res = Setting1(16, 0, "", 0)
+        If settei_res = "0" Then
+            txtverpath.Text = ""
+        Else
+            txtverpath.Text = settei_res
+        End If
+
+        'wella保存パス
+        settei_res = Setting1(15, 0, "", 0)
+        If settei_res = "0" Then
+            txtwella.Text = ""
+        Else
+            txtwella.Text = settei_res
+        End If
+
+        'バックアップパス
+        settei_res = Setting1(13, 0, "", 0)
+        If settei_res = "0" Then
+            txtbackup.Text = ""
+        Else
+            txtbackup.Text = settei_res
+        End If
+
+        '同期
+        settei_res = Setting1(9, 0, "", 0)
+        If settei_res = "0" Then
+            txtdouki.Text = ""
+        Else
+            txtdouki.Text = settei_res
+        End If
+
+        'マインサーバ
+        settei_res = Setting1(7, 0, "", 0)
+        If settei_res = "0" Then
+            txtmainserverpath.Text = ""
+        Else
+            txtmainserverpath.Text = settei_res
+        End If
+
+        'yuubinパス
+        settei_res = Setting1(25, 0, "", 0)
+        If settei_res = "0" Then
+            txtyuubin.Text = ""
+        Else
+            txtyuubin.Text = settei_res
+        End If
+
+        '請求書保存
+        settei_res = Setting1(29, 0, "", 0)
+        If settei_res = "0" Then
+            txtseikyuu.Text = ""
+        Else
+            txtseikyuu.Text = settei_res
+        End If
+
+        '経理担当者
+        settei_res = Trim(setting2(19, 0, "2", ""))
+        If settei_res = "0" Then
+            txtkeiritantou.Text = ""
+        Else
+            txtkeiritantou.Text = settei_res
+        End If
+
+        '適格登録番号
+        settei_res = Trim(setting2(20, 0, "2", ""))
+        If settei_res = "0" Then
+            txttekikakubangou.Text = ""
+        Else
+            txttekikakubangou.Text = settei_res
+        End If
+
+        settei_res = Trim(setting2(17, 0, "2", ""))
+        If settei_res = "0" Then
+            chknouhinsho.Checked = False
+        Else
+            chknouhinsho.Checked = True
+        End If
+
+        settei_res = Trim(setting2(18, 0, "2", ""))
+        If settei_res = "0" Then
+            chkseikyuusho.Checked = False
+        Else
+            chkseikyuusho.Checked = True
+        End If
+
+        'プリンターのリストをコンボに！
 
 
+
+
+
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
 
     End Sub
 End Class
