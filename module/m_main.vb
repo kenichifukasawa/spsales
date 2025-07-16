@@ -677,7 +677,7 @@ Module m_main
 
         If docchi = 0 Then '読み込み
 
-            cmd_setting.CommandText = "select * from settei where id ='" & CStr(No) & "'"
+            cmd_setting.CommandText = "select * from settei where id ='" & CStr(No + 1) & "'"
 
             cn_setting.Open()
 
@@ -690,7 +690,7 @@ Module m_main
 
         Else '書き込み
 
-            cmd_setting.CommandText = "update settei set s" & CStr(id) & "='" & newid & "' where id='" & CStr(No) & "'"
+            cmd_setting.CommandText = "update settei set s" & CStr(id) & "='" & newid & "' where id='" & CStr(No + 1) & "'"
 
             cn_setting.Open()
 

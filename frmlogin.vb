@@ -13,7 +13,7 @@
 
 
         ' レジストリを調べ、ダイアログボックスを表示する
-        settei_res3 = Setting1(2, 0, "", 1)
+        settei_res3 = Setting1(2, 0, "", 0)
         Select Case settei_res3
             Case "-1"
                 msg_go("設定ファイルがないか、読み込めません")
