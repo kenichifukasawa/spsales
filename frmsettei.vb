@@ -73,7 +73,21 @@ Public Class frmsettei
 
     Private Sub frmsettei_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        cmb_p_nouhinsho.Items.Add("なし")
+        cmb_p_shousai.Items.Add("なし")
+        cmb_p_seikyuusho.Items.Add("なし")
+        Dim s As String
+        For Each s In System.Drawing.Printing.PrinterSettings.InstalledPrinters
+            cmb_p_nouhinsho.Items.Add(s)
+            cmb_p_shousai.Items.Add(s)
+            cmb_p_seikyuusho.Items.Add(s)
+        Next (s)
+
         set_shain_name(4)
+
+        'プリンター
+
+
 
         '個人
         settei_res = Setting1(2, 0, "", 0)
@@ -240,6 +254,9 @@ Public Class frmsettei
         Else
             chkseikyuusho.Checked = True
         End If
+
+        'プリンターのリストをコンボに！
+
 
 
 

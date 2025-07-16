@@ -50,11 +50,11 @@ Partial Class frmsettei
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.cmb_p_nouhinsho = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cmb_p_seikyuusho = New System.Windows.Forms.ComboBox()
+        Me.cmb_p_shousai = New System.Windows.Forms.ComboBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.txtkeiritantou = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -379,11 +379,11 @@ Partial Class frmsettei
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.White
         Me.GroupBox2.Controls.Add(Me.Label12)
-        Me.GroupBox2.Controls.Add(Me.ComboBox3)
+        Me.GroupBox2.Controls.Add(Me.cmb_p_nouhinsho)
         Me.GroupBox2.Controls.Add(Me.Label10)
         Me.GroupBox2.Controls.Add(Me.Label9)
-        Me.GroupBox2.Controls.Add(Me.ComboBox2)
-        Me.GroupBox2.Controls.Add(Me.ComboBox1)
+        Me.GroupBox2.Controls.Add(Me.cmb_p_seikyuusho)
+        Me.GroupBox2.Controls.Add(Me.cmb_p_shousai)
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(12, 463)
         Me.GroupBox2.Name = "GroupBox2"
@@ -403,14 +403,13 @@ Partial Class frmsettei
         Me.Label12.Text = "納品時印刷"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'ComboBox3
+        'cmb_p_nouhinsho
         '
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(29, 60)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(268, 23)
-        Me.ComboBox3.TabIndex = 99
+        Me.cmb_p_nouhinsho.FormattingEnabled = True
+        Me.cmb_p_nouhinsho.Location = New System.Drawing.Point(29, 60)
+        Me.cmb_p_nouhinsho.Name = "cmb_p_nouhinsho"
+        Me.cmb_p_nouhinsho.Size = New System.Drawing.Size(268, 23)
+        Me.cmb_p_nouhinsho.TabIndex = 99
         '
         'Label10
         '
@@ -434,23 +433,21 @@ Partial Class frmsettei
         Me.Label9.Text = "詳細時印刷"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'ComboBox2
+        'cmb_p_seikyuusho
         '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(29, 182)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(268, 23)
-        Me.ComboBox2.TabIndex = 96
+        Me.cmb_p_seikyuusho.FormattingEnabled = True
+        Me.cmb_p_seikyuusho.Location = New System.Drawing.Point(29, 182)
+        Me.cmb_p_seikyuusho.Name = "cmb_p_seikyuusho"
+        Me.cmb_p_seikyuusho.Size = New System.Drawing.Size(268, 23)
+        Me.cmb_p_seikyuusho.TabIndex = 96
         '
-        'ComboBox1
+        'cmb_p_shousai
         '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(29, 121)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(268, 23)
-        Me.ComboBox1.TabIndex = 95
+        Me.cmb_p_shousai.FormattingEnabled = True
+        Me.cmb_p_shousai.Location = New System.Drawing.Point(29, 121)
+        Me.cmb_p_shousai.Name = "cmb_p_shousai"
+        Me.cmb_p_shousai.Size = New System.Drawing.Size(268, 23)
+        Me.cmb_p_shousai.TabIndex = 95
         '
         'GroupBox4
         '
@@ -813,11 +810,11 @@ Partial Class frmsettei
     Friend WithEvents txtbackup As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents Label12 As Label
-    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents cmb_p_nouhinsho As ComboBox
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmb_p_seikyuusho As ComboBox
+    Friend WithEvents cmb_p_shousai As ComboBox
     Friend WithEvents cmbshain As ComboBox
     Friend WithEvents Label32 As Label
     Friend WithEvents GroupBox5 As GroupBox
