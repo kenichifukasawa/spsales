@@ -81,6 +81,12 @@
     <Compile Include="frmcheck_sentaku.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmcheck_shouhin_check.Designer.vb">
+      <DependentUpon>frmcheck_shouhin_check.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmcheck_shouhin_check.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmdenwachou.Designer.vb">
       <DependentUpon>frmdenwachou.vb</DependentUpon>
     </Compile>
@@ -260,6 +266,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmcheck_sentaku.resx">
       <DependentUpon>frmcheck_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmcheck_shouhin_check.resx">
+      <DependentUpon>frmcheck_shouhin_check.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmdenwachou.resx">
       <DependentUpon>frmdenwachou.vb</DependentUpon>

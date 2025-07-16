@@ -347,16 +347,17 @@ Public Class frmshuukei_hanbai
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM shouhin"
-
-            query = "SELECT hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid, shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid2, shouhin.haiban" +
-                    ", SUM(hacchuushousai.kosuu) AS goukeisuu, SUM(hacchuushousai.kei) AS goukeigaku" +
-                    " FROM shouhin"
+            Dim query = "SELECT hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid" +
+                ", shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid2, shouhin.haiban" +
+                ", SUM(hacchuushousai.kosuu) AS goukeisuu, SUM(hacchuushousai.kei) AS goukeigaku" +
+                " FROM shouhin"
 
             If tenpo_id = "" And shain_id = "" Then
-                query += " RIGHT JOIN ((hacchuu LEFT JOIN tenpo ON hacchuu.tenpoid = tenpo.tenpoid) LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid) ON shouhin.shouhinid = hacchuushousai.shouhinid"
+                query += " RIGHT JOIN ((hacchuu LEFT JOIN tenpo ON hacchuu.tenpoid = tenpo.tenpoid)" +
+                    " LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid) ON shouhin.shouhinid = hacchuushousai.shouhinid"
             Else
-                query += " RIGHT JOIN (tenpo RIGHT JOIN (hacchuu RIGHT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid) ON tenpo.tenpoid = hacchuu.tenpoid) ON shouhin.shouhinid = hacchuushousai.shouhinid"
+                query += " RIGHT JOIN (tenpo RIGHT JOIN (hacchuu RIGHT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" +
+                    " ON tenpo.tenpoid = hacchuu.tenpoid) ON shouhin.shouhinid = hacchuushousai.shouhinid"
             End If
 
             Dim query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'"
@@ -395,7 +396,8 @@ Public Class frmshuukei_hanbai
             End If
 
             query += query_where +
-                " GROUP BY hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid, shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid2, shouhin.haiban" +
+                " GROUP BY hacchuu.tenpoid, tenpo.kadou, tenpo.tenpomei, hacchuushousai.shouhinid" +
+                ", shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid2, shouhin.haiban" +
                 " ORDER BY shouhinid"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
