@@ -284,6 +284,89 @@ Public Class frmsettei
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
 
+        Dim s_new_str As String
+
+        'プリンター
+        If cmb_p_nouhinsho.SelectedIndex = -1 Then
+            s_new_str = "0"
+        Else
+            s_new_str = cmb_p_nouhinsho.Text
+        End If
+        settei_res = Setting1(10, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。Print1 :" & s_new_str)
+            Exit Sub
+        End If
+
+        If cmb_p_shousai.SelectedIndex = -1 Then
+            s_new_str = "0"
+        Else
+            s_new_str = cmb_p_shousai.Text
+        End If
+        settei_res = Setting1(8, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。Print2 :" & s_new_str)
+            Exit Sub
+        End If
+
+        If cmb_p_seikyuusho.SelectedIndex = -1 Then
+            s_new_str = "0"
+        Else
+            s_new_str = cmb_p_seikyuusho.Text
+        End If
+        settei_res = Setting1(12, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。Print3 :" & s_new_str)
+            Exit Sub
+        End If
+
+        '個人
+        If Trim(txtpassword.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtpassword.Text)
+        End If
+        settei_res = Setting1(2, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。PW :" & s_new_str)
+            Exit Sub
+        End If
+
+        If Trim(txtuser.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtuser.Text)
+        End If
+        settei_res = Setting1(3, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。user :" & s_new_str)
+            Exit Sub
+        End If
+
+        If cmbshain.SelectedIndex = -1 Then
+            s_new_str = "0"
+        Else
+            s_new_str = Mid(Trim(cmbshain.Text), 1, 3)
+        End If
+        settei_res = Setting1(4, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。def :" & s_new_str)
+            Exit Sub
+        End If
+
+        If Trim(txtkaisha.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtkaisha.Text)
+        End If
+        settei_res = Setting1(5, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。kaisha :" & s_new_str)
+            Exit Sub
+        End If
+
+
+
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
