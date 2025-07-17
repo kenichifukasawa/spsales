@@ -151,13 +151,7 @@ Public Class frmsettei
             txtseikyuushoyoushi.Text = settei_res
         End If
 
-        'パス
-        settei_res = Setting1(29, 0, "", 0)
-        If settei_res = "0" Then
-            txtseikyuu.Text = ""
-        Else
-            txtseikyuu.Text = settei_res
-        End If
+
 
         'サーバ
         settei_res = Setting1(20, 0, "", 0)
@@ -244,6 +238,8 @@ Public Class frmsettei
             txtseikyuu.Text = settei_res
         End If
 
+
+
         '経理担当者
         settei_res = Trim(setting2(19, 0, "2", ""))
         If settei_res = "0" Then
@@ -274,7 +270,7 @@ Public Class frmsettei
             chkseikyuusho.Checked = True
         End If
 
-        'プリンターのリストをコンボに！
+
 
 
 
@@ -365,6 +361,206 @@ Public Class frmsettei
             Exit Sub
         End If
 
+        '印刷用紙番号
+        If Trim(txtnouhinshoyoushi.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtnouhinshoyoushi.Text)
+        End If
+        settei_res = Setting1(6, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。paperno1 :" & s_new_str)
+            Exit Sub
+        End If
+
+        If Trim(txtseikyuushoyoushi.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtseikyuushoyoushi.Text)
+        End If
+        settei_res = Setting1(28, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。paperno2 :" & s_new_str)
+            Exit Sub
+        End If
+
+        'サーバ
+        If Trim(txtip.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtip.Text)
+        End If
+        settei_res = Setting1(20, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。server1 :" & s_new_str)
+            Exit Sub
+        End If
+
+        If Trim(txtdatabase.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtdatabase.Text)
+        End If
+        settei_res = Setting1(21, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。server2 :" & s_new_str)
+            Exit Sub
+        End If
+
+        If Trim(txtusername.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtusername.Text)
+        End If
+        settei_res = Setting1(22, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。server3 :" & s_new_str)
+            Exit Sub
+        End If
+
+        If Trim(txtpass.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtpass.Text)
+        End If
+        settei_res = Setting1(23, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。server4 :" & s_new_str)
+            Exit Sub
+        End If
+
+        'バージョンアップパス
+        If Trim(txtverpath.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtverpath.Text)
+        End If
+        settei_res = Setting1(16, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。path1 :" & s_new_str)
+            Exit Sub
+        End If
+
+        'wella保存パス
+        If Trim(txtwella.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtwella.Text)
+        End If
+        settei_res = Setting1(15, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。path2 :" & s_new_str)
+            Exit Sub
+        End If
+
+        'バックアップパス
+        If Trim(txtbackup.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtbackup.Text)
+        End If
+        settei_res = Setting1(13, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。path3 :" & s_new_str)
+            Exit Sub
+        End If
+
+        '同期
+        If Trim(txtdouki.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtdouki.Text)
+        End If
+        settei_res = Setting1(9, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。path4 :" & s_new_str)
+            Exit Sub
+        End If
+
+        'マインサーバ
+        If Trim(txtmainserverpath.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtmainserverpath.Text)
+        End If
+        settei_res = Setting1(7, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。path5 :" & s_new_str)
+            Exit Sub
+        End If
+
+        'yuubinパス
+        If Trim(txtyuubin.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtyuubin.Text)
+        End If
+        settei_res = Setting1(25, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。path6 :" & s_new_str)
+            Exit Sub
+        End If
+
+        '請求書保存
+        If Trim(txtseikyuu.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtseikyuu.Text)
+        End If
+        settei_res = Setting1(29, 1, s_new_str, 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。path7 :" & s_new_str)
+            Exit Sub
+        End If
+
+        '経理担当者
+        If Trim(txtkeiritantou.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txtkeiritantou.Text)
+        End If
+        settei_res = Trim(setting2(19, 1, "2", s_new_str))
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。経理担当者 :" & s_new_str)
+            Exit Sub
+        End If
+
+        '適格登録番号
+        If Trim(txttekikakubangou.Text) = "" Then
+            s_new_str = "0"
+        Else
+            s_new_str = Trim(txttekikakubangou.Text)
+        End If
+        settei_res = Trim(setting2(20, 1, "2", s_new_str))
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。適格登録番号 :" & s_new_str)
+            Exit Sub
+        End If
+
+        If chknouhinsho.Checked = False Then
+            s_new_str = "0"
+        Else
+            s_new_str = "1"
+        End If
+        settei_res = Trim(setting2(17, 1, "2", s_new_str))
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。納品書対応 :" & s_new_str)
+            Exit Sub
+        End If
+
+        If chkseikyuusho.Checked = False Then
+            s_new_str = "0"
+        Else
+            s_new_str = "1"
+        End If
+        settei_res = Trim(setting2(18, 1, "2", s_new_str))
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。chkseikyuusho :" & s_new_str)
+            Exit Sub
+        End If
+
+
+        msg_go("更新しました", 64)
 
 
     End Sub
