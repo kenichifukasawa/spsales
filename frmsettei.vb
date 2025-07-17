@@ -285,4 +285,165 @@ Public Class frmsettei
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
 
     End Sub
+
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+        Dim fbd As New FolderBrowserDialog
+
+        '上部に表示する説明テキストを指定する
+        fbd.Description = "フォルダを指定してください。"
+        'ルートフォルダを指定する
+        'デフォルトでDesktop
+        fbd.RootFolder = Environment.SpecialFolder.Desktop
+        '最初に選択するフォルダを指定する
+        'RootFolder以下にあるフォルダである必要がある
+        fbd.SelectedPath = "C:\Windows"
+        'ユーザーが新しいフォルダを作成できるようにする
+        'デフォルトでTrue
+        fbd.ShowNewFolderButton = True
+
+        'ダイアログを表示する
+        If fbd.ShowDialog(Me) = DialogResult.OK Then
+            '選択されたフォルダを表示する
+            'Console.WriteLine(fbd.SelectedPath)
+            txtverpath.Text = fbd.SelectedPath
+        End If
+    End Sub
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+        Dim fbd As New FolderBrowserDialog
+
+        '上部に表示する説明テキストを指定する
+        fbd.Description = "フォルダを指定してください。"
+        'ルートフォルダを指定する
+        'デフォルトでDesktop
+        fbd.RootFolder = Environment.SpecialFolder.Desktop
+        '最初に選択するフォルダを指定する
+        'RootFolder以下にあるフォルダである必要がある
+        fbd.SelectedPath = "C:\Windows"
+        'ユーザーが新しいフォルダを作成できるようにする
+        'デフォルトでTrue
+        fbd.ShowNewFolderButton = True
+
+        'ダイアログを表示する
+        If fbd.ShowDialog(Me) = DialogResult.OK Then
+            '選択されたフォルダを表示する
+            'Console.WriteLine(fbd.SelectedPath)
+            txtwella.Text = fbd.SelectedPath
+        End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim fbd As New FolderBrowserDialog
+
+        '上部に表示する説明テキストを指定する
+        fbd.Description = "フォルダを指定してください。"
+        'ルートフォルダを指定する
+        'デフォルトでDesktop
+        fbd.RootFolder = Environment.SpecialFolder.Desktop
+        '最初に選択するフォルダを指定する
+        'RootFolder以下にあるフォルダである必要がある
+        fbd.SelectedPath = "C:\Windows"
+        'ユーザーが新しいフォルダを作成できるようにする
+        'デフォルトでTrue
+        fbd.ShowNewFolderButton = True
+
+        'ダイアログを表示する
+        If fbd.ShowDialog(Me) = DialogResult.OK Then
+            '選択されたフォルダを表示する
+            'Console.WriteLine(fbd.SelectedPath)
+            txtbackup.Text = fbd.SelectedPath
+        End If
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim fbd As New FolderBrowserDialog
+
+        '上部に表示する説明テキストを指定する
+        fbd.Description = "フォルダを指定してください。"
+        'ルートフォルダを指定する
+        'デフォルトでDesktop
+        fbd.RootFolder = Environment.SpecialFolder.Desktop
+        '最初に選択するフォルダを指定する
+        'RootFolder以下にあるフォルダである必要がある
+        fbd.SelectedPath = "C:\Windows"
+        'ユーザーが新しいフォルダを作成できるようにする
+        'デフォルトでTrue
+        fbd.ShowNewFolderButton = True
+
+        'ダイアログを表示する
+        If fbd.ShowDialog(Me) = DialogResult.OK Then
+            '選択されたフォルダを表示する
+            'Console.WriteLine(fbd.SelectedPath)
+            txtdouki.Text = fbd.SelectedPath
+        End If
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim fbd As New FolderBrowserDialog
+
+        '上部に表示する説明テキストを指定する
+        fbd.Description = "フォルダを指定してください。"
+        'ルートフォルダを指定する
+        'デフォルトでDesktop
+        fbd.RootFolder = Environment.SpecialFolder.Desktop
+        '最初に選択するフォルダを指定する
+        'RootFolder以下にあるフォルダである必要がある
+        fbd.SelectedPath = "C:\Windows"
+        'ユーザーが新しいフォルダを作成できるようにする
+        'デフォルトでTrue
+        fbd.ShowNewFolderButton = True
+
+        'ダイアログを表示する
+        If fbd.ShowDialog(Me) = DialogResult.OK Then
+            '選択されたフォルダを表示する
+            'Console.WriteLine(fbd.SelectedPath)
+            txtmainserverpath.Text = fbd.SelectedPath
+        End If
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim fbd As New FolderBrowserDialog
+
+        '上部に表示する説明テキストを指定する
+        fbd.Description = "フォルダを指定してください。"
+        'ルートフォルダを指定する
+        'デフォルトでDesktop
+        fbd.RootFolder = Environment.SpecialFolder.Desktop
+        '最初に選択するフォルダを指定する
+        'RootFolder以下にあるフォルダである必要がある
+        fbd.SelectedPath = "C:\Windows"
+        'ユーザーが新しいフォルダを作成できるようにする
+        'デフォルトでTrue
+        fbd.ShowNewFolderButton = True
+
+        'ダイアログを表示する
+        If fbd.ShowDialog(Me) = DialogResult.OK Then
+            '選択されたフォルダを表示する
+            'Console.WriteLine(fbd.SelectedPath)
+            txtyuubin.Text = fbd.SelectedPath
+        End If
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        Dim fbd As New FolderBrowserDialog
+
+        '上部に表示する説明テキストを指定する
+        fbd.Description = "フォルダを指定してください。"
+        'ルートフォルダを指定する
+        'デフォルトでDesktop
+        fbd.RootFolder = Environment.SpecialFolder.Desktop
+        '最初に選択するフォルダを指定する
+        'RootFolder以下にあるフォルダである必要がある
+        fbd.SelectedPath = "C:\Windows"
+        'ユーザーが新しいフォルダを作成できるようにする
+        'デフォルトでTrue
+        fbd.ShowNewFolderButton = True
+
+        'ダイアログを表示する
+        If fbd.ShowDialog(Me) = DialogResult.OK Then
+            '選択されたフォルダを表示する
+            'Console.WriteLine(fbd.SelectedPath)
+            txtseikyuu.Text = fbd.SelectedPath
+        End If
+    End Sub
 End Class
