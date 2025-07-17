@@ -568,6 +568,7 @@ Partial Class frmsettei
         Me.txtpass.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txtpass.Location = New System.Drawing.Point(126, 154)
         Me.txtpass.Name = "txtpass"
+        Me.txtpass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtpass.Size = New System.Drawing.Size(171, 22)
         Me.txtpass.TabIndex = 95
         '

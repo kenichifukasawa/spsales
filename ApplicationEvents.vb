@@ -74,26 +74,48 @@ Namespace My
             'パスワード
             frmlogin.ShowDialog()
 
+            'サーバ
+            settei_res = Setting1(20, 0, "", 0)
+            If settei_res = "0" Then
+                newserver(0) = ""
+            Else
+                newserver(0) = settei_res
+            End If
 
-            'settei_res = Setting1(29, 0, "", 0)
+            settei_res = Setting1(21, 0, "", 0)
+            If settei_res = "0" Then
+                newserver(3) = ""
+            Else
+                newserver(3) = settei_res
+            End If
 
-            'If settei_res = "0" Then
-            '    msg_go("PDFファイルの保存先の設定がされていません。")
-            '    System.Windows.Forms.Application.DoEvents()
-            '    End
-            'Else
-            '    hozonsaki_path = settei_res
-            'End If
+            settei_res = Setting1(22, 0, "", 0)
+            If settei_res = "0" Then
+                newserver(1) = ""
+            Else
+                newserver(1) = settei_res
+            End If
+
+            settei_res = Setting1(23, 0, "", 0)
+            If settei_res = "0" Then
+                newserver(2) = ""
+            Else
+                newserver(2) = settei_res
+            End If
 
 
-
+#If DEBUG Then
             newserver(0) = "133.167.100.26" ' "192.168.40.27" ' "153.127.48.237"
             newserver(1) = "sa"
             newserver(2) = "Plot8877Ken"
+            newserver(3) = "spsales"
+#End If
+
+
 
             '接続文字
 
-            connectionstring_sqlserver = "Data Source=" & newserver(0) & ";Initial Catalog=spsales;" &
+            connectionstring_sqlserver = "Data Source=" & newserver(0) & ";Initial Catalog=" & newserver(3) & ";" &
                            "User ID=" & newserver(1) & ";Password=" & newserver(2) & ";"
 
 
