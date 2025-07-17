@@ -34,9 +34,9 @@ Public Class frmcheck_shouhin_log
             .Columns(0).Width = 40
             .Columns(1).Width = 180
             .Columns(2).Width = 120
-            .Columns(3).Width = 170
-            .Columns(4).Width = 120
-            .Columns(5).Width = 200
+            .Columns(3).Width = 160
+            .Columns(4).Width = 100
+            .Columns(5).Width = 260
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 

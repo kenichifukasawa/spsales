@@ -22,6 +22,8 @@ Partial Class frmcheck_shouhin_log
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.btn_kensaku = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
@@ -56,7 +58,7 @@ Partial Class frmcheck_shouhin_log
         Me.gbx_main.Margin = New System.Windows.Forms.Padding(2)
         Me.gbx_main.Name = "gbx_main"
         Me.gbx_main.Padding = New System.Windows.Forms.Padding(2)
-        Me.gbx_main.Size = New System.Drawing.Size(811, 971)
+        Me.gbx_main.Size = New System.Drawing.Size(968, 971)
         Me.gbx_main.TabIndex = 56
         Me.gbx_main.TabStop = False
         '
@@ -64,7 +66,7 @@ Partial Class frmcheck_shouhin_log
         '
         Me.btn_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_kensaku.Location = New System.Drawing.Point(660, 34)
+        Me.btn_kensaku.Location = New System.Drawing.Point(686, 99)
         Me.btn_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_kensaku.Name = "btn_kensaku"
         Me.btn_kensaku.Size = New System.Drawing.Size(127, 44)
@@ -77,7 +79,7 @@ Partial Class frmcheck_shouhin_log
         Me.GroupBox6.Controls.Add(Me.dgv_kensakukekka)
         Me.GroupBox6.Location = New System.Drawing.Point(17, 153)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(778, 800)
+        Me.GroupBox6.Size = New System.Drawing.Size(933, 800)
         Me.GroupBox6.TabIndex = 193
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "抽出結果"
@@ -86,14 +88,30 @@ Partial Class frmcheck_shouhin_log
         '
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgv_kensakukekka.Location = New System.Drawing.Point(6, 19)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
         Me.dgv_kensakukekka.ReadOnly = True
         Me.dgv_kensakukekka.RowTemplate.Height = 24
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(766, 776)
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(921, 776)
         Me.dgv_kensakukekka.TabIndex = 192
         '
         'GroupBox4
@@ -101,7 +119,7 @@ Partial Class frmcheck_shouhin_log
         Me.GroupBox4.Controls.Add(Me.cbx_shitei_shouhin)
         Me.GroupBox4.Location = New System.Drawing.Point(17, 86)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(620, 61)
+        Me.GroupBox4.Size = New System.Drawing.Size(660, 61)
         Me.GroupBox4.TabIndex = 192
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "指定商品"
@@ -114,7 +132,7 @@ Partial Class frmcheck_shouhin_log
         Me.cbx_shitei_shouhin.FormattingEnabled = True
         Me.cbx_shitei_shouhin.Location = New System.Drawing.Point(19, 24)
         Me.cbx_shitei_shouhin.Name = "cbx_shitei_shouhin"
-        Me.cbx_shitei_shouhin.Size = New System.Drawing.Size(584, 24)
+        Me.cbx_shitei_shouhin.Size = New System.Drawing.Size(623, 24)
         Me.cbx_shitei_shouhin.TabIndex = 128
         '
         'GroupBox2
@@ -176,7 +194,7 @@ Partial Class frmcheck_shouhin_log
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(660, 99)
+        Me.btn_modoru.Location = New System.Drawing.Point(817, 99)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
@@ -188,7 +206,7 @@ Partial Class frmcheck_shouhin_log
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(835, 994)
+        Me.ClientSize = New System.Drawing.Size(993, 994)
         Me.ControlBox = False
         Me.Controls.Add(Me.gbx_main)
         Me.Name = "frmcheck_shouhin_log"
