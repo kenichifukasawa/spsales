@@ -246,6 +246,8 @@ Module m_shuukei
         Select Case frm_no
             Case 1
                 frmshuukei_hanbai.cbx_tenpo.Items.Clear()
+            Case 2
+                frmcheck_kurikoshi_log.cbx_tenpo.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -275,6 +277,8 @@ Module m_shuukei
                 Select Case frm_no
                     Case 1
                         frmshuukei_hanbai.cbx_tenpo.Items.Add(item_name)
+                    Case 2
+                        frmcheck_kurikoshi_log.cbx_tenpo.Items.Add(item_name)
                 End Select
             Next
 
