@@ -10,14 +10,14 @@
     End Sub
 
     Private Sub btn_shouhin_log_Click(sender As Object, e As EventArgs) Handles btn_shouhin_log.Click
-
+        frmcheck_shouhin_log.ShowDialog()
     End Sub
 
     Private Sub btn_kurikoshi_log_Click(sender As Object, e As EventArgs) Handles btn_kurikoshi_log.Click
-
+        frmcheck_kurikoshi_log.ShowDialog()
     End Sub
 
     Private Sub btn_kosuu_henkou_Click(sender As Object, e As EventArgs) Handles btn_kosuu_henkou.Click
-
+        frmcheck_kosuu_henkou.ShowDialog()
     End Sub
 End Class

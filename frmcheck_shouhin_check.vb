@@ -83,7 +83,7 @@ Public Class frmcheck_shouhin_check
                 mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("shainmei"))
 
                 Dim naiyou_no = Trim(dt_server.Rows.Item(i).Item("naiyou"))
-                mojiretsu(3) = get_naiyou_name_by_no(naiyou_no)
+                mojiretsu(3) = get_sagyou_naiyou_name_by_no(naiyou_no)
 
                 Dim motone = 0
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("motosuu")) Then
@@ -271,7 +271,7 @@ Public Class frmcheck_shouhin_check
         set_shouhin_kubun_1(2)
     End Sub
 
-    Private Function get_naiyou_name_by_no(naiyou_no As String)
+    Private Function get_sagyou_naiyou_name_by_no(naiyou_no As String)
 
         Dim naiyou_name = ""
         Select Case naiyou_no
@@ -295,6 +295,8 @@ Public Class frmcheck_shouhin_check
                 naiyou_name = "在庫数変更（商品一覧）"
             Case "9"
                 naiyou_name = "簡易変更（商品一覧）"
+            Case Else
+                naiyou_name = "不明"
         End Select
 
         Return naiyou_name

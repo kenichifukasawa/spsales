@@ -61,6 +61,10 @@ Module m_shuukei
                 frmcheck_shouhin_check.cbx_shouhin_kubun_1.Items.Clear()
                 frmcheck_shouhin_check.cbx_shouhin_kubun_2.Items.Clear()
                 frmcheck_shouhin_check.cbx_shitei_shouhin.Items.Clear()
+            Case 3
+                frmcheck_shouhin_log.cbx_shitei_shouhin.Items.Clear()
+                frmcheck_shouhin_log.cbx_shouhin_kubun_2.Items.Clear()
+                frmcheck_shouhin_log.cbx_shouhin_kubun_1.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -87,6 +91,8 @@ Module m_shuukei
                         frmshuukei_hanbai.cbx_shouhin_kubun_1.Items.Add(item_name)
                     Case 2
                         frmcheck_shouhin_check.cbx_shouhin_kubun_1.Items.Add(item_name)
+                    Case 3
+                        frmcheck_shouhin_log.cbx_shouhin_kubun_1.Items.Add(item_name)
                 End Select
             Next
 
@@ -109,6 +115,8 @@ Module m_shuukei
                 frmshuukei_hanbai.cbx_shouhin_kubun_2.Items.Clear()
             Case 2
                 frmcheck_shouhin_check.cbx_shouhin_kubun_2.Items.Clear()
+            Case 3
+                frmcheck_shouhin_log.cbx_shouhin_kubun_2.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -135,6 +143,8 @@ Module m_shuukei
                         frmshuukei_hanbai.cbx_shouhin_kubun_2.Items.Add(item_name)
                     Case 2
                         frmcheck_shouhin_check.cbx_shouhin_kubun_2.Items.Add(item_name)
+                    Case 3
+                        frmcheck_shouhin_log.cbx_shouhin_kubun_2.Items.Add(item_name)
                 End Select
             Next
 
@@ -157,6 +167,8 @@ Module m_shuukei
                 frmshuukei_hanbai.cbx_shitei_shouhin.Items.Clear()
             Case 2
                 frmcheck_shouhin_check.cbx_shitei_shouhin.Items.Clear()
+            Case 3
+                frmcheck_shouhin_log.cbx_shitei_shouhin.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -214,6 +226,8 @@ Module m_shuukei
                         frmshuukei_hanbai.cbx_shitei_shouhin.Items.Add(item_name)
                     Case 2
                         frmcheck_shouhin_check.cbx_shitei_shouhin.Items.Add(item_name)
+                    Case 3
+                        frmcheck_shouhin_log.cbx_shitei_shouhin.Items.Add(item_name)
                 End Select
             Next
 
