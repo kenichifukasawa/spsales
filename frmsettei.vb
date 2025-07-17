@@ -88,21 +88,21 @@ Public Class frmsettei
         'プリンター
         settei_res = Setting1(10, 0, "", 0)
         If settei_res = "0" Then
-            cmb_p_nouhinsho.SelectedIndex = -1
+            cmb_p_nouhinsho.SelectedIndex = 0
         Else
             cmb_p_nouhinsho.Text = settei_res
         End If
 
         settei_res = Setting1(8, 0, "", 0)
         If settei_res = "0" Then
-            cmb_p_shousai.SelectedIndex = -1
+            cmb_p_shousai.SelectedIndex = 0
         Else
             cmb_p_shousai.Text = settei_res
         End If
 
         settei_res = Setting1(12, 0, "", 0)
         If settei_res = "0" Then
-            cmb_p_seikyuusho.SelectedIndex = -1
+            cmb_p_seikyuusho.SelectedIndex = 0
         Else
             cmb_p_seikyuusho.Text = settei_res
         End If
