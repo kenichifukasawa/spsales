@@ -23,7 +23,7 @@
             Exit Sub
         End If
         chkchuushi.Checked = False
-        result = MessageBox.Show("STを中止に更新しますか？一度変更するともとに戻せなくなります。", "nPOS", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        result = MessageBox.Show("STを中止に更新しますか？一度変更するともとに戻せなくなります。", "SPSALES", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
         If result = DialogResult.No Then
             Exit Sub
         End If

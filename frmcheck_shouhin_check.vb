@@ -2,6 +2,7 @@
 
 Public Class frmcheck_shouhin_check
     Private Sub frmcheck_shouhin_check_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dtp_hinichi_kaishi.Value = Now.ToString("yyyy/MM/dd")
         set_shouhin_kubun_1(2)
     End Sub
 
@@ -376,6 +377,134 @@ Public Class frmcheck_shouhin_check
 
     Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
 
+        Dim kyou = Now.ToString("yyyyMMdd")
+        Dim shiteibi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        If shiteibi = kyou Then
+            Dim result = MessageBox.Show("チェック開始日が本日です。本日分のみのチェックでよろしいですか？。", "nPOS", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+            If result = DialogResult.No Then
+                Exit Sub
+            End If
+        End If
+
+        cbx_shitei_shouhin.SelectedIndex = -1
+        cbx_shouhin_kubun_2.SelectedIndex = -1
+        cbx_shouhin_kubun_1.SelectedIndex = -1
+
+        Dim error_data(5, 0) As String
+        Dim error_data_count = 0
+
+        error_data(0, 0) = "依頼日"
+        error_data(1, 0) = "社員ID"
+        error_data(2, 0) = "商品ID"
+        error_data(3, 0) = "個数"
+        error_data(4, 0) = "店舗ID"
+        error_data(5, 0) = "納品書ID"
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT hacchuu.iraibi, hacchuu.shainid, hacchuu.tenpoid, hacchuu.nouhinshoid, hacchuushousai.*" +
+                " FROM hacchuushousai LEFT JOIN hacchuu ON hacchuushousai.hacchuuid = hacchuu.hacchuuid" +
+                " WHERE hacchuu.iraibi >= '" + shiteibi + "'" +
+                " ORDER BY hacchuu.iraibi"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_hacchuu")
+            Dim dt_server As DataTable = ds_server.Tables("t_hacchuu")
+
+            Dim data_count = dt_server.Rows.Count
+            If data_count = 0 Then
+                msg_go("チェックしたいデータが存在しません。")
+                hide_shinkou_joukyou()
+                Exit Sub
+            End If
+
+            Dim debug_counter = 0
+            For i = 0 To data_count - 1
+
+                If i = 0 Then
+                    show_shinkou_joukyou(data_count)
+                End If
+
+                Dim iraibi = Trim(dt_server.Rows.Item(i).Item("iraibi").ToString())
+                Dim shain_id = Trim(dt_server.Rows.Item(i).Item("shainid"))
+                Dim shouhin_id = Trim(dt_server.Rows.Item(i).Item("shouhinid"))
+                Dim kosuu = Trim(dt_server.Rows.Item(i).Item("kosuu").ToString)
+                Dim tenpo_id = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
+
+                Dim nouhinsho_id = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("nouhinshoid")) Then
+                    nouhinsho_id = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
+                End If
+
+                Try
+
+                    Dim query_2 = "SELECT * FROM zaiko_ch" +
+                        " WHERE shouhinid = '" + shouhin_id + "' AND shainid = '" + shain_id + "'" +
+                        " AND idousuu = " + kosuu + " AND naiyou = '0' AND iraibi = '" + iraibi + "'"
+
+                    Dim da_server_2 As SqlDataAdapter = New SqlDataAdapter(query_2, cn_server)
+                    Dim ds_server_2 As New DataSet
+                    da_server_2.Fill(ds_server_2, "t_zaiko_ch")
+                    Dim dt_server_2 As DataTable = ds_server_2.Tables("t_zaiko_ch")
+
+                    If dt_server_2.Rows.Count = 0 Then
+
+                        error_data_count += 1
+
+                        ReDim Preserve error_data(5, error_data_count)
+                        error_data(0, error_data_count) = Date.ParseExact(iraibi, "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                        error_data(1, error_data_count) = shain_id
+                        error_data(2, error_data_count) = shouhin_id
+                        error_data(3, error_data_count) = kosuu
+                        error_data(4, error_data_count) = tenpo_id
+                        error_data(5, error_data_count) = nouhinsho_id
+
+                    End If
+
+                    dt_server_2.Clear()
+                    ds_server_2.Clear()
+
+                Catch ex As Exception
+                    msg_go(ex.Message)
+                    hide_shinkou_joukyou()
+                    Exit Sub
+                End Try
+
+                debug_counter += 1
+                calculate_shinkou_joukyou(debug_counter, data_count)
+
+            Next
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            hide_shinkou_joukyou()
+            Exit Sub
+        End Try
+
+
+        If error_data_count = 0 Then
+            msg_go("チェックが完了しました。エラーはありませんでした。", 64)
+            hide_shinkou_joukyou()
+            Exit Sub
+        End If
+
+        msg_go("適合できないデータがあります。デスクトップに保存します。", 64)
+
+        Dim filePath As String = DESKTOP_PATH + "\err_" & Now.ToString("yyyyMMdd") & "-" & Now.ToString("hhmmss") & ".csv"
+
+        If create_csv_file(error_data, filePath, error_data_count) Then
+            msg_go("デスクトップにデータを保存しました。", 64)
+        End If
+
+        hide_shinkou_joukyou()
+
     End Sub
 
     Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
@@ -429,5 +558,38 @@ Public Class frmcheck_shouhin_check
         Return naiyou_name
 
     End Function
+
+    Private Sub show_shinkou_joukyou(max_count As Integer)
+
+        gbx_shinkou_joukyou.Visible = True
+        gbx_shinkou_joukyou.BringToFront()
+        Dim x As Integer = 275
+        Dim y As Integer = (ClientSize.Height - gbx_shinkou_joukyou.Height) \ 2
+        gbx_shinkou_joukyou.Location = New Point(x, y)
+        pgb_shinkou_joukyou.Minimum = 0
+        pgb_shinkou_joukyou.Maximum = max_count
+        pgb_shinkou_joukyou.Value = 0
+        gbx_main.Enabled = False
+
+        System.Windows.Forms.Application.DoEvents()
+
+    End Sub
+
+    Private Sub hide_shinkou_joukyou()
+
+        gbx_main.Enabled = True
+        gbx_shinkou_joukyou.Visible = False
+
+    End Sub
+
+    Private Sub calculate_shinkou_joukyou(counter As Integer, max_count As Integer)
+
+        lbl_shinkou_doai.Text = counter.ToString("#,0") + " / " + max_count.ToString("#,0")
+        lbl_shinkou_percent.Text = "" + (CDbl(counter) / CDbl(max_count) * 100).ToString(".00") + "%"
+        pgb_shinkou_joukyou.Value = counter
+
+        System.Windows.Forms.Application.DoEvents()
+
+    End Sub
 
 End Class

@@ -22,11 +22,10 @@ Partial Class frmcheck_shouhin_check
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btn_check = New System.Windows.Forms.Button()
+        Me.dtp_hinichi_kaishi = New System.Windows.Forms.DateTimePicker()
         Me.btn_kensaku = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
@@ -39,8 +38,11 @@ Partial Class frmcheck_shouhin_check
         Me.cbx_shouhin_kubun_1 = New System.Windows.Forms.ComboBox()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.dtp_hinichi_owari = New System.Windows.Forms.DateTimePicker()
-        Me.dtp_hinichi_kaishi = New System.Windows.Forms.DateTimePicker()
+        Me.gbx_shinkou_joukyou = New System.Windows.Forms.GroupBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.lbl_shinkou_percent = New System.Windows.Forms.Label()
+        Me.pgb_shinkou_joukyou = New System.Windows.Forms.ProgressBar()
+        Me.lbl_shinkou_doai = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
@@ -48,6 +50,8 @@ Partial Class frmcheck_shouhin_check
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.gbx_shinkou_joukyou.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbx_main
@@ -74,10 +78,9 @@ Partial Class frmcheck_shouhin_check
         Me.GroupBox3.Controls.Add(Me.btn_check)
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.dtp_hinichi_kaishi)
-        Me.GroupBox3.Controls.Add(Me.dtp_hinichi_owari)
         Me.GroupBox3.Location = New System.Drawing.Point(17, 153)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(509, 75)
+        Me.GroupBox3.Size = New System.Drawing.Size(469, 75)
         Me.GroupBox3.TabIndex = 193
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "登録済みの納品書を基に移動記録が正確に記録されているかをチェックします。"
@@ -86,7 +89,7 @@ Partial Class frmcheck_shouhin_check
         '
         Me.btn_check.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_check.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_check.Location = New System.Drawing.Point(366, 22)
+        Me.btn_check.Location = New System.Drawing.Point(323, 22)
         Me.btn_check.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_check.Name = "btn_check"
         Me.btn_check.Size = New System.Drawing.Size(127, 44)
@@ -94,11 +97,21 @@ Partial Class frmcheck_shouhin_check
         Me.btn_check.Text = "チェック"
         Me.btn_check.UseVisualStyleBackColor = True
         '
+        'dtp_hinichi_kaishi
+        '
+        Me.dtp_hinichi_kaishi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.dtp_hinichi_kaishi.Location = New System.Drawing.Point(19, 34)
+        Me.dtp_hinichi_kaishi.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.dtp_hinichi_kaishi.Name = "dtp_hinichi_kaishi"
+        Me.dtp_hinichi_kaishi.Size = New System.Drawing.Size(153, 23)
+        Me.dtp_hinichi_kaishi.TabIndex = 263
+        Me.dtp_hinichi_kaishi.Value = New Date(2025, 7, 4, 0, 0, 0, 0)
+        '
         'btn_kensaku
         '
         Me.btn_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_kensaku.Location = New System.Drawing.Point(531, 175)
+        Me.btn_kensaku.Location = New System.Drawing.Point(510, 175)
         Me.btn_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_kensaku.Name = "btn_kensaku"
         Me.btn_kensaku.Size = New System.Drawing.Size(127, 44)
@@ -120,23 +133,7 @@ Partial Class frmcheck_shouhin_check
         '
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgv_kensakukekka.Location = New System.Drawing.Point(6, 19)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
@@ -239,32 +236,67 @@ Partial Class frmcheck_shouhin_check
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.White
         Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label2.Location = New System.Drawing.Point(178, 39)
+        Me.Label2.Location = New System.Drawing.Point(176, 38)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(24, 16)
+        Me.Label2.Size = New System.Drawing.Size(142, 16)
         Me.Label2.TabIndex = 262
-        Me.Label2.Text = "～"
+        Me.Label2.Text = "以降のデータについて"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'dtp_hinichi_owari
+        'gbx_shinkou_joukyou
         '
-        Me.dtp_hinichi_owari.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.dtp_hinichi_owari.Location = New System.Drawing.Point(208, 34)
-        Me.dtp_hinichi_owari.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.dtp_hinichi_owari.Name = "dtp_hinichi_owari"
-        Me.dtp_hinichi_owari.Size = New System.Drawing.Size(153, 23)
-        Me.dtp_hinichi_owari.TabIndex = 264
-        Me.dtp_hinichi_owari.Value = New Date(2025, 7, 4, 0, 0, 0, 0)
+        Me.gbx_shinkou_joukyou.BackColor = System.Drawing.Color.LightCyan
+        Me.gbx_shinkou_joukyou.Controls.Add(Me.GroupBox5)
+        Me.gbx_shinkou_joukyou.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.gbx_shinkou_joukyou.Location = New System.Drawing.Point(886, 25)
+        Me.gbx_shinkou_joukyou.Margin = New System.Windows.Forms.Padding(2)
+        Me.gbx_shinkou_joukyou.Name = "gbx_shinkou_joukyou"
+        Me.gbx_shinkou_joukyou.Padding = New System.Windows.Forms.Padding(2)
+        Me.gbx_shinkou_joukyou.Size = New System.Drawing.Size(307, 121)
+        Me.gbx_shinkou_joukyou.TabIndex = 223
+        Me.gbx_shinkou_joukyou.TabStop = False
+        Me.gbx_shinkou_joukyou.Text = "進行状況"
+        Me.gbx_shinkou_joukyou.Visible = False
         '
-        'dtp_hinichi_kaishi
+        'GroupBox5
         '
-        Me.dtp_hinichi_kaishi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.dtp_hinichi_kaishi.Location = New System.Drawing.Point(19, 34)
-        Me.dtp_hinichi_kaishi.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.dtp_hinichi_kaishi.Name = "dtp_hinichi_kaishi"
-        Me.dtp_hinichi_kaishi.Size = New System.Drawing.Size(153, 23)
-        Me.dtp_hinichi_kaishi.TabIndex = 263
-        Me.dtp_hinichi_kaishi.Value = New Date(2025, 7, 4, 0, 0, 0, 0)
+        Me.GroupBox5.BackColor = System.Drawing.Color.White
+        Me.GroupBox5.Controls.Add(Me.lbl_shinkou_percent)
+        Me.GroupBox5.Controls.Add(Me.pgb_shinkou_joukyou)
+        Me.GroupBox5.Controls.Add(Me.lbl_shinkou_doai)
+        Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox5.Location = New System.Drawing.Point(20, 23)
+        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(2)
+        Me.GroupBox5.Size = New System.Drawing.Size(267, 82)
+        Me.GroupBox5.TabIndex = 222
+        Me.GroupBox5.TabStop = False
+        '
+        'lbl_shinkou_percent
+        '
+        Me.lbl_shinkou_percent.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_percent.Location = New System.Drawing.Point(20, 12)
+        Me.lbl_shinkou_percent.Name = "lbl_shinkou_percent"
+        Me.lbl_shinkou_percent.Size = New System.Drawing.Size(228, 15)
+        Me.lbl_shinkou_percent.TabIndex = 126
+        Me.lbl_shinkou_percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pgb_shinkou_joukyou
+        '
+        Me.pgb_shinkou_joukyou.Location = New System.Drawing.Point(20, 30)
+        Me.pgb_shinkou_joukyou.Name = "pgb_shinkou_joukyou"
+        Me.pgb_shinkou_joukyou.Size = New System.Drawing.Size(228, 23)
+        Me.pgb_shinkou_joukyou.TabIndex = 0
+        '
+        'lbl_shinkou_doai
+        '
+        Me.lbl_shinkou_doai.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_doai.Location = New System.Drawing.Point(20, 56)
+        Me.lbl_shinkou_doai.Name = "lbl_shinkou_doai"
+        Me.lbl_shinkou_doai.Size = New System.Drawing.Size(228, 15)
+        Me.lbl_shinkou_doai.TabIndex = 125
+        Me.lbl_shinkou_doai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmcheck_shouhin_check
         '
@@ -272,6 +304,7 @@ Partial Class frmcheck_shouhin_check
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(835, 994)
         Me.ControlBox = False
+        Me.Controls.Add(Me.gbx_shinkou_joukyou)
         Me.Controls.Add(Me.gbx_main)
         Me.Name = "frmcheck_shouhin_check"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -285,6 +318,8 @@ Partial Class frmcheck_shouhin_check
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
+        Me.gbx_shinkou_joukyou.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -303,7 +338,11 @@ Partial Class frmcheck_shouhin_check
     Friend WithEvents btn_check As Button
     Friend WithEvents btn_modoru As Button
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents Label2 As Label
     Friend WithEvents dtp_hinichi_kaishi As DateTimePicker
-    Friend WithEvents dtp_hinichi_owari As DateTimePicker
+    Friend WithEvents Label2 As Label
+    Friend WithEvents gbx_shinkou_joukyou As GroupBox
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents lbl_shinkou_percent As Label
+    Friend WithEvents pgb_shinkou_joukyou As ProgressBar
+    Friend WithEvents lbl_shinkou_doai As Label
 End Class

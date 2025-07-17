@@ -7,14 +7,14 @@ Public Class frmsettei
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim result As String = MessageBox.Show("コンバート処理をしますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        Dim result As String = MessageBox.Show("コンバート処理をしますか？", "SPSALES", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 
         If result = DialogResult.No Then
             Exit Sub
         End If
 
         'kojinに郵便局初期FLGを追加
-        Dim result2 As String = MessageBox.Show("「shouhinkubun」のリサイズとコンバートをしますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        Dim result2 As String = MessageBox.Show("「shouhinkubun」のリサイズとコンバートをしますか？", "SPSALES", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 
         If result2 = DialogResult.Yes Then
             ' 接続文字列を環境に合わせて修正してください
@@ -50,7 +50,7 @@ Public Class frmsettei
 
 
         ''kojinに郵便局初期FLGを追加
-        'Dim result2 As String = MessageBox.Show("「yuubin_flg」を追加しますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        'Dim result2 As String = MessageBox.Show("「yuubin_flg」を追加しますか？", "SPSALES", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 
         'If result2 = DialogResult.Yes Then
         '    ' 接続文字列を環境に合わせて修正してください
