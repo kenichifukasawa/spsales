@@ -25,6 +25,7 @@ Partial Class frmcheck_shouhin_check
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btn_check = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.dtp_hinichi_kaishi = New System.Windows.Forms.DateTimePicker()
         Me.btn_kensaku = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
@@ -37,7 +38,6 @@ Partial Class frmcheck_shouhin_check
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.cbx_shouhin_kubun_1 = New System.Windows.Forms.ComboBox()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.gbx_shinkou_joukyou = New System.Windows.Forms.GroupBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.lbl_shinkou_percent = New System.Windows.Forms.Label()
@@ -96,6 +96,18 @@ Partial Class frmcheck_shouhin_check
         Me.btn_check.TabIndex = 194
         Me.btn_check.Text = "チェック"
         Me.btn_check.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label2.Location = New System.Drawing.Point(176, 38)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(131, 15)
+        Me.Label2.TabIndex = 262
+        Me.Label2.Text = "以降のデータについて"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'dtp_hinichi_kaishi
         '
@@ -230,18 +242,6 @@ Partial Class frmcheck_shouhin_check
         Me.btn_modoru.TabIndex = 32
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.White
-        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label2.Location = New System.Drawing.Point(176, 38)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(142, 16)
-        Me.Label2.TabIndex = 262
-        Me.Label2.Text = "以降のデータについて"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'gbx_shinkou_joukyou
         '

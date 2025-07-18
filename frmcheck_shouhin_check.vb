@@ -122,7 +122,7 @@ Public Class frmcheck_shouhin_check
         Dim kyou = Now.ToString("yyyyMMdd")
         Dim shiteibi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
         If shiteibi = kyou Then
-            Dim result = MessageBox.Show("チェック開始日が本日です。本日分のみのチェックでよろしいですか？。", "nPOS", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+            Dim result = MessageBox.Show("チェック開始日が本日です。本日分のみのチェックでよろしいですか？", "nPOS", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
             If result = DialogResult.No Then
                 Exit Sub
             End If
