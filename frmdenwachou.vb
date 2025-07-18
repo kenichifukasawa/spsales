@@ -144,6 +144,8 @@ Public Class frmdenwachou
                 mainset(tenpo_id)
             Case "1" ' 販売集計
                 frmshuukei_hanbai.cbx_tenpo.SelectedIndex = frmshuukei_hanbai.cbx_tenpo.FindString(tenpo_id)
+            Case "2" ' 繰越推移ログ
+                frmcheck_kurikoshi_log.cbx_tenpo.SelectedIndex = frmcheck_kurikoshi_log.cbx_tenpo.FindString(tenpo_id)
             Case Else
                 msg_go("不明なフォームIDです。")
                 Exit Sub
@@ -178,7 +180,7 @@ Public Class frmdenwachou
         'ElseIf denwacho_no = 6 Then '入金のコンボ （OK）
         '    frmshuukeishouhin.cmbtenpo.ListIndex = -1
         '    frmshuukeishouhin.cmbtenpo.ListIndex = FcCmbtenpoindexGet(tenpo_id)
-        'ElseIf denwacho_no = 7 Then 'のコンボ
+        'ElseIf denwacho_no = 7 Then 'のコンボ （OK）
         '    frmkurikoshicheck.cmbtenpo.ListIndex = -1
         '    frmkurikoshicheck.cmbtenpo.ListIndex = FcCmbtenpoindexGet(tenpo_id)
         'End If
