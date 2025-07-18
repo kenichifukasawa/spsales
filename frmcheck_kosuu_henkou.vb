@@ -17,6 +17,104 @@ Public Class frmcheck_kosuu_henkou
 
     Private Sub btn_hozon_Click(sender As Object, e As EventArgs) Handles btn_hozon.Click
 
+
+
+
+        ' ----------------------------------------------------------
+        ' 元のコード
+
+        'Dim newhenzaiko As String, newhenzaiko2 As Integer
+        'Dim suuchkac4 As Integer
+        'Dim oldhenzaiko As String, oldhenzaiko2 As Integer
+        'Dim chouseizaiko As String, chouseizaiko2 As Integer
+        'Dim toujizaikosuu As Integer, saishusuu As Integer
+        'Dim sagakusuu As Integer
+
+        'Screen.MousePointer = 11
+
+        'For suuchkac4 = 1 To gridshouhin.Rows - 1
+        '    If gridshouhin.Cell(flexcpText, suuchkac4, 10) = "○" Then
+
+        '        sentakushuruiid9 = gridshouhin.Cell(flexcpText, suuchkac4, 0)
+
+        '        newhenzaiko = gridshouhin.Cell(flexcpText, suuchkac4, 6)
+        '        newhenzaiko2 = CInt(newhenzaiko)
+
+        '        oldhenzaiko = gridshouhin.Cell(flexcpText, suuchkac4, 11)
+        '        oldhenzaiko2 = CInt(oldhenzaiko)
+
+        '        chouseizaiko = Trim(gridshouhin.Cell(flexcpText, suuchkac4, 12))
+
+
+        '        If chkkouryo.Value = 1 Then
+        '            '考慮する場合
+        '            If chouseizaiko = "err" Or chouseizaiko = "" Or chouseizaiko = "0" Then
+        '                chouseizaiko2 = 0
+        '            Else
+        '                chouseizaiko2 = CInt(chouseizaiko)
+        '            End If
+
+
+        '            '現在庫＋調整数＝当時の在庫
+        '            toujizaikosuu = oldhenzaiko2 + chouseizaiko2
+
+        '            '棚卸数-当時の在庫＝差額
+        '            sagakusuu = toujizaikosuu - newhenzaiko2
+
+        '            '最終数
+        '            saishusuu = newhenzaiko2 - chouseizaiko2
+
+
+
+        '            henkou_suruzo sentakushuruiid9, 0, saishusuu, CDbl(oldhenzaiko), 0, CStr(sagakusuu)
+        '        Else
+        '            '考慮しない場合
+
+        '            henkou_suruzo sentakushuruiid9, 0, newhenzaiko, CDbl(oldhenzaiko)
+        '        End If
+
+
+        '        gridshouhin.Select suuchkac4, 10
+        '        DoEvents
+        '        gridshouhin.EditCell
+        '        DoEvents
+        '        gridshouhin.EditText = "×"
+        '        DoEvents
+
+        '        gridshouhin.Select suuchkac4, 11
+        '        DoEvents
+        '        gridshouhin.EditCell
+        '        DoEvents
+        '        If chkkouryo.Value = 1 Then
+        '            gridshouhin.EditText = CStr(saishusuu)
+        '        Else
+        '            gridshouhin.EditText = newhenzaiko
+        '        End If
+        '        DoEvents
+
+        '        gridshouhin.Select suuchkac4, 12
+        '        DoEvents
+        '        gridshouhin.EditCell
+        '        DoEvents
+        '        If chkkouryo.Value = 1 Then
+        '            gridshouhin.EditText = ""
+
+        '        End If
+        '        DoEvents
+
+
+        '        gridshouhin.Select suuchkac4, 1
+        '        DoEvents
+
+
+
+        '    End If
+        'Next
+        'Screen.MousePointer = 0
+
+        'lblgo.Caption = "0"
+        'ret = MsgBox("更新が完了しました。", 64, "総合管理システム「SPSALES」")
+
     End Sub
 
     Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
