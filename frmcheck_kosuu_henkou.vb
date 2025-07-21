@@ -50,7 +50,7 @@ Public Class frmcheck_kosuu_henkou
             Dim dbl_new_value As Integer
             Dim sagaku_suu = ""
 
-            If chk_kouryo.Checked = 1 Then ' 考慮する場合
+            If chk_kouryo.Checked Then ' 考慮する場合
 
                 Dim int_chousei_suu = 0
 
@@ -95,7 +95,10 @@ Public Class frmcheck_kosuu_henkou
                 Exit Sub
             End Try
 
-            touroku_tenpo_order(shouhin_id, sagaku_suu) ' 本登録へ
+            If create_hacchuu_and_hacchuushousai(shouhin_id, sagaku_suu) = False Then ' 本登録へ
+                msg_go("発注テーブルまたは発注詳細テーブルの更新でエラーが発生しました。")
+                Exit Sub
+            End If
 
             Dim bikou = "旧在庫：" & int_old_henkou_suu.ToString & " 新在庫：" & dbl_new_value.ToString
             Dim shainid = "10"
@@ -529,10 +532,10 @@ Public Class frmcheck_kosuu_henkou
 
     End Function
 
-    Private Sub touroku_tenpo_order(shouhin_id As String, kosuu As String)
+    Private Function create_hacchuu_and_hacchuushousai(shouhin_id As String, kosuu As String) As Boolean
 
-        If shouhin_id = "" Then
-            Exit Sub
+        If kosuu = "" Then
+            Return True
         End If
 
         Dim new_hacchuu_id = ""
@@ -545,7 +548,7 @@ Public Class frmcheck_kosuu_henkou
             Dim next_id As String
             If new_id = "" Then
                 msg_go("IDの取得に失敗しました。")
-                Exit Sub
+                Return False
             ElseIf new_id = "0" Then
                 next_id = "2"
                 new_id = 1.ToString("D" + ketasuu.ToString)
@@ -557,7 +560,7 @@ Public Class frmcheck_kosuu_henkou
             Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
             If Not response Then
                 msg_go("IDの更新に失敗しました。")
-                Exit Sub
+                Return False
             End If
 
             Dim cn_server As New SqlConnection
@@ -586,7 +589,7 @@ Public Class frmcheck_kosuu_henkou
 
         Catch ex As Exception
             msg_go(ex.Message)
-            Exit Sub
+            Return False
         End Try
 
         Try
@@ -598,7 +601,7 @@ Public Class frmcheck_kosuu_henkou
             Dim next_id As String
             If new_id = "" Then
                 msg_go("IDの取得に失敗しました。")
-                Exit Sub
+                Return False
             ElseIf new_id = "0" Then
                 next_id = "2"
                 new_id = 1.ToString("D" + ketasuu.ToString)
@@ -610,34 +613,36 @@ Public Class frmcheck_kosuu_henkou
             Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
             If Not response Then
                 msg_go("IDの更新に失敗しました。")
-                Exit Sub
+                Return False
             End If
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM hachuushousai"
+            Dim query = "SELECT * FROM hacchuushousai"
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            da.Fill(ds, "t_hachuushousai")
+            da.Fill(ds, "t_hacchuushousai")
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
-            Dim data_row As DataRow = ds.Tables("t_hachuushousai").NewRow()
+            Dim data_row As DataRow = ds.Tables("t_hacchuushousai").NewRow()
 
             data_row("hachuushousaiid") = new_id
             data_row("hacchuuid") = new_hacchuu_id
             data_row("shouhinid") = shouhin_id
             data_row("kosuu") = CInt(kosuu)
 
-            ds.Tables("t_hachuushousai").Rows.Add(data_row)
-            da.Update(ds, "t_hachuushousai")
+            ds.Tables("t_hacchuushousai").Rows.Add(data_row)
+            da.Update(ds, "t_hacchuushousai")
             ds.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)
-            Exit Sub
+            Return False
         End Try
 
-    End Sub
+        Return True
+
+    End Function
 
 End Class
