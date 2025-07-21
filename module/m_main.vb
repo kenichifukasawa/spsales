@@ -909,7 +909,7 @@ errsetting:
 
     End Function
 
-    Function shouhin_zaiko_log(shainid As String, shouhinid As String, naiyou As Integer, new_atai As String, bikou As String, Optional shiteibi As String = "") As Boolean
+    Function shouhin_zaiko_log(shainid As String, shouhinid As String, naiyou As Integer, new_atai As String, bikou As String, Optional shiteibi As String = "") As Boolean ' TODO : いずれ、「create_zaiko_log」に名称変更
 
         Dim sonotoki = ""
         If shiteibi = "" Then
