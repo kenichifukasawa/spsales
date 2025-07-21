@@ -194,6 +194,7 @@ Public Class frmcheck_kosuu_henkou
 
             If chk_kouryo.Checked = False Then
                 msg_go("チェックボックスにチェックをつけると入力した期間が反映されます。", 64)
+                Exit Sub
             End If
 
             set_shouhin_ichiran()
