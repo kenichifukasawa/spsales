@@ -94,6 +94,7 @@ Public Class frmichiran_gyousha_koushin
 
             Dim id = 1
             Dim s_no = 6
+            Dim ketasuu = 3
             Dim new_id = get_settings(id:=id, s_no:=s_no)
             Dim next_id As String
             If new_id = "" Then
@@ -101,10 +102,10 @@ Public Class frmichiran_gyousha_koushin
                 Exit Sub
             ElseIf new_id = "0" Then
                 next_id = "2"
-                new_id = "001"
+                new_id = 1.ToString("D" + ketasuu.ToString)
             Else
                 next_id = (CLng(new_id) + 1).ToString
-                new_id = new_id.ToString.PadLeft(3, "0"c)
+                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
             End If
 
             Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)

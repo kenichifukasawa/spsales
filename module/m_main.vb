@@ -847,33 +847,6 @@ errsetting:
 
     End Function
 
-    'Function create_csv_file(csv_data(,) As String, hozon_path As String, data_count As Integer, Optional columnsToExport As String() = Nothing) As Boolean
-    '    convert_nothing_to_karamoji(csv_data)
-
-    '    Dim header = ""
-    '    Dim startIndex = 0
-    '    If columnsToExport Is Nothing Then
-    '        header = get_header(csv_data)
-    '        startIndex = 1
-    '    End If
-
-    '    Try
-    '        Using sw As New StreamWriter(hozon_path, False, Encoding.GetEncoding("Shift_JIS"))
-    '            sw.WriteLine(header)
-
-    '            For i = startIndex To data_count
-    '                Dim line As String = get_line_hairetsu(csv_data, i)
-    '                sw.WriteLine(line)
-    '            Next
-    '        End Using
-
-    '        Return True
-    '    Catch ex As Exception
-    '        msg_go("CSVファイル作成中にエラーが発生しました: " & ex.Message)
-    '        Return False
-    '    End Try
-    'End Function
-
     Function create_csv_file(csv_data(,) As String, hozon_path As String, data_count As Integer) As Boolean
 
         convert_nothing_to_karamoji(csv_data)
@@ -933,6 +906,71 @@ errsetting:
             columnValues.Add($"""{data(rowIndex, colIndex)}""")
         Next
         Return String.Join(",", columnValues)
+
+    End Function
+
+    Function shouhin_zaiko_log(shainid As String, shouhinid As String, naiyou As Integer, new_atai As String, bikou As String, Optional shiteibi As String = "") As Boolean
+
+        Dim sonotoki = ""
+        If shiteibi = "" Then
+            sonotoki = Now.ToString("yyyyMMddHHmmss")
+        Else
+            sonotoki = shiteibi
+        End If
+
+        Dim id = 2
+        Dim s_no = 16
+        Dim ketasuu = 10
+        Dim new_id = get_settings(id:=id, s_no:=s_no)
+        Dim next_id As String
+        If new_id = "" Then
+            msg_go("IDの取得に失敗しました。")
+            Return False
+        ElseIf new_id = "0" Then
+            next_id = "2"
+            new_id = 1.ToString("D" + ketasuu.ToString)
+        Else
+            next_id = (CLng(new_id) + 1).ToString
+            new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
+        End If
+
+        Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
+        If Not response Then
+            msg_go("IDの更新に失敗しました。")
+            Return False
+        End If
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM zaiko_log"
+
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_zaiko_log")
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables("t_zaiko_log").NewRow()
+
+            data_row("logid") = new_id
+            data_row("sonotoki") = sonotoki
+            data_row("shouhinid") = shouhinid
+            data_row("shainid") = shainid
+            data_row("naiyou") = naiyou.ToString("D2")
+            data_row("newatai") = new_atai
+            data_row("bikou") = bikou
+
+            ds.Tables("t_zaiko_log").Rows.Add(data_row)
+            da.Update(ds, "t_zaiko_log")
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+        Return True
 
     End Function
 
