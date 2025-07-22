@@ -2,7 +2,9 @@
 
 Public Class frmcheck_kosuu_henkou
 
-    Private can_set = False
+    Private can_set = True
+    Private kubun_1_index = -1
+    Private kubun_2_index = -1
 
     Private Sub frmcheck_kosuu_henkou_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lbl_kaishi_nen.Text = Now.ToString("yyyy")
@@ -17,103 +19,100 @@ Public Class frmcheck_kosuu_henkou
 
     Private Sub btn_hozon_Click(sender As Object, e As EventArgs) Handles btn_hozon.Click
 
+        Dim dgv = dgv_kensakukekka
 
+        For i = 0 To dgv.Rows.Count - 1
 
+            If Trim(dgv(6, i).Value) = "" Then
+                msg_go("棚卸し数が未入力の箇所があります。")
+                Exit Sub
+            End If
 
-        ' ----------------------------------------------------------
-        ' 元のコード
+            Dim shouhin_id = dgv(0, i).Value
+            If shouhin_id = "" Then
+                msg_go("NOが取得できませんでした。")
+                Exit Sub
+            End If
 
-        'Dim newhenzaiko As String, newhenzaiko2 As Integer
-        'Dim suuchkac4 As Integer
-        'Dim oldhenzaiko As String, oldhenzaiko2 As Integer
-        'Dim chouseizaiko As String, chouseizaiko2 As Integer
-        'Dim toujizaikosuu As Integer, saishusuu As Integer
-        'Dim sagakusuu As Integer
+        Next
 
-        'Screen.MousePointer = 11
+        For i = 0 To dgv.Rows.Count - 1
 
-        'For suuchkac4 = 1 To gridshouhin.Rows - 1
-        '    If gridshouhin.Cell(flexcpText, suuchkac4, 10) = "○" Then
+            If dgv(10, i).Value <> "○" Then
+                Continue For
+            End If
 
-        '        sentakushuruiid9 = gridshouhin.Cell(flexcpText, suuchkac4, 0)
+            Dim shouhin_id = dgv(0, i).Value
+            Dim int_new_henkou_suu = CInt(Trim(dgv(6, i).Value))
+            Dim int_old_henkou_suu = CInt(Trim(dgv(11, i).Value))
+            Dim chousei_suu = Trim(dgv(12, i).Value)
 
-        '        newhenzaiko = gridshouhin.Cell(flexcpText, suuchkac4, 6)
-        '        newhenzaiko2 = CInt(newhenzaiko)
+            Dim dbl_new_value As Integer
+            Dim sagaku_suu = ""
 
-        '        oldhenzaiko = gridshouhin.Cell(flexcpText, suuchkac4, 11)
-        '        oldhenzaiko2 = CInt(oldhenzaiko)
+            If chk_kouryo.Checked Then ' 考慮する場合
 
-        '        chouseizaiko = Trim(gridshouhin.Cell(flexcpText, suuchkac4, 12))
+                Dim int_chousei_suu = 0
 
+                If chousei_suu <> "err" And chousei_suu <> "" And chousei_suu <> "0" Then
+                    int_chousei_suu = CInt(chousei_suu)
+                End If
 
-        '        If chkkouryo.Value = 1 Then
-        '            '考慮する場合
-        '            If chouseizaiko = "err" Or chouseizaiko = "" Or chouseizaiko = "0" Then
-        '                chouseizaiko2 = 0
-        '            Else
-        '                chouseizaiko2 = CInt(chouseizaiko)
-        '            End If
+                ' 現在庫 + 調整数 = 当時の在庫
+                Dim touji_suu = int_old_henkou_suu + int_chousei_suu
 
+                ' 棚卸数 - 当時の在庫 = 差額
+                sagaku_suu = (touji_suu - int_new_henkou_suu).ToString
 
-        '            '現在庫＋調整数＝当時の在庫
-        '            toujizaikosuu = oldhenzaiko2 + chouseizaiko2
+                ' 最終数
+                dbl_new_value = int_new_henkou_suu - int_chousei_suu
 
-        '            '棚卸数-当時の在庫＝差額
-        '            sagakusuu = toujizaikosuu - newhenzaiko2
+            Else ' 考慮しない場合
+                dbl_new_value = int_new_henkou_suu
+            End If
 
-        '            '最終数
-        '            saishusuu = newhenzaiko2 - chouseizaiko2
+            Try
 
+                Dim conn As New SqlConnection
+                conn.ConnectionString = connectionstring_sqlserver
 
+                Dim query = "SELECT * FROM shouhin WHERE shouhinid ='" + shouhin_id + "'"
 
-        '            henkou_suruzo sentakushuruiid9, 0, saishusuu, CDbl(oldhenzaiko), 0, CStr(sagakusuu)
-        '        Else
-        '            '考慮しない場合
+                Dim da As New SqlDataAdapter
+                da = New SqlDataAdapter(query, conn)
+                Dim ds As New DataSet
+                da.Fill(ds, "t_shouhin")
 
-        '            henkou_suruzo sentakushuruiid9, 0, newhenzaiko, CDbl(oldhenzaiko)
-        '        End If
+                ds.Tables("t_shouhin").Rows(0)("genzaikosuu") = dbl_new_value
 
+                Dim cb As New SqlCommandBuilder
+                cb.DataAdapter = da
+                da.Update(ds, "t_shouhin")
+                ds.Clear()
 
-        '        gridshouhin.Select suuchkac4, 10
-        '        DoEvents
-        '        gridshouhin.EditCell
-        '        DoEvents
-        '        gridshouhin.EditText = "×"
-        '        DoEvents
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Sub
+            End Try
 
-        '        gridshouhin.Select suuchkac4, 11
-        '        DoEvents
-        '        gridshouhin.EditCell
-        '        DoEvents
-        '        If chkkouryo.Value = 1 Then
-        '            gridshouhin.EditText = CStr(saishusuu)
-        '        Else
-        '            gridshouhin.EditText = newhenzaiko
-        '        End If
-        '        DoEvents
+            If create_hacchuu_and_hacchuushousai(shouhin_id, sagaku_suu) = False Then ' 本登録へ
+                msg_go("発注テーブルまたは発注詳細テーブルの更新でエラーが発生しました。")
+                Exit Sub
+            End If
 
-        '        gridshouhin.Select suuchkac4, 12
-        '        DoEvents
-        '        gridshouhin.EditCell
-        '        DoEvents
-        '        If chkkouryo.Value = 1 Then
-        '            gridshouhin.EditText = ""
+            Dim bikou = "旧在庫：" & int_old_henkou_suu.ToString & " 新在庫：" & dbl_new_value.ToString
+            Dim shainid = "10"
+            Dim naiyou = 11
+            Dim new_atai = dbl_new_value.ToString
+            If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
+                msg_go("在庫ログ登録作業中にエラーが発生しました。")
+                Exit Sub
+            End If
 
-        '        End If
-        '        DoEvents
+        Next
 
-
-        '        gridshouhin.Select suuchkac4, 1
-        '        DoEvents
-
-
-
-        '    End If
-        'Next
-        'Screen.MousePointer = 0
-
-        'lblgo.Caption = "0"
-        'ret = MsgBox("更新が完了しました。", 64, "総合管理システム「SPSALES」")
+        msg_go("更新が完了しました。", 64)
+        set_shouhin_ichiran()
 
     End Sub
 
@@ -122,15 +121,52 @@ Public Class frmcheck_kosuu_henkou
     End Sub
 
     Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
+
+        If can_set = False Then
+            can_set = True
+            Exit Sub
+        End If
+
+        Dim index = cbx_shouhin_kubun_1.SelectedIndex
+        If index <> kubun_1_index And check_changed() = True Then
+            Dim result = MessageBox.Show("変更箇所が保存されていませんが、区分を変更してよろしいですか？", "nPOS", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+            If result = DialogResult.No Then
+                can_set = False
+                cbx_shouhin_kubun_1.SelectedIndex = kubun_1_index
+                Exit Sub
+            End If
+        End If
+        kubun_1_index = index
+
         can_set = False
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         set_shouhin_kubun_2(4, shouhin_kubun_1_id)
         can_set = True
+
         set_shouhin_ichiran()
+
     End Sub
 
     Private Sub cbx_shouhin_kubun_2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_2.SelectedIndexChanged
+
+        If can_set = False Then
+            can_set = True
+            Exit Sub
+        End If
+
+        Dim index = cbx_shouhin_kubun_2.SelectedIndex
+        If index <> kubun_2_index And check_changed() = True Then
+            Dim result = MessageBox.Show("変更箇所が保存されていませんが、区分を変更してよろしいですか？", "nPOS", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+            If result = DialogResult.No Then
+                can_set = False
+                cbx_shouhin_kubun_2.SelectedIndex = kubun_2_index
+                Exit Sub
+            End If
+        End If
+        kubun_2_index = index
+
         set_shouhin_ichiran()
+        can_set = True
     End Sub
 
     Private Sub chk_kouryo_Click(sender As Object, e As EventArgs) Handles chk_kouryo.Click
@@ -158,10 +194,42 @@ Public Class frmcheck_kosuu_henkou
 
             If chk_kouryo.Checked = False Then
                 msg_go("チェックボックスにチェックをつけると入力した期間が反映されます。", 64)
+                Exit Sub
             End If
 
             set_shouhin_ichiran()
 
+        End If
+
+    End Sub
+
+    Private Sub dgv_kensakukekka_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dgv_kensakukekka.CellBeginEdit
+        dgv_kensakukekka.Rows(e.RowIndex).Cells(e.ColumnIndex).Style.BackColor = Color.LightYellow
+    End Sub
+
+    Private Sub dgv_kensakukekka_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_kensakukekka.CellEndEdit
+
+        Dim dgv = dgv_kensakukekka
+        Dim row = dgv.Rows(e.RowIndex)
+
+        If e.ColumnIndex = 6 Then
+            Dim tanaoroshiStr = row.Cells(6).Value?.ToString()
+            Dim genzaiStr = row.Cells(11).Value?.ToString()
+
+            Dim tanaoroshi As Integer
+            Dim genzai As Integer
+
+            If Integer.TryParse(tanaoroshiStr, tanaoroshi) AndAlso Integer.TryParse(genzaiStr, genzai) Then
+                If tanaoroshi <> genzai Then
+                    row.Cells(10).Value = "○"
+                End If
+            End If
+        End If
+
+        If e.RowIndex Mod 2 = 0 Then
+            row.Cells(e.ColumnIndex).Style.BackColor = dgv.DefaultCellStyle.BackColor
+        Else
+            row.Cells(e.ColumnIndex).Style.BackColor = dgv.AlternatingRowsDefaultCellStyle.BackColor
         End If
 
     End Sub
@@ -221,6 +289,15 @@ Public Class frmcheck_kosuu_henkou
             .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+            .ReadOnly = False
+            For i = 0 To .ColumnCount - 1
+                If i = 6 Then
+                    .Columns(i).ReadOnly = False
+                Else
+                    .Columns(i).ReadOnly = True
+                End If
+            Next
 
         End With
 
@@ -439,6 +516,133 @@ Public Class frmcheck_kosuu_henkou
         End Try
 
         Return kikansousuu.ToString("#,0")
+
+    End Function
+
+    Private Function check_changed() As Boolean
+
+        Dim dgv = dgv_kensakukekka
+
+        For i = 0 To dgv.Rows.Count - 1
+            If dgv(10, i).Value = "○" Then
+                Return True
+            End If
+        Next
+
+        Return False
+
+    End Function
+
+    Private Function create_hacchuu_and_hacchuushousai(shouhin_id As String, kosuu As String) As Boolean
+
+        If kosuu = "" Then
+            Return True
+        End If
+
+        Dim new_hacchuu_id = ""
+        Try
+
+            Dim id = 1
+            Dim s_no = 2
+            Dim ketasuu = 8
+            Dim new_id = get_settings(id:=id, s_no:=s_no)
+            Dim next_id As String
+            If new_id = "" Then
+                msg_go("IDの取得に失敗しました。")
+                Return False
+            ElseIf new_id = "0" Then
+                next_id = "2"
+                new_id = 1.ToString("D" + ketasuu.ToString)
+            Else
+                next_id = (CLng(new_id) + 1).ToString
+                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
+            End If
+
+            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
+            If Not response Then
+                msg_go("IDの更新に失敗しました。")
+                Return False
+            End If
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuu"
+
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_hacchuu")
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables("t_hacchuu").NewRow()
+
+            data_row("hacchuuid") = new_id
+            data_row("iraibi") = Now.ToString("yyyyMMdd")
+            data_row("shainid") = "00"
+            data_row("tenpoid") = "999999"
+            data_row("goukei") = 0
+            data_row("joukyou") = "0"
+
+            ds.Tables("t_hacchuu").Rows.Add(data_row)
+            da.Update(ds, "t_hacchuu")
+            ds.Clear()
+
+            new_hacchuu_id = new_id
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+        Try
+
+            Dim id = 1
+            Dim s_no = 3
+            Dim ketasuu = 10
+            Dim new_id = get_settings(id:=id, s_no:=s_no)
+            Dim next_id As String
+            If new_id = "" Then
+                msg_go("IDの取得に失敗しました。")
+                Return False
+            ElseIf new_id = "0" Then
+                next_id = "2"
+                new_id = 1.ToString("D" + ketasuu.ToString)
+            Else
+                next_id = (CLng(new_id) + 1).ToString
+                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
+            End If
+
+            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
+            If Not response Then
+                msg_go("IDの更新に失敗しました。")
+                Return False
+            End If
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuushousai"
+
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_hacchuushousai")
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables("t_hacchuushousai").NewRow()
+
+            data_row("hachuushousaiid") = new_id
+            data_row("hacchuuid") = new_hacchuu_id
+            data_row("shouhinid") = shouhin_id
+            data_row("kosuu") = CInt(kosuu)
+
+            ds.Tables("t_hacchuushousai").Rows.Add(data_row)
+            da.Update(ds, "t_hacchuushousai")
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+        Return True
 
     End Function
 
