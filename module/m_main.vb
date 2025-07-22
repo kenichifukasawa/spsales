@@ -9,6 +9,7 @@ Module m_main
 
     Public newserver(3) As String
     Public sougou_path As String
+    Public versionup_path As String = ""
 
     Public hozonsaki_path As String
     Public DESKTOP_PATH As String
@@ -16,6 +17,7 @@ Module m_main
     Public settei_mdb_path As String
     Public print_mdb_path As String
     Public ver_file_path As String
+    Public map_exe_path As String
 
     Public temp_path As String
     Public log_path As String
@@ -53,6 +55,63 @@ Module m_main
     Public s_mailadress As String = ""
     Public s_mailadress_cc() As String
 
+
+    Sub system_check(s_versionup_path As String)
+
+        Dim s_verfile_path As String = s_versionup_path & "\spsales.exe"
+
+        If System.IO.File.Exists(s_verfile_path) = False Then
+            'msg_go("設定ファイル「settei.mdb」がありません。")
+            Exit Sub
+        End If
+
+        'バージョン情報を取得
+        ' FileVersionInfoオブジェクトを取得
+        Dim vi As FileVersionInfo = FileVersionInfo.GetVersionInfo(s_verfile_path)
+
+        ' バージョン情報を表示
+        'Console.WriteLine("ファイル名: " & vi.FileName)
+        'Console.WriteLine("バージョン: " & vi.FileVersion)
+        'Console.WriteLine("メジャーバージョン: " & vi.FileMajorPart)
+        'Console.WriteLine("マイナーバージョン: " & vi.FileMinorPart)
+        'Console.WriteLine("ビルド番号: " & vi.FileBuildPart)
+        'Console.WriteLine("プライベートパート: " & vi.FilePrivatePart)
+        Dim s_new_version As String = vi.FileVersion.ToString  ' + vi.FileMajorPart.ToString + vi.FileMinorPart.ToString + vi.FileBuildPart.ToString
+
+        '現在の実行ファイルのバージョン
+        Dim ver As System.Diagnostics.FileVersionInfo
+        ver = System.Diagnostics.FileVersionInfo.GetVersionInfo(
+            System.Reflection.Assembly.GetExecutingAssembly().Location)
+
+        ' ファイルバージョンを表示
+        'Console.WriteLine(ver.FileVersion)
+        Dim s_now_version As String = ver.FileVersion.ToString   '+ ver.FileMajorPart.ToString + ver.FileMinorPart.ToString + ver.FileBuildPart.ToString
+
+        '比較
+        If s_new_version > s_now_version Then
+
+            If System.IO.File.Exists(ver_file_path) = False Then
+                msg_go("コピーアプリ「ezmanager_copy.exe」がないため、バージョンアップできませんでした。")
+            Else
+
+                ' アップデータを起動し、自分自身を終了
+                Process.Start(ver_file_path)
+                Application.Exit()
+            End If
+
+
+        End If
+
+    End Sub
+
+    Sub BARSHINKOU(ByVal msmsms As String)
+
+
+
+        frmhajime.lstshinkou.Items.Insert(0, msmsms)
+        System.Windows.Forms.Application.DoEvents()
+
+    End Sub
     Function setting2(id As Integer, ByVal docchi As Integer, ByVal retsu As String, ByVal newid As String) As String
 
         '******* サーバの設定を参照・更新　*********
