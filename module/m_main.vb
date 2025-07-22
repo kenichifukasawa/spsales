@@ -906,4 +906,93 @@ errsetting:
 
     End Function
 
+    'Function create_csv_file(csv_data(,) As String, hozon_path As String, data_count As Integer, Optional columnsToExport As String() = Nothing) As Boolean
+    '    convert_nothing_to_karamoji(csv_data)
+
+    '    Dim header = ""
+    '    Dim startIndex = 0
+    '    If columnsToExport Is Nothing Then
+    '        header = get_header(csv_data)
+    '        startIndex = 1
+    '    End If
+
+    '    Try
+    '        Using sw As New StreamWriter(hozon_path, False, Encoding.GetEncoding("Shift_JIS"))
+    '            sw.WriteLine(header)
+
+    '            For i = startIndex To data_count
+    '                Dim line As String = get_line_hairetsu(csv_data, i)
+    '                sw.WriteLine(line)
+    '            Next
+    '        End Using
+
+    '        Return True
+    '    Catch ex As Exception
+    '        msg_go("CSVファイル作成中にエラーが発生しました: " & ex.Message)
+    '        Return False
+    '    End Try
+    'End Function
+
+    Function create_csv_file(csv_data(,) As String, hozon_path As String, data_count As Integer) As Boolean
+
+        convert_nothing_to_karamoji(csv_data)
+
+        Try
+            Using sw As New StreamWriter(hozon_path, False, Encoding.GetEncoding("Shift_JIS"))
+                Dim header As String = get_header(csv_data)
+                sw.WriteLine(header)
+
+                For i = 1 To data_count
+                    Dim line As String = get_line_hairetsu(csv_data, i)
+                    sw.WriteLine(line)
+                Next
+            End Using
+
+            Return True ' 成功
+        Catch ex As Exception
+            msg_go("CSVファイル作成中にエラーが発生しました: " & ex.Message)
+            Return False ' 失敗
+        End Try
+
+    End Function
+
+    Private Sub convert_nothing_to_karamoji(ByRef data(,) As String)
+
+        Dim data_count As Integer = data.GetLength(1) - 1
+        Dim retsu_count As Integer = data.GetLength(0)
+        For i = 1 To data_count
+            For j = 1 To retsu_count - 1
+                If data(j, i) Is Nothing Then
+                    data(j, i) = ""
+                End If
+            Next
+        Next
+
+    End Sub
+
+    Private Function get_header(data(,) As String) As String
+
+        Dim retsu_count As Integer = data.GetLength(0)
+        Dim columnsToExport As String() = New String(retsu_count - 1) {}
+
+        For i As Integer = 0 To retsu_count - 1
+            columnsToExport(i) = $"""{data(i, 0)}"""
+        Next
+
+        Dim header As String = String.Join(",", columnsToExport)
+
+        Return header
+
+    End Function
+
+    Private Function get_line_hairetsu(data(,) As String, colIndex As Integer) As String
+
+        Dim columnValues As New List(Of String)
+        For rowIndex As Integer = 0 To data.GetUpperBound(0)
+            columnValues.Add($"""{data(rowIndex, colIndex)}""")
+        Next
+        Return String.Join(",", columnValues)
+
+    End Function
+
 End Module

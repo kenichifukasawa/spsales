@@ -75,6 +75,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="frmcheck_kosuu_henkou.Designer.vb">
+      <DependentUpon>frmcheck_kosuu_henkou.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmcheck_kosuu_henkou.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmcheck_kurikoshi_log.Designer.vb">
+      <DependentUpon>frmcheck_kurikoshi_log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmcheck_kurikoshi_log.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmcheck_sentaku.Designer.vb">
       <DependentUpon>frmcheck_sentaku.vb</DependentUpon>
     </Compile>
@@ -85,6 +97,12 @@
       <DependentUpon>frmcheck_shouhin_check.vb</DependentUpon>
     </Compile>
     <Compile Include="frmcheck_shouhin_check.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmcheck_shouhin_log.Designer.vb">
+      <DependentUpon>frmcheck_shouhin_log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmcheck_shouhin_log.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmdenwachou.Designer.vb">
@@ -270,11 +288,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmcheck_kosuu_henkou.resx">
+      <DependentUpon>frmcheck_kosuu_henkou.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmcheck_kurikoshi_log.resx">
+      <DependentUpon>frmcheck_kurikoshi_log.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmcheck_sentaku.resx">
       <DependentUpon>frmcheck_sentaku.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmcheck_shouhin_check.resx">
       <DependentUpon>frmcheck_shouhin_check.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmcheck_shouhin_log.resx">
+      <DependentUpon>frmcheck_shouhin_log.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmdenwachou.resx">
       <DependentUpon>frmdenwachou.vb</DependentUpon>
