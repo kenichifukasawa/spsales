@@ -91,11 +91,12 @@ Module m_main
         If s_new_version > s_now_version Then
 
             If System.IO.File.Exists(ver_file_path) = False Then
-                msg_go("コピーアプリ「ezmanager_copy.exe」がないため、バージョンアップできませんでした。")
+                msg_go("コピーアプリ「spsales_copy.exe」がないため、バージョンアップできませんでした。")
             Else
+                Dim arguments As String = "s=" & s_verfile_path & "\"
 
                 ' アップデータを起動し、自分自身を終了
-                Process.Start(ver_file_path)
+                Process.Start(ver_file_path, arguments)
                 Application.Exit()
             End If
 

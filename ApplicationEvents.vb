@@ -33,7 +33,7 @@ Namespace My
             DESKTOP_PATH = System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
 
 
-            ver_file_path = sougou_path & "\spsales_ver.exe"
+            ver_file_path = sougou_path & "\spsales_copy.exe"
 
             map_exe_path = sougou_path & "\ezmanager_map.exe"
 
@@ -49,7 +49,7 @@ Namespace My
             End If
 
             If Dir(ver_file_path) = "" Then
-                msg_go("spsales_ver.exeファイルが見つかりません。")
+                msg_go("spsales_copy.exeファイルが見つかりません。")
                 System.Windows.Forms.Application.DoEvents()
                 ' End
             End If
