@@ -33,6 +33,7 @@ Partial Class frminfo
         Me.Version = New System.Windows.Forms.Label()
         Me.ApplicationTitle = New System.Windows.Forms.Label()
         Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,6 +62,7 @@ Partial Class frminfo
         '
         'GroupBox7
         '
+        Me.GroupBox7.Controls.Add(Me.Button5)
         Me.GroupBox7.Controls.Add(Me.Button3)
         Me.GroupBox7.Controls.Add(Me.Button1)
         Me.GroupBox7.Controls.Add(Me.Button2)
@@ -76,7 +78,7 @@ Partial Class frminfo
         '
         Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.Location = New System.Drawing.Point(23, 89)
+        Me.Button3.Location = New System.Drawing.Point(23, 72)
         Me.Button3.Margin = New System.Windows.Forms.Padding(2)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(122, 43)
@@ -100,7 +102,7 @@ Partial Class frminfo
         '
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(23, 157)
+        Me.Button2.Location = New System.Drawing.Point(23, 174)
         Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(122, 43)
@@ -163,6 +165,18 @@ Partial Class frminfo
         Me.LogoPictureBox.TabIndex = 181
         Me.LogoPictureBox.TabStop = False
         '
+        'Button5
+        '
+        Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button5.Location = New System.Drawing.Point(23, 123)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(122, 43)
+        Me.Button5.TabIndex = 172
+        Me.Button5.Text = "バージョンアップ"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'frminfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -196,4 +210,5 @@ Partial Class frminfo
     Friend WithEvents Version As Label
     Friend WithEvents ApplicationTitle As Label
     Friend WithEvents LogoPictureBox As PictureBox
+    Friend WithEvents Button5 As Button
 End Class
