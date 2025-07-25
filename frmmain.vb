@@ -495,4 +495,36 @@ Public Class frmmain
 
     End Sub
 
+    Private Sub btn_tenpo_shinki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_shinki.Click
+
+
+
+
+        frmkojin.ShowDialog()
+
+
+    End Sub
+
+    Private Sub cmb_henkou_Click(sender As Object, e As EventArgs) Handles cmb_henkou.Click
+
+        Dim s_tenpoid As String = Trim(lbltenpoid.Text)
+        If s_tenpoid = "" Then
+            Exit Sub
+        End If
+
+
+        tenpo_henkou_set(s_tenpoid)
+
+
+        frmkojin.ShowDialog()
+
+    End Sub
+
+    Private Sub btn_tenpo_hyouji_rireki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_hyouji_rireki.Click
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+    End Sub
 End Class

@@ -60,9 +60,16 @@
     End Sub
 
     Private Sub frmlogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
+
 #If DEBUG Then
         TXTPASSWORD.Text = "8877"
         btn_ninshou.PerformClick()
 #End If
+    End Sub
+
+    Private Sub frmlogin_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        TXTPASSWORD.Focus()
     End Sub
 End Class

@@ -9,6 +9,7 @@ Module m_main
 
     Public newserver(3) As String
     Public sougou_path As String
+    Public versionup_path As String = ""
 
     Public hozonsaki_path As String
     Public DESKTOP_PATH As String
@@ -16,6 +17,7 @@ Module m_main
     Public settei_mdb_path As String
     Public print_mdb_path As String
     Public ver_file_path As String
+    Public map_exe_path As String
 
     Public temp_path As String
     Public log_path As String
@@ -53,6 +55,69 @@ Module m_main
     Public s_mailadress As String = ""
     Public s_mailadress_cc() As String
 
+
+    Sub system_check(s_versionup_path As String)
+
+        Dim s_verfile_path As String = s_versionup_path & "\spsales.exe"
+
+        If System.IO.File.Exists(s_verfile_path) = False Then
+            'msg_go("設定ファイル「settei.mdb」がありません。")
+            Exit Sub
+        End If
+
+        'バージョン情報を取得
+        ' FileVersionInfoオブジェクトを取得
+        Dim vi As FileVersionInfo = FileVersionInfo.GetVersionInfo(s_verfile_path)
+
+        ' バージョン情報を表示
+        'Console.WriteLine("ファイル名: " & vi.FileName)
+        'Console.WriteLine("バージョン: " & vi.FileVersion)
+        'Console.WriteLine("メジャーバージョン: " & vi.FileMajorPart)
+        'Console.WriteLine("マイナーバージョン: " & vi.FileMinorPart)
+        'Console.WriteLine("ビルド番号: " & vi.FileBuildPart)
+        'Console.WriteLine("プライベートパート: " & vi.FilePrivatePart)
+        Dim s_new_version As String = vi.FileVersion.ToString  ' + vi.FileMajorPart.ToString + vi.FileMinorPart.ToString + vi.FileBuildPart.ToString
+
+        '現在の実行ファイルのバージョン
+        Dim ver As System.Diagnostics.FileVersionInfo
+        ver = System.Diagnostics.FileVersionInfo.GetVersionInfo(
+            System.Reflection.Assembly.GetExecutingAssembly().Location)
+
+        ' ファイルバージョンを表示
+        'Console.WriteLine(ver.FileVersion)
+        Dim s_now_version As String = ver.FileVersion.ToString   '+ ver.FileMajorPart.ToString + ver.FileMinorPart.ToString + ver.FileBuildPart.ToString
+
+        '比較
+        If s_new_version > s_now_version Then
+
+            If System.IO.File.Exists(ver_file_path) = False Then
+                msg_go("コピーアプリ「spsales_copy.exe」がないため、バージョンアップできませんでした。")
+            Else
+
+
+                Dim arguments As String = "s=" & s_versionup_path & "\"
+
+                ' アップデータを起動し、自分自身を終了
+                Process.Start(ver_file_path, arguments)
+
+                System.Threading.Thread.Sleep(200) ' 200ミリ秒待機（必要に応じ調整）
+
+                Environment.Exit(0) ' 即時プロセス終了
+            End If
+
+
+        End If
+
+    End Sub
+
+    Sub BARSHINKOU(ByVal msmsms As String)
+
+
+
+        frmhajime.lstshinkou.Items.Insert(0, msmsms)
+        System.Windows.Forms.Application.DoEvents()
+
+    End Sub
     Function setting2(id As Integer, ByVal docchi As Integer, ByVal retsu As String, ByVal newid As String) As String
 
         '******* サーバの設定を参照・更新　*********
@@ -328,6 +393,240 @@ Module m_main
 
     End Sub
 
+    Sub tenpo_henkou_set(s_tenpoid As String)
+
+        With frmkojin
+            .cmbshime.Items.Clear()
+            .cmbshime.Items.Add("５日")
+            .cmbshime.Items.Add("１０日")
+            .cmbshime.Items.Add("１５日")
+            .cmbshime.Items.Add("２０日")
+            .cmbshime.Items.Add("２５日")
+            .cmbshime.Items.Add("月末")
+            .cmbshime.Items.Add("随時")
+
+
+
+
+
+        End With
+
+
+        Try
+
+            Dim cn_server As New SqlConnection
+
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Sql = "SELECT tenpo.*, MAILNO_M.ADRESS1, shain.shainmei" &
+                " FROM shain RIGHT JOIN (MAILNO_M RIGHT JOIN tenpo ON MAILNO_M.MAILNO = tenpo.mailno)" &
+                " ON shain.shainid = tenpo.shainid" &
+                " WHERE tenpo.tenpoid = '" & s_tenpoid & "'"
+
+
+            Dim da_server As SqlDataAdapter
+
+            da_server = New SqlDataAdapter(Sql, cn_server)
+
+            Dim ds_server As New DataSet
+
+            da_server.Fill(ds_server, "t_shoukaii")
+
+            Dim dt_server As DataTable
+
+            dt_server = ds_server.Tables("t_shoukaii")
+
+
+
+            Dim mojiretsu(3) As String
+
+            If dt_server.Rows.Count <> 0 Then
+                With frmkojin
+                    .lbltenpoid.Text = Trim(dt_server.Rows.Item(0).Item("tenpoid"))
+                    .txttenpomei.Text = Trim(dt_server.Rows.Item(0).Item("tenpomei"))
+                    If IsDBNull(dt_server.Rows.Item(0).Item("tenpofurigana")) Then
+                        .txtfurigana.Text = ""
+                    Else
+                        .txtfurigana.Text = Trim(dt_server.Rows.Item(0).Item("tenpofurigana"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("insatsumei")) Then
+                        .txtinsatsumei.Text = ""
+                    Else
+                        .txtinsatsumei.Text = Trim(dt_server.Rows.Item(0).Item("insatsumei"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("mailno")) Then
+                        .txtyuubin.Text = ""
+                        .txtyuubin2.Text = ""
+                    Else
+                        .txtyuubin.Text = Mid(Trim(dt_server.Rows.Item(0).Item("mailno")), 1, 3)
+                        .txtyuubin2.Text = Mid(Trim(dt_server.Rows.Item(0).Item("mailno")), 5, 4)
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("adress1")) Then
+                        .txtjuusho.Text = ""
+                    Else
+                        .txtjuusho.Text = Trim(dt_server.Rows.Item(0).Item("adress1"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("tenpoadress")) Then
+                        .txtjuusho2.Text = ""
+                    Else
+                        .txtjuusho2.Text = Trim(dt_server.Rows.Item(0).Item("tenpoadress"))
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("tel")) Then
+                        .txttel.Text = ""
+                    Else
+                        .txttel.Text = Trim(dt_server.Rows.Item(0).Item("tel"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("keitai")) Then
+                        .txtkeitai.Text = ""
+                    Else
+                        .txtkeitai.Text = Trim(dt_server.Rows.Item(0).Item("keitai"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("fax")) Then
+                        .txtfax.Text = ""
+                    Else
+                        .txtfax.Text = Trim(dt_server.Rows.Item(0).Item("fax"))
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("daihyou")) Then
+                        .txtdaihyou.Text = ""
+                    Else
+                        .txtdaihyou.Text = Trim(dt_server.Rows.Item(0).Item("daihyou"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("tantou")) Then
+                        .txttantou.Text = ""
+                    Else
+                        .txttantou.Text = Trim(dt_server.Rows.Item(0).Item("tantou"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("juugyouinsuu")) Then
+                        .txtjuugyouinsuu.Text = ""
+                    Else
+                        .txtjuugyouinsuu.Text = Trim(dt_server.Rows.Item(0).Item("juugyouinsuu"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("email")) Then
+                        .txtemail1.Text = ""
+                        .cmbmail.Text = ""
+                    Else
+                        If Trim(dt_server.Rows.Item(0).Item("email")) = "" Then
+                            .txtemail1.Text = ""
+                            .cmbmail.Text = ""
+                        Else
+                            Dim s_mail As String = Trim(dt_server.Rows.Item(0).Item("email"))
+                            Dim s_len As Integer = s_mail.IndexOf("@")
+
+                            .txtemail1.Text = Mid(s_mail, 1, s_len)
+                            .cmbmail.Text = Mid(s_mail, s_len + 2)
+                        End If
+                    End If
+                        If IsDBNull(dt_server.Rows.Item(0).Item("url")) Then
+                        .txturl.Text = ""
+                    Else
+                        .txturl.Text = Trim(dt_server.Rows.Item(0).Item("url"))
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("shimebi")) Then
+                        .cmbshime.SelectedIndex = -1
+                    Else
+                        If Trim(dt_server.Rows.Item(0).Item("shimebi")) = "" Then
+                            .cmbshime.SelectedIndex = -1
+                        Else
+                            .cmbshime.SelectedIndex = CInt(Trim(dt_server.Rows.Item(0).Item("shimebi")))
+                        End If
+                    End If
+
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("souhasuu")) Then
+                        .rkeisanseikyuusho.Checked = False
+                        .rkeisannouhinsho.Checked = False
+                    Else
+                        Select Case Trim(dt_server.Rows.Item(0).Item("souhasuu"))
+                            Case "0"
+                                ' .lblkeisanhouhou.Text = "請求書毎"
+                                .rkeisanseikyuusho.Checked = True
+                            Case "1"
+                                ' .lblkeisanhouhou.Text = "納品書毎"
+                                .rkeisannouhinsho.Checked = True
+                            Case Else
+                                ' .lblkeisanhouhou.Text = "エラー"
+                                .rkeisanseikyuusho.Checked = False
+                                .rkeisannouhinsho.Checked = False
+                        End Select
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("zeihasuu")) Then
+                        .rkirisute.Checked = False
+                        .rshishagonyuu.Checked = False
+                        .rkiriage.Checked = False
+                    Else
+                        Select Case Trim(dt_server.Rows.Item(0).Item("zeihasuu"))
+                            Case "0"
+                                ' .lblhasuu.Text = "切り捨て"
+                                .rkirisute.Checked = True
+                            Case "1"
+                                '.lblhasuu.Text = "四捨五入"
+                                .rshishagonyuu.Checked = True
+                            Case "2"
+                                ' .lblhasuu.Text = "切り上げ"
+                                .rkiriage.Checked = True
+                            Case Else
+                                ' .lblhasuu.Text = "エラー"
+                                .rkirisute.Checked = False
+                                .rshishagonyuu.Checked = False
+                                .rkiriage.Checked = False
+                        End Select
+                    End If
+                    If IsDBNull(dt_server.Rows.Item(0).Item("kubun")) Then
+                        .rkubunkaisha.Checked = False
+                        .rkubuntenpo.Checked = False
+                        .rkubuniroiro.Checked = False
+                    Else
+                        Select Case Trim(dt_server.Rows.Item(0).Item("kubun"))
+                            Case "0"
+                                ' .lblkubun.Text = "会社単位"
+                                .rkubunkaisha.Checked = True
+                            Case "1"
+                                '  .lblkubun.Text = "店舗単位"
+                                .rkubuntenpo.Checked = True
+                            Case "2"
+                                ' .lblkubun.Text = "いろいろ"
+                                .rkubuniroiro.Checked = True
+                            Case Else
+                                '.lblkubun.Text = "エラー"
+                                .rkubunkaisha.Checked = False
+                                .rkubuntenpo.Checked = False
+                                .rkubuniroiro.Checked = False
+                        End Select
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("bikou")) Then
+                        .txtbikou.Text = ""
+                    Else
+                        .txtbikou.Text = Trim(dt_server.Rows.Item(0).Item("bikou"))
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("kurikoshi")) Then
+                        .txtkurikoshikin.Text = ""
+                    Else
+                        .txtkurikoshikin.Text = CInt(Trim(dt_server.Rows.Item(0).Item("kurikoshi"))).ToString
+                    End If
+
+                    If IsDBNull(dt_server.Rows.Item(0).Item("seikyuubi")) Then
+                        .txtzenkaiseikyuubi.Text = ""
+                    Else
+                        .txtzenkaiseikyuubi.Text = Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 7, 2)
+                    End If
+
+
+                End With
+            End If
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+
+        End Try
+
+
+    End Sub
 
     Sub tenpo_main_set(s_tenpoid As String)
 
