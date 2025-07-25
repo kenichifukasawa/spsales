@@ -10,7 +10,7 @@ Public Class frmmain
 
 
 
-    Private Sub btn_seikyuusho_soushin_kanri_Click(sender As Object, e As EventArgs) Handles btn_seikyuusho_soushin_kanri.Click
+    Private Sub btn_seikyuusho_soushin_kanri_Click(sender As Object, e As EventArgs)
 
         frmseikyuusho_soushin_ichi.ShowDialog()
 
@@ -211,7 +211,6 @@ Public Class frmmain
                 txtkubun2.Focus()
             End If
         End If
-
     End Sub
 
     Private Sub txtkubun1_LostFocus(sender As Object, e As EventArgs) Handles txtkubun1.LostFocus
@@ -263,7 +262,6 @@ Public Class frmmain
         If kuku2dou = 0 Then
             lstshien.Visible = False
         End If
-
     End Sub
 
     Private Sub btn_jouken_clear_Click(sender As Object, e As EventArgs) Handles btn_jouken_clear.Click
@@ -283,7 +281,6 @@ Public Class frmmain
         End With
 
         grid_shien_head_set()
-
 
     End Sub
 
@@ -307,11 +304,9 @@ Public Class frmmain
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
-
-
             ' 奇数行の既定セル・スタイルの背景色を設定
-            .AlternatingRowsDefaultCellStyle.BackColor _
-                                                    = Color.LightBlue
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
         End With
 
     End Sub
@@ -366,6 +361,7 @@ Public Class frmmain
     End Sub
 
     Private Sub btn_jouken_kensaku_Click(sender As Object, e As EventArgs) Handles btn_jouken_kensaku.Click
+
         Dim newkubun1 As String, newkubun2 As String, newfuri1 As String, newfuri2 As String
         Dim strstr As String, iriri As Long
 
@@ -382,8 +378,6 @@ Public Class frmmain
             " from (shouhin left join shouhinkubun2 " &
             " on shouhin.shouhinkubunid2=shouhinkubun2.shouhinkubunid2) left join shouhinkubun" &
             " on shouhin.shouhinkubunid=shouhinkubun.shouhinkubunid "
-
-
 
         strstr = ""
 
@@ -429,8 +423,6 @@ Public Class frmmain
             strstr = strstr & " and shouhin.mishiyou='0'"
         End If
 
-
-
         Sql = Sql & strstr & " order by shouhin.shouhinid"
 
         grid_shien_head_set()
@@ -440,23 +432,16 @@ Public Class frmmain
             Dim cn_server As New SqlConnection
 
             cn_server.ConnectionString = connectionstring_sqlserver
-
-            Dim da_server As SqlDataAdapter
-
-            da_server = New SqlDataAdapter(Sql, cn_server)
-
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
             Dim ds_server As New DataSet
-
             da_server.Fill(ds_server, "t_shoukaii")
-
-            Dim dt_server As DataTable
-
-            dt_server = ds_server.Tables("t_shoukaii")
+            Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
 
             Dim mojiretsu(4) As String
             Dim s_kin As Decimal
 
             For i = 0 To dt_server.Rows.Count - 1
+
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shouhinmei"))
                 mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("shouhinid"))
 
@@ -469,18 +454,16 @@ Public Class frmmain
                     mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("genzaikosuu"))
                 End If
 
-
-
                 Me.dgv_shien.Rows.Add(mojiretsu)
+
             Next i
+
             dt_server.Clear()
             ds_server.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)
-
         End Try
-
 
     End Sub
 
@@ -496,13 +479,7 @@ Public Class frmmain
     End Sub
 
     Private Sub btn_tenpo_shinki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_shinki.Click
-
-
-
-
         frmkojin.ShowDialog()
-
-
     End Sub
 
     Private Sub cmb_henkou_Click(sender As Object, e As EventArgs) Handles cmb_henkou.Click
@@ -512,19 +489,44 @@ Public Class frmmain
             Exit Sub
         End If
 
-
         tenpo_henkou_set(s_tenpoid)
-
 
         frmkojin.ShowDialog()
 
     End Sub
 
-    Private Sub btn_tenpo_hyouji_rireki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_hyouji_rireki.Click
+    Private Sub btn_shiire_kanri_Click(sender As Object, e As EventArgs) Handles btn_shiire_kanri.Click
+        frmshiire_sentaku.ShowDialog()
+
+        ' TODO:納品書のセットの関数をここにも書く
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btn_seikyuu_kanri_Click(sender As Object, e As EventArgs) Handles btn_seikyuu_kanri.Click
+        frmseikyuu_sentaku.ShowDialog()
+
+        ' TODO:納品書のセットの関数をここにも書く
+
+    End Sub
+
+    Private Sub btn_nyuukin_kanri_Click(sender As Object, e As EventArgs) Handles btn_nyuukin_kanri.Click
+        frmnyuukin_sentaku.ShowDialog()
+
+        ' TODO:納品書のセットの関数をここにも書く
+
+    End Sub
+
+    Private Sub btn_shiharai_kanri_Click(sender As Object, e As EventArgs) Handles btn_shiharai_kanri.Click
+        frmshiharai_sentaku.ShowDialog()
+
+        ' TODO:納品書のセットの関数をここにも書く
+
+    End Sub
+
+    Private Sub btn_nouhinsho_kanri_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_kanri.Click
+        frmnouhinsho_sentaku.ShowDialog()
+
+        ' TODO:納品書のセットの関数をここにも書く
 
     End Sub
 End Class

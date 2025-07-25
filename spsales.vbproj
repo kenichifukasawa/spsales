@@ -190,6 +190,18 @@
       <DependentUpon>frmmain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmnouhinsho_sentaku.Designer.vb">
+      <DependentUpon>frmnouhinsho_sentaku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmnouhinsho_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmnyuukin_sentaku.Designer.vb">
+      <DependentUpon>frmnyuukin_sentaku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmnyuukin_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmpassword.Designer.vb">
       <DependentUpon>frmpassword.vb</DependentUpon>
     </Compile>
@@ -208,6 +220,12 @@
     <Compile Include="frmseikyuusho_soushin_log.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmseikyuu_sentaku.Designer.vb">
+      <DependentUpon>frmseikyuu_sentaku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmseikyuu_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmsettei.Designer.vb">
       <DependentUpon>frmsettei.vb</DependentUpon>
     </Compile>
@@ -218,6 +236,18 @@
       <DependentUpon>frmichiran_shain.vb</DependentUpon>
     </Compile>
     <Compile Include="frmichiran_shain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmshiharai_sentaku.Designer.vb">
+      <DependentUpon>frmshiharai_sentaku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshiharai_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmshiire_sentaku.Designer.vb">
+      <DependentUpon>frmshiire_sentaku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshiire_sentaku.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmshutsuryoku_sentaku.Designer.vb">
@@ -345,6 +375,12 @@
     <EmbeddedResource Include="frmmain.resx">
       <DependentUpon>frmmain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmnouhinsho_sentaku.resx">
+      <DependentUpon>frmnouhinsho_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmnyuukin_sentaku.resx">
+      <DependentUpon>frmnyuukin_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmpassword.resx">
       <DependentUpon>frmpassword.vb</DependentUpon>
     </EmbeddedResource>
@@ -354,11 +390,20 @@
     <EmbeddedResource Include="frmseikyuusho_soushin_log.resx">
       <DependentUpon>frmseikyuusho_soushin_log.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmseikyuu_sentaku.resx">
+      <DependentUpon>frmseikyuu_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmsettei.resx">
       <DependentUpon>frmsettei.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmichiran_shain.resx">
       <DependentUpon>frmichiran_shain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshiharai_sentaku.resx">
+      <DependentUpon>frmshiharai_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshiire_sentaku.resx">
+      <DependentUpon>frmshiire_sentaku.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmshutsuryoku_sentaku.resx">
       <DependentUpon>frmshutsuryoku_sentaku.vb</DependentUpon>
