@@ -393,6 +393,110 @@ Module m_main
 
     End Sub
 
+    Sub tenpo_orderchu_set_10()
+
+
+        With frmmain.dgv_denpyou
+
+            .Rows.Clear()
+            .Columns.Clear()
+            .ColumnCount = 11
+            .Columns(0).Name = "No"
+            .Columns(1).Name = "商品ID"
+            .Columns(2).Name = "商品名"
+            .Columns(3).Name = "数"
+            .Columns(4).Name = "単価"
+            .Columns(5).Name = "小計"
+            .Columns(6).Name = "摘要"
+            .Columns(7).Name = ""
+            .Columns(8).Name = ""
+            .Columns(9).Name = ""
+            .Columns(10).Name = ""
+            .Columns(0).Width = 40
+            .Columns(1).Width = 0
+            .Columns(2).Width = 300
+            .Columns(3).Width = 50
+            .Columns(4).Width = 70
+            .Columns(5).Width = 100
+            .Columns(6).Width = 130
+            .Columns(7).Width = 50
+            .Columns(8).Width = 0
+            .Columns(9).Width = 0
+            .Columns(10).Width = 0
+
+
+            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+            '列ヘッダーの高さを変える
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+            .ColumnHeadersHeight = 25
+
+            ' 奇数行の既定セル・スタイルの背景色を設定
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
+        End With
+
+
+        Dim s_pcname As String = "" 'Trim(frmmain.lblpcname.text)
+        If s_pcname = "" Then
+            msg_go("ユーザー情報が登録されていないため、発注伝票の登録・表示はできません。")
+            Exit Sub
+        End If
+
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Sql = "SELECT hacchuushousai.*,shouhin.* FROM hacchuushousai left join shouhin on hacchuushousai.shouhinid = shouhin.shouhinid" &
+                    " where hacchuushousai.hacchuuid='" & s_pcname & "' ORDER BY hacchuushousai.hachuushousaiid"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_shoukaii")
+            Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
+
+            Dim mojiretsu(5) As String
+
+
+
+            Dim s_kin As Decimal
+
+            For i = 0 To dt_server.Rows.Count - 1
+
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
+                mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 7, 2)
+
+                s_kin = dt_server.Rows.Item(i).Item("goukei")
+                mojiretsu(2) = s_kin.ToString("#,##0")
+
+                mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("shainid")) & " " & Trim(dt_server.Rows.Item(i).Item("ryakumei"))
+
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("nouhinshoid")) Then
+                    mojiretsu(4) = ""
+                Else
+                    mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
+                End If
+
+                frmmain.dgv_denpyou.Rows.Add(mojiretsu)
+
+            Next i
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+        End Try
+
+    End Sub
+
     Sub tenpo_henkou_set(s_tenpoid As String)
 
         With frmkojin
