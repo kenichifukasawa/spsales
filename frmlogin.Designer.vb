@@ -73,7 +73,7 @@ Partial Class frmlogin
         Me.TXTPASSWORD.Name = "TXTPASSWORD"
         Me.TXTPASSWORD.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TXTPASSWORD.Size = New System.Drawing.Size(190, 22)
-        Me.TXTPASSWORD.TabIndex = 1
+        Me.TXTPASSWORD.TabIndex = 0
         '
         'Label1
         '

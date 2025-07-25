@@ -26,6 +26,8 @@ Partial Class frmkojin
         Me.Button2 = New System.Windows.Forms.Button()
         Me.b_koushin = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.chkmailsoufu = New System.Windows.Forms.CheckBox()
         Me.txturl = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.txtemail1 = New System.Windows.Forms.TextBox()
@@ -75,7 +77,7 @@ Partial Class frmkojin
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txttenpomei = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.lbtenpoid = New System.Windows.Forms.Label()
+        Me.lbltenpoid = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -83,7 +85,6 @@ Partial Class frmkojin
         Me.Label40 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
-        Me.chkmailsoufu = New System.Windows.Forms.CheckBox()
         Me.g.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -125,16 +126,17 @@ Partial Class frmkojin
         Me.b_koushin.BackColor = System.Drawing.SystemColors.Control
         Me.b_koushin.Cursor = System.Windows.Forms.Cursors.Hand
         Me.b_koushin.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.b_koushin.Location = New System.Drawing.Point(324, 764)
+        Me.b_koushin.Location = New System.Drawing.Point(24, 764)
         Me.b_koushin.Margin = New System.Windows.Forms.Padding(2)
         Me.b_koushin.Name = "b_koushin"
-        Me.b_koushin.Size = New System.Drawing.Size(294, 40)
+        Me.b_koushin.Size = New System.Drawing.Size(602, 40)
         Me.b_koushin.TabIndex = 223
         Me.b_koushin.Text = "更新"
         Me.b_koushin.UseVisualStyleBackColor = False
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Label12)
         Me.GroupBox2.Controls.Add(Me.chkmailsoufu)
         Me.GroupBox2.Controls.Add(Me.txturl)
         Me.GroupBox2.Controls.Add(Me.Label11)
@@ -177,7 +179,7 @@ Partial Class frmkojin
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.txttenpomei)
         Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.lbtenpoid)
+        Me.GroupBox2.Controls.Add(Me.lbltenpoid)
         Me.GroupBox2.Controls.Add(Me.Label23)
         Me.GroupBox2.Controls.Add(Me.Label32)
         Me.GroupBox2.Controls.Add(Me.Label24)
@@ -192,13 +194,34 @@ Partial Class frmkojin
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "契約者情報"
         '
+        'Label12
+        '
+        Me.Label12.BackColor = System.Drawing.SystemColors.Control
+        Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label12.Location = New System.Drawing.Point(259, 297)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(28, 16)
+        Me.Label12.TabIndex = 146
+        Me.Label12.Text = "@"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'chkmailsoufu
+        '
+        Me.chkmailsoufu.AutoSize = True
+        Me.chkmailsoufu.Location = New System.Drawing.Point(473, 436)
+        Me.chkmailsoufu.Name = "chkmailsoufu"
+        Me.chkmailsoufu.Size = New System.Drawing.Size(216, 18)
+        Me.chkmailsoufu.TabIndex = 145
+        Me.chkmailsoufu.Text = "メールアドレスに請求書を送付する"
+        Me.chkmailsoufu.UseVisualStyleBackColor = True
+        '
         'txturl
         '
         Me.txturl.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.txturl.Location = New System.Drawing.Point(99, 324)
         Me.txturl.MaxLength = 80
         Me.txturl.Name = "txturl"
-        Me.txturl.Size = New System.Drawing.Size(659, 21)
+        Me.txturl.Size = New System.Drawing.Size(522, 21)
         Me.txturl.TabIndex = 144
         '
         'Label11
@@ -218,15 +241,15 @@ Partial Class frmkojin
         Me.txtemail1.Location = New System.Drawing.Point(99, 293)
         Me.txtemail1.MaxLength = 12
         Me.txtemail1.Name = "txtemail1"
-        Me.txtemail1.Size = New System.Drawing.Size(105, 21)
+        Me.txtemail1.Size = New System.Drawing.Size(153, 21)
         Me.txtemail1.TabIndex = 142
         '
         'cmbmail
         '
         Me.cmbmail.FormattingEnabled = True
-        Me.cmbmail.Location = New System.Drawing.Point(224, 293)
+        Me.cmbmail.Location = New System.Drawing.Point(288, 293)
         Me.cmbmail.Name = "cmbmail"
-        Me.cmbmail.Size = New System.Drawing.Size(159, 22)
+        Me.cmbmail.Size = New System.Drawing.Size(234, 22)
         Me.cmbmail.TabIndex = 141
         '
         'Label10
@@ -243,7 +266,7 @@ Partial Class frmkojin
         'txtjuugyouinsuu
         '
         Me.txtjuugyouinsuu.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txtjuugyouinsuu.Location = New System.Drawing.Point(714, 296)
+        Me.txtjuugyouinsuu.Location = New System.Drawing.Point(714, 324)
         Me.txtjuugyouinsuu.MaxLength = 80
         Me.txtjuugyouinsuu.Name = "txtjuugyouinsuu"
         Me.txtjuugyouinsuu.Size = New System.Drawing.Size(44, 21)
@@ -253,7 +276,7 @@ Partial Class frmkojin
         '
         Me.Label9.BackColor = System.Drawing.Color.White
         Me.Label9.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label9.Location = New System.Drawing.Point(627, 297)
+        Me.Label9.Location = New System.Drawing.Point(627, 328)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(81, 16)
         Me.Label9.TabIndex = 138
@@ -263,7 +286,7 @@ Partial Class frmkojin
         'txttantou
         '
         Me.txttantou.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.txttantou.Location = New System.Drawing.Point(596, 261)
+        Me.txttantou.Location = New System.Drawing.Point(629, 261)
         Me.txttantou.MaxLength = 80
         Me.txttantou.Name = "txttantou"
         Me.txttantou.Size = New System.Drawing.Size(128, 21)
@@ -273,7 +296,7 @@ Partial Class frmkojin
         '
         Me.Label4.BackColor = System.Drawing.Color.White
         Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label4.Location = New System.Drawing.Point(505, 262)
+        Me.Label4.Location = New System.Drawing.Point(538, 262)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(81, 16)
         Me.Label4.TabIndex = 136
@@ -283,7 +306,7 @@ Partial Class frmkojin
         'txtdaihyou
         '
         Me.txtdaihyou.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.txtdaihyou.Location = New System.Drawing.Point(493, 296)
+        Me.txtdaihyou.Location = New System.Drawing.Point(629, 296)
         Me.txtdaihyou.MaxLength = 80
         Me.txtdaihyou.Name = "txtdaihyou"
         Me.txtdaihyou.Size = New System.Drawing.Size(128, 21)
@@ -293,7 +316,7 @@ Partial Class frmkojin
         '
         Me.Label3.BackColor = System.Drawing.Color.White
         Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label3.Location = New System.Drawing.Point(395, 297)
+        Me.Label3.Location = New System.Drawing.Point(534, 297)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(81, 16)
         Me.Label3.TabIndex = 134
@@ -566,7 +589,7 @@ Partial Class frmkojin
         '
         Me.cmbshain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbshain.FormattingEnabled = True
-        Me.cmbshain.Location = New System.Drawing.Point(311, 261)
+        Me.cmbshain.Location = New System.Drawing.Point(349, 261)
         Me.cmbshain.Name = "cmbshain"
         Me.cmbshain.Size = New System.Drawing.Size(173, 22)
         Me.cmbshain.TabIndex = 93
@@ -577,7 +600,7 @@ Partial Class frmkojin
         Me.cmbshime.FormattingEnabled = True
         Me.cmbshime.Location = New System.Drawing.Point(99, 261)
         Me.cmbshime.Name = "cmbshime"
-        Me.cmbshime.Size = New System.Drawing.Size(108, 22)
+        Me.cmbshime.Size = New System.Drawing.Size(132, 22)
         Me.cmbshime.TabIndex = 92
         '
         'txtinsatsumei
@@ -685,15 +708,15 @@ Partial Class frmkojin
         Me.Label1.Text = "店舗ID"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lbtenpoid
+        'lbltenpoid
         '
-        Me.lbtenpoid.BackColor = System.Drawing.Color.White
-        Me.lbtenpoid.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbtenpoid.Location = New System.Drawing.Point(99, 18)
-        Me.lbtenpoid.Name = "lbtenpoid"
-        Me.lbtenpoid.Size = New System.Drawing.Size(110, 16)
-        Me.lbtenpoid.TabIndex = 60
-        Me.lbtenpoid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbltenpoid.BackColor = System.Drawing.Color.White
+        Me.lbltenpoid.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbltenpoid.Location = New System.Drawing.Point(99, 18)
+        Me.lbltenpoid.Name = "lbltenpoid"
+        Me.lbltenpoid.Size = New System.Drawing.Size(110, 16)
+        Me.lbltenpoid.TabIndex = 60
+        Me.lbltenpoid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label23
         '
@@ -710,7 +733,7 @@ Partial Class frmkojin
         '
         Me.Label32.BackColor = System.Drawing.Color.White
         Me.Label32.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label32.Location = New System.Drawing.Point(221, 266)
+        Me.Label32.Location = New System.Drawing.Point(259, 266)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(81, 16)
         Me.Label32.TabIndex = 72
@@ -772,16 +795,6 @@ Partial Class frmkojin
         Me.Label26.Text = "住所"
         Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'chkmailsoufu
-        '
-        Me.chkmailsoufu.AutoSize = True
-        Me.chkmailsoufu.Location = New System.Drawing.Point(473, 436)
-        Me.chkmailsoufu.Name = "chkmailsoufu"
-        Me.chkmailsoufu.Size = New System.Drawing.Size(216, 18)
-        Me.chkmailsoufu.TabIndex = 145
-        Me.chkmailsoufu.Text = "メールアドレスに請求書を送付する"
-        Me.chkmailsoufu.UseVisualStyleBackColor = True
-        '
         'frmkojin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -816,7 +829,7 @@ Partial Class frmkojin
     Friend WithEvents Label26 As Label
     Friend WithEvents Label24 As Label
     Friend WithEvents Label23 As Label
-    Friend WithEvents lbtenpoid As Label
+    Friend WithEvents lbltenpoid As Label
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents txttel As TextBox
     Friend WithEvents txtkeitai As TextBox
@@ -867,4 +880,5 @@ Partial Class frmkojin
     Friend WithEvents cmbmail As ComboBox
     Friend WithEvents Label10 As Label
     Friend WithEvents chkmailsoufu As CheckBox
+    Friend WithEvents Label12 As Label
 End Class

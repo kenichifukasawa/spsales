@@ -13,7 +13,7 @@ Public Class frmkojin
         Dim newnanji As String = DateTime.Now.ToString("HH:mm:ss")
 
 
-        Dim tenpoid As String = Trim(lbtenpoid.Text)
+        Dim tenpoid As String = Trim(lbltenpoid.Text)
 
         Dim s_furigana As String = ""
         If Trim(txtfurigana.Text) = "" Then
@@ -463,6 +463,12 @@ Public Class frmkojin
 
     End Sub
 
+    Private Sub frmkojin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        cmbmail.Items.Clear()
+        cmbmail.Items.Add("gmail.com")
+        cmbmail.Items.Add("yahoo.co.jp")
 
 
+    End Sub
 End Class
