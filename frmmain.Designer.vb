@@ -24,7 +24,6 @@ Partial Class frmmain
     Private Sub InitializeComponent()
         Me.btn_end = New System.Windows.Forms.Button()
         Me.btn_info = New System.Windows.Forms.Button()
-        Me.btn_seikyuusho_soushin_kanri = New System.Windows.Forms.Button()
         Me.btn_tenpo_kensaku = New System.Windows.Forms.Button()
         Me.btn_shiire_kanri = New System.Windows.Forms.Button()
         Me.btn_seikyuu_kanri = New System.Windows.Forms.Button()
@@ -201,19 +200,6 @@ Partial Class frmmain
         Me.btn_info.TabIndex = 142
         Me.btn_info.Text = "Info"
         Me.btn_info.UseVisualStyleBackColor = False
-        '
-        'btn_seikyuusho_soushin_kanri
-        '
-        Me.btn_seikyuusho_soushin_kanri.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_seikyuusho_soushin_kanri.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_seikyuusho_soushin_kanri.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_seikyuusho_soushin_kanri.Location = New System.Drawing.Point(516, 42)
-        Me.btn_seikyuusho_soushin_kanri.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_seikyuusho_soushin_kanri.Name = "btn_seikyuusho_soushin_kanri"
-        Me.btn_seikyuusho_soushin_kanri.Size = New System.Drawing.Size(110, 44)
-        Me.btn_seikyuusho_soushin_kanri.TabIndex = 143
-        Me.btn_seikyuusho_soushin_kanri.Text = "請求書送信管理"
-        Me.btn_seikyuusho_soushin_kanri.UseVisualStyleBackColor = False
         '
         'btn_tenpo_kensaku
         '
@@ -490,7 +476,6 @@ Partial Class frmmain
         Me.GroupBox20.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox20.Controls.Add(Me.btn_seikyuu_nyuukin_shousai)
         Me.GroupBox20.Controls.Add(Me.dgv_seikyuusho)
-        Me.GroupBox20.Controls.Add(Me.btn_seikyuusho_soushin_kanri)
         Me.GroupBox20.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox20.Location = New System.Drawing.Point(8, 653)
         Me.GroupBox20.Margin = New System.Windows.Forms.Padding(2)
@@ -1780,7 +1765,6 @@ Partial Class frmmain
 
     Friend WithEvents btn_end As Button
     Friend WithEvents btn_info As Button
-    Friend WithEvents btn_seikyuusho_soushin_kanri As Button
     Friend WithEvents btn_tenpo_kensaku As Button
     Friend WithEvents btn_shiire_kanri As Button
     Friend WithEvents btn_seikyuu_kanri As Button

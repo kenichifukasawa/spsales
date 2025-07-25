@@ -10,7 +10,7 @@ Public Class frmmain
 
 
 
-    Private Sub btn_seikyuusho_soushin_kanri_Click(sender As Object, e As EventArgs) Handles btn_seikyuusho_soushin_kanri.Click
+    Private Sub btn_seikyuusho_soushin_kanri_Click(sender As Object, e As EventArgs)
 
         frmseikyuusho_soushin_ichi.ShowDialog()
 
