@@ -183,7 +183,15 @@ Namespace My
             connectionstring_sqlserver = "Data Source=" & newserver(0) & ";Initial Catalog=" & newserver(3) & ";" &
                            "User ID=" & newserver(1) & ";Password=" & newserver(2) & ";"
 
-
+            'PC名
+            settei_res = Setting1(3, 0, "", 0)
+            If settei_res = "0" Then
+                ' ret = MsgBox("ユーザー名を設定してください。設定しないと商品を発注できません。", 16, "総合管理システム「SPSALES」")
+                msg_go("ユーザー名を設定してください。設定しないと商品を発注できません。")
+                frmmain.lblpcname.Text = ""
+            Else
+                frmmain.lblpcname.Text = settei_res
+            End If
 
 
 

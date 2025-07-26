@@ -22,7 +22,6 @@ Partial Class frmmain
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btn_end = New System.Windows.Forms.Button()
         Me.btn_info = New System.Windows.Forms.Button()
         Me.btn_tenpo_kensaku = New System.Windows.Forms.Button()
         Me.btn_shiire_kanri = New System.Windows.Forms.Button()
@@ -31,6 +30,8 @@ Partial Class frmmain
         Me.btn_shiharai_kanri = New System.Windows.Forms.Button()
         Me.btn_tenpo_hyouji_rireki = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblpcname = New System.Windows.Forms.Label()
+        Me.btn_nouhinsho_kanri = New System.Windows.Forms.Button()
         Me.btn_check = New System.Windows.Forms.Button()
         Me.btn_shutsuryoku = New System.Windows.Forms.Button()
         Me.btn_shuukei = New System.Windows.Forms.Button()
@@ -149,7 +150,6 @@ Partial Class frmmain
         Me.btn_nouhinsho_hozon = New System.Windows.Forms.Button()
         Me.btn_nouhinsho_clear = New System.Windows.Forms.Button()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
-        Me.btn_nouhinsho_kanri = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
@@ -174,19 +174,6 @@ Partial Class frmmain
         Me.GroupBox7.SuspendLayout()
         CType(Me.dgv_nouhinsho, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'btn_end
-        '
-        Me.btn_end.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_end.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_end.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_end.Location = New System.Drawing.Point(8, 12)
-        Me.btn_end.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_end.Name = "btn_end"
-        Me.btn_end.Size = New System.Drawing.Size(110, 44)
-        Me.btn_end.TabIndex = 141
-        Me.btn_end.Text = "終了"
-        Me.btn_end.UseVisualStyleBackColor = False
         '
         'btn_info
         '
@@ -282,12 +269,12 @@ Partial Class frmmain
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.LightYellow
+        Me.GroupBox1.Controls.Add(Me.lblpcname)
         Me.GroupBox1.Controls.Add(Me.btn_nouhinsho_kanri)
         Me.GroupBox1.Controls.Add(Me.btn_check)
         Me.GroupBox1.Controls.Add(Me.btn_shutsuryoku)
         Me.GroupBox1.Controls.Add(Me.btn_shuukei)
         Me.GroupBox1.Controls.Add(Me.btn_info)
-        Me.GroupBox1.Controls.Add(Me.btn_end)
         Me.GroupBox1.Controls.Add(Me.btn_shiharai_kanri)
         Me.GroupBox1.Controls.Add(Me.btn_nyuukin_kanri)
         Me.GroupBox1.Controls.Add(Me.btn_seikyuu_kanri)
@@ -297,6 +284,29 @@ Partial Class frmmain
         Me.GroupBox1.Size = New System.Drawing.Size(568, 110)
         Me.GroupBox1.TabIndex = 150
         Me.GroupBox1.TabStop = False
+        '
+        'lblpcname
+        '
+        Me.lblpcname.BackColor = System.Drawing.Color.White
+        Me.lblpcname.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblpcname.Location = New System.Drawing.Point(15, 27)
+        Me.lblpcname.Name = "lblpcname"
+        Me.lblpcname.Size = New System.Drawing.Size(93, 22)
+        Me.lblpcname.TabIndex = 156
+        Me.lblpcname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btn_nouhinsho_kanri
+        '
+        Me.btn_nouhinsho_kanri.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_nouhinsho_kanri.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_nouhinsho_kanri.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_nouhinsho_kanri.Location = New System.Drawing.Point(119, 60)
+        Me.btn_nouhinsho_kanri.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_nouhinsho_kanri.Name = "btn_nouhinsho_kanri"
+        Me.btn_nouhinsho_kanri.Size = New System.Drawing.Size(110, 44)
+        Me.btn_nouhinsho_kanri.TabIndex = 155
+        Me.btn_nouhinsho_kanri.Text = "納品書管理"
+        Me.btn_nouhinsho_kanri.UseVisualStyleBackColor = False
         '
         'btn_check
         '
@@ -1700,24 +1710,10 @@ Partial Class frmmain
         Me.dgv_nouhinsho.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_nouhinsho.MultiSelect = False
         Me.dgv_nouhinsho.Name = "dgv_nouhinsho"
-        Me.dgv_nouhinsho.ReadOnly = True
         Me.dgv_nouhinsho.RowTemplate.Height = 24
         Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(651, 740)
         Me.dgv_nouhinsho.TabIndex = 67
-        '
-        'btn_nouhinsho_kanri
-        '
-        Me.btn_nouhinsho_kanri.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_nouhinsho_kanri.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_nouhinsho_kanri.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_nouhinsho_kanri.Location = New System.Drawing.Point(119, 60)
-        Me.btn_nouhinsho_kanri.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_nouhinsho_kanri.Name = "btn_nouhinsho_kanri"
-        Me.btn_nouhinsho_kanri.Size = New System.Drawing.Size(110, 44)
-        Me.btn_nouhinsho_kanri.TabIndex = 155
-        Me.btn_nouhinsho_kanri.Text = "納品書管理"
-        Me.btn_nouhinsho_kanri.UseVisualStyleBackColor = False
         '
         'frmmain
         '
@@ -1762,8 +1758,6 @@ Partial Class frmmain
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents btn_end As Button
     Friend WithEvents btn_info As Button
     Friend WithEvents btn_tenpo_kensaku As Button
     Friend WithEvents btn_shiire_kanri As Button
@@ -1891,4 +1885,5 @@ Partial Class frmmain
     Friend WithEvents Button1 As Button
     Friend WithEvents dgv_log As DataGridView
     Friend WithEvents btn_nouhinsho_kanri As Button
+    Friend WithEvents lblpcname As Label
 End Class

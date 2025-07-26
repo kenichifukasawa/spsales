@@ -20,9 +20,7 @@ Public Class frmmain
         frminfo.ShowDialog()
     End Sub
 
-    Private Sub btn_end_Click(sender As Object, e As EventArgs) Handles btn_end.Click
-        End
-    End Sub
+
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
         frmshuukei_sentaku.ShowDialog()

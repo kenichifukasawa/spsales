@@ -180,6 +180,8 @@ Module m_main
 
         tenpo_log_set(s_tenpoid)
 
+        tenpo_orderchu_set_10()
+
     End Sub
 
     Sub tenpo_hachuurireki_set(s_tenpoid As String)
@@ -396,7 +398,7 @@ Module m_main
     Sub tenpo_orderchu_set_10()
 
 
-        With frmmain.dgv_denpyou
+        With frmmain.dgv_nouhinsho
 
             .Rows.Clear()
             .Columns.Clear()
@@ -414,11 +416,11 @@ Module m_main
             .Columns(10).Name = ""
             .Columns(0).Width = 40
             .Columns(1).Width = 0
-            .Columns(2).Width = 300
-            .Columns(3).Width = 50
-            .Columns(4).Width = 70
-            .Columns(5).Width = 100
-            .Columns(6).Width = 130
+            .Columns(2).Width = 250
+            .Columns(3).Width = 40
+            .Columns(4).Width = 60
+            .Columns(5).Width = 80
+            .Columns(6).Width = 100
             .Columns(7).Width = 50
             .Columns(8).Width = 0
             .Columns(9).Width = 0
@@ -426,10 +428,12 @@ Module m_main
 
 
             .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             '列ヘッダーの高さを変える
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
@@ -438,10 +442,28 @@ Module m_main
             ' 奇数行の既定セル・スタイルの背景色を設定
             .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
 
+            .Columns(0).ReadOnly = True
+            .Columns(1).ReadOnly = True
+            .Columns(2).ReadOnly = True
+            .Columns(3).ReadOnly = True
+            .Columns(4).ReadOnly = True
+            .Columns(5).ReadOnly = True
+            .Columns(6).ReadOnly = True
+            '.Columns(7).ReadOnly = True
+            .Columns(8).ReadOnly = True
+            .Columns(9).ReadOnly = True
+            .Columns(10).ReadOnly = True
+            .EditMode = DataGridViewEditMode.EditOnEnter
+
+
+
         End With
 
+        frmmain.lbl_nouhinsho_goukei.Text = ""
 
-        Dim s_pcname As String = "" 'Trim(frmmain.lblpcname.text)
+        Dim s_goukeigaku As Integer = 0
+
+        Dim s_pcname As String = Trim(frmmain.lblpcname.text)
         If s_pcname = "" Then
             msg_go("ユーザー情報が登録されていないため、発注伝票の登録・表示はできません。")
             Exit Sub
@@ -461,35 +483,87 @@ Module m_main
             da_server.Fill(ds_server, "t_shoukaii")
             Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
 
-            Dim mojiretsu(5) As String
+            Dim mojiretsu(11) As String
 
 
 
             Dim s_kin As Decimal
 
             For i = 0 To dt_server.Rows.Count - 1
+                mojiretsu(0) = (i + 1).ToString
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shouhinid"))
+                mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("shouhinmei"))
 
-                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
-                mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 7, 2)
+                s_kin = dt_server.Rows.Item(i).Item("kosuu")
+                mojiretsu(3) = s_kin.ToString("#,##0")
 
-                s_kin = dt_server.Rows.Item(i).Item("goukei")
-                mojiretsu(2) = s_kin.ToString("#,##0")
+                s_kin = dt_server.Rows.Item(i).Item("tanka")
+                mojiretsu(4) = s_kin.ToString("#,##0")
 
-                mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("shainid")) & " " & Trim(dt_server.Rows.Item(i).Item("ryakumei"))
-
-
-                If IsDBNull(dt_server.Rows.Item(i).Item("nouhinshoid")) Then
-                    mojiretsu(4) = ""
+                '単価の設定で色を入れる(todo)
+                'If Trim(rs_seikyuu_n!kakutei) = "1" Then
+                If Trim(dt_server.Rows.Item(i).Item("kakutei")) = "1" Then
+                    '.Cell(flexcpBackColor, newretsu, 4) = &HC0C0FF
+                    frmmain.dgv_nouhinsho.Rows(i).Cells(4).Style.BackColor = Color.FromArgb(&HC0, &HC0, &HFF) ' 薄い青系
                 Else
-                    mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
+                    '    .Cell(flexcpBackColor, newretsu, 4) = &HFFFFFF
+                    frmmain.dgv_nouhinsho.Rows(i).Cells(4).Style.BackColor = Color.White
                 End If
 
-                frmmain.dgv_denpyou.Rows.Add(mojiretsu)
+                s_kin = dt_server.Rows.Item(i).Item("kei")
+
+                s_goukeigaku = s_goukeigaku + s_kin
+
+                mojiretsu(5) = s_kin.ToString("#,##0")
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("tekiyou")) Then
+                    mojiretsu(6) = ""
+                Else
+                    mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("tekiyou"))
+                End If
+
+                mojiretsu(7) = ""
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("kakutei")) Then
+                    mojiretsu(8) = ""
+                Else
+                    mojiretsu(8) = Trim(dt_server.Rows.Item(i).Item("kakutei"))
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("keigen")) Then
+                    mojiretsu(9) = ""
+                Else
+                    mojiretsu(9) = Trim(dt_server.Rows.Item(i).Item("keigen"))
+                End If
+
+                mojiretsu(10) = Trim(dt_server.Rows.Item(i).Item("hachuushousaiid"))
+
+
+                frmmain.dgv_nouhinsho.Rows.Add(mojiretsu)
+
+
+                frmmain.dgv_nouhinsho.Rows(i).Cells(7) = New DataGridViewCheckBoxCell
+                frmmain.dgv_nouhinsho.Rows(i).Cells(7).Value = False
 
             Next i
 
             dt_server.Clear()
             ds_server.Clear()
+
+
+
+            frmmain.lbl_nouhinsho_goukei.Text = s_goukeigaku.ToString("#,##0")
+
+            ' 現在選択されているセルの行インデックス
+            Dim rowIdx As Integer = frmmain.dgv_nouhinsho.CurrentCell.RowIndex
+            Dim colIdx As Integer = frmmain.dgv_nouhinsho.CurrentCell.ColumnIndex
+
+            ' (rowIdx, colIdx)を表示領域内に持ってくる
+            If Not frmmain.dgv_nouhinsho(rowIdx, colIdx).Displayed Then
+                frmmain.dgv_nouhinsho.CurrentCell = frmmain.dgv_nouhinsho(rowIdx, colIdx)
+            End If
+
+
 
         Catch ex As Exception
             msg_go(ex.Message)
