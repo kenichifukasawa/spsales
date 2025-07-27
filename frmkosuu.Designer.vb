@@ -23,23 +23,25 @@ Partial Class frmkosuu
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.lblkakutei = New System.Windows.Forms.Label()
+        Me.lblkeigen = New System.Windows.Forms.Label()
+        Me.chkfukakutei = New System.Windows.Forms.CheckBox()
         Me.cmbtekiyou = New System.Windows.Forms.ComboBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtgoukei = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txttanka = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.txtkosuu = New System.Windows.Forms.TextBox()
         Me.lblzaiko = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblkubun2 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblkubun1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.lbl_shouhizei_10_percent = New System.Windows.Forms.Label()
+        Me.lblshouhinmei = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -52,23 +54,25 @@ Partial Class frmkosuu
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
-        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Controls.Add(Me.lblkakutei)
+        Me.GroupBox1.Controls.Add(Me.lblkeigen)
+        Me.GroupBox1.Controls.Add(Me.chkfukakutei)
         Me.GroupBox1.Controls.Add(Me.cmbtekiyou)
         Me.GroupBox1.Controls.Add(Me.Label30)
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label8)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.txtgoukei)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.txttanka)
         Me.GroupBox1.Controls.Add(Me.Label10)
         Me.GroupBox1.Controls.Add(Me.txtkosuu)
         Me.GroupBox1.Controls.Add(Me.lblzaiko)
         Me.GroupBox1.Controls.Add(Me.Label6)
-        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.lblkubun2)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.lblkubun1)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.lbl_shouhizei_10_percent)
+        Me.GroupBox1.Controls.Add(Me.lblshouhinmei)
         Me.GroupBox1.Controls.Add(Me.Label25)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
@@ -76,16 +80,36 @@ Partial Class frmkosuu
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
-        'CheckBox1
+        'lblkakutei
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.CheckBox1.Location = New System.Drawing.Point(553, 148)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(158, 20)
-        Me.CheckBox1.TabIndex = 223
-        Me.CheckBox1.Text = "価格が不確定である"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.lblkakutei.BackColor = System.Drawing.SystemColors.Control
+        Me.lblkakutei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblkakutei.Location = New System.Drawing.Point(571, 181)
+        Me.lblkakutei.Name = "lblkakutei"
+        Me.lblkakutei.Size = New System.Drawing.Size(50, 25)
+        Me.lblkakutei.TabIndex = 225
+        Me.lblkakutei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblkeigen
+        '
+        Me.lblkeigen.BackColor = System.Drawing.SystemColors.Control
+        Me.lblkeigen.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblkeigen.Location = New System.Drawing.Point(509, 181)
+        Me.lblkeigen.Name = "lblkeigen"
+        Me.lblkeigen.Size = New System.Drawing.Size(50, 25)
+        Me.lblkeigen.TabIndex = 224
+        Me.lblkeigen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'chkfukakutei
+        '
+        Me.chkfukakutei.AutoSize = True
+        Me.chkfukakutei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.chkfukakutei.Location = New System.Drawing.Point(553, 148)
+        Me.chkfukakutei.Name = "chkfukakutei"
+        Me.chkfukakutei.Size = New System.Drawing.Size(158, 20)
+        Me.chkfukakutei.TabIndex = 223
+        Me.chkfukakutei.Text = "価格が不確定である"
+        Me.chkfukakutei.UseVisualStyleBackColor = True
         '
         'cmbtekiyou
         '
@@ -130,16 +154,16 @@ Partial Class frmkosuu
         Me.Label8.Text = "円　　　=　　合計"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TextBox2
+        'txtgoukei
         '
-        Me.TextBox2.BackColor = System.Drawing.Color.White
-        Me.TextBox2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox2.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox2.Location = New System.Drawing.Point(574, 97)
-        Me.TextBox2.MaxLength = 8
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(118, 23)
-        Me.TextBox2.TabIndex = 218
+        Me.txtgoukei.BackColor = System.Drawing.Color.White
+        Me.txtgoukei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtgoukei.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtgoukei.Location = New System.Drawing.Point(574, 97)
+        Me.txtgoukei.MaxLength = 8
+        Me.txtgoukei.Name = "txtgoukei"
+        Me.txtgoukei.Size = New System.Drawing.Size(118, 23)
+        Me.txtgoukei.TabIndex = 218
         '
         'Label7
         '
@@ -152,16 +176,16 @@ Partial Class frmkosuu
         Me.Label7.Text = "個　　　X　　単価"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TextBox1
+        'txttanka
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.White
-        Me.TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox1.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox1.Location = New System.Drawing.Point(315, 97)
-        Me.TextBox1.MaxLength = 8
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(96, 23)
-        Me.TextBox1.TabIndex = 216
+        Me.txttanka.BackColor = System.Drawing.Color.White
+        Me.txttanka.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txttanka.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txttanka.Location = New System.Drawing.Point(315, 97)
+        Me.txttanka.MaxLength = 8
+        Me.txttanka.Name = "txttanka"
+        Me.txttanka.Size = New System.Drawing.Size(96, 23)
+        Me.txttanka.TabIndex = 216
         '
         'Label10
         '
@@ -206,15 +230,15 @@ Partial Class frmkosuu
         Me.Label6.Text = "在庫数"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label3
+        'lblkubun2
         '
-        Me.Label3.BackColor = System.Drawing.SystemColors.Control
-        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label3.Location = New System.Drawing.Point(442, 51)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(300, 25)
-        Me.Label3.TabIndex = 211
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblkubun2.BackColor = System.Drawing.SystemColors.Control
+        Me.lblkubun2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblkubun2.Location = New System.Drawing.Point(442, 51)
+        Me.lblkubun2.Name = "lblkubun2"
+        Me.lblkubun2.Size = New System.Drawing.Size(300, 25)
+        Me.lblkubun2.TabIndex = 211
+        Me.lblkubun2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label4
         '
@@ -227,15 +251,15 @@ Partial Class frmkosuu
         Me.Label4.Text = "区分２"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label1
+        'lblkubun1
         '
-        Me.Label1.BackColor = System.Drawing.SystemColors.Control
-        Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(65, 51)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(300, 25)
-        Me.Label1.TabIndex = 209
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblkubun1.BackColor = System.Drawing.SystemColors.Control
+        Me.lblkubun1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblkubun1.Location = New System.Drawing.Point(65, 51)
+        Me.lblkubun1.Name = "lblkubun1"
+        Me.lblkubun1.Size = New System.Drawing.Size(300, 25)
+        Me.lblkubun1.TabIndex = 209
+        Me.lblkubun1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label2
         '
@@ -248,15 +272,15 @@ Partial Class frmkosuu
         Me.Label2.Text = "区分１"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lbl_shouhizei_10_percent
+        'lblshouhinmei
         '
-        Me.lbl_shouhizei_10_percent.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl_shouhizei_10_percent.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shouhizei_10_percent.Location = New System.Drawing.Point(65, 13)
-        Me.lbl_shouhizei_10_percent.Name = "lbl_shouhizei_10_percent"
-        Me.lbl_shouhizei_10_percent.Size = New System.Drawing.Size(546, 25)
-        Me.lbl_shouhizei_10_percent.TabIndex = 207
-        Me.lbl_shouhizei_10_percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblshouhinmei.BackColor = System.Drawing.SystemColors.Control
+        Me.lblshouhinmei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblshouhinmei.Location = New System.Drawing.Point(65, 13)
+        Me.lblshouhinmei.Name = "lblshouhinmei"
+        Me.lblshouhinmei.Size = New System.Drawing.Size(546, 25)
+        Me.lblshouhinmei.TabIndex = 207
+        Me.lblshouhinmei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label25
         '
@@ -351,20 +375,20 @@ Partial Class frmkosuu
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents lblzaiko As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents lblkubun2 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblkubun1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents lbl_shouhizei_10_percent As Label
+    Friend WithEvents lblshouhinmei As Label
     Friend WithEvents Label25 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtgoukei As TextBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txttanka As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents txtkosuu As TextBox
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents chkfukakutei As CheckBox
     Friend WithEvents cmbtekiyou As ComboBox
     Friend WithEvents Label30 As Label
     Friend WithEvents Label11 As Label
@@ -372,4 +396,6 @@ Partial Class frmkosuu
     Friend WithEvents Label13 As Label
     Friend WithEvents btn_hozon As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents lblkakutei As Label
+    Friend WithEvents lblkeigen As Label
 End Class

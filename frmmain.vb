@@ -557,157 +557,94 @@ Public Class frmmain
 
             '９９件までのチェック
 
-            If gridorder.Rows > 99 Then
-                msg_go("納品書に登録できる件数は９９件までです。")
+            If Me.dgv_shien.Rows.Count > 99 Then
+                msg_go("納品書に仮登録できる件数は９９件までです。")
+                Exit Sub
+            End If
+
+            Dim sentakutanka2 As Integer
+
+            Dim sentakuid As String = Trim(Me.dgv_shien.CurrentRow.Cells(0).Value.ToString)
+            Dim sentakushouhinmei As String = Trim(Me.dgv_shien.CurrentRow.Cells(1).Value.ToString)
+            Dim sentakuzaiko As String = Trim(Me.dgv_shien.CurrentRow.Cells(3).Value.ToString)
+            Dim sentakutanka As String = Trim(Me.dgv_shien.CurrentRow.Cells(2).Value.ToString)
+            If sentakutanka = "" Then
+                sentakutanka2 = 0
+            Else
+                sentakutanka2 = CInt(sentakutanka)
+            End If
+
+            If sentakuid = "" Then
+                msg_go("商品IDが不正です。")
                 Exit Sub
             End If
 
 
+            Try
 
-            With frmmain.gridshien
-                .Col = 0
-                sentakuid = Trim(.Text)  'shouhinid
-                sqlsql = "SELECT shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2," &
+                Dim cn_server As New SqlConnection
+                cn_server.ConnectionString = connectionstring_sqlserver
+
+                Sql = "SELECT shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2," &
                 " shouhin.shouhinkubunid, shouhinkubun2.narabe,shouhin.keigen_s" &
                 " FROM shouhinkubun RIGHT JOIN (shouhinkubun2 RIGHT JOIN shouhin" &
                 " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2)" &
                 " ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid" &
-                " WHERE (((shouhin.shouhinid)='" & sentakuid & "'));"
-                If FcSQlGet(1, rsrsrs, sqlsql, WMsg) = False Then
-                    frmkosuu.lblkubun1.Caption = "Err"
-                    frmkosuu.lblkubun2.Caption = "Err"
-                    s_keigen = Space(1)
+                " WHERE (((shouhin.shouhinid)='" & sentakuid & "'))"
+
+                Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+                Dim ds_server As New DataSet
+                da_server.Fill(ds_server, "t_shoukaii")
+                Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
+
+                If dt_server.Rows.Count = 0 Then
+                    frmkosuu.lblkubun1.text = "Err"
+                    frmkosuu.lblkubun2.text = "Err"
+                    frmkosuu.lblkeigen.Text = ""
                 Else
-                    frmkosuu.lblkubun1.Caption = rsrsrs!shouhinkubunid & Space(2) & rsrsrs!shouhinkubunmei
-                    frmkosuu.lblkubun2.Caption = rsrsrs!NARABE & Space(2) & rsrsrs!shouhinkubunmei2
-                    If IsNull(rsrsrs!keigen_s) Then
-                        s_keigen = Space(1)
+
+                    frmkosuu.lblkubun1.Text = Trim(dt_server.Rows.Item(0).Item("shouhinkubunid")) & Space(2) & Trim(dt_server.Rows.Item(0).Item("shouhinkubunmei"))
+                    frmkosuu.lblkubun2.Text = Trim(dt_server.Rows.Item(0).Item("NARABE")) & Space(2) & Trim(dt_server.Rows.Item(0).Item("shouhinkubunmei2"))
+                    If IsDBNull(dt_server.Rows.Item(0).Item("keigen_s")) Then
+                        frmkosuu.lblkeigen.Text = ""
                     Else
-                        s_keigen = rsrsrs!keigen_s
+                        frmkosuu.lblkeigen.Text = Trim(dt_server.Rows.Item(0).Item("keigen_s"))
                     End If
 
-                    rsrsrs.Close
+                    dt_server.Clear()
+                    ds_server.Clear()
                 End If
-                .Col = 1
-                sentakushouhinmei = Trim(.Text) 'shouhinmei
-                .Col = 2
-                sentakutanka = Trim(.Text) 'tanka
-                If sentakutanka = "" Then
-                    sentakukakaku2 = 0
-                Else
-                    On Error GoTo errsu
-                    sentakukakaku2 = CDbl(sentakutanka)
-                    On Error GoTo 0
-                End If
-                .Col = 3
-                sentakuzaiko = Trim(.Text)
-                frmkosuu.txttanka.Text = sentakutanka
-                frmkosuu.lblshouhinmei.Caption = sentakushouhinmei
-                frmkosuu.lblzaiko.Caption = sentakuzaiko
-                If frmkosuu.txttanka.Text = "0" Then
-                    frmkosuu.chkfukakutei.Value = 1
-                    nyuuryokufukakutei = 1
-                Else
-                    frmkosuu.chkfukakutei.Value = 0
-                    nyuuryokufukakutei = 0
-                End If
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Sub
+            End Try
 
-            End With
 
+            If sentakutanka = "0" Then
+                frmkosuu.chkfukakutei.Checked = True
+                frmkosuu.lblkakutei.Text = "1"
+            Else
+                frmkosuu.chkfukakutei.Checked = False
+                frmkosuu.lblkakutei.Text = "0"
+            End If
 
 
             '個数入力
-            kosuukadou = 0
+            With frmkosuu
+                .txttanka.Text = sentakutanka
+                .lblshouhinmei.text = sentakushouhinmei
+                .lblzaiko.Text = sentakuzaiko
 
-            frmkosuu.Show 1
-
-        If kosuukadou = 0 Then
-                Exit Sub
-            End If
-
-
+                .ShowDialog()
+            End With
 
 
-            newshoukei = sentakukakaku2 * inpkosuu2
-
-
-
-
-            Dim MONOI As Long
-            Dim newhacchuushousaiid As String ', newhacchuushousaiid2 As Double
-            Dim rs_hacchu2 As ADODB.Recordset
-
-            MONOI = CLng(setting2_10(0, 3, 1, 1, 0))
-            ' MONOI = CLng(setting2(0, 3, 0, 1, "", 0))
-            If MONOI = -1 Then
-                MsgBox "発注詳細番号を参照できませんでした。再度実行してください。"
-           Exit Sub
-            End If
-            If MONOI = 0 Then
-                newhacchuushousaiid = "0000000001"
-            Else
-                newhacchuushousaiid = Format(MONOI, "000000000#")
-            End If
-
-            'newhacchuushousaiid2 = MONOI + 1
-            'If setting2(0, 3, 1, 1, CStr(newhacchuushousaiid2), 0) = "-1" Then
-            ' ret = MsgBox("発注詳細番号の更新に失敗しました。少し時間をおいて再度実行してください。", 16, "総合管理システム「SPSALES」")
-            ' Exit Sub
-            'End If
-
-            '発注詳細テーブル登録
-            On Error GoTo errjitsutouroku2
-
-            If cnn Is Nothing Then
-                data_base_open
-            End If
-
-            data_base_open
-            
-            Set rs_hacchu2 = New ADODB.Recordset
-            
-            rs_hacchu2.CursorType = adOpenForwardOnly 'adOpenKeyset
-
-
-            rs_hacchu2.LockType = adLockOptimistic
-            rs_hacchu2.Open "hacchuushousai", cnn, , , adCmdTable
-
-
-                rs_hacchu2.AddNew
-
-            rs_hacchu2!hachuushousaiid = newhacchuushousaiid
-            rs_hacchu2!hacchuuid = s_pcname   'newhacchuuid
-            rs_hacchu2!shouhinid = sentakuid ' karitourokudata(karitousuu - 1, 1)
-            rs_hacchu2!kosuu = inpkosuu2  'karitourokudata(karitousuu - 1, 2)
-            rs_hacchu2!tanka = sentakukakaku2 ' karitourokudata(karitousuu - 1, 3)
-            rs_hacchu2!kei = newshoukei ' karitourokudata(karitousuu - 1, 4)
-            rs_hacchu2!tekiyou = nyuuryokutekiyou  'karitourokudata(karitousuu - 1, 5)
-            rs_hacchu2!kakutei = CStr(nyuuryokufukakutei) ' karitourokudata(karitousuu - 1, 6)
-
-            If Trim(s_keigen) <> "" Then
-                rs_hacchu2!keigen = Trim(s_keigen)  ' karitourokudata(karitousuu - 1, 7)
-            End If
-
-            rs_hacchu2.Update
-
-
-            On Error GoTo 0
-
-
-
-
-
-            tenpo_orderchu_set_10()
-
-
-
-        ElseIf KeyAscii = 8 Then
-            txtkubun.SetFocus
-        ElseIf KeyAscii = 27 Then
-            frmmain.fshien1.Visible = False
+        ElseIf e.KeyCode = Keys.Back Then
+            txtkubun.Focus()
+        ElseIf e.KeyCode = Keys.Escape Then
+            dgv_log.Visible = False
         End If
 
-        End If
 
     End Sub
 End Class
