@@ -48,12 +48,14 @@ Partial Class frmkosuu
         Me.Label13 = New System.Windows.Forms.Label()
         Me.btn_hozon = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.lblshouhinid = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
+        Me.GroupBox1.Controls.Add(Me.lblshouhinid)
         Me.GroupBox1.Controls.Add(Me.lblkakutei)
         Me.GroupBox1.Controls.Add(Me.lblkeigen)
         Me.GroupBox1.Controls.Add(Me.chkfukakutei)
@@ -351,6 +353,16 @@ Partial Class frmkosuu
         Me.Button1.Text = "戻る"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'lblshouhinid
+        '
+        Me.lblshouhinid.BackColor = System.Drawing.SystemColors.Control
+        Me.lblshouhinid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblshouhinid.Location = New System.Drawing.Point(642, 181)
+        Me.lblshouhinid.Name = "lblshouhinid"
+        Me.lblshouhinid.Size = New System.Drawing.Size(50, 25)
+        Me.lblshouhinid.TabIndex = 226
+        Me.lblshouhinid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'frmkosuu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -398,4 +410,5 @@ Partial Class frmkosuu
     Friend WithEvents Button1 As Button
     Friend WithEvents lblkakutei As Label
     Friend WithEvents lblkeigen As Label
+    Friend WithEvents lblshouhinid As Label
 End Class

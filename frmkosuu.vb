@@ -1,4 +1,6 @@
-﻿Public Class frmkosuu
+﻿Imports System.Data.SqlClient
+
+Public Class frmkosuu
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
         Me.Dispose()
@@ -7,7 +9,6 @@
 
     Private Sub frmkosuu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        nyuuryokutekiyou = ""
 
         cmbtekiyou.Items.Clear()
         cmbtekiyou.Items.Add("ｻｰﾋﾞｽ")
@@ -33,64 +34,117 @@
     End Sub
 
     Private Sub btn_hozon_Click(sender As Object, e As EventArgs) Handles btn_hozon.Click
-        '    newshoukei = sentakukakaku2 * inpkosuu2
+
+        Dim s_pcname As String = Trim(frmmain.lblpcname.Text)
+
+        Dim s_shouhinid As String = Trim(lblshouhinid.Text)
+        If s_shouhinid = "" Then
+            msg_go("商品IDが不正です。")
+            Exit Sub
+        End If
+
+        Dim s_kosuu As String = Trim(txtkosuu.Text)
+        If s_kosuu = "" Then
+            msg_go("個数を入力して下さい。")
+            txtkosuu.Focus()
+            Exit Sub
+        End If
+
+        Dim s_tanka As String = Trim(txttanka.Text)
+        If s_tanka = "" Then
+            msg_go("単価を入力して下さい。")
+            txttanka.Focus()
+            Exit Sub
+        End If
+
+        Dim s_kei As String = Trim(txtgoukei.Text)
+        If s_kei = "" Then
+            msg_go("合計が不正です。")
+            Exit Sub
+        End If
+
+        Dim s_tekiyou As String = Trim(cmbtekiyou.Text)
+
+        Dim s_kakutei As String = Trim(lblkakutei.Text)
+
+        Dim s_keigen As String = Trim(lblkeigen.Text)
+
+        Dim newid As String, newid2 As String, settei2_res As String
+
+        newid = Trim(setting2(3, 0, "1", ""))
+        If newid = "-1" Then
+            msg_go("IDの取得に失敗しました。再度実行してください。")
+            Exit Sub
+        ElseIf newid = "0" Then
+            newid2 = "2"
+            newid = "0000000001"
+        Else
+            newid2 = (CInt(newid) + 1).ToString
+            newid = newid.ToString.PadLeft(10, "0"c)
+        End If
+
+        settei2_res = setting2(3, 1, "1", newid2)
+        If settei2_res = "-1" Then
+            msg_go("IDの更新に失敗しました。再度実行してください。")
+            Exit Sub
+        End If
 
 
+        Try
 
 
-        '    Dim MONOI As Long
-        '    Dim newhacchuushousaiid As String ', newhacchuushousaiid2 As Double
-        '    Dim rs_hacchu2 As ADODB.Recordset
+            Dim cn_server As New SqlConnection
 
-        '    MONOI = CLng(setting2_10(0, 3, 1, 1, 0))
-        '    ' MONOI = CLng(setting2(0, 3, 0, 1, "", 0))
-        '    If MONOI = -1 Then
-        '        MsgBox "発注詳細番号を参照できませんでした。再度実行してください。"
-        '   Exit Sub
-        '    End If
-        '    If MONOI = 0 Then
-        '        newhacchuushousaiid = "0000000001"
-        '    Else
-        '        newhacchuushousaiid = Format(MONOI, "000000000#")
-        '    End If
+            'cn_server.ConnectionString = connectionstring_sqlserver.ConnectionString
+            cn_server.ConnectionString = connectionstring_sqlserver
 
+            Sql = "SELECT TOP 1 * FROM hacchuushousai"
 
+            Dim da_server As SqlDataAdapter
 
-        '    '発注詳細テーブル登録
+            da_server = New SqlDataAdapter(Sql, cn_server)
 
+            Dim ds_server As New DataSet
 
+            da_server.Fill(ds_server, "t_jm_s")
 
-        '    Set rs_hacchu2 = New ADODB.Recordset
+            Dim s_comr As SqlClient.SqlCommandBuilder
 
-        '    rs_hacchu2.CursorType = adOpenForwardOnly 'adOpenKeyset
+            s_comr = New SqlClient.SqlCommandBuilder(da_server)
 
+            Dim ret_rows As DataRow
 
-        '    rs_hacchu2.LockType = adLockOptimistic
-        '    rs_hacchu2.Open "hacchuushousai", cnn, , , adCmdTable
+            ret_rows = ds_server.Tables("t_jm_s").NewRow()
 
+            ret_rows("hachuushousaiid") = newid
+            ret_rows("hacchuuid") = s_pcname
+            ret_rows("shouhinid") = s_shouhinid
+            ret_rows("kosuu") = s_kosuu
+            ret_rows("tanka") = s_tanka
+            ret_rows("kei") = s_kei
+            ret_rows("tekiyou") = s_tekiyou
+            ret_rows("kakutei") = s_kakutei
 
-        '        rs_hacchu2.AddNew
+            If s_keigen <> "" Then
+                ret_rows("keigen") = s_keigen
+            End If
 
-        '    rs_hacchu2!hachuushousaiid = newhacchuushousaiid
-        '    rs_hacchu2!hacchuuid = s_pcname   'newhacchuuid
-        '    rs_hacchu2!shouhinid = sentakuid ' karitourokudata(karitousuu - 1, 1)
-        '    rs_hacchu2!kosuu = inpkosuu2  'karitourokudata(karitousuu - 1, 2)
-        '    rs_hacchu2!tanka = sentakukakaku2 ' karitourokudata(karitousuu - 1, 3)
-        '    rs_hacchu2!kei = newshoukei ' karitourokudata(karitousuu - 1, 4)
-        '    rs_hacchu2!tekiyou = nyuuryokutekiyou  'karitourokudata(karitousuu - 1, 5)
-        '    rs_hacchu2!kakutei = CStr(nyuuryokufukakutei) ' karitourokudata(karitousuu - 1, 6)
+            ds_server.Tables("t_jm_s").Rows.Add(ret_rows)
 
-        '    If Trim(s_keigen) <> "" Then
-        '        rs_hacchu2!keigen = Trim(s_keigen)  ' karitourokudata(karitousuu - 1, 7)
-        '    End If
+            da_server.Update(ds_server, "t_jm_s")
 
-        '    rs_hacchu2.Update
+            ds_server.Clear()
 
 
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
 
+        tenpo_orderchu_set_10()
 
-        '    tenpo_orderchu_set_10()
-
+        Me.Close()
+        Me.Dispose()
 
     End Sub
 

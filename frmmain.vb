@@ -568,6 +568,7 @@ Public Class frmmain
             Dim sentakushouhinmei As String = Trim(Me.dgv_shien.CurrentRow.Cells(1).Value.ToString)
             Dim sentakuzaiko As String = Trim(Me.dgv_shien.CurrentRow.Cells(3).Value.ToString)
             Dim sentakutanka As String = Trim(Me.dgv_shien.CurrentRow.Cells(2).Value.ToString)
+
             If sentakutanka = "" Then
                 sentakutanka2 = 0
             Else
@@ -634,6 +635,7 @@ Public Class frmmain
                 .txttanka.Text = sentakutanka
                 .lblshouhinmei.text = sentakushouhinmei
                 .lblzaiko.Text = sentakuzaiko
+                .lblshouhinid.Text = sentakuid
 
                 .ShowDialog()
             End With
