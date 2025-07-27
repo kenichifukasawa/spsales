@@ -500,15 +500,6 @@ Module m_main
                 s_kin = dt_server.Rows.Item(i).Item("tanka")
                 mojiretsu(4) = s_kin.ToString("#,##0")
 
-                '単価の設定で色を入れる(todo)
-                'If Trim(rs_seikyuu_n!kakutei) = "1" Then
-                If Trim(dt_server.Rows.Item(i).Item("kakutei")) = "1" Then
-                    '.Cell(flexcpBackColor, newretsu, 4) = &HC0C0FF
-                    frmmain.dgv_nouhinsho.Rows(i).Cells(4).Style.BackColor = Color.FromArgb(&HC0, &HC0, &HFF) ' 薄い青系
-                Else
-                    '    .Cell(flexcpBackColor, newretsu, 4) = &HFFFFFF
-                    frmmain.dgv_nouhinsho.Rows(i).Cells(4).Style.BackColor = Color.White
-                End If
 
                 s_kin = dt_server.Rows.Item(i).Item("kei")
 
@@ -544,6 +535,16 @@ Module m_main
 
                 frmmain.dgv_nouhinsho.Rows(i).Cells(7) = New DataGridViewCheckBoxCell
                 frmmain.dgv_nouhinsho.Rows(i).Cells(7).Value = False
+
+                '単価の設定で色を入れる(todo)
+                'If Trim(rs_seikyuu_n!kakutei) = "1" Then
+                If Trim(dt_server.Rows.Item(i).Item("kakutei")) = "1" Then
+                    '.Cell(flexcpBackColor, newretsu, 4) = &HC0C0FF
+                    frmmain.dgv_nouhinsho.Rows(i).Cells(4).Style.BackColor = Color.FromArgb(&HC0, &HC0, &HFF) ' 薄い青系
+                Else
+                    '    .Cell(flexcpBackColor, newretsu, 4) = &HFFFFFF
+                    frmmain.dgv_nouhinsho.Rows(i).Cells(4).Style.BackColor = Color.White
+                End If
 
             Next i
 

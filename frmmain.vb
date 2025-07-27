@@ -438,6 +438,11 @@ Public Class frmmain
             Dim mojiretsu(4) As String
             Dim s_kin As Decimal
 
+            If dt_server.Rows.Count = 0 Then
+                txtkubun.Focus()
+                Exit Sub
+            End If
+
             For i = 0 To dt_server.Rows.Count - 1
 
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shouhinmei"))
@@ -458,6 +463,12 @@ Public Class frmmain
 
             dt_server.Clear()
             ds_server.Clear()
+
+            Me.dgv_shien.Focus()
+            If dgv_shien.Rows.Count > 1 Then
+                dgv_shien.CurrentCell = dgv_shien.Rows(0).Cells(1)
+            End If
+
 
         Catch ex As Exception
             msg_go(ex.Message)
@@ -525,6 +536,178 @@ Public Class frmmain
         frmnouhinsho_sentaku.ShowDialog()
 
         ' TODO:納品書のセットの関数をここにも書く
+
+    End Sub
+
+    Private Sub dgv_shien_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_shien.CellContentClick
+
+    End Sub
+
+    Private Sub dgv_shien_KeyDown(sender As Object, e As KeyEventArgs) Handles dgv_shien.KeyDown
+
+        If e.KeyCode = Keys.Enter Then
+
+            Dim s_pcname As String
+
+            s_pcname = Trim(lblpcname.Text)
+            If s_pcname = "" Then
+                msg_go("ユーザー名を設定してください。設定しないと商品を発注できません。")
+                Exit Sub
+            End If
+
+            '９９件までのチェック
+
+            If gridorder.Rows > 99 Then
+                msg_go("納品書に登録できる件数は９９件までです。")
+                Exit Sub
+            End If
+
+
+
+            With frmmain.gridshien
+                .Col = 0
+                sentakuid = Trim(.Text)  'shouhinid
+                sqlsql = "SELECT shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2," &
+                " shouhin.shouhinkubunid, shouhinkubun2.narabe,shouhin.keigen_s" &
+                " FROM shouhinkubun RIGHT JOIN (shouhinkubun2 RIGHT JOIN shouhin" &
+                " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2)" &
+                " ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid" &
+                " WHERE (((shouhin.shouhinid)='" & sentakuid & "'));"
+                If FcSQlGet(1, rsrsrs, sqlsql, WMsg) = False Then
+                    frmkosuu.lblkubun1.Caption = "Err"
+                    frmkosuu.lblkubun2.Caption = "Err"
+                    s_keigen = Space(1)
+                Else
+                    frmkosuu.lblkubun1.Caption = rsrsrs!shouhinkubunid & Space(2) & rsrsrs!shouhinkubunmei
+                    frmkosuu.lblkubun2.Caption = rsrsrs!NARABE & Space(2) & rsrsrs!shouhinkubunmei2
+                    If IsNull(rsrsrs!keigen_s) Then
+                        s_keigen = Space(1)
+                    Else
+                        s_keigen = rsrsrs!keigen_s
+                    End If
+
+                    rsrsrs.Close
+                End If
+                .Col = 1
+                sentakushouhinmei = Trim(.Text) 'shouhinmei
+                .Col = 2
+                sentakutanka = Trim(.Text) 'tanka
+                If sentakutanka = "" Then
+                    sentakukakaku2 = 0
+                Else
+                    On Error GoTo errsu
+                    sentakukakaku2 = CDbl(sentakutanka)
+                    On Error GoTo 0
+                End If
+                .Col = 3
+                sentakuzaiko = Trim(.Text)
+                frmkosuu.txttanka.Text = sentakutanka
+                frmkosuu.lblshouhinmei.Caption = sentakushouhinmei
+                frmkosuu.lblzaiko.Caption = sentakuzaiko
+                If frmkosuu.txttanka.Text = "0" Then
+                    frmkosuu.chkfukakutei.Value = 1
+                    nyuuryokufukakutei = 1
+                Else
+                    frmkosuu.chkfukakutei.Value = 0
+                    nyuuryokufukakutei = 0
+                End If
+
+            End With
+
+
+
+            '個数入力
+            kosuukadou = 0
+
+            frmkosuu.Show 1
+
+        If kosuukadou = 0 Then
+                Exit Sub
+            End If
+
+
+
+
+            newshoukei = sentakukakaku2 * inpkosuu2
+
+
+
+
+            Dim MONOI As Long
+            Dim newhacchuushousaiid As String ', newhacchuushousaiid2 As Double
+            Dim rs_hacchu2 As ADODB.Recordset
+
+            MONOI = CLng(setting2_10(0, 3, 1, 1, 0))
+            ' MONOI = CLng(setting2(0, 3, 0, 1, "", 0))
+            If MONOI = -1 Then
+                MsgBox "発注詳細番号を参照できませんでした。再度実行してください。"
+           Exit Sub
+            End If
+            If MONOI = 0 Then
+                newhacchuushousaiid = "0000000001"
+            Else
+                newhacchuushousaiid = Format(MONOI, "000000000#")
+            End If
+
+            'newhacchuushousaiid2 = MONOI + 1
+            'If setting2(0, 3, 1, 1, CStr(newhacchuushousaiid2), 0) = "-1" Then
+            ' ret = MsgBox("発注詳細番号の更新に失敗しました。少し時間をおいて再度実行してください。", 16, "総合管理システム「SPSALES」")
+            ' Exit Sub
+            'End If
+
+            '発注詳細テーブル登録
+            On Error GoTo errjitsutouroku2
+
+            If cnn Is Nothing Then
+                data_base_open
+            End If
+
+            data_base_open
+            
+            Set rs_hacchu2 = New ADODB.Recordset
+            
+            rs_hacchu2.CursorType = adOpenForwardOnly 'adOpenKeyset
+
+
+            rs_hacchu2.LockType = adLockOptimistic
+            rs_hacchu2.Open "hacchuushousai", cnn, , , adCmdTable
+
+
+                rs_hacchu2.AddNew
+
+            rs_hacchu2!hachuushousaiid = newhacchuushousaiid
+            rs_hacchu2!hacchuuid = s_pcname   'newhacchuuid
+            rs_hacchu2!shouhinid = sentakuid ' karitourokudata(karitousuu - 1, 1)
+            rs_hacchu2!kosuu = inpkosuu2  'karitourokudata(karitousuu - 1, 2)
+            rs_hacchu2!tanka = sentakukakaku2 ' karitourokudata(karitousuu - 1, 3)
+            rs_hacchu2!kei = newshoukei ' karitourokudata(karitousuu - 1, 4)
+            rs_hacchu2!tekiyou = nyuuryokutekiyou  'karitourokudata(karitousuu - 1, 5)
+            rs_hacchu2!kakutei = CStr(nyuuryokufukakutei) ' karitourokudata(karitousuu - 1, 6)
+
+            If Trim(s_keigen) <> "" Then
+                rs_hacchu2!keigen = Trim(s_keigen)  ' karitourokudata(karitousuu - 1, 7)
+            End If
+
+            rs_hacchu2.Update
+
+
+            On Error GoTo 0
+
+
+
+
+
+            tenpo_orderchu_set_10()
+
+
+
+        ElseIf KeyAscii = 8 Then
+            txtkubun.SetFocus
+        ElseIf KeyAscii = 27 Then
+            frmmain.fshien1.Visible = False
+        End If
+
+        End If
 
     End Sub
 End Class
