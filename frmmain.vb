@@ -20,9 +20,7 @@ Public Class frmmain
         frminfo.ShowDialog()
     End Sub
 
-    Private Sub btn_end_Click(sender As Object, e As EventArgs) Handles btn_end.Click
-        End
-    End Sub
+
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
         frmshuukei_sentaku.ShowDialog()
@@ -440,6 +438,11 @@ Public Class frmmain
             Dim mojiretsu(4) As String
             Dim s_kin As Decimal
 
+            If dt_server.Rows.Count = 0 Then
+                txtkubun.Focus()
+                Exit Sub
+            End If
+
             For i = 0 To dt_server.Rows.Count - 1
 
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shouhinmei"))
@@ -460,6 +463,12 @@ Public Class frmmain
 
             dt_server.Clear()
             ds_server.Clear()
+
+            Me.dgv_shien.Focus()
+            If dgv_shien.Rows.Count > 1 Then
+                dgv_shien.CurrentCell = dgv_shien.Rows(0).Cells(1)
+            End If
+
 
         Catch ex As Exception
             msg_go(ex.Message)
@@ -527,6 +536,117 @@ Public Class frmmain
         frmnouhinsho_sentaku.ShowDialog()
 
         ' TODO:納品書のセットの関数をここにも書く
+
+    End Sub
+
+    Private Sub dgv_shien_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_shien.CellContentClick
+
+    End Sub
+
+    Private Sub dgv_shien_KeyDown(sender As Object, e As KeyEventArgs) Handles dgv_shien.KeyDown
+
+        If e.KeyCode = Keys.Enter Then
+
+            Dim s_pcname As String
+
+            s_pcname = Trim(lblpcname.Text)
+            If s_pcname = "" Then
+                msg_go("ユーザー名を設定してください。設定しないと商品を発注できません。")
+                Exit Sub
+            End If
+
+            '９９件までのチェック
+
+            If Me.dgv_shien.Rows.Count > 99 Then
+                msg_go("納品書に仮登録できる件数は９９件までです。")
+                Exit Sub
+            End If
+
+            Dim sentakutanka2 As Integer
+
+            Dim sentakuid As String = Trim(Me.dgv_shien.CurrentRow.Cells(0).Value.ToString)
+            Dim sentakushouhinmei As String = Trim(Me.dgv_shien.CurrentRow.Cells(1).Value.ToString)
+            Dim sentakuzaiko As String = Trim(Me.dgv_shien.CurrentRow.Cells(3).Value.ToString)
+            Dim sentakutanka As String = Trim(Me.dgv_shien.CurrentRow.Cells(2).Value.ToString)
+
+            If sentakutanka = "" Then
+                sentakutanka2 = 0
+            Else
+                sentakutanka2 = CInt(sentakutanka)
+            End If
+
+            If sentakuid = "" Then
+                msg_go("商品IDが不正です。")
+                Exit Sub
+            End If
+
+
+            Try
+
+                Dim cn_server As New SqlConnection
+                cn_server.ConnectionString = connectionstring_sqlserver
+
+                Sql = "SELECT shouhinkubun.shouhinkubunmei, shouhinkubun2.shouhinkubunmei2," &
+                " shouhin.shouhinkubunid, shouhinkubun2.narabe,shouhin.keigen_s" &
+                " FROM shouhinkubun RIGHT JOIN (shouhinkubun2 RIGHT JOIN shouhin" &
+                " ON shouhinkubun2.shouhinkubunid2 = shouhin.shouhinkubunid2)" &
+                " ON shouhinkubun.shouhinkubunid = shouhin.shouhinkubunid" &
+                " WHERE (((shouhin.shouhinid)='" & sentakuid & "'))"
+
+                Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+                Dim ds_server As New DataSet
+                da_server.Fill(ds_server, "t_shoukaii")
+                Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
+
+                If dt_server.Rows.Count = 0 Then
+                    frmkosuu.lblkubun1.text = "Err"
+                    frmkosuu.lblkubun2.text = "Err"
+                    frmkosuu.lblkeigen.Text = ""
+                Else
+
+                    frmkosuu.lblkubun1.Text = Trim(dt_server.Rows.Item(0).Item("shouhinkubunid")) & Space(2) & Trim(dt_server.Rows.Item(0).Item("shouhinkubunmei"))
+                    frmkosuu.lblkubun2.Text = Trim(dt_server.Rows.Item(0).Item("NARABE")) & Space(2) & Trim(dt_server.Rows.Item(0).Item("shouhinkubunmei2"))
+                    If IsDBNull(dt_server.Rows.Item(0).Item("keigen_s")) Then
+                        frmkosuu.lblkeigen.Text = ""
+                    Else
+                        frmkosuu.lblkeigen.Text = Trim(dt_server.Rows.Item(0).Item("keigen_s"))
+                    End If
+
+                    dt_server.Clear()
+                    ds_server.Clear()
+                End If
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Sub
+            End Try
+
+
+            If sentakutanka = "0" Then
+                frmkosuu.chkfukakutei.Checked = True
+                frmkosuu.lblkakutei.Text = "1"
+            Else
+                frmkosuu.chkfukakutei.Checked = False
+                frmkosuu.lblkakutei.Text = "0"
+            End If
+
+
+            '個数入力
+            With frmkosuu
+                .txttanka.Text = sentakutanka
+                .lblshouhinmei.text = sentakushouhinmei
+                .lblzaiko.Text = sentakuzaiko
+                .lblshouhinid.Text = sentakuid
+
+                .ShowDialog()
+            End With
+
+
+        ElseIf e.KeyCode = Keys.Back Then
+            txtkubun.Focus()
+        ElseIf e.KeyCode = Keys.Escape Then
+            dgv_log.Visible = False
+        End If
+
 
     End Sub
 End Class
