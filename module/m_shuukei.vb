@@ -345,4 +345,44 @@ Module m_shuukei
 
     End Sub
 
+    Sub set_gyousha(frm_no As Integer)
+
+        Select Case frm_no
+            Case 1
+                frmshiire_rireki.cbx_gyousha.Items.Clear()
+            Case Else
+                msg_go("frm_no取得エラー")
+                Exit Sub
+        End Select
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT gyousha.*, mailno_m.adress1 FROM gyousha LEFT JOIN mailno_m ON gyousha.mailno = mailno_m.mailno ORDER BY gyoushafurigana"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_gyousha")
+            Dim dt_server As DataTable = ds_server.Tables("t_gyousha")
+
+            For i = 0 To dt_server.Rows.Count - 1
+                Dim item_name = Trim(dt_server.Rows.Item(i).Item("gyoushaid")) + "   " + Trim(dt_server.Rows.Item(i).Item("gyoushamei"))
+                Select Case frm_no
+                    Case 1
+                        frmshiire_rireki.cbx_gyousha.Items.Add(item_name)
+                End Select
+            Next
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+    End Sub
+
 End Module
