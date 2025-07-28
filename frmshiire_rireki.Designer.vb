@@ -38,6 +38,7 @@ Partial Class frmshiire_rireki
         Me.cbx_gyousha = New System.Windows.Forms.ComboBox()
         Me.btn_clear = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
+        Me.chk_sakujo = New System.Windows.Forms.CheckBox()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +49,7 @@ Partial Class frmshiire_rireki
         'gbx_main
         '
         Me.gbx_main.BackColor = System.Drawing.Color.White
+        Me.gbx_main.Controls.Add(Me.chk_sakujo)
         Me.gbx_main.Controls.Add(Me.btn_shousai)
         Me.gbx_main.Controls.Add(Me.btn_sakujo)
         Me.gbx_main.Controls.Add(Me.GroupBox6)
@@ -93,7 +95,7 @@ Partial Class frmshiire_rireki
         Me.GroupBox6.Controls.Add(Me.dgv_kensakukekka)
         Me.GroupBox6.Location = New System.Drawing.Point(17, 86)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1391, 869)
+        Me.GroupBox6.Size = New System.Drawing.Size(1391, 856)
         Me.GroupBox6.TabIndex = 193
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "抽出結果"
@@ -125,7 +127,7 @@ Partial Class frmshiire_rireki
         Me.dgv_kensakukekka.ReadOnly = True
         Me.dgv_kensakukekka.RowTemplate.Height = 24
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(1381, 845)
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(1381, 832)
         Me.dgv_kensakukekka.TabIndex = 192
         '
         'GroupBox3
@@ -230,6 +232,16 @@ Partial Class frmshiire_rireki
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
+        'chk_sakujo
+        '
+        Me.chk_sakujo.AutoSize = True
+        Me.chk_sakujo.Location = New System.Drawing.Point(1331, 948)
+        Me.chk_sakujo.Name = "chk_sakujo"
+        Me.chk_sakujo.Size = New System.Drawing.Size(77, 18)
+        Me.chk_sakujo.TabIndex = 198
+        Me.chk_sakujo.Text = "削除する"
+        Me.chk_sakujo.UseVisualStyleBackColor = True
+        '
         'frmshiire_rireki
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -241,6 +253,7 @@ Partial Class frmshiire_rireki
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "仕入履歴"
         Me.gbx_main.ResumeLayout(False)
+        Me.gbx_main.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
@@ -264,4 +277,5 @@ Partial Class frmshiire_rireki
     Friend WithEvents cbx_gyousha As ComboBox
     Friend WithEvents btn_clear As Button
     Friend WithEvents btn_modoru As Button
+    Friend WithEvents chk_sakujo As CheckBox
 End Class
