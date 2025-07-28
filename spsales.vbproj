@@ -244,6 +244,12 @@
     <Compile Include="frmshiharai_sentaku.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmshiire_rireki.Designer.vb">
+      <DependentUpon>frmshiire_rireki.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshiire_rireki.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmshiire_sentaku.Designer.vb">
       <DependentUpon>frmshiire_sentaku.vb</DependentUpon>
     </Compile>
@@ -401,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmshiharai_sentaku.resx">
       <DependentUpon>frmshiharai_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshiire_rireki.resx">
+      <DependentUpon>frmshiire_rireki.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmshiire_sentaku.resx">
       <DependentUpon>frmshiire_sentaku.vb</DependentUpon>
