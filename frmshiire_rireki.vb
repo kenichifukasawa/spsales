@@ -146,10 +146,7 @@ Public Class frmshiire_rireki
 
         Dim shiire_id = dgv_kensakukekka.CurrentRow.Cells(1).Value
 
-        Dim result As DialogResult = MessageBox.Show(
-            "以下の仕入履歴を本当に削除しますか？" + vbCrLf + vbCrLf + "仕入ID：" + shiire_id + vbCrLf + "住所：" + juusho + vbCrLf + "詳細：" + shousai,
-            "SpSales",
-            MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        Dim result As DialogResult = MessageBox.Show("以下の仕入履歴を本当に削除しますか？" + vbCrLf + vbCrLf + "仕入ID：" + shiire_id, "SpSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
         If result = DialogResult.No Then
             Exit Sub
         End If
