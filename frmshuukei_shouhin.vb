@@ -5,8 +5,8 @@ Public Class frmshuukei_shouhin
     Private Sub frmshuukei_shouhin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtp_hinichi_kaishi.Value = Now.ToString("yyyy/MM/dd")
         dtp_hinichi_owari.Value = Now.ToString("yyyy/MM/dd")
-        set_gyousha_kubun(0)
-        set_shouhin_kubun_1(0)
+        set_gyousha_kubun_cbx(0)
+        set_shouhin_kubun_1_cbx(0)
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -56,17 +56,17 @@ Public Class frmshuukei_shouhin
 
     Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
-        set_shouhin_kubun_2(0, shouhin_kubun_1_id)
+        set_shouhin_kubun_2_cbx(0, shouhin_kubun_1_id)
         Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
         Dim is_haiban = chk_haiban.Checked
-        set_shitei_shouhin(0, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
+        set_shitei_shouhin_cbx(0, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
     End Sub
 
     Private Sub cbx_shouhin_kubun_2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_2.SelectedIndexChanged
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
         Dim is_haiban = chk_haiban.Checked
-        set_shitei_shouhin(0, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
+        set_shitei_shouhin_cbx(0, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
     End Sub
 
     Private Sub rbn_shouhin_id_Click(sender As Object, e As EventArgs)
@@ -91,14 +91,14 @@ Public Class frmshuukei_shouhin
 
     Private Sub chk_haiban_Click(sender As Object, e As EventArgs) Handles chk_haiban.Click
         dgv_kensakukekka.Rows.Clear()
-        set_shouhin_kubun_1(1)
+        set_shouhin_kubun_1_cbx(1)
     End Sub
 
     Private Sub set_shouhin_shuukei()
 
         lbl_kekka.Text = ""
 
-        Dim hinichi_kanshi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        Dim hinichi_kaishi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
         Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
         Dim gyousha_kubun = Mid(Trim(cbx_gyousha_kubun.Text), 1, 2)
         Dim shouhin_kubun_1 = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
@@ -195,38 +195,38 @@ Public Class frmshuukei_shouhin
 
                 If shouhin_kubun_1 <> "" Then
                     If shouhin_kubun_2 = "" Then
-                        query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                        query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                             " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "'"
                     Else
                         If shitei_shouhin = "" Then
-                            query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                            query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                                 " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "' AND shouhin.shouhinkubunid2 = '" & shouhin_kubun_2 & "'"
                         Else
-                            query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                            query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                                 " AND shouhin.shouhinid = '" & shitei_shouhin & "'"
                         End If
                     End If
                 Else
-                    query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'"
+                    query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'"
                 End If
 
             Else
 
                 If shouhin_kubun_1 <> "" Then
                     If shouhin_kubun_2 = "" Then
-                        query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                        query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                             " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
                     Else
                         If shitei_shouhin = "" Then
-                            query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                            query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                                 " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "' AND shouhin.shouhinkubunid2 = '" & shouhin_kubun_2 & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
                         Else
-                            query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                            query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                                 " AND shouhin.shouhinid = '" & shitei_shouhin & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
                         End If
                     End If
                 Else
-                    query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
+                    query_where = " WHERE shiire.shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
                 End If
 
             End If
@@ -270,38 +270,38 @@ Public Class frmshuukei_shouhin
             If gyousha_kubun = "" Then
                 If shouhin_kubun_1 <> "" Then
                     If shouhin_kubun_2 = "" Then
-                        query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" &
+                        query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" &
                                         " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "'"
                     Else
                         If shitei_shouhin = "" Then
-                            query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" &
+                            query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" &
                                         " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "' AND shouhin.shouhinkubunid2 = '" & shouhin_kubun_2 & "'"
                         Else
-                            query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" &
+                            query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" &
                                         " AND shouhin.shouhinid = '" & shitei_shouhin & "'"
                         End If
                     End If
                 Else
-                    query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'"
+                    query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'"
 
                 End If
             Else
 
                 If shouhin_kubun_1 <> "" Then
                     If shouhin_kubun_2 = "" Then
-                        query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" &
+                        query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" &
                                         " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
                     Else
                         If shitei_shouhin = "" Then
-                            query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" &
+                            query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" &
                                         " AND shouhin.shouhinkubunid = '" & shouhin_kubun_1 & "' AND shouhin.shouhinkubunid2 = '" & shouhin_kubun_2 & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
                         Else
-                            query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" &
+                            query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" &
                                         " AND shouhin.shouhinid = '" & shitei_shouhin & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
                         End If
                     End If
                 Else
-                    query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
+                    query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "' AND shouhin.shouhinkubunid0 = '" & gyousha_kubun & "'"
 
                 End If
             End If

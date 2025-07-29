@@ -3,7 +3,7 @@
 Public Class frmcheck_kurikoshi_log
 
     Private Sub frmcheck_kurikoshi_log_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        set_tenpo_name(2, chk_hihyouji_torihiki_nai.Checked)
+        set_tenpo_name_cbx(2, chk_hihyouji_torihiki_nai.Checked)
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -113,7 +113,7 @@ Public Class frmcheck_kurikoshi_log
 
     Private Sub chk_hihyouji_torihiki_nai_Click(sender As Object, e As EventArgs) Handles chk_hihyouji_torihiki_nai.Click
         dgv_kensakukekka.Rows.Clear()
-        set_tenpo_name(2, chk_hihyouji_torihiki_nai.Checked)
+        set_tenpo_name_cbx(2, chk_hihyouji_torihiki_nai.Checked)
     End Sub
 
     Private Sub cbx_tenpo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tenpo.SelectedIndexChanged

@@ -10,7 +10,7 @@ Public Class frmcheck_kosuu_henkou
         lbl_kaishi_nen.Text = Now.ToString("yyyy")
         lbl_shuuryou_hinichi.Text = Now.ToString("yyyy/MM/dd")
         txt_kaishi_tsuki_hi.Text = ""
-        set_shouhin_kubun_1(4)
+        set_shouhin_kubun_1_cbx(4)
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -140,7 +140,7 @@ Public Class frmcheck_kosuu_henkou
 
         can_set = False
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
-        set_shouhin_kubun_2(4, shouhin_kubun_1_id)
+        set_shouhin_kubun_2_cbx(4, shouhin_kubun_1_id)
         can_set = True
 
         set_shouhin_ichiran()
