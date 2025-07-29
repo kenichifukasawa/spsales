@@ -29,7 +29,7 @@ Public Class frmshuukei_uriage
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
 
-        Dim hinichi_kanshi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        Dim hinichi_kaishi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
         Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
 
         ' 納品書伝票集計
@@ -39,7 +39,7 @@ Public Class frmshuukei_uriage
             cn_server.ConnectionString = connectionstring_sqlserver
 
             Dim query = "SELECT COUNT(hacchuuid) AS dcount, SUM(goukei) AS dkingaku FROM hacchuu" +
-                " WHERE iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                " WHERE iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                 " AND dami2 IS NULL"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
@@ -75,7 +75,7 @@ Public Class frmshuukei_uriage
             cn_server.ConnectionString = connectionstring_sqlserver
 
             Dim query = "SELECT COUNT(shiireid) AS dcount, SUM(goukeikingaku) AS dkingaku FROM shiire" +
-                " WHERE shiirebi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'"
+                " WHERE shiirebi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -109,7 +109,7 @@ Public Class frmshuukei_uriage
             cn_server.ConnectionString = connectionstring_sqlserver
 
             Dim query = "SELECT COUNT(shukkinid) AS dcount, SUM(shukkingaku) AS dkingaku FROM shukkin" +
-                " WHERE shukkinbi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'"
+                " WHERE shukkinbi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -145,7 +145,7 @@ Public Class frmshuukei_uriage
             Dim query = "SELECT COUNT(seikyuushoid) AS dcount, SUM(seikyuukingaku) AS dkingaku" +
                 ", SUM(shoukei) AS dshoukei, SUM(shouhizei) AS dshouhizei" +
                 " FROM seikyuusho" +
-                " WHERE hiduke BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                " WHERE hiduke BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                 " AND seikyuu_st = '0' AND dami IS NULL"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
@@ -196,7 +196,7 @@ Public Class frmshuukei_uriage
 
             Dim query = "SELECT COUNT(seikyuushoid) AS dcount, SUM(seikyuukingaku) AS dkingaku" +
                 " FROM seikyuusho" +
-                " WHERE hiduke BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                " WHERE hiduke BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                 " AND seikyuu_st = '1' AND dami IS NULL"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
@@ -277,9 +277,9 @@ Public Class frmshuukei_uriage
 
                 Dim shainid = Trim(dt_server.Rows.Item(i).Item("shainid"))
                 mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("shainmei"))
-                mojiretsu(1) = get_uriage_kingaku(shainid, hinichi_kanshi, hinichi_owari)
-                mojiretsu(2) = get_nyuukin_kingaku(shainid, hinichi_kanshi, hinichi_owari)
-                mojiretsu(3) = get_kurikoshi_kingaku(shainid, hinichi_kanshi, hinichi_owari)
+                mojiretsu(1) = get_uriage_kingaku(shainid, hinichi_kaishi, hinichi_owari)
+                mojiretsu(2) = get_nyuukin_kingaku(shainid, hinichi_kaishi, hinichi_owari)
+                mojiretsu(3) = get_kurikoshi_kingaku(shainid, hinichi_kaishi, hinichi_owari)
 
                 dgv_kensakukekka.Rows.Add(mojiretsu)
 

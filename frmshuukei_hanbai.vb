@@ -9,10 +9,10 @@ Public Class frmshuukei_hanbai
         dtp_hinichi_kaishi.Value = Now.ToString("yyyy/MM/dd")
         dtp_hinichi_owari.Value = Now.ToString("yyyy/MM/dd")
 
-        set_gyousha_kubun(1)
-        set_shouhin_kubun_1(1)
-        set_tenpo_name(1, chk_hihyouji_torihiki_nai.Checked)
-        set_shain_name(1)
+        set_gyousha_kubun_cbx(1)
+        set_shouhin_kubun_1_cbx(1)
+        set_tenpo_name_cbx(1, chk_hihyouji_torihiki_nai.Checked)
+        set_shain_cbx(1)
 
     End Sub
 
@@ -33,7 +33,7 @@ Public Class frmshuukei_hanbai
         End If
         Dim current_row = dgv_kensakukekka.CurrentRow
 
-        Dim hinichi_kanshi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        Dim hinichi_kaishi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
         Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
 
         Dim salon_name = current_row.Cells(1).Value
@@ -88,7 +88,7 @@ Public Class frmshuukei_hanbai
                 " FROM tenpo RIGHT JOIN" +
                 " (hacchuu RIGHT hash JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" +
                 " ON tenpo.tenpoid = hacchuu.tenpoid" +
-                " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'" +
+                " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'" +
                 " AND hacchuu.tenpoid = '" & tenpo_id & "' AND hacchuushousai.shouhinid = '" & shouhin_id & "'" +
                 " ORDER BY hacchuu.iraibi DESC"
 
@@ -229,10 +229,10 @@ Public Class frmshuukei_hanbai
     Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
         dgv_kensakukekka.Rows.Clear()
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
-        set_shouhin_kubun_2(1, shouhin_kubun_1_id)
+        set_shouhin_kubun_2_cbx(1, shouhin_kubun_1_id)
         Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
         Dim is_haiban = chk_haiban.Checked
-        set_shitei_shouhin(1, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
+        set_shitei_shouhin_cbx(1, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
     End Sub
 
     Private Sub cbx_shouhin_kubun_2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_2.SelectedIndexChanged
@@ -240,7 +240,7 @@ Public Class frmshuukei_hanbai
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
         Dim is_haiban = chk_haiban.Checked
-        set_shitei_shouhin(1, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
+        set_shitei_shouhin_cbx(1, shouhin_kubun_1_id, shouhin_kubun_2_id, is_haiban)
     End Sub
 
     Private Sub cbx_shitei_shouhin_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shitei_shouhin.SelectedIndexChanged
@@ -249,12 +249,12 @@ Public Class frmshuukei_hanbai
 
     Private Sub chk_hihyouji_torihiki_nai_Click(sender As Object, e As EventArgs) Handles chk_hihyouji_torihiki_nai.Click
         dgv_kensakukekka.Rows.Clear()
-        set_tenpo_name(1, chk_hihyouji_torihiki_nai.Checked)
+        set_tenpo_name_cbx(1, chk_hihyouji_torihiki_nai.Checked)
     End Sub
 
     Private Sub chk_haiban_Click(sender As Object, e As EventArgs) Handles chk_haiban.Click
         dgv_kensakukekka.Rows.Clear()
-        set_shouhin_kubun_1(1)
+        set_shouhin_kubun_1_cbx(1)
     End Sub
 
     Private Sub chk_shuukei_shinai_torihikinai_tenpo_Click(sender As Object, e As EventArgs) Handles chk_shuukei_shinai_torihikinai_tenpo.Click
@@ -269,7 +269,7 @@ Public Class frmshuukei_hanbai
 
         lbl_kekka.Text = ""
 
-        Dim hinichi_kanshi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        Dim hinichi_kaishi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
         Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
         Dim gyousha_kubun = Mid(Trim(cbx_gyousha_kubun.Text), 1, 2)
         Dim shouhin_kubun_1 = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
@@ -360,7 +360,7 @@ Public Class frmshuukei_hanbai
                     " ON tenpo.tenpoid = hacchuu.tenpoid) ON shouhin.shouhinid = hacchuushousai.shouhinid"
             End If
 
-            Dim query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kanshi & "' AND '" & hinichi_owari & "'"
+            Dim query_where = " WHERE hacchuu.iraibi BETWEEN '" & hinichi_kaishi & "' AND '" & hinichi_owari & "'"
 
 
             If tenpo_id <> "" Then

@@ -83,7 +83,7 @@ Public Class frmsettei
             cmb_p_seikyuusho.Items.Add(s)
         Next (s)
 
-        set_shain_name(4)
+        set_shain_cbx(4)
 
         'プリンター
         settei_res = Setting1(10, 0, "", 0)

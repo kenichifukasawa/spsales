@@ -2,7 +2,7 @@
 
 Module m_shuukei
 
-    Sub set_gyousha_kubun(frm_no As Integer)
+    Sub set_gyousha_kubun_cbx(frm_no As Integer)
 
         Select Case frm_no
             Case 0
@@ -46,7 +46,7 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_shouhin_kubun_1(frm_no As Integer)
+    Sub set_shouhin_kubun_1_cbx(frm_no As Integer)
 
         Select Case frm_no
             Case 0
@@ -111,7 +111,7 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_shouhin_kubun_2(frm_no As Integer, shouhin_kubun_1_id As String)
+    Sub set_shouhin_kubun_2_cbx(frm_no As Integer, shouhin_kubun_1_id As String)
 
         Select Case frm_no
             Case 0
@@ -167,7 +167,7 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_shitei_shouhin(frm_no As Integer, shouhin_kubun_1_id As String, shouhin_kubun_2_id As String, Optional is_haiban As Boolean = True, Optional is_mishiyou_hihyouji As Boolean = False)
+    Sub set_shitei_shouhin_cbx(frm_no As Integer, shouhin_kubun_1_id As String, shouhin_kubun_2_id As String, Optional is_haiban As Boolean = True, Optional is_mishiyou_hihyouji As Boolean = False)
 
         Select Case frm_no
             Case 0
@@ -250,7 +250,7 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_tenpo_name(frm_no As Integer, is_hihyouji_torihiki_nai As Boolean)
+    Sub set_tenpo_name_cbx(frm_no As Integer, is_hihyouji_torihiki_nai As Boolean)
 
         Select Case frm_no
             Case 1
@@ -301,11 +301,13 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_shain_name(frm_no As Integer)
+    Sub set_shain_cbx(frm_no As Integer)
 
         Select Case frm_no
             Case 1
                 frmshuukei_hanbai.cbx_shain.Items.Clear()
+            Case 2
+                frmnyuukin_rireki.cbx_shain.Items.Clear()
             Case 4
                 frmsettei.cmbshain.Items.Clear()
             Case Else
@@ -330,6 +332,8 @@ Module m_shuukei
                 Select Case frm_no
                     Case 1
                         frmshuukei_hanbai.cbx_shain.Items.Add(item_name)
+                    Case 2
+                        frmnyuukin_rireki.cbx_shain.Items.Add(item_name)
                     Case 4
                         frmsettei.cmbshain.Items.Add(item_name)
                 End Select
@@ -345,7 +349,7 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_gyousha(frm_no As Integer)
+    Sub set_gyousha_cbx(frm_no As Integer)
 
         Select Case frm_no
             Case 1
