@@ -34,7 +34,7 @@ Public Class frmshiire_rireki
 
                 .Rows.Clear()
                 .Columns.Clear()
-                .ColumnCount = 6
+                .ColumnCount = 8
 
                 .Columns(0).Name = "NO"
                 .Columns(1).Name = "詳細ID"
@@ -42,13 +42,17 @@ Public Class frmshiire_rireki
                 .Columns(3).Name = "数量"
                 .Columns(4).Name = "金額"
                 .Columns(5).Name = "備考"
+                .Columns(6).Name = "商品ID"
+                .Columns(7).Name = "区分ID（業者, 選択1, 選択2）"
 
                 .Columns(0).Width = 75
                 .Columns(1).Width = 110
                 .Columns(2).Width = 300
                 .Columns(3).Width = 80
                 .Columns(4).Width = 90
-                .Columns(5).Width = 200
+                .Columns(5).Width = 194
+                .Columns(6).Width = 0
+                .Columns(7).Width = 0
 
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -71,7 +75,8 @@ Public Class frmshiire_rireki
                 Dim cn_server As New SqlConnection
                 cn_server.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "SELECT shiireshousai.*, shouhin.shouhinmei" +
+                Dim query = "SELECT shiireshousai.*" +
+                    ", shouhin.shouhinid, shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid0, shouhin.shouhinkubunid2" +
                     " FROM shiireshousai LEFT JOIN shouhin ON shiireshousai.shouhinid = shouhin.shouhinid" +
                     " WHERE shiireshousai.shiireid = '" + shiire_id + "'" +
                     " ORDER BY shiireshousai.shiireshousaiid"
@@ -81,7 +86,7 @@ Public Class frmshiire_rireki
                 da_server.Fill(ds_server, "t_shiireshousai")
                 Dim dt_server As DataTable = ds_server.Tables("t_shiireshousai")
 
-                Dim mojiretsu(5)
+                Dim mojiretsu(7)
                 For i = 0 To dt_server.Rows.Count - 1
 
                     mojiretsu(0) = (i + 1).ToString()
@@ -106,6 +111,11 @@ Public Class frmshiire_rireki
                         bikou = Trim(dt_server.Rows.Item(i).Item("bikou"))
                     End If
                     mojiretsu(5) = bikou
+
+                    mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("shouhinid"))
+                    mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid0")) + ", " +
+                         Trim(dt_server.Rows.Item(i).Item("shouhinkubunid")) + ", " +
+                        Trim(dt_server.Rows.Item(i).Item("shouhinkubunid2"))
 
                     .dgv_kensakukekka.Rows.Add(mojiretsu)
 
@@ -155,22 +165,23 @@ Public Class frmshiire_rireki
             Dim conn As New SqlConnection
             conn.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM shiireshousai WHERE shiireid = '" & shiire_id & "'"
+            Dim query = "SELECT * FROM shiire WHERE shiireid = '" & shiire_id & "'"
 
             Dim da As New SqlDataAdapter(query, conn)
             Dim ds As New DataSet
-            da.Fill(ds, "t_shiireshousai")
+            Dim temp_table_name = "t_shiire"
+            da.Fill(ds, temp_table_name)
 
-            If ds.Tables("t_shiireshousai").Rows.Count > 0 Then
-                ds.Tables("t_shiireshousai").Rows(0).Delete()
+            If ds.Tables(temp_table_name).Rows.Count > 0 Then
+                ds.Tables(temp_table_name).Rows(0).Delete()
 
                 Dim cb As New SqlCommandBuilder(da)
-                da.Update(ds, "t_shiireshousai")
+                da.Update(ds, temp_table_name)
                 ds.Clear()
 
-                msg_go("削除しました。", 64)
             Else
-                msg_go("該当する仕入履歴が見つかりません。")
+                msg_go("該当する仕入が見つかりません。")
+                Exit Sub
             End If
 
         Catch ex As Exception
@@ -178,118 +189,85 @@ Public Class frmshiire_rireki
             Exit Sub
         End Try
 
-        ' TODO
+        Dim shiireshousai_count As Integer = 0
+        Dim shiireshousai_data(1, 0)
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
 
+            Dim query = "SELECT * FROM shiireshousai WHERE shiireid = '" & shiire_id & "'"
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_shiireshousai"
+            da.Fill(ds, temp_table_name)
+
+            shiireshousai_count = ds.Tables(temp_table_name).Rows.Count
+            ReDim shiireshousai_data(1, shiireshousai_count - 1)
+            If shiireshousai_count > 0 Then
+                Dim counter = 0
+                For i As Integer = shiireshousai_count - 1 To 0 Step -1
+                    shiireshousai_data(0, counter) = ds.Tables(temp_table_name).Rows(i)("shouhinid")
+                    shiireshousai_data(1, counter) = ds.Tables(temp_table_name).Rows(i)("kosuu")
+                    ds.Tables(temp_table_name).Rows(i).Delete()
+                    counter += 1
+                Next
+                Dim cb As New SqlCommandBuilder(da)
+                da.Update(ds, temp_table_name)
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        '在庫数の調整
+        For i = 0 To shiireshousai_count - 1
+
+            Dim shouhin_id = shiireshousai_data(0, i)
+
+            Try
+
+                Dim conn As New SqlConnection
+                conn.ConnectionString = connectionstring_sqlserver
+
+                Dim query = "SELECT * FROM shouhin WHERE shouhinid ='" + shouhin_id + "'"
+
+                Dim da As New SqlDataAdapter
+                da = New SqlDataAdapter(query, conn)
+                Dim ds As New DataSet
+                Dim temp_table_name = "t_shouhin"
+                da.Fill(ds, temp_table_name)
+
+                Dim kyuu_suu = ds.Tables(temp_table_name).Rows(0)("genzaikosuu")
+                Dim shiire_suu = shiireshousai_data(1, i)
+                Dim shin_suu = kyuu_suu - shiire_suu
+
+                ds.Tables(temp_table_name).Rows(0)("genzaikosuu") = shin_suu
+
+                Dim bikou = "旧在庫：" & kyuu_suu.ToString & " 新在庫：" & shin_suu.ToString
+                Dim shainid = "10"
+                Dim naiyou = 8
+                Dim new_atai = shiire_suu.ToString
+                If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
+                    msg_go("在庫ログ登録作業中にエラーが発生しました。")
+                    Exit Sub
+                End If
+
+                Dim cb As New SqlCommandBuilder
+                cb.DataAdapter = da
+                da.Update(ds, temp_table_name)
+                ds.Clear()
+
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Sub
+            End Try
+
+        Next
+
+        msg_go("選択した仕入伝票を削除しました。", 64)
         set_shiire_rireki()
-
-        ' ----------------------------------------------------------
-
-        ''Dim sentakukokyakuid1 As Double, sentakukokyakuid As String, rs_saku3 As New ADODB.Recordset
-        ''Dim sql_saku As String, rs_saku As New ADODB.Recordset, rs_saku2 As New ADODB.Recordset, sssi As Integer
-        ''Dim resres, sakujosurudata(), sakujosurusuu As Integer
-        ''Dim rs_saku4 As ADODB.Recordset, hen_shou_id4 As String, sql_saku4 As String
-        ''Dim newbikou As String
-
-        ''If user_check(1) = False Then
-        ''    Exit Sub
-        ''End If
-
-        'With gridshiirerireki
-
-        '    ''On Error GoTo ERRORREC1
-        '    'sentakukokyakuid1 = CDbl(.Cell(flexcpText, , 1))
-        '    ''On Error GoTo 0
-        '    'sentakukokyakuid = Trim(.Cell(flexcpText, , 1))
-        '    'If sentakukokyakuid = "" Then
-        '    '    ret = MsgBox("削除したい仕入伝票を選択してから再度実行してください。", 16, "総合管理システム「SPSALES」")
-        '    '    Exit Sub
-        '    'End If
-        '    'resres = MsgBox("本当に削除してよいですか？", vbYesNo)
-        '    'If resres = vbNo Then
-        '    '    Exit Sub
-        '    'End If
-
-        '    sql_saku = "select * from shiire where shiireid='" & sentakukokyakuid & "'"
-
-        '    If FcSQlGet(1, rs_saku, sql_saku, WMsg) = False Then
-        '        'ret = MsgBox("選択した納品書がみつかりません。", 16, "総合管理システム「SPSALES」")
-        '        'Exit Sub
-        '    Else
-
-        '        cnn.BeginTrans
-        '        rs_saku2.CursorLocation = adUseClient
-        '        rs_saku2.CursorType = adOpenForwardOnly ' adOpenStatic
-        '        rs_saku2.LockType = adLockBatchOptimistic
-        '        rs_saku2.Open("SELECT * FROM shiireshousai where shiireid='" & sentakukokyakuid & "'", cnn, , , adCmdText)
-
-        '        If rs_saku2.RecordCount > 0 Then
-        '            sakujosurusuu = rs_saku2.RecordCount
-        '            ReDim sakujosurudata(sakujosurusuu, 3)
-        '            rs_saku2.MoveFirst
-        '            sssi = 1
-        '            Do Until rs_saku2.EOF
-        '                sakujosurudata(sssi, 0) = rs_saku2!shouhinid
-        '                sakujosurudata(sssi, 1) = rs_saku2!kosuu
-        '                rs_saku2.Delete
-        '                rs_saku2.MoveNext
-        '                sssi = sssi + 1
-        '            Loop
-        '            rs_saku2.UpdateBatch
-        '            rs_saku2.Close
-        '        End If
-
-        '        rs_saku3.CursorLocation = adUseClient
-        '        rs_saku3.CursorType = adOpenForwardOnly ' adOpenStatic
-        '        rs_saku3.LockType = adLockBatchOptimistic
-        '        rs_saku3.Open("SELECT * FROM shiire where shiireid='" & sentakukokyakuid & "'", cnn, , , adCmdText)
-
-        '        If rs_saku3.RecordCount > 0 Then
-        '            rs_saku3.MoveFirst
-        '            Do Until rs_saku3.EOF
-        '                rs_saku3.Delete
-        '                rs_saku3.MoveNext
-        '            Loop
-        '            rs_saku3.UpdateBatch
-        '            rs_saku3.Close
-        '        End If
-
-        '        '在庫数の調整
-        '        Dim msuu As Double, isuu As Double, ssuu As Double
-        '        For sssi = 1 To sakujosurusuu
-        '        Set rs_saku4 = New ADODB.Recordset
-        '        hen_shou_id4 = CStr(sakujosurudata(sssi, 0))
-        '            sql_saku4 = "select * from shouhin " &
-        '                      " WHERE shouhinid = '" & hen_shou_id4 & "'"
-        '            rs_saku4.CursorType = adOpenKeyset
-        '            rs_saku4.LockType = adLockOptimistic
-        '            rs_saku4.Open(sql_saku4, cnn, , , adCmdText)
-        '            msuu = rs_saku4!genzaikosuu
-        '            isuu = sakujosurudata(sssi, 1)
-        '            ssuu = rs_saku4!genzaikosuu - sakujosurudata(sssi, 1)
-        '            rs_saku4!genzaikosuu = rs_saku4!genzaikosuu - sakujosurudata(sssi, 1)
-        '            'If shouhin_zaiko_check(hen_shou_id4, "10", 3, msuu, isuu, ssuu) = False Then
-        '            '    ret = MsgBox("在庫チェック作業中にエラーが発生しました。", 16, "総合管理システム「SPSALES」")
-        '            'End If
-        '            newbikou = "旧在庫：" & msuu & " 新在庫：" & ssuu
-        '            If shouhin_zaiko_log("10", hen_shou_id4, 8, CStr(isuu), newbikou) = False Then
-        '                ret = MsgBox("在庫ログ登録作業中にエラーが発生しました", 16, "総合管理システム「SPSALES」")
-        '            End If
-        '            rs_saku4.Update
-        '            rs_saku4.Close
-        '        Next sssi
-        '        cnn.CommitTrans
-
-        '        Picture16_Click
-        '        ret = MsgBox("選択した仕入伝票を削除しました。", 64, "総合管理システム「SPSALES」")
-        '    End If
-
-        'End With
-
-        'Exit Sub
-
-        ''ERRORREC1:
-        ''        ret = MsgBox("削除したい仕入伝票を選択してから再度実行してください。", 16, "総合管理システム「SPSALES」")
-        ''        Exit Sub
 
     End Sub
 
