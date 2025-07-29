@@ -6,7 +6,7 @@ Public Class frmshiire_rireki
         dtp_hinichi_kaishi.Value = Now.ToString("yyyy/MM") + "/01"
         dtp_hinichi_owari.Value = Now.ToString("yyyy/MM/dd")
 
-        set_gyousha(1)
+        set_gyousha_cbx(1)
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -278,7 +278,7 @@ Public Class frmshiire_rireki
 
     Private Sub set_shiire_rireki()
 
-        Dim hinichi_kanshi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
+        Dim hinichi_kaishi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
         Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
         Dim gyousha_id = Mid(Trim(cbx_gyousha.Text), 1, 3)
 
@@ -331,7 +331,7 @@ Public Class frmshiire_rireki
 
             Dim query = "SELECT shiire.*, gyousha.gyoushamei FROM shiire RIGHT JOIN gyousha ON shiire.gyoushaid = gyousha.gyoushaid"
 
-            Dim query_where = " WHERE shiire.shiirebi BETWEEN '" + hinichi_kanshi + "' AND '" + hinichi_owari + "'"
+            Dim query_where = " WHERE shiire.shiirebi BETWEEN '" + hinichi_kaishi + "' AND '" + hinichi_owari + "'"
 
             If gyousha_id <> "" Then
                 query_where += " AND shiire.gyoushaid = '" & gyousha_id & "'"

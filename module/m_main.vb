@@ -55,7 +55,6 @@ Module m_main
     Public s_mailadress As String = ""
     Public s_mailadress_cc() As String
 
-
     Sub system_check(s_versionup_path As String)
 
         Dim s_verfile_path As String = s_versionup_path & "\spsales.exe"

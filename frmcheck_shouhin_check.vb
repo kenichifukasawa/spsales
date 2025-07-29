@@ -3,7 +3,7 @@
 Public Class frmcheck_shouhin_check
     Private Sub frmcheck_shouhin_check_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtp_hinichi_kaishi.Value = Now.ToString("yyyy/MM/dd")
-        set_shouhin_kubun_1(2)
+        set_shouhin_kubun_1_cbx(2)
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -252,10 +252,10 @@ Public Class frmcheck_shouhin_check
     Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
         dgv_kensakukekka.Rows.Clear()
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
-        set_shouhin_kubun_2(2, shouhin_kubun_1_id)
+        set_shouhin_kubun_2_cbx(2, shouhin_kubun_1_id)
         Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
         Dim is_mishiyou_hihyouji = chk_mishiyou_hihyouji.Checked
-        set_shitei_shouhin(2, shouhin_kubun_1_id, shouhin_kubun_2_id, , is_mishiyou_hihyouji)
+        set_shitei_shouhin_cbx(2, shouhin_kubun_1_id, shouhin_kubun_2_id, , is_mishiyou_hihyouji)
     End Sub
 
     Private Sub cbx_shouhin_kubun_2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_2.SelectedIndexChanged
@@ -263,12 +263,12 @@ Public Class frmcheck_shouhin_check
         Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
         Dim shouhin_kubun_2_id = Mid(Trim(cbx_shouhin_kubun_2.Text), 1, 4)
         Dim is_mishiyou_hihyouji = chk_mishiyou_hihyouji.Checked
-        set_shitei_shouhin(2, shouhin_kubun_1_id, shouhin_kubun_2_id, , is_mishiyou_hihyouji)
+        set_shitei_shouhin_cbx(2, shouhin_kubun_1_id, shouhin_kubun_2_id, , is_mishiyou_hihyouji)
     End Sub
 
     Private Sub chk_mishiyou_hihyouji_Click(sender As Object, e As EventArgs) Handles chk_mishiyou_hihyouji.Click
         dgv_kensakukekka.Rows.Clear()
-        set_shouhin_kubun_1(2)
+        set_shouhin_kubun_1_cbx(2)
     End Sub
 
     Private Function get_sagyou_naiyou_name_by_no(naiyou_no As String)
