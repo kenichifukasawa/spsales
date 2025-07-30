@@ -349,11 +349,13 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_gyousha_cbx(frm_no As Integer)
+    Sub set_gyousha_cbx(frm_no As Integer, Optional is_hyouji_subete As Boolean = True)
 
         Select Case frm_no
             Case 1
                 frmshiire_rireki.cbx_gyousha.Items.Clear()
+            Case 2
+                frmshiharai_rireki.cbx_gyousha.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -364,7 +366,14 @@ Module m_shuukei
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT gyousha.*, mailno_m.adress1 FROM gyousha LEFT JOIN mailno_m ON gyousha.mailno = mailno_m.mailno ORDER BY gyoushafurigana"
+            Dim query = "SELECT gyousha.*, mailno_m.adress1 FROM gyousha LEFT JOIN mailno_m ON gyousha.mailno = mailno_m.mailno"
+
+            Dim where_str = ""
+            If is_hyouji_subete = False Then
+                where_str = " WHERE fuyou IS NULL "
+            End If
+
+            query += where_str + " ORDER BY gyoushafurigana"
 
             Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
@@ -376,6 +385,8 @@ Module m_shuukei
                 Select Case frm_no
                     Case 1
                         frmshiire_rireki.cbx_gyousha.Items.Add(item_name)
+                    Case 2
+                        frmshiharai_rireki.cbx_gyousha.Items.Add(item_name)
                 End Select
             Next
 

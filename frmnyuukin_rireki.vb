@@ -28,9 +28,155 @@ Public Class frmnyuukin_rireki
 
     Private Sub btn_kakunin_Click(sender As Object, e As EventArgs) Handles btn_kakunin.Click
 
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim can_delete = False
+        For i = 0 To dgv_kensakukekka.Rows.Count - 1
+            If dgv_kensakukekka(0, i).Value = True Then
+                can_delete = True
+                Exit For
+            End If
+        Next
+
+        If can_delete = False Then
+            msg_go("確認したい項目を選択してから実行してください。")
+            Exit Sub
+        End If
+
+        For i = 0 To dgv_kensakukekka.Rows.Count - 1
+
+            If dgv_kensakukekka(0, i).Value = False Then
+                Continue For
+            End If
+
+            Dim seikyuushoid = dgv_kensakukekka(9, i).Value
+            Dim motokakunin = dgv_kensakukekka(7, i).Value
+
+            Try
+
+                Dim conn As New SqlConnection
+                conn.ConnectionString = connectionstring_sqlserver
+
+                Dim query = "SELECT * FROM seikyuusho WHERE seikyuushoid = '" & seikyuushoid & "'"
+
+                Dim da As New SqlDataAdapter
+                da = New SqlDataAdapter(query, conn)
+                Dim ds As New DataSet
+                Dim temp_table_name = "t_seikyuusho"
+                da.Fill(ds, temp_table_name)
+
+                Select Case motokakunin
+                    Case "確認済み"
+                        ds.Tables(temp_table_name).Rows(0)("kakunin") = DBNull.Value
+                    Case "未確認"
+                        ds.Tables(temp_table_name).Rows(0)("kakunin") = "1"
+                    Case Else
+                        ds.Tables(temp_table_name).Rows(0)("kakunin") = DBNull.Value
+                End Select
+
+                Dim cb As New SqlCommandBuilder
+                cb.DataAdapter = da
+                da.Update(ds, temp_table_name)
+                ds.Clear()
+
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Sub
+            End Try
+
+        Next
+
+        set_shuukei()
+
     End Sub
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
+        set_shuukei()
+    End Sub
+
+    Private Sub btn_clear_hi_Click(sender As Object, e As EventArgs) Handles btn_clear_hi.Click
+        cbx_hi.SelectedIndex = -1
+    End Sub
+
+    Private Sub btn_clear_shain_Click(sender As Object, e As EventArgs) Handles btn_clear_shain.Click
+        cbx_shain.SelectedIndex = -1
+    End Sub
+
+    Private Sub chk_hyouji_shinai_Click(sender As Object, e As EventArgs) Handles chk_hyouji_shinai.Click
+        clear_shuukei()
+    End Sub
+
+    Private Sub cbx_nen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_nen.SelectedIndexChanged
+        set_hinichi_cbx()
+    End Sub
+
+    Private Sub cbx_tsuki_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tsuki.SelectedIndexChanged
+        set_hinichi_cbx()
+    End Sub
+
+    Private Sub cbx_hi_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_hi.SelectedIndexChanged
+        clear_shuukei()
+    End Sub
+
+    Private Sub cbx_shain_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shain.SelectedIndexChanged
+        clear_shuukei()
+    End Sub
+
+    Private Sub dgv_kensakukekka_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_kensakukekka.CellMouseClick
+
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
+
+            Dim currentRow As DataGridViewRow = dgv_kensakukekka.Rows(e.RowIndex)
+            Dim isChecked As Boolean = CBool(currentRow.Cells(0).Value)
+
+            If isChecked Then
+                currentRow.Cells(0).Value = False
+
+                If currentRow.Index Mod 2 = 0 Then
+                    currentRow.DefaultCellStyle.BackColor = dgv_kensakukekka.RowsDefaultCellStyle.BackColor
+                Else
+                    currentRow.DefaultCellStyle.BackColor = dgv_kensakukekka.AlternatingRowsDefaultCellStyle.BackColor
+                End If
+
+            Else
+                currentRow.Cells(0).Value = True
+                currentRow.DefaultCellStyle.BackColor = Color.Yellow
+            End If
+
+            dgv_kensakukekka.ClearSelection()
+
+        End If
+
+    End Sub
+
+    Private Sub set_hinichi_cbx()
+
+        clear_shuukei()
+
+        Dim nen = cbx_nen.Text
+        Dim tsuki = cbx_tsuki.Text
+        If nen = "" Or tsuki = "" Then
+            Exit Sub
+        End If
+
+        Dim nissuu = get_tsuki_saishuubi(nen, tsuki)
+
+        cbx_hi.Items.Clear()
+        For i = 1 To CInt(nissuu)
+            cbx_hi.Items.Add(i.ToString("D2"))
+        Next
+
+    End Sub
+
+    Private Sub clear_shuukei()
+        dgv_kensakukekka.Rows.Clear()
+        lbl_kensuu.Text = "0 件"
+        lbl_goukeigaku.Text = "0 円"
+    End Sub
+
+    Private Sub set_shuukei()
 
         Dim nen = cbx_nen.Text
         Dim tsuki = cbx_tsuki.Text
@@ -204,86 +350,6 @@ Public Class frmnyuukin_rireki
         lbl_kensuu.Text = kensuu.ToString("#,0") + " 件"
         lbl_goukeigaku.Text = sum_goukei_gaku.ToString("#,0") + " 円"
 
-    End Sub
-
-    Private Sub btn_clear_hi_Click(sender As Object, e As EventArgs) Handles btn_clear_hi.Click
-        cbx_hi.SelectedIndex = -1
-    End Sub
-
-    Private Sub btn_clear_shain_Click(sender As Object, e As EventArgs) Handles btn_clear_shain.Click
-        cbx_shain.SelectedIndex = -1
-    End Sub
-
-    Private Sub chk_hyouji_shinai_Click(sender As Object, e As EventArgs) Handles chk_hyouji_shinai.Click
-        clear_shuukei()
-    End Sub
-
-    Private Sub cbx_nen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_nen.SelectedIndexChanged
-        set_hinichi_cbx()
-    End Sub
-
-    Private Sub cbx_tsuki_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tsuki.SelectedIndexChanged
-        set_hinichi_cbx()
-    End Sub
-
-    Private Sub cbx_hi_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_hi.SelectedIndexChanged
-        clear_shuukei()
-    End Sub
-
-    Private Sub cbx_shain_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shain.SelectedIndexChanged
-        clear_shuukei()
-    End Sub
-
-    Private Sub dgv_kensakukekka_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_kensakukekka.CellMouseClick
-
-        If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
-
-            Dim currentRow As DataGridViewRow = dgv_kensakukekka.Rows(e.RowIndex)
-            Dim isChecked As Boolean = CBool(currentRow.Cells(0).Value)
-
-            If isChecked Then
-                currentRow.Cells(0).Value = False
-
-                If currentRow.Index Mod 2 = 0 Then
-                    currentRow.DefaultCellStyle.BackColor = dgv_kensakukekka.RowsDefaultCellStyle.BackColor
-                Else
-                    currentRow.DefaultCellStyle.BackColor = dgv_kensakukekka.AlternatingRowsDefaultCellStyle.BackColor
-                End If
-
-            Else
-                currentRow.Cells(0).Value = True
-                currentRow.DefaultCellStyle.BackColor = Color.Yellow
-            End If
-
-            dgv_kensakukekka.ClearSelection()
-
-        End If
-
-    End Sub
-
-    Private Sub set_hinichi_cbx()
-
-        clear_shuukei()
-
-        Dim nen = cbx_nen.Text
-        Dim tsuki = cbx_tsuki.Text
-        If nen = "" Or tsuki = "" Then
-            Exit Sub
-        End If
-
-        Dim nissuu = get_tsuki_saishuubi(nen, tsuki)
-
-        cbx_hi.Items.Clear()
-        For i = 1 To CInt(nissuu)
-            cbx_hi.Items.Add(i.ToString("D2"))
-        Next
-
-    End Sub
-
-    Private Sub clear_shuukei()
-        dgv_kensakukekka.Rows.Clear()
-        lbl_kensuu.Text = "0 件"
-        lbl_goukeigaku.Text = "0 円"
     End Sub
 
 End Class
