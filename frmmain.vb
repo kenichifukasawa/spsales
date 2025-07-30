@@ -649,4 +649,29 @@ Public Class frmmain
 
 
     End Sub
+
+    Private Sub frmmain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim newtabsize As Integer = (Me.TabControl1.Width - 10) / 2
+
+        'タブのサイズを変更できるようにする
+        Me.TabControl1.SizeMode = TabSizeMode.Fixed
+        'タブのサイズを 80x30 にする
+        Me.TabControl1.ItemSize = New Size(newtabsize, 25)
+
+        newtabsize = (Me.TabControl2.Width - 20) / 5
+
+        'タブのサイズを変更できるようにする
+        Me.TabControl2.SizeMode = TabSizeMode.Fixed
+        'タブのサイズを 80x30 にする
+        Me.TabControl2.ItemSize = New Size(newtabsize, 25)
+    End Sub
+
+    Private Sub TabPage3_Click(sender As Object, e As EventArgs) Handles TabPage3.Click
+
+    End Sub
+
+    Private Sub GroupBox12_Enter(sender As Object, e As EventArgs) Handles GroupBox12.Enter
+
+    End Sub
 End Class
