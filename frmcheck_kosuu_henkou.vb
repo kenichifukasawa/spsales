@@ -290,6 +290,10 @@ Public Class frmcheck_kosuu_henkou
             .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
+            ' 行の高さの指定
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+            .ColumnHeadersHeight = 50
+
             .ReadOnly = False
             For i = 0 To .ColumnCount - 1
                 If i = 6 Then

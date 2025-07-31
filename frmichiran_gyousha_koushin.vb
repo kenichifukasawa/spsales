@@ -38,7 +38,7 @@ Public Class frmichiran_gyousha_koushin
 
         Dim shiharai_houhou = Trim(cbx_shiharai_houhou.Text)
         If shiharai_houhou <> "" Then
-            shiharai_houhou = PaymentMethods.GetIdByName(shiharai_houhou)
+            shiharai_houhou = PaymentMethodsContractor.GetIdByName(shiharai_houhou)
         End If
 
         Dim shimebi = Trim(cbx_shimebi.Text)

@@ -306,6 +306,10 @@ Public Class frmichiran_gyousha
 
                 .Columns(1).Frozen = True
 
+                ' 行の高さの指定
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 50
+
             End With
 
             Dim mojiretsu(30) As String
@@ -373,7 +377,7 @@ Public Class frmichiran_gyousha
                 Dim shiharai_houhou As String = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shiharaihouhou")) Then
                     Dim id As String = Trim(dt_server.Rows.Item(i).Item("shiharaihouhou").ToString())
-                    shiharai_houhou = PaymentMethods.GetNameById(id)
+                    shiharai_houhou = PaymentMethodsContractor.GetNameById(id)
                 End If
                 mojiretsu(11) = shiharai_houhou
 
@@ -501,7 +505,7 @@ Public Class frmichiran_gyousha
     Private Sub set_combo_box()
 
         With frmichiran_gyousha_koushin
-            .cbx_shiharai_houhou.Items.AddRange(PaymentMethods.Names)
+            .cbx_shiharai_houhou.Items.AddRange(PaymentMethodsContractor.Names)
             .cbx_shimebi.Items.AddRange(Deadline.Names)
             .cbx_shouhizei.Items.AddRange(ConsumptionTax.Names)
             .cbx_hasuu.Items.AddRange(Rounding.Names)
