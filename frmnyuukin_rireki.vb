@@ -239,7 +239,7 @@ Public Class frmnyuukin_rireki
             .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
-            .Columns(4).DefaultCellStyle.Format = "#,##0"
+            .Columns(5).DefaultCellStyle.Format = "#,##0"
 
         End With
 
@@ -279,15 +279,12 @@ Public Class frmnyuukin_rireki
 
                 mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("hiduke")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
 
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("dami")) Then
-                    Dim dami = Trim(dt_server.Rows.Item(i).Item("dami"))
-                    If dami = "1" Then
-                        ' TODO
-                        '.Cell(flexcpBackColor, seikyuuGROW, 1) = &HC0E0FF
-                    End If
+                Dim ryoushuuno = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("ryoushuuno")) Then
+                    ryoushuuno = Trim(dt_server.Rows.Item(i).Item("ryoushuuno"))
                 End If
+                mojiretsu(3) = ryoushuuno
 
-                mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("ryoushuuno"))
                 mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
 
                 Dim seikyuukingaku = 0
@@ -317,6 +314,13 @@ Public Class frmnyuukin_rireki
 
                 dgv_kensakukekka.Rows(i).Cells(0) = New DataGridViewCheckBoxCell
                 dgv_kensakukekka.Rows(i).Cells(0).Value = False
+
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("dami")) Then
+                    Dim dami = Trim(dt_server.Rows.Item(i).Item("dami"))
+                    If dami = "1" Then
+                        dgv_kensakukekka.Rows(i).Cells(2).Style.BackColor = Color.Yellow
+                    End If
+                End If
 
             Next
 

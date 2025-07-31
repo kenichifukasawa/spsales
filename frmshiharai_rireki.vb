@@ -179,6 +179,7 @@ Public Class frmshiharai_rireki
         gbx_shiharai_tsuki.Enabled = False
         gbx_gyousha.Enabled = True
         cbx_tsuki.SelectedIndex = -1
+        cbx_nen.SelectedIndex = cbx_nen.FindStringExact(Now.ToString("yyyy"))
     End Sub
 
     Private Sub chk_hyouji_subete_gyousha_Click(sender As Object, e As EventArgs) Handles chk_hyouji_subete_gyousha.Click
