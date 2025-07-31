@@ -101,6 +101,11 @@ Namespace My
             BARSHINKOU("システムのチェック中・・・")
             'バージョンアップパス
             settei_res = Setting1(16, 0, "", 0)
+
+#If DEBUG Then
+            settei_res = "c:\"
+#End If
+
             If settei_res = "0" Then
                 msg_go("あとで、バックアップパスの設定を行って下さい。", 16)
             Else

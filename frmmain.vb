@@ -54,7 +54,7 @@ Public Class frmmain
         'txtkubun.SelLength = Len(txtkubun.Text)
 
         If shouhinkubun_shien_grid_set(4) <> -1 Then
-            lstshien.Left = 100
+            lstshien.Left = 50
             lstshien.Visible = True
             kubundodoo = 0
         End If
@@ -194,7 +194,7 @@ Public Class frmmain
         'txtkubun1.SelLength = Len(txtkubun1.Text)
 
         If shouhinkubun_shien_grid_set(0) <> -1 Then
-            lstshien.Left = 200
+            lstshien.Left = 100
             lstshien.Visible = True
             kubundodoo = 1
         End If
@@ -227,7 +227,7 @@ Public Class frmmain
         'txtkubun2.SelLength = Len(txtkubun2.Text)
 
         If shouhinkubun_shien_grid_set(1, Trim(txtkubun1.Text)) <> -1 Then
-            lstshien.Left = 300
+            lstshien.Left = 150
             lstshien.Visible = True
             txtkubun2.Focus()
         Else
@@ -659,7 +659,7 @@ Public Class frmmain
         'タブのサイズを 80x30 にする
         Me.TabControl1.ItemSize = New Size(newtabsize, 25)
 
-        newtabsize = (Me.TabControl2.Width - 20) / 5
+        newtabsize = (Me.TabControl2.Width - 10) / 5
 
         'タブのサイズを変更できるようにする
         Me.TabControl2.SizeMode = TabSizeMode.Fixed
@@ -672,6 +672,10 @@ Public Class frmmain
     End Sub
 
     Private Sub GroupBox12_Enter(sender As Object, e As EventArgs) Handles GroupBox12.Enter
+
+    End Sub
+
+    Private Sub GroupBox16_Enter(sender As Object, e As EventArgs) Handles GroupBox16.Enter
 
     End Sub
 End Class
