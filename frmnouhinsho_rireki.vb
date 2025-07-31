@@ -54,6 +54,33 @@ Public Class frmnouhinsho_rireki
         cbx_shain.SelectedIndex = -1
     End Sub
 
+    Private Sub dgv_kensakukekka_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_kensakukekka.CellMouseClick
+
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
+
+            Dim currentRow As DataGridViewRow = dgv_kensakukekka.Rows(e.RowIndex)
+            Dim isChecked As Boolean = CBool(currentRow.Cells(0).Value)
+
+            If isChecked Then
+                currentRow.Cells(0).Value = False
+
+                If currentRow.Index Mod 2 = 0 Then
+                    currentRow.DefaultCellStyle.BackColor = dgv_kensakukekka.RowsDefaultCellStyle.BackColor
+                Else
+                    currentRow.DefaultCellStyle.BackColor = dgv_kensakukekka.AlternatingRowsDefaultCellStyle.BackColor
+                End If
+
+            Else
+                currentRow.Cells(0).Value = True
+                currentRow.DefaultCellStyle.BackColor = Color.Yellow
+            End If
+
+            dgv_kensakukekka.ClearSelection()
+
+        End If
+
+    End Sub
+
     Private Sub cbx_nen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_nen.SelectedIndexChanged
         clear_shuukei()
     End Sub
@@ -103,27 +130,29 @@ Public Class frmnouhinsho_rireki
 
             .Rows.Clear()
             .Columns.Clear()
-            .ColumnCount = 9
+            .ColumnCount = 10
 
-            .Columns(0).Name = "NO"
-            .Columns(1).Name = "納品日"
-            .Columns(2).Name = "伝票NO"
-            .Columns(3).Name = "納品書ID"
-            .Columns(4).Name = "店舗名"
-            .Columns(5).Name = "金額"
-            .Columns(6).Name = "発行社員名"
-            .Columns(7).Name = "発行状況"
-            .Columns(8).Name = "確認状況"
+            .Columns(0).Name = ""
+            .Columns(1).Name = "NO"
+            .Columns(2).Name = "納品日"
+            .Columns(3).Name = "伝票NO"
+            .Columns(4).Name = "納品書ID"
+            .Columns(5).Name = "店舗名"
+            .Columns(6).Name = "金額"
+            .Columns(7).Name = "発行社員名"
+            .Columns(8).Name = "発行状況"
+            .Columns(9).Name = "確認状況"
 
-            .Columns(0).Width = 75
-            .Columns(1).Width = 110
-            .Columns(2).Width = 100
-            .Columns(3).Width = 110
-            .Columns(4).Width = 305
-            .Columns(5).Width = 90
-            .Columns(6).Width = 100
+            .Columns(0).Width = 30
+            .Columns(1).Width = 75
+            .Columns(2).Width = 110
+            .Columns(3).Width = 100
+            .Columns(4).Width = 110
+            .Columns(5).Width = 275
+            .Columns(6).Width = 90
             .Columns(7).Width = 100
             .Columns(8).Width = 100
+            .Columns(9).Width = 100
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -131,13 +160,14 @@ Public Class frmnouhinsho_rireki
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-            .Columns(5).DefaultCellStyle.Format = "#,##0"
+            .Columns(6).DefaultCellStyle.Format = "#,##0"
 
         End With
 
@@ -181,41 +211,44 @@ Public Class frmnouhinsho_rireki
             Dim mojiretsu(9)
             For i = 0 To kensuu - 1
 
-                mojiretsu(0) = (i + 1).ToString()
-
-                mojiretsu(1) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("iraibi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
-                mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
+                mojiretsu(0) = ""
+                mojiretsu(1) = (i + 1).ToString()
+                mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("iraibi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
 
                 Dim nouhinshoid = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("nouhinshoid")) Then
                     nouhinshoid = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
                 End If
-                mojiretsu(3) = nouhinshoid
+                mojiretsu(4) = nouhinshoid
 
-                mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+                mojiretsu(5) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
 
                 Dim goukei = 0
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("goukei")) Then
                     goukei = CInt(Trim(dt_server.Rows.Item(i).Item("goukei")))
                 End If
-                mojiretsu(5) = goukei
+                mojiretsu(6) = goukei
                 sum_goukei_gaku += goukei
 
-                mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("shainid")) + " " + Trim(dt_server.Rows.Item(i).Item("ryakumei"))
+                mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("shainid")) + " " + Trim(dt_server.Rows.Item(i).Item("ryakumei"))
 
                 Dim shutsu = "未発行"
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shutsu")) Then
                     shutsu = "発行済み"
                 End If
-                mojiretsu(7) = shutsu
+                mojiretsu(8) = shutsu
 
                 Dim kakunin = "未確認"
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("kakunin")) Then
                     kakunin = "確認済み"
                 End If
-                mojiretsu(8) = kakunin
+                mojiretsu(9) = kakunin
 
                 dgv_kensakukekka.Rows.Add(mojiretsu)
+
+                dgv_kensakukekka.Rows(i).Cells(0) = New DataGridViewCheckBoxCell
+                dgv_kensakukekka.Rows(i).Cells(0).Value = False
 
             Next
 
