@@ -62,6 +62,8 @@ Public Class frmshiire_rireki
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
                 .Columns(3).DefaultCellStyle.Format = "#,##0"
                 .Columns(4).DefaultCellStyle.Format = "#,##0"
