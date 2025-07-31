@@ -206,7 +206,7 @@ Public Class frmshiire_rireki
             ReDim shiireshousai_data(1, shiireshousai_count - 1)
             If shiireshousai_count > 0 Then
                 Dim counter = 0
-                For i As Integer = shiireshousai_count - 1 To 0 Step -1
+                For i = shiireshousai_count - 1 To 0 Step -1
                     shiireshousai_data(0, counter) = ds.Tables(temp_table_name).Rows(i)("shouhinid")
                     shiireshousai_data(1, counter) = ds.Tables(temp_table_name).Rows(i)("kosuu")
                     ds.Tables(temp_table_name).Rows(i).Delete()
@@ -215,6 +215,8 @@ Public Class frmshiire_rireki
                 Dim cb As New SqlCommandBuilder(da)
                 da.Update(ds, temp_table_name)
             End If
+
+            ds.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)

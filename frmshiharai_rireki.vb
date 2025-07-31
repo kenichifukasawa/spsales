@@ -27,6 +27,130 @@ Public Class frmshiharai_rireki
     End Sub
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
+        set_shuukei()
+    End Sub
+
+    Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
+
+    End Sub
+
+    Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
+
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        If chk_sakujo.Checked = False Then
+            msg_go("「削除する」にチェックをつけてから実行してください。")
+            Exit Sub
+        End If
+        chk_sakujo.Checked = False
+
+        Dim shukkin_id = dgv_kensakukekka.CurrentRow.Cells(1).Value
+
+        Dim result As DialogResult = MessageBox.Show("以下の支払履歴を本当に削除しますか？" + vbCrLf + vbCrLf + "仕入ID：" + shukkin_id, "SpSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If result = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM shiire WHERE shukkinid = '" + shukkin_id + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_shiire"
+            da.Fill(ds, temp_table_name)
+
+            Dim count = ds.Tables(temp_table_name).Rows.Count
+            If count = 0 Then
+                msg_go("選択した伝票がみつかりません")
+                Exit Sub
+            End If
+
+            For i = 0 To count - 1
+                ds.Tables(temp_table_name).Rows(i)("joukyou") = "0"
+                ds.Tables(temp_table_name).Rows(i)("shukkinid") = DBNull.Value
+                ds.Tables(temp_table_name).Rows(i)("shiharaibi") = DBNull.Value
+            Next
+
+            Dim cb As New SqlCommandBuilder(da)
+            'cb.DataAdapter = da ' TODO:削除？
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM shukkin WHERE shukkinid = '" + shukkin_id + "'"
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_shukkin"
+            da.Fill(ds, temp_table_name)
+
+            For i = ds.Tables(temp_table_name).Rows.Count - 1 To 0 Step -1
+                ds.Tables(temp_table_name).Rows(i).Delete()
+            Next
+
+            Dim cb As New SqlCommandBuilder(da)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        msg_go("選択した支払伝票を削除しました。", 64)
+        set_shuukei()
+
+    End Sub
+
+    Private Sub btn_clear_gyousha_Click(sender As Object, e As EventArgs) Handles btn_clear_gyousha.Click
+        cbx_gyousha.SelectedIndex = -1
+    End Sub
+
+    Private Sub rbn_shubetsu_shiharai_tsuki_Click(sender As Object, e As EventArgs) Handles rbn_shubetsu_shiharai_tsuki.Click
+        gbx_shiharai_tsuki.Enabled = True
+        gbx_gyousha.Enabled = False
+        cbx_gyousha.SelectedIndex = -1
+    End Sub
+
+    Private Sub rbn_shubetsu_gyousha_Click(sender As Object, e As EventArgs) Handles rbn_shubetsu_gyousha.Click
+        gbx_shiharai_tsuki.Enabled = False
+        gbx_gyousha.Enabled = True
+        cbx_tsuki.SelectedIndex = -1
+        cbx_nen.SelectedIndex = cbx_nen.FindStringExact(Now.ToString("yyyy"))
+    End Sub
+
+    Private Sub chk_hyouji_subete_gyousha_Click(sender As Object, e As EventArgs) Handles chk_hyouji_subete_gyousha.Click
+        set_gyousha_cbx(2, chk_hyouji_subete_gyousha.Checked)
+    End Sub
+
+    Private Sub cbx_nen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_nen.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
+    Private Sub cbx_tsuki_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tsuki.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
+    Private Sub cbx_gyousha_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_gyousha.SelectedIndexChanged
+        dgv_kensakukekka.Rows.Clear()
+    End Sub
+
+    Private Sub set_shuukei()
 
         With dgv_kensakukekka
 
@@ -107,45 +231,37 @@ Public Class frmshiharai_rireki
             da_server.Fill(ds_server, temp_table_name)
             Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
 
-            If dt_server.Rows.Count > 0 Then
+            Dim mojiretsu(7)
+            For i = 0 To dt_server.Rows.Count - 1
 
-                'grid_shiirerireki_set_sub3(newseikyurirekisuu_s) ' TODO
+                mojiretsu(0) = (i + 1).ToString()
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shukkinid"))
+                mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shukkinbi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("gyoushamei"))
 
-                Dim mojiretsu(7)
-                For i = 0 To dt_server.Rows.Count - 1
+                Dim shukkingaku = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("shukkingaku")) Then
+                    shukkingaku = CInt(Trim(dt_server.Rows.Item(i).Item("shukkingaku")))
+                End If
+                mojiretsu(4) = shukkingaku
 
-                    mojiretsu(0) = (i + 1).ToString()
-                    mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shukkinid"))
-                    mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shukkinbi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
-                    mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("gyoushamei"))
+                mojiretsu(5) = PaymentMethodsInvoice.GetNameById(Trim(dt_server.Rows.Item(i).Item("shukkinhouhou")))
 
-                    Dim shukkingaku = 0
-                    If Not IsDBNull(dt_server.Rows.Item(i).Item("shukkingaku")) Then
-                        shukkingaku = CInt(Trim(dt_server.Rows.Item(i).Item("shukkingaku")))
-                    End If
-                    mojiretsu(4) = shukkingaku
+                Dim kijitsu = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("kijitsu")) Then
+                    kijitsu = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("kijitsu")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                End If
+                mojiretsu(6) = kijitsu
 
-                    mojiretsu(5) = PaymentMethodsInvoice.GetNameById(Trim(dt_server.Rows.Item(i).Item("shukkinhouhou")))
+                Dim bikou = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
+                    bikou = Trim(dt_server.Rows.Item(i).Item("bikou"))
+                End If
+                mojiretsu(7) = bikou
 
-                    Dim kijitsu = ""
-                    If Not IsDBNull(dt_server.Rows.Item(i).Item("kijitsu")) Then
-                        kijitsu = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("kijitsu")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
-                    End If
-                    mojiretsu(6) = kijitsu
+                dgv_kensakukekka.Rows.Add(mojiretsu)
 
-                    Dim bikou = ""
-                    If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
-                        bikou = Trim(dt_server.Rows.Item(i).Item("bikou"))
-                    End If
-                    mojiretsu(7) = bikou
-
-                    dgv_kensakukekka.Rows.Add(mojiretsu)
-
-                Next
-
-            Else
-                'grid_shiirerireki_set_sub3(0)
-            End If
+            Next
 
             dt_server.Clear()
             ds_server.Clear()
@@ -157,44 +273,4 @@ Public Class frmshiharai_rireki
 
     End Sub
 
-    Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
-
-    End Sub
-
-    Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
-
-    End Sub
-
-    Private Sub btn_clear_gyousha_Click(sender As Object, e As EventArgs) Handles btn_clear_gyousha.Click
-        cbx_gyousha.SelectedIndex = -1
-    End Sub
-
-    Private Sub rbn_shubetsu_shiharai_tsuki_Click(sender As Object, e As EventArgs) Handles rbn_shubetsu_shiharai_tsuki.Click
-        gbx_shiharai_tsuki.Enabled = True
-        gbx_gyousha.Enabled = False
-        cbx_gyousha.SelectedIndex = -1
-    End Sub
-
-    Private Sub rbn_shubetsu_gyousha_Click(sender As Object, e As EventArgs) Handles rbn_shubetsu_gyousha.Click
-        gbx_shiharai_tsuki.Enabled = False
-        gbx_gyousha.Enabled = True
-        cbx_tsuki.SelectedIndex = -1
-        cbx_nen.SelectedIndex = cbx_nen.FindStringExact(Now.ToString("yyyy"))
-    End Sub
-
-    Private Sub chk_hyouji_subete_gyousha_Click(sender As Object, e As EventArgs) Handles chk_hyouji_subete_gyousha.Click
-        set_gyousha_cbx(2, chk_hyouji_subete_gyousha.Checked)
-    End Sub
-
-    Private Sub cbx_nen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_nen.SelectedIndexChanged
-        dgv_kensakukekka.Rows.Clear()
-    End Sub
-
-    Private Sub cbx_tsuki_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tsuki.SelectedIndexChanged
-        dgv_kensakukekka.Rows.Clear()
-    End Sub
-
-    Private Sub cbx_gyousha_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_gyousha.SelectedIndexChanged
-        dgv_kensakukekka.Rows.Clear()
-    End Sub
 End Class
