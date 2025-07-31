@@ -15,7 +15,6 @@
         For i = 1 To 12
             cbx_tsuki.Items.Add(i.ToString("D2"))
         Next
-        cbx_tsuki.SelectedIndex = cbx_tsuki.FindStringExact(Now.ToString("MM"))
 
         set_gyousha_cbx(2, chk_hyouji_subete_gyousha.Checked)
 
@@ -50,6 +49,7 @@
     Private Sub rbn_shubetsu_gyousha_Click(sender As Object, e As EventArgs) Handles rbn_shubetsu_gyousha.Click
         gbx_shiharai_tsuki.Enabled = False
         gbx_gyousha.Enabled = True
+        cbx_tsuki.SelectedIndex = -1
     End Sub
 
     Private Sub chk_hyouji_subete_gyousha_Click(sender As Object, e As EventArgs) Handles chk_hyouji_subete_gyousha.Click
