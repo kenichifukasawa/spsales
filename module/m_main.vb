@@ -268,34 +268,22 @@ Module m_main
 
         Try
 
+            Sql = "SELECT * FROM seikyuusho WHERE tenpoid = '" & s_tenpoid & "' ORDER BY hiduke DESC, seikyuushoid DESC"
+
             Dim cn_server As New SqlConnection
-
             cn_server.ConnectionString = connectionstring_sqlserver
-
-
-            Sql = "SELECT * FROM seikyuusho" &
-                    " where tenpoid='" & s_tenpoid & "' ORDER BY hiduke DESC,seikyuushoid DESC"
-
-
-            Dim da_server As SqlDataAdapter
-
-            da_server = New SqlDataAdapter(Sql, cn_server)
-
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
             Dim ds_server As New DataSet
-
-            da_server.Fill(ds_server, "t_shoukaii")
-
-            Dim dt_server As DataTable
-
-            dt_server = ds_server.Tables("t_shoukaii")
-
-            Dim mojiretsu(7) As String
+            Dim temp_table_name = "t_shoukaii"
+            da_server.Fill(ds_server, temp_table_name)
+            Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
 
             With frmmain.dgv_seikyuusho
 
                 .Rows.Clear()
                 .Columns.Clear()
                 .ColumnCount = 7
+
                 .Columns(0).Name = "日時"
                 .Columns(1).Name = "伝票NO"
                 .Columns(2).Name = "内容"
@@ -303,6 +291,7 @@ Module m_main
                 .Columns(4).Name = "消費税"
                 .Columns(5).Name = "備考"
                 .Columns(6).Name = "インボイス"
+
                 .Columns(0).Width = 90
                 .Columns(1).Width = 90
                 .Columns(2).Width = 100
@@ -322,13 +311,13 @@ Module m_main
                 .ColumnHeadersHeight = 25
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
-                .AlternatingRowsDefaultCellStyle.BackColor _
-                                                        = Color.LightBlue
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
             End With
 
-            Dim s_kin As Decimal
-
+            Dim mojiretsu(7) As String
             For i = 0 To dt_server.Rows.Count - 1
+
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("seikyuushoid"))
                 mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 7, 2)
 
@@ -336,29 +325,15 @@ Module m_main
                     mojiretsu(2) = "請求"
                 Else
                     mojiretsu(2) = "入金"
-                    Select Case Trim(dt_server.Rows.Item(i).Item("seikyuutanni"))
-                        Case "0"
-                            mojiretsu(2) = mojiretsu(2) & " (現金)"
-                        Case "1"
-                            mojiretsu(2) = mojiretsu(2) & " (振込)"
-                        Case "2"
-                            mojiretsu(2) = mojiretsu(2) & " (小切手)"
-                        Case "3"
-                            mojiretsu(2) = mojiretsu(2) & " (相殺)"
-                        Case "4"
-                            mojiretsu(2) = mojiretsu(2) & " (手数料)"
-                        Case "5"
-                            mojiretsu(2) = mojiretsu(2) & " (値引)"
-                        Case "6"
-                            mojiretsu(2) = mojiretsu(2) & " (その他)"
-                        Case "7"
-                            mojiretsu(2) = mojiretsu(2) & " (クレジット)"
-                        Case Else
-                            mojiretsu(2) = "エラー"
-                    End Select
+                    Dim houhou_mei = PaymentMethodsDeposit.GetNameById(Trim(dt_server.Rows.Item(i).Item("seikyuutanni")))
+                    If houhou_mei = "不明" Then
+                        mojiretsu(2) = "エラー"
+                    Else
+                        mojiretsu(2) += " (" + houhou_mei + ")"
+                    End If
                 End If
 
-                s_kin = dt_server.Rows.Item(i).Item("seikyuukingaku")
+                Dim s_kin As Decimal = dt_server.Rows.Item(i).Item("seikyuukingaku")
                 mojiretsu(3) = s_kin.ToString("#,##0")
 
                 s_kin = dt_server.Rows.Item(i).Item("shouhizei")
@@ -377,15 +352,15 @@ Module m_main
                     mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("invoice"))
                 End If
 
-
                 frmmain.dgv_seikyuusho.Rows.Add(mojiretsu)
+
             Next i
+
             dt_server.Clear()
             ds_server.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)
-
         End Try
 
     End Sub

@@ -14,131 +14,17 @@ Public Class frmshiire_rireki
     End Sub
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
-        set_shiire_rireki()
+        set_shuukei()
     End Sub
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
-        If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("履歴が表示されていません。")
-            Exit Sub
-        End If
-
         Dim shiire_id = dgv_kensakukekka.CurrentRow.Cells(1).Value
         Dim hiduke = dgv_kensakukekka.CurrentRow.Cells(2).Value
         Dim gyousha_mei = dgv_kensakukekka.CurrentRow.Cells(7).Value
+        set_shiire_rireki_shousai(dgv_kensakukekka.Rows.Count, shiire_id, hiduke, gyousha_mei)
 
-        With frmshiire_rireki_shousai
-
-            With .dgv_kensakukekka
-
-                .Rows.Clear()
-                .Columns.Clear()
-                .ColumnCount = 8
-
-                .Columns(0).Name = "NO"
-                .Columns(1).Name = "詳細ID"
-                .Columns(2).Name = "商品名"
-                .Columns(3).Name = "数量"
-                .Columns(4).Name = "金額"
-                .Columns(5).Name = "備考"
-                .Columns(6).Name = "商品ID"
-                .Columns(7).Name = "区分ID（業者, 選択1, 選択2）"
-
-                .Columns(0).Width = 75
-                .Columns(1).Width = 110
-                .Columns(2).Width = 300
-                .Columns(3).Width = 80
-                .Columns(4).Width = 90
-                .Columns(5).Width = 194
-                .Columns(6).Width = 0
-                .Columns(7).Width = 0
-
-                .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
-
-                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-
-                .Columns(3).DefaultCellStyle.Format = "#,##0"
-                .Columns(4).DefaultCellStyle.Format = "#,##0"
-
-            End With
-
-            Dim sum_goukei_gaku = 0
-
-            Try
-
-                Dim cn_server As New SqlConnection
-                cn_server.ConnectionString = connectionstring_sqlserver
-
-                Dim query = "SELECT shiireshousai.*" +
-                    ", shouhin.shouhinid, shouhin.shouhinmei, shouhin.shouhinkubunid, shouhin.shouhinkubunid0, shouhin.shouhinkubunid2" +
-                    " FROM shiireshousai LEFT JOIN shouhin ON shiireshousai.shouhinid = shouhin.shouhinid" +
-                    " WHERE shiireshousai.shiireid = '" + shiire_id + "'" +
-                    " ORDER BY shiireshousai.shiireshousaiid"
-
-                Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
-                Dim ds_server As New DataSet
-                da_server.Fill(ds_server, "t_shiireshousai")
-                Dim dt_server As DataTable = ds_server.Tables("t_shiireshousai")
-
-                Dim mojiretsu(7)
-                For i = 0 To dt_server.Rows.Count - 1
-
-                    mojiretsu(0) = (i + 1).ToString()
-                    mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shiireshousaiid"))
-                    mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("shouhinmei"))
-
-                    Dim kosuu = 0
-                    If Not IsDBNull(dt_server.Rows.Item(i).Item("kosuu")) Then
-                        kosuu = CInt(Trim(dt_server.Rows.Item(i).Item("kosuu")))
-                    End If
-                    mojiretsu(3) = kosuu
-
-                    Dim kingaku = 0
-                    If Not IsDBNull(dt_server.Rows.Item(i).Item("kin")) Then
-                        kingaku = CInt(Trim(dt_server.Rows.Item(i).Item("kin")))
-                    End If
-                    sum_goukei_gaku += kingaku
-                    mojiretsu(4) = kingaku
-
-                    Dim bikou = ""
-                    If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
-                        bikou = Trim(dt_server.Rows.Item(i).Item("bikou"))
-                    End If
-                    mojiretsu(5) = bikou
-
-                    mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("shouhinid"))
-                    mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid0")) + ", " +
-                         Trim(dt_server.Rows.Item(i).Item("shouhinkubunid")) + ", " +
-                        Trim(dt_server.Rows.Item(i).Item("shouhinkubunid2"))
-
-                    .dgv_kensakukekka.Rows.Add(mojiretsu)
-
-                Next
-
-                dt_server.Clear()
-                ds_server.Clear()
-
-            Catch ex As Exception
-                msg_go(ex.Message)
-                Exit Sub
-            End Try
-
-            .lbl_hiduke.Text = hiduke
-            .lbl_shiire_id.Text = shiire_id
-            .lbl_shiiresaki.Text = gyousha_mei
-            .lbl_kingaku.Text = sum_goukei_gaku.ToString("#,0") + "円"
-
-            .ShowDialog()
-
-        End With
-
-        set_shiire_rireki()
+        set_shuukei()
 
     End Sub
 
@@ -173,6 +59,7 @@ Public Class frmshiire_rireki
             da.Fill(ds, temp_table_name)
 
             If ds.Tables(temp_table_name).Rows.Count > 0 Then
+
                 ds.Tables(temp_table_name).Rows(0).Delete()
 
                 Dim cb As New SqlCommandBuilder(da)
@@ -181,6 +68,7 @@ Public Class frmshiire_rireki
 
             Else
                 msg_go("該当する仕入が見つかりません。")
+                ds.Clear()
                 Exit Sub
             End If
 
@@ -206,7 +94,7 @@ Public Class frmshiire_rireki
             ReDim shiireshousai_data(1, shiireshousai_count - 1)
             If shiireshousai_count > 0 Then
                 Dim counter = 0
-                For i As Integer = shiireshousai_count - 1 To 0 Step -1
+                For i = shiireshousai_count - 1 To 0 Step -1
                     shiireshousai_data(0, counter) = ds.Tables(temp_table_name).Rows(i)("shouhinid")
                     shiireshousai_data(1, counter) = ds.Tables(temp_table_name).Rows(i)("kosuu")
                     ds.Tables(temp_table_name).Rows(i).Delete()
@@ -214,7 +102,13 @@ Public Class frmshiire_rireki
                 Next
                 Dim cb As New SqlCommandBuilder(da)
                 da.Update(ds, temp_table_name)
+            Else
+                msg_go("仕入詳細記録のデータの削除に失敗しました。")
+                ds.Clear()
+                Exit Sub
             End If
+
+            ds.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)
@@ -251,6 +145,7 @@ Public Class frmshiire_rireki
                 Dim new_atai = shiire_suu.ToString
                 If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
                     msg_go("在庫ログ登録作業中にエラーが発生しました。")
+                    ds.Clear()
                     Exit Sub
                 End If
 
@@ -267,7 +162,7 @@ Public Class frmshiire_rireki
         Next
 
         msg_go("選択した仕入伝票を削除しました。", 64)
-        set_shiire_rireki()
+        set_shuukei()
 
     End Sub
 
@@ -276,7 +171,7 @@ Public Class frmshiire_rireki
         cbx_gyousha.SelectedIndex = -1
     End Sub
 
-    Private Sub set_shiire_rireki()
+    Private Sub set_shuukei()
 
         Dim hinichi_kaishi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
         Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")

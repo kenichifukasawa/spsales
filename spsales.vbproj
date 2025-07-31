@@ -196,6 +196,12 @@
       <DependentUpon>frmmain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmnouhinsho_rireki.Designer.vb">
+      <DependentUpon>frmnouhinsho_rireki.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmnouhinsho_rireki.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmnouhinsho_sentaku.Designer.vb">
       <DependentUpon>frmnouhinsho_sentaku.vb</DependentUpon>
     </Compile>
@@ -254,6 +260,12 @@
       <DependentUpon>frmshiharai_rireki.vb</DependentUpon>
     </Compile>
     <Compile Include="frmshiharai_rireki.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmshiharai_rireki_shousai.Designer.vb">
+      <DependentUpon>frmshiharai_rireki_shousai.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshiharai_rireki_shousai.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmshiharai_sentaku.Designer.vb">
@@ -330,13 +342,16 @@
     </Compile>
     <Compile Include="model\BankAccountType.vb" />
     <Compile Include="model\ConsumptionTax.vb" />
+    <Compile Include="model\PaymentMethodsDeposit.vb" />
+    <Compile Include="model\PaymentMethodsInvoice.vb" />
     <Compile Include="model\Deadline.vb" />
-    <Compile Include="model\PaymentMethods.vb" />
+    <Compile Include="model\PaymentMethodsContractor.vb" />
     <Compile Include="model\Rounding.vb" />
     <Compile Include="model\TagAndValue.vb" />
     <Compile Include="module\m_kubun.vb" />
     <Compile Include="module\m_main.vb" />
     <Compile Include="module\m_seikyuu.vb" />
+    <Compile Include="module\m_shiire.vb" />
     <Compile Include="module\m_shuukei.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -415,6 +430,9 @@
     <EmbeddedResource Include="frmmain.resx">
       <DependentUpon>frmmain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmnouhinsho_rireki.resx">
+      <DependentUpon>frmnouhinsho_rireki.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmnouhinsho_sentaku.resx">
       <DependentUpon>frmnouhinsho_sentaku.vb</DependentUpon>
     </EmbeddedResource>
@@ -444,6 +462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmshiharai_rireki.resx">
       <DependentUpon>frmshiharai_rireki.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshiharai_rireki_shousai.resx">
+      <DependentUpon>frmshiharai_rireki_shousai.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmshiharai_sentaku.resx">
       <DependentUpon>frmshiharai_sentaku.vb</DependentUpon>
