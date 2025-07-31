@@ -22,6 +22,8 @@ Partial Class frmshiharai_rireki
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.btn_shousai = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -63,7 +65,7 @@ Partial Class frmshiharai_rireki
         Me.gbx_main.Margin = New System.Windows.Forms.Padding(2)
         Me.gbx_main.Name = "gbx_main"
         Me.gbx_main.Padding = New System.Windows.Forms.Padding(2)
-        Me.gbx_main.Size = New System.Drawing.Size(1064, 971)
+        Me.gbx_main.Size = New System.Drawing.Size(1025, 971)
         Me.gbx_main.TabIndex = 57
         Me.gbx_main.TabStop = False
         '
@@ -98,13 +100,13 @@ Partial Class frmshiharai_rireki
         Me.rbn_shubetsu_gyousha.Name = "rbn_shubetsu_gyousha"
         Me.rbn_shubetsu_gyousha.Size = New System.Drawing.Size(95, 18)
         Me.rbn_shubetsu_gyousha.TabIndex = 201
-        Me.rbn_shubetsu_gyousha.TabStop = True
         Me.rbn_shubetsu_gyousha.Text = "仕入業者別"
         Me.rbn_shubetsu_gyousha.UseVisualStyleBackColor = True
         '
         'rbn_shubetsu_shiharai_tsuki
         '
         Me.rbn_shubetsu_shiharai_tsuki.AutoSize = True
+        Me.rbn_shubetsu_shiharai_tsuki.Checked = True
         Me.rbn_shubetsu_shiharai_tsuki.Location = New System.Drawing.Point(25, 21)
         Me.rbn_shubetsu_shiharai_tsuki.Name = "rbn_shubetsu_shiharai_tsuki"
         Me.rbn_shubetsu_shiharai_tsuki.Size = New System.Drawing.Size(81, 18)
@@ -173,6 +175,7 @@ Partial Class frmshiharai_rireki
         Me.gbx_gyousha.Controls.Add(Me.cbx_gyousha)
         Me.gbx_gyousha.Controls.Add(Me.chk_hyouji_subete_gyousha)
         Me.gbx_gyousha.Controls.Add(Me.btn_clear_gyousha)
+        Me.gbx_gyousha.Enabled = False
         Me.gbx_gyousha.Location = New System.Drawing.Point(227, 45)
         Me.gbx_gyousha.Name = "gbx_gyousha"
         Me.gbx_gyousha.Size = New System.Drawing.Size(493, 61)
@@ -241,7 +244,23 @@ Partial Class frmshiharai_rireki
         '
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle4
         Me.dgv_kensakukekka.Location = New System.Drawing.Point(5, 19)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
@@ -279,7 +298,7 @@ Partial Class frmshiharai_rireki
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1381, 994)
+        Me.ClientSize = New System.Drawing.Size(1047, 994)
         Me.ControlBox = False
         Me.Controls.Add(Me.gbx_main)
         Me.Name = "frmshiharai_rireki"

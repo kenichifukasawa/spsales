@@ -1,4 +1,6 @@
-﻿Public Class frmshiharai_rireki
+﻿Imports System.Data.SqlClient
+
+Public Class frmshiharai_rireki
 
     Private Sub frmshiharai_rireki_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -25,6 +27,133 @@
     End Sub
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
+
+        With dgv_kensakukekka
+
+            .Rows.Clear()
+            .Columns.Clear()
+            .ColumnCount = 8
+
+            .Columns(0).Name = "NO"
+            .Columns(1).Name = "支払ID"
+            .Columns(2).Name = "支払日"
+            .Columns(3).Name = "業者名"
+            .Columns(4).Name = "支払金額"
+            .Columns(5).Name = "支払方法"
+            .Columns(6).Name = "支払期日"
+            .Columns(7).Name = "備考"
+
+            .Columns(0).Width = 50
+            .Columns(1).Width = 90
+            .Columns(2).Width = 110
+            .Columns(3).Width = 280
+            .Columns(4).Width = 90
+            .Columns(5).Width = 90
+            .Columns(6).Width = 110
+            .Columns(7).Width = 100
+
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+            .Columns(4).DefaultCellStyle.Format = "#,##0"
+
+        End With
+
+        Try
+
+            Dim query = "SELECT shukkin.*, gyousha.gyoushamei FROM shukkin RIGHT JOIN gyousha ON shukkin.gyoushaid = gyousha.gyoushaid"
+
+            Dim query_where = ""
+            If rbn_shubetsu_shiharai_tsuki.Checked Then
+
+                Dim nen = cbx_nen.Text
+                Dim tsuki = cbx_tsuki.Text
+                If nen = "" Or tsuki = "" Then
+                    msg_go("年と月は両方選択してください。")
+                    Exit Sub
+                End If
+                Dim hinichi_kaishi = nen + tsuki + "01"
+                Dim hinichi_owari = nen + tsuki + "31"
+
+                query_where += " WHERE shukkin.shukkinbi BETWEEN '" + hinichi_kaishi + "' AND '" + hinichi_owari + "'"
+
+            ElseIf rbn_shubetsu_gyousha.Checked Then
+
+                Dim gyousha_id = Mid(Trim(cbx_gyousha.Text), 1, 3)
+                If gyousha_id = "" Then
+                    msg_go("業者を選択してください。")
+                    Exit Sub
+                End If
+
+                query_where += " WHERE shukkin.gyoushaid = '" + gyousha_id + "'"
+
+            End If
+
+            query += query_where + " ORDER BY shukkin.shukkinbi DESC, gyousha.gyoushafurigana"
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            Dim temp_table_name = "t_shukkin"
+            da_server.Fill(ds_server, temp_table_name)
+            Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
+
+            If dt_server.Rows.Count > 0 Then
+
+                'grid_shiirerireki_set_sub3(newseikyurirekisuu_s) ' TODO
+
+                Dim mojiretsu(7)
+                For i = 0 To dt_server.Rows.Count - 1
+
+                    mojiretsu(0) = (i + 1).ToString()
+                    mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shukkinid"))
+                    mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shukkinbi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                    mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("gyoushamei"))
+
+                    Dim shukkingaku = 0
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("shukkingaku")) Then
+                        shukkingaku = CInt(Trim(dt_server.Rows.Item(i).Item("shukkingaku")))
+                    End If
+                    mojiretsu(4) = shukkingaku
+
+                    mojiretsu(5) = PaymentMethodsInvoice.GetNameById(Trim(dt_server.Rows.Item(i).Item("shukkinhouhou")))
+
+                    Dim kijitsu = ""
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("kijitsu")) Then
+                        kijitsu = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("kijitsu")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                    End If
+                    mojiretsu(6) = kijitsu
+
+                    Dim bikou = ""
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
+                        bikou = Trim(dt_server.Rows.Item(i).Item("bikou"))
+                    End If
+                    mojiretsu(7) = bikou
+
+                    dgv_kensakukekka.Rows.Add(mojiretsu)
+
+                Next
+
+            Else
+                'grid_shiirerireki_set_sub3(0)
+            End If
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
 
     End Sub
 

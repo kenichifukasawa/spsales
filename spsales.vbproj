@@ -324,8 +324,10 @@
     </Compile>
     <Compile Include="model\BankAccountType.vb" />
     <Compile Include="model\ConsumptionTax.vb" />
+    <Compile Include="model\PaymentMethodsDeposit.vb" />
+    <Compile Include="model\PaymentMethodsInvoice.vb" />
     <Compile Include="model\Deadline.vb" />
-    <Compile Include="model\PaymentMethods.vb" />
+    <Compile Include="model\PaymentMethodsContractor.vb" />
     <Compile Include="model\Rounding.vb" />
     <Compile Include="model\TagAndValue.vb" />
     <Compile Include="module\m_main.vb" />

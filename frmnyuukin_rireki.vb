@@ -297,26 +297,7 @@ Public Class frmnyuukin_rireki
                 mojiretsu(5) = seikyuukingaku
                 sum_goukei_gaku += seikyuukingaku
 
-                Dim seikyuu_name = "不明"
-                Select Case Trim(dt_server.Rows.Item(i).Item("seikyuutanni"))
-                    Case "0"
-                        seikyuu_name = "現金"
-                    Case "1"
-                        seikyuu_name = "振込"
-                    Case "2"
-                        seikyuu_name = "小切手"
-                    Case "3"
-                        seikyuu_name = "相殺"
-                    Case "4"
-                        seikyuu_name = "手数料"
-                    Case "5"
-                        seikyuu_name = "値引"
-                    Case "6"
-                        seikyuu_name = "その他"
-                    Case "7"
-                        seikyuu_name = "クレジット"
-                End Select
-                mojiretsu(6) = seikyuu_name
+                mojiretsu(6) = PaymentMethodsDeposit.GetNameById(Trim(dt_server.Rows.Item(i).Item("seikyuutanni")))
 
                 Dim kakunin = "未確認"
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("kakunin")) Then
