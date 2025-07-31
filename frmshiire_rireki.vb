@@ -14,7 +14,7 @@ Public Class frmshiire_rireki
     End Sub
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
-        set_shiire_rireki()
+        set_shuukei()
     End Sub
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
@@ -138,7 +138,7 @@ Public Class frmshiire_rireki
 
         End With
 
-        set_shiire_rireki()
+        set_shuukei()
 
     End Sub
 
@@ -276,7 +276,7 @@ Public Class frmshiire_rireki
         Next
 
         msg_go("選択した仕入伝票を削除しました。", 64)
-        set_shiire_rireki()
+        set_shuukei()
 
     End Sub
 
@@ -285,7 +285,7 @@ Public Class frmshiire_rireki
         cbx_gyousha.SelectedIndex = -1
     End Sub
 
-    Private Sub set_shiire_rireki()
+    Private Sub set_shuukei()
 
         Dim hinichi_kaishi = dtp_hinichi_kaishi.Value.ToString("yyyyMMdd")
         Dim hinichi_owari = dtp_hinichi_owari.Value.ToString("yyyyMMdd")
