@@ -50,7 +50,7 @@ Public Class frmshiire_rireki
                 .Columns(2).Width = 300
                 .Columns(3).Width = 80
                 .Columns(4).Width = 90
-                .Columns(5).Width = 194
+                .Columns(5).Width = 188
                 .Columns(6).Width = 0
                 .Columns(7).Width = 0
 
@@ -67,6 +67,10 @@ Public Class frmshiire_rireki
 
                 .Columns(3).DefaultCellStyle.Format = "#,##0"
                 .Columns(4).DefaultCellStyle.Format = "#,##0"
+
+                ' 行の高さの指定
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 25
 
             End With
 

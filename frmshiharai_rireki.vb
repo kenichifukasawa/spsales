@@ -71,6 +71,10 @@ Public Class frmshiharai_rireki
 
                 .Columns(3).DefaultCellStyle.Format = "#,##0"
 
+                '' 行の高さの指定
+                '.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                '.ColumnHeadersHeight = 25
+
             End With
 
             Dim sum_goukei_gaku = 0

@@ -306,6 +306,10 @@ Public Class frmichiran_gyousha
 
                 .Columns(1).Frozen = True
 
+                ' 行の高さの指定
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 50
+
             End With
 
             Dim mojiretsu(30) As String

@@ -337,6 +337,10 @@ Public Class frmshuukei_hanbai
             .Columns(3).DefaultCellStyle.Format = "#,##0"
             .Columns(4).DefaultCellStyle.Format = "#,##0"
 
+            ' 行の高さの指定
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+            .ColumnHeadersHeight = 25
+
         End With
 
         Dim sum_goukei_suu = 0
