@@ -48,7 +48,7 @@ Public Class frmshiharai_rireki
 
         Dim shukkin_id = dgv_kensakukekka.CurrentRow.Cells(1).Value
 
-        Dim result As DialogResult = MessageBox.Show("以下の支払履歴を本当に削除しますか？" + vbCrLf + vbCrLf + "仕入ID：" + shukkin_id, "SpSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        Dim result As DialogResult = MessageBox.Show("以下の支払履歴を本当に削除しますか？" + vbCrLf + vbCrLf + "支払ID：" + shukkin_id, "SpSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
         If result = DialogResult.No Then
             Exit Sub
         End If
@@ -69,6 +69,7 @@ Public Class frmshiharai_rireki
             Dim count = ds.Tables(temp_table_name).Rows.Count
             If count = 0 Then
                 msg_go("選択した伝票がみつかりません")
+                ds.Clear()
                 Exit Sub
             End If
 
@@ -79,7 +80,6 @@ Public Class frmshiharai_rireki
             Next
 
             Dim cb As New SqlCommandBuilder(da)
-            'cb.DataAdapter = da ' TODO:削除？
             da.Update(ds, temp_table_name)
             ds.Clear()
 
@@ -99,9 +99,13 @@ Public Class frmshiharai_rireki
             Dim temp_table_name = "t_shukkin"
             da.Fill(ds, temp_table_name)
 
-            For i = ds.Tables(temp_table_name).Rows.Count - 1 To 0 Step -1
-                ds.Tables(temp_table_name).Rows(i).Delete()
-            Next
+            If ds.Tables(temp_table_name).Rows.Count > 0 Then
+                ds.Tables(temp_table_name).Rows(0).Delete()
+            Else
+                msg_go("出金記録の削除に失敗しました。")
+                ds.Clear()
+                Exit Sub
+            End If
 
             Dim cb As New SqlCommandBuilder(da)
             da.Update(ds, temp_table_name)

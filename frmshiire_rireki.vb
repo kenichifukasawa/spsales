@@ -173,6 +173,7 @@ Public Class frmshiire_rireki
             da.Fill(ds, temp_table_name)
 
             If ds.Tables(temp_table_name).Rows.Count > 0 Then
+
                 ds.Tables(temp_table_name).Rows(0).Delete()
 
                 Dim cb As New SqlCommandBuilder(da)
@@ -181,6 +182,7 @@ Public Class frmshiire_rireki
 
             Else
                 msg_go("該当する仕入が見つかりません。")
+                ds.Clear()
                 Exit Sub
             End If
 
@@ -214,6 +216,10 @@ Public Class frmshiire_rireki
                 Next
                 Dim cb As New SqlCommandBuilder(da)
                 da.Update(ds, temp_table_name)
+            Else
+                msg_go("仕入詳細記録のデータの削除に失敗しました。")
+                ds.Clear()
+                Exit Sub
             End If
 
             ds.Clear()
@@ -253,6 +259,7 @@ Public Class frmshiire_rireki
                 Dim new_atai = shiire_suu.ToString
                 If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
                     msg_go("在庫ログ登録作業中にエラーが発生しました。")
+                    ds.Clear()
                     Exit Sub
                 End If
 
