@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmshiire_rireki_shousai
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,13 +20,11 @@ Partial Class frmshiire_rireki_shousai
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.gbx_main = New System.Windows.Forms.GroupBox()
-        Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
         Me.Group1 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lbl_shiire_id = New System.Windows.Forms.Label()
         Me.lbl_kingaku = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.btn_modoru = New System.Windows.Forms.Button()
@@ -34,57 +32,12 @@ Partial Class frmshiire_rireki_shousai
         Me.Label7 = New System.Windows.Forms.Label()
         Me.lbl_shiiresaki = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.lbl_shiire_id = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.gbx_main.SuspendLayout()
-        CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
+        Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.Group1.SuspendLayout()
+        CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbx_main.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'gbx_main
-        '
-        Me.gbx_main.BackColor = System.Drawing.Color.White
-        Me.gbx_main.Controls.Add(Me.dgv_kensakukekka)
-        Me.gbx_main.Controls.Add(Me.Group1)
-        Me.gbx_main.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.gbx_main.Location = New System.Drawing.Point(11, 11)
-        Me.gbx_main.Margin = New System.Windows.Forms.Padding(2)
-        Me.gbx_main.Name = "gbx_main"
-        Me.gbx_main.Padding = New System.Windows.Forms.Padding(2)
-        Me.gbx_main.Size = New System.Drawing.Size(968, 972)
-        Me.gbx_main.TabIndex = 56
-        Me.gbx_main.TabStop = False
-        Me.gbx_main.Text = "仮伝票"
-        '
-        'dgv_kensakukekka
-        '
-        Me.dgv_kensakukekka.AllowUserToAddRows = False
-        Me.dgv_kensakukekka.AllowUserToDeleteRows = False
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle4
-        Me.dgv_kensakukekka.Location = New System.Drawing.Point(24, 161)
-        Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
-        Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
-        Me.dgv_kensakukekka.ReadOnly = True
-        Me.dgv_kensakukekka.RowTemplate.Height = 24
-        Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(915, 788)
-        Me.dgv_kensakukekka.TabIndex = 192
         '
         'Group1
         '
@@ -103,6 +56,27 @@ Partial Class frmshiire_rireki_shousai
         Me.Group1.Size = New System.Drawing.Size(915, 137)
         Me.Group1.TabIndex = 191
         Me.Group1.TabStop = False
+        '
+        'Label2
+        '
+        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label2.Location = New System.Drawing.Point(263, 34)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(68, 21)
+        Me.Label2.TabIndex = 35
+        Me.Label2.Text = "仕入ID"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbl_shiire_id
+        '
+        Me.lbl_shiire_id.BackColor = System.Drawing.Color.White
+        Me.lbl_shiire_id.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lbl_shiire_id.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shiire_id.Location = New System.Drawing.Point(337, 34)
+        Me.lbl_shiire_id.Name = "lbl_shiire_id"
+        Me.lbl_shiire_id.Size = New System.Drawing.Size(125, 21)
+        Me.lbl_shiire_id.TabIndex = 34
+        Me.lbl_shiire_id.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lbl_kingaku
         '
@@ -179,26 +153,34 @@ Partial Class frmshiire_rireki_shousai
         Me.Label5.Text = "仕入先"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl_shiire_id
+        'dgv_kensakukekka
         '
-        Me.lbl_shiire_id.BackColor = System.Drawing.Color.White
-        Me.lbl_shiire_id.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.lbl_shiire_id.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shiire_id.Location = New System.Drawing.Point(337, 34)
-        Me.lbl_shiire_id.Name = "lbl_shiire_id"
-        Me.lbl_shiire_id.Size = New System.Drawing.Size(125, 21)
-        Me.lbl_shiire_id.TabIndex = 34
-        Me.lbl_shiire_id.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.dgv_kensakukekka.AllowUserToAddRows = False
+        Me.dgv_kensakukekka.AllowUserToDeleteRows = False
+        Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_kensakukekka.Location = New System.Drawing.Point(24, 161)
+        Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
+        Me.dgv_kensakukekka.ReadOnly = True
+        Me.dgv_kensakukekka.RowTemplate.Height = 24
+        Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(915, 788)
+        Me.dgv_kensakukekka.TabIndex = 192
         '
-        'Label2
+        'gbx_main
         '
-        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label2.Location = New System.Drawing.Point(263, 34)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(68, 21)
-        Me.Label2.TabIndex = 35
-        Me.Label2.Text = "仕入ID"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.gbx_main.BackColor = System.Drawing.Color.White
+        Me.gbx_main.Controls.Add(Me.dgv_kensakukekka)
+        Me.gbx_main.Controls.Add(Me.Group1)
+        Me.gbx_main.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.gbx_main.Location = New System.Drawing.Point(11, 11)
+        Me.gbx_main.Margin = New System.Windows.Forms.Padding(2)
+        Me.gbx_main.Name = "gbx_main"
+        Me.gbx_main.Padding = New System.Windows.Forms.Padding(2)
+        Me.gbx_main.Size = New System.Drawing.Size(968, 972)
+        Me.gbx_main.TabIndex = 56
+        Me.gbx_main.TabStop = False
+        Me.gbx_main.Text = "仮伝票"
         '
         'frmshiire_rireki_shousai
         '
@@ -210,16 +192,16 @@ Partial Class frmshiire_rireki_shousai
         Me.Name = "frmshiire_rireki_shousai"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "仕入伝票詳細"
-        Me.gbx_main.ResumeLayout(False)
-        CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Group1.ResumeLayout(False)
+        CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbx_main.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents gbx_main As GroupBox
-    Friend WithEvents dgv_kensakukekka As DataGridView
     Friend WithEvents Group1 As GroupBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents lbl_shiire_id As Label
     Friend WithEvents lbl_kingaku As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents btn_modoru As Button
@@ -227,6 +209,6 @@ Partial Class frmshiire_rireki_shousai
     Friend WithEvents Label7 As Label
     Friend WithEvents lbl_shiiresaki As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents lbl_shiire_id As Label
+    Friend WithEvents dgv_kensakukekka As DataGridView
+    Friend WithEvents gbx_main As GroupBox
 End Class

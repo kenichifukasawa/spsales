@@ -17,6 +17,7 @@ Public Class frmshiharai_rireki
         For i = 1 To 12
             cbx_tsuki.Items.Add(i.ToString("D2"))
         Next
+        cbx_tsuki.SelectedIndex = cbx_tsuki.FindStringExact(Now.ToString("MM"))
 
         set_gyousha_cbx(2, chk_hyouji_subete_gyousha.Checked)
 

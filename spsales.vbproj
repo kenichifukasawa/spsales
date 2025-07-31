@@ -338,6 +338,7 @@
     <Compile Include="model\TagAndValue.vb" />
     <Compile Include="module\m_main.vb" />
     <Compile Include="module\m_seikyuu.vb" />
+    <Compile Include="module\m_shiire.vb" />
     <Compile Include="module\m_shuukei.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
