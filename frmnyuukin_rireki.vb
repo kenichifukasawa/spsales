@@ -161,9 +161,8 @@ Public Class frmnyuukin_rireki
             Exit Sub
         End If
 
-        Dim nissuu = get_tsuki_saishuubi(nen, tsuki)
-
         cbx_hi.Items.Clear()
+        Dim nissuu = get_tsuki_saishuubi(nen, tsuki)
         For i = 1 To CInt(nissuu)
             cbx_hi.Items.Add(i.ToString("D2"))
         Next

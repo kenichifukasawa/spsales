@@ -308,6 +308,8 @@ Module m_shuukei
                 frmshuukei_hanbai.cbx_shain.Items.Clear()
             Case 2
                 frmnyuukin_rireki.cbx_shain.Items.Clear()
+            Case 3
+                frmnouhinsho_rireki.cbx_shain.Items.Clear()
             Case 4
                 frmsettei.cmbshain.Items.Clear()
             Case Else
@@ -334,6 +336,8 @@ Module m_shuukei
                         frmshuukei_hanbai.cbx_shain.Items.Add(item_name)
                     Case 2
                         frmnyuukin_rireki.cbx_shain.Items.Add(item_name)
+                    Case 3
+                        frmnouhinsho_rireki.cbx_shain.Items.Add(item_name)
                     Case 4
                         frmsettei.cmbshain.Items.Add(item_name)
                 End Select

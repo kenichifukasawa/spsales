@@ -8,6 +8,6 @@
     End Sub
 
     Private Sub btn_ichiran_Click(sender As Object, e As EventArgs) Handles btn_ichiran.Click
-
+        frmnouhinsho_rireki.ShowDialog()
     End Sub
 End Class
