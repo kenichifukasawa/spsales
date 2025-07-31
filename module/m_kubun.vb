@@ -6,5 +6,10 @@
 
     End Sub
 
+    Sub kubun_1_set()
+
+
+
+    End Sub
 
 End Module
