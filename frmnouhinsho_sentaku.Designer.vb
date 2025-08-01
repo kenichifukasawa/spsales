@@ -26,7 +26,7 @@ Partial Class frmnouhinsho_sentaku
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btn_ichiran = New System.Windows.Forms.Button()
+        Me.btn_rireki = New System.Windows.Forms.Button()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.btn_idou = New System.Windows.Forms.Button()
@@ -61,7 +61,7 @@ Partial Class frmnouhinsho_sentaku
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.btn_ichiran)
+        Me.GroupBox1.Controls.Add(Me.btn_rireki)
         Me.GroupBox1.Location = New System.Drawing.Point(188, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(170, 147)
@@ -78,17 +78,17 @@ Partial Class frmnouhinsho_sentaku
         Me.Label1.Text = "「TODO」情報の管理をします。"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btn_ichiran
+        'btn_rireki
         '
-        Me.btn_ichiran.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_ichiran.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_ichiran.Location = New System.Drawing.Point(13, 89)
-        Me.btn_ichiran.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_ichiran.Name = "btn_ichiran"
-        Me.btn_ichiran.Size = New System.Drawing.Size(147, 44)
-        Me.btn_ichiran.TabIndex = 97
-        Me.btn_ichiran.Text = "納品書一覧"
-        Me.btn_ichiran.UseVisualStyleBackColor = True
+        Me.btn_rireki.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_rireki.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_rireki.Location = New System.Drawing.Point(13, 89)
+        Me.btn_rireki.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_rireki.Name = "btn_rireki"
+        Me.btn_rireki.Size = New System.Drawing.Size(147, 44)
+        Me.btn_rireki.TabIndex = 97
+        Me.btn_rireki.Text = "納品書履歴"
+        Me.btn_rireki.UseVisualStyleBackColor = True
         '
         'GroupBox16
         '
@@ -146,7 +146,7 @@ Partial Class frmnouhinsho_sentaku
     Friend WithEvents btn_modoru As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents btn_ichiran As Button
+    Friend WithEvents btn_rireki As Button
     Friend WithEvents GroupBox16 As GroupBox
     Friend WithEvents Label21 As Label
     Friend WithEvents btn_idou As Button
