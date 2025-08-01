@@ -35,6 +35,9 @@ Public Class frmnouhinsho_rireki
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
+        ' TODO:main画面に詳細が移動したため、保留
+        frmnouhinsho_rireki_shousai.ShowDialog()
+
     End Sub
 
     Private Sub btn_kakunin_Click(sender As Object, e As EventArgs) Handles btn_kakunin.Click
@@ -76,7 +79,7 @@ Public Class frmnouhinsho_rireki
                 Dim da As New SqlDataAdapter
                 da = New SqlDataAdapter(query, conn)
                 Dim ds As New DataSet
-                Dim temp_table_name = "t_seikyuusho"
+                Dim temp_table_name = "t_hacchuu"
                 da.Fill(ds, temp_table_name)
 
                 Select Case motokakunin
