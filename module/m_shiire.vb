@@ -56,9 +56,6 @@ Module m_shiire
                 Dim currentFont As Font = .DefaultCellStyle.Font
                 .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
-                Dim currentColumnFont As Font = .ColumnHeadersDefaultCellStyle.Font
-                .ColumnHeadersDefaultCellStyle.Font = New Font(currentColumnFont.FontFamily, 11.25F, currentColumnFont.Style)
-
             End With
 
             Dim sum_goukei_gaku = 0
