@@ -250,13 +250,15 @@ Module m_shuukei
 
     End Sub
 
-    Sub set_tenpo_name_cbx(frm_no As Integer, is_hihyouji_torihiki_nai As Boolean)
+    Sub set_tenpo_cbx(frm_no As Integer, is_hihyouji_torihiki_nai As Boolean)
 
         Select Case frm_no
             Case 1
                 frmshuukei_hanbai.cbx_tenpo.Items.Clear()
             Case 2
                 frmcheck_kurikoshi_log.cbx_tenpo.Items.Clear()
+            Case 3
+                frmseikyuu_rireki.cbx_tenpo.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -288,6 +290,8 @@ Module m_shuukei
                         frmshuukei_hanbai.cbx_tenpo.Items.Add(item_name)
                     Case 2
                         frmcheck_kurikoshi_log.cbx_tenpo.Items.Add(item_name)
+                    Case 3
+                        frmseikyuu_rireki.cbx_tenpo.Items.Add(item_name)
                 End Select
             Next
 

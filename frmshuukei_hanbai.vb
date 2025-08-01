@@ -11,7 +11,7 @@ Public Class frmshuukei_hanbai
 
         set_gyousha_kubun_cbx(1)
         set_shouhin_kubun_1_cbx(1)
-        set_tenpo_name_cbx(1, chk_hihyouji_torihiki_nai.Checked)
+        set_tenpo_cbx(1, chk_hihyouji_torihiki_nai.Checked)
         set_shain_cbx(1)
 
     End Sub
@@ -249,7 +249,7 @@ Public Class frmshuukei_hanbai
 
     Private Sub chk_hihyouji_torihiki_nai_Click(sender As Object, e As EventArgs) Handles chk_hihyouji_torihiki_nai.Click
         dgv_kensakukekka.Rows.Clear()
-        set_tenpo_name_cbx(1, chk_hihyouji_torihiki_nai.Checked)
+        set_tenpo_cbx(1, chk_hihyouji_torihiki_nai.Checked)
     End Sub
 
     Private Sub chk_haiban_Click(sender As Object, e As EventArgs) Handles chk_haiban.Click
