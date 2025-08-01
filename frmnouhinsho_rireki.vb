@@ -35,9 +35,75 @@ Public Class frmnouhinsho_rireki
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
+        ' TODO:main画面に詳細が移動したため、保留
+        frmnouhinsho_rireki_shousai.ShowDialog()
+
     End Sub
 
     Private Sub btn_kakunin_Click(sender As Object, e As EventArgs) Handles btn_kakunin.Click
+
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("履歴が表示されていません。")
+            Exit Sub
+        End If
+
+        Dim can_delete = False
+        For i = 0 To dgv_kensakukekka.Rows.Count - 1
+            If dgv_kensakukekka(0, i).Value = True Then
+                can_delete = True
+                Exit For
+            End If
+        Next
+
+        If can_delete = False Then
+            msg_go("確認したい項目を選択してから実行してください。")
+            Exit Sub
+        End If
+
+        For i = 0 To dgv_kensakukekka.Rows.Count - 1
+
+            If dgv_kensakukekka(0, i).Value = False Then
+                Continue For
+            End If
+
+            Dim hacchuuid = dgv_kensakukekka(3, i).Value
+            Dim motokakunin = dgv_kensakukekka(9, i).Value
+
+            Try
+
+                Dim conn As New SqlConnection
+                conn.ConnectionString = connectionstring_sqlserver
+
+                Dim query = "select * from hacchuu WHERE hacchuuid = '" + hacchuuid + "'"
+
+                Dim da As New SqlDataAdapter
+                da = New SqlDataAdapter(query, conn)
+                Dim ds As New DataSet
+                Dim temp_table_name = "t_hacchuu"
+                da.Fill(ds, temp_table_name)
+
+                Select Case motokakunin
+                    Case "確認済み"
+                        ds.Tables(temp_table_name).Rows(0)("kakunin") = DBNull.Value
+                    Case "未確認"
+                        ds.Tables(temp_table_name).Rows(0)("kakunin") = "1"
+                    Case Else
+                        ds.Tables(temp_table_name).Rows(0)("kakunin") = DBNull.Value
+                End Select
+
+                Dim cb As New SqlCommandBuilder
+                cb.DataAdapter = da
+                da.Update(ds, temp_table_name)
+                ds.Clear()
+
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Sub
+            End Try
+
+        Next
+
+        set_shuukei()
 
     End Sub
 
@@ -168,6 +234,9 @@ Public Class frmnouhinsho_rireki
             .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             .Columns(6).DefaultCellStyle.Format = "#,##0"
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
         End With
 
