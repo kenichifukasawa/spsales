@@ -394,7 +394,7 @@ Module m_main
             .Columns(3).Width = 40
             .Columns(4).Width = 60
             .Columns(5).Width = 80
-            .Columns(6).Width = 100
+            .Columns(6).Width = 90
             .Columns(7).Width = 50
             .Columns(8).Width = 0
             .Columns(9).Width = 0

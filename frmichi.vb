@@ -9,6 +9,8 @@
 
     Private Sub btn_kubun_Click(sender As Object, e As EventArgs) Handles btn_kubun.Click
 
+        frmshouhinkubun.ShowDialog()
+
     End Sub
 
     Private Sub btn_gyousha_Click(sender As Object, e As EventArgs) Handles btn_gyousha.Click
