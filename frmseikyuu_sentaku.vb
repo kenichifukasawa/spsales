@@ -12,7 +12,7 @@
     End Sub
 
     Private Sub btn_rireki_Click(sender As Object, e As EventArgs) Handles btn_rireki.Click
-
+        frmseikyuu_rireki.ShowDialog()
     End Sub
 
     Private Sub btn_mail_Click(sender As Object, e As EventArgs) Handles btn_mail.Click

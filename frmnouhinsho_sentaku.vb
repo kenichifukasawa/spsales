@@ -10,4 +10,5 @@
     Private Sub btn_rireki_Click(sender As Object, e As EventArgs) Handles btn_rireki.Click
         frmnouhinsho_rireki.ShowDialog()
     End Sub
+
 End Class

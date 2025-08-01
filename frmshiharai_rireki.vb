@@ -230,7 +230,7 @@ Public Class frmshiharai_rireki
         cbx_gyousha.SelectedIndex = -1
     End Sub
 
-    Private Sub rbn_shubetsu_shiharai_tsuki_Click(sender As Object, e As EventArgs) Handles rbn_shubetsu_shiharai_tsuki.Click
+    Private Sub rbn_shubetsu_kikan_Click(sender As Object, e As EventArgs) Handles rbn_shubetsu_kikan.Click
         gbx_shiharai_tsuki.Enabled = True
         gbx_gyousha.Enabled = False
         cbx_gyousha.SelectedIndex = -1
@@ -305,7 +305,7 @@ Public Class frmshiharai_rireki
             Dim query = "SELECT shukkin.*, gyousha.gyoushamei FROM shukkin RIGHT JOIN gyousha ON shukkin.gyoushaid = gyousha.gyoushaid"
 
             Dim query_where = ""
-            If rbn_shubetsu_shiharai_tsuki.Checked Then
+            If rbn_shubetsu_kikan.Checked Then
 
                 Dim nen = cbx_nen.Text
                 Dim tsuki = cbx_tsuki.Text
