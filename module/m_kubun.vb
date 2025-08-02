@@ -2,6 +2,34 @@
 
 Module m_kubun
 
+    Function kubun_gyousha_umu_chk(s_kubun0id As String) As String
+
+        kubun_gyousha_umu_chk = ""
+
+        Try
+
+            Sql = "SELECT * FROM shouhinkubun0 where shouhinkubunid0 = '" & s_kubun0id & "' ORDER BY shouhinkubunid0"
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+            Dim ds_server As New DataSet
+            Dim temp_table_name = "t_shoukaii"
+            da_server.Fill(ds_server, temp_table_name)
+            Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
+
+            If dt_server.Rows.Count = 0 Then
+                kubun_gyousha_umu_chk = "0"
+            End If
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+        End Try
+
+    End Function
     Sub kubun_gyousha_set()
 
         Try
