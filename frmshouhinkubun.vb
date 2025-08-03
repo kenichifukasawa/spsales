@@ -52,4 +52,33 @@
             .ShowDialog()
         End With
     End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+
+        frmshouhinkubun1.ShowDialog()
+
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        '選択
+        If Me.dgv_kubun1.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim sentakuid As String = Trim(Me.dgv_kubun1.CurrentRow.Cells(0).Value.ToString)
+        Dim sentakumei As String = Trim(Me.dgv_kubun1.CurrentRow.Cells(1).Value.ToString)
+
+        With frmshouhinkubun1
+
+            .lblkubunid.Text = sentakuid
+            .txtkubunid.Text = sentakuid
+            .txtkubunid.Enabled = False
+            .lblkubunmei.Text = sentakumei
+            .txtkubunmei.Text = sentakumei
+
+
+            .ShowDialog()
+        End With
+    End Sub
 End Class
