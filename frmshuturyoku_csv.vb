@@ -1187,10 +1187,10 @@ Public Class frmshuturyoku_csv
     Private Sub frmshuturyoku_csv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim nen_ima = CInt(DateTime.Now.ToString("yyyy"))
-        Dim sakanobori_nensuu = 3
+        Dim csv_started_year = 2022
 
         cbx_nen.Items.Clear()
-        For i = nen_ima - sakanobori_nensuu To nen_ima
+        For i = csv_started_year To nen_ima
             cbx_nen.Items.Add(i.ToString)
         Next
         cbx_tsuki.Items.Clear()
