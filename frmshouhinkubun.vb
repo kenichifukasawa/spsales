@@ -11,4 +11,90 @@
         kubun_1_set()
 
     End Sub
+
+    Private Sub cmbkubun1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbkubun1.SelectedIndexChanged
+
+        If cmbkubun1.SelectedIndex <> -1 Then
+            kubun_2_set(Mid(Trim(cmbkubun1.Text), 1, 2))
+        End If
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
+
+
+        frmshouhinkubun0.ShowDialog()
+
+
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        '選択
+        If Me.dgv_kubun0.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim sentakuid As String = Trim(Me.dgv_kubun0.CurrentRow.Cells(0).Value.ToString)
+        Dim sentakumei As String = Trim(Me.dgv_kubun0.CurrentRow.Cells(1).Value.ToString)
+
+        With frmshouhinkubun0
+
+            .lblkubun0id.Text = sentakuid
+            .txtkubun0id.Text = sentakuid
+            .txtkubun0id.Enabled = False
+            .lblkubun0mei.Text = sentakumei
+            .txtkubun0mei.Text = sentakumei
+
+
+            .ShowDialog()
+        End With
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+
+        frmshouhinkubun1.ShowDialog()
+
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        '選択
+        If Me.dgv_kubun1.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim sentakuid As String = Trim(Me.dgv_kubun1.CurrentRow.Cells(0).Value.ToString)
+        Dim sentakumei As String = Trim(Me.dgv_kubun1.CurrentRow.Cells(1).Value.ToString)
+
+        With frmshouhinkubun1
+
+            .lblkubunid.Text = sentakuid
+            .txtkubunid.Text = sentakuid
+            .txtkubunid.Enabled = False
+            .lblkubunmei.Text = sentakumei
+            .txtkubunmei.Text = sentakumei
+
+
+            .ShowDialog()
+        End With
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+
+        '  If cmbkubun1.SelectedIndex =
+
+        With frmshouhinkubun2
+            .cmbwella.Items.Clear()
+            .cmbwella.Items.Add("なし")
+            .cmbwella.Items.Add("ウエラ")
+            .cmbwella.Items.Add("セバスチャン")
+
+            kubun_1_set2(0)
+
+            .ShowDialog()
+        End With
+    End Sub
 End Class

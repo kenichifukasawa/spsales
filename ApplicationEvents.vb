@@ -194,6 +194,7 @@ Namespace My
                 ' ret = MsgBox("ユーザー名を設定してください。設定しないと商品を発注できません。", 16, "総合管理システム「SPSALES」")
                 msg_go("ユーザー名を設定してください。設定しないと商品を発注できません。")
                 frmmain.lblpcname.Text = ""
+
             Else
                 frmmain.lblpcname.Text = settei_res
             End If

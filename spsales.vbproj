@@ -310,6 +310,24 @@
     <Compile Include="frmshouhinkubun.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmshouhinkubun0.Designer.vb">
+      <DependentUpon>frmshouhinkubun0.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshouhinkubun0.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmshouhinkubun1.Designer.vb">
+      <DependentUpon>frmshouhinkubun1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshouhinkubun1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmshouhinkubun2.Designer.vb">
+      <DependentUpon>frmshouhinkubun2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshouhinkubun2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmshutsuryoku_sentaku.Designer.vb">
       <DependentUpon>frmshutsuryoku_sentaku.vb</DependentUpon>
     </Compile>
@@ -498,6 +516,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmshouhinkubun.resx">
       <DependentUpon>frmshouhinkubun.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshouhinkubun0.resx">
+      <DependentUpon>frmshouhinkubun0.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshouhinkubun1.resx">
+      <DependentUpon>frmshouhinkubun1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshouhinkubun2.resx">
+      <DependentUpon>frmshouhinkubun2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmshutsuryoku_sentaku.resx">
       <DependentUpon>frmshutsuryoku_sentaku.vb</DependentUpon>

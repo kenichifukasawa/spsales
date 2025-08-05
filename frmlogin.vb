@@ -41,6 +41,15 @@
 
 
         If unlsuru = 0 Then
+
+            frmmain.lblshokuinid.Text = ""
+            frmmain.lblshokuinmei.Text = ""
+
+#If DEBUG Then
+            frmmain.lblshokuinid.Text = "10"
+            frmmain.lblshokuinmei.Text = "水上　薫"
+#End If
+
             Me.Close()
             Me.Dispose()
         End If
