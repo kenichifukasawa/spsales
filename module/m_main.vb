@@ -55,6 +55,8 @@ Module m_main
     Public s_mailadress As String = ""
     Public s_mailadress_cc() As String
 
+    Public STARTED_YEAR As Integer = 2006
+
     Sub system_check(s_versionup_path As String)
 
         Dim s_verfile_path As String = s_versionup_path & "\spsales.exe"
@@ -437,7 +439,7 @@ Module m_main
 
         Dim s_goukeigaku As Integer = 0
 
-        Dim s_pcname As String = Trim(frmmain.lblpcname.text)
+        Dim s_pcname As String = Trim(frmmain.lblpcname.Text)
         If s_pcname = "" Then
             msg_go("ユーザー情報が登録されていないため、発注伝票の登録・表示はできません。")
             Exit Sub
@@ -671,7 +673,7 @@ Module m_main
                             .cmbmail.Text = Mid(s_mail, s_len + 2)
                         End If
                     End If
-                        If IsDBNull(dt_server.Rows.Item(0).Item("url")) Then
+                    If IsDBNull(dt_server.Rows.Item(0).Item("url")) Then
                         .txturl.Text = ""
                     Else
                         .txturl.Text = Trim(dt_server.Rows.Item(0).Item("url"))
@@ -1401,9 +1403,10 @@ errsetting:
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            da.Fill(ds, "t_zaiko_log")
+            Dim temp_table_name = "t_zaiko_log"
+            da.Fill(ds, temp_table_name)
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
-            Dim data_row As DataRow = ds.Tables("t_zaiko_log").NewRow()
+            Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
 
             data_row("logid") = new_id
             data_row("sonotoki") = sonotoki
@@ -1413,8 +1416,69 @@ errsetting:
             data_row("newatai") = new_atai
             data_row("bikou") = bikou
 
-            ds.Tables("t_zaiko_log").Rows.Add(data_row)
-            da.Update(ds, "t_zaiko_log")
+            ds.Tables(temp_table_name).Rows.Add(data_row)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Function kurikoshi_log_edit(shainid As String, tenpoid As String, naiyou As Integer, new_atai As String, bikou As String) As String
+
+        Dim sonotoki = Now.ToString("yyyyMMddHHmmss")
+
+        Dim id = 1
+        Dim s_no = 17
+        Dim ketasuu = 10
+        Dim new_id = get_settings(id:=id, s_no:=s_no)
+        Dim next_id As String
+        If new_id = "" Then
+            msg_go("IDの取得に失敗しました。")
+            Return False
+        ElseIf new_id = "0" Then
+            next_id = "2"
+            new_id = 1.ToString("D" + ketasuu.ToString)
+        Else
+            next_id = (CLng(new_id) + 1).ToString
+            new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
+        End If
+
+        Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
+        If Not response Then
+            msg_go("IDの更新に失敗しました。")
+            Return False
+        End If
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM kurikoshi_log"
+
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_kurikoshi_log"
+            da.Fill(ds, temp_table_name)
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+
+            data_row("kurilogid") = new_id
+            data_row("sonotoki") = sonotoki
+            data_row("tenpoid") = tenpoid
+            data_row("shainid") = shainid
+            data_row("naiyou") = naiyou.ToString("D2")
+            data_row("newatai") = new_atai
+            data_row("bikou") = bikou
+
+            ds.Tables(temp_table_name).Rows.Add(data_row)
+            da.Update(ds, temp_table_name)
             ds.Clear()
 
         Catch ex As Exception

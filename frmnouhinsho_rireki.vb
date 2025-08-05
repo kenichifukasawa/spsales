@@ -4,10 +4,9 @@ Public Class frmnouhinsho_rireki
     Private Sub frmnouhinsho_rireki_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim nen_ima = CInt(DateTime.Now.ToString("yyyy"))
-        Dim sakanobori_nensuu = 22
 
         cbx_nen.Items.Clear()
-        For i = nen_ima - sakanobori_nensuu To nen_ima
+        For i = STARTED_YEAR To nen_ima
             cbx_nen.Items.Add(i.ToString)
         Next
         cbx_nen.SelectedIndex = cbx_nen.FindStringExact(Now.ToString("yyyy"))
