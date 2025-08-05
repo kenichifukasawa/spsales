@@ -84,7 +84,7 @@
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
 
-        If cmbkubun1.SelectedIndex =
+        '  If cmbkubun1.SelectedIndex =
 
         With frmshouhinkubun2
             .cmbwella.Items.Clear()
