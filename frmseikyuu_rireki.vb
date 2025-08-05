@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Windows.Forms
 
 Public Class frmseikyuu_rireki
 
@@ -60,6 +61,11 @@ Public Class frmseikyuu_rireki
         End If
 
         Dim dgv = dgv_kensakukekka
+        If Not (dgv.SortedColumn Is Nothing OrElse dgv.SortOrder = System.Windows.Forms.SortOrder.None) Then
+            msg_go("並べ替えられていると削除できません。集計を再度行ってください。")
+            Exit Sub
+        End If
+
         Dim seikyuusho_id = dgv.CurrentRow.Cells(1).Value
         Dim tenpo_id = dgv.CurrentRow.Cells(12).Value
 
