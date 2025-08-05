@@ -85,6 +85,7 @@ Public Class frmseikyuu_rireki
 
         Dim currentRowIndex As Integer = dgv.CurrentCell.RowIndex
         Dim zenkai_seikyuubi = ""
+        ' TODO:請求日の並べ替え逆にする
         If currentRowIndex > 0 Then
             zenkai_seikyuubi = Date.ParseExact(dgv(2, currentRowIndex - 1).Value, "yyyy/MM/dd", Nothing).ToString("yyyyMMdd")
         End If
@@ -440,6 +441,7 @@ Public Class frmseikyuu_rireki
 
             End If
 
+            ' TODO:請求日の並べ替え逆にする？
             query += query_where + " ORDER BY seikyuusho.hiduke, tenpo.tenpofurigana"
 
             Dim cn_server As New SqlConnection
