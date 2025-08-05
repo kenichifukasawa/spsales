@@ -119,6 +119,49 @@ Module m_kubun
 
     End Sub
 
+    Sub kubun_1_set2(s_no As Integer)
+
+        Try
+
+            Sql = "SELECT * FROM shouhinkubun  ORDER BY shouhinkubunid"
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+            Dim ds_server As New DataSet
+            Dim temp_table_name = "t_shoukaii"
+            da_server.Fill(ds_server, temp_table_name)
+            Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
+
+            Select Case s_no
+                Case 0
+                    frmshouhinkubun2.cmbkubun1.Items.Clear()
+            End Select
+
+            Dim mojiretsu(2) As String, s_str As String
+            For i = 0 To dt_server.Rows.Count - 1
+
+                mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid"))
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei"))
+
+
+                s_str = mojiretsu(0) & "." & mojiretsu(1)
+
+                Select Case s_no
+                    Case 0
+                        frmshouhinkubun2.cmbkubun1.Items.Add(s_str)
+                End Select
+            Next i
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+        End Try
+
+    End Sub
+
     Sub kubun_1_set()
 
         Try

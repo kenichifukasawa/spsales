@@ -81,4 +81,20 @@
             .ShowDialog()
         End With
     End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+
+        If cmbkubun1.SelectedIndex =
+
+        With frmshouhinkubun2
+            .cmbwella.Items.Clear()
+            .cmbwella.Items.Add("なし")
+            .cmbwella.Items.Add("ウエラ")
+            .cmbwella.Items.Add("セバスチャン")
+
+            kubun_1_set2(0)
+
+            .ShowDialog()
+        End With
+    End Sub
 End Class
