@@ -33,10 +33,8 @@ Partial Class frmshouhinkubun
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cmbkubun1 = New System.Windows.Forms.ComboBox()
         Me.dgv_kubun2 = New System.Windows.Forms.DataGridView()
-        Me.cbx_tenpo = New System.Windows.Forms.ComboBox()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -136,10 +134,8 @@ Partial Class frmshouhinkubun
         Me.GroupBox5.Controls.Add(Me.Button8)
         Me.GroupBox5.Controls.Add(Me.Button9)
         Me.GroupBox5.Controls.Add(Me.Label12)
-        Me.GroupBox5.Controls.Add(Me.Label11)
-        Me.GroupBox5.Controls.Add(Me.ComboBox1)
+        Me.GroupBox5.Controls.Add(Me.cmbkubun1)
         Me.GroupBox5.Controls.Add(Me.dgv_kubun2)
-        Me.GroupBox5.Controls.Add(Me.cbx_tenpo)
         Me.GroupBox5.Controls.Add(Me.btn_modoru)
         Me.GroupBox5.Location = New System.Drawing.Point(722, 19)
         Me.GroupBox5.Name = "GroupBox5"
@@ -188,34 +184,23 @@ Partial Class frmshouhinkubun
         '
         Me.Label12.BackColor = System.Drawing.Color.White
         Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label12.Location = New System.Drawing.Point(270, 19)
+        Me.Label12.Location = New System.Drawing.Point(29, 34)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(57, 16)
         Me.Label12.TabIndex = 201
-        Me.Label12.Text = "区分２"
+        Me.Label12.Text = "区分１"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label11
+        'cmbkubun1
         '
-        Me.Label11.BackColor = System.Drawing.Color.White
-        Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label11.Location = New System.Drawing.Point(22, 19)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(57, 16)
-        Me.Label11.TabIndex = 200
-        Me.Label11.Text = "区分１"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.BackColor = System.Drawing.Color.White
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(273, 38)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(214, 24)
-        Me.ComboBox1.TabIndex = 199
+        Me.cmbkubun1.BackColor = System.Drawing.Color.White
+        Me.cmbkubun1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbkubun1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmbkubun1.FormattingEnabled = True
+        Me.cmbkubun1.Location = New System.Drawing.Point(103, 31)
+        Me.cmbkubun1.Name = "cmbkubun1"
+        Me.cmbkubun1.Size = New System.Drawing.Size(236, 24)
+        Me.cmbkubun1.TabIndex = 199
         '
         'dgv_kubun2
         '
@@ -230,17 +215,6 @@ Partial Class frmshouhinkubun
         Me.dgv_kubun2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_kubun2.Size = New System.Drawing.Size(966, 790)
         Me.dgv_kubun2.TabIndex = 198
-        '
-        'cbx_tenpo
-        '
-        Me.cbx_tenpo.BackColor = System.Drawing.Color.White
-        Me.cbx_tenpo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbx_tenpo.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cbx_tenpo.FormattingEnabled = True
-        Me.cbx_tenpo.Location = New System.Drawing.Point(25, 38)
-        Me.cbx_tenpo.Name = "cbx_tenpo"
-        Me.cbx_tenpo.Size = New System.Drawing.Size(214, 24)
-        Me.cbx_tenpo.TabIndex = 128
         '
         'btn_modoru
         '
@@ -340,7 +314,6 @@ Partial Class frmshouhinkubun
 
     Friend WithEvents gbx_main As GroupBox
     Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents cbx_tenpo As ComboBox
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Button1 As Button
@@ -352,10 +325,9 @@ Partial Class frmshouhinkubun
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents dgv_kubun1 As DataGridView
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmbkubun1 As ComboBox
     Friend WithEvents dgv_kubun2 As DataGridView
     Friend WithEvents Label12 As Label
-    Friend WithEvents Label11 As Label
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button9 As Button
