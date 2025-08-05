@@ -5,10 +5,9 @@ Public Class frmshiharai_rireki
     Private Sub frmshiharai_rireki_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim nen_ima = CInt(DateTime.Now.ToString("yyyy"))
-        Dim sakanobori_nensuu = 20
 
         cbx_nen.Items.Clear()
-        For i = nen_ima - sakanobori_nensuu To nen_ima
+        For i = STARTED_YEAR To nen_ima
             cbx_nen.Items.Add(i.ToString)
         Next
         cbx_nen.SelectedIndex = cbx_nen.FindStringExact(Now.ToString("yyyy"))
@@ -173,7 +172,7 @@ Public Class frmshiharai_rireki
 
             Dim count = ds.Tables(temp_table_name).Rows.Count
             If count = 0 Then
-                msg_go("選択した伝票がみつかりません")
+                msg_go("選択した伝票が見つかりません")
                 ds.Clear()
                 Exit Sub
             End If

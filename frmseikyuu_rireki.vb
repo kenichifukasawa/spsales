@@ -1,12 +1,14 @@
-﻿Public Class frmseikyuu_rireki
+﻿Imports System.Data.SqlClient
+Imports System.Windows.Forms
+
+Public Class frmseikyuu_rireki
 
     Private Sub frmseikyuu_rireki_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim nen_ima = CInt(DateTime.Now.ToString("yyyy"))
-        Dim sakanobori_nensuu = 20
 
         cbx_nen.Items.Clear()
-        For i = nen_ima - sakanobori_nensuu To nen_ima
+        For i = STARTED_YEAR To nen_ima
             cbx_nen.Items.Add(i.ToString)
         Next
         cbx_nen.SelectedIndex = cbx_nen.FindStringExact(Now.ToString("yyyy"))
@@ -34,7 +36,7 @@
     End Sub
 
     Private Sub btn_shuukei_Click(sender As Object, e As EventArgs) Handles btn_shuukei.Click
-
+        set_shuukei()
     End Sub
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
@@ -42,6 +44,247 @@
     End Sub
 
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
+
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        If chk_sakujo.Checked = False Then
+            msg_go("「削除する」にチェックをつけてから実行してください。")
+            Exit Sub
+        End If
+        chk_sakujo.Checked = False
+
+        If Not rbn_shubetsu_tenpo.Checked Then
+            msg_go("削除は'店舗別'での集計後に実行してください。")
+            Exit Sub
+        End If
+
+        Dim dgv = dgv_kensakukekka
+        If Not (dgv.SortedColumn Is Nothing OrElse dgv.SortOrder = System.Windows.Forms.SortOrder.None) Then
+            msg_go("並べ替えられていると削除できません。集計を再度行ってください。")
+            Exit Sub
+        End If
+
+        Dim seikyuusho_id = dgv.CurrentRow.Cells(1).Value
+        Dim tenpo_id = dgv.CurrentRow.Cells(12).Value
+
+        msg_go("削除を開始します。", 64)
+        Dim result As DialogResult = MessageBox.Show(
+            "削除すると店舗に持っている繰越金額と前回請求日を削除したデータに基づいて書き換えます。他の値に変えたい場合は、削除する前にデータを確認してください。以下の請求履歴を削除しますか？" +
+            vbCrLf + vbCrLf + "請求書ID： " + seikyuusho_id + vbCrLf + "店舗ID： " + tenpo_id, "SpSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If result = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Dim kurikoshi_kingaku = dgv.CurrentRow.Cells(6).Value ' 入金後の繰越金額
+        Dim kongetsu_uriagegaku = dgv.CurrentRow.Cells(7).Value
+        Dim kongetsu_henpingaku = dgv.CurrentRow.Cells(8).Value
+        Dim zeigaku = dgv.CurrentRow.Cells(9).Value
+        Dim seikyuu_kingaku = dgv.CurrentRow.Cells(10).Value
+
+        Dim currentRowIndex As Integer = dgv.CurrentCell.RowIndex
+        Dim zenkai_seikyuubi = ""
+        ' TODO:請求日の並べ替え逆にする
+        If currentRowIndex > 0 Then
+            zenkai_seikyuubi = Date.ParseExact(dgv(2, currentRowIndex - 1).Value, "yyyy/MM/dd", Nothing).ToString("yyyyMMdd")
+        End If
+
+        ' 請求詳細を削除
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM seikyuushousai WHERE seikyuushoid = '" + seikyuusho_id + "'"
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_seikyuushousai"
+            da.Fill(ds, temp_table_name)
+
+            Dim count = ds.Tables(temp_table_name).Rows.Count
+            If count > 0 Then
+                For i = count - 1 To 0 Step -1
+                    ds.Tables(temp_table_name).Rows(i).Delete()
+                Next
+                Dim cb As New SqlCommandBuilder(da)
+                da.Update(ds, temp_table_name)
+            Else
+                msg_go("請求詳細記録の削除に失敗しました。")
+                ds.Clear()
+                Exit Sub
+            End If
+
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        ' 請求書を削除
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM seikyuusho WHERE seikyuushoid = '" + seikyuusho_id + "'"
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_seikyuusho_1"
+            da.Fill(ds, temp_table_name)
+
+            If ds.Tables(temp_table_name).Rows.Count > 0 Then
+
+                ds.Tables(temp_table_name).Rows(0).Delete()
+
+                Dim cb As New SqlCommandBuilder(da)
+                da.Update(ds, temp_table_name)
+                ds.Clear()
+
+            Else
+                msg_go("該当する請求書が見つかりません。")
+                ds.Clear()
+                Exit Sub
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        ' 入金
+        Dim db_seikyuukingaku = 0
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM seikyuusho WHERE seikyuushoid2 = '" + seikyuusho_id + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_seikyuusho_2"
+            da.Fill(ds, temp_table_name)
+
+            For i = 0 To ds.Tables(temp_table_name).Rows.Count - 1
+                db_seikyuukingaku += ds.Tables(temp_table_name).Rows(i)("seikyuukingaku")
+                ds.Tables(temp_table_name).Rows(i)("joukyou") = DBNull.Value
+                ds.Tables(temp_table_name).Rows(i)("seikyuushoid2") = DBNull.Value
+            Next
+
+            Dim cb As New SqlCommandBuilder(da)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        ' 売上
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuu WHERE seikyuushoid = '" + seikyuusho_id + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_hacchuu"
+            da.Fill(ds, temp_table_name)
+
+            For i = 0 To ds.Tables(temp_table_name).Rows.Count - 1
+                ds.Tables(temp_table_name).Rows(i)("joukyou") = "0"
+                ds.Tables(temp_table_name).Rows(i)("seikyuushoid") = DBNull.Value
+            Next
+
+            Dim cb As New SqlCommandBuilder(da)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        '店舗
+        Dim moto_kurikoshi_kingaku = 0
+        Dim new_kurikoshi_kingaku = 0
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM tenpo WHERE tenpoid = '" + tenpo_id + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_tenpo"
+            da.Fill(ds, temp_table_name)
+
+            Dim count = ds.Tables(temp_table_name).Rows.Count
+            If count = 0 Then
+                msg_go("該当する店舗が見つかりません")
+                ds.Clear()
+                Exit Sub
+            End If
+
+            ' 元の繰越金額
+            If Not IsDBNull(ds.Tables(temp_table_name).Rows(0)("kurikoshi")) Then
+                moto_kurikoshi_kingaku = ds.Tables(temp_table_name).Rows(0)("kurikoshi")
+            End If
+
+            ' 今回の計算額 
+            Dim keisangaku As Integer = kongetsu_uriagegaku + kongetsu_henpingaku + zeigaku
+
+            ' 元の繰越金額 - 今回の計算額
+            new_kurikoshi_kingaku = moto_kurikoshi_kingaku - keisangaku
+
+            ' 請求書の繰越金額とDB上の繰越金額とチェック
+            If seikyuu_kingaku <> moto_kurikoshi_kingaku Then
+                msg_go("請求書の繰越額とDB上の繰越金額が違います。チェックしてください。")
+            End If
+
+            ' 入金後の繰越額と上記の計算が同じかどうかをチェック
+            If kurikoshi_kingaku <> new_kurikoshi_kingaku Then
+                msg_go("繰越額が不正です。チェックしてください。")
+            End If
+
+            ' 繰越金額
+            ds.Tables(temp_table_name).Rows(0)("kurikoshi") = new_kurikoshi_kingaku
+
+            ' 請求日
+            If zenkai_seikyuubi = "" Then
+                ds.Tables(temp_table_name).Rows(0)("seikyuubi") = DBNull.Value
+            Else
+                ds.Tables(temp_table_name).Rows(0)("seikyuubi") = zenkai_seikyuubi
+            End If
+
+            Dim cb As New SqlCommandBuilder(da)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        Dim bikou = "旧繰越：" + moto_kurikoshi_kingaku.ToString("#,0") + "   新繰越：" + new_kurikoshi_kingaku.ToString("#,0")
+        Dim shainid = "" ' TODO:frmmain
+        Dim naiyou = 3
+        Dim new_atai = db_seikyuukingaku.ToString
+        If kurikoshi_log_edit(shainid, tenpo_id, naiyou, new_atai, bikou) = False Then
+            msg_go("繰越ログ登録作業中にエラーが発生しました。")
+            Exit Sub
+        End If
+
+        msg_go("選択した請求書を正常に削除しました。", 64)
+        set_shuukei()
 
     End Sub
 
@@ -59,10 +302,11 @@
 
     Private Sub chk_hihyouji_torihiki_nai_Click(sender As Object, e As EventArgs) Handles chk_hihyouji_torihiki_nai.Click
         set_tenpo_cbx(3, chk_hihyouji_torihiki_nai.Checked)
+        clear_shuukei()
     End Sub
 
     Private Sub chk_invoice_Click(sender As Object, e As EventArgs) Handles chk_invoice.Click
-        dgv_kensakukekka.Rows.Clear()
+        clear_shuukei()
     End Sub
 
     Private Sub rbn_shubetsu_kikan_Click(sender As Object, e As EventArgs) Handles rbn_shubetsu_kikan.Click
@@ -79,15 +323,235 @@
     End Sub
 
     Private Sub cbx_nen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_nen.SelectedIndexChanged
-        dgv_kensakukekka.Rows.Clear()
+        clear_shuukei()
     End Sub
 
     Private Sub cbx_tsuki_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tsuki.SelectedIndexChanged
-        dgv_kensakukekka.Rows.Clear()
+        clear_shuukei()
     End Sub
 
     Private Sub cbx_tenpo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tenpo.SelectedIndexChanged
+        clear_shuukei()
+    End Sub
+
+    Private Sub clear_shuukei()
         dgv_kensakukekka.Rows.Clear()
+        lbl_kekka.Text = "総請求合計額 0円 " & "　（内消費税 0円）"
+    End Sub
+
+    Private Sub set_shuukei()
+
+        lbl_kekka.Text = "総請求合計額 0円 " & "　（内消費税 0円）"
+
+        With dgv_kensakukekka
+
+            .Rows.Clear()
+            .Columns.Clear()
+            .ColumnCount = 14
+
+            .Columns(0).Name = "NO"
+            .Columns(1).Name = "請求書ID"
+            .Columns(2).Name = "発行日"
+            .Columns(3).Name = "店舗名"
+            .Columns(4).Name = "前月" + vbCrLf + "請求額"
+            .Columns(5).Name = "今月" + vbCrLf + "入金額"
+            .Columns(6).Name = "繰越" + vbCrLf + "金額"
+            .Columns(7).Name = "今月" + vbCrLf + "売上額"
+            .Columns(8).Name = "今月" + vbCrLf + "返品額"
+            .Columns(9).Name = "消費" + vbCrLf + "税額"
+            .Columns(10).Name = "請求" + vbCrLf + "金額"
+            .Columns(11).Name = "伝数"
+            .Columns(12).Name = "n/a"
+            .Columns(13).Name = ""
+
+            .Columns(0).Width = 50
+            .Columns(1).Width = 90
+            .Columns(2).Width = 110
+            .Columns(3).Width = 280
+            .Columns(4).Width = 80
+            .Columns(5).Width = 80
+            .Columns(6).Width = 80
+            .Columns(7).Width = 80
+            .Columns(8).Width = 80
+            .Columns(9).Width = 80
+            .Columns(10).Width = 80
+            .Columns(11).Width = 60
+            .Columns(12).Width = 60
+            .Columns(13).Width = 60
+
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(13).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            .Columns(4).DefaultCellStyle.Format = "#,##0"
+            .Columns(5).DefaultCellStyle.Format = "#,##0"
+            .Columns(6).DefaultCellStyle.Format = "#,##0"
+            .Columns(7).DefaultCellStyle.Format = "#,##0"
+            .Columns(8).DefaultCellStyle.Format = "#,##0"
+            .Columns(9).DefaultCellStyle.Format = "#,##0"
+            .Columns(10).DefaultCellStyle.Format = "#,##0"
+            .Columns(11).DefaultCellStyle.Format = "#,##0"
+
+        End With
+
+        Dim goukei_seikyuugaku = 0
+        Dim goukei_shouhizei = 0
+        Try
+
+            Dim query = "SELECT seikyuusho.*, tenpo.tenpomei, tenpo.tenpofurigana" +
+                " FROM seikyuusho LEFT JOIN tenpo ON seikyuusho.tenpoid = tenpo.tenpoid"
+
+
+            Dim query_where = " WHERE seikyuusho.seikyuu_st = '0'"
+            If rbn_shubetsu_kikan.Checked Then
+
+                Dim nen = cbx_nen.Text
+                Dim tsuki = cbx_tsuki.Text
+                If nen = "" Or tsuki = "" Then
+                    msg_go("年と月は両方選択してください。")
+                    Exit Sub
+                End If
+                Dim hinichi_kaishi = nen + tsuki + "01"
+                Dim hinichi_owari = nen + tsuki + "31"
+
+                query_where += " AND seikyuusho.hiduke BETWEEN '" + hinichi_kaishi + "' AND '" + hinichi_owari + "'"
+
+            ElseIf rbn_shubetsu_tenpo.Checked Then
+
+                Dim tenpo_id = Mid(Trim(cbx_tenpo.Text), 1, 6)
+                If tenpo_id = "" Then
+                    msg_go("店舗を選択してください。")
+                    Exit Sub
+                End If
+
+                query_where += " AND seikyuusho.tenpoid = '" + tenpo_id + "'"
+
+            End If
+
+            ' TODO:請求日の並べ替え逆にする？
+            query += query_where + " ORDER BY seikyuusho.hiduke, tenpo.tenpofurigana"
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            Dim temp_table_name = "t_seikyuusho"
+            da_server.Fill(ds_server, temp_table_name)
+            Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
+
+            Dim mojiretsu(16)
+            For i = 0 To dt_server.Rows.Count - 1
+
+                Dim dami = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("dami")) Then
+                    dami = Trim(dt_server.Rows.Item(i).Item("dami"))
+                End If
+                If dami <> "1" Then
+                    dami = ""
+                End If
+
+                mojiretsu(0) = (i + 1).ToString()
+                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("seikyuushoid"))
+                mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("hiduke")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
+
+                Dim kuri = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("kuri")) Then
+                    kuri = CInt(Trim(dt_server.Rows.Item(i).Item("kuri")))
+                End If
+                mojiretsu(4) = kuri
+
+                Dim nyuu = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("nyuu")) Then
+                    nyuu = CInt(Trim(dt_server.Rows.Item(i).Item("nyuu")))
+                End If
+                mojiretsu(5) = nyuu
+
+                Dim zan = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("zan")) Then
+                    zan = CInt(Trim(dt_server.Rows.Item(i).Item("zan")))
+                End If
+                mojiretsu(6) = zan
+
+                Dim shoukei = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("shoukei")) Then
+                    shoukei = CInt(Trim(dt_server.Rows.Item(i).Item("shoukei")))
+                End If
+                mojiretsu(7) = shoukei
+
+                Dim hen = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("hen")) Then
+                    hen = CInt(Trim(dt_server.Rows.Item(i).Item("hen")))
+                End If
+                mojiretsu(8) = hen
+
+                Dim shouhizei = 0
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("shouhizei")) Then
+                    shouhizei = CInt(Trim(dt_server.Rows.Item(i).Item("shouhizei")))
+                End If
+                mojiretsu(9) = shouhizei
+                goukei_shouhizei += shouhizei
+
+                Dim seikyuukingaku = CInt(Trim(dt_server.Rows.Item(i).Item("seikyuukingaku")))
+                mojiretsu(10) = seikyuukingaku
+                goukei_seikyuugaku += seikyuukingaku
+
+                mojiretsu(11) = CInt(Trim(dt_server.Rows.Item(i).Item("maisuu")))
+                mojiretsu(12) = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
+                mojiretsu(13) = dami
+
+                Dim nashi = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("nashi")) Then
+                    nashi = "1"
+                End If
+                mojiretsu(14) = nashi
+
+                Dim seikyuubikou = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("seikyuubikou")) Then
+                    seikyuubikou = Trim(dt_server.Rows.Item(i).Item("seikyuubikou"))
+                End If
+                mojiretsu(15) = seikyuubikou
+
+                Dim invoice = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("invoice")) Then
+                    invoice = Trim(dt_server.Rows.Item(i).Item("invoice"))
+                End If
+                If invoice <> "1" Then
+                    invoice = ""
+                End If
+                mojiretsu(16) = invoice
+
+                dgv_kensakukekka.Rows.Add(mojiretsu)
+
+                If dami = "1" Then
+                    dgv_kensakukekka.Rows(i).Cells(2).Style.BackColor = Color.Yellow
+                End If
+
+            Next
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        lbl_kekka.Text = "総請求合計額 " + goukei_seikyuugaku.ToString("#,0") + "円 " & "　（内消費税 " + goukei_shouhizei.ToString("#,0") + "円）"
+
     End Sub
 
 End Class
