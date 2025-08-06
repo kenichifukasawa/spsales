@@ -274,7 +274,7 @@ Public Class frmseikyuu_rireki
         End Try
 
         Dim bikou = "旧繰越：" + moto_kurikoshi_kingaku.ToString("#,0") + "   新繰越：" + new_kurikoshi_kingaku.ToString("#,0")
-        Dim shainid = "" ' TODO:frmmain
+        Dim shainid = frmmain.lblshokuinid.Text
         Dim naiyou = 3
         Dim new_atai = db_seikyuukingaku.ToString
         If kurikoshi_log_edit(shainid, tenpo_id, naiyou, new_atai, bikou) = False Then
