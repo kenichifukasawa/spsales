@@ -41,6 +41,422 @@ Public Class frmseikyuu_rireki
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("履歴が表示されていません。")
+            Exit Sub
+        End If
+
+        With frmseikyuu_rireki_shousai
+
+            With .dgv_kensakukekka
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 9
+
+                .Columns(0).Name = "NO"
+                .Columns(1).Name = "発注詳細ID"
+                .Columns(2).Name = "納品日"
+                .Columns(3).Name = "品名"
+                .Columns(4).Name = "数量"
+                .Columns(5).Name = "単価"
+                .Columns(6).Name = "小計"
+                .Columns(7).Name = "伝票番号"
+                .Columns(8).Name = "摘要"
+
+                .Columns(0).Width = 40
+                .Columns(1).Width = 100
+                .Columns(2).Width = 80
+                .Columns(3).Width = 250
+                .Columns(4).Width = 90
+                .Columns(5).Width = 90
+                .Columns(6).Width = 90
+                .Columns(7).Width = 100
+                .Columns(8).Width = 200
+
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+                .Columns(4).DefaultCellStyle.Format = "#,##0"
+                .Columns(5).DefaultCellStyle.Format = "#,##0"
+                .Columns(6).DefaultCellStyle.Format = "#,##0"
+
+                '' 行の高さの指定
+                '.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                '.ColumnHeadersHeight = 25
+
+            End With
+
+            Dim seikyuusho_id = dgv_kensakukekka.CurrentRow.Cells(1).Value
+            Dim seikyuusho_hiduke = dgv_kensakukekka.CurrentRow.Cells(2).Value
+            Dim tenpo_mei = dgv_kensakukekka.CurrentRow.Cells(3).Value
+            Dim zengetsu_seikyuu_gaku = dgv_kensakukekka.CurrentRow.Cells(4).Value
+            Dim shouhizei = dgv_kensakukekka.CurrentRow.Cells(9).Value
+            Dim seikyuusho_bikou = dgv_kensakukekka.CurrentRow.Cells(15).Value
+            Dim invoice = dgv_kensakukekka.CurrentRow.Cells(16).Value
+
+            Dim nyuukin_gaku_goukei = 0
+            Dim shoukei_gaku_goukei = 0
+            Dim goukei_gaku_goukei = 0
+
+            Dim debug_counter = 0
+            Try
+
+                Dim cn_server As New SqlConnection
+                cn_server.ConnectionString = connectionstring_sqlserver
+
+                Dim query = "SELECT * FROM seikyuushousai WHERE seikyuushoid = '" + seikyuusho_id + "'"
+
+                Dim query_order = ""
+                If invoice = "" Then
+                    query_order = " ORDER BY motohizuke, seikyuushousaiid"
+                Else
+                    query_order = " ORDER BY seikyuushousaiid"
+                End If
+
+                query += query_order
+
+                Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+                Dim ds_server As New DataSet
+                Dim temp_table_name = "t_seikyuushousai"
+                da_server.Fill(ds_server, temp_table_name)
+                Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
+
+                Dim mojiretsu(8)
+                For i = 0 To dt_server.Rows.Count - 1
+
+                    debug_counter = i
+                    If debug_counter = 22 Then
+                        Dim test = 0
+                    End If
+
+                    mojiretsu(0) = (i + 1).ToString()
+                    mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("hacchuushousaiid"))
+
+                    Dim hiduke = ""
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("hizuke")) Then
+                        Select Case hiduke
+                            Case "", "9999"
+                                hiduke = ""
+                            Case "*****"
+                                hiduke = "*****"
+                            Case Else
+                                hiduke = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("hizuke")), "yyyyMMdd", Nothing).ToString("MM/dd")
+                        End Select
+                    End If
+                    mojiretsu(2) = hiduke
+
+                    mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("koumoku"))
+
+                    Dim suuryou = ""
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("suuryou")) Then
+                        If Trim(dt_server.Rows.Item(i).Item("suuryou")) <> "" Then
+                            suuryou = CInt(Trim(dt_server.Rows.Item(i).Item("suuryou")))
+                        End If
+                    End If
+                    mojiretsu(4) = suuryou
+
+                    Dim tannka = ""
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("tannka")) Then
+                        If Trim(dt_server.Rows.Item(i).Item("tannka")) <> "" Then
+                            tannka = Trim(dt_server.Rows.Item(i).Item("tannka"))
+                        End If
+                    End If
+                    mojiretsu(5) = tannka
+
+                    Dim shoukei = 0
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("soukei")) Then
+                        If Trim(dt_server.Rows.Item(i).Item("soukei")) <> "" Then
+                            shoukei = CInt(Trim(dt_server.Rows.Item(i).Item("soukei")))
+                        End If
+                    End If
+                    shoukei_gaku_goukei += shoukei
+                    goukei_gaku_goukei += shoukei
+
+                    Dim nyuukin = ""
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("nyuukin")) Then
+                        Dim temp_nyuukin = Trim(dt_server.Rows.Item(i).Item("nyuukin"))
+                        If temp_nyuukin <> "" Then
+                            Dim temp As Integer
+                            If Integer.TryParse(temp_nyuukin.ToString(), temp) Then
+                                nyuukin = CInt(temp_nyuukin).ToString("#,0")
+                            Else
+                                nyuukin = temp_nyuukin
+                            End If
+                        End If
+                    End If
+
+                    If invoice = "" Then
+                        'Dim nyuukin = 0
+                        'If Not IsDBNull(dt_server.Rows.Item(i).Item("nyuukin")) Then
+                        '    nyuukin = CInt(Trim(dt_server.Rows.Item(i).Item("nyuukin")))
+                        'End If
+                        nyuukin_gaku_goukei += CInt(nyuukin)
+                        mojiretsu(6) = nyuukin
+                        mojiretsu(7) = shoukei
+                    Else
+                        mojiretsu(6) = shoukei
+                        mojiretsu(7) = nyuukin
+                    End If
+
+
+                    Dim tekiyou = ""
+                    If Not IsDBNull(dt_server.Rows.Item(i).Item("tekiyou")) Then
+                        tekiyou = Trim(dt_server.Rows.Item(i).Item("tekiyou"))
+                    End If
+                    mojiretsu(8) = tekiyou
+
+                    .dgv_kensakukekka.Rows.Add(mojiretsu)
+
+                Next
+
+                shoukei_gaku_goukei -= shouhizei
+
+                dt_server.Clear()
+                ds_server.Clear()
+
+            Catch ex As Exception
+                msg_go(ex.Message)
+                msg_go("i = " + debug_counter.ToString)
+                Exit Sub
+            End Try
+
+            Dim souseikyuugaku = zengetsu_seikyuu_gaku - nyuukin_gaku_goukei + goukei_gaku_goukei
+
+            .lbl_hiduke.Text = seikyuusho_hiduke
+            .lbl_seikyuusho_id.Text = seikyuusho_id
+            .lbl_tenpo_mei.Text = tenpo_mei
+            .txt_bikou.Text = seikyuusho_bikou
+            If invoice = "" Then
+                .lbl_shoukei.Text = shoukei_gaku_goukei.ToString("#,0")
+                .lbl_shouhizei.Text = shouhizei.ToString("#,0")
+                .lbl_goukei.Text = goukei_gaku_goukei.ToString("#,0")
+                .lbl_zengetsu_seikyuu_gaku.Text = zengetsu_seikyuu_gaku.ToString("#,0") '
+                .lbl_nyuukin_gaku.Text = nyuukin_gaku_goukei.ToString("#,0")
+                .lbl_seikyuu_gaku.Text = souseikyuugaku.ToString("#,0")
+            Else
+                set_seikyuusho_shousai_kingaku(seikyuusho_id)
+            End If
+
+            .ShowDialog()
+
+        End With
+
+        set_shuukei()
+
+        ' ----------------------------------------------------------
+
+        'Dim gridseikyuurireki As Long, shiteiseikyuushoid As String, sql_srs As String, rs_srs As New ADODB.Recordset
+        'Dim ii As Integer, sousaisoukei As Long, sousaishouhizei As Long, sousaigoukei As Long
+        'Dim zensiekyuu As Long, sounyuukin As Long, souseikyuugaku As Long, bibikou As String
+
+        'Dim s_invoice As String
+
+        ''On Error GoTo ERRORREC2
+        'gridseikyuurireki = CLng(frmseikyuurireki.gridseikyuurireki.Cell(flexcpText, , 0))
+        ''On Error GoTo 0
+        'shiteiseikyuushoid = frmseikyuurireki.gridseikyuurireki.Cell(flexcpText, , 1)
+        'sousaisoukei = 0
+        'sounyuukin = 0
+        'zensiekyuu = CLng(frmseikyuurireki.gridseikyuurireki.Cell(flexcpText, , 4))
+        'sousaishouhizei = CLng(frmseikyuurireki.gridseikyuurireki.Cell(flexcpText, , 9))
+        'bibikou = Trim(frmseikyuurireki.gridseikyuurireki.Cell(flexcpText, , 15))
+
+        's_invoice = Trim(frmseikyuurireki.gridseikyuurireki.Cell(flexcpText, , 16))
+
+        'sousaigoukei = 0
+
+        'If s_invoice = "" Then
+        '    sql_srs = "SELECT *" &
+        '        " FROM seikyuushousai" &
+        '        " where seikyuushoid='" & shiteiseikyuushoid & "' order by motohizuke,seikyuushousaiid"
+        'Else
+        '    sql_srs = "SELECT *" &
+        '        " FROM seikyuushousai" &
+        '        " where seikyuushoid='" & shiteiseikyuushoid & "' order by seikyuushousaiid"
+        'End If
+
+        'If FcSQlGet(1, rs_srs, sql_srs, WMsg) = True Then
+        '    ''grid_seikyurirekishousai_set rs_srs.RecordCount, s_invoice
+        '    'rs_srs.MoveFirst
+        '    'ii = 1
+        '    'Do Until rs_srs.EOF
+        '    '    With frmseikyuushorirekishousai.gridseikyuushonaiyoushousai
+        '    '        .Row = ii
+        '    '        .Col = 0
+        '    '        .Text = ii
+        '    '        .Col = 1
+        '    '        .Text = rs_srs!hacchuushousaiid
+        '    '        .Col = 2
+        '    '        If IsNull(rs_srs!hizuke) Or Trim(rs_srs!hizuke) = "" Then
+        '    '            .Text = ""
+        '    '        ElseIf Trim(rs_srs!hizuke) = "*****" Then
+        '    '            .Text = "*****"
+        '    '        ElseIf Trim(rs_srs!hizuke) = "9999" Then
+        '    '            .Text = ""
+        '    '        Else
+        '    '            .Text = Format(rs_srs!hizuke, "@@/@@")
+        '    '        End If
+        '    '        .Col = 3
+        '    '        .CellAlignment = flexAlignLeftCenter
+        '    '        .Text = Trim(rs_srs!koumoku)
+        '    '        .Col = 4
+        '    '        .CellAlignment = flexAlignRightCenter
+        '    '        .Text = Format(rs_srs!suuryou, "#,##0;-#,##0")
+        '    '        .Col = 5
+        '    '        .CellAlignment = flexAlignRightCenter
+        '    '        .Text = Format(rs_srs!tannka, "#,##0;-#,##0")
+
+        '    '        If s_invoice = "" Then
+        '    '            .Col = 6
+        '    '            .CellAlignment = flexAlignRightCenter
+        '    '            .Text = Format(rs_srs!nyuukin, "#,##0;-#,##0")
+        '    '            If Trim(rs_srs!nyuukin) <> "" Then
+        '    '                sounyuukin = sounyuukin + CLng(rs_srs!nyuukin)
+        '    '            End If
+        '    '            .Col = 7
+        '    '            .CellAlignment = flexAlignRightCenter
+        '    '            .Text = Format(rs_srs!soukei, "#,##0;-#,##0")
+        '    '            If Trim(rs_srs!soukei) <> "" Then
+        '    '                sousaisoukei = sousaisoukei + CLng(rs_srs!soukei)
+        '    '                sousaigoukei = sousaigoukei + CLng(rs_srs!soukei)
+        '    '            End If
+        '    '        Else
+        '    '            .Col = 7
+        '    '            .CellAlignment = flexAlignRightCenter
+        '    '            If IsNull(rs_srs!nyuukin) Then
+        '    '                .Text = ""
+        '    '            Else
+        '    '                .Text = Trim(rs_srs!nyuukin)
+        '    '            End If
+        '    '            .Col = 6
+        '    '            .CellAlignment = flexAlignRightCenter
+        '    '            .Text = Format(rs_srs!soukei, "#,##0;-#,##0")
+        '    '            If Trim(rs_srs!soukei) <> "" Then
+        '    '                sousaisoukei = sousaisoukei + CLng(rs_srs!soukei)
+        '    '                sousaigoukei = sousaigoukei + CLng(rs_srs!soukei)
+        '    '            End If
+        '    '        End If
+
+
+        '    '        .Col = 8
+        '    '        .CellAlignment = flexAlignLeftCenter
+        '    '        If IsNull(rs_srs!tekiyou) Then
+        '    '            .Text = ""
+        '    '        Else
+        '    '            .Text = Trim(rs_srs!tekiyou)
+        '    '        End If
+
+        '    '    End With
+        '    '    ii = ii + 1
+        '    '    rs_srs.MoveNext
+        '    'Loop
+        '    'sousaisoukei = sousaisoukei - sousaishouhizei
+        '    'rs_srs.Close
+        'Else
+        '    'grid_seikyurirekishousai_set 0, s_invoice
+        'End If
+
+        '        cnn.Close
+        '        souseikyuugaku = zensiekyuu - sounyuukin + sousaigoukei
+        '        If s_invoice = "" Then
+        '            frmseikyuushorirekishousai.lblhoukoku = "小計「" & Format(sousaisoukei, "#,##0;-#,##0") & "」" &
+        '                                            "　消費税額「" & Format(sousaishouhizei, "#,##0;-#,##0") & "」" &
+        '                                            "　売上総合計「" & Format(sousaigoukei, "#,##0;-#,##0") & "」" &
+        '                                            "前月請求額「" & Format(zensiekyuu, "#,##0;-#,##0") & "」" &
+        '                                             "　入金額「" & Format(sounyuukin, "#,##0;-#,##0") & "」" &
+        '                                             "　請求額「" & Format(souseikyuugaku, "#,##0;-#,##0") & "」"
+        '        Else
+        '            frmseikyuushorirekishousai.lblhoukoku = seikyuu_shousai_gouke_get(0, shiteiseikyuushoid)
+        '        End If
+
+        '        frmseikyuushorirekishousai.txtbikou = bibikou
+        '        frmseikyuushorirekishousai.lblseikyuushoid.Caption = shiteiseikyuushoid
+        '        frmseikyuushorirekishousai.Show 1
+        'Exit Sub
+        'ERRORREC2:
+        '        ret = MsgBox("詳細を表示したい項目を選択してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '        Exit Sub
+
+    End Sub
+
+    Private Sub set_seikyuusho_shousai_kingaku(seikyuusho_id As String)
+
+        Dim shoukei = 0
+        Dim shouhizei = 0
+        Dim goukei = 0
+        Dim nyuukin_gaku = 0
+        Dim zengetsu_seikyuu_gaku = 0
+        Dim seikyuu_gaku = 0
+        Dim henpin_gaku = 0
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM seikyuusho WHERE seikyuushoid = '" & seikyuusho_id & "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            Dim temp_table_name = "t_seikyuusho"
+            da_server.Fill(ds_server, temp_table_name)
+            Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
+
+            If dt_server.Rows.Count > 0 Then
+
+                shoukei = CInt(Trim(dt_server.Rows.Item(0).Item("shoukei")))
+
+                If Not IsDBNull(dt_server.Rows.Item(0).Item("hen")) Then
+                    henpin_gaku = CInt(Trim(dt_server.Rows.Item(0).Item("hen")))
+                    shoukei += henpin_gaku
+                End If
+
+                If Not IsDBNull(dt_server.Rows.Item(0).Item("shouhizei")) Then
+                    shouhizei = CInt(Trim(dt_server.Rows.Item(0).Item("shouhizei")))
+                    goukei = shoukei + shouhizei
+                End If
+
+                If Not IsDBNull(dt_server.Rows.Item(0).Item("nyuu")) Then
+                    nyuukin_gaku = CInt(Trim(dt_server.Rows.Item(0).Item("nyuu")))
+                End If
+
+                If Not IsDBNull(dt_server.Rows.Item(0).Item("kuri")) Then
+                    zengetsu_seikyuu_gaku = CInt(Trim(dt_server.Rows.Item(0).Item("kuri")))
+                End If
+
+                If Not IsDBNull(dt_server.Rows.Item(0).Item("seikyuukingaku")) Then
+                    seikyuu_gaku = CInt(Trim(dt_server.Rows.Item(0).Item("seikyuukingaku")))
+                End If
+
+            End If
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        With frmseikyuu_rireki_shousai
+            .lbl_shoukei.Text = shoukei.ToString("#,0")
+            .lbl_shouhizei.Text = shouhizei.ToString("#,0")
+            .lbl_goukei.Text = goukei.ToString("#,0")
+            .lbl_zengetsu_seikyuu_gaku.Text = zengetsu_seikyuu_gaku.ToString("#,0") '
+            .lbl_nyuukin_gaku.Text = nyuukin_gaku.ToString("#,0")
+            .lbl_seikyuu_gaku.Text = seikyuu_gaku.ToString("#,0")
+        End With
+
     End Sub
 
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
@@ -85,9 +501,8 @@ Public Class frmseikyuu_rireki
 
         Dim currentRowIndex As Integer = dgv.CurrentCell.RowIndex
         Dim zenkai_seikyuubi = ""
-        ' TODO:請求日の並べ替え逆にする
-        If currentRowIndex > 0 Then
-            zenkai_seikyuubi = Date.ParseExact(dgv(2, currentRowIndex - 1).Value, "yyyy/MM/dd", Nothing).ToString("yyyyMMdd")
+        If currentRowIndex <dgv.Rows.Count - 1 Then
+            zenkai_seikyuubi= Date.ParseExact(dgv(2, currentRowIndex + 1).Value, "yyyy/MM/dd", Nothing).ToString("yyyyMMdd")
         End If
 
         ' 請求詳細を削除
@@ -275,7 +690,7 @@ Public Class frmseikyuu_rireki
         End Try
 
         Dim bikou = "旧繰越：" + moto_kurikoshi_kingaku.ToString("#,0") + "   新繰越：" + new_kurikoshi_kingaku.ToString("#,0")
-        Dim shainid = "" ' TODO:frmmain
+        Dim shainid = frmmain.lblshokuinid.Text
         Dim naiyou = 3
         Dim new_atai = db_seikyuukingaku.ToString
         If kurikoshi_log_edit(shainid, tenpo_id, naiyou, new_atai, bikou) = False Then
@@ -289,7 +704,7 @@ Public Class frmseikyuu_rireki
     End Sub
 
     Private Sub btn_insatsu_Click(sender As Object, e As EventArgs) Handles btn_insatsu.Click
-
+        ' TODO
     End Sub
 
     Private Sub btn_path_Click(sender As Object, e As EventArgs) Handles btn_path.Click
@@ -347,7 +762,7 @@ Public Class frmseikyuu_rireki
 
             .Rows.Clear()
             .Columns.Clear()
-            .ColumnCount = 14
+            .ColumnCount = 17
 
             .Columns(0).Name = "NO"
             .Columns(1).Name = "請求書ID"
@@ -355,14 +770,17 @@ Public Class frmseikyuu_rireki
             .Columns(3).Name = "店舗名"
             .Columns(4).Name = "前月" + vbCrLf + "請求額"
             .Columns(5).Name = "今月" + vbCrLf + "入金額"
-            .Columns(6).Name = "繰越" + vbCrLf + "金額"
+            .Columns(6).Name = "繰越" + vbCrLf + "額"
             .Columns(7).Name = "今月" + vbCrLf + "売上額"
             .Columns(8).Name = "今月" + vbCrLf + "返品額"
-            .Columns(9).Name = "消費" + vbCrLf + "税額"
-            .Columns(10).Name = "請求" + vbCrLf + "金額"
+            .Columns(9).Name = "消費" + vbCrLf + "税"
+            .Columns(10).Name = "請求" + vbCrLf + "額"
             .Columns(11).Name = "伝数"
             .Columns(12).Name = "n/a"
             .Columns(13).Name = ""
+            .Columns(14).Name = ""
+            .Columns(15).Name = ""
+            .Columns(16).Name = ""
 
             .Columns(0).Width = 50
             .Columns(1).Width = 90
@@ -378,6 +796,9 @@ Public Class frmseikyuu_rireki
             .Columns(11).Width = 60
             .Columns(12).Width = 60
             .Columns(13).Width = 60
+            .Columns(14).Width = 60
+            .Columns(15).Width = 60
+            .Columns(16).Width = 60
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -395,6 +816,9 @@ Public Class frmseikyuu_rireki
             .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(13).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(14).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(15).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(16).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             .Columns(4).DefaultCellStyle.Format = "#,##0"
             .Columns(5).DefaultCellStyle.Format = "#,##0"
@@ -414,8 +838,8 @@ Public Class frmseikyuu_rireki
             Dim query = "SELECT seikyuusho.*, tenpo.tenpomei, tenpo.tenpofurigana" +
                 " FROM seikyuusho LEFT JOIN tenpo ON seikyuusho.tenpoid = tenpo.tenpoid"
 
-
             Dim query_where = " WHERE seikyuusho.seikyuu_st = '0'"
+            Dim query_order = ""
             If rbn_shubetsu_kikan.Checked Then
 
                 Dim nen = cbx_nen.Text
@@ -428,6 +852,7 @@ Public Class frmseikyuu_rireki
                 Dim hinichi_owari = nen + tsuki + "31"
 
                 query_where += " AND seikyuusho.hiduke BETWEEN '" + hinichi_kaishi + "' AND '" + hinichi_owari + "'"
+                query_order = " ORDER BY seikyuusho.hiduke, tenpo.tenpofurigana"
 
             ElseIf rbn_shubetsu_tenpo.Checked Then
 
@@ -438,11 +863,11 @@ Public Class frmseikyuu_rireki
                 End If
 
                 query_where += " AND seikyuusho.tenpoid = '" + tenpo_id + "'"
+                query_order = " ORDER BY seikyuusho.hiduke DESC, tenpo.tenpofurigana"
 
             End If
 
-            ' TODO:請求日の並べ替え逆にする？
-            query += query_where + " ORDER BY seikyuusho.hiduke, tenpo.tenpofurigana"
+            query += query_where + query_order
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver

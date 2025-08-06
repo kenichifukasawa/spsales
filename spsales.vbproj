@@ -250,6 +250,12 @@
     <Compile Include="frmseikyuu_rireki.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmseikyuu_rireki_shousai.Designer.vb">
+      <DependentUpon>frmseikyuu_rireki_shousai.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmseikyuu_rireki_shousai.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmseikyuu_sentaku.Designer.vb">
       <DependentUpon>frmseikyuu_sentaku.vb</DependentUpon>
     </Compile>
@@ -486,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmseikyuu_rireki.resx">
       <DependentUpon>frmseikyuu_rireki.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmseikyuu_rireki_shousai.resx">
+      <DependentUpon>frmseikyuu_rireki_shousai.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmseikyuu_sentaku.resx">
       <DependentUpon>frmseikyuu_sentaku.vb</DependentUpon>
