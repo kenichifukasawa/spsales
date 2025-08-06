@@ -288,7 +288,7 @@ Public Class frmseikyuu_rireki
     End Sub
 
     Private Sub btn_insatsu_Click(sender As Object, e As EventArgs) Handles btn_insatsu.Click
-
+        ' TODO
     End Sub
 
     Private Sub btn_path_Click(sender As Object, e As EventArgs) Handles btn_path.Click
