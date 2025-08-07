@@ -24,6 +24,7 @@ Public Class frmichiran_shain
     Private Sub btn_henkou_Click(sender As Object, e As EventArgs) Handles btn_henkou.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -59,6 +60,7 @@ Public Class frmichiran_shain
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -209,6 +211,9 @@ Public Class frmichiran_shain
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
             End With
 

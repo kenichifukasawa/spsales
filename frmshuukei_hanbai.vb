@@ -23,7 +23,7 @@ Public Class frmshuukei_hanbai
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("集計結果が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -74,6 +74,9 @@ Public Class frmshuukei_hanbai
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
             End With
 
@@ -192,7 +195,7 @@ Public Class frmshuukei_hanbai
         Exit Sub
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("抽出結果が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -340,6 +343,9 @@ Public Class frmshuukei_hanbai
             ' 行の高さの指定
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
             .ColumnHeadersHeight = 25
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
         End With
 

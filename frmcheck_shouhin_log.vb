@@ -47,6 +47,9 @@ Public Class frmcheck_shouhin_log
             .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
         End With
 
         Try

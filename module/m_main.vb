@@ -175,7 +175,7 @@ Module m_main
 
         tenpo_main_set(s_tenpoid)
 
-        tenpo_hachuurireki_set(s_tenpoid)
+        tenpo_hacchuurireki_set(s_tenpoid)
 
         tenpo_seikyuurireki_set(s_tenpoid)
 
@@ -185,7 +185,7 @@ Module m_main
 
     End Sub
 
-    Sub tenpo_hachuurireki_set(s_tenpoid As String)
+    Sub tenpo_hacchuurireki_set(s_tenpoid As String)
 
         Try
 
@@ -266,6 +266,7 @@ Module m_main
         End Try
 
     End Sub
+
     Sub tenpo_seikyuurireki_set(s_tenpoid As String)
 
         Try
@@ -1523,6 +1524,34 @@ errsetting:
         End Try
 
         Return True
+
+    End Function
+
+    Function check_user(check_type As Integer) As Boolean
+
+        ' TODO:権限と社員IDのセットをモデル化する
+
+#If DEBUG Then
+        msg_go("デバッグのため、権限チェックを省略します。", 64)
+        Return True
+#End If
+
+        Dim shain_id = Trim(frmmain.lblshokuinid.Text)
+        If shain_id = "" Then
+            msg_go("社員の設定がされていません。")
+            Return False
+        End If
+
+        Select Case check_type
+            Case 0
+            Case 1
+            Case 2
+
+            Case 3
+            Case 4
+            Case 5
+            Case 6
+        End Select
 
     End Function
 

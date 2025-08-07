@@ -33,7 +33,7 @@ Public Class frmshiharai_rireki
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("履歴が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -71,9 +71,8 @@ Public Class frmshiharai_rireki
 
                 .Columns(3).DefaultCellStyle.Format = "#,##0"
 
-                '' 行の高さの指定
-                '.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                '.ColumnHeadersHeight = 25
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
             End With
 
@@ -141,6 +140,7 @@ Public Class frmshiharai_rireki
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -296,6 +296,9 @@ Public Class frmshiharai_rireki
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             .Columns(4).DefaultCellStyle.Format = "#,##0"
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
         End With
 

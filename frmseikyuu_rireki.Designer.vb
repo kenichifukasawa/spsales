@@ -22,14 +22,12 @@ Partial Class frmseikyuu_rireki
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.btn_path = New System.Windows.Forms.Button()
         Me.btn_insatsu = New System.Windows.Forms.Button()
         Me.chk_sakujo = New System.Windows.Forms.CheckBox()
         Me.btn_shousai = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.chk_invoice = New System.Windows.Forms.CheckBox()
         Me.gbx_tenpo = New System.Windows.Forms.GroupBox()
         Me.btn_clear_tenpo = New System.Windows.Forms.Button()
         Me.cbx_tenpo = New System.Windows.Forms.ComboBox()
@@ -125,7 +123,6 @@ Partial Class frmseikyuu_rireki
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.chk_invoice)
         Me.GroupBox1.Controls.Add(Me.gbx_tenpo)
         Me.GroupBox1.Controls.Add(Me.rbn_shubetsu_tenpo)
         Me.GroupBox1.Controls.Add(Me.rbn_shubetsu_kikan)
@@ -135,18 +132,6 @@ Partial Class frmseikyuu_rireki
         Me.GroupBox1.Size = New System.Drawing.Size(883, 111)
         Me.GroupBox1.TabIndex = 193
         Me.GroupBox1.TabStop = False
-        '
-        'chk_invoice
-        '
-        Me.chk_invoice.AutoSize = True
-        Me.chk_invoice.Checked = True
-        Me.chk_invoice.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chk_invoice.Location = New System.Drawing.Point(719, 22)
-        Me.chk_invoice.Name = "chk_invoice"
-        Me.chk_invoice.Size = New System.Drawing.Size(146, 18)
-        Me.chk_invoice.TabIndex = 206
-        Me.chk_invoice.Text = "インボイス対応で出力"
-        Me.chk_invoice.UseVisualStyleBackColor = True
         '
         'gbx_tenpo
         '
@@ -324,14 +309,6 @@ Partial Class frmseikyuu_rireki
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_kensakukekka.Location = New System.Drawing.Point(5, 55)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
@@ -412,6 +389,5 @@ Partial Class frmseikyuu_rireki
     Friend WithEvents cbx_tenpo As ComboBox
     Friend WithEvents chk_hihyouji_torihiki_nai As CheckBox
     Friend WithEvents btn_clear_tenpo As Button
-    Friend WithEvents chk_invoice As CheckBox
     Friend WithEvents lbl_kekka As Label
 End Class
