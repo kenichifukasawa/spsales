@@ -31,6 +31,7 @@ Public Class frmshiire_rireki
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -216,6 +217,9 @@ Public Class frmshiire_rireki
             .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             .Columns(4).DefaultCellStyle.Format = "#,##0"
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
         End With
 

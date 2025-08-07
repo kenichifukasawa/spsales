@@ -48,7 +48,7 @@ Public Class frmshuukei_shouhin
         Exit Sub
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("抽出結果が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -363,6 +363,9 @@ Public Class frmshuukei_shouhin
             .Columns(3).DefaultCellStyle.Format = "#,##0"
             .Columns(4).DefaultCellStyle.Format = "#,##0"
             .Columns(5).DefaultCellStyle.Format = "#,##0"
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
         End With
 

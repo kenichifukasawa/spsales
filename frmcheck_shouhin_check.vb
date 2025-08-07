@@ -54,6 +54,9 @@ Public Class frmcheck_shouhin_check
             .Columns(5).DefaultCellStyle.Format = "#,##0"
             .Columns(6).DefaultCellStyle.Format = "#,##0"
 
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
         End With
 
         Try
