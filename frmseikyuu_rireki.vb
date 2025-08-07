@@ -46,12 +46,15 @@ Public Class frmseikyuu_rireki
             Exit Sub
         End If
 
+        Dim invoice = dgv_kensakukekka.CurrentRow.Cells(16).Value
+
         With frmseikyuu_rireki_shousai
 
             With .dgv_kensakukekka
 
                 .Rows.Clear()
                 .Columns.Clear()
+                .RowHeadersWidth = 4
                 .ColumnCount = 9
 
                 .Columns(0).Name = "NO"
@@ -60,18 +63,23 @@ Public Class frmseikyuu_rireki
                 .Columns(3).Name = "品名"
                 .Columns(4).Name = "数量"
                 .Columns(5).Name = "単価"
-                .Columns(6).Name = "小計"
-                .Columns(7).Name = "伝票番号"
+                If invoice = "" Then
+                    .Columns(6).Name = "入金"
+                    .Columns(7).Name = "小計"
+                Else
+                    .Columns(6).Name = "小計"
+                    .Columns(7).Name = "伝票番号"
+                End If
                 .Columns(8).Name = "摘要"
 
                 .Columns(0).Width = 40
-                .Columns(1).Width = 100
-                .Columns(2).Width = 80
-                .Columns(3).Width = 250
-                .Columns(4).Width = 90
+                .Columns(1).Width = 110
+                .Columns(2).Width = 70
+                .Columns(3).Width = 325
+                .Columns(4).Width = 70
                 .Columns(5).Width = 90
                 .Columns(6).Width = 90
-                .Columns(7).Width = 100
+                .Columns(7).Width = 90
                 .Columns(8).Width = 200
 
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
@@ -102,7 +110,6 @@ Public Class frmseikyuu_rireki
             Dim zengetsu_seikyuu_gaku = dgv_kensakukekka.CurrentRow.Cells(4).Value
             Dim shouhizei = dgv_kensakukekka.CurrentRow.Cells(9).Value
             Dim seikyuusho_bikou = dgv_kensakukekka.CurrentRow.Cells(15).Value
-            Dim invoice = dgv_kensakukekka.CurrentRow.Cells(16).Value
 
             Dim nyuukin_gaku_goukei = 0
             Dim shoukei_gaku_goukei = 0
@@ -144,13 +151,14 @@ Public Class frmseikyuu_rireki
 
                     Dim hiduke = ""
                     If Not IsDBNull(dt_server.Rows.Item(i).Item("hizuke")) Then
+                        hiduke = Trim(dt_server.Rows.Item(i).Item("hizuke"))
                         Select Case hiduke
                             Case "", "9999"
                                 hiduke = ""
                             Case "*****"
                                 hiduke = "*****"
                             Case Else
-                                hiduke = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("hizuke")), "yyyyMMdd", Nothing).ToString("MM/dd")
+                                hiduke = Date.ParseExact(hiduke, "MMdd", Nothing).ToString("MM/dd")
                         End Select
                     End If
                     mojiretsu(2) = hiduke
@@ -167,47 +175,78 @@ Public Class frmseikyuu_rireki
 
                     Dim tannka = ""
                     If Not IsDBNull(dt_server.Rows.Item(i).Item("tannka")) Then
-                        If Trim(dt_server.Rows.Item(i).Item("tannka")) <> "" Then
-                            tannka = Trim(dt_server.Rows.Item(i).Item("tannka"))
+                        Dim temp_tannka = Trim(dt_server.Rows.Item(i).Item("tannka"))
+                        If temp_tannka <> "" Then
+                            Dim parsed As Integer
+                            If Integer.TryParse(temp_tannka.ToString(), parsed) Then
+                                tannka = parsed.ToString("#,0")
+                            Else
+                                tannka = temp_tannka
+                            End If
                         End If
                     End If
                     mojiretsu(5) = tannka
 
-                    Dim shoukei = 0
-                    If Not IsDBNull(dt_server.Rows.Item(i).Item("soukei")) Then
-                        If Trim(dt_server.Rows.Item(i).Item("soukei")) <> "" Then
-                            shoukei = CInt(Trim(dt_server.Rows.Item(i).Item("soukei")))
-                        End If
-                    End If
-                    shoukei_gaku_goukei += shoukei
-                    goukei_gaku_goukei += shoukei
+                    If invoice = "" Then
 
-                    Dim nyuukin = ""
-                    If Not IsDBNull(dt_server.Rows.Item(i).Item("nyuukin")) Then
-                        Dim temp_nyuukin = Trim(dt_server.Rows.Item(i).Item("nyuukin"))
-                        If temp_nyuukin <> "" Then
-                            Dim temp As Integer
-                            If Integer.TryParse(temp_nyuukin.ToString(), temp) Then
-                                nyuukin = CInt(temp_nyuukin).ToString("#,0")
-                            Else
-                                nyuukin = temp_nyuukin
+                        Dim nyuukin = ""
+                        If Not IsDBNull(dt_server.Rows.Item(i).Item("nyuukin")) Then
+                            Dim temp_nyuukin = Trim(dt_server.Rows.Item(i).Item("nyuukin"))
+                            If temp_nyuukin <> "" Then
+                                Dim parsed As Integer
+                                If Integer.TryParse(temp_nyuukin.ToString(), parsed) Then
+                                    nyuukin = parsed.ToString("#,0")
+                                    nyuukin_gaku_goukei += parsed
+                                Else
+                                    nyuukin = temp_nyuukin
+                                End If
                             End If
                         End If
-                    End If
-
-                    If invoice = "" Then
-                        'Dim nyuukin = 0
-                        'If Not IsDBNull(dt_server.Rows.Item(i).Item("nyuukin")) Then
-                        '    nyuukin = CInt(Trim(dt_server.Rows.Item(i).Item("nyuukin")))
-                        'End If
-                        nyuukin_gaku_goukei += CInt(nyuukin)
                         mojiretsu(6) = nyuukin
-                        mojiretsu(7) = shoukei
-                    Else
-                        mojiretsu(6) = shoukei
-                        mojiretsu(7) = nyuukin
-                    End If
 
+                        Dim shoukei = ""
+                        If Not IsDBNull(dt_server.Rows.Item(i).Item("soukei")) Then
+                            Dim temp_shoukei = Trim(dt_server.Rows.Item(i).Item("soukei"))
+                            If temp_shoukei <> "" Then
+                                Dim parsed As Integer
+                                If Integer.TryParse(temp_shoukei.ToString(), parsed) Then
+                                    shoukei = parsed.ToString("#,0")
+                                    shoukei_gaku_goukei += parsed
+                                    goukei_gaku_goukei += parsed
+                                Else
+                                    shoukei = temp_shoukei
+                                End If
+                            End If
+                        End If
+                        mojiretsu(7) = shoukei
+
+                    Else
+
+                        Dim shoukei = 0
+                        Dim is_shoukei = False
+                        If Not IsDBNull(dt_server.Rows.Item(i).Item("soukei")) Then
+                            If Trim(dt_server.Rows.Item(i).Item("soukei")) <> "" Then
+                                shoukei = CInt(Trim(dt_server.Rows.Item(i).Item("soukei")))
+                                is_shoukei = True
+                            End If
+                        End If
+                        Dim mojiretsu_shoukei
+                        If is_shoukei Then
+                            mojiretsu_shoukei = shoukei
+                        Else
+                            mojiretsu_shoukei = ""
+                        End If
+                        mojiretsu(6) = mojiretsu_shoukei
+                        shoukei_gaku_goukei += shoukei
+                        goukei_gaku_goukei += shoukei
+
+                        Dim nyuukin = ""
+                        If Not IsDBNull(dt_server.Rows.Item(i).Item("nyuukin")) Then
+                            nyuukin = Trim(dt_server.Rows.Item(i).Item("nyuukin"))
+                        End If
+                        mojiretsu(7) = nyuukin
+
+                    End If
 
                     Dim tekiyou = ""
                     If Not IsDBNull(dt_server.Rows.Item(i).Item("tekiyou")) Then
@@ -230,19 +269,19 @@ Public Class frmseikyuu_rireki
                 Exit Sub
             End Try
 
-            Dim souseikyuugaku = zengetsu_seikyuu_gaku - nyuukin_gaku_goukei + goukei_gaku_goukei
-
             .lbl_hiduke.Text = seikyuusho_hiduke
             .lbl_seikyuusho_id.Text = seikyuusho_id
-            .lbl_tenpo_mei.Text = tenpo_mei
+            .gbx_main.Text = tenpo_mei
             .txt_bikou.Text = seikyuusho_bikou
+
             If invoice = "" Then
                 .lbl_shoukei.Text = shoukei_gaku_goukei.ToString("#,0")
-                .lbl_shouhizei.Text = shouhizei.ToString("#,0")
+                .lbl_shouhizei.Text = CInt(shouhizei).ToString("#,0")
                 .lbl_goukei.Text = goukei_gaku_goukei.ToString("#,0")
-                .lbl_zengetsu_seikyuu_gaku.Text = zengetsu_seikyuu_gaku.ToString("#,0") '
+                .lbl_zengetsu_seikyuu_gaku.Text = CInt(zengetsu_seikyuu_gaku).ToString("#,0")
                 .lbl_nyuukin_gaku.Text = nyuukin_gaku_goukei.ToString("#,0")
-                .lbl_seikyuu_gaku.Text = souseikyuugaku.ToString("#,0")
+                Dim souseikyuugaku = zengetsu_seikyuu_gaku - nyuukin_gaku_goukei + goukei_gaku_goukei
+                .lbl_seikyuu_gaku.Text = CInt(souseikyuugaku).ToString("#,0")
             Else
                 set_seikyuusho_shousai_kingaku(seikyuusho_id)
             End If
@@ -251,7 +290,7 @@ Public Class frmseikyuu_rireki
 
         End With
 
-        set_shuukei()
+        'set_shuukei()
 
         ' ----------------------------------------------------------
 
@@ -452,7 +491,7 @@ Public Class frmseikyuu_rireki
             .lbl_shoukei.Text = shoukei.ToString("#,0")
             .lbl_shouhizei.Text = shouhizei.ToString("#,0")
             .lbl_goukei.Text = goukei.ToString("#,0")
-            .lbl_zengetsu_seikyuu_gaku.Text = zengetsu_seikyuu_gaku.ToString("#,0") '
+            .lbl_zengetsu_seikyuu_gaku.Text = zengetsu_seikyuu_gaku.ToString("#,0")
             .lbl_nyuukin_gaku.Text = nyuukin_gaku.ToString("#,0")
             .lbl_seikyuu_gaku.Text = seikyuu_gaku.ToString("#,0")
         End With
@@ -501,8 +540,8 @@ Public Class frmseikyuu_rireki
 
         Dim currentRowIndex As Integer = dgv.CurrentCell.RowIndex
         Dim zenkai_seikyuubi = ""
-        If currentRowIndex <dgv.Rows.Count - 1 Then
-            zenkai_seikyuubi= Date.ParseExact(dgv(2, currentRowIndex + 1).Value, "yyyy/MM/dd", Nothing).ToString("yyyyMMdd")
+        If currentRowIndex < dgv.Rows.Count - 1 Then
+            zenkai_seikyuubi = Date.ParseExact(dgv(2, currentRowIndex + 1).Value, "yyyy/MM/dd", Nothing).ToString("yyyyMMdd")
         End If
 
         ' 請求詳細を削除
