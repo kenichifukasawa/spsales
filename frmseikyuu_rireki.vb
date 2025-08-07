@@ -669,7 +669,7 @@ Public Class frmseikyuu_rireki
         clear_shuukei()
     End Sub
 
-    Private Sub chk_invoice_Click(sender As Object, e As EventArgs) Handles chk_invoice.Click
+    Private Sub chk_invoice_Click(sender As Object, e As EventArgs)
         clear_shuukei()
     End Sub
 
