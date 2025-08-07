@@ -91,10 +91,6 @@ Namespace My
 
             BARSHINKOU("初期設定ロード完了！")
 
-            'パスワード
-            frmlogin.ShowDialog()
-
-
 
             '自動バージョンアップ
             'バージョンアップパス
@@ -187,6 +183,16 @@ Namespace My
 
             connectionstring_sqlserver = "Data Source=" & newserver(0) & ";Initial Catalog=" & newserver(3) & ";" &
                            "User ID=" & newserver(1) & ";Password=" & newserver(2) & ";"
+
+
+
+
+            'パスワード
+            frmlogin.ShowDialog()
+
+
+
+
 
             'PC名
             settei_res = Setting1(3, 0, "", 0)

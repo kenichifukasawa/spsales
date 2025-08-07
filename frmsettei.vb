@@ -109,12 +109,12 @@ Public Class frmsettei
 
 
         '個人
-        settei_res = Setting1(2, 0, "", 0)
-        If settei_res = "0" Then
-            txtpassword.Text = ""
-        Else
-            txtpassword.Text = settei_res
-        End If
+        'settei_res = Setting1(2, 0, "", 0)
+        'If settei_res = "0" Then
+        '    txtpassword.Text = ""
+        'Else
+        '    txtpassword.Text = settei_res
+        'End If
 
         settei_res = Setting1(3, 0, "", 0)
         If settei_res = "0" Then
@@ -317,16 +317,16 @@ Public Class frmsettei
         End If
 
         '個人
-        If Trim(txtpassword.Text) = "" Then
-            s_new_str = "0"
-        Else
-            s_new_str = Trim(txtpassword.Text)
-        End If
-        settei_res = Setting1(2, 1, s_new_str, 0)
-        If settei_res = "-1" Then
-            msg_go("設定の更新に失敗しました。PW :" & s_new_str)
-            Exit Sub
-        End If
+        'If Trim(txtpassword.Text) = "" Then
+        '    s_new_str = "0"
+        'Else
+        '    s_new_str = Trim(txtpassword.Text)
+        'End If
+        'settei_res = Setting1(2, 1, s_new_str, 0)
+        'If settei_res = "-1" Then
+        '    msg_go("設定の更新に失敗しました。PW :" & s_new_str)
+        '    Exit Sub
+        'End If
 
         If Trim(txtuser.Text) = "" Then
             s_new_str = "0"
@@ -560,8 +560,9 @@ Public Class frmsettei
         End If
 
 
-        msg_go("更新しました", 64)
+        msg_go("更新しました。一度終了します。", 64)
 
+        End
 
     End Sub
 
