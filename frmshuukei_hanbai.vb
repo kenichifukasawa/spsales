@@ -23,7 +23,7 @@ Public Class frmshuukei_hanbai
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("集計結果が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -195,7 +195,7 @@ Public Class frmshuukei_hanbai
         Exit Sub
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("抽出結果が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 

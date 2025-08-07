@@ -42,7 +42,7 @@ Public Class frmnouhinsho_rireki
     Private Sub btn_kakunin_Click(sender As Object, e As EventArgs) Handles btn_kakunin.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("履歴が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 

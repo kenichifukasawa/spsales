@@ -24,6 +24,7 @@ Public Class frmichiran_shain
     Private Sub btn_henkou_Click(sender As Object, e As EventArgs) Handles btn_henkou.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -54,6 +55,7 @@ Public Class frmichiran_shain
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 

@@ -48,7 +48,7 @@ Public Class frmshuukei_shouhin
         Exit Sub
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("抽出結果が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 

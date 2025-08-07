@@ -33,7 +33,7 @@ Public Class frmshiharai_rireki
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
-            msg_go("履歴が表示されていません。")
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
@@ -140,6 +140,7 @@ Public Class frmshiharai_rireki
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
