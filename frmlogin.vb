@@ -6,31 +6,32 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btn_ninshou.Click
-        Dim PASSNYUURYOKU As String = ""
 
-        Dim settei_res3 As String, unlsuru As Integer = 1
+        Dim s_nyuuryoku_pw As String = Trim(TXTPASSWORD.Text)
 
+        If s_nyuuryoku_pw = "" Then
+            Exit Sub
+        End If
+        Dim s_modori_str As String = ""
 
-
-        ' レジストリを調べ、ダイアログボックスを表示する
-        settei_res3 = Setting1(2, 0, "", 0)
-        Select Case settei_res3
-            Case "-1"
-                msg_go("設定ファイルがないか、読み込めません")
-                End
-            Case Else
-                PASSNYUURYOKU = settei_res3
-        End Select
+        '' レジストリを調べ、ダイアログボックスを表示する
+        'settei_res3 = Setting1(2, 0, "", 0)
+        'Select Case settei_res3
+        '    Case "-1"
+        '        msg_go("設定ファイルがないか、読み込めません")
+        '        End
+        '    Case Else
+        '        PASSNYUURYOKU = settei_res3
+        'End Select
 
         Select Case Trim(TXTPASSWORD.Text)
             Case "aanda5647" '総合
-                unlsuru = 0
+                s_modori_str = "000総合"
             Case "Plot8877Ken" '管理者
-                unlsuru = 0
+                s_modori_str = "000管理者"
             Case Else
-                If Trim(TXTPASSWORD.Text) = PASSNYUURYOKU Then '通常
-                    unlsuru = 0
-                Else
+                s_modori_str = shain_pw_chk(Trim(TXTPASSWORD.Text), "1")
+                If s_modori_str = "" Then
                     msg_go("パスワードが違います。")
                     TXTPASSWORD.Text = ""
                     TXTPASSWORD.Focus()
@@ -39,19 +40,18 @@
         End Select
 
 
+        If s_modori_str <> "" Then
 
-        If unlsuru = 0 Then
+            frmmain.lblshokuinid.Text = Mid(s_modori_str, 1, 2)
+            frmmain.lblshokuinmei.Text = Trim(Mid(s_modori_str, 3))
 
-            frmmain.lblshokuinid.Text = ""
-            frmmain.lblshokuinmei.Text = ""
 
-#If DEBUG Then
-            frmmain.lblshokuinid.Text = "10"
-            frmmain.lblshokuinmei.Text = "水上　薫"
-#End If
 
             Me.Close()
             Me.Dispose()
+        Else
+
+            End
         End If
 
     End Sub
@@ -73,9 +73,10 @@
 
 
 #If DEBUG Then
-        TXTPASSWORD.Text = "8877"
+        TXTPASSWORD.Text = "6666"
         btn_ninshou.PerformClick()
 #End If
+
     End Sub
 
     Private Sub frmlogin_Shown(sender As Object, e As EventArgs) Handles Me.Shown

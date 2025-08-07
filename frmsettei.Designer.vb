@@ -60,8 +60,6 @@ Partial Class frmsettei
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbshain = New System.Windows.Forms.ComboBox()
         Me.Label32 = New System.Windows.Forms.Label()
-        Me.txtpassword = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.txtkaisha = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -348,14 +346,14 @@ Partial Class frmsettei
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(81, 16)
         Me.Label2.TabIndex = 5
-        Me.Label2.Text = "ユーザー名"
+        Me.Label2.Text = "PC名"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Button2
         '
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(993, 652)
+        Me.Button2.Location = New System.Drawing.Point(993, 631)
         Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(121, 44)
@@ -367,7 +365,7 @@ Partial Class frmsettei
         '
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(993, 550)
+        Me.Button1.Location = New System.Drawing.Point(993, 537)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(121, 44)
@@ -385,7 +383,7 @@ Partial Class frmsettei
         Me.GroupBox2.Controls.Add(Me.cmb_p_seikyuusho)
         Me.GroupBox2.Controls.Add(Me.cmb_p_shousai)
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 463)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 440)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(333, 229)
         Me.GroupBox2.TabIndex = 0
@@ -456,8 +454,6 @@ Partial Class frmsettei
         Me.GroupBox4.Controls.Add(Me.Label1)
         Me.GroupBox4.Controls.Add(Me.cmbshain)
         Me.GroupBox4.Controls.Add(Me.Label32)
-        Me.GroupBox4.Controls.Add(Me.txtpassword)
-        Me.GroupBox4.Controls.Add(Me.Label4)
         Me.GroupBox4.Controls.Add(Me.txtkaisha)
         Me.GroupBox4.Controls.Add(Me.Label3)
         Me.GroupBox4.Controls.Add(Me.txtuser)
@@ -465,7 +461,7 @@ Partial Class frmsettei
         Me.GroupBox4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(333, 238)
+        Me.GroupBox4.Size = New System.Drawing.Size(333, 213)
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "ユーザー登録"
@@ -473,7 +469,7 @@ Partial Class frmsettei
         'txtkeiritantou
         '
         Me.txtkeiritantou.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtkeiritantou.Location = New System.Drawing.Point(126, 196)
+        Me.txtkeiritantou.Location = New System.Drawing.Point(126, 153)
         Me.txtkeiritantou.Name = "txtkeiritantou"
         Me.txtkeiritantou.Size = New System.Drawing.Size(171, 22)
         Me.txtkeiritantou.TabIndex = 96
@@ -481,7 +477,7 @@ Partial Class frmsettei
         'Label1
         '
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 201)
+        Me.Label1.Location = New System.Drawing.Point(12, 158)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(95, 16)
         Me.Label1.TabIndex = 97
@@ -492,7 +488,7 @@ Partial Class frmsettei
         '
         Me.cmbshain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbshain.FormattingEnabled = True
-        Me.cmbshain.Location = New System.Drawing.Point(126, 154)
+        Me.cmbshain.Location = New System.Drawing.Point(126, 111)
         Me.cmbshain.Name = "cmbshain"
         Me.cmbshain.Size = New System.Drawing.Size(173, 23)
         Me.cmbshain.TabIndex = 95
@@ -501,30 +497,12 @@ Partial Class frmsettei
         '
         Me.Label32.BackColor = System.Drawing.Color.White
         Me.Label32.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label32.Location = New System.Drawing.Point(9, 159)
+        Me.Label32.Location = New System.Drawing.Point(9, 116)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(98, 16)
         Me.Label32.TabIndex = 94
         Me.Label32.Text = "デフォルト社員"
         Me.Label32.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtpassword
-        '
-        Me.txtpassword.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtpassword.Location = New System.Drawing.Point(126, 112)
-        Me.txtpassword.Name = "txtpassword"
-        Me.txtpassword.Size = New System.Drawing.Size(171, 22)
-        Me.txtpassword.TabIndex = 8
-        '
-        'Label4
-        '
-        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label4.Location = New System.Drawing.Point(26, 117)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(81, 16)
-        Me.Label4.TabIndex = 9
-        Me.Label4.Text = "パスワード"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtkaisha
         '
@@ -556,9 +534,9 @@ Partial Class frmsettei
         Me.GroupBox5.Controls.Add(Me.txtip)
         Me.GroupBox5.Controls.Add(Me.Label8)
         Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(12, 256)
+        Me.GroupBox5.Location = New System.Drawing.Point(12, 231)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(333, 196)
+        Me.GroupBox5.Size = New System.Drawing.Size(333, 201)
         Me.GroupBox5.TabIndex = 96
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "サーバー登録"
@@ -645,7 +623,7 @@ Partial Class frmsettei
         Me.GroupBox3.Controls.Add(Me.txtnouhinshoyoushi)
         Me.GroupBox3.Controls.Add(Me.Label21)
         Me.GroupBox3.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(351, 556)
+        Me.GroupBox3.Location = New System.Drawing.Point(351, 535)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(333, 136)
         Me.GroupBox3.TabIndex = 156
@@ -716,7 +694,7 @@ Partial Class frmsettei
         Me.GroupBox6.Controls.Add(Me.chknouhinsho)
         Me.GroupBox6.Controls.Add(Me.txttekikakubangou)
         Me.GroupBox6.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox6.Location = New System.Drawing.Point(690, 556)
+        Me.GroupBox6.Location = New System.Drawing.Point(690, 535)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(290, 136)
         Me.GroupBox6.TabIndex = 158
@@ -737,7 +715,7 @@ Partial Class frmsettei
         '
         Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button8.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button8.Location = New System.Drawing.Point(993, 602)
+        Me.Button8.Location = New System.Drawing.Point(993, 584)
         Me.Button8.Margin = New System.Windows.Forms.Padding(2)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(121, 44)
@@ -749,7 +727,7 @@ Partial Class frmsettei
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1130, 704)
+        Me.ClientSize = New System.Drawing.Size(1130, 681)
         Me.ControlBox = False
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.GroupBox6)
@@ -791,8 +769,6 @@ Partial Class frmsettei
     Friend WithEvents Button1 As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents txtpassword As TextBox
-    Friend WithEvents Label4 As Label
     Friend WithEvents txtkaisha As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Button7 As Button

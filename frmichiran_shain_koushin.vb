@@ -19,6 +19,19 @@ Public Class frmichiran_shain_koushin
             Exit Sub
         End If
 
+        Dim shain_pw = Trim(txtpw.Text)
+        If shain_pw = "" Then
+            msg_go("パスワードを入力してください。")
+            Exit Sub
+        Else
+            '既に登録されているのかのチェック
+            If shain_pw_chk(shain_pw) <> "" Then
+                msg_go("入力したパスワードはすでに使用済です。違うパスワードを入力してください。")
+                Exit Sub
+            End If
+
+        End If
+
         Dim zaishoku = "1"
         If chk_zaishoku.Checked Then
             zaishoku = "0"
@@ -75,6 +88,8 @@ Public Class frmichiran_shain_koushin
                     data_row("zaishoku") = zaishoku
                 End If
 
+                data_row("password") = shain_pw
+
                 ds.Tables("t_shain").Rows.Add(data_row)
                 da.Update(ds, "t_shain")
                 ds.Clear()
@@ -119,6 +134,8 @@ Public Class frmichiran_shain_koushin
                 Else
                     ds.Tables("t_shain").Rows(0)("zaishoku") = zaishoku
                 End If
+
+                ds.Tables("t_shain").Rows(0)("password") = shain_pw
 
                 Dim cb As New SqlCommandBuilder
                 cb.DataAdapter = da
