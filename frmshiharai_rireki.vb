@@ -71,9 +71,8 @@ Public Class frmshiharai_rireki
 
                 .Columns(3).DefaultCellStyle.Format = "#,##0"
 
-                '' 行の高さの指定
-                '.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                '.ColumnHeadersHeight = 25
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
             End With
 
@@ -296,6 +295,9 @@ Public Class frmshiharai_rireki
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             .Columns(4).DefaultCellStyle.Format = "#,##0"
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
         End With
 

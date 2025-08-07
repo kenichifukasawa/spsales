@@ -244,6 +244,9 @@ Public Class frmnyuukin_rireki
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
             .ColumnHeadersHeight = 25
 
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
         End With
 
         Dim sum_goukei_gaku = 0

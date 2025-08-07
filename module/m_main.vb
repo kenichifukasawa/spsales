@@ -175,7 +175,7 @@ Module m_main
 
         tenpo_main_set(s_tenpoid)
 
-        tenpo_hachuurireki_set(s_tenpoid)
+        tenpo_hacchuurireki_set(s_tenpoid)
 
         tenpo_seikyuurireki_set(s_tenpoid)
 
@@ -185,7 +185,7 @@ Module m_main
 
     End Sub
 
-    Sub tenpo_hachuurireki_set(s_tenpoid As String)
+    Sub tenpo_hacchuurireki_set(s_tenpoid As String)
 
         Try
 
@@ -266,6 +266,7 @@ Module m_main
         End Try
 
     End Sub
+
     Sub tenpo_seikyuurireki_set(s_tenpoid As String)
 
         Try

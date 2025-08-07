@@ -75,6 +75,9 @@ Public Class frmshuukei_hanbai
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
             End With
 
         End With
@@ -340,6 +343,9 @@ Public Class frmshuukei_hanbai
             ' 行の高さの指定
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
             .ColumnHeadersHeight = 25
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
         End With
 

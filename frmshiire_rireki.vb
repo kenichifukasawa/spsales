@@ -217,6 +217,9 @@ Public Class frmshiire_rireki
 
             .Columns(4).DefaultCellStyle.Format = "#,##0"
 
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
         End With
 
         Try

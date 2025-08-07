@@ -258,6 +258,9 @@ Public Class frmshuukei_uriage
             .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
         End With
 
         Try

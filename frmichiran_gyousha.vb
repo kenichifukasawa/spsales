@@ -310,6 +310,9 @@ Public Class frmichiran_gyousha
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
                 .ColumnHeadersHeight = 50
 
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
             End With
 
             Dim mojiretsu(30) As String

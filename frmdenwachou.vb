@@ -47,6 +47,9 @@ Public Class frmdenwachou
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
         End With
 
         Try
