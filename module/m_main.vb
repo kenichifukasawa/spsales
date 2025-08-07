@@ -1490,4 +1490,32 @@ errsetting:
 
     End Function
 
+    Function check_user(check_type As Integer) As Boolean
+
+        ' TODO:権限と社員IDのセットをモデル化する
+
+#If DEBUG Then
+        msg_go("デバッグのため、権限チェックを省略します。", 64)
+        Return True
+#End If
+
+        Dim shain_id = Trim(frmmain.lblshokuinid.Text)
+        If shain_id = "" Then
+            msg_go("社員の設定がされていません。")
+            Return False
+        End If
+
+        Select Case check_type
+            Case 0
+            Case 1
+            Case 2
+
+            Case 3
+            Case 4
+            Case 5
+            Case 6
+        End Select
+
+    End Function
+
 End Module

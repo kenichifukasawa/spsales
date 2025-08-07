@@ -365,6 +365,7 @@ Public Class frmseikyuu_rireki
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
 
         If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("履歴が表示されていません。")
             Exit Sub
         End If
 
@@ -612,6 +613,52 @@ Public Class frmseikyuu_rireki
 
     Private Sub btn_path_Click(sender As Object, e As EventArgs) Handles btn_path.Click
 
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("履歴が表示されていません。")
+            Exit Sub
+        End If
+
+        ' TODO:社員認証（パスワード式？）
+        'If Not check_user(2) Then
+        '    Exit Sub
+        'End If
+
+        Dim dgv = dgv_kensakukekka
+        Dim seikyuusho_id = dgv.CurrentRow.Cells(1).Value
+        Dim nashi = dgv.CurrentRow.Cells(14).Value
+
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM seikyuusho WHERE seikyuushoid = '" + seikyuusho_id + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_seikyuusho"
+            da.Fill(ds, temp_table_name)
+
+            If nashi = "" Then
+                ds.Tables(temp_table_name).Rows(0)("nashi") = "1"
+            Else
+                ds.Tables(temp_table_name).Rows(0)("nashi") = DBNull.Value
+            End If
+
+            Dim cb As New SqlCommandBuilder
+            cb.DataAdapter = da
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        msg_go("チェックを控除したい項目を更新しました。", 64)
+        set_shuukei()
+
     End Sub
 
     Private Sub btn_clear_tenpo_Click(sender As Object, e As EventArgs) Handles btn_clear_tenpo.Click
@@ -679,9 +726,9 @@ Public Class frmseikyuu_rireki
             .Columns(9).Name = "消費" + vbCrLf + "税"
             .Columns(10).Name = "請求" + vbCrLf + "額"
             .Columns(11).Name = "伝数"
-            .Columns(12).Name = "n/a"
+            .Columns(12).Name = "店舗ID"
             .Columns(13).Name = "ダミー"
-            .Columns(14).Name = "なし"
+            .Columns(14).Name = "パス"
             .Columns(15).Name = "備考"
             .Columns(16).Name = "インボイス"
 
@@ -699,7 +746,7 @@ Public Class frmseikyuu_rireki
             .Columns(11).Width = 60
             .Columns(12).Width = 60
             .Columns(13).Width = 60
-            .Columns(14).Width = 60
+            .Columns(14).Width = 55
             .Columns(15).Width = 60
             .Columns(16).Width = 60
 
@@ -719,7 +766,7 @@ Public Class frmseikyuu_rireki
             .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(13).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(14).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(14).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(15).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             .Columns(16).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
@@ -731,6 +778,10 @@ Public Class frmseikyuu_rireki
             .Columns(9).DefaultCellStyle.Format = "#,##0"
             .Columns(10).DefaultCellStyle.Format = "#,##0"
             .Columns(11).DefaultCellStyle.Format = "#,##0"
+
+            ' 行の高さの指定
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+            .ColumnHeadersHeight = 40
 
         End With
 
@@ -843,7 +894,7 @@ Public Class frmseikyuu_rireki
 
                 Dim nashi = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("nashi")) Then
-                    nashi = "1"
+                    nashi = "○"
                 End If
                 mojiretsu(14) = nashi
 
