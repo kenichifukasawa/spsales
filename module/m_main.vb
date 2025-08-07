@@ -1062,7 +1062,43 @@ Module m_main
             SendMail = False
         End Try
     End Function
+    Function shain_pw_chk(s_pw As String, Optional s_zaishoku As String = "") As String
 
+        shain_pw_chk = ""
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query
+            If s_zaishoku = "" Then
+                query = "SELECT * FROM shain where password = '" & s_pw & "' ORDER BY shainid"
+            Else
+                query = "SELECT * FROM shain where password = '" & s_pw & "' and zaishoku ='0' ORDER BY shainid"
+            End If
+
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_set_shain_ichiran")
+            Dim dt_server As DataTable = ds_server.Tables("t_set_shain_ichiran")
+
+            If dt_server.Rows.Count > 0 Then
+
+                shain_pw_chk = Trim(dt_server.Rows.Item(0).Item("shainid")) & Trim(dt_server.Rows.Item(0).Item("shainmei"))
+            End If
+
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+        End Try
+
+
+    End Function
     Sub log_add(s_str As String, Optional s_no As String = "")
 
         DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")

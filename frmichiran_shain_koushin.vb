@@ -23,6 +23,13 @@ Public Class frmichiran_shain_koushin
         If shain_pw = "" Then
             msg_go("パスワードを入力してください。")
             Exit Sub
+        Else
+            '既に登録されているのかのチェック
+            If shain_pw_chk(shain_pw) <> "" Then
+                msg_go("入力したパスワードはすでに使用済です。違うパスワードを入力してください。")
+                Exit Sub
+            End If
+
         End If
 
         Dim zaishoku = "1"
