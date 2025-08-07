@@ -31,6 +31,7 @@ Public Class frmichiran_shain
         Dim shain_mei = Trim(dgv_kensakukekka.CurrentRow.Cells(1).Value)
         Dim ryaku_mei = Trim(dgv_kensakukekka.CurrentRow.Cells(2).Value)
         Dim zaishoku = Trim(dgv_kensakukekka.CurrentRow.Cells(3).Value)
+        Dim pw = Trim(dgv_kensakukekka.CurrentRow.Cells(4).Value)
 
         With frmichiran_shain_koushin
             .Text = "変更"
@@ -41,6 +42,10 @@ Public Class frmichiran_shain
             .lbl_shain_ryaku_mei.Text = ryaku_mei
             .txt_shain_ryaku_mei.Text = ryaku_mei
             .lbl_zaishoku.Text = zaishoku
+
+            .lblpw.Text = pw
+            .txtpw.Text = pw
+
             If zaishoku = "○" Then
                 .chk_zaishoku.Checked = True
             End If
@@ -183,17 +188,19 @@ Public Class frmichiran_shain
 
                 .Rows.Clear()
                 .Columns.Clear()
-                .ColumnCount = 4
+                .ColumnCount = 5
 
                 .Columns(0).Name = "社員ID"
                 .Columns(1).Name = "社員名"
                 .Columns(2).Name = "略名"
                 .Columns(3).Name = "在職"
+                .Columns(4).Name = "パスワード"
 
                 .Columns(0).Width = 75
-                .Columns(1).Width = 200
-                .Columns(2).Width = 150
+                .Columns(1).Width = 160
+                .Columns(2).Width = 110
                 .Columns(3).Width = 75
+                .Columns(4).Width = 90
 
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -201,6 +208,7 @@ Public Class frmichiran_shain
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             End With
 
@@ -229,6 +237,12 @@ Public Class frmichiran_shain
                     Else
                         mojiretsu(3) = "×"
                     End If
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("password")) Then
+                    mojiretsu(4) = ""
+                Else
+                    mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("password"))
                 End If
 
                 dgv_kensakukekka.Rows.Add(mojiretsu)

@@ -1,5 +1,7 @@
 ﻿
 
+Imports System.Data.SqlClient
+
 Public Class frminfo
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         End
@@ -62,6 +64,39 @@ Public Class frminfo
 
         Dim p2 As System.Diagnostics.Process = System.Diagnostics.Process.Start(version_up_exe)
 
+
+    End Sub
+
+    Private Sub LogoPictureBox_DoubleClick(sender As Object, e As EventArgs) Handles LogoPictureBox.DoubleClick
+
+
+        Dim result As String = MessageBox.Show("引継ぎ処理をしますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+
+        If result = DialogResult.No Then
+            Exit Sub
+        End If
+
+
+        'kojinに郵便局初期FLGを追加
+        Dim result2 As String = MessageBox.Show("shokuinテーブルに「password」を追加しますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+
+        If result2 = DialogResult.Yes Then
+            ' 接続文字列を環境に合わせて修正してください
+            ' Dim connectionString As String = "Server=サーバー名;Database=データベース名;User Id=ユーザー名;Password=パスワード;"
+            Using cn As New SqlConnection(connectionstring_sqlserver)
+                cn.Open()
+                Dim sql As String = "ALTER TABLE shain ADD password nchar(8) NULL;"
+                Using cmd As New SqlCommand(sql, cn)
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+        End If
+
+
+
+
+
+        msg_go("終了しました。", 64)
 
     End Sub
 End Class
