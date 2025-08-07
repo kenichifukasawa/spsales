@@ -52,6 +52,7 @@ Partial Class frmseikyuu_rireki_shousai
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btn_modoru = New System.Windows.Forms.Button()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,6 +146,7 @@ Partial Class frmseikyuu_rireki_shousai
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label14)
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.lbl_seikyuu_gaku)
         Me.GroupBox1.Controls.Add(Me.Label15)
@@ -410,6 +412,16 @@ Partial Class frmseikyuu_rireki_shousai
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
+        'Label14
+        '
+        Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label14.Location = New System.Drawing.Point(38, 22)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(113, 21)
+        Me.Label14.TabIndex = 56
+        Me.Label14.Text = "請求書発行日"
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'frmseikyuu_rireki_shousai
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -460,4 +472,5 @@ Partial Class frmseikyuu_rireki_shousai
     Friend WithEvents Label10 As Label
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Label14 As Label
 End Class
