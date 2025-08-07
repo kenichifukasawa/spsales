@@ -680,10 +680,10 @@ Public Class frmseikyuu_rireki
             .Columns(10).Name = "請求" + vbCrLf + "額"
             .Columns(11).Name = "伝数"
             .Columns(12).Name = "n/a"
-            .Columns(13).Name = ""
-            .Columns(14).Name = ""
-            .Columns(15).Name = ""
-            .Columns(16).Name = ""
+            .Columns(13).Name = "ダミー"
+            .Columns(14).Name = "なし"
+            .Columns(15).Name = "備考"
+            .Columns(16).Name = "インボイス"
 
             .Columns(0).Width = 50
             .Columns(1).Width = 90

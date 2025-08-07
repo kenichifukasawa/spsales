@@ -73,7 +73,7 @@ Public Class frmnouhinsho_rireki
                 Dim conn As New SqlConnection
                 conn.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "select * from hacchuu WHERE hacchuuid = '" + hacchuuid + "'"
+                Dim query = "SELECT * FROM hacchuu WHERE hacchuuid = '" + hacchuuid + "'"
 
                 Dim da As New SqlDataAdapter
                 da = New SqlDataAdapter(query, conn)
