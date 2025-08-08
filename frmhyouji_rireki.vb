@@ -3,9 +3,7 @@
 Public Class frmhyouji_rireki
 
     Private Sub frmhyouji_rireki_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         set_rireki()
-
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -13,6 +11,7 @@ Public Class frmhyouji_rireki
     End Sub
 
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
+
 
 
         set_rireki()
