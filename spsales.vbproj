@@ -196,6 +196,12 @@
       <DependentUpon>frmmain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmnouhinsho_idou.Designer.vb">
+      <DependentUpon>frmnouhinsho_idou.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmnouhinsho_idou.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmnouhinsho_rireki.Designer.vb">
       <DependentUpon>frmnouhinsho_rireki.vb</DependentUpon>
     </Compile>
@@ -465,6 +471,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmmain.resx">
       <DependentUpon>frmmain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmnouhinsho_idou.resx">
+      <DependentUpon>frmnouhinsho_idou.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmnouhinsho_rireki.resx">
       <DependentUpon>frmnouhinsho_rireki.vb</DependentUpon>
