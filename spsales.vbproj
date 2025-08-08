@@ -292,6 +292,12 @@
     <Compile Include="frmshiharai_sentaku.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmshiire.Designer.vb">
+      <DependentUpon>frmshiire.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshiire.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmshiire_rireki.Designer.vb">
       <DependentUpon>frmshiire_rireki.vb</DependentUpon>
     </Compile>
@@ -308,6 +314,12 @@
       <DependentUpon>frmshiire_sentaku.vb</DependentUpon>
     </Compile>
     <Compile Include="frmshiire_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmshouhin.Designer.vb">
+      <DependentUpon>frmshouhin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmshouhin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmshouhinkubun.Designer.vb">
@@ -514,6 +526,9 @@
     <EmbeddedResource Include="frmshiharai_sentaku.resx">
       <DependentUpon>frmshiharai_sentaku.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmshiire.resx">
+      <DependentUpon>frmshiire.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmshiire_rireki.resx">
       <DependentUpon>frmshiire_rireki.vb</DependentUpon>
     </EmbeddedResource>
@@ -522,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmshiire_sentaku.resx">
       <DependentUpon>frmshiire_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmshouhin.resx">
+      <DependentUpon>frmshouhin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmshouhinkubun.resx">
       <DependentUpon>frmshouhinkubun.vb</DependentUpon>

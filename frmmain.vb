@@ -665,6 +665,8 @@ Public Class frmmain
         Me.TabControl2.SizeMode = TabSizeMode.Fixed
         'タブのサイズを 80x30 にする
         Me.TabControl2.ItemSize = New Size(newtabsize, 25)
+
+
     End Sub
 
     Private Sub TabPage3_Click(sender As Object, e As EventArgs) Handles TabPage3.Click
@@ -678,4 +680,6 @@ Public Class frmmain
     Private Sub GroupBox16_Enter(sender As Object, e As EventArgs) Handles GroupBox16.Enter
 
     End Sub
+
+
 End Class

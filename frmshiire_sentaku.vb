@@ -5,6 +5,8 @@
 
     Private Sub btn_shori_Click(sender As Object, e As EventArgs) Handles btn_shori.Click
 
+        frmshiire.ShowDialog()
+
     End Sub
 
     Private Sub btn_rireki_Click(sender As Object, e As EventArgs) Handles btn_rireki.Click
