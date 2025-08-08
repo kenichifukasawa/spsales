@@ -92,6 +92,7 @@
             .cmbwella.Items.Add("ウエラ")
             .cmbwella.Items.Add("セバスチャン")
 
+
             kubun_1_set2(0)
 
             .ShowDialog()

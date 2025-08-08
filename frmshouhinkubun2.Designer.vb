@@ -187,7 +187,7 @@ Partial Class frmshouhinkubun2
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.Control
         Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(618, 223)
+        Me.Button1.Location = New System.Drawing.Point(627, 223)
         Me.Button1.Margin = New System.Windows.Forms.Padding(4)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(329, 46)
@@ -240,7 +240,7 @@ Partial Class frmshouhinkubun2
         Me.cmbwella.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbwella.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cmbwella.FormattingEnabled = True
-        Me.cmbwella.Location = New System.Drawing.Point(23, 23)
+        Me.cmbwella.Location = New System.Drawing.Point(24, 23)
         Me.cmbwella.Name = "cmbwella"
         Me.cmbwella.Size = New System.Drawing.Size(96, 24)
         Me.cmbwella.TabIndex = 202
