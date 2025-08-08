@@ -30,6 +30,8 @@ Partial Class frmmain
         Me.btn_shiharai_kanri = New System.Windows.Forms.Button()
         Me.btn_tenpo_hyouji_rireki = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblshokuinmei = New System.Windows.Forms.Label()
+        Me.lblshokuinid = New System.Windows.Forms.Label()
         Me.lblpcname = New System.Windows.Forms.Label()
         Me.btn_nouhinsho_kanri = New System.Windows.Forms.Button()
         Me.btn_check = New System.Windows.Forms.Button()
@@ -501,8 +503,6 @@ Partial Class frmmain
         Me.btn_nouhinsho_hozon = New System.Windows.Forms.Button()
         Me.btn_nouhinsho_clear = New System.Windows.Forms.Button()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
-        Me.lblshokuinid = New System.Windows.Forms.Label()
-        Me.lblshokuinmei = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
@@ -648,6 +648,26 @@ Partial Class frmmain
         Me.GroupBox1.Size = New System.Drawing.Size(568, 110)
         Me.GroupBox1.TabIndex = 150
         Me.GroupBox1.TabStop = False
+        '
+        'lblshokuinmei
+        '
+        Me.lblshokuinmei.BackColor = System.Drawing.Color.White
+        Me.lblshokuinmei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblshokuinmei.Location = New System.Drawing.Point(51, 0)
+        Me.lblshokuinmei.Name = "lblshokuinmei"
+        Me.lblshokuinmei.Size = New System.Drawing.Size(63, 22)
+        Me.lblshokuinmei.TabIndex = 158
+        Me.lblshokuinmei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblshokuinid
+        '
+        Me.lblshokuinid.BackColor = System.Drawing.Color.White
+        Me.lblshokuinid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblshokuinid.Location = New System.Drawing.Point(18, 0)
+        Me.lblshokuinid.Name = "lblshokuinid"
+        Me.lblshokuinid.Size = New System.Drawing.Size(30, 22)
+        Me.lblshokuinid.TabIndex = 157
+        Me.lblshokuinid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblpcname
         '
@@ -6633,26 +6653,6 @@ Partial Class frmmain
         Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(651, 740)
         Me.dgv_nouhinsho.TabIndex = 67
-        '
-        'lblshokuinid
-        '
-        Me.lblshokuinid.BackColor = System.Drawing.Color.White
-        Me.lblshokuinid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblshokuinid.Location = New System.Drawing.Point(18, 0)
-        Me.lblshokuinid.Name = "lblshokuinid"
-        Me.lblshokuinid.Size = New System.Drawing.Size(30, 22)
-        Me.lblshokuinid.TabIndex = 157
-        Me.lblshokuinid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lblshokuinmei
-        '
-        Me.lblshokuinmei.BackColor = System.Drawing.Color.White
-        Me.lblshokuinmei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblshokuinmei.Location = New System.Drawing.Point(51, 0)
-        Me.lblshokuinmei.Name = "lblshokuinmei"
-        Me.lblshokuinmei.Size = New System.Drawing.Size(63, 22)
-        Me.lblshokuinmei.TabIndex = 158
-        Me.lblshokuinmei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmmain
         '
