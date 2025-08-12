@@ -670,7 +670,6 @@ Public Class frmmain
 
 
 
-    End Sub
 
     Private Sub btn_tenpo_hyouji_rireki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_hyouji_rireki.Click
         frmhyouji_rireki.ShowDialog()
