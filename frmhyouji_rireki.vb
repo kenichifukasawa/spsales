@@ -12,66 +12,42 @@ Public Class frmhyouji_rireki
 
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
 
+        If dgv_kensakukekka.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
+            Exit Sub
+        End If
 
+        Dim result As DialogResult = MessageBox.Show("表示履歴をすべて削除してもいいですか？", "SpSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If result = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Try
+            Using cn As New OleDb.OleDbConnection(connectionstring_mdb)
+                cn.Open()
+                Dim sql As String = "DELETE FROM rireki"
+                Using cmd As New OleDb.OleDbCommand(sql, cn)
+                    Dim affected As Integer = cmd.ExecuteNonQuery()
+                    If affected = 0 Then
+                        msg_go("履歴ファイルがないか、読み込めません。したがって履歴が削除できません。")
+                    Else
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        settei_res = Setting1(19, 1, "0", 0)
+        If settei_res = "-1" Then
+            msg_go("設定の更新に失敗しました。")
+            Exit Sub
+        End If
+
+        msg_go("履歴を削除しました。", 64)
 
         set_rireki()
-
-        ' ----------------------------------------------------------
-
-        '        Dim settei_res3 As String, sql_rirekisakujo As String, rs_rirekisakujo As New ADODB.Recordset
-        '        Dim res_sa
-
-        '        res_sa = MsgBox("削除してもいいですか？", vbYesNo)
-        '        If res_sa = vbNo Then
-        '            Exit Sub
-        '        End If
-        '        'On Error GoTo errrirekisakujo
-        '        'データベースオープン
-        '        data_r_open
-        '        'トランジット開始
-        '        cnn_r.BeginTrans
-        '        '履歴テーブルを削除
-        '        sql_rirekisakujo = "select * from rireki"
-        '        rs_rirekisakujo.CursorType = adOpenDynamic
-        '        rs_rirekisakujo.LockType = adLockOptimistic
-        '        rs_rirekisakujo.Open sql_rirekisakujo, cnn_r
-        '    If rs_rirekisakujo.RecordCount = 0 Then
-        '            ret = MsgBox("履歴ファイルがないか、読み込めません。履歴が削除されていません。", 16, "総合管理システム「SPSALES」")
-        '            cnn_r.Close
-        '            Exit Sub
-        '        Else
-        '            rs_rirekisakujo.MoveFirst
-        '            Do Until rs_rirekisakujo.EOF
-        '                rs_rirekisakujo.Delete
-        '                rs_rirekisakujo.MoveNext
-        '            Loop
-        '            rs_rirekisakujo.Close
-        '        End If
-        '        '履歴IDを削除
-        '        settei_res3 = setting(0, 19, 1, "0", 0)
-        '        Select Case settei_res3
-        '            Case "-1"
-        '                ret = MsgBox("設定ファイルがないか、読み込めません。履歴が削除されていません。", 16, "総合管理システム「SPSALES」")
-        '                cnn_r.RollbackTrans
-        '                cnn_r.Close
-        '                Exit Sub
-        '        End Select
-
-        '        'コミットする
-        '        cnn_r.CommitTrans
-        '        'On Error GoTo 0
-        '        cnn_r.Close
-        '        'グリッドを削除
-        '        rirekiset
-        '        ret = MsgBox("履歴を削除しました。", 64, "総合管理システム「SPSALES」")
-
-        '        Exit Sub
-
-        'errrirekisakujo:
-        '        ret = MsgBox("履歴情報の削除に失敗しました。", 48, "総合管理システム「SPSALES」")
-        '        cnn_r.RollbackTrans
-        '        cnn_r.Close
-        '        Exit Sub
 
     End Sub
 
