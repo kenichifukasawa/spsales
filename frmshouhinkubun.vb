@@ -119,10 +119,10 @@ Public Class frmshouhinkubun
         End If
 
         'すでに使用されているかのチェック
-        If kubun_1_umu_chk() = "1" Then
+        'If kubun_1_umu_chk() = "1" Then
 
 
-        End If
+        'End If
         Try
             Dim conn As New SqlConnection
             conn.ConnectionString = connectionstring_sqlserver
