@@ -4,7 +4,7 @@
     End Sub
 
     Private Sub btn_idou_Click(sender As Object, e As EventArgs) Handles btn_idou.Click
-
+        frmnouhinsho_idou.ShowDialog()
     End Sub
 
     Private Sub btn_rireki_Click(sender As Object, e As EventArgs) Handles btn_rireki.Click

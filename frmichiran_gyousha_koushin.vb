@@ -515,4 +515,5 @@ Public Class frmichiran_gyousha_koushin
         lbl_juusho_1.Text = GetAddressFromZipCode(yuubin_bangou)
 
     End Sub
+
 End Class
