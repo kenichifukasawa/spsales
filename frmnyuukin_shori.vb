@@ -36,7 +36,8 @@ Public Class frmnyuukin_shori
     End Sub
 
     Private Sub chk_hihyouji_torihiki_nai_Click(sender As Object, e As EventArgs) Handles chk_hihyouji_torihiki_nai.Click
-
+        set_tenpo_cbx(5, chk_hihyouji_torihiki_nai.Checked)
+        set_shuukei()
     End Sub
 
     Private Sub cbx_tenpo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tenpo.SelectedIndexChanged

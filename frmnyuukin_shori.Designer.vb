@@ -53,6 +53,7 @@ Partial Class frmnyuukin_shori
         Me.btn_henkou = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.chk_houkoku = New System.Windows.Forms.CheckBox()
+        Me.lbl_nyuukin_id = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         CType(Me.dgv_kensakukekka_seikyuu, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,7 +206,6 @@ Partial Class frmnyuukin_shori
         Me.lbl_kurikoshi_kingaku.Name = "lbl_kurikoshi_kingaku"
         Me.lbl_kurikoshi_kingaku.Size = New System.Drawing.Size(107, 23)
         Me.lbl_kurikoshi_kingaku.TabIndex = 190
-        Me.lbl_kurikoshi_kingaku.Text = "-1,102,568"
         Me.lbl_kurikoshi_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label2
@@ -353,6 +353,7 @@ Partial Class frmnyuukin_shori
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.lbl_nyuukin_id)
         Me.GroupBox6.Controls.Add(Me.dgv_kensakukekka_nyuukin)
         Me.GroupBox6.Controls.Add(Me.btn_sakujo)
         Me.GroupBox6.Controls.Add(Me.chk_sakujo)
@@ -434,6 +435,16 @@ Partial Class frmnyuukin_shori
         Me.chk_houkoku.Text = "報告用"
         Me.chk_houkoku.UseVisualStyleBackColor = True
         '
+        'lbl_nyuukin_id
+        '
+        Me.lbl_nyuukin_id.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.lbl_nyuukin_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_nyuukin_id.Location = New System.Drawing.Point(94, 729)
+        Me.lbl_nyuukin_id.Name = "lbl_nyuukin_id"
+        Me.lbl_nyuukin_id.Size = New System.Drawing.Size(107, 23)
+        Me.lbl_nyuukin_id.TabIndex = 191
+        Me.lbl_nyuukin_id.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'frmnyuukin_shori
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -497,4 +508,5 @@ Partial Class frmnyuukin_shori
     Friend WithEvents GroupBox8 As GroupBox
     Friend WithEvents dgv_kensakukekka_seikyuu As DataGridView
     Friend WithEvents chk_houkoku As CheckBox
+    Friend WithEvents lbl_nyuukin_id As Label
 End Class
