@@ -102,9 +102,9 @@ Partial Class frmshiire
         Me.lstshien.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lstshien.FormattingEnabled = True
         Me.lstshien.ItemHeight = 16
-        Me.lstshien.Location = New System.Drawing.Point(29, 519)
+        Me.lstshien.Location = New System.Drawing.Point(29, 231)
         Me.lstshien.Name = "lstshien"
-        Me.lstshien.Size = New System.Drawing.Size(236, 260)
+        Me.lstshien.Size = New System.Drawing.Size(236, 548)
         Me.lstshien.TabIndex = 73
         Me.lstshien.Visible = False
         '
