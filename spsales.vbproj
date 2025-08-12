@@ -117,6 +117,12 @@
     <Compile Include="frmhajime.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmhyouji_rireki.Designer.vb">
+      <DependentUpon>frmhyouji_rireki.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmhyouji_rireki.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmichi.Designer.vb">
       <DependentUpon>frmichi.vb</DependentUpon>
     </Compile>
@@ -196,6 +202,12 @@
       <DependentUpon>frmmain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmnouhinsho_idou.Designer.vb">
+      <DependentUpon>frmnouhinsho_idou.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmnouhinsho_idou.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmnouhinsho_rireki.Designer.vb">
       <DependentUpon>frmnouhinsho_rireki.vb</DependentUpon>
     </Compile>
@@ -224,6 +236,12 @@
       <DependentUpon>frmnyuukin_sentaku.vb</DependentUpon>
     </Compile>
     <Compile Include="frmnyuukin_sentaku.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmnyuukin_shori.Designer.vb">
+      <DependentUpon>frmnyuukin_shori.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmnyuukin_shori.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmpassword.Designer.vb">
@@ -439,6 +457,9 @@
     <EmbeddedResource Include="frmhajime.resx">
       <DependentUpon>frmhajime.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmhyouji_rireki.resx">
+      <DependentUpon>frmhyouji_rireki.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmichi.resx">
       <DependentUpon>frmichi.vb</DependentUpon>
     </EmbeddedResource>
@@ -478,6 +499,9 @@
     <EmbeddedResource Include="frmmain.resx">
       <DependentUpon>frmmain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmnouhinsho_idou.resx">
+      <DependentUpon>frmnouhinsho_idou.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmnouhinsho_rireki.resx">
       <DependentUpon>frmnouhinsho_rireki.vb</DependentUpon>
     </EmbeddedResource>
@@ -492,6 +516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmnyuukin_sentaku.resx">
       <DependentUpon>frmnyuukin_sentaku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmnyuukin_shori.resx">
+      <DependentUpon>frmnyuukin_shori.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmpassword.resx">
       <DependentUpon>frmpassword.vb</DependentUpon>

@@ -173,6 +173,10 @@ Module m_main
 
     Sub mainset(s_tenpoid As String)
 
+        If s_tenpoid = "" Then
+            Exit Sub
+        End If
+
         tenpo_main_set(s_tenpoid)
 
         tenpo_hacchuurireki_set(s_tenpoid)

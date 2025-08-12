@@ -483,8 +483,6 @@ Public Class frmmain
             .ShowDialog()
         End With
 
-        ' TODO:納品書のセットの関数をここにも書く
-
     End Sub
 
     Private Sub btn_tenpo_shinki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_shinki.Click
@@ -507,36 +505,36 @@ Public Class frmmain
     Private Sub btn_shiire_kanri_Click(sender As Object, e As EventArgs) Handles btn_shiire_kanri.Click
         frmshiire_sentaku.ShowDialog()
 
-        ' TODO:納品書のセットの関数をここにも書く
-
+        Dim tenpo_id = Trim(lbltenpoid.Text)
+        mainset(tenpo_id)
     End Sub
 
     Private Sub btn_seikyuu_kanri_Click(sender As Object, e As EventArgs) Handles btn_seikyuu_kanri.Click
         frmseikyuu_sentaku.ShowDialog()
 
-        ' TODO:納品書のセットの関数をここにも書く
-
+        Dim tenpo_id = Trim(lbltenpoid.Text)
+        mainset(tenpo_id)
     End Sub
 
     Private Sub btn_nyuukin_kanri_Click(sender As Object, e As EventArgs) Handles btn_nyuukin_kanri.Click
         frmnyuukin_sentaku.ShowDialog()
 
-        ' TODO:納品書のセットの関数をここにも書く
-
+        Dim tenpo_id = Trim(lbltenpoid.Text)
+        mainset(tenpo_id)
     End Sub
 
     Private Sub btn_shiharai_kanri_Click(sender As Object, e As EventArgs) Handles btn_shiharai_kanri.Click
         frmshiharai_sentaku.ShowDialog()
 
-        ' TODO:納品書のセットの関数をここにも書く
-
+        Dim tenpo_id = Trim(lbltenpoid.Text)
+        mainset(tenpo_id)
     End Sub
 
     Private Sub btn_nouhinsho_kanri_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_kanri.Click
         frmnouhinsho_sentaku.ShowDialog()
 
-        ' TODO:納品書のセットの関数をここにも書く
-
+        Dim tenpo_id = Trim(lbltenpoid.Text)
+        mainset(tenpo_id)
     End Sub
 
     Private Sub dgv_shien_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_shien.CellContentClick
@@ -672,4 +670,9 @@ Public Class frmmain
 
 
 
+    End Sub
+
+    Private Sub btn_tenpo_hyouji_rireki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_hyouji_rireki.Click
+        frmhyouji_rireki.ShowDialog()
+    End Sub
 End Class
