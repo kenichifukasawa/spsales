@@ -260,8 +260,11 @@ Module m_shuukei
             Case 3
                 frmseikyuu_rireki.cbx_tenpo.Items.Clear()
             Case 4
-                frmnouhinsho_idou.cbx_tenpo.Items.Clear()
-                frmnouhinsho_idou.cbx_tenpo_2.Items.Clear()
+                Dim frm = frmnouhinsho_idou
+                frm.cbx_tenpo.Items.Clear()
+                frm.cbx_tenpo_2.Items.Clear()
+            Case 5
+                frmnyuukin_shori.cbx_tenpo.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -299,6 +302,8 @@ Module m_shuukei
                         Dim frm = frmnouhinsho_idou
                         frm.cbx_tenpo.Items.Add(item_name)
                         frm.cbx_tenpo_2.Items.Add(item_name)
+                    Case 5
+                        frmnyuukin_shori.cbx_tenpo.Items.Add(item_name)
                 End Select
             Next
 
