@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmmain
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmmain
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btn_info = New System.Windows.Forms.Button()
         Me.btn_tenpo_kensaku = New System.Windows.Forms.Button()
@@ -75,7 +75,6 @@ Partial Class frmmain
         Me.lblkubun = New System.Windows.Forms.Label()
         Me.lbldaihyousha = New System.Windows.Forms.Label()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
-        Me.lblbikou = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.lblsoufusaki = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
@@ -503,6 +502,7 @@ Partial Class frmmain
         Me.btn_nouhinsho_hozon = New System.Windows.Forms.Button()
         Me.btn_nouhinsho_clear = New System.Windows.Forms.Button()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
+        Me.lblbikou = New System.Windows.Forms.RichTextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
@@ -1221,15 +1221,6 @@ Partial Class frmmain
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "備考"
         '
-        'lblbikou
-        '
-        Me.lblbikou.BackColor = System.Drawing.Color.White
-        Me.lblbikou.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblbikou.Location = New System.Drawing.Point(10, 18)
-        Me.lblbikou.Name = "lblbikou"
-        Me.lblbikou.Size = New System.Drawing.Size(596, 98)
-        Me.lblbikou.TabIndex = 84
-        '
         'Label46
         '
         Me.Label46.BackColor = System.Drawing.Color.White
@@ -1560,7 +1551,7 @@ Partial Class frmmain
         '
         Me.btn_jouken_kensaku.BackColor = System.Drawing.Color.Honeydew
         Me.btn_jouken_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_jouken_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_jouken_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.btn_jouken_kensaku.Location = New System.Drawing.Point(452, 24)
         Me.btn_jouken_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_jouken_kensaku.Name = "btn_jouken_kensaku"
@@ -1573,7 +1564,7 @@ Partial Class frmmain
         '
         Me.btn_jouken_clear.BackColor = System.Drawing.Color.Honeydew
         Me.btn_jouken_clear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_jouken_clear.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_jouken_clear.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.btn_jouken_clear.Location = New System.Drawing.Point(365, 24)
         Me.btn_jouken_clear.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_jouken_clear.Name = "btn_jouken_clear"
@@ -6654,6 +6645,17 @@ Partial Class frmmain
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(651, 740)
         Me.dgv_nouhinsho.TabIndex = 67
         '
+        'lblbikou
+        '
+        Me.lblbikou.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.lblbikou.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblbikou.Location = New System.Drawing.Point(6, 21)
+        Me.lblbikou.Name = "lblbikou"
+        Me.lblbikou.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
+        Me.lblbikou.Size = New System.Drawing.Size(599, 95)
+        Me.lblbikou.TabIndex = 85
+        Me.lblbikou.Text = ""
+        '
         'frmmain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -6745,7 +6747,6 @@ Partial Class frmmain
     Friend WithEvents lblkubun As Label
     Friend WithEvents lbldaihyousha As Label
     Friend WithEvents GroupBox15 As GroupBox
-    Friend WithEvents lblbikou As Label
     Friend WithEvents Label46 As Label
     Friend WithEvents lblsoufusaki As Label
     Friend WithEvents Label40 As Label
@@ -7188,4 +7189,5 @@ Partial Class frmmain
     Friend WithEvents cmbtekiyou As ComboBox
     Friend WithEvents lblshokuinid As Label
     Friend WithEvents lblshokuinmei As Label
+    Friend WithEvents lblbikou As RichTextBox
 End Class

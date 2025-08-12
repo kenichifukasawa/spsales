@@ -240,8 +240,11 @@ Module m_main
             End With
 
             Dim s_kin As Decimal
+            Dim s_dami As Integer, s_shutsuryoku As Integer
 
             For i = 0 To dt_server.Rows.Count - 1
+                s_dami = 0
+                s_shutsuryoku = 0
 
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
                 mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("iraibi")), 7, 2)
@@ -258,7 +261,28 @@ Module m_main
                     mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
                 End If
 
+                '色の判定
+                If IsDBNull(dt_server.Rows.Item(i).Item("dami2")) Then
+                Else
+                    If Trim(dt_server.Rows.Item(i).Item("nouhinshoid")) = "1" Then
+                        s_dami = 1
+                    End If
+                End If
+                If IsDBNull(dt_server.Rows.Item(i).Item("shutsu")) Then
+                    s_shutsuryoku = 1
+                End If
+
+
                 frmmain.dgv_denpyou.Rows.Add(mojiretsu)
+
+                '色をいれる
+                If s_dami = 1 Then
+                    frmmain.dgv_denpyou.Rows(i).Cells(0).Style.BackColor = Color.FromArgb(&HC0E0FF)
+                End If
+
+                If s_shutsuryoku = 1 Then
+                    frmmain.dgv_denpyou.Rows(i).Cells(1).Style.BackColor = Color.FromArgb(&HC0C0FF)
+                End If
 
             Next i
 
@@ -322,8 +346,11 @@ Module m_main
 
             End With
 
-            Dim mojiretsu(7) As String
+            Dim mojiretsu(7) As String, s_dami As Integer
+
             For i = 0 To dt_server.Rows.Count - 1
+
+                s_dami = 0
 
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("seikyuushoid"))
                 mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(i).Item("hiduke")), 7, 2)
@@ -359,7 +386,18 @@ Module m_main
                     mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("invoice"))
                 End If
 
+                If IsDBNull(dt_server.Rows.Item(i).Item("dami")) Then
+                Else
+                    If Trim(dt_server.Rows.Item(i).Item("dami")) = "" Then
+                        s_dami = 1
+                    End If
+                End If
+
                 frmmain.dgv_seikyuusho.Rows.Add(mojiretsu)
+
+                If s_dami = 1 Then
+                    frmmain.dgv_seikyuusho.Rows(i).Cells(0).Style.BackColor = Color.FromArgb(&HC0E0FF)
+                End If
 
             Next i
 
@@ -536,15 +574,16 @@ Module m_main
 
             frmmain.lbl_nouhinsho_goukei.Text = s_goukeigaku.ToString("#,##0")
 
-            ' 現在選択されているセルの行インデックス
-            Dim rowIdx As Integer = frmmain.dgv_nouhinsho.CurrentCell.RowIndex
-            Dim colIdx As Integer = frmmain.dgv_nouhinsho.CurrentCell.ColumnIndex
+            If frmmain.dgv_nouhinsho.CurrentCell IsNot Nothing Then
+                ' 現在選択されているセルの行インデックス
+                Dim rowIdx As Integer = frmmain.dgv_nouhinsho.CurrentCell.RowIndex
+                Dim colIdx As Integer = frmmain.dgv_nouhinsho.CurrentCell.ColumnIndex
 
-            ' (rowIdx, colIdx)を表示領域内に持ってくる
-            If Not frmmain.dgv_nouhinsho(rowIdx, colIdx).Displayed Then
-                frmmain.dgv_nouhinsho.CurrentCell = frmmain.dgv_nouhinsho(rowIdx, colIdx)
+                ' (rowIdx, colIdx)を表示領域内に持ってくる
+                If Not frmmain.dgv_nouhinsho(rowIdx, colIdx).Displayed Then
+                    frmmain.dgv_nouhinsho.CurrentCell = frmmain.dgv_nouhinsho(rowIdx, colIdx)
+                End If
             End If
-
 
 
         Catch ex As Exception

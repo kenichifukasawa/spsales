@@ -23,6 +23,7 @@ Partial Class frmkosuu
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblshouhinid = New System.Windows.Forms.Label()
         Me.lblkakutei = New System.Windows.Forms.Label()
         Me.lblkeigen = New System.Windows.Forms.Label()
         Me.chkfukakutei = New System.Windows.Forms.CheckBox()
@@ -48,7 +49,6 @@ Partial Class frmkosuu
         Me.Label13 = New System.Windows.Forms.Label()
         Me.btn_hozon = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.lblshouhinid = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -81,6 +81,16 @@ Partial Class frmkosuu
         Me.GroupBox1.Size = New System.Drawing.Size(784, 209)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
+        '
+        'lblshouhinid
+        '
+        Me.lblshouhinid.BackColor = System.Drawing.SystemColors.Control
+        Me.lblshouhinid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblshouhinid.Location = New System.Drawing.Point(642, 181)
+        Me.lblshouhinid.Name = "lblshouhinid"
+        Me.lblshouhinid.Size = New System.Drawing.Size(50, 25)
+        Me.lblshouhinid.TabIndex = 226
+        Me.lblshouhinid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblkakutei
         '
@@ -166,6 +176,7 @@ Partial Class frmkosuu
         Me.txtgoukei.Name = "txtgoukei"
         Me.txtgoukei.Size = New System.Drawing.Size(118, 23)
         Me.txtgoukei.TabIndex = 218
+        Me.txtgoukei.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label7
         '
@@ -188,6 +199,7 @@ Partial Class frmkosuu
         Me.txttanka.Name = "txttanka"
         Me.txttanka.Size = New System.Drawing.Size(96, 23)
         Me.txttanka.TabIndex = 216
+        Me.txttanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label10
         '
@@ -210,6 +222,7 @@ Partial Class frmkosuu
         Me.txtkosuu.Name = "txtkosuu"
         Me.txtkosuu.Size = New System.Drawing.Size(96, 23)
         Me.txtkosuu.TabIndex = 214
+        Me.txtkosuu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblzaiko
         '
@@ -282,7 +295,7 @@ Partial Class frmkosuu
         Me.lblshouhinmei.Name = "lblshouhinmei"
         Me.lblshouhinmei.Size = New System.Drawing.Size(546, 25)
         Me.lblshouhinmei.TabIndex = 207
-        Me.lblshouhinmei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblshouhinmei.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label25
         '
@@ -352,16 +365,6 @@ Partial Class frmkosuu
         Me.Button1.TabIndex = 227
         Me.Button1.Text = "戻る"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'lblshouhinid
-        '
-        Me.lblshouhinid.BackColor = System.Drawing.SystemColors.Control
-        Me.lblshouhinid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblshouhinid.Location = New System.Drawing.Point(642, 181)
-        Me.lblshouhinid.Name = "lblshouhinid"
-        Me.lblshouhinid.Size = New System.Drawing.Size(50, 25)
-        Me.lblshouhinid.TabIndex = 226
-        Me.lblshouhinid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmkosuu
         '
