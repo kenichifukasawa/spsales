@@ -55,7 +55,6 @@ Partial Class frmnyuukin_shori
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lbl_nebiki = New System.Windows.Forms.Label()
-        Me.lbl_dami = New System.Windows.Forms.Label()
         Me.lbl_moto_nyuukin_kingaku = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -176,7 +175,6 @@ Partial Class frmnyuukin_shori
         'grp_nyuukin_denpyou
         '
         Me.grp_nyuukin_denpyou.Controls.Add(Me.lbl_moto_nyuukin_kingaku)
-        Me.grp_nyuukin_denpyou.Controls.Add(Me.lbl_dami)
         Me.grp_nyuukin_denpyou.Controls.Add(Me.lbl_nebiki)
         Me.grp_nyuukin_denpyou.Controls.Add(Me.lbl_seikyuu_id)
         Me.grp_nyuukin_denpyou.Controls.Add(Me.GroupBox1)
@@ -463,16 +461,7 @@ Partial Class frmnyuukin_shori
         Me.lbl_nebiki.Size = New System.Drawing.Size(107, 23)
         Me.lbl_nebiki.TabIndex = 207
         Me.lbl_nebiki.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lbl_dami
-        '
-        Me.lbl_dami.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.lbl_dami.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_dami.Location = New System.Drawing.Point(552, 0)
-        Me.lbl_dami.Name = "lbl_dami"
-        Me.lbl_dami.Size = New System.Drawing.Size(107, 23)
-        Me.lbl_dami.TabIndex = 208
-        Me.lbl_dami.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_nebiki.Visible = False
         '
         'lbl_moto_nyuukin_kingaku
         '
@@ -483,6 +472,7 @@ Partial Class frmnyuukin_shori
         Me.lbl_moto_nyuukin_kingaku.Size = New System.Drawing.Size(107, 23)
         Me.lbl_moto_nyuukin_kingaku.TabIndex = 209
         Me.lbl_moto_nyuukin_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_moto_nyuukin_kingaku.Visible = False
         '
         'frmnyuukin_shori
         '
@@ -549,6 +539,5 @@ Partial Class frmnyuukin_shori
     Friend WithEvents lbl_seikyuu_id As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents lbl_nebiki As Label
-    Friend WithEvents lbl_dami As Label
     Friend WithEvents lbl_moto_nyuukin_kingaku As Label
 End Class

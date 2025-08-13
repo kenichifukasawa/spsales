@@ -9,7 +9,16 @@ Public Class frmnyuukin_shori
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
+
+        If btn_henkou.Text = "キャンセル" Then
+            Dim result As DialogResult = MessageBox.Show("変更中ですが、この画面を閉じても良いですか？", "SpSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+            If result = DialogResult.No Then
+                Exit Sub
+            End If
+        End If
+
         Me.Close() : Me.Dispose()
+
     End Sub
 
     Private Sub btn_clear_tenpo_Click(sender As Object, e As EventArgs) Handles btn_clear_tenpo.Click
@@ -32,19 +41,19 @@ Public Class frmnyuukin_shori
             Exit Sub
         End If
 
-        Dim nyuukin_kingaku = Trim(txt_kingaku.Text)
-        If nyuukin_kingaku = "" Then
-            msg_go("金額を入力してください。")
-            Exit Sub
-        End If
-        Dim int_nyuukin_kingaku = CInt(nyuukin_kingaku)
-
         Dim houhou = Trim(cbx_shiharai_houhou.Text)
         If houhou = "" Then
             msg_go("方法を選択してください。")
             Exit Sub
         End If
         Dim houhou_id = PaymentMethodsDeposit.GetIdByName(houhou)
+
+        Dim nyuukin_kingaku = Trim(txt_kingaku.Text)
+        If nyuukin_kingaku = "" Then
+            msg_go("金額を入力してください。")
+            Exit Sub
+        End If
+        Dim int_nyuukin_kingaku = CInt(nyuukin_kingaku)
 
         Dim ryoushuusho_no = Trim(txt_ryoushuusho_no.Text)
         If ryoushuusho_no = "" Then
@@ -54,7 +63,6 @@ Public Class frmnyuukin_shori
 
         Dim nyuukinbi = dtp_hinichi.Value.ToString("yyyyMMdd")
         Dim bikou = Trim(txt_bikou.Text)
-        Dim dami = Trim(lbl_dami.Text)
         Dim sabun_kingaku As Integer
 
         If Trim(btn_touroku.Text) = "登録" Then
@@ -107,15 +115,17 @@ Public Class frmnyuukin_shori
                 data_row("seikyuutanni") = houhou_id
                 data_row("ryoushuuno") = ryoushuusho_no
 
-                If nebiki <> "" Then
-                    data_row("seikyuunebiki") = nebiki
+                If nebiki = "" Then
+                    data_row("seikyuunebiki") = 0
+                Else
+                    data_row("seikyuunebiki") = CInt(nebiki)
                 End If
 
                 If bikou <> "" Then
                     data_row("seikyuubikou") = bikou
                 End If
 
-                If dami <> "" Then
+                If chk_houkoku.Checked Then
                     data_row("dami") = "1"
                 End If
 
@@ -196,38 +206,49 @@ Public Class frmnyuukin_shori
 
     Private Sub btn_henkou_Click(sender As Object, e As EventArgs) Handles btn_henkou.Click
 
-        clear_nyuukin_denpyou_touroku()
+        If Trim(btn_henkou.Text) = "変更" Then
 
-        Dim dgv = dgv_kensakukekka_nyuukin
-        If dgv.Rows.Count = 0 Then
-            msg_go("項目が表示されていません。")
-            Exit Sub
+            clear_nyuukin_denpyou_touroku()
+
+            Dim dgv = dgv_kensakukekka_nyuukin
+            If dgv.Rows.Count = 0 Then
+                msg_go("項目が表示されていません。")
+                Exit Sub
+            End If
+
+            Dim hakkou = dgv.CurrentRow.Cells(6).Value
+            If hakkou <> "" Then
+                msg_go("すでに請求書発行処理をしているため、変更できません。")
+                Exit Sub
+            End If
+
+            Dim nyuukinbi = dgv.CurrentRow.Cells(0).Value
+            Dim seikyuusho_id = dgv.CurrentRow.Cells(1).Value
+            Dim nyuukin_kingaku = CInt(dgv.CurrentRow.Cells(2).Value).ToString("")
+            Dim houhou = dgv.CurrentRow.Cells(3).Value
+            Dim bikou = dgv.CurrentRow.Cells(4).Value
+            Dim ryoushuusho_no = dgv.CurrentRow.Cells(5).Value
+            Dim nebiki = dgv.CurrentRow.Cells(7).Value
+            Dim dami = dgv.CurrentRow.Cells(8).Value
+
+            lbl_seikyuu_id.Text = seikyuusho_id
+            dtp_hinichi.Value = nyuukinbi
+            cbx_shiharai_houhou.SelectedIndex = cbx_shiharai_houhou.FindStringExact(houhou)
+            txt_kingaku.Text = nyuukin_kingaku
+            txt_ryoushuusho_no.Text = ryoushuusho_no
+            txt_bikou.Text = bikou
+            lbl_nebiki.Text = nebiki
+            lbl_moto_nyuukin_kingaku.Text = nyuukin_kingaku
+
+            If dami <> "" Then
+                chk_houkoku.Checked = True
+            End If
+
+            btn_henkou.Text = "キャンセル"
+
+        Else
+            clear_nyuukin_denpyou_touroku()
         End If
-
-        Dim hakkou = dgv.CurrentRow.Cells(6).Value
-        If hakkou <> "" Then
-            msg_go("すでに請求書発行処理をしているため、変更できません。")
-            Exit Sub
-        End If
-
-        Dim nyuukinbi = dgv.CurrentRow.Cells(0).Value
-        Dim seikyuusho_id = dgv.CurrentRow.Cells(1).Value
-        Dim nyuukin_kingaku = CInt(dgv.CurrentRow.Cells(2).Value).ToString("")
-        Dim houhou = dgv.CurrentRow.Cells(3).Value
-        Dim bikou = dgv.CurrentRow.Cells(4).Value
-        Dim ryoushuusho_no = dgv.CurrentRow.Cells(5).Value
-        Dim nebiki = dgv.CurrentRow.Cells(7).Value
-        Dim dami = dgv.CurrentRow.Cells(8).Value
-
-        lbl_seikyuu_id.Text = seikyuusho_id
-        dtp_hinichi.Value = nyuukinbi
-        cbx_shiharai_houhou.SelectedIndex = cbx_shiharai_houhou.FindStringExact(houhou)
-        txt_kingaku.Text = nyuukin_kingaku
-        txt_ryoushuusho_no.Text = ryoushuusho_no
-        txt_bikou.Text = bikou
-        lbl_nebiki.Text = nebiki
-        lbl_dami.Text = dami
-        lbl_moto_nyuukin_kingaku.Text = nyuukin_kingaku
 
     End Sub
 
@@ -323,9 +344,14 @@ Public Class frmnyuukin_shori
         If lbl_seikyuu_id.Text = "" Then
             btn_touroku.Text = "登録"
             grp_nyuukin_denpyou.BackColor = Color.White
+            chk_houkoku.Enabled = True
         Else
             btn_touroku.Text = "変更"
             grp_nyuukin_denpyou.BackColor = Color.LightCyan
+            chk_houkoku.Enabled = False
+            gbx_tenpo.Enabled = False
+            btn_sakujo.Enabled = False
+            chk_sakujo.Enabled = False
         End If
     End Sub
 
@@ -357,8 +383,8 @@ Public Class frmnyuukin_shori
             .Columns(4).Width = 350
             .Columns(5).Width = 90
             .Columns(6).Width = 0
-            .Columns(7).Width = 90
-            .Columns(8).Width = 90
+            .Columns(7).Width = 0
+            .Columns(8).Width = 0
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -427,7 +453,7 @@ Public Class frmnyuukin_shori
 
         Try
 
-            Dim query = "SELECT * FROM seikyuusho WHERE tenpoid = '" + tenpo_id + "' AND seikyuu_st = '1' ORDER BY hiduke DESC"
+            Dim query = "SELECT * FROM seikyuusho WHERE tenpoid = '" + tenpo_id + "' AND seikyuu_st = '1' ORDER BY hiduke DESC, seikyuushoid DESC"
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
@@ -497,7 +523,7 @@ Public Class frmnyuukin_shori
 
         Try
 
-            Dim query = "SELECT * FROM seikyuusho WHERE tenpoid = '" + tenpo_id + "' AND seikyuu_st = '0' ORDER BY hiduke DESC"
+            Dim query = "SELECT * FROM seikyuusho WHERE tenpoid = '" + tenpo_id + "' AND seikyuu_st = '0' ORDER BY hiduke DESC, seikyuushoid DESC"
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
@@ -615,9 +641,13 @@ Public Class frmnyuukin_shori
         txt_ryoushuusho_no.Text = ""
         txt_bikou.Text = ""
         lbl_nebiki.Text = ""
-        lbl_dami.Text = ""
         lbl_moto_nyuukin_kingaku.Text = ""
         chk_houkoku.Checked = False
+        btn_henkou.Text = "変更"
+
+        gbx_tenpo.Enabled = True
+        btn_sakujo.Enabled = True
+        chk_sakujo.Enabled = True
 
     End Sub
 
