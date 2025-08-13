@@ -36,6 +36,7 @@ Partial Class frmnyuukin_shori
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btn_touroku = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.chk_houkoku = New System.Windows.Forms.CheckBox()
         Me.txt_bikou = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txt_ryoushuusho_no = New System.Windows.Forms.TextBox()
@@ -47,13 +48,12 @@ Partial Class frmnyuukin_shori
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.dtp_hinichi = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.lbl_seikyuu_id = New System.Windows.Forms.Label()
         Me.dgv_kensakukekka_nyuukin = New System.Windows.Forms.DataGridView()
         Me.btn_sakujo = New System.Windows.Forms.Button()
         Me.chk_sakujo = New System.Windows.Forms.CheckBox()
         Me.btn_henkou = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.chk_houkoku = New System.Windows.Forms.CheckBox()
-        Me.lbl_nyuukin_id = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         CType(Me.dgv_kensakukekka_seikyuu, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -242,6 +242,16 @@ Partial Class frmnyuukin_shori
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "備考"
         '
+        'chk_houkoku
+        '
+        Me.chk_houkoku.AutoSize = True
+        Me.chk_houkoku.Location = New System.Drawing.Point(84, 0)
+        Me.chk_houkoku.Name = "chk_houkoku"
+        Me.chk_houkoku.Size = New System.Drawing.Size(71, 19)
+        Me.chk_houkoku.TabIndex = 206
+        Me.chk_houkoku.Text = "報告用"
+        Me.chk_houkoku.UseVisualStyleBackColor = True
+        '
         'txt_bikou
         '
         Me.txt_bikou.BackColor = System.Drawing.Color.White
@@ -353,7 +363,7 @@ Partial Class frmnyuukin_shori
         '
         'GroupBox6
         '
-        Me.GroupBox6.Controls.Add(Me.lbl_nyuukin_id)
+        Me.GroupBox6.Controls.Add(Me.lbl_seikyuu_id)
         Me.GroupBox6.Controls.Add(Me.dgv_kensakukekka_nyuukin)
         Me.GroupBox6.Controls.Add(Me.btn_sakujo)
         Me.GroupBox6.Controls.Add(Me.chk_sakujo)
@@ -364,6 +374,16 @@ Partial Class frmnyuukin_shori
         Me.GroupBox6.TabIndex = 193
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "入金一覧"
+        '
+        'lbl_seikyuu_id
+        '
+        Me.lbl_seikyuu_id.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.lbl_seikyuu_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_seikyuu_id.Location = New System.Drawing.Point(94, 729)
+        Me.lbl_seikyuu_id.Name = "lbl_seikyuu_id"
+        Me.lbl_seikyuu_id.Size = New System.Drawing.Size(107, 23)
+        Me.lbl_seikyuu_id.TabIndex = 191
+        Me.lbl_seikyuu_id.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'dgv_kensakukekka_nyuukin
         '
@@ -424,26 +444,6 @@ Partial Class frmnyuukin_shori
         Me.btn_modoru.TabIndex = 32
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
-        '
-        'chk_houkoku
-        '
-        Me.chk_houkoku.AutoSize = True
-        Me.chk_houkoku.Location = New System.Drawing.Point(84, 0)
-        Me.chk_houkoku.Name = "chk_houkoku"
-        Me.chk_houkoku.Size = New System.Drawing.Size(71, 19)
-        Me.chk_houkoku.TabIndex = 206
-        Me.chk_houkoku.Text = "報告用"
-        Me.chk_houkoku.UseVisualStyleBackColor = True
-        '
-        'lbl_nyuukin_id
-        '
-        Me.lbl_nyuukin_id.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.lbl_nyuukin_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_nyuukin_id.Location = New System.Drawing.Point(94, 729)
-        Me.lbl_nyuukin_id.Name = "lbl_nyuukin_id"
-        Me.lbl_nyuukin_id.Size = New System.Drawing.Size(107, 23)
-        Me.lbl_nyuukin_id.TabIndex = 191
-        Me.lbl_nyuukin_id.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'frmnyuukin_shori
         '
@@ -508,5 +508,5 @@ Partial Class frmnyuukin_shori
     Friend WithEvents GroupBox8 As GroupBox
     Friend WithEvents dgv_kensakukekka_seikyuu As DataGridView
     Friend WithEvents chk_houkoku As CheckBox
-    Friend WithEvents lbl_nyuukin_id As Label
+    Friend WithEvents lbl_seikyuu_id As Label
 End Class

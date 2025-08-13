@@ -148,6 +148,14 @@ Public Class frmnyuukin_shori
 
     Private Sub set_shuukei()
 
+        lbl_seikyuu_id.Text = ""
+        dtp_hinichi.Value = Now.ToString("yyyy/MM/dd")
+        cbx_shiharai_houhou.SelectedIndex = -1
+        txt_kingaku.Text = ""
+        txt_ryoushuusho_no.Text = ""
+        txt_bikou.Text = ""
+        chk_houkoku.Checked = False
+
         With dgv_kensakukekka_nyuukin
 
             .Rows.Clear()
