@@ -29,6 +29,34 @@ Public Class frmnyuukin_shori
 
     Private Sub btn_henkou_Click(sender As Object, e As EventArgs) Handles btn_henkou.Click
 
+        clear_nyuukin_denpyou_touroku()
+
+        Dim dgv = dgv_kensakukekka_nyuukin
+        If dgv.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
+            Exit Sub
+        End If
+
+        Dim hakkou = dgv.CurrentRow.Cells(6).Value
+        If hakkou <> "" Then
+            msg_go("すでに請求書発行処理をしているため、変更できません。")
+            Exit Sub
+        End If
+
+        Dim nyuukinbi = dgv.CurrentRow.Cells(0).Value
+        Dim seikyuusho_id = dgv.CurrentRow.Cells(1).Value
+        Dim nyuukin_kingaku = CInt(dgv.CurrentRow.Cells(2).Value).ToString("")
+        Dim houhou = dgv.CurrentRow.Cells(3).Value
+        Dim bikou = dgv.CurrentRow.Cells(4).Value
+        Dim ryoushuusho_no = dgv.CurrentRow.Cells(5).Value
+
+        lbl_seikyuu_id.Text = seikyuusho_id
+        dtp_hinichi.Value = nyuukinbi
+        cbx_shiharai_houhou.SelectedIndex = cbx_shiharai_houhou.FindStringExact(houhou)
+        txt_kingaku.Text = nyuukin_kingaku
+        txt_ryoushuusho_no.Text = ryoushuusho_no
+        txt_bikou.Text = bikou
+
     End Sub
 
     Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
@@ -68,7 +96,7 @@ Public Class frmnyuukin_shori
         End If
 
         ' 請求書
-        Dim newseikyuugaku2 = Nothing
+        Dim seikyuugaku = Nothing
         Try
             Dim conn As New SqlConnection
             conn.ConnectionString = connectionstring_sqlserver
@@ -81,7 +109,7 @@ Public Class frmnyuukin_shori
             da.Fill(ds, temp_table_name)
 
             If ds.Tables(temp_table_name).Rows.Count > 0 Then
-                newseikyuugaku2 = ds.Tables(temp_table_name).Rows(0)("seikyuukingaku")
+                seikyuugaku = ds.Tables(temp_table_name).Rows(0)("seikyuukingaku")
                 ds.Tables(temp_table_name).Rows(0).Delete()
                 Dim cb As New SqlCommandBuilder(da)
                 da.Update(ds, temp_table_name)
@@ -100,7 +128,7 @@ Public Class frmnyuukin_shori
 
         '店舗
         Dim tenpo_id = Mid(tenpo, 1, 6)
-        Dim sakin2 = CInt(Trim(lbl_kurikoshi_kingaku.Text)) + newseikyuugaku2
+        Dim new_kurikoshi = CInt(Trim(lbl_kurikoshi_kingaku.Text)) + seikyuugaku
         Try
 
             Dim conn As New SqlConnection
@@ -121,7 +149,7 @@ Public Class frmnyuukin_shori
                 Exit Sub
             End If
 
-            ds.Tables(temp_table_name).Rows(0)("kurikoshi") = sakin2
+            ds.Tables(temp_table_name).Rows(0)("kurikoshi") = new_kurikoshi
 
             Dim cb As New SqlCommandBuilder(da)
             da.Update(ds, temp_table_name)
@@ -146,15 +174,19 @@ Public Class frmnyuukin_shori
         set_shuukei()
     End Sub
 
+    Private Sub lbl_seikyuu_id_TextChanged(sender As Object, e As EventArgs) Handles lbl_seikyuu_id.TextChanged
+        If lbl_seikyuu_id.Text = "" Then
+            btn_touroku.Text = "登録"
+            grp_nyuukin_denpyou.BackColor = Color.White
+        Else
+            btn_touroku.Text = "更新"
+            grp_nyuukin_denpyou.BackColor = Color.LightCyan
+        End If
+    End Sub
+
     Private Sub set_shuukei()
 
-        lbl_seikyuu_id.Text = ""
-        dtp_hinichi.Value = Now.ToString("yyyy/MM/dd")
-        cbx_shiharai_houhou.SelectedIndex = -1
-        txt_kingaku.Text = ""
-        txt_ryoushuusho_no.Text = ""
-        txt_bikou.Text = ""
-        chk_houkoku.Checked = False
+        clear_nyuukin_denpyou_touroku()
 
         With dgv_kensakukekka_nyuukin
 
@@ -342,7 +374,7 @@ Public Class frmnyuukin_shori
             Exit Sub
         End Try
 
-
+        lbl_kurikoshi_kingaku.Text = "0"
         Try
 
             Dim query = "SELECT * FROM tenpo WHERE tenpoid = '" + tenpo_id + "'"
@@ -356,7 +388,10 @@ Public Class frmnyuukin_shori
             Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
 
             If dt_server.Rows.Count > 0 Then
-                lbl_kurikoshi_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("kurikoshi")).ToString("#,0")
+                Dim kurikoshi = dt_server.Rows.Item(0).Item("kurikoshi")
+                If Not IsDBNull(kurikoshi) Then
+                    lbl_kurikoshi_kingaku.Text = CInt(dt_server.Rows.Item(0).Item("kurikoshi")).ToString("#,0")
+                End If
             End If
 
             dt_server.Clear()
@@ -366,6 +401,18 @@ Public Class frmnyuukin_shori
             msg_go(ex.Message)
             Exit Sub
         End Try
+
+    End Sub
+
+    Sub clear_nyuukin_denpyou_touroku()
+
+        lbl_seikyuu_id.Text = ""
+        dtp_hinichi.Value = Now.ToString("yyyy/MM/dd")
+        cbx_shiharai_houhou.SelectedIndex = -1
+        txt_kingaku.Text = ""
+        txt_ryoushuusho_no.Text = ""
+        txt_bikou.Text = ""
+        chk_houkoku.Checked = False
 
     End Sub
 
