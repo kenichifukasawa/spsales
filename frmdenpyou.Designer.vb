@@ -72,7 +72,7 @@ Partial Class frmdenpyou
         Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox5.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(1450, 980)
+        Me.GroupBox5.Size = New System.Drawing.Size(1450, 913)
         Me.GroupBox5.TabIndex = 199
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "納品書"
@@ -363,7 +363,7 @@ Partial Class frmdenpyou
         Me.dgv_nouhinsho.Name = "dgv_nouhinsho"
         Me.dgv_nouhinsho.RowTemplate.Height = 24
         Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv_nouhinsho.Size = New System.Drawing.Size(1426, 820)
+        Me.dgv_nouhinsho.Size = New System.Drawing.Size(1426, 755)
         Me.dgv_nouhinsho.TabIndex = 67
         '
         'btn_kensaku
@@ -415,7 +415,7 @@ Partial Class frmdenpyou
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1475, 1003)
+        Me.ClientSize = New System.Drawing.Size(1475, 935)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox5)
         Me.Name = "frmdenpyou"

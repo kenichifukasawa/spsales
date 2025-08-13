@@ -549,12 +549,12 @@ Partial Class frmmain
         Me.btn_tenpo_kensaku.BackColor = System.Drawing.SystemColors.Control
         Me.btn_tenpo_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_tenpo_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_tenpo_kensaku.Location = New System.Drawing.Point(145, 18)
+        Me.btn_tenpo_kensaku.Location = New System.Drawing.Point(145, 26)
         Me.btn_tenpo_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tenpo_kensaku.Name = "btn_tenpo_kensaku"
         Me.btn_tenpo_kensaku.Size = New System.Drawing.Size(110, 44)
         Me.btn_tenpo_kensaku.TabIndex = 144
-        Me.btn_tenpo_kensaku.Text = "検索"
+        Me.btn_tenpo_kensaku.Text = "検　　索"
         Me.btn_tenpo_kensaku.UseVisualStyleBackColor = False
         '
         'btn_shiire_kanri
@@ -614,7 +614,7 @@ Partial Class frmmain
         Me.btn_tenpo_hyouji_rireki.BackColor = System.Drawing.SystemColors.Control
         Me.btn_tenpo_hyouji_rireki.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_tenpo_hyouji_rireki.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_tenpo_hyouji_rireki.Location = New System.Drawing.Point(272, 18)
+        Me.btn_tenpo_hyouji_rireki.Location = New System.Drawing.Point(272, 26)
         Me.btn_tenpo_hyouji_rireki.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tenpo_hyouji_rireki.Name = "btn_tenpo_hyouji_rireki"
         Me.btn_tenpo_hyouji_rireki.Size = New System.Drawing.Size(110, 44)
@@ -709,7 +709,7 @@ Partial Class frmmain
         Me.btn_shutsuryoku.Name = "btn_shutsuryoku"
         Me.btn_shutsuryoku.Size = New System.Drawing.Size(110, 44)
         Me.btn_shutsuryoku.TabIndex = 153
-        Me.btn_shutsuryoku.Text = "出力"
+        Me.btn_shutsuryoku.Text = "出　　力"
         Me.btn_shutsuryoku.UseVisualStyleBackColor = False
         '
         'btn_shuukei
@@ -722,7 +722,7 @@ Partial Class frmmain
         Me.btn_shuukei.Name = "btn_shuukei"
         Me.btn_shuukei.Size = New System.Drawing.Size(110, 44)
         Me.btn_shuukei.TabIndex = 152
-        Me.btn_shuukei.Text = "集計"
+        Me.btn_shuukei.Text = "集　　計"
         Me.btn_shuukei.UseVisualStyleBackColor = False
         '
         'btn_tenpo_shinki
@@ -730,12 +730,12 @@ Partial Class frmmain
         Me.btn_tenpo_shinki.BackColor = System.Drawing.SystemColors.Control
         Me.btn_tenpo_shinki.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_tenpo_shinki.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_tenpo_shinki.Location = New System.Drawing.Point(18, 18)
+        Me.btn_tenpo_shinki.Location = New System.Drawing.Point(18, 26)
         Me.btn_tenpo_shinki.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tenpo_shinki.Name = "btn_tenpo_shinki"
         Me.btn_tenpo_shinki.Size = New System.Drawing.Size(110, 44)
         Me.btn_tenpo_shinki.TabIndex = 151
-        Me.btn_tenpo_shinki.Text = "新規"
+        Me.btn_tenpo_shinki.Text = "新　　規"
         Me.btn_tenpo_shinki.UseVisualStyleBackColor = False
         '
         'btn_tenpo_denwachou
@@ -743,7 +743,7 @@ Partial Class frmmain
         Me.btn_tenpo_denwachou.BackColor = System.Drawing.SystemColors.Control
         Me.btn_tenpo_denwachou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_tenpo_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_tenpo_denwachou.Location = New System.Drawing.Point(399, 18)
+        Me.btn_tenpo_denwachou.Location = New System.Drawing.Point(399, 26)
         Me.btn_tenpo_denwachou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tenpo_denwachou.Name = "btn_tenpo_denwachou"
         Me.btn_tenpo_denwachou.Size = New System.Drawing.Size(110, 44)
@@ -763,7 +763,7 @@ Partial Class frmmain
         Me.GroupBox2.Controls.Add(Me.GroupBox13)
         Me.GroupBox2.Controls.Add(Me.btn_tenpo_denwachou)
         Me.GroupBox2.Controls.Add(Me.cmb_henkou)
-        Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(1250, 3)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
@@ -779,7 +779,7 @@ Partial Class frmmain
         Me.GroupBox11.Controls.Add(Me.Button1)
         Me.GroupBox11.Controls.Add(Me.dgv_log)
         Me.GroupBox11.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox11.Location = New System.Drawing.Point(8, 541)
+        Me.GroupBox11.Location = New System.Drawing.Point(8, 555)
         Me.GroupBox11.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox11.Name = "GroupBox11"
         Me.GroupBox11.Padding = New System.Windows.Forms.Padding(2)
@@ -798,7 +798,7 @@ Partial Class frmmain
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(89, 37)
         Me.Button1.TabIndex = 107
-        Me.Button1.Text = "登録"
+        Me.Button1.Text = "登　録"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'dgv_log
@@ -842,7 +842,7 @@ Partial Class frmmain
         Me.btn_denpyou_henkou.Name = "btn_denpyou_henkou"
         Me.btn_denpyou_henkou.Size = New System.Drawing.Size(89, 37)
         Me.btn_denpyou_henkou.TabIndex = 107
-        Me.btn_denpyou_henkou.Text = "変更"
+        Me.btn_denpyou_henkou.Text = "変　更"
         Me.btn_denpyou_henkou.UseVisualStyleBackColor = False
         '
         'dgv_denpyou
@@ -866,11 +866,11 @@ Partial Class frmmain
         Me.GroupBox20.Controls.Add(Me.btn_seikyuu_nyuukin_shousai)
         Me.GroupBox20.Controls.Add(Me.dgv_seikyuusho)
         Me.GroupBox20.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox20.Location = New System.Drawing.Point(8, 653)
+        Me.GroupBox20.Location = New System.Drawing.Point(8, 672)
         Me.GroupBox20.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox20.Name = "GroupBox20"
         Me.GroupBox20.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox20.Size = New System.Drawing.Size(630, 163)
+        Me.GroupBox20.Size = New System.Drawing.Size(630, 144)
         Me.GroupBox20.TabIndex = 218
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "請求・入金情報"
@@ -880,12 +880,12 @@ Partial Class frmmain
         Me.btn_seikyuu_nyuukin_shousai.BackColor = System.Drawing.Color.MistyRose
         Me.btn_seikyuu_nyuukin_shousai.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_seikyuu_nyuukin_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_seikyuu_nyuukin_shousai.Location = New System.Drawing.Point(534, 122)
+        Me.btn_seikyuu_nyuukin_shousai.Location = New System.Drawing.Point(534, 100)
         Me.btn_seikyuu_nyuukin_shousai.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_seikyuu_nyuukin_shousai.Name = "btn_seikyuu_nyuukin_shousai"
         Me.btn_seikyuu_nyuukin_shousai.Size = New System.Drawing.Size(89, 37)
         Me.btn_seikyuu_nyuukin_shousai.TabIndex = 107
-        Me.btn_seikyuu_nyuukin_shousai.Text = "詳細"
+        Me.btn_seikyuu_nyuukin_shousai.Text = "詳　細"
         Me.btn_seikyuu_nyuukin_shousai.UseVisualStyleBackColor = False
         '
         'dgv_seikyuusho
@@ -900,7 +900,7 @@ Partial Class frmmain
         Me.dgv_seikyuusho.ReadOnly = True
         Me.dgv_seikyuusho.RowTemplate.Height = 24
         Me.dgv_seikyuusho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv_seikyuusho.Size = New System.Drawing.Size(514, 144)
+        Me.dgv_seikyuusho.Size = New System.Drawing.Size(514, 122)
         Me.dgv_seikyuusho.TabIndex = 66
         '
         'GroupBox13
@@ -948,7 +948,7 @@ Partial Class frmmain
         Me.GroupBox13.Controls.Add(Me.lbl_shimei_lbl)
         Me.GroupBox13.Controls.Add(Me.lbltenpomei)
         Me.GroupBox13.Controls.Add(Me.lbltenpoid)
-        Me.GroupBox13.Location = New System.Drawing.Point(8, 65)
+        Me.GroupBox13.Location = New System.Drawing.Point(8, 78)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(630, 470)
         Me.GroupBox13.TabIndex = 68
@@ -1409,12 +1409,12 @@ Partial Class frmmain
         Me.cmb_henkou.BackColor = System.Drawing.SystemColors.Control
         Me.cmb_henkou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmb_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmb_henkou.Location = New System.Drawing.Point(526, 17)
+        Me.cmb_henkou.Location = New System.Drawing.Point(526, 26)
         Me.cmb_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.cmb_henkou.Name = "cmb_henkou"
         Me.cmb_henkou.Size = New System.Drawing.Size(110, 44)
         Me.cmb_henkou.TabIndex = 106
-        Me.cmb_henkou.Text = "変更"
+        Me.cmb_henkou.Text = "変　　更"
         Me.cmb_henkou.UseVisualStyleBackColor = False
         '
         'btn_insatsu
@@ -1427,14 +1427,14 @@ Partial Class frmmain
         Me.btn_insatsu.Name = "btn_insatsu"
         Me.btn_insatsu.Size = New System.Drawing.Size(89, 37)
         Me.btn_insatsu.TabIndex = 95
-        Me.btn_insatsu.Text = "印刷"
+        Me.btn_insatsu.Text = "印　刷"
         Me.btn_insatsu.UseVisualStyleBackColor = False
         '
         'GroupBox4
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.LavenderBlush
         Me.GroupBox4.Controls.Add(Me.TabControl1)
-        Me.GroupBox4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox4.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(1, 118)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(576, 865)
@@ -1457,10 +1457,10 @@ Partial Class frmmain
         Me.TabPage1.Controls.Add(Me.lstshien)
         Me.TabPage1.Controls.Add(Me.GroupBox6)
         Me.TabPage1.Controls.Add(Me.dgv_shien)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 29)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(560, 806)
+        Me.TabPage1.Size = New System.Drawing.Size(560, 802)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "入力"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -1491,9 +1491,9 @@ Partial Class frmmain
         Me.GroupBox6.Controls.Add(Me.txtkubun2)
         Me.GroupBox6.Controls.Add(Me.txtkubun1)
         Me.GroupBox6.Controls.Add(Me.txtkubun)
-        Me.GroupBox6.Location = New System.Drawing.Point(9, 15)
+        Me.GroupBox6.Location = New System.Drawing.Point(9, 6)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(545, 72)
+        Me.GroupBox6.Size = New System.Drawing.Size(545, 81)
         Me.GroupBox6.TabIndex = 69
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "条件"
@@ -1502,7 +1502,7 @@ Partial Class frmmain
         '
         Me.Label14.BackColor = System.Drawing.Color.White
         Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label14.Location = New System.Drawing.Point(270, 18)
+        Me.Label14.Location = New System.Drawing.Point(270, 24)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(73, 16)
         Me.Label14.TabIndex = 190
@@ -1513,7 +1513,7 @@ Partial Class frmmain
         '
         Me.Label13.BackColor = System.Drawing.Color.White
         Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label13.Location = New System.Drawing.Point(169, 18)
+        Me.Label13.Location = New System.Drawing.Point(169, 24)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(73, 16)
         Me.Label13.TabIndex = 189
@@ -1524,7 +1524,7 @@ Partial Class frmmain
         '
         Me.Label12.BackColor = System.Drawing.Color.White
         Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label12.Location = New System.Drawing.Point(105, 18)
+        Me.Label12.Location = New System.Drawing.Point(105, 24)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(57, 16)
         Me.Label12.TabIndex = 188
@@ -1535,7 +1535,7 @@ Partial Class frmmain
         '
         Me.Label11.BackColor = System.Drawing.Color.White
         Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label11.Location = New System.Drawing.Point(55, 18)
+        Me.Label11.Location = New System.Drawing.Point(55, 24)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(57, 16)
         Me.Label11.TabIndex = 187
@@ -1546,7 +1546,7 @@ Partial Class frmmain
         '
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label10.Location = New System.Drawing.Point(4, 18)
+        Me.Label10.Location = New System.Drawing.Point(4, 24)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(57, 16)
         Me.Label10.TabIndex = 186
@@ -1558,12 +1558,12 @@ Partial Class frmmain
         Me.btn_jouken_kensaku.BackColor = System.Drawing.Color.Honeydew
         Me.btn_jouken_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_jouken_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_jouken_kensaku.Location = New System.Drawing.Point(452, 24)
+        Me.btn_jouken_kensaku.Location = New System.Drawing.Point(452, 30)
         Me.btn_jouken_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_jouken_kensaku.Name = "btn_jouken_kensaku"
         Me.btn_jouken_kensaku.Size = New System.Drawing.Size(85, 37)
         Me.btn_jouken_kensaku.TabIndex = 185
-        Me.btn_jouken_kensaku.Text = "検索"
+        Me.btn_jouken_kensaku.Text = "検　索"
         Me.btn_jouken_kensaku.UseVisualStyleBackColor = False
         '
         'btn_jouken_clear
@@ -1571,7 +1571,7 @@ Partial Class frmmain
         Me.btn_jouken_clear.BackColor = System.Drawing.Color.Honeydew
         Me.btn_jouken_clear.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_jouken_clear.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_jouken_clear.Location = New System.Drawing.Point(365, 24)
+        Me.btn_jouken_clear.Location = New System.Drawing.Point(365, 30)
         Me.btn_jouken_clear.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_jouken_clear.Name = "btn_jouken_clear"
         Me.btn_jouken_clear.Size = New System.Drawing.Size(85, 37)
@@ -1584,7 +1584,7 @@ Partial Class frmmain
         Me.txtfurigana2.BackColor = System.Drawing.Color.White
         Me.txtfurigana2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txtfurigana2.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.txtfurigana2.Location = New System.Drawing.Point(262, 38)
+        Me.txtfurigana2.Location = New System.Drawing.Point(262, 44)
         Me.txtfurigana2.MaxLength = 50
         Me.txtfurigana2.Name = "txtfurigana2"
         Me.txtfurigana2.Size = New System.Drawing.Size(96, 23)
@@ -1595,7 +1595,7 @@ Partial Class frmmain
         Me.txtfurigana.BackColor = System.Drawing.Color.White
         Me.txtfurigana.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txtfurigana.ImeMode = System.Windows.Forms.ImeMode.Hiragana
-        Me.txtfurigana.Location = New System.Drawing.Point(161, 38)
+        Me.txtfurigana.Location = New System.Drawing.Point(161, 44)
         Me.txtfurigana.MaxLength = 50
         Me.txtfurigana.Name = "txtfurigana"
         Me.txtfurigana.Size = New System.Drawing.Size(96, 23)
@@ -1606,7 +1606,7 @@ Partial Class frmmain
         Me.txtkubun2.BackColor = System.Drawing.Color.White
         Me.txtkubun2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txtkubun2.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txtkubun2.Location = New System.Drawing.Point(111, 38)
+        Me.txtkubun2.Location = New System.Drawing.Point(111, 44)
         Me.txtkubun2.MaxLength = 50
         Me.txtkubun2.Name = "txtkubun2"
         Me.txtkubun2.Size = New System.Drawing.Size(45, 23)
@@ -1617,7 +1617,7 @@ Partial Class frmmain
         Me.txtkubun1.BackColor = System.Drawing.Color.White
         Me.txtkubun1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txtkubun1.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txtkubun1.Location = New System.Drawing.Point(61, 38)
+        Me.txtkubun1.Location = New System.Drawing.Point(61, 44)
         Me.txtkubun1.MaxLength = 50
         Me.txtkubun1.Name = "txtkubun1"
         Me.txtkubun1.Size = New System.Drawing.Size(45, 23)
@@ -1628,7 +1628,7 @@ Partial Class frmmain
         Me.txtkubun.BackColor = System.Drawing.Color.White
         Me.txtkubun.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txtkubun.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txtkubun.Location = New System.Drawing.Point(10, 38)
+        Me.txtkubun.Location = New System.Drawing.Point(10, 44)
         Me.txtkubun.MaxLength = 50
         Me.txtkubun.Name = "txtkubun"
         Me.txtkubun.Size = New System.Drawing.Size(45, 23)
@@ -1775,10 +1775,10 @@ Partial Class frmmain
         Me.TabPage3.Controls.Add(Me.Button5)
         Me.TabPage3.Controls.Add(Me.Button4)
         Me.TabPage3.Controls.Add(Me.Button3)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 29)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(536, 764)
+        Me.TabPage3.Size = New System.Drawing.Size(536, 760)
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "業者区分"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -6088,7 +6088,7 @@ Partial Class frmmain
         Me.RadioButton3.AutoSize = True
         Me.RadioButton3.Location = New System.Drawing.Point(225, 63)
         Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(130, 19)
+        Me.RadioButton3.Size = New System.Drawing.Size(160, 23)
         Me.RadioButton3.TabIndex = 198
         Me.RadioButton3.Text = "単価不確定商品"
         Me.RadioButton3.UseVisualStyleBackColor = True
@@ -6098,7 +6098,7 @@ Partial Class frmmain
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Location = New System.Drawing.Point(113, 63)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(101, 19)
+        Me.RadioButton2.Size = New System.Drawing.Size(125, 23)
         Me.RadioButton2.TabIndex = 197
         Me.RadioButton2.Text = "サービス商品"
         Me.RadioButton2.UseVisualStyleBackColor = True
@@ -6109,7 +6109,7 @@ Partial Class frmmain
         Me.RadioButton1.Checked = True
         Me.RadioButton1.Location = New System.Drawing.Point(17, 63)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(85, 19)
+        Me.RadioButton1.Size = New System.Drawing.Size(103, 23)
         Me.RadioButton1.TabIndex = 196
         Me.RadioButton1.TabStop = True
         Me.RadioButton1.Text = "通常商品"
@@ -6277,7 +6277,7 @@ Partial Class frmmain
         Me.GroupBox5.BackColor = System.Drawing.Color.Azure
         Me.GroupBox5.Controls.Add(Me.GroupBox7)
         Me.GroupBox5.Controls.Add(Me.dgv_nouhinsho)
-        Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox5.Location = New System.Drawing.Point(583, 3)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(664, 980)
@@ -6292,7 +6292,7 @@ Partial Class frmmain
         Me.cbx_shain.FormattingEnabled = True
         Me.cbx_shain.Location = New System.Drawing.Point(314, 20)
         Me.cbx_shain.Name = "cbx_shain"
-        Me.cbx_shain.Size = New System.Drawing.Size(119, 23)
+        Me.cbx_shain.Size = New System.Drawing.Size(119, 27)
         Me.cbx_shain.TabIndex = 195
         '
         'Label19
@@ -6301,10 +6301,10 @@ Partial Class frmmain
         Me.Label19.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label19.Location = New System.Drawing.Point(10, 23)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(57, 16)
+        Me.Label19.Size = New System.Drawing.Size(42, 16)
         Me.Label19.TabIndex = 186
         Me.Label19.Text = "日付"
-        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label18
         '
@@ -6321,7 +6321,7 @@ Partial Class frmmain
         '
         Me.DateTimePicker1.CalendarFont = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.DateTimePicker1.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.DateTimePicker1.Location = New System.Drawing.Point(67, 18)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(59, 18)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(185, 26)
         Me.DateTimePicker1.TabIndex = 192
@@ -6333,7 +6333,7 @@ Partial Class frmmain
         Me.cbx_shurui.FormattingEnabled = True
         Me.cbx_shurui.Location = New System.Drawing.Point(509, 20)
         Me.cbx_shurui.Name = "cbx_shurui"
-        Me.cbx_shurui.Size = New System.Drawing.Size(129, 23)
+        Me.cbx_shurui.Size = New System.Drawing.Size(129, 27)
         Me.cbx_shurui.TabIndex = 201
         '
         'Label30
@@ -6404,12 +6404,12 @@ Partial Class frmmain
         '
         Me.Label25.BackColor = System.Drawing.Color.White
         Me.Label25.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label25.Location = New System.Drawing.Point(15, 140)
+        Me.Label25.Location = New System.Drawing.Point(10, 140)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(47, 16)
+        Me.Label25.Size = New System.Drawing.Size(42, 16)
         Me.Label25.TabIndex = 203
         Me.Label25.Text = "１０％"
-        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'TextBox7
         '
@@ -6427,7 +6427,7 @@ Partial Class frmmain
         Me.TextBox6.BackColor = System.Drawing.Color.White
         Me.TextBox6.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TextBox6.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox6.Location = New System.Drawing.Point(67, 102)
+        Me.TextBox6.Location = New System.Drawing.Point(59, 102)
         Me.TextBox6.MaxLength = 50
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(313, 22)
@@ -6437,12 +6437,12 @@ Partial Class frmmain
         '
         Me.Label21.BackColor = System.Drawing.Color.White
         Me.Label21.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label21.Location = New System.Drawing.Point(20, 101)
+        Me.Label21.Location = New System.Drawing.Point(10, 104)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(42, 16)
         Me.Label21.TabIndex = 199
         Me.Label21.Text = "備考"
-        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbl_nouhinsho_goukei
         '
@@ -6514,9 +6514,10 @@ Partial Class frmmain
         'chk_nouhinsho_houkoku
         '
         Me.chk_nouhinsho_houkoku.AutoSize = True
+        Me.chk_nouhinsho_houkoku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.chk_nouhinsho_houkoku.Location = New System.Drawing.Point(336, 64)
         Me.chk_nouhinsho_houkoku.Name = "chk_nouhinsho_houkoku"
-        Me.chk_nouhinsho_houkoku.Size = New System.Drawing.Size(56, 19)
+        Me.chk_nouhinsho_houkoku.Size = New System.Drawing.Size(59, 20)
         Me.chk_nouhinsho_houkoku.TabIndex = 199
         Me.chk_nouhinsho_houkoku.Text = "報告"
         Me.chk_nouhinsho_houkoku.UseVisualStyleBackColor = True
@@ -6526,9 +6527,10 @@ Partial Class frmmain
         Me.chk_nouhinsho_pc.AutoSize = True
         Me.chk_nouhinsho_pc.Checked = True
         Me.chk_nouhinsho_pc.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chk_nouhinsho_pc.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.chk_nouhinsho_pc.Location = New System.Drawing.Point(242, 64)
         Me.chk_nouhinsho_pc.Name = "chk_nouhinsho_pc"
-        Me.chk_nouhinsho_pc.Size = New System.Drawing.Size(75, 19)
+        Me.chk_nouhinsho_pc.Size = New System.Drawing.Size(80, 20)
         Me.chk_nouhinsho_pc.TabIndex = 197
         Me.chk_nouhinsho_pc.Text = "PC登録"
         Me.chk_nouhinsho_pc.UseVisualStyleBackColor = True
@@ -6538,7 +6540,7 @@ Partial Class frmmain
         Me.txt_nouhinsho_no.BackColor = System.Drawing.Color.White
         Me.txt_nouhinsho_no.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt_nouhinsho_no.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txt_nouhinsho_no.Location = New System.Drawing.Point(115, 62)
+        Me.txt_nouhinsho_no.Location = New System.Drawing.Point(98, 62)
         Me.txt_nouhinsho_no.MaxLength = 50
         Me.txt_nouhinsho_no.Name = "txt_nouhinsho_no"
         Me.txt_nouhinsho_no.Size = New System.Drawing.Size(111, 22)
@@ -6566,7 +6568,7 @@ Partial Class frmmain
         Me.Label17.Size = New System.Drawing.Size(87, 16)
         Me.Label17.TabIndex = 188
         Me.Label17.Text = "納品書NO"
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'btn_nouhinsho_hozon
         '
@@ -6578,7 +6580,7 @@ Partial Class frmmain
         Me.btn_nouhinsho_hozon.Name = "btn_nouhinsho_hozon"
         Me.btn_nouhinsho_hozon.Size = New System.Drawing.Size(103, 37)
         Me.btn_nouhinsho_hozon.TabIndex = 185
-        Me.btn_nouhinsho_hozon.Text = "削除"
+        Me.btn_nouhinsho_hozon.Text = "削　除"
         Me.btn_nouhinsho_hozon.UseVisualStyleBackColor = False
         '
         'btn_nouhinsho_clear
@@ -6618,7 +6620,7 @@ Partial Class frmmain
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(103, 37)
         Me.Button2.TabIndex = 209
-        Me.Button2.Text = "保存"
+        Me.Button2.Text = "保　存"
         Me.Button2.UseVisualStyleBackColor = False
         '
         'frmmain
