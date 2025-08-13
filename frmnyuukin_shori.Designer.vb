@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmnyuukin_shori
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmnyuukin_shori
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
@@ -30,12 +30,13 @@ Partial Class frmnyuukin_shori
         Me.cbx_tenpo = New System.Windows.Forms.ComboBox()
         Me.btn_denwachou = New System.Windows.Forms.Button()
         Me.chk_hihyouji_torihiki_nai = New System.Windows.Forms.CheckBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.grp_nyuukin_denpyou = New System.Windows.Forms.GroupBox()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.lbl_kurikoshi_kingaku = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btn_touroku = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.chk_houkoku = New System.Windows.Forms.CheckBox()
         Me.txt_bikou = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txt_ryoushuusho_no = New System.Windows.Forms.TextBox()
@@ -44,29 +45,30 @@ Partial Class frmnyuukin_shori
         Me.txt_kingaku = New System.Windows.Forms.TextBox()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.cbx_shiharai_houhou = New System.Windows.Forms.ComboBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.dtp_hinichi = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.lbl_seikyuu_id = New System.Windows.Forms.Label()
         Me.dgv_kensakukekka_nyuukin = New System.Windows.Forms.DataGridView()
         Me.btn_sakujo = New System.Windows.Forms.Button()
         Me.chk_sakujo = New System.Windows.Forms.CheckBox()
         Me.btn_henkou = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.chk_houkoku = New System.Windows.Forms.CheckBox()
-        Me.lbl_nyuukin_id = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lbl_nebiki = New System.Windows.Forms.Label()
+        Me.lbl_moto_nyuukin_kingaku = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         CType(Me.dgv_kensakukekka_seikyuu, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbx_tenpo.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.grp_nyuukin_denpyou.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.dgv_kensakukekka_nyuukin, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbx_main
@@ -74,7 +76,7 @@ Partial Class frmnyuukin_shori
         Me.gbx_main.BackColor = System.Drawing.Color.White
         Me.gbx_main.Controls.Add(Me.GroupBox8)
         Me.gbx_main.Controls.Add(Me.gbx_tenpo)
-        Me.gbx_main.Controls.Add(Me.GroupBox1)
+        Me.gbx_main.Controls.Add(Me.grp_nyuukin_denpyou)
         Me.gbx_main.Controls.Add(Me.GroupBox6)
         Me.gbx_main.Controls.Add(Me.btn_modoru)
         Me.gbx_main.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -170,21 +172,24 @@ Partial Class frmnyuukin_shori
         Me.chk_hihyouji_torihiki_nai.Text = "取引のない店舗は非表示"
         Me.chk_hihyouji_torihiki_nai.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'grp_nyuukin_denpyou
         '
-        Me.GroupBox1.Controls.Add(Me.GroupBox7)
-        Me.GroupBox1.Controls.Add(Me.btn_touroku)
-        Me.GroupBox1.Controls.Add(Me.GroupBox5)
-        Me.GroupBox1.Controls.Add(Me.GroupBox2)
-        Me.GroupBox1.Controls.Add(Me.GroupBox4)
-        Me.GroupBox1.Controls.Add(Me.GroupBox13)
-        Me.GroupBox1.Controls.Add(Me.GroupBox3)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 86)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1304, 93)
-        Me.GroupBox1.TabIndex = 193
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "入金伝票登録"
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.lbl_moto_nyuukin_kingaku)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.lbl_nebiki)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.lbl_seikyuu_id)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.GroupBox1)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.GroupBox7)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.btn_touroku)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.GroupBox5)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.GroupBox2)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.GroupBox4)
+        Me.grp_nyuukin_denpyou.Controls.Add(Me.GroupBox13)
+        Me.grp_nyuukin_denpyou.Location = New System.Drawing.Point(12, 86)
+        Me.grp_nyuukin_denpyou.Name = "grp_nyuukin_denpyou"
+        Me.grp_nyuukin_denpyou.Size = New System.Drawing.Size(1304, 93)
+        Me.grp_nyuukin_denpyou.TabIndex = 193
+        Me.grp_nyuukin_denpyou.TabStop = False
+        Me.grp_nyuukin_denpyou.Text = "入金伝票登録"
         '
         'GroupBox7
         '
@@ -241,6 +246,16 @@ Partial Class frmnyuukin_shori
         Me.GroupBox5.TabIndex = 206
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "備考"
+        '
+        'chk_houkoku
+        '
+        Me.chk_houkoku.AutoSize = True
+        Me.chk_houkoku.Location = New System.Drawing.Point(84, 0)
+        Me.chk_houkoku.Name = "chk_houkoku"
+        Me.chk_houkoku.Size = New System.Drawing.Size(71, 19)
+        Me.chk_houkoku.TabIndex = 206
+        Me.chk_houkoku.Text = "報告用"
+        Me.chk_houkoku.UseVisualStyleBackColor = True
         '
         'txt_bikou
         '
@@ -331,20 +346,10 @@ Partial Class frmnyuukin_shori
         Me.cbx_shiharai_houhou.Size = New System.Drawing.Size(94, 23)
         Me.cbx_shiharai_houhou.TabIndex = 194
         '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.dtp_hinichi)
-        Me.GroupBox3.Location = New System.Drawing.Point(6, 20)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(179, 60)
-        Me.GroupBox3.TabIndex = 202
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "入金日"
-        '
         'dtp_hinichi
         '
         Me.dtp_hinichi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.dtp_hinichi.Location = New System.Drawing.Point(13, 25)
+        Me.dtp_hinichi.Location = New System.Drawing.Point(13, 24)
         Me.dtp_hinichi.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.dtp_hinichi.Name = "dtp_hinichi"
         Me.dtp_hinichi.Size = New System.Drawing.Size(153, 23)
@@ -353,7 +358,6 @@ Partial Class frmnyuukin_shori
         '
         'GroupBox6
         '
-        Me.GroupBox6.Controls.Add(Me.lbl_nyuukin_id)
         Me.GroupBox6.Controls.Add(Me.dgv_kensakukekka_nyuukin)
         Me.GroupBox6.Controls.Add(Me.btn_sakujo)
         Me.GroupBox6.Controls.Add(Me.chk_sakujo)
@@ -364,6 +368,17 @@ Partial Class frmnyuukin_shori
         Me.GroupBox6.TabIndex = 193
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "入金一覧"
+        '
+        'lbl_seikyuu_id
+        '
+        Me.lbl_seikyuu_id.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.lbl_seikyuu_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_seikyuu_id.Location = New System.Drawing.Point(96, 0)
+        Me.lbl_seikyuu_id.Name = "lbl_seikyuu_id"
+        Me.lbl_seikyuu_id.Size = New System.Drawing.Size(107, 23)
+        Me.lbl_seikyuu_id.TabIndex = 191
+        Me.lbl_seikyuu_id.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_seikyuu_id.Visible = False
         '
         'dgv_kensakukekka_nyuukin
         '
@@ -425,25 +440,39 @@ Partial Class frmnyuukin_shori
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
-        'chk_houkoku
+        'GroupBox1
         '
-        Me.chk_houkoku.AutoSize = True
-        Me.chk_houkoku.Location = New System.Drawing.Point(84, 0)
-        Me.chk_houkoku.Name = "chk_houkoku"
-        Me.chk_houkoku.Size = New System.Drawing.Size(71, 19)
-        Me.chk_houkoku.TabIndex = 206
-        Me.chk_houkoku.Text = "報告用"
-        Me.chk_houkoku.UseVisualStyleBackColor = True
+        Me.GroupBox1.BackColor = System.Drawing.Color.White
+        Me.GroupBox1.Controls.Add(Me.dtp_hinichi)
+        Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 20)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(179, 60)
+        Me.GroupBox1.TabIndex = 204
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "入金日"
         '
-        'lbl_nyuukin_id
+        'lbl_nebiki
         '
-        Me.lbl_nyuukin_id.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.lbl_nyuukin_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_nyuukin_id.Location = New System.Drawing.Point(94, 729)
-        Me.lbl_nyuukin_id.Name = "lbl_nyuukin_id"
-        Me.lbl_nyuukin_id.Size = New System.Drawing.Size(107, 23)
-        Me.lbl_nyuukin_id.TabIndex = 191
-        Me.lbl_nyuukin_id.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lbl_nebiki.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.lbl_nebiki.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_nebiki.Location = New System.Drawing.Point(439, 0)
+        Me.lbl_nebiki.Name = "lbl_nebiki"
+        Me.lbl_nebiki.Size = New System.Drawing.Size(107, 23)
+        Me.lbl_nebiki.TabIndex = 207
+        Me.lbl_nebiki.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_nebiki.Visible = False
+        '
+        'lbl_moto_nyuukin_kingaku
+        '
+        Me.lbl_moto_nyuukin_kingaku.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.lbl_moto_nyuukin_kingaku.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_moto_nyuukin_kingaku.Location = New System.Drawing.Point(326, 0)
+        Me.lbl_moto_nyuukin_kingaku.Name = "lbl_moto_nyuukin_kingaku"
+        Me.lbl_moto_nyuukin_kingaku.Size = New System.Drawing.Size(107, 23)
+        Me.lbl_moto_nyuukin_kingaku.TabIndex = 209
+        Me.lbl_moto_nyuukin_kingaku.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_moto_nyuukin_kingaku.Visible = False
         '
         'frmnyuukin_shori
         '
@@ -460,7 +489,7 @@ Partial Class frmnyuukin_shori
         CType(Me.dgv_kensakukekka_seikyuu, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbx_tenpo.ResumeLayout(False)
         Me.gbx_tenpo.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
+        Me.grp_nyuukin_denpyou.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
@@ -469,10 +498,10 @@ Partial Class frmnyuukin_shori
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox13.ResumeLayout(False)
-        Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         CType(Me.dgv_kensakukekka_nyuukin, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -480,7 +509,7 @@ Partial Class frmnyuukin_shori
     Friend WithEvents gbx_main As GroupBox
     Friend WithEvents chk_sakujo As CheckBox
     Friend WithEvents btn_henkou As Button
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents grp_nyuukin_denpyou As GroupBox
     Friend WithEvents gbx_tenpo As GroupBox
     Friend WithEvents btn_clear_tenpo As Button
     Friend WithEvents cbx_tenpo As ComboBox
@@ -490,7 +519,6 @@ Partial Class frmnyuukin_shori
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents dgv_kensakukekka_nyuukin As DataGridView
     Friend WithEvents btn_modoru As Button
-    Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents dtp_hinichi As DateTimePicker
     Friend WithEvents GroupBox13 As GroupBox
     Friend WithEvents cbx_shiharai_houhou As ComboBox
@@ -508,5 +536,8 @@ Partial Class frmnyuukin_shori
     Friend WithEvents GroupBox8 As GroupBox
     Friend WithEvents dgv_kensakukekka_seikyuu As DataGridView
     Friend WithEvents chk_houkoku As CheckBox
-    Friend WithEvents lbl_nyuukin_id As Label
+    Friend WithEvents lbl_seikyuu_id As Label
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents lbl_nebiki As Label
+    Friend WithEvents lbl_moto_nyuukin_kingaku As Label
 End Class
