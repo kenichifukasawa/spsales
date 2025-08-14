@@ -22,9 +22,41 @@ Public Class frmshiharai_shori
 
     Private Sub btn_shiire_shousai_Click(sender As Object, e As EventArgs) Handles btn_shiire_shousai.Click
 
+        Dim dgv = dgv_kensakukekka_shiire
+        If dgv.Rows.Count = 0 Then
+            msg_go("履歴が表示されていません。")
+            Exit Sub
+        End If
+
+        Dim shiire_id = dgv.CurrentRow.Cells(2).Value
+        Dim hiduke = dgv.CurrentRow.Cells(3).Value
+        Dim gyousha_mei = Mid(Trim(cbx_gyousha.Text), 1, 10)
+
+        set_shiire_rireki_shousai(dgv.Rows.Count, shiire_id, hiduke, gyousha_mei)
+
     End Sub
 
     Private Sub btn_shiharai_shousai_Click(sender As Object, e As EventArgs) Handles btn_shiharai_shousai.Click
+
+        Dim dgv = dgv_kensakukekka_shiharai
+        If dgv.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
+            Exit Sub
+        End If
+
+        Dim shukkin_id = dgv.CurrentRow.Cells(1).Value
+        Dim hiduke = dgv.CurrentRow.Cells(2).Value
+        Dim gyousha_mei = Mid(Trim(cbx_gyousha.Text), 1, 10)
+
+        With frmshiharai_rireki_shousai
+
+            .lbl_hiduke.Text = hiduke
+            .lbl_shukkin_id.Text = shukkin_id
+            .lbl_shiiresaki.Text = gyousha_mei
+
+            .ShowDialog()
+
+        End With
 
     End Sub
 

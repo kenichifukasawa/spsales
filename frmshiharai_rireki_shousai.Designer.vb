@@ -22,11 +22,10 @@ Partial Class frmshiharai_rireki_shousai
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
         Me.Group1 = New System.Windows.Forms.GroupBox()
+        Me.btn_shousai = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lbl_shukkin_id = New System.Windows.Forms.Label()
         Me.lbl_kingaku = New System.Windows.Forms.Label()
@@ -36,7 +35,6 @@ Partial Class frmshiharai_rireki_shousai
         Me.Label7 = New System.Windows.Forms.Label()
         Me.lbl_shiiresaki = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.btn_shousai = New System.Windows.Forms.Button()
         Me.gbx_main.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Group1.SuspendLayout()
@@ -60,23 +58,7 @@ Partial Class frmshiharai_rireki_shousai
         '
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgv_kensakukekka.Location = New System.Drawing.Point(24, 200)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
@@ -104,6 +86,18 @@ Partial Class frmshiharai_rireki_shousai
         Me.Group1.Size = New System.Drawing.Size(506, 176)
         Me.Group1.TabIndex = 191
         Me.Group1.TabStop = False
+        '
+        'btn_shousai
+        '
+        Me.btn_shousai.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shousai.Location = New System.Drawing.Point(230, 118)
+        Me.btn_shousai.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_shousai.Name = "btn_shousai"
+        Me.btn_shousai.Size = New System.Drawing.Size(127, 44)
+        Me.btn_shousai.TabIndex = 36
+        Me.btn_shousai.Text = "詳細"
+        Me.btn_shousai.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -200,18 +194,6 @@ Partial Class frmshiharai_rireki_shousai
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "仕入先"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btn_shousai
-        '
-        Me.btn_shousai.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_shousai.Location = New System.Drawing.Point(230, 118)
-        Me.btn_shousai.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_shousai.Name = "btn_shousai"
-        Me.btn_shousai.Size = New System.Drawing.Size(127, 44)
-        Me.btn_shousai.TabIndex = 36
-        Me.btn_shousai.Text = "詳細"
-        Me.btn_shousai.UseVisualStyleBackColor = True
         '
         'frmshiharai_rireki_shousai
         '
