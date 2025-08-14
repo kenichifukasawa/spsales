@@ -5,6 +5,7 @@ Public Class frmshiharai_shori
         set_gyousha_cbx(3, False)
         dtp_shiharai_bi.Value = Now.ToString("yyyy/MM/dd")
         dtp_shiharai_kijitsu.Value = Now.ToString("yyyy/MM/dd")
+        dtp_shiharai_kijitsu.Checked = False
         cbx_shiharai_houhou.Items.AddRange(PaymentMethodsInvoice.Names)
     End Sub
 
@@ -50,6 +51,19 @@ Public Class frmshiharai_shori
         End If
         Dim int_shiharai_kingaku = CInt(shiharai_kingaku)
 
+        Dim shiharaibi = dtp_shiharai_bi.Value.ToString("yyyyMMdd")
+
+        Dim kijitsu = dtp_shiharai_kijitsu.Value.ToString("yyyyMMdd")
+        If dtp_shiharai_kijitsu.Checked = False Then
+            Dim result As DialogResult = MessageBox.Show("支払期日が設定されていませんがよろしいですか？", "SpSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+            If result = DialogResult.No Then
+                Exit Sub
+            End If
+            kijitsu = ""
+        End If
+
+        Dim bikou = Trim(txt_bikou.Text)
+
         Dim id_busy = 2
         Dim s_no_busy = 4
         Dim get_response_busy = get_settings(id:=id_busy, s_no:=s_no_busy)
@@ -70,10 +84,6 @@ Public Class frmshiharai_shori
             End If
 
         End If
-
-        Dim shiharaibi = dtp_shiharai_bi.Value.ToString("yyyyMMdd")
-            Dim kijitsu = dtp_shiharai_bi.Value.ToString("yyyyMMdd")
-        Dim bikou = Trim(txt_bikou.Text)
 
         Dim id = 1
         Dim s_no = 14
@@ -225,6 +235,44 @@ Public Class frmshiharai_shori
 
     End Sub
 
+    Private Sub dgv_kensakukekka_shiire_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_kensakukekka_shiire.CellMouseClick
+
+        Dim dgv = dgv_kensakukekka_shiire
+
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
+
+            Dim currentRow As DataGridViewRow = dgv.Rows(e.RowIndex)
+            Dim isChecked As Boolean = CBool(currentRow.Cells(0).Value)
+
+            If isChecked Then
+                currentRow.Cells(0).Value = False
+
+                If currentRow.Index Mod 2 = 0 Then
+                    currentRow.DefaultCellStyle.BackColor = dgv.RowsDefaultCellStyle.BackColor
+                Else
+                    currentRow.DefaultCellStyle.BackColor = dgv.AlternatingRowsDefaultCellStyle.BackColor
+                End If
+
+            Else
+                currentRow.Cells(0).Value = True
+                currentRow.DefaultCellStyle.BackColor = Color.Yellow
+            End If
+
+            dgv.ClearSelection()
+
+        End If
+
+        Dim goukei_kingaku = 0
+        For i = 0 To dgv.Rows.Count - 1
+            If dgv.Rows(i).Cells(0).Value = True Then
+                Dim kingaku = dgv.Rows(i).Cells(4).Value
+                goukei_kingaku += CInt(kingaku)
+            End If
+        Next
+        lbl_goukei_kingaku.Text = goukei_kingaku.ToString("#,0")
+
+    End Sub
+
     Private Sub cbx_gyousha_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_gyousha.SelectedIndexChanged
         set_shuukei()
     End Sub
@@ -238,15 +286,21 @@ Public Class frmshiharai_shori
     End Sub
 
     Private Sub cbx_shiharai_houhou_KeyDown(sender As Object, e As KeyEventArgs) Handles cbx_shiharai_houhou.KeyDown
-        txt_kingaku.Focus()
+        If e.KeyCode = Keys.Enter Then
+            txt_kingaku.Focus()
+        End If
     End Sub
 
     Private Sub txt_kingaku_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_kingaku.KeyDown
-        txt_bikou.Focus()
+        If e.KeyCode = Keys.Enter Then
+            txt_bikou.Focus()
+        End If
     End Sub
 
     Private Sub txt_bikou_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_bikou.KeyDown
-        btn_touroku.PerformClick()
+        If e.KeyCode = Keys.Enter Then
+            btn_touroku.PerformClick()
+        End If
     End Sub
 
     Private Sub clear_shiharai_denpyou_touroku()

@@ -124,9 +124,10 @@ Partial Class frmshiharai_shori
         '
         Me.dtp_shiharai_kijitsu.Checked = False
         Me.dtp_shiharai_kijitsu.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.dtp_shiharai_kijitsu.Location = New System.Drawing.Point(20, 24)
+        Me.dtp_shiharai_kijitsu.Location = New System.Drawing.Point(19, 24)
         Me.dtp_shiharai_kijitsu.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.dtp_shiharai_kijitsu.Name = "dtp_shiharai_kijitsu"
+        Me.dtp_shiharai_kijitsu.ShowCheckBox = True
         Me.dtp_shiharai_kijitsu.Size = New System.Drawing.Size(153, 23)
         Me.dtp_shiharai_kijitsu.TabIndex = 260
         Me.dtp_shiharai_kijitsu.Value = New Date(2025, 7, 4, 0, 0, 0, 0)
