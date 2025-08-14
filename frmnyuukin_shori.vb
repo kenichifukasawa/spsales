@@ -651,4 +651,32 @@ Public Class frmnyuukin_shori
 
     End Sub
 
+    Private Sub dtp_hinichi_CloseUp(sender As Object, e As EventArgs) Handles dtp_hinichi.CloseUp
+        cbx_shiharai_houhou.Focus()
+    End Sub
+
+    Private Sub cbx_shiharai_houhou_KeyDown(sender As Object, e As KeyEventArgs) Handles cbx_shiharai_houhou.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            txt_kingaku.Focus()
+        End If
+    End Sub
+
+    Private Sub txt_kingaku_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_kingaku.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            txt_ryoushuusho_no.Focus()
+        End If
+    End Sub
+
+    Private Sub txt_ryoushuusho_no_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_ryoushuusho_no.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            txt_bikou.Focus()
+        End If
+    End Sub
+
+    Private Sub txt_bikou_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_bikou.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            btn_touroku.PerformClick()
+        End If
+    End Sub
+
 End Class
