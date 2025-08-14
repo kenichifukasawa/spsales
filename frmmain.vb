@@ -292,15 +292,16 @@ Public Class frmmain
             .Columns(0).Name = "商品ID"
             .Columns(1).Name = "商品名"
             .Columns(2).Name = "価格"
-            .Columns(3).Name = ""
-            .Columns(0).Width = 100
-            .Columns(1).Width = 300
+            .Columns(3).Name = "在庫"
+            .Columns(0).Width = 0
+            .Columns(1).Width = 320
             .Columns(2).Width = 80
-            .Columns(3).Width = 0
+            .Columns(3).Width = 80
 
             .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
             ' 奇数行の既定セル・スタイルの背景色を設定
             .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
@@ -673,5 +674,25 @@ Public Class frmmain
 
     Private Sub btn_tenpo_hyouji_rireki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_hyouji_rireki.Click
         frmhyouji_rireki.ShowDialog()
+    End Sub
+
+    Private Sub btn_denpyou_henkou_Click(sender As Object, e As EventArgs) Handles btn_denpyou_henkou.Click
+
+        If dgv_denpyou.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+
+        frmdenpyou.ShowDialog()
+
+    End Sub
+
+    Private Sub btn_insatsu_Click(sender As Object, e As EventArgs) Handles btn_insatsu.Click
+        If dgv_denpyou.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+
+
     End Sub
 End Class

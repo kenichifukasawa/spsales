@@ -105,6 +105,12 @@
     <Compile Include="frmcheck_shouhin_log.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmdenpyou.Designer.vb">
+      <DependentUpon>frmdenpyou.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmdenpyou.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmdenwachou.Designer.vb">
       <DependentUpon>frmdenwachou.vb</DependentUpon>
     </Compile>
@@ -456,6 +462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmcheck_shouhin_log.resx">
       <DependentUpon>frmcheck_shouhin_log.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmdenpyou.resx">
+      <DependentUpon>frmdenpyou.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmdenwachou.resx">
       <DependentUpon>frmdenwachou.vb</DependentUpon>
