@@ -19,10 +19,16 @@ Public Class frmshiire_rireki
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
-        Dim shiire_id = dgv_kensakukekka.CurrentRow.Cells(1).Value
-        Dim hiduke = dgv_kensakukekka.CurrentRow.Cells(2).Value
-        Dim gyousha_mei = dgv_kensakukekka.CurrentRow.Cells(7).Value
-        set_shiire_rireki_shousai(dgv_kensakukekka.Rows.Count, shiire_id, hiduke, gyousha_mei)
+        Dim dgv = dgv_kensakukekka
+        If dgv.Rows.Count = 0 Then
+            msg_go("履歴が表示されていません。")
+            Exit Sub
+        End If
+
+        Dim shiire_id = dgv.CurrentRow.Cells(1).Value
+        Dim hiduke = dgv.CurrentRow.Cells(2).Value
+        Dim gyousha_mei = dgv.CurrentRow.Cells(7).Value
+        set_shiire_rireki_shousai(dgv.Rows.Count, shiire_id, hiduke, gyousha_mei)
 
         set_shuukei()
 

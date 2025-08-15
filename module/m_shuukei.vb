@@ -376,6 +376,8 @@ Module m_shuukei
                 frmshiire_rireki.cbx_gyousha.Items.Clear()
             Case 2
                 frmshiharai_rireki.cbx_gyousha.Items.Clear()
+            Case 3
+                frmshiharai_shori.cbx_gyousha.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -407,6 +409,8 @@ Module m_shuukei
                         frmshiire_rireki.cbx_gyousha.Items.Add(item_name)
                     Case 2
                         frmshiharai_rireki.cbx_gyousha.Items.Add(item_name)
+                    Case 3
+                        frmshiharai_shori.cbx_gyousha.Items.Add(item_name)
                 End Select
             Next
 

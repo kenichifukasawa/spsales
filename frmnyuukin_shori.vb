@@ -5,7 +5,7 @@ Public Class frmnyuukin_shori
     Private Sub frmnyuukin_shori_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         set_tenpo_cbx(5, chk_hihyouji_torihiki_nai.Checked)
         dtp_hinichi.Value = Now.ToString("yyyy/MM/dd")
-        cbx_shiharai_houhou.Items.AddRange(PaymentMethodsDeposit.Names)
+        cbx_nyuukin_houhou.Items.AddRange(PaymentMethodsDeposit.Names)
     End Sub
 
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
@@ -41,7 +41,7 @@ Public Class frmnyuukin_shori
             Exit Sub
         End If
 
-        Dim houhou = Trim(cbx_shiharai_houhou.Text)
+        Dim houhou = Trim(cbx_nyuukin_houhou.Text)
         If houhou = "" Then
             msg_go("方法を選択してください。")
             Exit Sub
@@ -233,7 +233,7 @@ Public Class frmnyuukin_shori
 
             lbl_seikyuu_id.Text = seikyuusho_id
             dtp_hinichi.Value = nyuukinbi
-            cbx_shiharai_houhou.SelectedIndex = cbx_shiharai_houhou.FindStringExact(houhou)
+            cbx_nyuukin_houhou.SelectedIndex = cbx_nyuukin_houhou.FindStringExact(houhou)
             txt_kingaku.Text = nyuukin_kingaku
             txt_ryoushuusho_no.Text = ryoushuusho_no
             txt_bikou.Text = bikou
@@ -352,6 +352,34 @@ Public Class frmnyuukin_shori
             gbx_tenpo.Enabled = False
             btn_sakujo.Enabled = False
             chk_sakujo.Enabled = False
+        End If
+    End Sub
+
+    Private Sub dtp_hinichi_CloseUp(sender As Object, e As EventArgs) Handles dtp_hinichi.CloseUp
+        cbx_nyuukin_houhou.Focus()
+    End Sub
+
+    Private Sub cbx_shiharai_houhou_KeyDown(sender As Object, e As KeyEventArgs) Handles cbx_nyuukin_houhou.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            txt_kingaku.Focus()
+        End If
+    End Sub
+
+    Private Sub txt_kingaku_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_kingaku.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            txt_ryoushuusho_no.Focus()
+        End If
+    End Sub
+
+    Private Sub txt_ryoushuusho_no_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_ryoushuusho_no.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            txt_bikou.Focus()
+        End If
+    End Sub
+
+    Private Sub txt_bikou_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_bikou.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            btn_touroku.PerformClick()
         End If
     End Sub
 
@@ -636,7 +664,7 @@ Public Class frmnyuukin_shori
 
         lbl_seikyuu_id.Text = ""
         dtp_hinichi.Value = Now.ToString("yyyy/MM/dd")
-        cbx_shiharai_houhou.SelectedIndex = -1
+        cbx_nyuukin_houhou.SelectedIndex = -1
         txt_kingaku.Text = ""
         txt_ryoushuusho_no.Text = ""
         txt_bikou.Text = ""
