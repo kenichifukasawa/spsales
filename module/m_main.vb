@@ -170,6 +170,176 @@ Module m_main
         End Try
 
     End Function
+    Sub grid_shien_head_set(Optional s_no As String = "")
+
+        If s_no = "" Then
+            With frmmain.dgv_shien
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 4
+                .Columns(0).Name = "商品ID"
+                .Columns(1).Name = "商品名"
+                .Columns(2).Name = "価格"
+                .Columns(3).Name = "在庫"
+                .Columns(0).Width = 0
+                .Columns(1).Width = 320
+                .Columns(2).Width = 80
+                .Columns(3).Width = 80
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                ' 奇数行の既定セル・スタイルの背景色を設定
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
+            End With
+        ElseIf s_no = "1" Then
+            With frmshiire.dgv_shien
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 4
+                .Columns(0).Name = "商品ID"
+                .Columns(1).Name = "商品名"
+                .Columns(2).Name = "価格"
+                .Columns(3).Name = "在庫"
+                .Columns(0).Width = 0
+                .Columns(1).Width = 320
+                .Columns(2).Width = 80
+                .Columns(3).Width = 80
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                ' 奇数行の既定セル・スタイルの背景色を設定
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
+            End With
+        End If
+
+    End Sub
+
+
+    Function shouhinkubun_shien_grid_set(no As Integer, Optional sentaku1id As String = "", Optional sentakuid2 As String = "") As Integer
+
+
+        Dim shouhinkubuncount As Integer, shouhinkubunGROW As Integer, cmdicmdi3 As Integer
+
+        Dim lngStyle As Long
+
+        shouhinkubun_shien_grid_set = 0
+
+        Select Case no
+            Case 0, 1, 4
+                frmmain.lstshien.Items.Clear()
+            Case 5, 6
+                frmshiire.lstshien.Items.Clear()
+                '    For cmdicmdi3 = 0 To 99
+                '        frmmain.cmd2(cmdicmdi3).Caption = ""
+                '    Next
+                'Case 2
+                '    For cmdicmdi3 = 0 To 99
+                '        frmmain.cmd1(cmdicmdi3).Caption = ""
+                '    Next
+        End Select
+
+
+
+
+        Try
+
+            Dim cn_server As New SqlConnection
+
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Select Case no
+                Case 4, 5
+                    Sql = "SELECT*FROM shouhinkubun0 ORDER BY shouhinkubunid0"
+
+                Case 0, 6
+
+                    Sql = "SELECT*FROM shouhinkubun ORDER BY shouhinkubunid"
+
+                Case 1
+
+                    Sql = "SELECT*FROM shouhinkubun2 where shouhinkubunid='" & sentaku1id & "' ORDER BY narabe"
+
+                    'Case 2
+
+                    '    sql_shouhinkubun = "SELECT*FROM shouhinkubun ORDER BY shouhinkubunid"
+
+                    '    frmmain.cmd1(0).Caption = "なし"
+                    'Case 3
+                    '    If Trim(sentaku1id) = "" Then
+                    '        shouhinkubun_shien_grid_set = -1
+                    '        Screen.MousePointer = 0
+                    '        Exit Function
+                    '    End If
+                    '    'sql_shouhinkubun = "SELECT*FROM shouhinkubun2 where shouhinkubunid='" & sentaku1id & "' ORDER BY narabe"
+                    '    sql_shouhinkubun = "SELECT*FROM shouhinkubun2 where shouhinkubunid='" & sentaku1id & "' ORDER BY narabe"
+                    '    frmmain.cmd2(0).Caption = "なし"
+                    'Case 5
+                    '    sql_shouhinkubun = "SELECT*FROM shouhinkubun0 ORDER BY shouhinkubunid0"
+                    '    frmmain.cmd0(0).Caption = "なし"
+            End Select
+
+            Dim da_server As SqlDataAdapter
+
+            da_server = New SqlDataAdapter(Sql, cn_server)
+
+            Dim ds_server As New DataSet
+
+            da_server.Fill(ds_server, "t_shoukaii")
+
+            Dim dt_server As DataTable
+
+            dt_server = ds_server.Tables("t_shoukaii")
+
+            Dim s_str As String = ""
+
+            For i = 0 To dt_server.Rows.Count - 1
+                Select Case no
+                    Case 4
+                        s_str = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid0")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei0"))
+                        frmmain.lstshien.Items.Add(s_str)
+                    Case 0
+                        s_str = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei"))
+                        frmmain.lstshien.Items.Add(s_str)
+
+                    Case 1
+                        s_str = Trim(dt_server.Rows.Item(i).Item("NARABE")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei2"))
+                        frmmain.lstshien.Items.Add(s_str)
+
+                    Case 5
+                        s_str = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid0")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei0"))
+                        frmshiire.lstshien.Items.Add(s_str)
+
+                    Case 6
+                        s_str = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei"))
+                        frmshiire.lstshien.Items.Add(s_str)
+
+                        '                frmmain.cmd1(CInt(rs_shouhinkubun!shouhinkubunid)).Caption = Trim(rs_shouhinkubun!shouhinkubunmei)
+                        '            Case 3
+                        '                frmmain.cmd2(CInt(rs_shouhinkubun!NARABE)).Caption = Trim(rs_shouhinkubun!shouhinkubunmei2)
+                        '            Case 5
+                        '                frmmain.cmd0(CInt(rs_shouhinkubun!shouhinkubunid0)).Caption = Trim(rs_shouhinkubun!shouhinkubunmei0)
+                End Select
+            Next i
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            shouhinkubun_shien_grid_set = -1
+        End Try
+
+    End Function
+
 
     Sub mainset(s_tenpoid As String)
 
