@@ -328,6 +328,8 @@ Module m_shuukei
                 frmnouhinsho_rireki.cbx_shain.Items.Clear()
             Case 4
                 frmsettei.cmbshain.Items.Clear()
+            Case 5
+                frmseikyuu_shuukin_hyou.cbx_shain.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -356,6 +358,8 @@ Module m_shuukei
                         frmnouhinsho_rireki.cbx_shain.Items.Add(item_name)
                     Case 4
                         frmsettei.cmbshain.Items.Add(item_name)
+                    Case 5
+                        frmseikyuu_shuukin_hyou.cbx_shain.Items.Add(item_name)
                 End Select
             Next
 

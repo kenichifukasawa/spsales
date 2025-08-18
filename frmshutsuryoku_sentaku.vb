@@ -5,6 +5,7 @@
     End Sub
 
     Private Sub btn_shouhin_Click(sender As Object, e As EventArgs) Handles btn_shouhin.Click
+        Me.Close() : Me.Dispose()
         With frmshuturyoku_csv
             .lbl_shutsuryoku_type.Text = "商品情報出力"
             .chk_plus_alpha.Text = "使用していない商品を出力する"
@@ -13,6 +14,7 @@
     End Sub
 
     Private Sub btn_tenpo_Click(sender As Object, e As EventArgs) Handles btn_tenpo.Click
+        Me.Close() : Me.Dispose()
         With frmshuturyoku_csv
             .lbl_shutsuryoku_type.Text = "店舗情報出力"
             .chk_plus_alpha.Text = "取引していない店舗も出力する"
@@ -21,6 +23,7 @@
     End Sub
 
     Private Sub btn_kurikoshizan_Click(sender As Object, e As EventArgs) Handles btn_kurikoshizan.Click
+        Me.Close() : Me.Dispose()
         With frmshuturyoku_csv
             .lbl_shutsuryoku_type.Text = "繰越残情報出力"
             .chk_plus_alpha.Visible = False
@@ -30,6 +33,7 @@
     End Sub
 
     Private Sub btn_wella_hanbai_jisseki_Click(sender As Object, e As EventArgs) Handles btn_wella_hanbai_jisseki.Click
+        Me.Close() : Me.Dispose()
         With frmshuturyoku_csv
             .lbl_shutsuryoku_type.Text = "Wella売上通知データ出力"
             .chk_plus_alpha.Text = "期間指定"
@@ -38,6 +42,7 @@
     End Sub
 
     Private Sub btn_wella_shouhin_zaiko_Click(sender As Object, e As EventArgs) Handles btn_wella_shouhin_zaiko.Click
+        Me.Close() : Me.Dispose()
         With frmshuturyoku_csv
             .lbl_shutsuryoku_type.Text = "ウエラ商品情報出力"
             .chk_plus_alpha.Visible = False

@@ -6,18 +6,22 @@
     End Sub
 
     Private Sub btn_shouhin_check_Click(sender As Object, e As EventArgs) Handles btn_shouhin_check.Click
+        Me.Close() : Me.Dispose()
         frmcheck_shouhin_check.ShowDialog()
     End Sub
 
     Private Sub btn_shouhin_log_Click(sender As Object, e As EventArgs) Handles btn_shouhin_log.Click
+        Me.Close() : Me.Dispose()
         frmcheck_shouhin_log.ShowDialog()
     End Sub
 
     Private Sub btn_kurikoshi_log_Click(sender As Object, e As EventArgs) Handles btn_kurikoshi_log.Click
+        Me.Close() : Me.Dispose()
         frmcheck_kurikoshi_log.ShowDialog()
     End Sub
 
     Private Sub btn_kosuu_henkou_Click(sender As Object, e As EventArgs) Handles btn_kosuu_henkou.Click
+        Me.Close() : Me.Dispose()
         frmcheck_kosuu_henkou.ShowDialog()
     End Sub
 End Class
