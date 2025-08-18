@@ -168,7 +168,7 @@ Public Class frmshiire
 
     Private Sub btn_jouken_kensaku_Click(sender As Object, e As EventArgs) Handles btn_jouken_kensaku.Click
         Dim newkubun1 As String, newkubun2 As String, newfuri1 As String, newfuri2 As String
-        Dim strstr As String, iriri As Long
+        Dim strstr As String, haibankai As Integer
 
         Dim newkubun0 As String
 
@@ -177,6 +177,12 @@ Public Class frmshiire
         newkubun2 = Trim(txtkubun2.Text)
         newfuri1 = Trim(txtfurigana.Text)
         newfuri2 = Trim(txtfurigana2.Text)
+
+        If chkhaiban.Checked = True Then
+            haibankai = 1
+        Else
+            haibankai = 0
+        End If
 
         Sql = "select shouhin.shouhinmei,shouhin.shouhinid,shouhin.kakaku,shouhin.genzaikosuu " &
             ",shouhinkubun2.shouhinkubunmei2,shouhinkubun.shouhinkubunmei" &
@@ -227,6 +233,15 @@ Public Class frmshiire
         Else
             strstr = strstr & " and shouhin.mishiyou='0'"
         End If
+
+        If haibankai = 1 Then
+            If strstr = "" Then
+                strstr = " where shouhin.haiban is null"
+            Else
+                strstr = strstr & " and shouhin.haiban is null"
+            End If
+        End If
+
 
         Sql = Sql & strstr & " order by shouhin.shouhinid"
 
@@ -431,6 +446,125 @@ Public Class frmshiire
 
             .txtkubun.Focus()
         End With
+
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+        Dim chksuu As Integer
+        Dim newshouhinid As String, newshiireid As String, newbikou As String
+        Dim newsuu As String, newsuu2 As Integer, newkin2 As Integer, newshouhinmei As String
+
+
+        With Me
+            chksuu = CInt(.lblshiiresuu.Text)
+            If chksuu >= 100 Then
+                msg_go("伝票登録数が９９を超えています。")
+                Exit Sub
+            End If
+            newshouhinid = Trim(.lblshouhinid.Text)
+            If newshouhinid = "" Then
+                msg_go("商品IDを入力してから実行してください。")
+                Exit Sub
+            End If
+            newshouhinmei = Trim(.lblshouhinmei.Text)
+            If newshouhinmei = "" Then
+                msg_go("商品名を入力してから実行してください。")
+                Exit Sub
+            End If
+
+            newsuu = Trim(.txtsuu.Text)
+            Dim s_d As Double
+            If Not Double.TryParse(newsuu, s_d) Then
+                msg_go("数量を入力してから実行してください。")
+                txtsuu.Focus()
+                Exit Sub
+            Else
+                newsuu2 = CInt(newsuu)
+            End If
+
+            Dim nowkinkin As String = Trim(txtkin.Text)
+            If Not Double.TryParse(nowkinkin, s_d) Then
+                msg_go("金額を入力してから実行してください。")
+                txtkin.Focus()
+                Exit Sub
+            Else
+                newkin2 = CInt(nowkinkin)
+            End If
+
+            newbikou = Trim(.txtbikou.Text)
+            If newbikou = "" Then
+                newbikou = Space(1)
+            End If
+
+            '    '欠番を判定
+            newshiireid = ""
+            Dim s_no As String = ""
+            For i = 1 To dgv_shiire.Rows.Count - 1
+
+                s_no = Trim(dgv_shiire(i, 0).Value)
+                If i <> CInt(s_no) Then
+                    newshiireid = i.ToString("000")
+                    Exit For
+                End If
+            Next
+            If newshiireid = "" Then
+                newshiireid = (dgv_shiire.Rows.Count + 1).ToString("000")
+            End If
+
+            'ローカルに登録
+
+            'データをセットする
+            Dim cn_p As New OleDb.OleDbConnection
+            cn_p.ConnectionString = connectionstring_mdb
+
+            cn_p.Open()
+
+            Dim cmd_p As New OleDb.OleDbCommand()
+            cmd_p.Connection = cn_p
+
+            Dim sql_p As String
+
+            'コマンドオブジェクトのパラメータクリア
+            cmd_p.Parameters.Clear()
+            'SQL生成
+
+            sql_p = "INSERT INTO shiirechu  VALUES ("
+
+            Dim s As String = ""
+            s = newshiireid
+            s = s & ",'" & newshouhinid & "'"
+            s = s & ",'" & newshouhinmei & "'"
+            s = s & "," & newsuu2
+            s = s & "," & newkin2
+            s = s & ",'" & newbikou & "'"
+            s = s & ")"
+            sql_p = sql_p & s
+            cmd_p.CommandText = sql_p   'SQL文字列をコマンドオブジェクトに追加
+
+            'SQL処理を実行
+            cmd_p.ExecuteNonQuery()
+
+
+            cn_p.Close()
+
+
+        End With
+
+        shouhin_shiirechu_set()
+
+        lblshouhinid.Text = ""
+        lblshouhinmei.Text = ""
+        txtsuu.Text = ""
+        txtkin.Text = ""
+        txtbikou.Text = ""
+        dgv_shien.Focus()
+
+
+
+    End Sub
+
+    Private Sub frmshiire_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

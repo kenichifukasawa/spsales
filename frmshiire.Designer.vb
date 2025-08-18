@@ -49,9 +49,11 @@ Partial Class frmshiire
         Me.txtkubun1 = New System.Windows.Forms.TextBox()
         Me.txtkubun = New System.Windows.Forms.TextBox()
         Me.dgv_shien = New System.Windows.Forms.DataGridView()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.chkhaiban = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.lblgoukei = New System.Windows.Forms.Label()
+        Me.lblshiiresuu = New System.Windows.Forms.Label()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.Button9 = New System.Windows.Forms.Button()
@@ -61,14 +63,13 @@ Partial Class frmshiire
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.dgv_shiire = New System.Windows.Forms.DataGridView()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -79,7 +80,7 @@ Partial Class frmshiire
         CType(Me.dgv_shien, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgv_shiire, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ggg, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,7 +92,7 @@ Partial Class frmshiire
         Me.GroupBox1.Controls.Add(Me.lstshien)
         Me.GroupBox1.Controls.Add(Me.GroupBox6)
         Me.GroupBox1.Controls.Add(Me.dgv_shien)
-        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Controls.Add(Me.chkhaiban)
         Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(12, 8)
         Me.GroupBox1.Name = "GroupBox1"
@@ -106,9 +107,9 @@ Partial Class frmshiire
         Me.lstshien.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lstshien.FormattingEnabled = True
         Me.lstshien.ItemHeight = 16
-        Me.lstshien.Location = New System.Drawing.Point(29, 231)
+        Me.lstshien.Location = New System.Drawing.Point(29, 71)
         Me.lstshien.Name = "lstshien"
-        Me.lstshien.Size = New System.Drawing.Size(236, 548)
+        Me.lstshien.Size = New System.Drawing.Size(236, 708)
         Me.lstshien.TabIndex = 73
         Me.lstshien.Visible = False
         '
@@ -416,21 +417,23 @@ Partial Class frmshiire
         Me.dgv_shien.Size = New System.Drawing.Size(547, 765)
         Me.dgv_shien.TabIndex = 71
         '
-        'CheckBox1
+        'chkhaiban
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(387, 4)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(101, 19)
-        Me.CheckBox1.TabIndex = 191
-        Me.CheckBox1.Text = "廃盤非表示"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chkhaiban.AutoSize = True
+        Me.chkhaiban.Checked = True
+        Me.chkhaiban.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkhaiban.Location = New System.Drawing.Point(387, 4)
+        Me.chkhaiban.Name = "chkhaiban"
+        Me.chkhaiban.Size = New System.Drawing.Size(101, 19)
+        Me.chkhaiban.TabIndex = 191
+        Me.chkhaiban.Text = "廃盤非表示"
+        Me.chkhaiban.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.White
         Me.GroupBox2.Controls.Add(Me.GroupBox3)
-        Me.GroupBox2.Controls.Add(Me.DataGridView1)
+        Me.GroupBox2.Controls.Add(Me.dgv_shiire)
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(594, 8)
         Me.GroupBox2.Name = "GroupBox2"
@@ -441,6 +444,8 @@ Partial Class frmshiire
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.lblgoukei)
+        Me.GroupBox3.Controls.Add(Me.lblshiiresuu)
         Me.GroupBox3.Controls.Add(Me.Button10)
         Me.GroupBox3.Controls.Add(Me.CheckBox2)
         Me.GroupBox3.Controls.Add(Me.Button9)
@@ -450,7 +455,6 @@ Partial Class frmshiire
         Me.GroupBox3.Controls.Add(Me.DateTimePicker1)
         Me.GroupBox3.Controls.Add(Me.Button7)
         Me.GroupBox3.Controls.Add(Me.Button8)
-        Me.GroupBox3.Controls.Add(Me.TextBox4)
         Me.GroupBox3.Controls.Add(Me.TextBox5)
         Me.GroupBox3.Controls.Add(Me.TextBox6)
         Me.GroupBox3.Controls.Add(Me.Label7)
@@ -462,6 +466,26 @@ Partial Class frmshiire
         Me.GroupBox3.Size = New System.Drawing.Size(683, 174)
         Me.GroupBox3.TabIndex = 72
         Me.GroupBox3.TabStop = False
+        '
+        'lblgoukei
+        '
+        Me.lblgoukei.BackColor = System.Drawing.SystemColors.Control
+        Me.lblgoukei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblgoukei.Location = New System.Drawing.Point(100, 139)
+        Me.lblgoukei.Name = "lblgoukei"
+        Me.lblgoukei.Size = New System.Drawing.Size(156, 22)
+        Me.lblgoukei.TabIndex = 221
+        Me.lblgoukei.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblshiiresuu
+        '
+        Me.lblshiiresuu.BackColor = System.Drawing.SystemColors.Control
+        Me.lblshiiresuu.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblshiiresuu.Location = New System.Drawing.Point(444, 10)
+        Me.lblshiiresuu.Name = "lblshiiresuu"
+        Me.lblshiiresuu.Size = New System.Drawing.Size(89, 22)
+        Me.lblshiiresuu.TabIndex = 220
+        Me.lblshiiresuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Button10
         '
@@ -503,7 +527,7 @@ Partial Class frmshiire
         '
         Me.Label4.BackColor = System.Drawing.Color.White
         Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label4.Location = New System.Drawing.Point(211, 146)
+        Me.Label4.Location = New System.Drawing.Point(262, 147)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(30, 16)
         Me.Label4.TabIndex = 216
@@ -562,17 +586,6 @@ Partial Class frmshiire
         Me.Button8.TabIndex = 211
         Me.Button8.Text = "クリア"
         Me.Button8.UseVisualStyleBackColor = True
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BackColor = System.Drawing.Color.White
-        Me.TextBox4.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox4.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TextBox4.Location = New System.Drawing.Point(103, 139)
-        Me.TextBox4.MaxLength = 50
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(97, 23)
-        Me.TextBox4.TabIndex = 210
         '
         'TextBox5
         '
@@ -640,20 +653,20 @@ Partial Class frmshiire
         Me.Label15.Text = "日付"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'DataGridView1
+        'dgv_shiire
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(16, 200)
-        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(2)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(683, 765)
-        Me.DataGridView1.TabIndex = 71
+        Me.dgv_shiire.AllowUserToAddRows = False
+        Me.dgv_shiire.AllowUserToDeleteRows = False
+        Me.dgv_shiire.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_shiire.Location = New System.Drawing.Point(16, 200)
+        Me.dgv_shiire.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_shiire.MultiSelect = False
+        Me.dgv_shiire.Name = "dgv_shiire"
+        Me.dgv_shiire.ReadOnly = True
+        Me.dgv_shiire.RowTemplate.Height = 24
+        Me.dgv_shiire.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_shiire.Size = New System.Drawing.Size(683, 765)
+        Me.dgv_shiire.TabIndex = 71
         '
         'GroupBox4
         '
@@ -744,7 +757,7 @@ Partial Class frmshiire
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgv_shiire, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ggg, System.ComponentModel.ISupportInitialize).EndInit()
@@ -767,7 +780,7 @@ Partial Class frmshiire
     Friend WithEvents txtkubun As TextBox
     Friend WithEvents dgv_shien As DataGridView
     Friend WithEvents Label1 As Label
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents chkhaiban As CheckBox
     Friend WithEvents txtbikou As TextBox
     Friend WithEvents txtkin As TextBox
     Friend WithEvents txtsuu As TextBox
@@ -781,14 +794,13 @@ Partial Class frmshiire
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
-    Friend WithEvents TextBox4 As TextBox
     Friend WithEvents TextBox5 As TextBox
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label15 As Label
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dgv_shiire As DataGridView
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents ggg As DataGridView
     Friend WithEvents Label3 As Label
@@ -804,4 +816,6 @@ Partial Class frmshiire
     Friend WithEvents btn_jouken_kensaku As Button
     Friend WithEvents txtsentakugyou As TextBox
     Friend WithEvents txtsentakutanka As TextBox
+    Friend WithEvents lblshiiresuu As Label
+    Friend WithEvents lblgoukei As Label
 End Class

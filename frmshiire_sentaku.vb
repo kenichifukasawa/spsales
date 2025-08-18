@@ -5,6 +5,9 @@
 
     Private Sub btn_shori_Click(sender As Object, e As EventArgs) Handles btn_shori.Click
 
+
+        shouhin_shiirechu_set()
+
         frmshiire.ShowDialog()
 
     End Sub
