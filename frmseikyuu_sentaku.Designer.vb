@@ -26,7 +26,7 @@ Partial Class frmseikyuu_sentaku
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btn_nenkin_hyou = New System.Windows.Forms.Button()
+        Me.btn_shuukin_hyou = New System.Windows.Forms.Button()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.btn_hakkou_insatsu = New System.Windows.Forms.Button()
@@ -34,12 +34,12 @@ Partial Class frmseikyuu_sentaku
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btn_rireki = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.btn_seikyuusho_soushin_kanri = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btn_hakkou_pdf = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.btn_seikyuusho_soushin_kanri = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btn_check = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
@@ -77,7 +77,7 @@ Partial Class frmseikyuu_sentaku
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.btn_nenkin_hyou)
+        Me.GroupBox1.Controls.Add(Me.btn_shuukin_hyou)
         Me.GroupBox1.Location = New System.Drawing.Point(540, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(170, 147)
@@ -94,17 +94,17 @@ Partial Class frmseikyuu_sentaku
         Me.Label1.Text = "「TODO」情報の管理をします。"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btn_nenkin_hyou
+        'btn_shuukin_hyou
         '
-        Me.btn_nenkin_hyou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_nenkin_hyou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_nenkin_hyou.Location = New System.Drawing.Point(13, 89)
-        Me.btn_nenkin_hyou.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_nenkin_hyou.Name = "btn_nenkin_hyou"
-        Me.btn_nenkin_hyou.Size = New System.Drawing.Size(147, 44)
-        Me.btn_nenkin_hyou.TabIndex = 97
-        Me.btn_nenkin_hyou.Text = "集金表"
-        Me.btn_nenkin_hyou.UseVisualStyleBackColor = True
+        Me.btn_shuukin_hyou.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_shuukin_hyou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shuukin_hyou.Location = New System.Drawing.Point(13, 89)
+        Me.btn_shuukin_hyou.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_shuukin_hyou.Name = "btn_shuukin_hyou"
+        Me.btn_shuukin_hyou.Size = New System.Drawing.Size(147, 44)
+        Me.btn_shuukin_hyou.TabIndex = 97
+        Me.btn_shuukin_hyou.Text = "集金表"
+        Me.btn_shuukin_hyou.UseVisualStyleBackColor = True
         '
         'GroupBox16
         '
@@ -183,6 +183,18 @@ Partial Class frmseikyuu_sentaku
         Me.GroupBox4.TabIndex = 130
         Me.GroupBox4.TabStop = False
         '
+        'btn_seikyuusho_soushin_kanri
+        '
+        Me.btn_seikyuusho_soushin_kanri.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_seikyuusho_soushin_kanri.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_seikyuusho_soushin_kanri.Location = New System.Drawing.Point(13, 89)
+        Me.btn_seikyuusho_soushin_kanri.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_seikyuusho_soushin_kanri.Name = "btn_seikyuusho_soushin_kanri"
+        Me.btn_seikyuusho_soushin_kanri.Size = New System.Drawing.Size(147, 44)
+        Me.btn_seikyuusho_soushin_kanri.TabIndex = 98
+        Me.btn_seikyuusho_soushin_kanri.Text = "請求書送信管理"
+        Me.btn_seikyuusho_soushin_kanri.UseVisualStyleBackColor = True
+        '
         'Label3
         '
         Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -237,18 +249,6 @@ Partial Class frmseikyuu_sentaku
         Me.GroupBox6.TabIndex = 132
         Me.GroupBox6.TabStop = False
         '
-        'btn_seikyuusho_soushin_kanri
-        '
-        Me.btn_seikyuusho_soushin_kanri.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_seikyuusho_soushin_kanri.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_seikyuusho_soushin_kanri.Location = New System.Drawing.Point(13, 89)
-        Me.btn_seikyuusho_soushin_kanri.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_seikyuusho_soushin_kanri.Name = "btn_seikyuusho_soushin_kanri"
-        Me.btn_seikyuusho_soushin_kanri.Size = New System.Drawing.Size(147, 44)
-        Me.btn_seikyuusho_soushin_kanri.TabIndex = 98
-        Me.btn_seikyuusho_soushin_kanri.Text = "請求書送信管理"
-        Me.btn_seikyuusho_soushin_kanri.UseVisualStyleBackColor = True
-        '
         'Label5
         '
         Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -302,7 +302,7 @@ Partial Class frmseikyuu_sentaku
     Friend WithEvents btn_modoru As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents btn_nenkin_hyou As Button
+    Friend WithEvents btn_shuukin_hyou As Button
     Friend WithEvents GroupBox16 As GroupBox
     Friend WithEvents Label21 As Label
     Friend WithEvents btn_hakkou_insatsu As Button

@@ -20,8 +20,9 @@
 
     End Sub
 
-    Private Sub btn_nenkin_hyou_Click(sender As Object, e As EventArgs) Handles btn_nenkin_hyou.Click
-
+    Private Sub btn_shuukin_hyou_Click(sender As Object, e As EventArgs) Handles btn_shuukin_hyou.Click
+        Me.Close() : Me.Dispose()
+        frmseikyuu_shuukin_hyou.ShowDialog()
     End Sub
 
     Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
