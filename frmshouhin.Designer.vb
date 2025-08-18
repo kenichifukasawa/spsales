@@ -149,7 +149,6 @@ Partial Class frmshouhin
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.Size = New System.Drawing.Size(236, 612)
         Me.ListBox2.TabIndex = 222
-        Me.ListBox2.Visible = False
         '
         'ListBox1
         '
@@ -161,7 +160,6 @@ Partial Class frmshouhin
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(236, 612)
         Me.ListBox1.TabIndex = 221
-        Me.ListBox1.Visible = False
         '
         'lstshien
         '
@@ -173,7 +171,6 @@ Partial Class frmshouhin
         Me.lstshien.Name = "lstshien"
         Me.lstshien.Size = New System.Drawing.Size(236, 612)
         Me.lstshien.TabIndex = 220
-        Me.lstshien.Visible = False
         '
         'GroupBox3
         '

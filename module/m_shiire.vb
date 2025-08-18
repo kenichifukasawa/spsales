@@ -2,6 +2,9 @@
 
 Module m_shiire
 
+
+
+
     Sub set_shiire_rireki_shousai(dgv_count As Integer, shiire_id As String, hiduke As String, gyousha_mei As String)
 
         If dgv_count = 0 Then

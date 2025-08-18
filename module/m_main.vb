@@ -170,6 +170,309 @@ Module m_main
         End Try
 
     End Function
+    Sub grid_shien_head_set(Optional s_no As String = "")
+
+        If s_no = "" Then
+            With frmmain.dgv_shien
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 4
+                .Columns(0).Name = "商品ID"
+                .Columns(1).Name = "商品名"
+                .Columns(2).Name = "価格"
+                .Columns(3).Name = "在庫"
+                .Columns(0).Width = 0
+                .Columns(1).Width = 320
+                .Columns(2).Width = 80
+                .Columns(3).Width = 80
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                ' 奇数行の既定セル・スタイルの背景色を設定
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
+            End With
+        ElseIf s_no = "1" Then
+            With frmshiire.dgv_shien
+
+                .Rows.Clear()
+                .Columns.Clear()
+                .ColumnCount = 4
+                .Columns(0).Name = "商品ID"
+                .Columns(1).Name = "商品名"
+                .Columns(2).Name = "価格"
+                .Columns(3).Name = "在庫"
+                .Columns(0).Width = 0
+                .Columns(1).Width = 320
+                .Columns(2).Width = 80
+                .Columns(3).Width = 80
+
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                ' 奇数行の既定セル・スタイルの背景色を設定
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+            End With
+        End If
+
+    End Sub
+
+    Sub mdb_clear()
+
+
+        Dim cn_setting As New OleDbConnection
+        Dim cmd_setting As New OleDbCommand
+        'dbを初期化
+        Try
+            cn_setting.ConnectionString = connectionstring_mdb
+
+            cmd_setting.Connection = cn_setting
+
+
+            cmd_setting.CommandText = "delete from pr_shichousonbetsu"
+
+
+            cn_setting.Open()
+
+            cmd_setting.ExecuteNonQuery()
+
+            cn_setting.Close()
+
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+
+    End Sub
+
+
+    Sub shouhin_shiirechu_set()
+        With frmshiire.dgv_shiire
+
+            .Rows.Clear()
+            .Columns.Clear()
+            .RowHeadersWidth = 4
+            .ColumnCount = 7
+
+            .Columns(0).Name = "NO"
+            .Columns(1).Name = "商品ID"
+            .Columns(2).Name = "商品名"
+            .Columns(3).Name = "数量"
+            .Columns(4).Name = "金額"
+            .Columns(5).Name = "備考"
+            .Columns(6).Name = "削除"
+
+            .Columns(0).Width = 60
+            .Columns(1).Width = 0
+            .Columns(2).Width = 400
+            .Columns(3).Width = 60
+            .Columns(4).Width = 100
+            .Columns(5).Width = 100
+            .Columns(6).Width = 50
+
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+        End With
+
+        frmshiire.lblshiiresuu.Text = "0"
+
+        Dim newgoukei2 As Integer, newretsu2 As Integer
+
+        Try
+            Using cn As New OleDb.OleDbConnection(connectionstring_mdb)
+                Dim query As String = "SELECT * FROM shiirechu ORDER BY shiirechuid"
+                Dim da As New OleDb.OleDbDataAdapter(query, cn)
+                Dim ds As New DataSet()
+                Dim tableName As String = "t_rireki"
+                da.Fill(ds, tableName)
+                Dim dt As DataTable = ds.Tables(tableName)
+
+                Dim mojiretsu(7) As String, s_suuji As Integer
+
+                newretsu2 = dt.Rows.Count
+
+                For i = 0 To dt.Rows.Count - 1
+                    mojiretsu(0) = Trim(dt.Rows(i).Item("shiirechuid").ToString())
+                    mojiretsu(1) = Trim(dt.Rows(i).Item("shouhinid").ToString())
+                    If IsDBNull(dt.Rows.Item(i).Item("shouhinmei")) Then
+                        mojiretsu(2) = "Error"
+                    Else
+                        mojiretsu(2) = Trim(dt.Rows(i).Item("shouhinmei").ToString())
+                    End If
+                    s_suuji = CInt(dt.Rows(i).Item("shiiresuu"))
+                    mojiretsu(3) = s_suuji.ToString("#,0")
+                    s_suuji = CInt(dt.Rows(i).Item("shiirekingaku"))
+                    mojiretsu(4) = s_suuji.ToString("#,0")
+                    If IsDBNull(dt.Rows.Item(i).Item("bikou")) Then
+                        mojiretsu(5) = ""
+                    Else
+                        mojiretsu(5) = Trim(dt.Rows(i).Item("bikou").ToString())
+                    End If
+                    mojiretsu(6) = ""
+
+                    newgoukei2 = newgoukei2 + CInt(Trim(dt.Rows(i).Item("shiirekingaku")))
+
+                    frmshiire.dgv_shiire.Rows.Add(mojiretsu)
+                Next
+
+                dt.Clear()
+                ds.Clear()
+            End Using
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        frmshiire.lblshiiresuu.Text = CStr(newretsu2)  'CStr(CInt(rs_or2!shiirechuid) + 1)
+        frmshiire.lblgoukei.Text = Format(newgoukei2, "#,##0;-#,##0")
+
+        'frmshiire.gridshiire.ShowCell frmshiiredenpyou.gridshiire.Row, frmshiiredenpyou.gridshiire.Col
+
+
+
+        'If newretsu2 >= 99 Then
+        '        ret = MsgBox("伝票登録数が規定値９９に達しました。これ以上の登録はできません。", 64, "総合管理システム「SPSALES」")
+        '    End If
+
+
+    End Sub
+
+    Function shouhinkubun_shien_grid_set(no As Integer, Optional sentaku1id As String = "", Optional sentakuid2 As String = "") As Integer
+
+
+        Dim shouhinkubuncount As Integer, shouhinkubunGROW As Integer, cmdicmdi3 As Integer
+
+        Dim lngStyle As Long
+
+        shouhinkubun_shien_grid_set = 0
+
+        Select Case no
+            Case 0, 1, 4
+                frmmain.lstshien.Items.Clear()
+            Case 5, 6
+                frmshiire.lstshien.Items.Clear()
+                '    For cmdicmdi3 = 0 To 99
+                '        frmmain.cmd2(cmdicmdi3).Caption = ""
+                '    Next
+                'Case 2
+                '    For cmdicmdi3 = 0 To 99
+                '        frmmain.cmd1(cmdicmdi3).Caption = ""
+                '    Next
+        End Select
+
+
+
+
+        Try
+
+            Dim cn_server As New SqlConnection
+
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Select Case no
+                Case 4, 5
+                    Sql = "SELECT*FROM shouhinkubun0 ORDER BY shouhinkubunid0"
+
+                Case 0, 6
+
+                    Sql = "SELECT*FROM shouhinkubun ORDER BY shouhinkubunid"
+
+                Case 1
+
+                    Sql = "SELECT*FROM shouhinkubun2 where shouhinkubunid='" & sentaku1id & "' ORDER BY narabe"
+
+                    'Case 2
+
+                    '    sql_shouhinkubun = "SELECT*FROM shouhinkubun ORDER BY shouhinkubunid"
+
+                    '    frmmain.cmd1(0).Caption = "なし"
+                    'Case 3
+                    '    If Trim(sentaku1id) = "" Then
+                    '        shouhinkubun_shien_grid_set = -1
+                    '        Screen.MousePointer = 0
+                    '        Exit Function
+                    '    End If
+                    '    'sql_shouhinkubun = "SELECT*FROM shouhinkubun2 where shouhinkubunid='" & sentaku1id & "' ORDER BY narabe"
+                    '    sql_shouhinkubun = "SELECT*FROM shouhinkubun2 where shouhinkubunid='" & sentaku1id & "' ORDER BY narabe"
+                    '    frmmain.cmd2(0).Caption = "なし"
+                    'Case 5
+                    '    sql_shouhinkubun = "SELECT*FROM shouhinkubun0 ORDER BY shouhinkubunid0"
+                    '    frmmain.cmd0(0).Caption = "なし"
+            End Select
+
+            Dim da_server As SqlDataAdapter
+
+            da_server = New SqlDataAdapter(Sql, cn_server)
+
+            Dim ds_server As New DataSet
+
+            da_server.Fill(ds_server, "t_shoukaii")
+
+            Dim dt_server As DataTable
+
+            dt_server = ds_server.Tables("t_shoukaii")
+
+            Dim s_str As String = ""
+
+            For i = 0 To dt_server.Rows.Count - 1
+                Select Case no
+                    Case 4
+                        s_str = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid0")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei0"))
+                        frmmain.lstshien.Items.Add(s_str)
+                    Case 0
+                        s_str = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei"))
+                        frmmain.lstshien.Items.Add(s_str)
+
+                    Case 1
+                        s_str = Trim(dt_server.Rows.Item(i).Item("NARABE")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei2"))
+                        frmmain.lstshien.Items.Add(s_str)
+
+                    Case 5
+                        s_str = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid0")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei0"))
+                        frmshiire.lstshien.Items.Add(s_str)
+
+                    Case 6
+                        s_str = Trim(dt_server.Rows.Item(i).Item("shouhinkubunid")) & "   " & Trim(dt_server.Rows.Item(i).Item("shouhinkubunmei"))
+                        frmshiire.lstshien.Items.Add(s_str)
+
+                        '                frmmain.cmd1(CInt(rs_shouhinkubun!shouhinkubunid)).Caption = Trim(rs_shouhinkubun!shouhinkubunmei)
+                        '            Case 3
+                        '                frmmain.cmd2(CInt(rs_shouhinkubun!NARABE)).Caption = Trim(rs_shouhinkubun!shouhinkubunmei2)
+                        '            Case 5
+                        '                frmmain.cmd0(CInt(rs_shouhinkubun!shouhinkubunid0)).Caption = Trim(rs_shouhinkubun!shouhinkubunmei0)
+                End Select
+            Next i
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            shouhinkubun_shien_grid_set = -1
+        End Try
+
+    End Function
+
 
     Sub mainset(s_tenpoid As String)
 
