@@ -12,10 +12,11 @@
     End Sub
 
     Private Sub btn_rireki_Click(sender As Object, e As EventArgs) Handles btn_rireki.Click
+        Me.Close() : Me.Dispose()
         frmseikyuu_rireki.ShowDialog()
     End Sub
 
-    Private Sub btn_mail_Click(sender As Object, e As EventArgs) Handles btn_mail.Click
+    Private Sub btn_mail_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -28,6 +29,7 @@
     End Sub
 
     Private Sub btn_seikyuusho_soushin_kanri_Click(sender As Object, e As EventArgs) Handles btn_seikyuusho_soushin_kanri.Click
+        Me.Close() : Me.Dispose()
         frmseikyuusho_soushin_ichi.ShowDialog()
     End Sub
 End Class
