@@ -256,6 +256,12 @@
     <Compile Include="frmpassword.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmseikyuusho_hakkou_insatsu.Designer.vb">
+      <DependentUpon>frmseikyuusho_hakkou_insatsu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmseikyuusho_hakkou_insatsu.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmseikyuusho_soushin_ichi.Designer.vb">
       <DependentUpon>frmseikyuusho_soushin_ichi.vb</DependentUpon>
     </Compile>
@@ -435,6 +441,7 @@
     <Compile Include="module\m_kubun.vb" />
     <Compile Include="module\m_main.vb" />
     <Compile Include="module\m_seikyuu.vb" />
+    <Compile Include="module\m_set.vb" />
     <Compile Include="module\m_shiire.vb" />
     <Compile Include="module\m_shuukei.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -543,6 +550,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmpassword.resx">
       <DependentUpon>frmpassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmseikyuusho_hakkou_insatsu.resx">
+      <DependentUpon>frmseikyuusho_hakkou_insatsu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmseikyuusho_soushin_ichi.resx">
       <DependentUpon>frmseikyuusho_soushin_ichi.vb</DependentUpon>

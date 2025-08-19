@@ -4,7 +4,7 @@
     End Sub
 
     Private Sub btn_hakkou_insatsu_Click(sender As Object, e As EventArgs) Handles btn_hakkou_insatsu.Click
-
+        frmseikyuusho_hakkou_insatsu.ShowDialog()
     End Sub
 
     Private Sub btn_hakkou_pdf_Click(sender As Object, e As EventArgs) Handles btn_hakkou_pdf.Click
