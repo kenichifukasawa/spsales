@@ -273,11 +273,11 @@ Module m_main
 
             .Columns(0).Width = 60
             .Columns(1).Width = 0
-            .Columns(2).Width = 400
-            .Columns(3).Width = 60
-            .Columns(4).Width = 100
+            .Columns(2).Width = 320
+            .Columns(3).Width = 50
+            .Columns(4).Width = 90
             .Columns(5).Width = 100
-            .Columns(6).Width = 50
+            .Columns(6).Width = 35
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -291,6 +291,16 @@ Module m_main
 
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+            .Columns(0).ReadOnly = True
+            .Columns(1).ReadOnly = True
+            .Columns(2).ReadOnly = True
+            .Columns(3).ReadOnly = True
+            .Columns(4).ReadOnly = True
+            .Columns(5).ReadOnly = True
+            '.Columns(6).ReadOnly = True
+            .EditMode = DataGridViewEditMode.EditOnEnter
+
 
         End With
 
@@ -333,6 +343,11 @@ Module m_main
                     newgoukei2 = newgoukei2 + CInt(Trim(dt.Rows(i).Item("shiirekingaku")))
 
                     frmshiire.dgv_shiire.Rows.Add(mojiretsu)
+
+
+                    frmshiire.dgv_shiire.Rows(i).Cells(6) = New DataGridViewCheckBoxCell
+                    frmshiire.dgv_shiire.Rows(i).Cells(6).Value = False
+
                 Next
 
                 dt.Clear()
