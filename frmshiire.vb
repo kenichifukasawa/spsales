@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.OleDb
+Imports System.Data.SqlClient
 
 Public Class frmshiire
 
@@ -513,41 +514,30 @@ Public Class frmshiire
             End If
 
             'ローカルに登録
+            Try
+                Using cn As New OleDbConnection(connectionstring_mdb)
+                    cn.Open()
 
-            'データをセットする
-            Dim cn_p As New OleDb.OleDbConnection
-            cn_p.ConnectionString = connectionstring_mdb
+                    Dim sql As String = "INSERT INTO shiirechu" +
+                    " (shiirechuid, shouhinid, shouhinmei, shiiresuu, shiirekingaku, bikou)" +
+                    " VALUES" +
+                    " (?, ?, ?, ?, ?, ?)"
 
-            cn_p.Open()
+                    Using cmd As New OleDbCommand(sql, cn)
+                        cmd.Parameters.AddWithValue("@p1", newshiireid)
+                        cmd.Parameters.AddWithValue("@p2", newshouhinid)
+                        cmd.Parameters.AddWithValue("@p3", newshouhinmei)
+                        cmd.Parameters.AddWithValue("@p4", newsuu2)
+                        cmd.Parameters.AddWithValue("@p5", newkin2)
+                        cmd.Parameters.AddWithValue("@p6", newbikou)
 
-            Dim cmd_p As New OleDb.OleDbCommand()
-            cmd_p.Connection = cn_p
-
-            Dim sql_p As String
-
-            'コマンドオブジェクトのパラメータクリア
-            cmd_p.Parameters.Clear()
-            'SQL生成
-
-            sql_p = "INSERT INTO shiirechu  VALUES ("
-
-            Dim s As String = ""
-            s = newshiireid
-            s = s & ",'" & newshouhinid & "'"
-            s = s & ",'" & newshouhinmei & "'"
-            s = s & "," & newsuu2
-            s = s & "," & newkin2
-            s = s & ",'" & newbikou & "'"
-            s = s & ")"
-            sql_p = sql_p & s
-            cmd_p.CommandText = sql_p   'SQL文字列をコマンドオブジェクトに追加
-
-            'SQL処理を実行
-            cmd_p.ExecuteNonQuery()
-
-
-            cn_p.Close()
-
+                        Dim result As Integer = cmd.ExecuteNonQuery()
+                    End Using
+                End Using
+            Catch ex As Exception
+                msg_go("MDBのshiirechuの登録時にエラーが発生しました: " & ex.Message)
+                Exit Sub
+            End Try
 
         End With
 
@@ -559,8 +549,6 @@ Public Class frmshiire
         txtkin.Text = ""
         txtbikou.Text = ""
         dgv_shien.Focus()
-
-
 
     End Sub
 

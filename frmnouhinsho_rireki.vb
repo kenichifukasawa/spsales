@@ -17,7 +17,7 @@ Public Class frmnouhinsho_rireki
         Next
         cbx_tsuki.SelectedIndex = cbx_tsuki.FindStringExact(Now.ToString("MM"))
 
-        set_hinichi_cbx()
+        set_hinichi_cbx(0)
         cbx_hi.SelectedIndex = cbx_hi.FindStringExact(Now.ToString("dd"))
 
         set_shain_cbx(3)
@@ -110,7 +110,8 @@ Public Class frmnouhinsho_rireki
 
         cbx_nen.SelectedIndex = cbx_nen.FindStringExact(Now.ToString("yyyy"))
         cbx_tsuki.SelectedIndex = cbx_tsuki.FindStringExact(Now.ToString("MM"))
-        set_hinichi_cbx()
+        clear_shuukei()
+        set_hinichi_cbx(0)
         cbx_hi.SelectedIndex = cbx_hi.FindStringExact(Now.ToString("dd"))
 
     End Sub
@@ -148,12 +149,14 @@ Public Class frmnouhinsho_rireki
 
     Private Sub cbx_nen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_nen.SelectedIndexChanged
         clear_shuukei()
+        'set_hinichi_cbx(0) ' TODO
     End Sub
 
     Private Sub cbx_tsuki_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_tsuki.SelectedIndexChanged
 
         Dim hi = cbx_hi.Text
-        set_hinichi_cbx()
+        clear_shuukei()
+        set_hinichi_cbx(0)
         cbx_hi.SelectedIndex = cbx_hi.FindStringExact(hi)
 
     End Sub
@@ -330,24 +333,6 @@ Public Class frmnouhinsho_rireki
 
         lbl_kensuu.Text = kensuu.ToString("#,0") + " 件"
         lbl_goukeigaku.Text = sum_goukei_gaku.ToString("#,0") + " 円"
-
-    End Sub
-
-    Private Sub set_hinichi_cbx()
-
-        clear_shuukei()
-
-        Dim nen = cbx_nen.Text
-        Dim tsuki = cbx_tsuki.Text
-        If nen = "" Or tsuki = "" Then
-            Exit Sub
-        End If
-
-        cbx_hi.Items.Clear()
-        Dim nissuu = get_tsuki_saishuubi(nen, tsuki)
-        For i = 1 To CInt(nissuu)
-            cbx_hi.Items.Add(i.ToString("D2"))
-        Next
 
     End Sub
 

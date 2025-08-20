@@ -1147,6 +1147,8 @@ Module m_main
 
     Sub tenpo_main_set(s_tenpoid As String)
 
+        Dim tenpo_mei = ""
+
         Try
 
             Dim cn_server As New SqlConnection
@@ -1193,7 +1195,8 @@ Module m_main
             If dt_server.Rows.Count <> 0 Then
                 With frmmain
                     .lbltenpoid.Text = Trim(dt_server.Rows.Item(0).Item("tenpoid"))
-                    .lbltenpomei.Text = Trim(dt_server.Rows.Item(0).Item("tenpomei"))
+                    tenpo_mei = Trim(dt_server.Rows.Item(0).Item("tenpomei"))
+                    .lbltenpomei.Text = tenpo_mei
                     If IsDBNull(dt_server.Rows.Item(0).Item("tenpofurigana")) Then
                         .lblfurigana.Text = ""
                     Else
@@ -1352,9 +1355,55 @@ Module m_main
 
         Catch ex As Exception
             msg_go(ex.Message)
-
+            Exit Sub
         End Try
 
+        ' MDBのrirekiテーブルに追加
+        Dim rirekiid = "0001"
+        Try
+            Using cn As New OleDb.OleDbConnection(connectionstring_mdb)
+                Dim query As String = "SELECT * FROM rireki ORDER BY rirekiid DESC"
+                Dim da As New OleDb.OleDbDataAdapter(query, cn)
+                Dim ds As New DataSet()
+                Dim tableName As String = "t_rireki"
+                da.Fill(ds, tableName)
+                Dim dt As DataTable = ds.Tables(tableName)
+
+                If dt.Rows.Count > 0 Then
+                    rirekiid = Trim(dt.Rows(0).Item("rirekiid").ToString())
+                End If
+
+                dt.Clear()
+                ds.Clear()
+            End Using
+
+        Catch ex As Exception
+            msg_go("MDBのrirekiの参照時にエラーが発生しました: " & ex.Message)
+            Exit Sub
+        End Try
+
+        Try
+            Using cn As New OleDbConnection(connectionstring_mdb)
+                cn.Open()
+
+                Dim sql As String = "INSERT INTO rireki" +
+                    " (rirekiid, kaishaid, kaishamei, junban)" +
+                    " VALUES" +
+                    " (?, ?, ?, ?)"
+
+                Using cmd As New OleDbCommand(sql, cn)
+                    cmd.Parameters.AddWithValue("@p1", (CInt(rirekiid) + 1).ToString("D4"))
+                    cmd.Parameters.AddWithValue("@p2", s_tenpoid)
+                    cmd.Parameters.AddWithValue("@p3", tenpo_mei)
+                    cmd.Parameters.AddWithValue("@p4", Now.ToString("yyyyMMddHHmmss"))
+
+                    Dim result As Integer = cmd.ExecuteNonQuery()
+                End Using
+            End Using
+        Catch ex As Exception
+            msg_go("MDBのrirekiの登録時にエラーが発生しました: " & ex.Message)
+            Exit Sub
+        End Try
 
     End Sub
 
