@@ -17,7 +17,7 @@ Public Class frmnouhinsho_rireki
         Next
         cbx_tsuki.SelectedIndex = cbx_tsuki.FindStringExact(Now.ToString("MM"))
 
-        set_hinichi_cbx()
+        set_hinichi_cbx(0)
         cbx_hi.SelectedIndex = cbx_hi.FindStringExact(Now.ToString("dd"))
 
         set_shain_cbx(3)
