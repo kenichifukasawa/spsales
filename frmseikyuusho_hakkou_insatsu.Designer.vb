@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmseikyuusho_hakkou_insatsu
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,13 +20,14 @@ Partial Class frmseikyuusho_hakkou_insatsu
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.chk_houkokuyou = New System.Windows.Forms.CheckBox()
         Me.chk_insatsu_shinai = New System.Windows.Forms.CheckBox()
         Me.btn_clear = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.lbl_tenpo_id = New System.Windows.Forms.Label()
         Me.btn_denwachou = New System.Windows.Forms.Button()
         Me.chk_mail = New System.Windows.Forms.CheckBox()
         Me.gbx_shiharai_tsuki = New System.Windows.Forms.GroupBox()
@@ -48,11 +49,8 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.btn_seikyuusho_sakusei = New System.Windows.Forms.Button()
         Me.btn_shousai = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.gbx_tenpo = New System.Windows.Forms.GroupBox()
-        Me.btn_clear_tenpo = New System.Windows.Forms.Button()
-        Me.cbx_tenpo = New System.Windows.Forms.ComboBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.chk_hihyouji_torihiki_nai = New System.Windows.Forms.CheckBox()
+        Me.txtseikyuu = New System.Windows.Forms.Label()
+        Me.txtseikyuu2 = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.gbx_shiharai_tsuki.SuspendLayout()
@@ -60,12 +58,13 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.Group2.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.gbx_tenpo.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbx_main
         '
         Me.gbx_main.BackColor = System.Drawing.Color.White
+        Me.gbx_main.Controls.Add(Me.txtseikyuu2)
+        Me.gbx_main.Controls.Add(Me.txtseikyuu)
         Me.gbx_main.Controls.Add(Me.chk_houkokuyou)
         Me.gbx_main.Controls.Add(Me.chk_insatsu_shinai)
         Me.gbx_main.Controls.Add(Me.btn_clear)
@@ -79,14 +78,14 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.gbx_main.Margin = New System.Windows.Forms.Padding(2)
         Me.gbx_main.Name = "gbx_main"
         Me.gbx_main.Padding = New System.Windows.Forms.Padding(2)
-        Me.gbx_main.Size = New System.Drawing.Size(1772, 971)
+        Me.gbx_main.Size = New System.Drawing.Size(1683, 971)
         Me.gbx_main.TabIndex = 58
         Me.gbx_main.TabStop = False
         '
         'chk_houkokuyou
         '
         Me.chk_houkokuyou.AutoSize = True
-        Me.chk_houkokuyou.Location = New System.Drawing.Point(1005, 1)
+        Me.chk_houkokuyou.Location = New System.Drawing.Point(1546, 19)
         Me.chk_houkokuyou.Name = "chk_houkokuyou"
         Me.chk_houkokuyou.Size = New System.Drawing.Size(68, 18)
         Me.chk_houkokuyou.TabIndex = 209
@@ -96,7 +95,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'chk_insatsu_shinai
         '
         Me.chk_insatsu_shinai.AutoSize = True
-        Me.chk_insatsu_shinai.Location = New System.Drawing.Point(900, 1)
+        Me.chk_insatsu_shinai.Location = New System.Drawing.Point(1441, 19)
         Me.chk_insatsu_shinai.Name = "chk_insatsu_shinai"
         Me.chk_insatsu_shinai.Size = New System.Drawing.Size(99, 18)
         Me.chk_insatsu_shinai.TabIndex = 208
@@ -107,7 +106,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         '
         Me.btn_clear.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_clear.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_clear.Location = New System.Drawing.Point(1510, 19)
+        Me.btn_clear.Location = New System.Drawing.Point(1225, 49)
         Me.btn_clear.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_clear.Name = "btn_clear"
         Me.btn_clear.Size = New System.Drawing.Size(127, 44)
@@ -117,7 +116,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.gbx_tenpo)
+        Me.GroupBox2.Controls.Add(Me.lbl_tenpo_id)
         Me.GroupBox2.Controls.Add(Me.btn_denwachou)
         Me.GroupBox2.Controls.Add(Me.chk_mail)
         Me.GroupBox2.Controls.Add(Me.gbx_shiharai_tsuki)
@@ -128,15 +127,26 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.GroupBox2.Controls.Add(Me.btn_shuukei)
         Me.GroupBox2.Location = New System.Drawing.Point(17, 19)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1488, 206)
+        Me.GroupBox2.Size = New System.Drawing.Size(1072, 92)
         Me.GroupBox2.TabIndex = 194
         Me.GroupBox2.TabStop = False
+        '
+        'lbl_tenpo_id
+        '
+        Me.lbl_tenpo_id.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.lbl_tenpo_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_tenpo_id.Location = New System.Drawing.Point(929, 9)
+        Me.lbl_tenpo_id.Name = "lbl_tenpo_id"
+        Me.lbl_tenpo_id.Size = New System.Drawing.Size(127, 19)
+        Me.lbl_tenpo_id.TabIndex = 138
+        Me.lbl_tenpo_id.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_tenpo_id.Visible = False
         '
         'btn_denwachou
         '
         Me.btn_denwachou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_denwachou.Location = New System.Drawing.Point(1356, 30)
+        Me.btn_denwachou.Location = New System.Drawing.Point(929, 30)
         Me.btn_denwachou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denwachou.Name = "btn_denwachou"
         Me.btn_denwachou.Size = New System.Drawing.Size(127, 44)
@@ -311,9 +321,9 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.dgv_kensakukekka)
-        Me.GroupBox6.Location = New System.Drawing.Point(17, 231)
+        Me.GroupBox6.Location = New System.Drawing.Point(17, 117)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1593, 721)
+        Me.GroupBox6.Size = New System.Drawing.Size(1651, 838)
         Me.GroupBox6.TabIndex = 193
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "抽出結果"
@@ -329,14 +339,14 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.dgv_kensakukekka.ReadOnly = True
         Me.dgv_kensakukekka.RowTemplate.Height = 24
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(1582, 696)
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(1641, 814)
         Me.dgv_kensakukekka.TabIndex = 192
         '
         'btn_seikyuusho_sakusei
         '
         Me.btn_seikyuusho_sakusei.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_seikyuusho_sakusei.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_seikyuusho_sakusei.Location = New System.Drawing.Point(1641, 66)
+        Me.btn_seikyuusho_sakusei.Location = New System.Drawing.Point(1356, 49)
         Me.btn_seikyuusho_sakusei.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_seikyuusho_sakusei.Name = "btn_seikyuusho_sakusei"
         Me.btn_seikyuusho_sakusei.Size = New System.Drawing.Size(127, 44)
@@ -348,7 +358,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         '
         Me.btn_shousai.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_shousai.Location = New System.Drawing.Point(1510, 67)
+        Me.btn_shousai.Location = New System.Drawing.Point(1094, 49)
         Me.btn_shousai.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shousai.Name = "btn_shousai"
         Me.btn_shousai.Size = New System.Drawing.Size(127, 44)
@@ -360,7 +370,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(1641, 18)
+        Me.btn_modoru.Location = New System.Drawing.Point(1487, 49)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
@@ -368,66 +378,25 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
-        'gbx_tenpo
+        'txtseikyuu
         '
-        Me.gbx_tenpo.Controls.Add(Me.btn_clear_tenpo)
-        Me.gbx_tenpo.Controls.Add(Me.cbx_tenpo)
-        Me.gbx_tenpo.Controls.Add(Me.Button1)
-        Me.gbx_tenpo.Controls.Add(Me.chk_hihyouji_torihiki_nai)
-        Me.gbx_tenpo.Enabled = False
-        Me.gbx_tenpo.Location = New System.Drawing.Point(6, 87)
-        Me.gbx_tenpo.Name = "gbx_tenpo"
-        Me.gbx_tenpo.Size = New System.Drawing.Size(626, 61)
-        Me.gbx_tenpo.TabIndex = 208
-        Me.gbx_tenpo.TabStop = False
-        Me.gbx_tenpo.Text = "店舗"
+        Me.txtseikyuu.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.txtseikyuu.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtseikyuu.Location = New System.Drawing.Point(1225, 95)
+        Me.txtseikyuu.Name = "txtseikyuu"
+        Me.txtseikyuu.Size = New System.Drawing.Size(127, 19)
+        Me.txtseikyuu.TabIndex = 208
+        Me.txtseikyuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'btn_clear_tenpo
+        'txtseikyuu2
         '
-        Me.btn_clear_tenpo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_clear_tenpo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_clear_tenpo.Location = New System.Drawing.Point(425, 21)
-        Me.btn_clear_tenpo.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_clear_tenpo.Name = "btn_clear_tenpo"
-        Me.btn_clear_tenpo.Size = New System.Drawing.Size(47, 30)
-        Me.btn_clear_tenpo.TabIndex = 205
-        Me.btn_clear_tenpo.Text = "クリア"
-        Me.btn_clear_tenpo.UseVisualStyleBackColor = True
-        '
-        'cbx_tenpo
-        '
-        Me.cbx_tenpo.BackColor = System.Drawing.Color.White
-        Me.cbx_tenpo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbx_tenpo.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cbx_tenpo.FormattingEnabled = True
-        Me.cbx_tenpo.Location = New System.Drawing.Point(23, 24)
-        Me.cbx_tenpo.Name = "cbx_tenpo"
-        Me.cbx_tenpo.Size = New System.Drawing.Size(397, 24)
-        Me.cbx_tenpo.TabIndex = 128
-        '
-        'Button1
-        '
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(476, 12)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(127, 44)
-        Me.Button1.TabIndex = 204
-        Me.Button1.Text = "電話帳"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'chk_hihyouji_torihiki_nai
-        '
-        Me.chk_hihyouji_torihiki_nai.AutoSize = True
-        Me.chk_hihyouji_torihiki_nai.Checked = True
-        Me.chk_hihyouji_torihiki_nai.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chk_hihyouji_torihiki_nai.Location = New System.Drawing.Point(250, -1)
-        Me.chk_hihyouji_torihiki_nai.Name = "chk_hihyouji_torihiki_nai"
-        Me.chk_hihyouji_torihiki_nai.Size = New System.Drawing.Size(170, 18)
-        Me.chk_hihyouji_torihiki_nai.TabIndex = 189
-        Me.chk_hihyouji_torihiki_nai.Text = "取引のない店舗は非表示"
-        Me.chk_hihyouji_torihiki_nai.UseVisualStyleBackColor = True
+        Me.txtseikyuu2.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.txtseikyuu2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtseikyuu2.Location = New System.Drawing.Point(1358, 95)
+        Me.txtseikyuu2.Name = "txtseikyuu2"
+        Me.txtseikyuu2.Size = New System.Drawing.Size(127, 19)
+        Me.txtseikyuu2.TabIndex = 210
+        Me.txtseikyuu2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmseikyuusho_hakkou_insatsu
         '
@@ -449,8 +418,6 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.Group2.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.gbx_tenpo.ResumeLayout(False)
-        Me.gbx_tenpo.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -481,9 +448,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
     Friend WithEvents btn_denwachou As Button
     Friend WithEvents chk_houkokuyou As CheckBox
     Friend WithEvents chk_insatsu_shinai As CheckBox
-    Friend WithEvents gbx_tenpo As GroupBox
-    Friend WithEvents btn_clear_tenpo As Button
-    Friend WithEvents cbx_tenpo As ComboBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents chk_hihyouji_torihiki_nai As CheckBox
+    Friend WithEvents lbl_tenpo_id As Label
+    Friend WithEvents txtseikyuu2 As Label
+    Friend WithEvents txtseikyuu As Label
 End Class

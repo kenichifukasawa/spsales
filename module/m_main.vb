@@ -1657,15 +1657,6 @@ errsetting:
 
     End Function
 
-    Function get_tsuki_saishuubi(nen As String, tsuki As String)
-
-        Dim int_nen As Integer = CInt(nen)
-        Dim int_tsuki As Integer = CInt(tsuki)
-        Dim tsuki_saishuubi As Integer = DateTime.DaysInMonth(int_nen, int_tsuki)
-        Return tsuki_saishuubi.ToString("D2")
-
-    End Function
-
     Function output_csv_by_data_grid_view(filePath As String, dataGridView As DataGridView, Optional columnsToExport As String() = Nothing) As Boolean
 
         ' columnsToExportを指定しなければ、DataGridViewのものがそのまま入る
