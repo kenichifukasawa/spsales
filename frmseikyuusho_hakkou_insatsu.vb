@@ -122,7 +122,6 @@ Public Class frmseikyuusho_hakkou_insatsu
         msg_go("集計機能は開発中")
         Exit Sub
 
-        'Dim shimebi_id As Integer, shimekikan As Integer
         'Dim karitsuki As Integer, karihi As String
 
         txtseikyuu2.Text = ""
@@ -401,31 +400,6 @@ Public Class frmseikyuusho_hakkou_insatsu
                     msg_go(ex.Message)
                     Exit Sub
                 End Try
-
-                ''初請求で繰越金額があるかをﾁｪｯｸ
-                ''hajime_no_ippo = 0
-                ''請求書データがなければ********************************************
-                'Set rs_seikyuu = New ADODB.Recordset
-                ''sql_seikyuu = "SELECT * FROM seikyuusho WHERE seikyuu_st = '0' AND tenpoid = '" + rs_saikyu!tenpoid + "' ORDER BY hiduke DESC, seikyuushoid DESC"
-                'If FcSQlGet(0, rs_seikyuu, sql_seikyuu, WMsg) = False Then
-                '        '入金のデータがあれば
-                '        Set rs_seikyuu2 = New ADODB.Recordset
-                '        'sql_seikyuu2 = "SELECT * FROM seikyuusho WHERE seikyuu_st <> '0' AND tenpoid = '" + rs_saikyu!tenpoid + "' ORDER BY hiduke DESC, seikyuushoid DESC"
-                '    If FcSQlGet(0, rs_seikyuu2, sql_seikyuu2, WMsg) = True Then
-                '        'hajime_no_ippo = 1
-                '        'If IsNull(rs_saikyu!kurikoshi) Or rs_saikyu!kurikoshi = 0 Then
-                '        '    hikaku_kurikoshi = 0
-                '        'Else
-                '        '    hikaku_kurikoshi = CLng(rs_saikyu!kurikoshi)
-                '        'End If
-                '    End If
-                '    'zengetsuseikyuukingaku = 0
-                'Else
-                '    ''請求書で、入金されていないデータがない（入金済み）
-                '    ''先月の請求金額を
-                '    'zengetsuseikyuukingaku = rs_seikyuu!seikyuukingaku
-
-                'End If
 
                 seikyuu_moto_data(0, i) = Trim(dt_server.Rows.Item(i).Item("tenpoid"))
                 seikyuu_moto_data(1, i) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
@@ -1202,8 +1176,7 @@ Public Class frmseikyuusho_hakkou_insatsu
         '        End With
 
         '    Next
-        'Else
-        '    grid_seikyu_set(1)
+
         'End If
         'cnn.Close
 
