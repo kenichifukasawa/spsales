@@ -4,6 +4,7 @@
     End Sub
 
     Private Sub btn_hakkou_insatsu_Click(sender As Object, e As EventArgs) Handles btn_hakkou_insatsu.Click
+        Me.Close() : Me.Dispose()
         frmseikyuusho_hakkou_insatsu.ShowDialog()
     End Sub
 
@@ -14,10 +15,6 @@
     Private Sub btn_rireki_Click(sender As Object, e As EventArgs) Handles btn_rireki.Click
         Me.Close() : Me.Dispose()
         frmseikyuu_rireki.ShowDialog()
-    End Sub
-
-    Private Sub btn_mail_Click(sender As Object, e As EventArgs)
-
     End Sub
 
     Private Sub btn_shuukin_hyou_Click(sender As Object, e As EventArgs) Handles btn_shuukin_hyou.Click
