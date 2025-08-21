@@ -288,7 +288,7 @@ Partial Class frmnouhinsho_rireki
         Me.btn_shuukei.Name = "btn_shuukei"
         Me.btn_shuukei.Size = New System.Drawing.Size(127, 44)
         Me.btn_shuukei.TabIndex = 194
-        Me.btn_shuukei.Text = "集計"
+        Me.btn_shuukei.Text = "抽出"
         Me.btn_shuukei.UseVisualStyleBackColor = True
         '
         'Group1

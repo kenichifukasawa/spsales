@@ -513,10 +513,13 @@ Module m_main
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM hacchuu RIGHT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid" +
-                " WHERE hacchuu.hacchuuid = '" + s_hacchuuid + "'"
+            Dim query = "SELECT hacchuushousai.*, hacchuu.*,shouhin.* FROM (hacchuushousai left join shouhin on  hacchuushousai.shouhinid = shouhin.shouhinid) LEFT JOIN hacchuu ON hacchuushousai.hacchuuid = hacchuu.hacchuuid" +
+                " WHERE hacchuushousai.hacchuuid = '" + s_hacchuuid + "'"
 
-            Dim da_server As SqlDataAdapter = New SqlDataAdapter(Sql, cn_server)
+            'Dim query = "SELECT * FROM hacchuu RIGHT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid" +
+            '    " WHERE hacchuu.hacchuuid = '" + s_hacchuuid + "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds_server As New DataSet
             da_server.Fill(ds_server, "t_shoukaii")
             Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
@@ -642,29 +645,39 @@ Module m_main
             da_server.Fill(ds_server, "t_shoukaii")
             Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
 
-            Dim mojiretsu(5) As String
+            Dim mojiretsu(8) As String
 
             With frmmain.dgv_denpyou
 
                 .Rows.Clear()
                 .Columns.Clear()
-                .ColumnCount = 5
+                .ColumnCount = 6
                 .Columns(0).Name = "納品日"
                 .Columns(1).Name = "伝票NO"
                 .Columns(2).Name = "金額"
                 .Columns(3).Name = "社員名"
-                .Columns(4).Name = "納品書ID"
+                .Columns(4).Name = "印刷"
+                .Columns(5).Name = "納品書ID"
+                .Columns(5).Name = "備考1"
+                .Columns(6).Name = "備考2"
+                .Columns(7).Name = "備考2"
                 .Columns(0).Width = 90
                 .Columns(1).Width = 90
                 .Columns(2).Width = 90
                 .Columns(3).Width = 80
-                .Columns(4).Width = 100
+                .Columns(4).Width = 45
+                .Columns(5).Width = 100
+                .Columns(6).Width = 0
+                .Columns(7).Width = 0
 
                 .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
                 '列ヘッダーの高さを変える
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
@@ -691,10 +704,30 @@ Module m_main
                 mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("shainid")) & " " & Trim(dt_server.Rows.Item(i).Item("ryakumei"))
 
 
-                If IsDBNull(dt_server.Rows.Item(i).Item("nouhinshoid")) Then
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("shutsu")) Then
                     mojiretsu(4) = ""
+                    s_shutsuryoku = 1
                 Else
-                    mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
+                    mojiretsu(4) = "未"　　'Trim(dt_server.Rows.Item(i).Item("shutsu"))
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("nouhinshoid")) Then
+                    mojiretsu(5) = ""
+                Else
+                    mojiretsu(5) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
+                    mojiretsu(6) = ""
+                Else
+                    mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("bikou1"))
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("bikou2")) Then
+                    mojiretsu(7) = ""
+                Else
+                    mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("bikou2"))
                 End If
 
                 '色の判定
@@ -703,9 +736,6 @@ Module m_main
                     If Trim(dt_server.Rows.Item(i).Item("nouhinshoid")) = "1" Then
                         s_dami = 1
                     End If
-                End If
-                If IsDBNull(dt_server.Rows.Item(i).Item("shutsu")) Then
-                    s_shutsuryoku = 1
                 End If
 
 

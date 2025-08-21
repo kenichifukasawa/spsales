@@ -557,6 +557,7 @@ Public Class frmmain
         End If
 
         Dim s_shousaiid As String = Trim(dgv_denpyou.CurrentRow.Cells(1).Value)
+        Dim s_nouhinshono As String = Trim(dgv_denpyou.CurrentRow.Cells(5).Value)
 
         set_shain_cbx(7)
 
@@ -568,6 +569,9 @@ Public Class frmmain
         frmdenpyou.cbx_shurui.Items.Add("委託")
 
         tenpo_hacchuurireki_set2(s_shousaiid)
+
+
+        frmdenpyou.txt_nouhinsho_no.Text = s_nouhinshono
 
         frmdenpyou.ShowDialog()
 
