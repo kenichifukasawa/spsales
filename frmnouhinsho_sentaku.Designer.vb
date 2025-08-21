@@ -87,7 +87,7 @@ Partial Class frmnouhinsho_sentaku
         Me.btn_rireki.Name = "btn_rireki"
         Me.btn_rireki.Size = New System.Drawing.Size(147, 44)
         Me.btn_rireki.TabIndex = 97
-        Me.btn_rireki.Text = "納品書履歴"
+        Me.btn_rireki.Text = "納品書一覧"
         Me.btn_rireki.UseVisualStyleBackColor = True
         '
         'GroupBox16
