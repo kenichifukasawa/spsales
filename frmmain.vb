@@ -26,13 +26,7 @@ Public Class frmmain
         frmshuukei_sentaku.ShowDialog()
     End Sub
 
-    Private Sub btn_shutsuryoku_Click(sender As Object, e As EventArgs) Handles btn_shutsuryoku.Click
-        frmshutsuryoku_sentaku.ShowDialog()
-    End Sub
 
-    Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
-        frmcheck_sentaku.ShowDialog()
-    End Sub
 
     Private Sub btn_tenpo_kensaku_Click(sender As Object, e As EventArgs) Handles btn_tenpo_kensaku.Click
 
@@ -535,6 +529,17 @@ Public Class frmmain
         Me.TabControl2.ItemSize = New Size(newtabsize, 25)
 
 
+
+        set_shain_cbx(6)
+
+        cbx_shurui.Items.Clear()
+        cbx_shurui.Items.Add("掛売")
+        cbx_shurui.Items.Add("現金売")
+        cbx_shurui.Items.Add("返品")
+        cbx_shurui.Items.Add("返金")
+        cbx_shurui.Items.Add("委託")
+
+
     End Sub
 
 
@@ -551,6 +556,22 @@ Public Class frmmain
             Exit Sub
         End If
 
+        Dim s_shousaiid As String = Trim(dgv_denpyou.CurrentRow.Cells(1).Value)
+        Dim s_nouhinshono As String = Trim(dgv_denpyou.CurrentRow.Cells(5).Value)
+
+        set_shain_cbx(7)
+
+        frmdenpyou.cbx_shurui.Items.Clear()
+        frmdenpyou.cbx_shurui.Items.Add("掛売")
+        frmdenpyou.cbx_shurui.Items.Add("現金売")
+        frmdenpyou.cbx_shurui.Items.Add("返品")
+        frmdenpyou.cbx_shurui.Items.Add("返金")
+        frmdenpyou.cbx_shurui.Items.Add("委託")
+
+        tenpo_hacchuurireki_set2(s_shousaiid)
+
+
+        frmdenpyou.txt_nouhinsho_no.Text = s_nouhinshono
 
         frmdenpyou.ShowDialog()
 
@@ -567,5 +588,21 @@ Public Class frmmain
 
     Private Sub txtfurigana_LostFocus(sender As Object, e As EventArgs) Handles txtfurigana.LostFocus
 
+    End Sub
+
+    Private Sub Button326_Click(sender As Object, e As EventArgs) Handles Button326.Click
+        End
+    End Sub
+
+    Private Sub btn_seikyuu_nyuukin_shousai_Click(sender As Object, e As EventArgs) Handles btn_seikyuu_nyuukin_shousai.Click
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+    End Sub
+
+    Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
+        frmshouhin.ShowDialog()
     End Sub
 End Class

@@ -584,7 +584,7 @@ Partial Class frmshiire
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(110, 44)
         Me.Button8.TabIndex = 211
-        Me.Button8.Text = "クリア"
+        Me.Button8.Text = "削除"
         Me.Button8.UseVisualStyleBackColor = True
         '
         'TextBox5
