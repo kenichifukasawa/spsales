@@ -554,5 +554,11 @@ Public Class frmshiire
 
     Private Sub frmshiire_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+
+    End Sub
+
+    Private Sub frmshiire_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+
+        txtkubun.Focus()
     End Sub
 End Class

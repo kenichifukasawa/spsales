@@ -551,6 +551,9 @@ Public Class frmmain
             Exit Sub
         End If
 
+        Dim s_shousaiid As String = Trim(dgv_denpyou.CurrentRow.Cells(1).Value)
+
+        tenpo_hacchuurireki_set2(s_shousaiid)
 
         frmdenpyou.ShowDialog()
 
@@ -566,6 +569,14 @@ Public Class frmmain
     End Sub
 
     Private Sub txtfurigana_LostFocus(sender As Object, e As EventArgs) Handles txtfurigana.LostFocus
+
+    End Sub
+
+    Private Sub Button326_Click(sender As Object, e As EventArgs) Handles Button326.Click
+        End
+    End Sub
+
+    Private Sub btn_seikyuu_nyuukin_shousai_Click(sender As Object, e As EventArgs) Handles btn_seikyuu_nyuukin_shousai.Click
 
     End Sub
 End Class

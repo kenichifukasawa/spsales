@@ -3,9 +3,7 @@
 Imports System.Data.SqlClient
 
 Public Class frminfo
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        End
-    End Sub
+
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
