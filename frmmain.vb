@@ -543,9 +543,6 @@ Public Class frmmain
     End Sub
 
 
-
-
-
     Private Sub btn_tenpo_hyouji_rireki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_hyouji_rireki.Click
         frmhyouji_rireki.ShowDialog()
     End Sub
@@ -557,23 +554,57 @@ Public Class frmmain
         End If
 
         Dim s_shousaiid As String = Trim(dgv_denpyou.CurrentRow.Cells(1).Value)
+        Dim s_hi As String = Trim(dgv_denpyou.CurrentRow.Cells(0).Value)
         Dim s_nouhinshono As String = Trim(dgv_denpyou.CurrentRow.Cells(5).Value)
+        Dim s_bikou1 As String = Trim(dgv_denpyou.CurrentRow.Cells(6).Value)
+        Dim s_bikou2 As String = Trim(dgv_denpyou.CurrentRow.Cells(7).Value)
+        Dim s_pri As String = Trim(dgv_denpyou.CurrentRow.Cells(8).Value)
+        Dim s_dami2 As String = Trim(dgv_denpyou.CurrentRow.Cells(9).Value)
+        Dim s_shain As String = Mid(Trim(dgv_denpyou.CurrentRow.Cells(3).Value), 1, 2)
 
         set_shain_cbx(7)
 
-        frmdenpyou.cbx_shurui.Items.Clear()
-        frmdenpyou.cbx_shurui.Items.Add("掛売")
-        frmdenpyou.cbx_shurui.Items.Add("現金売")
-        frmdenpyou.cbx_shurui.Items.Add("返品")
-        frmdenpyou.cbx_shurui.Items.Add("返金")
-        frmdenpyou.cbx_shurui.Items.Add("委託")
+        With frmdenpyou
 
-        tenpo_hacchuurireki_set2(s_shousaiid)
+            .GroupBox5.Text = "納品書　（ " & Trim(Me.lbltenpomei.Text) & " )"
+
+            .cbx_shurui.Items.Clear()
+            .cbx_shurui.Items.Add("掛売")
+            .cbx_shurui.Items.Add("現金売")
+            .cbx_shurui.Items.Add("返品")
+            .cbx_shurui.Items.Add("返金")
+            .cbx_shurui.Items.Add("委託")
+
+            tenpo_hacchuurireki_set2(s_shousaiid)
 
 
-        frmdenpyou.txt_nouhinsho_no.Text = s_nouhinshono
+            .DateTimePicker1.Text = s_hi
+            .txt_nouhinsho_no.Text = s_nouhinshono
+            If s_nouhinshono = "" Then
+                .chk_nouhinsho_pc.Checked = True
+                .txt_nouhinsho_no.Enabled = False
+            Else
+                .chk_nouhinsho_pc.Checked = False
+                .txt_nouhinsho_no.Enabled = True
+            End If
 
-        frmdenpyou.ShowDialog()
+            .txtbikou1.Text = s_bikou1
+            .txtbikou2.Text = s_bikou2
+            .cbx_shain.SelectedIndex = .cbx_shain.FindString(s_shain)
+            If s_pri = "" Then
+                .cbx_shurui.SelectedIndex = -1
+            Else
+                .cbx_shurui.SelectedIndex = CInt(s_pri)
+            End If
+            If s_dami2 = "1" Then
+                .chk_nouhinsho_houkoku.Checked = True
+            Else
+                .chk_nouhinsho_houkoku.Checked = False
+            End If
+
+            .ShowDialog()
+
+        End With
 
     End Sub
 
@@ -604,5 +635,33 @@ Public Class frmmain
 
     Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
         frmshouhin.ShowDialog()
+    End Sub
+
+    Private Sub chk_nouhinsho_pc_CheckedChanged(sender As Object, e As EventArgs) Handles chk_nouhinsho_pc.CheckedChanged
+
+    End Sub
+
+    Private Sub chk_nouhinsho_pc_Click(sender As Object, e As EventArgs) Handles chk_nouhinsho_pc.Click
+
+        If chk_nouhinsho_pc.Checked = True Then
+            txt_nouhinsho_no.Text = ""
+            txt_nouhinsho_no.Enabled = False
+        Else
+            txt_nouhinsho_no.Text = ""
+            txt_nouhinsho_no.Enabled = True
+            txt_nouhinsho_no.Focus()
+        End If
+    End Sub
+
+    Private Sub btn_nouhinsho_bar_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_bar.Click
+        If lbltenpoid.Text = "" Then
+            msg_go("店舗が選択されていません。")
+            Exit Sub
+        End If
+
+        barcodenono = 0
+
+        frmbarcode.ShowDialog()
+
     End Sub
 End Class

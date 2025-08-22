@@ -139,7 +139,7 @@ Partial Class frmdenpyou
         Me.GroupBox10.Controls.Add(Me.DateTimePicker1)
         Me.GroupBox10.Location = New System.Drawing.Point(8, 18)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(676, 57)
+        Me.GroupBox10.Size = New System.Drawing.Size(714, 57)
         Me.GroupBox10.TabIndex = 203
         Me.GroupBox10.TabStop = False
         '
@@ -147,17 +147,18 @@ Partial Class frmdenpyou
         '
         Me.cbx_shurui.BackColor = System.Drawing.Color.White
         Me.cbx_shurui.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shurui.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_shurui.FormattingEnabled = True
-        Me.cbx_shurui.Location = New System.Drawing.Point(524, 22)
+        Me.cbx_shurui.Location = New System.Drawing.Point(573, 18)
         Me.cbx_shurui.Name = "cbx_shurui"
-        Me.cbx_shurui.Size = New System.Drawing.Size(129, 23)
+        Me.cbx_shurui.Size = New System.Drawing.Size(129, 27)
         Me.cbx_shurui.TabIndex = 203
         '
         'Label30
         '
         Me.Label30.BackColor = System.Drawing.Color.White
         Me.Label30.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label30.Location = New System.Drawing.Point(472, 25)
+        Me.Label30.Location = New System.Drawing.Point(521, 25)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(46, 16)
         Me.Label30.TabIndex = 202
@@ -168,10 +169,11 @@ Partial Class frmdenpyou
         '
         Me.cbx_shain.BackColor = System.Drawing.Color.White
         Me.cbx_shain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shain.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_shain.FormattingEnabled = True
-        Me.cbx_shain.Location = New System.Drawing.Point(332, 22)
+        Me.cbx_shain.Location = New System.Drawing.Point(315, 18)
         Me.cbx_shain.Name = "cbx_shain"
-        Me.cbx_shain.Size = New System.Drawing.Size(104, 23)
+        Me.cbx_shain.Size = New System.Drawing.Size(192, 27)
         Me.cbx_shain.TabIndex = 195
         '
         'Label19
@@ -189,7 +191,7 @@ Partial Class frmdenpyou
         '
         Me.Label18.BackColor = System.Drawing.Color.White
         Me.Label18.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label18.Location = New System.Drawing.Point(279, 25)
+        Me.Label18.Location = New System.Drawing.Point(262, 25)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(46, 16)
         Me.Label18.TabIndex = 187
@@ -361,16 +363,16 @@ Partial Class frmdenpyou
         Me.GroupBox7.Controls.Add(Me.chk_nouhinsho_pc)
         Me.GroupBox7.Controls.Add(Me.txt_nouhinsho_no)
         Me.GroupBox7.Controls.Add(Me.Label17)
-        Me.GroupBox7.Location = New System.Drawing.Point(702, 18)
+        Me.GroupBox7.Location = New System.Drawing.Point(740, 18)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(470, 57)
+        Me.GroupBox7.Size = New System.Drawing.Size(432, 57)
         Me.GroupBox7.TabIndex = 70
         Me.GroupBox7.TabStop = False
         '
         'chk_nouhinsho_houkoku
         '
         Me.chk_nouhinsho_houkoku.AutoSize = True
-        Me.chk_nouhinsho_houkoku.Location = New System.Drawing.Point(355, 24)
+        Me.chk_nouhinsho_houkoku.Location = New System.Drawing.Point(336, 24)
         Me.chk_nouhinsho_houkoku.Name = "chk_nouhinsho_houkoku"
         Me.chk_nouhinsho_houkoku.Size = New System.Drawing.Size(56, 19)
         Me.chk_nouhinsho_houkoku.TabIndex = 199
@@ -382,7 +384,7 @@ Partial Class frmdenpyou
         Me.chk_nouhinsho_pc.AutoSize = True
         Me.chk_nouhinsho_pc.Checked = True
         Me.chk_nouhinsho_pc.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chk_nouhinsho_pc.Location = New System.Drawing.Point(248, 24)
+        Me.chk_nouhinsho_pc.Location = New System.Drawing.Point(226, 24)
         Me.chk_nouhinsho_pc.Name = "chk_nouhinsho_pc"
         Me.chk_nouhinsho_pc.Size = New System.Drawing.Size(75, 19)
         Me.chk_nouhinsho_pc.TabIndex = 197
@@ -404,7 +406,7 @@ Partial Class frmdenpyou
         '
         Me.Label17.BackColor = System.Drawing.Color.White
         Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label17.Location = New System.Drawing.Point(14, 24)
+        Me.Label17.Location = New System.Drawing.Point(4, 24)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(87, 16)
         Me.Label17.TabIndex = 188

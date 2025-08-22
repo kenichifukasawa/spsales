@@ -75,6 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="frmbarcode.Designer.vb">
+      <DependentUpon>frmbarcode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmbarcode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmcheck_kosuu_henkou.Designer.vb">
       <DependentUpon>frmcheck_kosuu_henkou.vb</DependentUpon>
     </Compile>
@@ -432,6 +438,7 @@
     <Compile Include="module\m_seikyuu.vb" />
     <Compile Include="module\m_set.vb" />
     <Compile Include="module\m_shiire.vb" />
+    <Compile Include="module\m_shouhin.vb" />
     <Compile Include="module\m_shuukei.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -450,6 +457,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmbarcode.resx">
+      <DependentUpon>frmbarcode.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmcheck_kosuu_henkou.resx">
       <DependentUpon>frmcheck_kosuu_henkou.vb</DependentUpon>
     </EmbeddedResource>
