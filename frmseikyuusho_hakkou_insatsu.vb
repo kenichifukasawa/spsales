@@ -190,7 +190,7 @@ Public Class frmseikyuusho_hakkou_insatsu
             .Columns(1).Name = "NO"
             .Columns(2).Name = "ID"
             .Columns(3).Name = "店舗ID"
-            .Columns(4).Name = "店舗ID"
+            .Columns(4).Name = "店舗名"
             .Columns(5).Name = "前請求額"
             .Columns(6).Name = "入金額"
             .Columns(7).Name = "繰越残高"
@@ -214,7 +214,7 @@ Public Class frmseikyuusho_hakkou_insatsu
             .Columns(1).Width = 75
             .Columns(2).Width = 100
             .Columns(3).Width = 100
-            .Columns(4).Width = 110
+            .Columns(4).Width = 250
             .Columns(5).Width = 90
             .Columns(6).Width = 90
             .Columns(7).Width = 90
@@ -240,7 +240,7 @@ Public Class frmseikyuusho_hakkou_insatsu
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -314,7 +314,7 @@ Public Class frmseikyuusho_hakkou_insatsu
                 Exit Sub
             End If
 
-            show_shinkou_joukyou(seikyuu_moto_data_count)
+            show_shinkou_joukyou("計算元データの取得中...", seikyuu_moto_data_count)
 
             ReDim seikyuu_moto_data(27, seikyuu_moto_data_count)
             For i = 0 To seikyuu_moto_data_count - 1
@@ -439,14 +439,14 @@ Public Class frmseikyuusho_hakkou_insatsu
                 End If
                 seikyuu_moto_data(10, i) = seikyuubi ' 前回請求日
 
-                seikyuu_moto_data(11, i) = Nothing ' ?
+                seikyuu_moto_data(11, i) = 0 ' 今回入金額
                 seikyuu_moto_data(12, i) = 0 ' 売上
                 seikyuu_moto_data(14, i) = 0 ' 消費税
                 seikyuu_moto_data(15, i) = 0 ' 今月そう合計額
-                seikyuu_moto_data(16, i) = Nothing ' ?
+                seikyuu_moto_data(16, i) = 0 ' 表示フラグ
                 seikyuu_moto_data(17, i) = 0 ' 今月返品額
                 seikyuu_moto_data(18, i) = 0 ' 売上+今月返品額
-                seikyuu_moto_data(19, i) = Nothing ' ?
+                seikyuu_moto_data(19, i) = 0 ' 枚数
                 seikyuu_moto_data(20, i) = 0 ' 非課税額合計
                 seikyuu_moto_data(21, i) = Trim(dt_server.Rows.Item(i).Item("shainid"))
                 seikyuu_moto_data(22, i) = zengetsuseikyuukingaku ' チェック用前回請求金額
@@ -468,6 +468,8 @@ Public Class frmseikyuusho_hakkou_insatsu
             hide_shinkou_joukyou()
             Exit Sub
         End Try
+
+        show_shinkou_joukyou("各項目を計算中...", seikyuu_moto_data_count)
 
         Dim newseikyusuu2 = 0
         For i = 0 To seikyuu_moto_data_count - 1
@@ -580,10 +582,8 @@ Public Class frmseikyuusho_hakkou_insatsu
                 If dt_server.Rows.Count > 0 Then
 
                     Dim newnyuukingoukei = dt_server.Rows.Item(0).Item("newnyuukingoukei")
-                    If IsDBNull(newnyuukingoukei) Then
-                        seikyuu_moto_data(11, i) = 0
-                    Else
-                        seikyuu_moto_data(11, i) = Trim(newnyuukingoukei)
+                    If Not IsDBNull(newnyuukingoukei) Then
+                        seikyuu_moto_data(11, i) = newnyuukingoukei
                         If seikyuu_moto_data(23, seikyuu_moto_data_count) = 1 Then
                             seikyuu_moto_data(6, i) = seikyuu_moto_data(24, seikyuu_moto_data_count) + Trim(newnyuukingoukei) + sashihiki_nyuukingaku
                             seikyuu_moto_data(13, i) = seikyuu_moto_data(24, seikyuu_moto_data_count) + sashihiki_nyuukingaku
@@ -947,9 +947,7 @@ Public Class frmseikyuusho_hakkou_insatsu
             '作成するかをチェック
             If seikyuu_moto_data(12, i) = 0 And seikyuu_moto_data(11, i) = 0 And seikyuu_moto_data(17, i) = 0 Then
                 If seikyuu_moto_data(13, i) = 0 Then ' 計算繰越と売上と入金と返品が０のとき
-                    If seikyuu_moto_data(19, i) = 0 Then ' 納品書枚数が0のときは、出さない
-                        seikyuu_moto_data(16, i) = 0
-                    Else ' 納品書枚数が0以外のときは、出す
+                    If seikyuu_moto_data(19, i) <> 0 Then  ' 納品書枚数が0以外のときは、出す
                         seikyuu_moto_data(16, i) = 1
                         newseikyusuu2 += 1
                     End If
@@ -972,9 +970,7 @@ Public Class frmseikyuusho_hakkou_insatsu
                             seikyuu_moto_data(16, i) = 1
                             newseikyusuu2 += 1
                         Else
-                            If CInt(dt_server.Rows.Item(0).Item("newnyuukingoukei")) * -1 = seikyuu_moto_data(13, i) Then
-                                seikyuu_moto_data(16, i) = 0
-                            Else
+                            If Not (CInt(dt_server.Rows.Item(0).Item("newnyuukingoukei")) * -1 = seikyuu_moto_data(13, i)) Then
                                 seikyuu_moto_data(16, i) = 1
                                 newseikyusuu2 += 1
                             End If
@@ -1000,34 +996,36 @@ Public Class frmseikyuusho_hakkou_insatsu
 
         If newseikyusuu2 <> 0 Then
             Dim mojiretsu(30)
+            show_shinkou_joukyou("表示処理中...", seikyuu_moto_data_count)
             For i = 0 To seikyuu_moto_data_count - 1
 
                 If seikyuu_moto_data(16, i) <> 1 Then
                     Continue For
                 End If
 
-                mojiretsu(0) = (i + 1).ToString
-                mojiretsu(1) = seikyuu_moto_data(21, i) ' ID
-                mojiretsu(2) = seikyuu_moto_data(0, i) '店舗ID
-                mojiretsu(3) = seikyuu_moto_data(1, i) '店舗名
-                mojiretsu(4) = CInt(seikyuu_moto_data(6, i)).ToString("#,0") '前回請求額
-                mojiretsu(5) = seikyuu_moto_data(11, i).ToString("#,0") '今回入金額
-                mojiretsu(6) = seikyuu_moto_data(13, i).ToString("#,0") '計算繰越
-                mojiretsu(7) = seikyuu_moto_data(12, i).ToString("#,0") '売上
-                mojiretsu(8) = seikyuu_moto_data(17, i).ToString("#,0") '今月返品額
-                mojiretsu(9) = seikyuu_moto_data(14, i).ToString("#,0") '消費税
-                mojiretsu(10) = seikyuu_moto_data(15, i).ToString("#,0") '今月総合計額
-                mojiretsu(11) = seikyuu_moto_data(7, i)
-                mojiretsu(12) = seikyuu_moto_data(8, i)
-                mojiretsu(13) = seikyuu_moto_data(9, i)
-                mojiretsu(14) = seikyuu_moto_data(19, i)
-                mojiretsu(15) = "備考"
-                mojiretsu(16) = seikyuu_moto_data(3, i)
-                mojiretsu(17) = seikyuu_moto_data(4, i) + seikyuu_moto_data(5, i)
-                mojiretsu(18) = seikyuu_moto_data(2, i)
-                mojiretsu(19) = seikyuu_moto_data(25, i) ' 消費税10％
-                mojiretsu(20) = seikyuu_moto_data(26, i) ' 消費税8％
-                mojiretsu(21) = seikyuu_moto_data(27, i) ' エラー
+                mojiretsu(0) = ""
+                mojiretsu(1) = (i + 1).ToString
+                mojiretsu(2) = seikyuu_moto_data(21, i) ' ID
+                mojiretsu(3) = seikyuu_moto_data(0, i) ' 店舗ID
+                mojiretsu(4) = seikyuu_moto_data(1, i) ' 店舗名
+                mojiretsu(5) = CLng(seikyuu_moto_data(6, i)).ToString("#,0") ' 前回請求額
+                mojiretsu(6) = CLng(seikyuu_moto_data(11, i)).ToString("#,0") ' 今回入金額
+                mojiretsu(7) = CLng(seikyuu_moto_data(13, i)).ToString("#,0") ' 計算繰越
+                mojiretsu(8) = CLng(seikyuu_moto_data(12, i)).ToString("#,0") ' 売上
+                mojiretsu(9) = CLng(seikyuu_moto_data(17, i)).ToString("#,0") ' 今月返品額
+                mojiretsu(10) = CLng(seikyuu_moto_data(14, i)).ToString("#,0") ' 消費税
+                mojiretsu(11) = CLng(seikyuu_moto_data(15, i)).ToString("#,0") ' 今月総合計額
+                mojiretsu(12) = seikyuu_moto_data(7, i)
+                mojiretsu(13) = seikyuu_moto_data(8, i)
+                mojiretsu(14) = seikyuu_moto_data(9, i)
+                mojiretsu(15) = seikyuu_moto_data(19, i)
+                mojiretsu(16) = "備考"
+                mojiretsu(17) = seikyuu_moto_data(3, i)
+                mojiretsu(18) = seikyuu_moto_data(4, i) + seikyuu_moto_data(5, i)
+                mojiretsu(19) = seikyuu_moto_data(2, i)
+                mojiretsu(20) = seikyuu_moto_data(25, i) ' 消費税10％
+                mojiretsu(21) = seikyuu_moto_data(26, i) ' 消費税8％
+                mojiretsu(22) = seikyuu_moto_data(27, i) ' エラー
 
                 dgv_kensakukekka.Rows.Add(mojiretsu)
 
@@ -1796,9 +1794,11 @@ Public Class frmseikyuusho_hakkou_insatsu
 
     End Function
 
-    Private Sub show_shinkou_joukyou(max_count As Integer)
+    Private Sub show_shinkou_joukyou(title As String, max_count As Integer)
 
         gbx_shinkou_joukyou.Visible = True
+        lbl_shinkou_title.Text = title
+
         gbx_shinkou_joukyou.BringToFront()
         Dim x As Integer = (ClientSize.Width - gbx_shinkou_joukyou.Width) \ 2
         Dim y As Integer = (ClientSize.Height - gbx_shinkou_joukyou.Height) \ 2
