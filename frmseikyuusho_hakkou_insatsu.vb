@@ -970,7 +970,8 @@ Public Class frmseikyuusho_hakkou_insatsu
                             seikyuu_moto_data(16, i) = 1
                             newseikyusuu2 += 1
                         Else
-                            If Not (CInt(dt_server.Rows.Item(0).Item("newnyuukingoukei")) * -1 = seikyuu_moto_data(13, i)) Then
+                            If CInt(dt_server.Rows.Item(0).Item("newnyuukingoukei")) * -1 = seikyuu_moto_data(13, i) Then
+                            Else
                                 seikyuu_moto_data(16, i) = 1
                                 newseikyusuu2 += 1
                             End If
@@ -993,6 +994,41 @@ Public Class frmseikyuusho_hakkou_insatsu
             calculate_shinkou_joukyou(i, seikyuu_moto_data_count)
 
         Next
+
+        ''作成するかをチェック
+        'If seikyuu_moto_data(i, 12) = 0 And seikyuu_moto_data(i, 11) = 0 And seikyuu_moto_data(i, 17) = 0 Then
+        '    If seikyuu_moto_data(i, 13) = 0 Then
+        '        '計算繰越と売上と入金と返品が０のとき
+        '        If seikyuu_moto_data(i, 19) = 0 Then
+        '            '納品書枚数が０のときは、出さない
+        '            seikyuu_moto_data(i, 16) = 0
+        '        Else
+        '            '納品書枚数が０以外のときは、出す
+        '            seikyuu_moto_data(i, 16) = 1
+        '            newseikyusuu2 = newseikyusuu2 + 1
+        '        End If
+        '    Else
+        '        sql_seikyu5 = "select sum(seikyuukingaku) as newnyuukingoukei" &
+        '                " from seikyuusho where seikyuu_st='1'" &
+        '                " and tenpoid ='" & seikyuu_moto_data(i, 0) & "'" &
+        '                " and hiduke>'" & hinichi & "' and joukyou is null"
+        '    Set rs_saikyu5 = New ADODB.Recordset
+        '    If FcSQlGet(1, rs_saikyu5, sql_seikyu5, WMsg) = True Then
+        '            If (rs_saikyu5!newnyuukingoukei) * -1 = seikyuu_moto_data(i, 13) Then
+        '                seikyuu_moto_data(i, 16) = 0
+        '            Else
+        '                seikyuu_moto_data(i, 16) = 1
+        '                newseikyusuu2 = newseikyusuu2 + 1
+        '            End If
+        '        Else
+        '            seikyuu_moto_data(i, 16) = 1
+        '            newseikyusuu2 = newseikyusuu2 + 1
+        '        End If
+        '    End If
+        'Else
+        '    seikyuu_moto_data(i, 16) = 1
+        '    newseikyusuu2 = newseikyusuu2 + 1
+        'End If
 
         If newseikyusuu2 <> 0 Then
             Dim mojiretsu(30)
