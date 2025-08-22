@@ -23,6 +23,9 @@ Partial Class frmseikyuusho_hakkou_insatsu
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
+        Me.chk_new = New System.Windows.Forms.CheckBox()
+        Me.txtseikyuu2 = New System.Windows.Forms.Label()
+        Me.txtseikyuu = New System.Windows.Forms.Label()
         Me.chk_houkokuyou = New System.Windows.Forms.CheckBox()
         Me.chk_insatsu_shinai = New System.Windows.Forms.CheckBox()
         Me.btn_clear = New System.Windows.Forms.Button()
@@ -49,8 +52,11 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.btn_seikyuusho_sakusei = New System.Windows.Forms.Button()
         Me.btn_shousai = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.txtseikyuu = New System.Windows.Forms.Label()
-        Me.txtseikyuu2 = New System.Windows.Forms.Label()
+        Me.gbx_shinkou_joukyou = New System.Windows.Forms.GroupBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.lbl_shinkou_percent = New System.Windows.Forms.Label()
+        Me.pgb_shinkou_joukyou = New System.Windows.Forms.ProgressBar()
+        Me.lbl_shinkou_doai = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.gbx_shiharai_tsuki.SuspendLayout()
@@ -58,11 +64,14 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.Group2.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbx_shinkou_joukyou.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbx_main
         '
         Me.gbx_main.BackColor = System.Drawing.Color.White
+        Me.gbx_main.Controls.Add(Me.chk_new)
         Me.gbx_main.Controls.Add(Me.txtseikyuu2)
         Me.gbx_main.Controls.Add(Me.txtseikyuu)
         Me.gbx_main.Controls.Add(Me.chk_houkokuyou)
@@ -82,10 +91,40 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.gbx_main.TabIndex = 58
         Me.gbx_main.TabStop = False
         '
+        'chk_new
+        '
+        Me.chk_new.AutoSize = True
+        Me.chk_new.Location = New System.Drawing.Point(1079, 19)
+        Me.chk_new.Name = "chk_new"
+        Me.chk_new.Size = New System.Drawing.Size(51, 18)
+        Me.chk_new.TabIndex = 208
+        Me.chk_new.Text = "New"
+        Me.chk_new.UseVisualStyleBackColor = True
+        '
+        'txtseikyuu2
+        '
+        Me.txtseikyuu2.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.txtseikyuu2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtseikyuu2.Location = New System.Drawing.Point(1227, 95)
+        Me.txtseikyuu2.Name = "txtseikyuu2"
+        Me.txtseikyuu2.Size = New System.Drawing.Size(127, 19)
+        Me.txtseikyuu2.TabIndex = 210
+        Me.txtseikyuu2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'txtseikyuu
+        '
+        Me.txtseikyuu.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.txtseikyuu.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtseikyuu.Location = New System.Drawing.Point(1094, 95)
+        Me.txtseikyuu.Name = "txtseikyuu"
+        Me.txtseikyuu.Size = New System.Drawing.Size(127, 19)
+        Me.txtseikyuu.TabIndex = 208
+        Me.txtseikyuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'chk_houkokuyou
         '
         Me.chk_houkokuyou.AutoSize = True
-        Me.chk_houkokuyou.Location = New System.Drawing.Point(1546, 19)
+        Me.chk_houkokuyou.Location = New System.Drawing.Point(1546, 98)
         Me.chk_houkokuyou.Name = "chk_houkokuyou"
         Me.chk_houkokuyou.Size = New System.Drawing.Size(68, 18)
         Me.chk_houkokuyou.TabIndex = 209
@@ -95,7 +134,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'chk_insatsu_shinai
         '
         Me.chk_insatsu_shinai.AutoSize = True
-        Me.chk_insatsu_shinai.Location = New System.Drawing.Point(1441, 19)
+        Me.chk_insatsu_shinai.Location = New System.Drawing.Point(1441, 98)
         Me.chk_insatsu_shinai.Name = "chk_insatsu_shinai"
         Me.chk_insatsu_shinai.Size = New System.Drawing.Size(99, 18)
         Me.chk_insatsu_shinai.TabIndex = 208
@@ -378,32 +417,68 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
-        'txtseikyuu
+        'gbx_shinkou_joukyou
         '
-        Me.txtseikyuu.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.txtseikyuu.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtseikyuu.Location = New System.Drawing.Point(1225, 95)
-        Me.txtseikyuu.Name = "txtseikyuu"
-        Me.txtseikyuu.Size = New System.Drawing.Size(127, 19)
-        Me.txtseikyuu.TabIndex = 208
-        Me.txtseikyuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.gbx_shinkou_joukyou.BackColor = System.Drawing.Color.LightCyan
+        Me.gbx_shinkou_joukyou.Controls.Add(Me.GroupBox5)
+        Me.gbx_shinkou_joukyou.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.gbx_shinkou_joukyou.Location = New System.Drawing.Point(777, 1058)
+        Me.gbx_shinkou_joukyou.Margin = New System.Windows.Forms.Padding(2)
+        Me.gbx_shinkou_joukyou.Name = "gbx_shinkou_joukyou"
+        Me.gbx_shinkou_joukyou.Padding = New System.Windows.Forms.Padding(2)
+        Me.gbx_shinkou_joukyou.Size = New System.Drawing.Size(307, 138)
+        Me.gbx_shinkou_joukyou.TabIndex = 222
+        Me.gbx_shinkou_joukyou.TabStop = False
+        Me.gbx_shinkou_joukyou.Text = "進行状況"
+        Me.gbx_shinkou_joukyou.Visible = False
         '
-        'txtseikyuu2
+        'GroupBox5
         '
-        Me.txtseikyuu2.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.txtseikyuu2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtseikyuu2.Location = New System.Drawing.Point(1358, 95)
-        Me.txtseikyuu2.Name = "txtseikyuu2"
-        Me.txtseikyuu2.Size = New System.Drawing.Size(127, 19)
-        Me.txtseikyuu2.TabIndex = 210
-        Me.txtseikyuu2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.GroupBox5.BackColor = System.Drawing.Color.White
+        Me.GroupBox5.Controls.Add(Me.lbl_shinkou_percent)
+        Me.GroupBox5.Controls.Add(Me.pgb_shinkou_joukyou)
+        Me.GroupBox5.Controls.Add(Me.lbl_shinkou_doai)
+        Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox5.Location = New System.Drawing.Point(20, 18)
+        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(2)
+        Me.GroupBox5.Size = New System.Drawing.Size(267, 101)
+        Me.GroupBox5.TabIndex = 222
+        Me.GroupBox5.TabStop = False
+        '
+        'lbl_shinkou_percent
+        '
+        Me.lbl_shinkou_percent.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_percent.Location = New System.Drawing.Point(20, 20)
+        Me.lbl_shinkou_percent.Name = "lbl_shinkou_percent"
+        Me.lbl_shinkou_percent.Size = New System.Drawing.Size(228, 19)
+        Me.lbl_shinkou_percent.TabIndex = 126
+        Me.lbl_shinkou_percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pgb_shinkou_joukyou
+        '
+        Me.pgb_shinkou_joukyou.Location = New System.Drawing.Point(20, 41)
+        Me.pgb_shinkou_joukyou.Name = "pgb_shinkou_joukyou"
+        Me.pgb_shinkou_joukyou.Size = New System.Drawing.Size(228, 23)
+        Me.pgb_shinkou_joukyou.TabIndex = 0
+        '
+        'lbl_shinkou_doai
+        '
+        Me.lbl_shinkou_doai.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_doai.Location = New System.Drawing.Point(20, 67)
+        Me.lbl_shinkou_doai.Name = "lbl_shinkou_doai"
+        Me.lbl_shinkou_doai.Size = New System.Drawing.Size(228, 19)
+        Me.lbl_shinkou_doai.TabIndex = 125
+        Me.lbl_shinkou_doai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmseikyuusho_hakkou_insatsu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1902, 994)
+        Me.ClientSize = New System.Drawing.Size(1707, 994)
         Me.ControlBox = False
+        Me.Controls.Add(Me.gbx_shinkou_joukyou)
         Me.Controls.Add(Me.gbx_main)
         Me.Name = "frmseikyuusho_hakkou_insatsu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -418,6 +493,8 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.Group2.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbx_shinkou_joukyou.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -451,4 +528,10 @@ Partial Class frmseikyuusho_hakkou_insatsu
     Friend WithEvents lbl_tenpo_id As Label
     Friend WithEvents txtseikyuu2 As Label
     Friend WithEvents txtseikyuu As Label
+    Friend WithEvents chk_new As CheckBox
+    Friend WithEvents gbx_shinkou_joukyou As GroupBox
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents lbl_shinkou_percent As Label
+    Friend WithEvents pgb_shinkou_joukyou As ProgressBar
+    Friend WithEvents lbl_shinkou_doai As Label
 End Class
