@@ -52,7 +52,7 @@ Module m_shouhin
 
                 If s_no = "" Then
                     With frmbarcode
-                        .lblshouhin1.Text = Trim(dt_server.Rows.Item(0).Item("shouhinkubunid")) & " " & Trim(dt_server.Rows.Item(0).Item("shouhinkubunmei"))
+                        .lblshouhin1.Text = Trim(dt_server.Rows.Item(0).Item("shouhinkubunid")) & Space(3) & Trim(dt_server.Rows.Item(0).Item("shouhinkubunmei"))
                         .lbltanka.Text = Trim(dt_server.Rows.Item(0).Item("kakaku"))
                         If IsDBNull(dt_server.Rows.Item(0).Item("keigen_s")) Then
                             .lblkeigen.Text = ""
