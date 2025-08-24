@@ -23,6 +23,8 @@ Partial Class frmbarcode
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblkeigen = New System.Windows.Forms.Label()
+        Me.lbltanka = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtshiteikin = New System.Windows.Forms.TextBox()
         Me.ltanka = New System.Windows.Forms.Label()
@@ -35,8 +37,6 @@ Partial Class frmbarcode
         Me.Label21 = New System.Windows.Forms.Label()
         Me.btn_info = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.lbltanka = New System.Windows.Forms.Label()
-        Me.lblkeigen = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -62,6 +62,26 @@ Partial Class frmbarcode
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "詳細"
+        '
+        'lblkeigen
+        '
+        Me.lblkeigen.BackColor = System.Drawing.SystemColors.Control
+        Me.lblkeigen.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblkeigen.Location = New System.Drawing.Point(457, 44)
+        Me.lblkeigen.Name = "lblkeigen"
+        Me.lblkeigen.Size = New System.Drawing.Size(107, 22)
+        Me.lblkeigen.TabIndex = 212
+        Me.lblkeigen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lbltanka
+        '
+        Me.lbltanka.BackColor = System.Drawing.SystemColors.Control
+        Me.lbltanka.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbltanka.Location = New System.Drawing.Point(400, 184)
+        Me.lbltanka.Name = "lbltanka"
+        Me.lbltanka.Size = New System.Drawing.Size(107, 22)
+        Me.lbltanka.TabIndex = 211
+        Me.lbltanka.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label4
         '
@@ -197,26 +217,6 @@ Partial Class frmbarcode
         Me.Button1.TabIndex = 144
         Me.Button1.Text = "登録"
         Me.Button1.UseVisualStyleBackColor = False
-        '
-        'lbltanka
-        '
-        Me.lbltanka.BackColor = System.Drawing.SystemColors.Control
-        Me.lbltanka.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbltanka.Location = New System.Drawing.Point(400, 184)
-        Me.lbltanka.Name = "lbltanka"
-        Me.lbltanka.Size = New System.Drawing.Size(107, 22)
-        Me.lbltanka.TabIndex = 211
-        Me.lbltanka.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lblkeigen
-        '
-        Me.lblkeigen.BackColor = System.Drawing.SystemColors.Control
-        Me.lblkeigen.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblkeigen.Location = New System.Drawing.Point(457, 18)
-        Me.lblkeigen.Name = "lblkeigen"
-        Me.lblkeigen.Size = New System.Drawing.Size(107, 22)
-        Me.lblkeigen.TabIndex = 212
-        Me.lblkeigen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmbarcode
         '

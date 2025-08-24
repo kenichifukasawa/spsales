@@ -3,7 +3,7 @@
 Module m_shouhin
 
 
-    Sub shouhin_chk(s_no As String, kensakuber As String)
+    Sub shouhin_get(s_no As String, kensakuber As String)
 
 
 

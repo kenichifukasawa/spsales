@@ -419,7 +419,7 @@ Public Class frmmain
 
             '９９件までのチェック
 
-            If Me.dgv_shien.Rows.Count > 99 Then
+            If Me.dgv_nouhinsho.Rows.Count > 99 Then
                 msg_go("納品書に仮登録できる件数は９９件までです。")
                 Exit Sub
             End If

@@ -1801,6 +1801,72 @@ errsetting:
 
     End Function
 
+    Function hacchuushousai_touroku(s_hacchuushousai_count As Integer, s_hacchuushousai_data(,) As String) As Integer
+
+        Try
+            Dim s_no = 3
+            Dim id = 1
+            Dim ketasuu = 10
+            Dim new_id = get_settings(id:=id, s_no:=s_no)
+            Dim next_id As String
+            If new_id = "" Then
+                msg_go("IDの取得に失敗しました。")
+                Exit Function
+            ElseIf new_id = "0" Then
+                next_id = "2"
+                new_id = 1.ToString("D" + ketasuu.ToString)
+            Else
+                next_id = (CLng(new_id) + s_hacchuushousai_count).ToString
+                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
+            End If
+
+            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
+            If Not response Then
+                msg_go("IDの更新に失敗しました。")
+                Exit Function
+            End If
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT TOP 1 * FROM hacchuushousai"
+
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_hacchuu")
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables("t_hacchuu").NewRow()
+            For i = 0 To s_hacchuushousai_count - 1
+
+                data_row("hachuushousaiid") = new_id
+                data_row("hacchuuid") = s_hacchuushousai_data(0, i)
+                data_row("shouhinid") = s_hacchuushousai_data(1, i)
+                data_row("kosuu") = CInt(s_hacchuushousai_data(2, i))
+                data_row("tanka") = CInt(s_hacchuushousai_data(3, i))
+                data_row("kei") = CInt(s_hacchuushousai_data(4, i))
+                data_row("tekiyou") = s_hacchuushousai_data(5, i)
+                data_row("kakutei") = s_hacchuushousai_data(6, i)
+
+                If s_hacchuushousai_data(7, i) <> "" Then
+                    data_row("keigen") = s_hacchuushousai_data(7, i)
+                End If
+
+                ds.Tables("t_hacchuu").Rows.Add(data_row)
+            Next
+
+            da.Update(ds, "t_hacchuu")
+            ds.Clear()
+
+            hacchuushousai_touroku = 1
+
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            hacchuushousai_touroku = -1
+        End Try
+
+    End Function
+
     Function get_settings(id As Integer, s_no As Integer) As String
 
         Try
