@@ -734,5 +734,72 @@ Public Class frmmain
 
     Private Sub btn_nouhinsho_hozon_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_hozon.Click
 
+
+        Dim sakujosusunoka As Integer = 0
+
+        For i = 1 To dgv_nouhinsho.Rows.Count - 1
+            If dgv_nouhinsho(7, i).Value = True Then
+                sakujosusunoka = 1
+                Exit For
+            End If
+        Next
+
+        If sakujosusunoka = 0 Then
+            msg_go("削除したい商品伝票が選択されていません。")
+            Exit Sub
+        End If
+
+
+        Dim s_where_str As String = "", s_atai As String
+        For i = 1 To dgv_nouhinsho.Rows.Count - 1
+            If dgv_nouhinsho(7, i).Value = True Then
+                s_atai = Trim(dgv_nouhinsho(10, i).Value)
+                If s_where_str = "" Then
+                    s_where_str = "hachuushousaiid ='" + s_atai + "'"
+                Else
+                    s_where_str = s_where_str + "or hachuushousaiid ='" + s_atai + "'"
+                End If
+            End If
+        Next
+
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuushousai WHERE " & s_where_str
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_gyousha")
+
+            If ds.Tables("t_gyousha").Rows.Count > 0 Then
+
+                ' すべての一致する行を削除
+                For Each row As DataRow In ds.Tables("t_gyousha").Rows
+                    row.Delete()
+                Next
+                '一部のみ
+                'ds.Tables("t_gyousha").Rows(0).Delete()
+
+                Dim cb As New SqlCommandBuilder(da)
+                da.Update(ds, "t_gyousha")
+                ds.Clear()
+
+                ' msg_go("削除しました。", 64)
+            Else
+                msg_go("該当する仮登録情報が見つかりません。")
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+
+
+        tenpo_orderchu_set_10()
+
+
+
     End Sub
 End Class
