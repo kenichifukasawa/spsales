@@ -6511,7 +6511,7 @@ Partial Class frmmain
         Me.btn_nouhinsho_bar.Name = "btn_nouhinsho_bar"
         Me.btn_nouhinsho_bar.Size = New System.Drawing.Size(75, 37)
         Me.btn_nouhinsho_bar.TabIndex = 191
-        Me.btn_nouhinsho_bar.Text = "Bar"
+        Me.btn_nouhinsho_bar.Text = "バーコード"
         Me.btn_nouhinsho_bar.UseVisualStyleBackColor = False
         '
         'Label17
@@ -6548,7 +6548,7 @@ Partial Class frmmain
         Me.btn_nouhinsho_clear.Name = "btn_nouhinsho_clear"
         Me.btn_nouhinsho_clear.Size = New System.Drawing.Size(75, 37)
         Me.btn_nouhinsho_clear.TabIndex = 184
-        Me.btn_nouhinsho_clear.Text = "Cl"
+        Me.btn_nouhinsho_clear.Text = "クリア"
         Me.btn_nouhinsho_clear.UseVisualStyleBackColor = False
         '
         'Label15

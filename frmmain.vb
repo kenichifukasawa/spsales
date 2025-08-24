@@ -664,4 +664,75 @@ Public Class frmmain
         frmbarcode.ShowDialog()
 
     End Sub
+
+    Private Sub btn_nouhinsho_clear_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_clear.Click
+
+        If Trim(lbltenpoid.Text) = "" Then
+            msg_go("店舗が選択されていません。")
+            Exit Sub
+        End If
+
+        Dim s_pcname As String
+
+        s_pcname = Trim(lblpcname.Text)
+        If s_pcname = "" Then
+            msg_go("ユーザー名を登録してから再度実行してください。")
+            Exit Sub
+        End If
+
+        Dim result = MessageBox.Show("仮登録のオーダー内容の消去をキャンセルしてよいですか？", "nPOS", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If result = DialogResult.Yes Then
+            Exit Sub
+        End If
+
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuushousai WHERE hacchuuid ='" + s_pcname + "'"
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_gyousha")
+
+            If ds.Tables("t_gyousha").Rows.Count > 0 Then
+
+                ' すべての一致する行を削除
+                For Each row As DataRow In ds.Tables("t_gyousha").Rows
+                    row.Delete()
+                Next
+                '一部のみ
+                'ds.Tables("t_gyousha").Rows(0).Delete()
+
+                Dim cb As New SqlCommandBuilder(da)
+                da.Update(ds, "t_gyousha")
+                ds.Clear()
+
+                msg_go("削除しました。", 64)
+            Else
+                msg_go("該当する仮登録情報が見つかりません。")
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+
+
+        tenpo_orderchu_set_10()
+
+
+        txt_nouhinsho_no.Text = ""
+        chk_nouhinsho_pc.Checked = True
+        chk_nouhinsho_houkoku.Checked = False
+        txtbikou1.Text = ""
+        txtbikou2.Text = ""
+
+
+    End Sub
+
+    Private Sub btn_nouhinsho_hozon_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_hozon.Click
+
+    End Sub
 End Class
