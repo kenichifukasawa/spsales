@@ -61,9 +61,9 @@ Public Class frmshiharai_rireki_shousai
 
                     mojiretsu(0) = (i + 1).ToString()
                     mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shiireid"))
-                    mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shiirebi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(2) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("shiirebi")))
 
-                    Dim goukeikingaku = 0
+                Dim goukeikingaku = 0
                     If Not IsDBNull(dt_server.Rows.Item(i).Item("goukeikingaku")) Then
                         goukeikingaku = CInt(Trim(dt_server.Rows.Item(i).Item("goukeikingaku")))
                     End If
@@ -89,7 +89,6 @@ Public Class frmshiharai_rireki_shousai
             End Try
 
         lbl_kingaku.Text = sum_goukei_gaku.ToString("#,0") + "円"
-
 
     End Sub
 

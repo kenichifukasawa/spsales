@@ -432,7 +432,7 @@ Public Class frmshiharai_shori
                 mojiretsu(0) = ""
                 mojiretsu(1) = (i + 1).ToString
                 mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("shiireid"))
-                mojiretsu(3) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shiirebi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(3) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("shiirebi")))
 
                 Dim goukeikingaku = 0
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("goukeikingaku")) Then
@@ -454,7 +454,7 @@ Public Class frmshiharai_shori
 
                 Dim shiharaibi = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shiharaibi")) Then
-                    shiharaibi = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shiharaibi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                    shiharaibi = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("shiharaibi")))
                 End If
                 mojiretsu(7) = shiharaibi
 
@@ -493,7 +493,7 @@ Public Class frmshiharai_shori
 
                 mojiretsu(0) = (i + 1).ToString
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shukkinid"))
-                mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shukkinbi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(2) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("shukkinbi")))
 
                 Dim shukkingaku = 0
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shukkingaku")) Then
@@ -505,7 +505,7 @@ Public Class frmshiharai_shori
 
                 Dim kijitsu = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("kijitsu")) Then
-                    kijitsu = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("kijitsu")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                    kijitsu = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("kijitsu")))
                 End If
                 mojiretsu(5) = kijitsu
 

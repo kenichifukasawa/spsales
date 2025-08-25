@@ -166,6 +166,7 @@ Public Class frmdenwachou
             Case "5" ' 入金処理
                 frmnyuukin_shori.cbx_tenpo.SelectedIndex = frmseikyuu_rireki.cbx_tenpo.FindString(tenpo_id)
             Case "6" ' 請求書発行
+                Me.Dispose()
                 frmseikyuusho_hakkou_insatsu.lbl_tenpo_id.Text = tenpo_id
             Case Else
                 msg_go("不明なフォームIDです。")
