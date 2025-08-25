@@ -262,6 +262,12 @@
     <Compile Include="frmseikyuusho_hakkou_insatsu.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmseikyuusho_hakkou_insatsu_shousai.Designer.vb">
+      <DependentUpon>frmseikyuusho_hakkou_insatsu_shousai.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmseikyuusho_hakkou_insatsu_shousai.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmseikyuusho_soushin_ichi.Designer.vb">
       <DependentUpon>frmseikyuusho_soushin_ichi.vb</DependentUpon>
     </Compile>
@@ -549,6 +555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmseikyuusho_hakkou_insatsu.resx">
       <DependentUpon>frmseikyuusho_hakkou_insatsu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmseikyuusho_hakkou_insatsu_shousai.resx">
+      <DependentUpon>frmseikyuusho_hakkou_insatsu_shousai.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmseikyuusho_soushin_ichi.resx">
       <DependentUpon>frmseikyuusho_soushin_ichi.vb</DependentUpon>

@@ -283,7 +283,7 @@ Public Class frmnyuukin_rireki
                 mojiretsu(0) = ""
                 mojiretsu(1) = (i + 1).ToString("D3")
 
-                mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("hiduke")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(2) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("hiduke")))
 
                 Dim ryoushuuno = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("ryoushuuno")) Then

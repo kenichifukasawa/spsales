@@ -846,7 +846,7 @@ Public Class frmseikyuu_rireki
 
                 mojiretsu(0) = (i + 1).ToString()
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("seikyuushoid"))
-                mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("hiduke")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(2) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("hiduke")))
                 mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("tenpomei"))
 
                 Dim kuri = 0
