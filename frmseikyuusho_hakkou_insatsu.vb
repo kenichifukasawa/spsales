@@ -614,10 +614,6 @@ Public Class frmseikyuusho_hakkou_insatsu
                 da_server.Fill(ds_server, temp_table_name)
                 Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
 
-                If row_tenpo_id = "000236" Then
-                    Dim test = 0
-                End If
-
                 If dt_server.Rows.Count > 0 Then
 
                     Dim newnyuukingoukei = dt_server.Rows.Item(0).Item("newnyuukingoukei")
@@ -1156,7 +1152,6 @@ Public Class frmseikyuusho_hakkou_insatsu
         hide_shinkou_joukyou()
 
         'log_write("請求書の抽出終了********************************************") ' TODO
-
 
         ' ----------------------------------------------------------
 
