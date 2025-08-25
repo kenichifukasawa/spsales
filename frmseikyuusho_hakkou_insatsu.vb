@@ -888,14 +888,8 @@ Public Class frmseikyuusho_hakkou_insatsu
                     Dim cn_server As New SqlClient.SqlConnection
                     cn_server.ConnectionString = connectionstring_sqlserver
 
-                    'Dim query = "SELECT SUM(hacchuushousai.kei) AS denhika, hacchuushousai.keigen" +
-                    '    " FROM (hacchuu LEFT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" + ' TODO : RIGHT JOINでは？
-                    '    " LEFT JOIN shouhin ON hacchuushousai.shouhinid = shouhin.shouhinid" +
-                    '    " WHERE hacchuu.tenpoid = '" + row_tenpo_id + "' AND hacchuu.joukyou = '0' AND hacchuu.iraibi <= '" + hinichi + "' AND shouhin.hikazei IS NULL" +
-                    '    " GROUP BY hacchuushousai.keigen"
-
                     Dim query = "SELECT SUM(hacchuushousai.kei) AS denhika, hacchuushousai.keigen" +
-                        " FROM (hacchuu RIGHT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" + ' TODO : RIGHT JOINでは？
+                        " FROM (hacchuu RIGHT JOIN hacchuushousai ON hacchuu.hacchuuid = hacchuushousai.hacchuuid)" +
                         " LEFT JOIN shouhin ON hacchuushousai.shouhinid = shouhin.shouhinid" +
                         " WHERE hacchuu.tenpoid = '" + row_tenpo_id + "' AND hacchuu.joukyou = '0' AND hacchuu.iraibi <= '" + hinichi + "' AND shouhin.hikazei IS NULL" +
                         " GROUP BY hacchuushousai.keigen"
