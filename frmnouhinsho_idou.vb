@@ -126,7 +126,7 @@ Public Class frmnouhinsho_idou
             For i = 0 To dt_server.Rows.Count - 1
                 Dim goukei = CInt(Trim(dt_server.Rows.Item(i).Item("goukei"))).ToString("#,0")
                 Dim item = Trim(dt_server.Rows.Item(i).Item("hacchuuid")) + Space(3) +
-                    Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("iraibi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd") + Space(3) +
+                    ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("iraibi"))) + Space(3) +
                     Space(7 - goukei.Length) + goukei + "円" + Space(3) + Trim(dt_server.Rows.Item(i).Item("ryakumei"))
                 cbx_nouhinsho.Items.Add(item)
             Next

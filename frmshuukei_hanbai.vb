@@ -104,7 +104,7 @@ Public Class frmshuukei_hanbai
             For i = 0 To dt_server.Rows.Count - 1
 
                 mojiretsu(0) = (i + 1).ToString()
-                mojiretsu(1) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("iraibi").ToString()), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(1) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("iraibi").ToString()))
                 mojiretsu(2) = CInt(Trim(dt_server.Rows.Item(i).Item("kosuu"))).ToString("#,0")
 
                 Dim tanka = 0

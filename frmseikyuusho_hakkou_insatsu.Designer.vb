@@ -54,10 +54,10 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.gbx_shinkou_joukyou = New System.Windows.Forms.GroupBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.lbl_shinkou_title = New System.Windows.Forms.Label()
         Me.lbl_shinkou_percent = New System.Windows.Forms.Label()
         Me.pgb_shinkou_joukyou = New System.Windows.Forms.ProgressBar()
         Me.lbl_shinkou_doai = New System.Windows.Forms.Label()
-        Me.lbl_shinkou_title = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.gbx_shiharai_tsuki.SuspendLayout()
@@ -185,6 +185,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'btn_denwachou
         '
         Me.btn_denwachou.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_denwachou.Enabled = False
         Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.btn_denwachou.Location = New System.Drawing.Point(929, 30)
         Me.btn_denwachou.Margin = New System.Windows.Forms.Padding(2)
@@ -449,6 +450,15 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.GroupBox5.TabIndex = 222
         Me.GroupBox5.TabStop = False
         '
+        'lbl_shinkou_title
+        '
+        Me.lbl_shinkou_title.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_title.Location = New System.Drawing.Point(20, 24)
+        Me.lbl_shinkou_title.Name = "lbl_shinkou_title"
+        Me.lbl_shinkou_title.Size = New System.Drawing.Size(228, 19)
+        Me.lbl_shinkou_title.TabIndex = 127
+        Me.lbl_shinkou_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'lbl_shinkou_percent
         '
         Me.lbl_shinkou_percent.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -473,15 +483,6 @@ Partial Class frmseikyuusho_hakkou_insatsu
         Me.lbl_shinkou_doai.Size = New System.Drawing.Size(228, 19)
         Me.lbl_shinkou_doai.TabIndex = 125
         Me.lbl_shinkou_doai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lbl_shinkou_title
-        '
-        Me.lbl_shinkou_title.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_shinkou_title.Location = New System.Drawing.Point(20, 24)
-        Me.lbl_shinkou_title.Name = "lbl_shinkou_title"
-        Me.lbl_shinkou_title.Size = New System.Drawing.Size(228, 19)
-        Me.lbl_shinkou_title.TabIndex = 127
-        Me.lbl_shinkou_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmseikyuusho_hakkou_insatsu
         '

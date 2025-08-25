@@ -15,16 +15,12 @@ Module m_date_time
         Return DateTime.TryParseExact(yyyyMMdd, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, result)
     End Function
 
-    'Function get_day_by_yyyyMMdd(yyyyMMdd As String) As String ' TODO : 削除？
-    '    Dim dt As DateTime
+    Function ConvertYmdStringToYmdSlash(dateYmd As String) As String
+        Return DateTime.ParseExact(dateYmd, "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+    End Function
 
-    '    ' yyyyMMdd形式で正しく解析できない場合は空文字返却
-    '    If DateTime.TryParseExact(yyyyMMdd, "yyyyMMdd", CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None, dt) Then
-    '        ' 日にち部分を2桁の文字列で返す
-    '        Return dt.ToString("dd")
-    '    Else
-    '        Return String.Empty
-    '    End If
-    'End Function
+    Function ConvertYmdSlashStringToYmd(dateYmdSlash As String) As String
+        Return DateTime.ParseExact(dateYmdSlash, "yyyy/MM/dd", Nothing).ToString("yyyyMMdd")
+    End Function
 
 End Module

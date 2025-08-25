@@ -494,7 +494,7 @@ Public Class frmnyuukin_shori
             Dim mojiretsu(8)
             For i = 0 To dt_server.Rows.Count - 1
 
-                mojiretsu(0) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("hiduke")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(0) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("hiduke")))
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("seikyuushoid"))
 
                 Dim seikyuukingaku = 0
@@ -564,7 +564,7 @@ Public Class frmnyuukin_shori
             Dim mojiretsu(3)
             For i = 0 To dt_server.Rows.Count - 1
 
-                mojiretsu(0) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("hiduke")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(0) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("hiduke")))
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("seikyuushoid"))
 
                 Dim seikyuukingaku = 0

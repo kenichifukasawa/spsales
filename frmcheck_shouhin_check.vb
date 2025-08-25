@@ -80,7 +80,7 @@ Public Class frmcheck_shouhin_check
 
                 mojiretsu(0) = (i + 1).ToString()
                 Dim nichiji = Trim(dt_server.Rows.Item(i).Item("sonotoki"))
-                Dim itsu = Date.ParseExact(Mid(nichiji, 1, 8), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                Dim itsu = ConvertYmdStringToYmdSlash(Mid(nichiji, 1, 8))
                 Dim nanji = Date.ParseExact(Mid(nichiji, 9), "HHmmss", Nothing).ToString("HH:mm:ss")
                 mojiretsu(1) = itsu + " " + nanji
                 mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("shainmei"))
@@ -201,7 +201,7 @@ Public Class frmcheck_shouhin_check
                         error_data_count += 1
 
                         ReDim Preserve error_data(5, error_data_count)
-                        error_data(0, error_data_count) = Date.ParseExact(iraibi, "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                        error_data(0, error_data_count) = ConvertYmdStringToYmdSlash(iraibi)
                         error_data(1, error_data_count) = shain_id
                         error_data(2, error_data_count) = shouhin_id
                         error_data(3, error_data_count) = kosuu

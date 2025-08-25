@@ -254,7 +254,7 @@ Public Class frmshiire_rireki
 
                 mojiretsu(0) = (i + 1).ToString()
                 mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shiireid"))
-                mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shiirebi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(2) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("shiirebi")))
 
                 Dim denban = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("denban")) Then
@@ -276,7 +276,7 @@ Public Class frmshiire_rireki
 
                 Dim shiharaibi = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("shiharaibi")) Then
-                    shiharaibi = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("shiharaibi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                    shiharaibi = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("shiharaibi")))
                 End If
                 mojiretsu(6) = shiharaibi
 

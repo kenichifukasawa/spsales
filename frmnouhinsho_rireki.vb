@@ -284,7 +284,7 @@ Public Class frmnouhinsho_rireki
 
                 mojiretsu(0) = ""
                 mojiretsu(1) = (i + 1).ToString()
-                mojiretsu(2) = Date.ParseExact(Trim(dt_server.Rows.Item(i).Item("iraibi")), "yyyyMMdd", Nothing).ToString("yyyy/MM/dd")
+                mojiretsu(2) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("iraibi")))
                 mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
 
                 Dim nouhinshoid = ""
