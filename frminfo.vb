@@ -98,7 +98,22 @@ Public Class frminfo
             ' Dim connectionString As String = "Server=サーバー名;Database=データベース名;User Id=ユーザー名;Password=パスワード;"
             Using cn As New SqlConnection(connectionstring_sqlserver)
                 cn.Open()
-                Dim sql As String = "ALTER TABLE hachuu ADD bikou1 nchar(100) NULL, bikou2 nchar(100) NULL;"
+                Dim sql As String = "ALTER TABLE hacchuu ADD bikou1 nchar(100) NULL, bikou2 nchar(100) NULL;"
+                Using cmd As New SqlCommand(sql, cn)
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+        End If
+
+        '発注にprint_shuruiを追加
+        Dim result3 As String = MessageBox.Show("hacchuuテーブルに「print_shurui」を追加しますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+
+        If result3 = DialogResult.Yes Then
+            ' 接続文字列を環境に合わせて修正してください
+            ' Dim connectionString As String = "Server=サーバー名;Database=データベース名;User Id=ユーザー名;Password=パスワード;"
+            Using cn As New SqlConnection(connectionstring_sqlserver)
+                cn.Open()
+                Dim sql As String = "ALTER TABLE hacchuu ADD print_shurui nchar(1) NULL;"
                 Using cmd As New SqlCommand(sql, cn)
                     cmd.ExecuteNonQuery()
                 End Using

@@ -419,7 +419,7 @@ Public Class frmmain
 
             '９９件までのチェック
 
-            If Me.dgv_shien.Rows.Count > 99 Then
+            If Me.dgv_nouhinsho.Rows.Count > 99 Then
                 msg_go("納品書に仮登録できる件数は９９件までです。")
                 Exit Sub
             End If
@@ -543,9 +543,6 @@ Public Class frmmain
     End Sub
 
 
-
-
-
     Private Sub btn_tenpo_hyouji_rireki_Click(sender As Object, e As EventArgs) Handles btn_tenpo_hyouji_rireki.Click
         frmhyouji_rireki.ShowDialog()
     End Sub
@@ -557,23 +554,57 @@ Public Class frmmain
         End If
 
         Dim s_shousaiid As String = Trim(dgv_denpyou.CurrentRow.Cells(1).Value)
+        Dim s_hi As String = Trim(dgv_denpyou.CurrentRow.Cells(0).Value)
         Dim s_nouhinshono As String = Trim(dgv_denpyou.CurrentRow.Cells(5).Value)
+        Dim s_bikou1 As String = Trim(dgv_denpyou.CurrentRow.Cells(6).Value)
+        Dim s_bikou2 As String = Trim(dgv_denpyou.CurrentRow.Cells(7).Value)
+        Dim s_pri As String = Trim(dgv_denpyou.CurrentRow.Cells(8).Value)
+        Dim s_dami2 As String = Trim(dgv_denpyou.CurrentRow.Cells(9).Value)
+        Dim s_shain As String = Mid(Trim(dgv_denpyou.CurrentRow.Cells(3).Value), 1, 2)
 
         set_shain_cbx(7)
 
-        frmdenpyou.cbx_shurui.Items.Clear()
-        frmdenpyou.cbx_shurui.Items.Add("掛売")
-        frmdenpyou.cbx_shurui.Items.Add("現金売")
-        frmdenpyou.cbx_shurui.Items.Add("返品")
-        frmdenpyou.cbx_shurui.Items.Add("返金")
-        frmdenpyou.cbx_shurui.Items.Add("委託")
+        With frmdenpyou
 
-        tenpo_hacchuurireki_set2(s_shousaiid)
+            .GroupBox5.Text = "納品書　（ " & Trim(Me.lbltenpomei.Text) & " )"
+
+            .cbx_shurui.Items.Clear()
+            .cbx_shurui.Items.Add("掛売")
+            .cbx_shurui.Items.Add("現金売")
+            .cbx_shurui.Items.Add("返品")
+            .cbx_shurui.Items.Add("返金")
+            .cbx_shurui.Items.Add("委託")
+
+            tenpo_hacchuurireki_set2(s_shousaiid)
 
 
-        frmdenpyou.txt_nouhinsho_no.Text = s_nouhinshono
+            .DateTimePicker1.Text = s_hi
+            .txt_nouhinsho_no.Text = s_nouhinshono
+            If s_nouhinshono = "" Then
+                .chk_nouhinsho_pc.Checked = True
+                .txt_nouhinsho_no.Enabled = False
+            Else
+                .chk_nouhinsho_pc.Checked = False
+                .txt_nouhinsho_no.Enabled = True
+            End If
 
-        frmdenpyou.ShowDialog()
+            .txtbikou1.Text = s_bikou1
+            .txtbikou2.Text = s_bikou2
+            .cbx_shain.SelectedIndex = .cbx_shain.FindString(s_shain)
+            If s_pri = "" Then
+                .cbx_shurui.SelectedIndex = -1
+            Else
+                .cbx_shurui.SelectedIndex = CInt(s_pri)
+            End If
+            If s_dami2 = "1" Then
+                .chk_nouhinsho_houkoku.Checked = True
+            Else
+                .chk_nouhinsho_houkoku.Checked = False
+            End If
+
+            .ShowDialog()
+
+        End With
 
     End Sub
 
@@ -600,9 +631,297 @@ Public Class frmmain
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
+
+        Dim newshainid As String, newtenpoid As String, newnouhinshokanriid As String, dami3 As String
+        Dim newiraibi As String, newgoukei As Double, newgoukei2 As Double, newnebiki As String, newnebiki2 As Double
+
+        Dim s_pcname As String
+
+        s_pcname = Trim(lblpcname.Text)
+        If s_pcname = "" Then
+            msg_go("ユーザー名を登録してから再度実行してください。")
+            Exit Sub
+        End If
+
+
+        '        If nouhinsho_tourokuchu = 1 Then
+        '            Exit Sub
+        '        End If
+
+        '        nouhinsho_tourokuchu = 1
+
+
+        '        If frmmain.lbltorihikinashi.Caption = "1" Then
+        '            ret = MsgBox("取引のない店舗の伝票の登録はできません。店舗情報の設定を変更してから再度実行してください。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        End If
+
+        '        If frmmain.cmbshain.ListIndex <> -1 Then
+        '            newshainid = shainIDTbl(frmmain.cmbshain.ListIndex, 0)
+        '        Else
+        '            ret = MsgBox("納品書の社員が選択されていません。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        End If
+
+        '        newtenpoid = Trim(frmmain.lbltenpoid.Caption)
+        '        If newtenpoid = "" Then
+        '            ret = MsgBox("店舗が選択されていません。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        End If
+
+        '        newiraibi = Trim(frmmain.lblhiduke.Caption)
+        '        If newiraibi = "" Then
+        '            ret = MsgBox("日付が表示されていません。再度実行してください。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        Else
+        '            newiraibi = Format(newiraibi, "yyyymmdd")
+        '        End If
+
+        '        If CStr(Trim(frmmain.lblgoukei.Caption)) = "" Then
+        '            ret = MsgBox("合計金額が表示されていません。再度実行してください。No4", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        Else
+        '            newgoukei = Trim(frmmain.lblgoukei.Caption)
+
+        '            On Error GoTo errsss
+        '            newgoukei2 = CDbl(newgoukei)
+        '            On Error GoTo 0
+        '        End If
+
+        '        newnebiki = Trim(frmmain.txtnebiki.Text)
+        '        If newnebiki = "" Then
+        '            newnebiki2 = 0
+        '        Else
+        '            On Error GoTo errsss
+        '            newnebiki2 = CDbl(newnebiki)
+        '            On Error GoTo 0
+        '        End If
+
+        '        If Me.gridorder.Rows - 1 = 0 Then
+        '            ret = MsgBox("商品が登録されていません。再度実行してください。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        End If
+
+        '        If chknouhinsho.Value = 1 Then
+        '            newnouhinshokanriid = ""
+        '        Else
+        '            newdata = Format(Of Date, "yyyy")()
+        '            newnouhinshokanriid = Trim(txtnouhinshokanriid.Text)
+        '            lenlen = Len(newnouhinshokanriid)
+        '            If lenlen = 6 Then
+        '                newnouhinshokanriid = newdata & newnouhinshokanriid
+        '            ElseIf lenlen = 5 Then
+        '                newnouhinshokanriid = newdata & "0" & newnouhinshokanriid
+        '            ElseIf lenlen = 4 Then
+        '                newnouhinshokanriid = newdata & "00" & newnouhinshokanriid
+        '            Else
+        '                ret = MsgBox("納品書IDが正確に入力されていません。３桁以下です。", 16, "総合管理システム「SPSALES」")
+        '                nouhinsho_tourokuchu = 0
+        '                Exit Sub
+        '            End If
+        '        End If
+        '        If chkhoukoku.Value = 1 Then
+        '            If user_check(6) = False Then
+        '                ret = MsgBox("ダミーは使用できません。", 16, "総合管理システム「SPSALES」")
+        '                nouhinsho_tourokuchu = 0
+        '                Exit Sub
+        '            End If
+
+        '            dami3 = "1"
+        '        Else
+        '            dami3 = ""
+        '        End If
+
+
+
+        '        Screen.MousePointer = 11
+
+        '        '仮登録状態から本登録へ
+
+        '        tenpo_order_touroku2_10 newiraibi, newgoukei, newnebiki2, newshainid, newtenpoid, newnouhinshokanriid, dami3, s_pcname
+
+
+
+        ''frmmain.lblordersuu.Caption = "1"
+        '        nouhinsho_tourokuchu = 0
+        '        Screen.MousePointer = 0
+
+
     End Sub
 
     Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
         frmshouhin.ShowDialog()
+    End Sub
+
+    Private Sub chk_nouhinsho_pc_CheckedChanged(sender As Object, e As EventArgs) Handles chk_nouhinsho_pc.CheckedChanged
+
+    End Sub
+
+    Private Sub chk_nouhinsho_pc_Click(sender As Object, e As EventArgs) Handles chk_nouhinsho_pc.Click
+
+        If chk_nouhinsho_pc.Checked = True Then
+            txt_nouhinsho_no.Text = ""
+            txt_nouhinsho_no.Enabled = False
+        Else
+            txt_nouhinsho_no.Text = ""
+            txt_nouhinsho_no.Enabled = True
+            txt_nouhinsho_no.Focus()
+        End If
+    End Sub
+
+    Private Sub btn_nouhinsho_bar_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_bar.Click
+        If lbltenpoid.Text = "" Then
+            msg_go("店舗が選択されていません。")
+            Exit Sub
+        End If
+
+        barcodenono = 0
+
+        frmbarcode.ShowDialog()
+
+    End Sub
+
+    Private Sub btn_nouhinsho_clear_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_clear.Click
+
+        If Trim(lbltenpoid.Text) = "" Then
+            msg_go("店舗が選択されていません。")
+            Exit Sub
+        End If
+
+        Dim s_pcname As String
+
+        s_pcname = Trim(lblpcname.Text)
+        If s_pcname = "" Then
+            msg_go("ユーザー名を登録してから再度実行してください。")
+            Exit Sub
+        End If
+
+        Dim result = MessageBox.Show("仮登録のオーダー内容の消去をキャンセルしてよいですか？", "nPOS", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If result = DialogResult.Yes Then
+            Exit Sub
+        End If
+
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuushousai WHERE hacchuuid ='" + s_pcname + "'"
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_gyousha")
+
+            If ds.Tables("t_gyousha").Rows.Count > 0 Then
+
+                ' すべての一致する行を削除
+                For Each row As DataRow In ds.Tables("t_gyousha").Rows
+                    row.Delete()
+                Next
+                '一部のみ
+                'ds.Tables("t_gyousha").Rows(0).Delete()
+
+                Dim cb As New SqlCommandBuilder(da)
+                da.Update(ds, "t_gyousha")
+                ds.Clear()
+
+                msg_go("削除しました。", 64)
+            Else
+                msg_go("該当する仮登録情報が見つかりません。")
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+
+
+        tenpo_orderchu_set_10()
+
+
+        txt_nouhinsho_no.Text = ""
+        chk_nouhinsho_pc.Checked = True
+        chk_nouhinsho_houkoku.Checked = False
+        txtbikou1.Text = ""
+        txtbikou2.Text = ""
+
+
+    End Sub
+
+    Private Sub btn_nouhinsho_hozon_Click(sender As Object, e As EventArgs) Handles btn_nouhinsho_hozon.Click
+
+
+        Dim sakujosusunoka As Integer = 0
+
+        For i = 1 To dgv_nouhinsho.Rows.Count - 1
+            If dgv_nouhinsho(7, i).Value = True Then
+                sakujosusunoka = 1
+                Exit For
+            End If
+        Next
+
+        If sakujosusunoka = 0 Then
+            msg_go("削除したい商品伝票が選択されていません。")
+            Exit Sub
+        End If
+
+
+        Dim s_where_str As String = "", s_atai As String
+        For i = 1 To dgv_nouhinsho.Rows.Count - 1
+            If dgv_nouhinsho(7, i).Value = True Then
+                s_atai = Trim(dgv_nouhinsho(10, i).Value)
+                If s_where_str = "" Then
+                    s_where_str = "hachuushousaiid ='" + s_atai + "'"
+                Else
+                    s_where_str = s_where_str + "or hachuushousaiid ='" + s_atai + "'"
+                End If
+            End If
+        Next
+
+        Try
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuushousai WHERE " & s_where_str
+
+            Dim da As New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_gyousha")
+
+            If ds.Tables("t_gyousha").Rows.Count > 0 Then
+
+                ' すべての一致する行を削除
+                For Each row As DataRow In ds.Tables("t_gyousha").Rows
+                    row.Delete()
+                Next
+                '一部のみ
+                'ds.Tables("t_gyousha").Rows(0).Delete()
+
+                Dim cb As New SqlCommandBuilder(da)
+                da.Update(ds, "t_gyousha")
+                ds.Clear()
+
+                ' msg_go("削除しました。", 64)
+            Else
+                msg_go("該当する仮登録情報が見つかりません。")
+            End If
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+
+
+        tenpo_orderchu_set_10()
+
+
+
     End Sub
 End Class
