@@ -631,6 +631,128 @@ Public Class frmmain
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
+
+        Dim newshainid As String, newtenpoid As String, newnouhinshokanriid As String, dami3 As String
+        Dim newiraibi As String, newgoukei As Double, newgoukei2 As Double, newnebiki As String, newnebiki2 As Double
+
+        Dim s_pcname As String
+
+        s_pcname = Trim(lblpcname.Text)
+        If s_pcname = "" Then
+            msg_go("ユーザー名を登録してから再度実行してください。")
+            Exit Sub
+        End If
+
+
+        '        If nouhinsho_tourokuchu = 1 Then
+        '            Exit Sub
+        '        End If
+
+        '        nouhinsho_tourokuchu = 1
+
+
+        '        If frmmain.lbltorihikinashi.Caption = "1" Then
+        '            ret = MsgBox("取引のない店舗の伝票の登録はできません。店舗情報の設定を変更してから再度実行してください。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        End If
+
+        '        If frmmain.cmbshain.ListIndex <> -1 Then
+        '            newshainid = shainIDTbl(frmmain.cmbshain.ListIndex, 0)
+        '        Else
+        '            ret = MsgBox("納品書の社員が選択されていません。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        End If
+
+        '        newtenpoid = Trim(frmmain.lbltenpoid.Caption)
+        '        If newtenpoid = "" Then
+        '            ret = MsgBox("店舗が選択されていません。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        End If
+
+        '        newiraibi = Trim(frmmain.lblhiduke.Caption)
+        '        If newiraibi = "" Then
+        '            ret = MsgBox("日付が表示されていません。再度実行してください。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        Else
+        '            newiraibi = Format(newiraibi, "yyyymmdd")
+        '        End If
+
+        '        If CStr(Trim(frmmain.lblgoukei.Caption)) = "" Then
+        '            ret = MsgBox("合計金額が表示されていません。再度実行してください。No4", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        Else
+        '            newgoukei = Trim(frmmain.lblgoukei.Caption)
+
+        '            On Error GoTo errsss
+        '            newgoukei2 = CDbl(newgoukei)
+        '            On Error GoTo 0
+        '        End If
+
+        '        newnebiki = Trim(frmmain.txtnebiki.Text)
+        '        If newnebiki = "" Then
+        '            newnebiki2 = 0
+        '        Else
+        '            On Error GoTo errsss
+        '            newnebiki2 = CDbl(newnebiki)
+        '            On Error GoTo 0
+        '        End If
+
+        '        If Me.gridorder.Rows - 1 = 0 Then
+        '            ret = MsgBox("商品が登録されていません。再度実行してください。", 16, "総合管理システム「SPSALES」")
+        '            nouhinsho_tourokuchu = 0
+        '            Exit Sub
+        '        End If
+
+        '        If chknouhinsho.Value = 1 Then
+        '            newnouhinshokanriid = ""
+        '        Else
+        '            newdata = Format(Of Date, "yyyy")()
+        '            newnouhinshokanriid = Trim(txtnouhinshokanriid.Text)
+        '            lenlen = Len(newnouhinshokanriid)
+        '            If lenlen = 6 Then
+        '                newnouhinshokanriid = newdata & newnouhinshokanriid
+        '            ElseIf lenlen = 5 Then
+        '                newnouhinshokanriid = newdata & "0" & newnouhinshokanriid
+        '            ElseIf lenlen = 4 Then
+        '                newnouhinshokanriid = newdata & "00" & newnouhinshokanriid
+        '            Else
+        '                ret = MsgBox("納品書IDが正確に入力されていません。３桁以下です。", 16, "総合管理システム「SPSALES」")
+        '                nouhinsho_tourokuchu = 0
+        '                Exit Sub
+        '            End If
+        '        End If
+        '        If chkhoukoku.Value = 1 Then
+        '            If user_check(6) = False Then
+        '                ret = MsgBox("ダミーは使用できません。", 16, "総合管理システム「SPSALES」")
+        '                nouhinsho_tourokuchu = 0
+        '                Exit Sub
+        '            End If
+
+        '            dami3 = "1"
+        '        Else
+        '            dami3 = ""
+        '        End If
+
+
+
+        '        Screen.MousePointer = 11
+
+        '        '仮登録状態から本登録へ
+
+        '        tenpo_order_touroku2_10 newiraibi, newgoukei, newnebiki2, newshainid, newtenpoid, newnouhinshokanriid, dami3, s_pcname
+
+
+
+        ''frmmain.lblordersuu.Caption = "1"
+        '        nouhinsho_tourokuchu = 0
+        '        Screen.MousePointer = 0
+
+
     End Sub
 
     Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
