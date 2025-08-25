@@ -669,7 +669,7 @@ Public Class frmseikyuusho_hakkou_insatsu
                 Exit Sub
             End Try
 
-            ''今回入金額
+            ''今回入金額 ' TODO:問題なければ削除
             'If s_saishuu_seikyuubi = "" Then
             '    sql_seikyu2 = "select sum(seikyuukingaku) as newnyuukingoukei" &
             '            " from seikyuusho where seikyuu_st='1'" &
@@ -750,11 +750,7 @@ Public Class frmseikyuusho_hakkou_insatsu
                                 Dim cn_server_2 As New SqlClient.SqlConnection
                                 cn_server_2.ConnectionString = connectionstring_sqlserver
 
-                                'Dim query_2 = "SELECT SUM(hacchuushousai.kei) AS denhika, hacchuushousai.keigen" + ' 元々はRIGHT
-                                '    " FROM hacchuushousai RIGHT JOIN shouhin ON hacchuushousai.shouhinid = shouhin.shouhinid" +
-                                '    " WHERE hacchuushousai.hacchuuid = '" + hacchuuid + "' GROUP BY hacchuushousai.keigen"
-
-                                Dim query_2 = "SELECT SUM(hacchuushousai.kei) AS denhika, hacchuushousai.keigen" + ' 修正版はLEFT
+                                Dim query_2 = "SELECT SUM(hacchuushousai.kei) AS denhika, hacchuushousai.keigen" +
                                     " FROM hacchuushousai LEFT JOIN shouhin ON hacchuushousai.shouhinid = shouhin.shouhinid" +
                                     " WHERE hacchuushousai.hacchuuid = '" + hacchuuid + "' GROUP BY hacchuushousai.keigen"
 
@@ -1147,7 +1143,7 @@ Public Class frmseikyuusho_hakkou_insatsu
 
         'log_write("請求書の抽出終了********************************************") ' TODO
 
-        ' ----------------------------------------------------------
+        ' ---------------------------------------------------------- ' TODO:問題なければ削除
 
         'Dim shimebi_id As Integer, shimekikan As Integer
         'Dim karitsuki As Integer, karihi As String, hihyou As Integer
