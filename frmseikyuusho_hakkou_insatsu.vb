@@ -256,7 +256,7 @@ Public Class frmseikyuusho_hakkou_insatsu
             .Columns(11).Width = 90
             .Columns(12).Width = 0
             .Columns(13).Width = 0
-            .Columns(14).Width = 30
+            .Columns(14).Width = 0
             .Columns(15).Width = 60
             .Columns(16).Width = 400
             .Columns(17).Width = 100
@@ -508,7 +508,7 @@ Public Class frmseikyuusho_hakkou_insatsu
 
             Dim row_tenpo_id = seikyuu_moto_data(0, i)
             Dim sashihiki_nyuukingaku = 0
-            If shimebi_id = Deadline.ID_ZUIJI Then '随時請求の場合
+            If shimebi_id = Deadline.ID_ZUIJI Then ' 随時請求の場合
 
                 Dim kyoumade = Now.ToString("yyyyMMdd")
                 Dim dt As DateTime
@@ -553,7 +553,7 @@ Public Class frmseikyuusho_hakkou_insatsu
 
             End If
 
-            '最終請求書発効日の取得
+            ' 最終請求書発効日の取得
             Dim s_saishuu_seikyuubi As String = ""
             If chk_new.Checked Then
 
@@ -590,7 +590,7 @@ Public Class frmseikyuusho_hakkou_insatsu
 
             End If
 
-            '今回の入金額
+            ' 今回の入金額
             Try
 
                 Dim cn_server As New SqlClient.SqlConnection
@@ -613,6 +613,10 @@ Public Class frmseikyuusho_hakkou_insatsu
                 Dim temp_table_name = "t_seikyuusho"
                 da_server.Fill(ds_server, temp_table_name)
                 Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
+
+                If row_tenpo_id = "000236" Then
+                    Dim test = 0
+                End If
 
                 If dt_server.Rows.Count > 0 Then
 
@@ -668,6 +672,51 @@ Public Class frmseikyuusho_hakkou_insatsu
                 hide_shinkou_joukyou()
                 Exit Sub
             End Try
+
+            ''今回入金額
+            'If s_saishuu_seikyuubi = "" Then
+            '    sql_seikyu2 = "select sum(seikyuukingaku) as newnyuukingoukei" &
+            '            " from seikyuusho where seikyuu_st='1'" &
+            '            " and tenpoid ='" & seikyuu_moto_data(i, 0) & "'" &
+            '            " and hiduke<='" & hinichi & "' and joukyou is null"
+            'Else
+            '    sql_seikyu2 = "select sum(seikyuukingaku) as newnyuukingoukei" &
+            '            " from seikyuusho where seikyuu_st='1'" &
+            '            " and tenpoid ='" & seikyuu_moto_data(i, 0) & "'" &
+            '            " and hiduke between '" & s_saishuu_seikyuubi & "' and '" & hinichi & "' and joukyou is null"
+            'End If
+
+            ''Set rs_saikyu2 = New ADODB.Recordset
+            'If FcSQlGet(1, rs_saikyu2, sql_seikyu2, WMsg) = True Then
+            '    '入金がある場合*************************************************************
+            '    If IsNull(rs_saikyu2!newnyuukingoukei) Then
+            '        seikyuu_moto_data(i, 11) = 0
+            '    Else
+            '        seikyuu_moto_data(i, 11) = rs_saikyu2!newnyuukingoukei
+            '        'If hajime_no_ippo = 1 Then
+
+            '        If seikyuu_moto_data(ii, 23) = 1 Then
+            '            seikyuu_moto_data(i, 6) = seikyuu_moto_data(ii, 24) + rs_saikyu2!newnyuukingoukei + sashihiki_nyuukingaku
+            '            seikyuu_moto_data(i, 13) = seikyuu_moto_data(ii, 24) + sashihiki_nyuukingaku
+            '        Else
+            '            '請求書の有無の確認
+            '            sql_seikyu12 = "select * from seikyuusho where seikyuu_st='0'" &
+            '                        " and tenpoid ='" & seikyuu_moto_data(i, 0) & "'"
+            '            Set rs_saikyu12 = New ADODB.Recordset
+            '            If FcSQlGet(1, rs_saikyu12, sql_seikyu12, WMsg) = False Then
+            '                seikyuu_moto_data(i, 6) = 0 + sashihiki_nyuukingaku
+            '                seikyuu_moto_data(i, 13) = 0 - rs_saikyu2!newnyuukingoukei + sashihiki_nyuukingaku
+            '            Else
+            '                seikyuu_moto_data(i, 6) = seikyuu_moto_data(i, 6) + rs_saikyu2!newnyuukingoukei + sashihiki_nyuukingaku
+            '                'seikyuu_moto_data(scoun, 13) = seikyuu_moto_data(scoun, 13) - rs_saikyu2!newnyuukingoukei
+            '                seikyuu_moto_data(i, 13) = seikyuu_moto_data(i, 13) + sashihiki_nyuukingaku
+            '                rs_saikyu2.Close
+            '                rs_saikyu12.Close
+            '            End If
+            '        End If
+            '    End If
+
+            'End If
 
             Dim genzai_zeiritsu = 10 ' TODO:どこで宣言？
             Dim taishouzeigaku = 0 ' 税額（総計）
@@ -1035,6 +1084,23 @@ Public Class frmseikyuusho_hakkou_insatsu
             Else
                 seikyuu_moto_data(16, i) = 1
                 newseikyusuu2 += 1
+            End If
+
+            ' データチェック
+            If seikyuu_moto_data(6, i) - seikyuu_moto_data(11, i) <> seikyuu_moto_data(13, i) Then
+                msg_go("繰越残高が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
+                'log_write("[請求書]繰越残高が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                seikyuu_moto_data(27, i) = 1
+            End If
+            If seikyuu_moto_data(13, i) + seikyuu_moto_data(12, i) + seikyuu_moto_data(17, i) + seikyuu_moto_data(14, i) <> seikyuu_moto_data(15, i) Then
+                msg_go("総計が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
+                'log_write("[請求書]総計が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                seikyuu_moto_data(27, i) = 2
+            End If
+            If seikyuu_moto_data(6, i) <> seikyuu_moto_data(22, i) Then
+                'log_write("[請求書]前月の請求金額と今月の繰越金額の違いを修正しました。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                seikyuu_moto_data(6, i) = seikyuu_moto_data(22, i)
+
             End If
 
             calculate_shinkou_joukyou(i, seikyuu_moto_data_count)
