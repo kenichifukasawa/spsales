@@ -52,6 +52,38 @@ Public Class frmseikyuusho_hakkou_insatsu
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
+        Dim dgv = dgv_kensakukekka
+        If dgv.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
+            Exit Sub
+        End If
+
+        Dim current_row = dgv.CurrentRow
+        Dim nyuukin_gaku = CLng(current_row.Cells(6).Value)
+        Dim tenpo_id As String = current_row.Cells(3).Value
+        Dim tenpo_mei As String = current_row.Cells(4).Value
+
+        Dim nen = cbx_nen.Text
+        Dim tsuki = cbx_tsuki.Text
+        Dim hi = cbx_hi.Text
+        If nen = "" Or tsuki = "" Or hi = "" Then
+            msg_go("年と月と日をすべて選択してください。")
+            Exit Sub
+        End If
+
+        Dim hiduke = nen + tsuki + hi
+
+        With frmseikyuusho_hakkou_insatsu_shousai
+
+            .lbl_tenpo_id.Text = tenpo_id
+            .lbl_tenpo_mei.Text = tenpo_mei
+            .lbl_hiduke.Text = ConvertYmdStringToYmdSlash(hiduke)
+            .lbl_kekka.Text = nyuukin_gaku.ToString("#,0")
+
+            .ShowDialog()
+
+        End With
+
     End Sub
 
     Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
