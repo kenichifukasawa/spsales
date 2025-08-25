@@ -129,6 +129,32 @@ Public Class frmseikyuusho_hakkou_insatsu
         set_shuukei()
     End Sub
 
+    Private Sub dgv_kensakukekka_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_kensakukekka.CellMouseClick
+
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
+
+            Dim currentRow As DataGridViewRow = dgv_kensakukekka.Rows(e.RowIndex)
+            Dim isChecked As Boolean = CBool(currentRow.Cells(0).Value)
+
+            If isChecked Then
+                currentRow.Cells(0).Value = False
+
+                If currentRow.Index Mod 2 = 0 Then
+                    currentRow.DefaultCellStyle.BackColor = dgv_kensakukekka.RowsDefaultCellStyle.BackColor
+                Else
+                    currentRow.DefaultCellStyle.BackColor = dgv_kensakukekka.AlternatingRowsDefaultCellStyle.BackColor
+                End If
+
+            Else
+                currentRow.Cells(0).Value = True
+                currentRow.DefaultCellStyle.BackColor = Color.Yellow
+            End If
+
+            dgv_kensakukekka.ClearSelection()
+
+        End If
+
+    End Sub
     Private Sub set_shuukei()
 
         txtseikyuu2.Text = ""
@@ -221,21 +247,21 @@ Public Class frmseikyuusho_hakkou_insatsu
             .Columns(2).Width = 30
             .Columns(3).Width = 80
             .Columns(4).Width = 280
-            .Columns(5).Width = 80
-            .Columns(6).Width = 80
-            .Columns(7).Width = 80
-            .Columns(8).Width = 80
-            .Columns(9).Width = 80
-            .Columns(10).Width = 80
-            .Columns(11).Width = 80
+            .Columns(5).Width = 90
+            .Columns(6).Width = 90
+            .Columns(7).Width = 90
+            .Columns(8).Width = 90
+            .Columns(9).Width = 90
+            .Columns(10).Width = 90
+            .Columns(11).Width = 90
             .Columns(12).Width = 0
             .Columns(13).Width = 0
             .Columns(14).Width = 30
-            .Columns(15).Width = 55
+            .Columns(15).Width = 60
             .Columns(16).Width = 400
             .Columns(17).Width = 100
-            .Columns(18).Width = 300
-            .Columns(19).Width = 300
+            .Columns(18).Width = 400
+            .Columns(19).Width = 400
             .Columns(20).Width = 30
             .Columns(21).Width = 30
             .Columns(22).Width = 30
