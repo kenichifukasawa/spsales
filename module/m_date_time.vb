@@ -23,4 +23,8 @@ Module m_date_time
         Return DateTime.ParseExact(dateYmdSlash, "yyyy/MM/dd", Nothing).ToString("yyyyMMdd")
     End Function
 
+    Function ConvertHmsStringToHmsColon(timeHms As String) As String
+        Return Date.ParseExact(timeHms, "HHmmss", Nothing).ToString("HH:mm:ss")
+    End Function
+
 End Module

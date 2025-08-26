@@ -432,6 +432,8 @@
     </Compile>
     <Compile Include="model\BankAccountType.vb" />
     <Compile Include="model\ConsumptionTax.vb" />
+    <Compile Include="model\LogCategory.vb" />
+    <Compile Include="model\LogStatus.vb" />
     <Compile Include="model\PaymentMethodsDeposit.vb" />
     <Compile Include="model\PaymentMethodsInvoice.vb" />
     <Compile Include="model\Deadline.vb" />

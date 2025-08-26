@@ -77,7 +77,7 @@ Public Class frmcheck_kurikoshi_log
                 mojiretsu(0) = (i + 1).ToString()
                 Dim nichiji = Trim(dt_server.Rows.Item(i).Item("sonotoki"))
                 Dim itsu = ConvertYmdStringToYmdSlash(Mid(nichiji, 1, 8))
-                Dim nanji = Date.ParseExact(Mid(nichiji, 9), "HHmmss", Nothing).ToString("HH:mm:ss")
+                Dim nanji = ConvertHmsStringToHmsColon(Mid(nichiji, 9))
                 mojiretsu(1) = itsu + " " + nanji
                 mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("shainmei"))
 
