@@ -48,6 +48,13 @@ Public Class frmkosuu
             msg_go("個数を入力して下さい。")
             txtkosuu.Focus()
             Exit Sub
+        Else
+            Dim s_d As Double
+            If Not Double.TryParse(s_kosuu, s_d) Then
+                msg_go("個数を数値で入力してください。")
+                txtkosuu.Focus()
+                Exit Sub
+            End If
         End If
 
         Dim s_tanka As String = Trim(txttanka.Text)
@@ -55,12 +62,26 @@ Public Class frmkosuu
             msg_go("単価を入力して下さい。")
             txttanka.Focus()
             Exit Sub
+        Else
+            Dim s_d As Double
+            If Not Double.TryParse(s_tanka, s_d) Then
+                msg_go("単価を数値で入力してください。")
+                txttanka.Focus()
+                Exit Sub
+            End If
         End If
 
         Dim s_kei As String = Trim(txtgoukei.Text)
         If s_kei = "" Then
             msg_go("合計が不正です。")
             Exit Sub
+        Else
+            Dim s_d As Double
+            If Not Double.TryParse(s_kei, s_d) Then
+                msg_go("合計を数値で入力してください。")
+                txtgoukei.Focus()
+                Exit Sub
+            End If
         End If
 
         Dim s_tekiyou As String = Trim(cmbtekiyou.Text)
@@ -69,82 +90,30 @@ Public Class frmkosuu
 
         Dim s_keigen As String = Trim(lblkeigen.Text)
 
-        Dim newid As String, newid2 As String, settei2_res As String
+        Dim s_hacchuushousai_count As Integer = 1
+        Dim s_hacchuushousai_data(10, s_hacchuushousai_count) As String
 
-        newid = Trim(setting2(3, 0, "1", ""))
-        If newid = "-1" Then
-            msg_go("IDの取得に失敗しました。再度実行してください。")
+        s_hacchuushousai_data(0, s_hacchuushousai_count - 1) = s_pcname
+        s_hacchuushousai_data(1, s_hacchuushousai_count - 1) = s_shouhinid
+        s_hacchuushousai_data(2, s_hacchuushousai_count - 1) = s_kosuu
+        s_hacchuushousai_data(3, s_hacchuushousai_count - 1) = s_tanka
+        s_hacchuushousai_data(4, s_hacchuushousai_count - 1) = s_kei
+        s_hacchuushousai_data(5, s_hacchuushousai_count - 1) = s_tekiyou
+        s_hacchuushousai_data(6, s_hacchuushousai_count - 1) = s_kakutei
+        s_hacchuushousai_data(7, s_hacchuushousai_count - 1) = s_keigen
+
+
+        If hacchuushousai_touroku(s_hacchuushousai_count, s_hacchuushousai_data) = -1 Then
+            msg_go("登録に失敗しました。")
             Exit Sub
-        ElseIf newid = "0" Then
-            newid2 = "2"
-            newid = "0000000001"
         Else
-            newid2 = (CInt(newid) + 1).ToString
-            newid = newid.ToString.PadLeft(10, "0"c)
-        End If
+            tenpo_orderchu_set_10()
 
-        settei2_res = setting2(3, 1, "1", newid2)
-        If settei2_res = "-1" Then
-            msg_go("IDの更新に失敗しました。再度実行してください。")
-            Exit Sub
+            Me.Close()
+            Me.Dispose()
         End If
 
 
-        Try
-
-
-            Dim cn_server As New SqlConnection
-
-            'cn_server.ConnectionString = connectionstring_sqlserver.ConnectionString
-            cn_server.ConnectionString = connectionstring_sqlserver
-
-            Sql = "SELECT TOP 1 * FROM hacchuushousai"
-
-            Dim da_server As SqlDataAdapter
-
-            da_server = New SqlDataAdapter(Sql, cn_server)
-
-            Dim ds_server As New DataSet
-
-            da_server.Fill(ds_server, "t_jm_s")
-
-            Dim s_comr As SqlClient.SqlCommandBuilder
-
-            s_comr = New SqlClient.SqlCommandBuilder(da_server)
-
-            Dim ret_rows As DataRow
-
-            ret_rows = ds_server.Tables("t_jm_s").NewRow()
-
-            ret_rows("hachuushousaiid") = newid
-            ret_rows("hacchuuid") = s_pcname
-            ret_rows("shouhinid") = s_shouhinid
-            ret_rows("kosuu") = s_kosuu
-            ret_rows("tanka") = s_tanka
-            ret_rows("kei") = s_kei
-            ret_rows("tekiyou") = s_tekiyou
-            ret_rows("kakutei") = s_kakutei
-
-            If s_keigen <> "" Then
-                ret_rows("keigen") = s_keigen
-            End If
-
-            ds_server.Tables("t_jm_s").Rows.Add(ret_rows)
-
-            da_server.Update(ds_server, "t_jm_s")
-
-            ds_server.Clear()
-
-
-        Catch ex As Exception
-            msg_go(ex.Message)
-            Exit Sub
-        End Try
-
-        tenpo_orderchu_set_10()
-
-        Me.Close()
-        Me.Dispose()
 
     End Sub
 

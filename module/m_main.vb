@@ -36,7 +36,7 @@ Module m_main
 
     Public settei_res
 
-
+    Public barcodenono As Integer
 
 
     Public result As DialogResult
@@ -192,6 +192,11 @@ Module m_main
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
+                '列ヘッダーの高さを変える
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 30
+
+
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
 
@@ -215,6 +220,11 @@ Module m_main
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+
+                '列ヘッダーの高さを変える
+                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+                .ColumnHeadersHeight = 30
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
@@ -572,6 +582,8 @@ Module m_main
             Dim s_kin As Decimal
             Dim s_kakutei As Integer
 
+            Dim s_sougaku As Integer = 0, s_10 As Integer = 0, s_8 As Integer = 0, s_konkai As Integer
+
             For i = 0 To dt_server.Rows.Count - 1
                 s_kakutei = 0
                 mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("hachuushousaiid"))
@@ -585,6 +597,10 @@ Module m_main
                 mojiretsu(4) = s_kin.ToString("#,##0")
 
                 s_kin = dt_server.Rows.Item(i).Item("kei")
+
+                s_konkai = s_kin
+                s_sougaku = s_sougaku + s_kin
+
                 mojiretsu(5) = s_kin.ToString("#,##0")
 
 
@@ -608,7 +624,13 @@ Module m_main
                     mojiretsu(8) = Trim(dt_server.Rows.Item(i).Item("keigen"))
                 End If
 
-
+                If IsDBNull(dt_server.Rows.Item(i).Item("hikazei")) Then
+                    If IsDBNull(dt_server.Rows.Item(i).Item("keigen")) Then
+                        s_10 = s_10 + s_konkai
+                    Else
+                        s_8 = s_8 + s_konkai
+                    End If
+                End If
 
                 frmdenpyou.dgv_nouhinsho.Rows.Add(mojiretsu)
 
@@ -621,6 +643,10 @@ Module m_main
 
             dt_server.Clear()
             ds_server.Clear()
+
+            frmdenpyou.lbl_shouhizei_10_percent.Text = s_10.ToString("#,0")
+            frmdenpyou.lbl_shouhizei_8_percent.Text = s_8.ToString("#,0")
+            frmdenpyou.lbl_nouhinsho_goukei.Text = s_sougaku.ToString("#,0")
 
         Catch ex As Exception
             msg_go(ex.Message)
@@ -645,22 +671,23 @@ Module m_main
             da_server.Fill(ds_server, "t_shoukaii")
             Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
 
-            Dim mojiretsu(8) As String
+            Dim mojiretsu(11) As String
 
             With frmmain.dgv_denpyou
 
                 .Rows.Clear()
                 .Columns.Clear()
-                .ColumnCount = 6
+                .ColumnCount = 10
                 .Columns(0).Name = "納品日"
                 .Columns(1).Name = "伝票NO"
                 .Columns(2).Name = "金額"
                 .Columns(3).Name = "社員名"
                 .Columns(4).Name = "印刷"
                 .Columns(5).Name = "納品書ID"
-                .Columns(5).Name = "備考1"
-                .Columns(6).Name = "備考2"
+                .Columns(6).Name = "備考1"
                 .Columns(7).Name = "備考2"
+                .Columns(8).Name = "Print"
+                .Columns(9).Name = "ダミー"
                 .Columns(0).Width = 90
                 .Columns(1).Width = 90
                 .Columns(2).Width = 90
@@ -669,6 +696,8 @@ Module m_main
                 .Columns(5).Width = 100
                 .Columns(6).Width = 0
                 .Columns(7).Width = 0
+                .Columns(8).Width = 0
+                .Columns(9).Width = 0
 
                 .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -678,10 +707,12 @@ Module m_main
                 .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
                 '列ヘッダーの高さを変える
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                .ColumnHeadersHeight = 25
+                .ColumnHeadersHeight = 30
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
@@ -728,6 +759,18 @@ Module m_main
                     mojiretsu(7) = ""
                 Else
                     mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("bikou2"))
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
+                    mojiretsu(8) = ""
+                Else
+                    mojiretsu(8) = Trim(dt_server.Rows.Item(i).Item("print_shurui"))
+                End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("dami2")) Then
+                    mojiretsu(9) = ""
+                Else
+                    mojiretsu(9) = Trim(dt_server.Rows.Item(i).Item("dami2"))
                 End If
 
                 '色の判定
@@ -805,7 +848,7 @@ Module m_main
 
                 '列ヘッダーの高さを変える
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                .ColumnHeadersHeight = 25
+                .ColumnHeadersHeight = 30
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
@@ -922,7 +965,7 @@ Module m_main
 
             '列ヘッダーの高さを変える
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-            .ColumnHeadersHeight = 25
+            .ColumnHeadersHeight = 30
 
             ' 奇数行の既定セル・スタイルの背景色を設定
             .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
@@ -1755,6 +1798,72 @@ Module m_main
 errsetting:
         Setting1 = "-1"
         Exit Function
+
+    End Function
+
+    Function hacchuushousai_touroku(s_hacchuushousai_count As Integer, s_hacchuushousai_data(,) As String) As Integer
+
+        Try
+            Dim s_no = 3
+            Dim id = 1
+            Dim ketasuu = 10
+            Dim new_id = get_settings(id:=id, s_no:=s_no)
+            Dim next_id As String
+            If new_id = "" Then
+                msg_go("IDの取得に失敗しました。")
+                Exit Function
+            ElseIf new_id = "0" Then
+                next_id = "2"
+                new_id = 1.ToString("D" + ketasuu.ToString)
+            Else
+                next_id = (CLng(new_id) + s_hacchuushousai_count).ToString
+                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
+            End If
+
+            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
+            If Not response Then
+                msg_go("IDの更新に失敗しました。")
+                Exit Function
+            End If
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT TOP 1 * FROM hacchuushousai"
+
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            da.Fill(ds, "t_hacchuu")
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables("t_hacchuu").NewRow()
+            For i = 0 To s_hacchuushousai_count - 1
+
+                data_row("hachuushousaiid") = new_id
+                data_row("hacchuuid") = s_hacchuushousai_data(0, i)
+                data_row("shouhinid") = s_hacchuushousai_data(1, i)
+                data_row("kosuu") = CInt(s_hacchuushousai_data(2, i))
+                data_row("tanka") = CInt(s_hacchuushousai_data(3, i))
+                data_row("kei") = CInt(s_hacchuushousai_data(4, i))
+                data_row("tekiyou") = s_hacchuushousai_data(5, i)
+                data_row("kakutei") = s_hacchuushousai_data(6, i)
+
+                If s_hacchuushousai_data(7, i) <> "" Then
+                    data_row("keigen") = s_hacchuushousai_data(7, i)
+                End If
+
+                ds.Tables("t_hacchuu").Rows.Add(data_row)
+            Next
+
+            da.Update(ds, "t_hacchuu")
+            ds.Clear()
+
+            hacchuushousai_touroku = 1
+
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            hacchuushousai_touroku = -1
+        End Try
 
     End Function
 
