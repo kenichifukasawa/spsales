@@ -43,7 +43,7 @@ Partial Class frmmain
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button328 = New System.Windows.Forms.Button()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btn_log_touroku = New System.Windows.Forms.Button()
         Me.dgv_log = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btn_insatsu = New System.Windows.Forms.Button()
@@ -798,7 +798,7 @@ Partial Class frmmain
         'GroupBox11
         '
         Me.GroupBox11.BackColor = System.Drawing.SystemColors.Control
-        Me.GroupBox11.Controls.Add(Me.Button1)
+        Me.GroupBox11.Controls.Add(Me.btn_log_touroku)
         Me.GroupBox11.Controls.Add(Me.dgv_log)
         Me.GroupBox11.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox11.Location = New System.Drawing.Point(8, 555)
@@ -808,20 +808,20 @@ Partial Class frmmain
         Me.GroupBox11.Size = New System.Drawing.Size(630, 108)
         Me.GroupBox11.TabIndex = 220
         Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "ログ"
+        Me.GroupBox11.Text = "ログ情報（変更は、該当行をダブルクリック）"
         '
-        'Button1
+        'btn_log_touroku
         '
-        Me.Button1.BackColor = System.Drawing.Color.MistyRose
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(534, 54)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(89, 44)
-        Me.Button1.TabIndex = 107
-        Me.Button1.Text = "登　録"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btn_log_touroku.BackColor = System.Drawing.Color.MistyRose
+        Me.btn_log_touroku.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_log_touroku.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_log_touroku.Location = New System.Drawing.Point(534, 54)
+        Me.btn_log_touroku.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_log_touroku.Name = "btn_log_touroku"
+        Me.btn_log_touroku.Size = New System.Drawing.Size(89, 44)
+        Me.btn_log_touroku.TabIndex = 107
+        Me.btn_log_touroku.Text = "登　録"
+        Me.btn_log_touroku.UseVisualStyleBackColor = False
         '
         'dgv_log
         '
@@ -6737,7 +6737,7 @@ Partial Class frmmain
     Friend WithEvents cbx_shurui As ComboBox
     Friend WithEvents Label30 As Label
     Friend WithEvents GroupBox11 As GroupBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btn_log_touroku As Button
     Friend WithEvents dgv_log As DataGridView
     Friend WithEvents btn_nouhinsho_kanri As Button
     Friend WithEvents lblpcname As Label

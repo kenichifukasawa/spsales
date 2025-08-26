@@ -515,6 +515,8 @@ Module m_main
 
         tenpo_orderchu_set_10()
 
+        log_main_set(s_tenpoid)
+
     End Sub
     Sub tenpo_hacchuurireki_set2(s_hacchuuid As String)
 
@@ -1097,6 +1099,98 @@ Module m_main
 
         Catch ex As Exception
             msg_go(ex.Message)
+        End Try
+
+    End Sub
+
+    Sub log_main_set(tenpo_id As String, Optional s_del As String = "")
+
+        With frmmain.dgv_log
+
+            .Rows.Clear()
+            .RowHeadersWidth = 4
+            .Columns.Clear()
+            .ColumnCount = 7
+
+            .Columns(0).Name = "ID"
+            .Columns(1).Name = "日時"
+            .Columns(2).Name = "社員"
+            .Columns(3).Name = "区分"
+            .Columns(4).Name = "内容"
+            .Columns(5).Name = "状況"
+            .Columns(6).Name = "削"
+
+            .Columns(0).Width = 0
+            .Columns(1).Width = 120
+            .Columns(2).Width = 70
+            .Columns(3).Width = 70
+            .Columns(4).Width = 550
+            .Columns(5).Width = 60
+            .Columns(6).Width = 50
+
+            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+            ' 行の高さの指定
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+            .ColumnHeadersHeight = 40
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+        End With
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM log LEFT JOIN shain ON log.shainid = shain.shainid"
+
+            Dim query_where = " WHERE log.tenpoid ='" + tenpo_id + "'"
+            If s_del <> "1" Then
+                query_where += " AND log.del IS NULL"
+            End If
+
+            query += query_where + " ORDER BY log.log_id DESC"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            Dim temp_table_name = "t_log"
+            da_server.Fill(ds_server, temp_table_name)
+            Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
+
+            Dim mojiretsu(7) As String
+            For i = 0 To dt_server.Rows.Count - 1
+
+                mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("log_id"))
+                mojiretsu(1) = ConvertYmdStringToYmdSlash(Trim(dt_server.Rows.Item(i).Item("itsu"))) + " " + ConvertHmsStringToHmsColon(Trim(dt_server.Rows.Item(i).Item("nanji")))
+                mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("ryakumei"))
+                mojiretsu(3) = LogCategory.GetNameById(Trim(dt_server.Rows.Item(i).Item("kubun_id")))
+                mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("youken"))
+                mojiretsu(5) = LogStatus.GetNameById(Trim(dt_server.Rows.Item(i).Item("st_id")))
+
+                Dim del = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("del")) Then
+                    del = "1"
+                End If
+                mojiretsu(6) = del
+
+                frmmain.dgv_log.Rows.Add(mojiretsu)
+
+            Next i
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
         End Try
 
     End Sub

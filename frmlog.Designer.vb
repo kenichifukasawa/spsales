@@ -23,27 +23,27 @@ Partial Class frmlog
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btn_touroku = New System.Windows.Forms.Button()
+        Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.lblid = New System.Windows.Forms.Label()
-        Me.cmbst = New System.Windows.Forms.ComboBox()
+        Me.lbl_del = New System.Windows.Forms.Label()
+        Me.lbl_log_id = New System.Windows.Forms.Label()
+        Me.cbx_status = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.lbltantoushamei = New System.Windows.Forms.Label()
-        Me.cmbkubun2 = New System.Windows.Forms.ComboBox()
+        Me.lbl_shain_mei = New System.Windows.Forms.Label()
+        Me.cbx_log_kubun = New System.Windows.Forms.ComboBox()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.txtlog = New System.Windows.Forms.RichTextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.lblsakujo = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.btn_touroku)
+        Me.GroupBox1.Controls.Add(Me.btn_modoru)
         Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(12, 375)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
@@ -53,38 +53,38 @@ Partial Class frmlog
         Me.GroupBox1.TabIndex = 79
         Me.GroupBox1.TabStop = False
         '
-        'Button3
+        'btn_touroku
         '
-        Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.Location = New System.Drawing.Point(332, 18)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(127, 44)
-        Me.Button3.TabIndex = 34
-        Me.Button3.Text = "登録"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.btn_touroku.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_touroku.Location = New System.Drawing.Point(332, 18)
+        Me.btn_touroku.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_touroku.Name = "btn_touroku"
+        Me.btn_touroku.Size = New System.Drawing.Size(127, 44)
+        Me.btn_touroku.TabIndex = 34
+        Me.btn_touroku.Text = "登録"
+        Me.btn_touroku.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btn_modoru
         '
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(475, 18)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(127, 44)
-        Me.Button1.TabIndex = 32
-        Me.Button1.Text = "戻る"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Location = New System.Drawing.Point(475, 18)
+        Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_modoru.Name = "btn_modoru"
+        Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
+        Me.btn_modoru.TabIndex = 32
+        Me.btn_modoru.Text = "戻る"
+        Me.btn_modoru.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.lblsakujo)
-        Me.GroupBox2.Controls.Add(Me.lblid)
-        Me.GroupBox2.Controls.Add(Me.cmbst)
+        Me.GroupBox2.Controls.Add(Me.lbl_del)
+        Me.GroupBox2.Controls.Add(Me.lbl_log_id)
+        Me.GroupBox2.Controls.Add(Me.cbx_status)
         Me.GroupBox2.Controls.Add(Me.Label4)
-        Me.GroupBox2.Controls.Add(Me.lbltantoushamei)
-        Me.GroupBox2.Controls.Add(Me.cmbkubun2)
+        Me.GroupBox2.Controls.Add(Me.lbl_shain_mei)
+        Me.GroupBox2.Controls.Add(Me.cbx_log_kubun)
         Me.GroupBox2.Controls.Add(Me.Label36)
         Me.GroupBox2.Controls.Add(Me.txtlog)
         Me.GroupBox2.Controls.Add(Me.Label1)
@@ -97,24 +97,34 @@ Partial Class frmlog
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ログ情報"
         '
-        'lblid
+        'lbl_del
         '
-        Me.lblid.BackColor = System.Drawing.Color.White
-        Me.lblid.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblid.Location = New System.Drawing.Point(86, 0)
-        Me.lblid.Name = "lblid"
-        Me.lblid.Size = New System.Drawing.Size(130, 16)
-        Me.lblid.TabIndex = 119
-        Me.lblid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_del.BackColor = System.Drawing.Color.White
+        Me.lbl_del.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_del.Location = New System.Drawing.Point(205, 81)
+        Me.lbl_del.Name = "lbl_del"
+        Me.lbl_del.Size = New System.Drawing.Size(101, 16)
+        Me.lbl_del.TabIndex = 120
+        Me.lbl_del.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'cmbst
+        'lbl_log_id
         '
-        Me.cmbst.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbst.FormattingEnabled = True
-        Me.cmbst.Location = New System.Drawing.Point(475, 79)
-        Me.cmbst.Name = "cmbst"
-        Me.cmbst.Size = New System.Drawing.Size(103, 23)
-        Me.cmbst.TabIndex = 102
+        Me.lbl_log_id.BackColor = System.Drawing.Color.White
+        Me.lbl_log_id.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_log_id.Location = New System.Drawing.Point(86, 0)
+        Me.lbl_log_id.Name = "lbl_log_id"
+        Me.lbl_log_id.Size = New System.Drawing.Size(130, 16)
+        Me.lbl_log_id.TabIndex = 119
+        Me.lbl_log_id.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'cbx_status
+        '
+        Me.cbx_status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_status.FormattingEnabled = True
+        Me.cbx_status.Location = New System.Drawing.Point(475, 79)
+        Me.cbx_status.Name = "cbx_status"
+        Me.cbx_status.Size = New System.Drawing.Size(103, 23)
+        Me.cbx_status.TabIndex = 102
         '
         'Label4
         '
@@ -127,24 +137,24 @@ Partial Class frmlog
         Me.Label4.Text = "状況"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lbltantoushamei
+        'lbl_shain_mei
         '
-        Me.lbltantoushamei.BackColor = System.Drawing.Color.White
-        Me.lbltantoushamei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbltantoushamei.Location = New System.Drawing.Point(477, 41)
-        Me.lbltantoushamei.Name = "lbltantoushamei"
-        Me.lbltantoushamei.Size = New System.Drawing.Size(101, 16)
-        Me.lbltantoushamei.TabIndex = 100
-        Me.lbltantoushamei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_shain_mei.BackColor = System.Drawing.Color.White
+        Me.lbl_shain_mei.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shain_mei.Location = New System.Drawing.Point(477, 41)
+        Me.lbl_shain_mei.Name = "lbl_shain_mei"
+        Me.lbl_shain_mei.Size = New System.Drawing.Size(101, 16)
+        Me.lbl_shain_mei.TabIndex = 100
+        Me.lbl_shain_mei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'cmbkubun2
+        'cbx_log_kubun
         '
-        Me.cmbkubun2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbkubun2.FormattingEnabled = True
-        Me.cmbkubun2.Location = New System.Drawing.Point(153, 39)
-        Me.cmbkubun2.Name = "cmbkubun2"
-        Me.cmbkubun2.Size = New System.Drawing.Size(153, 23)
-        Me.cmbkubun2.TabIndex = 99
+        Me.cbx_log_kubun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_log_kubun.FormattingEnabled = True
+        Me.cbx_log_kubun.Location = New System.Drawing.Point(153, 39)
+        Me.cbx_log_kubun.Name = "cbx_log_kubun"
+        Me.cbx_log_kubun.Size = New System.Drawing.Size(153, 23)
+        Me.cbx_log_kubun.TabIndex = 99
         '
         'Label36
         '
@@ -185,18 +195,8 @@ Partial Class frmlog
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(101, 16)
         Me.Label3.TabIndex = 95
-        Me.Label3.Text = "担当者"
+        Me.Label3.Text = "社員名"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lblsakujo
-        '
-        Me.lblsakujo.BackColor = System.Drawing.Color.White
-        Me.lblsakujo.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblsakujo.Location = New System.Drawing.Point(205, 81)
-        Me.lblsakujo.Name = "lblsakujo"
-        Me.lblsakujo.Size = New System.Drawing.Size(101, 16)
-        Me.lblsakujo.TabIndex = 120
-        Me.lblsakujo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmlog
         '
@@ -216,17 +216,17 @@ Partial Class frmlog
     End Sub
 
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btn_touroku As Button
+    Friend WithEvents btn_modoru As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txtlog As RichTextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents lbltantoushamei As Label
-    Friend WithEvents cmbkubun2 As ComboBox
+    Friend WithEvents lbl_shain_mei As Label
+    Friend WithEvents cbx_log_kubun As ComboBox
     Friend WithEvents Label36 As Label
-    Friend WithEvents cmbst As ComboBox
+    Friend WithEvents cbx_status As ComboBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents lblid As Label
-    Friend WithEvents lblsakujo As Label
+    Friend WithEvents lbl_log_id As Label
+    Friend WithEvents lbl_del As Label
 End Class

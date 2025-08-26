@@ -109,6 +109,10 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
+        ' TODO:main画面に詳細が移動したため、保留
+        msg_go("開発保留中")
+        frmnouhinsho_rireki_shousai.ShowDialog()
+
     End Sub
 
 End Class

@@ -5,11 +5,18 @@
 
     Private Sub btn_hakkou_insatsu_Click(sender As Object, e As EventArgs) Handles btn_hakkou_insatsu.Click
         Me.Close() : Me.Dispose()
-        frmseikyuusho_hakkou_insatsu.ShowDialog()
+        With frmseikyuusho_hakkou_insatsu
+            .chk_mail.Checked = False
+            .ShowDialog()
+        End With
     End Sub
 
     Private Sub btn_hakkou_pdf_Click(sender As Object, e As EventArgs) Handles btn_hakkou_pdf.Click
-
+        Me.Close() : Me.Dispose()
+        With frmseikyuusho_hakkou_insatsu
+            .chk_mail.Checked = True
+            .ShowDialog()
+        End With
     End Sub
 
     Private Sub btn_rireki_Click(sender As Object, e As EventArgs) Handles btn_rireki.Click

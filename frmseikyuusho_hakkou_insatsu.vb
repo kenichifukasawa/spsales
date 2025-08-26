@@ -95,6 +95,249 @@ Public Class frmseikyuusho_hakkou_insatsu
 
     Private Sub btn_seikyuusho_sakusei_Click(sender As Object, e As EventArgs) Handles btn_seikyuusho_sakusei.Click
 
+        'TODO
+        msg_go("未開発")
+        Exit Sub
+
+        ' ----------------------------------------------------------
+
+        '        Dim s_pdf As String = ""
+        '        If Trim(txtseikyuu2.Text) = "1" Then
+        '            s_pdf = "1"
+
+        '            'ファイルパスをチェック
+        '            If Dir(map_exe_path) = "" Then
+        '                ret = MsgBox("PDFファイル作成プログラムがありません。「\pdf\spsales_pdf.exe」", 16, "総合管理システム「SPSALES」")
+        '                Exit Sub
+        '            End If
+
+        '            settei_res3 = setting(1, 29, 0, "", 1)
+        '            Select Case settei_res3
+        '                Case "-1"
+        '                    ret = MsgBox("設定ファイルがないか、読み込めません", 16, "総合管理システム「SPSALES」")
+        '                    Unload(Me)
+        '                    Exit Sub
+        '                Case "0"
+        '                    ret = MsgBox("PDFファイルの保存先が設定されていません", 16, "総合管理システム「SPSALES」")
+        '                    Unload(Me)
+
+        '                    Exit Sub
+        '                Case Else
+        '                    txtseikyuupath.Text = settei_res3
+        '            End Select
+
+        '            '適格登録番号
+        '            settei_res3 = setting2(1, 20, 0, 2, "", 1)
+        '            Select Case Trim(settei_res3)
+        '                Case "-1", "0"
+        '                    ret = MsgBox("適格登録番号の設定ファイルがないか、読み込めません", 16, "総合管理システム「SPSALES」")
+        '                    Exit Sub
+        '                Case Else
+        '                    s_tekikakubangou = settei_res3
+        '            End Select
+        '        End If
+
+        '        If user_check(2) = False Then
+        '            Exit Sub
+        '        End If
+        '        If cmbhi.ListIndex = -1 Then
+        '            ret = MsgBox("日を選択してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '            Exit Sub
+        '        End If
+        '        If cmbnen.ListIndex = -1 Then
+        '            ret = MsgBox("年を選択してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '            Exit Sub
+        '        End If
+        '        If cmbtsuki.ListIndex = -1 Then
+        '            ret = MsgBox("月を選択してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '            Exit Sub
+        '        End If
+
+        '        Dim shiteibi As String = cmbnen.Text & cmbtsuki.Text & Format(cmbhi.Text, "00")
+        '        If Trim(txthakkoubi.Text) = "" Then
+        '            ret = MsgBox("発行日が不正です。", 16, "総合管理システム「SPSALES」")
+        '            Exit Sub
+        '        End If
+
+        '        Dim jitsuhakkoubi As String = Format(frmseikyuu.txthakkoubi.Text, "yyyymmdd")
+
+        '        Dim inres = MsgBox("指定された項目を請求書として発行してよろしいですか？", vbYesNo)
+        '        If inres = vbNo Then
+        '            Exit Sub
+        '        End If
+
+        '        '総数チェック
+        '        Dim insatsu_sousuu As Long = 0
+        '        For i = 1 To gridseikyu.Rows - 1
+        '            If gridseikyu.Cell(flexcpChecked, i, 0) = flexChecked Then
+        '                insatsu_sousuu = insatsu_sousuu + 1
+        '            End If
+        '        Next
+
+        '        'mail時のチェック
+        '        If s_pdf = "1" Then
+        '            If insatsu_sousuu = 0 Then
+        '                ret = MsgBox("請求ファイルを作成したい項目を選択してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '                Exit Sub
+        '            ElseIf insatsu_sousuu > 1 Then
+        '                ret = MsgBox("請求ファイルを作成したい項目は1つのみ選択してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '                Exit Sub
+        '            End If
+        '        End If
+
+        '        Dim count_suu As Long = 0
+        '        Dim nowindex As Integer = 0
+        '        Dim karikin(7) As Double
+        '        Dim newddd(3) As String
+
+        '        For i = 1 To gridseikyu.Rows - 1
+        '            If gridseikyu.Cell(flexcpChecked, i, 0) = flexChecked Then
+        '                nowindex = 1
+        '                karikin(0) = 0
+        '                karikin(1) = 0
+        '                karikin(2) = 0
+        '                karikin(3) = 0
+        '                karikin(4) = 0
+        '                karikin(5) = 0
+        '                karikin(6) = 0
+        '                'On Error GoTo ERRORREC
+        '                'Dim shiteiid As Long = CLng(frmseikyuu.gridseikyu.Cell(flexcpText, i, 0))
+        '                'On Error GoTo 0
+        '                Dim shiteiid2 As String = frmseikyuu.gridseikyu.Cell(flexcpText, i, 2)
+        '                'motokaishaid = frmseikyuu.gridseikyu.Cell(flexcpText, i, 2)
+        '                'On Error GoTo ccdaTa
+        '                karikin(0) = CDbl(frmseikyuu.gridseikyu.Cell(flexcpText, i, 4))     '前月繰越
+        '                karikin(1) = CDbl(frmseikyuu.gridseikyu.Cell(flexcpText, i, 5)) '入金
+        '                karikin(2) = CDbl(frmseikyuu.gridseikyu.Cell(flexcpText, i, 6)) '繰越残高
+        '                karikin(3) = CDbl(frmseikyuu.gridseikyu.Cell(flexcpText, i, 7)) '今月売上
+        '                karikin(4) = CDbl(frmseikyuu.gridseikyu.Cell(flexcpText, i, 8)) '返品
+        '                karikin(5) = CDbl(frmseikyuu.gridseikyu.Cell(flexcpText, i, 9)) '消費税
+        '                karikin(6) = CDbl(frmseikyuu.gridseikyu.Cell(flexcpText, i, 10)) '請求額
+        '                Dim newnewdensuu As String = Trim(frmseikyuu.gridseikyu.Cell(flexcpText, i, 14))   '枚数
+        '                newddd(1) = Trim(frmseikyuu.gridseikyu.Cell(flexcpText, i, 16))  '郵便
+        '                newddd(2) = Trim(frmseikyuu.gridseikyu.Cell(flexcpText, i, 17))  '住所
+        '                newddd(3) = Trim(frmseikyuu.gridseikyu.Cell(flexcpText, i, 18))  '印刷名
+
+        '                Dim s_keigenzei10 As String = Trim(frmseikyuu.gridseikyu.Cell(flexcpText, i, 19)) '10%
+        '                Dim s_keigenzei8 As String = Trim(frmseikyuu.gridseikyu.Cell(flexcpText, i, 20)) '8%
+        '                Dim s_err_no As String = Trim(frmseikyuu.gridseikyu.Cell(flexcpText, i, 21)) 'err
+        '                Dim s_zeihasuu As String = Trim(frmseikyuu.gridseikyu.Cell(flexcpText, i, 12)) '税端数
+
+        '                'On Error GoTo 0
+        '                'Dim newtantou As String = Trim(txtkeiritantou.Text)
+        '                'If newtantou = "" Then
+        '                '    newtantou = Space(1)
+        '                'End If
+
+        '                If s_err_no <> "0" Then
+        '                    inres = MsgBox("請求書の内容に不具合がありますが、印刷してよろしいですか？", vbYesNo)
+        '                    If inres = vbNo Then
+        '                        Exit Sub
+        '                    End If
+        '                End If
+
+        '                '正常の場合
+        '                Dim insatsukekka As Integer
+        '                If chktest.Value = 0 Then
+        '                    insatsukekka = seikyuusho_hakkou(shiteibi, shiteiid2, karikin(0), karikin(1), karikin(2), karikin(3), karikin(4), karikin(5), karikin(6), jitsuhakkoubi, newnewdensuu, newddd(1), newddd(2), newddd(3), s_keigenzei10, s_keigenzei8, s_pdf)
+        '                Else
+        '                    insatsukekka = seikyuusho_hakkou3(shiteibi, shiteiid2, karikin(0), karikin(1), karikin(2), karikin(3), karikin(4), karikin(5), karikin(6), jitsuhakkoubi, newnewdensuu, newddd(1), newddd(2), newddd(3), s_zeihasuu, s_pdf)
+        '                End If
+
+        '                Select Case insatsukekka
+        '                    Case 0
+        '                        count_suu = count_suu + 1
+        '                    Case -1
+        '                        ret = MsgBox("印刷に失敗しました。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -2
+        '                        ret = MsgBox("中止しました。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -3
+        '                        ret = MsgBox("入金情報のデータへアクセスできませんでした。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -4
+        '                        ret = MsgBox("納品情報のデータへアクセスできませんでした。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -5
+        '                        ret = MsgBox("伝票合計と請求書合計の金額が一致しませんでした。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -6
+        '                        ret = MsgBox("請求書ＩＤのデータへアクセスできませんでした。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -7
+        '                        ret = MsgBox("請求書詳細ＩＤのデータへアクセスできませんでした。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -8
+        '                        ret = MsgBox("請求書詳細数を確認できませんでした。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -9
+        '                        ret = MsgBox("処分項目が不正です。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -10
+        '                        ret = MsgBox("請求書データが欠損しています。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -11
+        '                        ret = MsgBox("請求書データの初期化に失敗しました。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -12
+        '                        ret = MsgBox("請求書データの作成に失敗しました。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -13
+        '                        ret = MsgBox("請求書データの繰越処理の初期化に失敗しました。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                    Case -14
+        '                        ret = MsgBox("店舗の税端数情報を取得できませんでした。", 16, "総合管理システム「SPSALES」")
+        '                        Exit For
+        '                End Select
+        '            End If
+
+        '        Next
+
+        '        If nowindex = 0 Then
+        '            ret = MsgBox("印刷したい項目を選択してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '            Exit Sub
+        '        End If
+
+        '        'チェックのついている行を削除
+        '        If insatsu_sousuu = count_suu Then
+
+        '            For i = gridseikyu.Rows - 1 To 1 Step -1
+        '                If gridseikyu.Cell(flexcpChecked, i, 0) = flexChecked Then
+        '                    gridseikyu.RemoveItem(i)
+        '                End If
+        '            Next
+
+        '        Else
+
+        '            Dim err_count As Long = 0
+        '            For i = gridseikyu.Rows - 1 To 1 Step -1
+        '                If gridseikyu.Cell(flexcpChecked, i, 0) = flexChecked Then
+        '                    If err_count >= insatsu_sousuu - count_suu Then
+        '                        gridseikyu.RemoveItem(i)
+        '                        err_count = err_count + 1
+        '                    Else
+        '                        err_count = err_count + 1
+        '                    End If
+        '                End If
+        '            Next
+
+        '        End If
+
+        '        'NOを振りなおす
+        '        For i = 1 To gridseikyu.Rows - 1
+        '            gridseikyu.Cell(flexcpText, i, 0) = i
+        '        Next
+
+        '        Exit Sub
+
+        'ERRORREC:
+        '        ret = MsgBox("印刷したい項目を選択してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '        Exit Sub
+        'ccdaTa:
+        '        ret = MsgBox("印刷したい項目が不正なデータを含んでいます。再起動してから実行してください。", 16, "総合管理システム「SPSALES」")
+        '        Exit Sub
+
     End Sub
 
     Private Sub cbx_shimebi_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shimebi.SelectedIndexChanged

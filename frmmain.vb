@@ -924,4 +924,70 @@ Public Class frmmain
 
 
     End Sub
+
+    Private Sub btn_log_touroku_Click(sender As Object, e As EventArgs) Handles btn_log_touroku.Click
+
+        Dim tenpo_id As String = Trim(lbltenpoid.Text)
+        If tenpo_id = "" Then
+            msg_go("店舗が表示されていません。")
+            Exit Sub
+        End If
+
+        With frmlog
+
+            .cbx_log_kubun.Items.AddRange(LogCategory.Names)
+            .cbx_status.Items.AddRange(LogStatus.Names)
+
+            .lbl_shain_mei.Text = Trim(lblshokuinmei.Text)
+
+            .cbx_status.SelectedIndex = 0
+
+            .ShowDialog()
+
+        End With
+
+    End Sub
+
+    Private Sub dgv_log_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles dgv_log.MouseDoubleClick
+
+        Dim dgv = dgv_log
+        If dgv.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim current_row = dgv.CurrentRow
+        Dim log_id = current_row.Cells(0).Value
+        Dim kubun_mei = current_row.Cells(3).Value
+        Dim youken = current_row.Cells(4).Value
+        Dim st_name = current_row.Cells(5).Value
+        Dim del = current_row.Cells(6).Value
+
+        With frmlog
+
+            .btn_touroku.Text = "更新"
+
+            .cbx_log_kubun.Items.AddRange(LogCategory.Names)
+            .cbx_status.Items.AddRange(LogStatus.Names)
+
+            .lbl_shain_mei.Text = Trim(lblshokuinmei.Text)
+            .lbl_log_id.Text = log_id
+
+            .txtlog.Text = youken
+
+            .cbx_log_kubun.SelectedIndex = .cbx_log_kubun.FindStringExact(kubun_mei)
+            .cbx_status.SelectedIndex = .cbx_status.FindStringExact(st_name)
+
+            If del = "" Then
+                .lbl_del.Text = ""
+                .btn_touroku.Enabled = True
+            Else
+                .lbl_del.Text = "削除済"
+                .btn_touroku.Enabled = False
+            End If
+
+            .ShowDialog()
+
+        End With
+
+    End Sub
 End Class
