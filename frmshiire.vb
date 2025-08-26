@@ -501,9 +501,9 @@ Public Class frmshiire
             '    '欠番を判定
             newshiireid = ""
             Dim s_no As String = ""
-            For i = 0 To dgv_shiire.Rows.Count - 1
+            For i = 1 To dgv_shiire.Rows.Count
 
-                s_no = Trim(dgv_shiire(0, i).Value)
+                s_no = Trim(dgv_shiire(0, i - 1).Value)
                 If i <> CInt(s_no) Then
                     newshiireid = i.ToString("000")
                     Exit For
@@ -560,5 +560,9 @@ Public Class frmshiire
     Private Sub frmshiire_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         txtkubun.Focus()
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+
     End Sub
 End Class
