@@ -1538,6 +1538,21 @@ Module m_main
                         .lblzenkaiseikyuubi.Text = Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(0).Item("seikyuubi")), 7, 2)
                     End If
 
+                    If IsDBNull(dt_server.Rows.Item(0).Item("kadou")) Then
+                        .lbltorihikinashi.Text = "0"
+                    Else
+                        If Trim(dt_server.Rows.Item(0).Item("kadou")) = "1" Then
+                            .lbltorihikinashi.Text = "1"
+                            ' If frmmain.chktenpoend.Value = 1 Then
+                            '                ret = MsgBox("現在取引のない店舗を表示しようとしています。設定を変更します。", 64, "総合管理システム「SPSALES」")
+                            '                frmmain.chktenpoend.Value = 0
+                            '                SbtenponameSet 1, 0, 0
+                            'End If
+                        Else
+                            .lbltorihikinashi.Text = "0"
+                        End If
+                    End If
+
 
                 End With
             End If
@@ -1597,6 +1612,81 @@ Module m_main
         End Try
 
     End Sub
+
+    Sub wait_msg(s_msg As String, s_p_count As Integer, Optional s_p_sousuu As String = "")
+
+        frmomachi.lblmsg.Text = s_msg
+
+        If s_p_sousuu <> "" Then
+            frmomachi.p1.Minimum = 0
+            frmomachi.p1.Maximum = CInt(s_p_sousuu)
+        End If
+
+        frmomachi.p1.Value = s_p_count
+
+        System.Windows.Forms.Application.DoEvents()
+    End Sub
+
+    Sub wait_on(Optional s_msg As String = "", Optional s_p_on As String = "")
+
+        If s_msg <> "" Then
+            frmomachi.lblmsg.Text = s_msg
+        End If
+        If s_p_on = "1" Then
+            frmomachi.p1.Visible = True
+        End If
+
+        frmomachi.Show()
+        System.Windows.Forms.Application.DoEvents()
+
+
+    End Sub
+    Sub wait_off()
+
+        frmomachi.Close()
+        frmomachi.Dispose()
+        System.Windows.Forms.Application.DoEvents()
+    End Sub
+
+    Function main_hontouroku(s_iraibi As String, s_goukei As String, s_shainid As String, s_tenpoid As String, s_nouhinshoid As String, s_dami As String) As Integer
+
+        main_hontouroku = -1
+
+        Dim kari_touroku_suu As Integer = frmmain.dgv_nouhinsho.Rows.Count
+
+        Dim karitourokudata(7, kari_touroku_suu) As String
+
+        wait_msg("伝票情報を取得中・・", 1, "10")
+
+        For i = 0 To kari_touroku_suu - 1
+            karitourokudata(0, i) = Trim(frmmain.dgv_shien.CurrentRow.Cells(1).Value.ToString)
+            karitourokudata(1, i) = Trim(frmmain.dgv_shien.CurrentRow.Cells(3).Value.ToString)
+            karitourokudata(2, i) = Trim(frmmain.dgv_shien.CurrentRow.Cells(4).Value.ToString)
+            karitourokudata(3, i) = Trim(frmmain.dgv_shien.CurrentRow.Cells(5).Value.ToString)
+            karitourokudata(4, i) = Trim(frmmain.dgv_shien.CurrentRow.Cells(6).Value.ToString)
+
+            Dim lenB As Integer = System.Text.Encoding.GetEncoding("Shift_JIS").GetByteCount(karitourokudata(4, i))
+            If lenB > 10 Then
+                msg_go("備考の文字数が多いです。再度編集してください。")
+                Exit Function
+            End If
+
+            karitourokudata(5, i) = Trim(frmmain.dgv_shien.CurrentRow.Cells(7).Value.ToString)
+            karitourokudata(6, i) = Trim(frmmain.dgv_shien.CurrentRow.Cells(9).Value.ToString)
+        Next
+
+
+        wait_msg("保存情報を書き込み中・・", 2)
+
+        'If create_hacchuu_and_hacchuushousai(shouhin_id, sagaku_suu) = False Then ' 本登録へ
+        '    msg_go("発注テーブルまたは発注詳細テーブルの更新でエラーが発生しました。")
+        '    Exit Sub
+        'End If
+
+
+
+
+    End Function
 
     Public Function SendMail(s_from As String, ByVal strMailAdr() As String,
                             Optional ByVal strMailCC() As String = Nothing,
