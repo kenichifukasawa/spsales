@@ -250,6 +250,12 @@
     <Compile Include="frmnyuukin_shori.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmomachi.Designer.vb">
+      <DependentUpon>frmomachi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmomachi.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmpassword.Designer.vb">
       <DependentUpon>frmpassword.vb</DependentUpon>
     </Compile>
@@ -551,6 +557,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmnyuukin_shori.resx">
       <DependentUpon>frmnyuukin_shori.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmomachi.resx">
+      <DependentUpon>frmomachi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmpassword.resx">
       <DependentUpon>frmpassword.vb</DependentUpon>
