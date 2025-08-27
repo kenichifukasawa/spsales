@@ -990,4 +990,73 @@ Public Class frmmain
         End With
 
     End Sub
+
+    Private Sub btn_log_sakujo_Click(sender As Object, e As EventArgs) Handles btn_log_sakujo.Click
+
+        Dim dgv = dgv_log
+        If dgv.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim shain_id As String = Trim(lblshokuinid.Text)
+        If shain_id = "" Then
+            msg_go("社員IDが取得できませんでした。")
+            Exit Sub
+        End If
+
+        Dim current_row = dgv.CurrentRow
+        Dim log_id As String = Trim(current_row.Cells(0).Value.ToString)
+        Dim youken As String = Trim(current_row.Cells(4).Value.ToString)
+        Dim del As String = Trim(current_row.Cells(6).Value.ToString)
+        If del <> "" Then
+            msg_go("削除済みです。")
+            Exit Sub
+        End If
+
+        Dim result As String = MessageBox.Show("削除しますか？" + vbCrLf + vbCrLf + "【内容】" + youken, "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If result = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT TOP 1 * FROM log WHERE log_id = '" + log_id + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_log"
+            da.Fill(ds, temp_table_name)
+
+            If ds.Tables(temp_table_name).Rows.Count = 0 Then
+                msg_go("該当する店舗が見つかりません")
+                ds.Clear()
+                Exit Sub
+            End If
+
+            Dim table = ds.Tables(temp_table_name)
+
+            table.Rows(0)("del") = shain_id + Now.ToString("yyyyMMddHHmmss")
+
+            Dim cb As New SqlCommandBuilder(da)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        msg_go("削除しました。", 64)
+
+        log_main_set(Trim(lbltenpoid.Text))
+
+    End Sub
+
+    Private Sub chk_log_sakujozumi_Click(sender As Object, e As EventArgs) Handles chk_log_sakujozumi.Click
+        log_main_set(Trim(lbltenpoid.Text))
+    End Sub
 End Class

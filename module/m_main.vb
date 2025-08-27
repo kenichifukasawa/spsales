@@ -678,8 +678,10 @@ Module m_main
             With frmmain.dgv_denpyou
 
                 .Rows.Clear()
+                .RowHeadersWidth = 4
                 .Columns.Clear()
                 .ColumnCount = 10
+
                 .Columns(0).Name = "納品日"
                 .Columns(1).Name = "伝票NO"
                 .Columns(2).Name = "金額"
@@ -714,7 +716,10 @@ Module m_main
 
                 '列ヘッダーの高さを変える
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                .ColumnHeadersHeight = 30
+                .ColumnHeadersHeight = 25
+
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
@@ -823,6 +828,7 @@ Module m_main
             With frmmain.dgv_seikyuusho
 
                 .Rows.Clear()
+                .RowHeadersWidth = 4
                 .Columns.Clear()
                 .ColumnCount = 7
 
@@ -850,7 +856,10 @@ Module m_main
 
                 '列ヘッダーの高さを変える
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                .ColumnHeadersHeight = 30
+                .ColumnHeadersHeight = 25
+
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
@@ -1103,7 +1112,7 @@ Module m_main
 
     End Sub
 
-    Sub log_main_set(tenpo_id As String, Optional s_del As String = "")
+    Sub log_main_set(tenpo_id As String)
 
         With frmmain.dgv_log
 
@@ -1118,10 +1127,10 @@ Module m_main
             .Columns(3).Name = "区分"
             .Columns(4).Name = "内容"
             .Columns(5).Name = "状況"
-            .Columns(6).Name = "削"
+            .Columns(6).Name = "削徐"
 
             .Columns(0).Width = 0
-            .Columns(1).Width = 120
+            .Columns(1).Width = 100
             .Columns(2).Width = 70
             .Columns(3).Width = 70
             .Columns(4).Width = 550
@@ -1138,7 +1147,7 @@ Module m_main
 
             ' 行の高さの指定
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-            .ColumnHeadersHeight = 40
+            .ColumnHeadersHeight = 25
 
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
@@ -1153,7 +1162,7 @@ Module m_main
             Dim query = "SELECT * FROM log LEFT JOIN shain ON log.shainid = shain.shainid"
 
             Dim query_where = " WHERE log.tenpoid ='" + tenpo_id + "'"
-            If s_del <> "1" Then
+            If Not frmmain.chk_log_sakujozumi.Checked Then
                 query_where += " AND log.del IS NULL"
             End If
 
@@ -1175,9 +1184,11 @@ Module m_main
                 mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("youken"))
                 mojiretsu(5) = LogStatus.GetNameById(Trim(dt_server.Rows.Item(i).Item("st_id")))
 
+                Dim db_del = dt_server.Rows.Item(i).Item("del")
                 Dim del = ""
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("del")) Then
-                    del = "1"
+                If Not IsDBNull(db_del) Then
+                    del = Trim(db_del)
+                    del = "社員ID:" + Mid(del, 1, 2) + " " + ConvertYmdStringToYmdSlash(Mid(del, 3, 8)) + " " + ConvertHmsStringToHmsColon(Mid(del, 11))
                 End If
                 mojiretsu(6) = del
 
