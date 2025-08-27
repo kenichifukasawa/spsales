@@ -64,7 +64,7 @@ Public Class frmnyuukin_shori
         Dim nyuukinbi = dtp_hinichi.Value.ToString("yyyyMMdd")
         Dim bikou = Trim(txt_bikou.Text)
         Dim sabun_kingaku As Integer
-
+        Dim table_name = "seikyuusho"
         If Trim(btn_touroku.Text) = "登録" Then
 
             Dim nebiki = Trim(lbl_nebiki.Text)
@@ -72,35 +72,18 @@ Public Class frmnyuukin_shori
             Dim id = 1
             Dim s_no = 12
             Dim ketasuu = 8
-            Dim new_id = get_settings(id:=id, s_no:=s_no)
-            Dim next_id As String
-            If new_id = "" Then
-                msg_go("IDの取得に失敗しました。")
-                Exit Sub
-            ElseIf new_id = "0" Then
-                next_id = "2"
-                new_id = 1.ToString("D" + ketasuu.ToString)
-            Else
-                next_id = (CLng(new_id) + 1).ToString
-                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-            End If
-
-            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-            If Not response Then
-                msg_go("IDの更新に失敗しました。")
-                Exit Sub
-            End If
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
             Try
 
                 Dim cn_server As New SqlConnection
                 cn_server.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "SELECT * FROM seikyuusho"
+                Dim query = "SELECT TOP 1 * FROM " + table_name
 
                 Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
                 Dim ds As New DataSet
-                Dim temp_table_name = "t_seikyuusho"
+                Dim temp_table_name = "t_" + table_name
                 da.Fill(ds, temp_table_name)
                 Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
                 Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
@@ -153,12 +136,12 @@ Public Class frmnyuukin_shori
                 Dim conn As New SqlConnection
                 conn.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "SELECT * FROM seikyuusho WHERE seikyuushoid ='" + seikyuusho_id + "'"
+                Dim query = "SELECT * FROM " + table_name + " WHERE seikyuushoid ='" + seikyuusho_id + "'"
 
                 Dim da As New SqlDataAdapter
                 da = New SqlDataAdapter(query, conn)
                 Dim ds As New DataSet
-                Dim temp_table_name = "t_seikyuusho"
+                Dim temp_table_name = "t_" + table_name
                 da.Fill(ds, temp_table_name)
 
                 Dim table = ds.Tables(temp_table_name)

@@ -12,14 +12,12 @@ Public Class frmshouhinkubun2
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
         Dim s_kubun2_mei As String = Trim(txtkubun2mei.Text)
-
         If s_kubun2_mei = "" Then
             msg_go("区分２名を入力してください。")
             Exit Sub
         End If
 
         Dim s_kubun1id As String = ""
-
         If cmbkubun1.SelectedIndex <> -1 Then
             s_kubun1id = Mid(Trim(cmbkubun1.Text), 1, 2)
         Else
@@ -28,13 +26,11 @@ Public Class frmshouhinkubun2
         End If
 
         Dim s_kanriid As String = ""
-
         If cmbkanriid.SelectedIndex <> -1 Then
             s_kanriid = Trim(cmbkanriid.Text)
         End If
 
         Dim s_wella As String = ""
-
         Select Case cmbwella.SelectedIndex
             Case -1, 0
                 s_wella = ""
@@ -42,46 +38,28 @@ Public Class frmshouhinkubun2
                 s_wella = (cmbwella.SelectedIndex - 1).ToString
         End Select
 
-
         Dim gyoushakubunid As String = Trim(lblkubun2id.Text)
-
+        Dim table_name = "shouhinkubun2"
         If gyoushakubunid = "" Then
-
 
             Dim id = 1
             Dim s_no = 9
             Dim ketasuu = 4
-            Dim new_id = get_settings(id:=id, s_no:=s_no)
-            Dim next_id As String
-            If new_id = "" Then
-                msg_go("IDの取得に失敗しました。")
-                Exit Sub
-            ElseIf new_id = "0" Then
-                next_id = "2"
-                new_id = 1.ToString("D" + ketasuu.ToString)
-            Else
-                next_id = (CLng(new_id) + 1).ToString
-                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-            End If
-
-            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-            If Not response Then
-                msg_go("IDの更新に失敗しました。")
-                Exit Sub
-            End If
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
             Try
 
                 Dim cn_server As New SqlConnection
                 cn_server.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "SELECT TOP 1 * FROM shouhinkubun2"
+                Dim query = "SELECT TOP 1 * FROM " + table_name
 
                 Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
                 Dim ds As New DataSet
-                da.Fill(ds, "t_gyousha")
+                Dim temp_table_name = "t_" + table_name
+                da.Fill(ds, temp_table_name)
                 Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
-                Dim data_row As DataRow = ds.Tables("t_gyousha").NewRow()
+                Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
 
                 data_row("shouhinkubunid2") = new_id
                 data_row("shouhinkubunmei2") = s_kubun2_mei
@@ -96,8 +74,8 @@ Public Class frmshouhinkubun2
                 End If
 
 
-                ds.Tables("t_gyousha").Rows.Add(data_row)
-                da.Update(ds, "t_gyousha")
+                ds.Tables(temp_table_name).Rows.Add(data_row)
+                da.Update(ds, temp_table_name)
                 ds.Clear()
 
             Catch ex As Exception
@@ -114,33 +92,32 @@ Public Class frmshouhinkubun2
                 Dim conn As New SqlConnection
                 conn.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "SELECT * FROM shouhinkubun2 WHERE shouhinkubunid2 ='" + gyoushakubunid + "'"
+                Dim query = "SELECT * FROM " + table_name + " WHERE shouhinkubunid2 ='" + gyoushakubunid + "'"
 
                 Dim da As New SqlDataAdapter
                 da = New SqlDataAdapter(query, conn)
                 Dim ds As New DataSet
-                da.Fill(ds, "t_gyousha")
+                Dim temp_table_name = "t_" + table_name
+                da.Fill(ds, temp_table_name)
 
-                ds.Tables("t_gyousha").Rows(0)("shouhinkubunmei2") = s_kubun2_mei
-                ds.Tables("t_gyousha").Rows(0)("shouhinkubunid") = s_kubun1id
+                ds.Tables(temp_table_name).Rows(0)("shouhinkubunmei2") = s_kubun2_mei
+                ds.Tables(temp_table_name).Rows(0)("shouhinkubunid") = s_kubun1id
 
                 If s_kanriid = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("NARABE") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("NARABE") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("NARABE") = s_kanriid
+                    ds.Tables(temp_table_name).Rows(0)("NARABE") = s_kanriid
                 End If
 
                 If s_wella = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("wella") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("wella") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("wella") = s_wella
+                    ds.Tables(temp_table_name).Rows(0)("wella") = s_wella
                 End If
-
-
 
                 Dim cb As New SqlCommandBuilder
                 cb.DataAdapter = da
-                da.Update(ds, "t_gyousha")
+                da.Update(ds, temp_table_name)
                 ds.Clear()
 
             Catch ex As Exception
@@ -148,7 +125,7 @@ Public Class frmshouhinkubun2
                 Exit Sub
             End Try
 
-            msg_go("変更しました。", 64)
+            msg_go("更新しました。", 64)
 
         End If
 
