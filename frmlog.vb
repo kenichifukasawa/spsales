@@ -39,8 +39,8 @@ Public Class frmlog
 
         If log_id = "" Then
 
-            Dim id = 1 ' TODO
-            Dim s_no = 18 ' TODO
+            Dim id = 1
+            Dim s_no = 18
             Dim ketasuu = 10
             Dim new_id = get_settings(id:=id, s_no:=s_no)
             Dim next_id As String
