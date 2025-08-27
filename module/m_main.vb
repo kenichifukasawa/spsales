@@ -1198,18 +1198,9 @@ Module m_main
     Sub tenpo_henkou_set(s_tenpoid As String)
 
         With frmkojin
+
             .cmbshime.Items.Clear()
-            .cmbshime.Items.Add("５日")
-            .cmbshime.Items.Add("１０日")
-            .cmbshime.Items.Add("１５日")
-            .cmbshime.Items.Add("２０日")
-            .cmbshime.Items.Add("２５日")
-            .cmbshime.Items.Add("月末")
-            .cmbshime.Items.Add("随時")
-
-
-
-
+            .cmbshime.Items.AddRange(Deadline.Names)
 
         End With
 
@@ -1549,30 +1540,11 @@ Module m_main
                     Else
                         .lblurl.Text = Trim(dt_server.Rows.Item(0).Item("url"))
                     End If
-                    If IsDBNull(dt_server.Rows.Item(0).Item("shimebi")) Then
-                        .lblshimebi.Text = ""
-                    Else
-                        Select Case Trim(dt_server.Rows.Item(0).Item("shimebi"))
-                            Case "0"
-                                .lblshimebi.Text = "５日"
-                            Case "1"
-                                .lblshimebi.Text = "１０日"
-                            Case "2"
-                                .lblshimebi.Text = "１５日"
-                            Case "3"
-                                .lblshimebi.Text = "２０日"
-                            Case "4"
-                                .lblshimebi.Text = "２５日"
-                            Case "5"
-                                .lblshimebi.Text = "月末"
-                            Case "6"
-                                .lblshimebi.Text = "随時"
-                            Case Else
-                                .lblshimebi.Text = "エラー"
-                        End Select
+                    Dim shimebi = ""
+                    If Not IsDBNull(dt_server.Rows.Item(0).Item("shimebi")) Then
+                        shimebi = Deadline.GetNameById(Trim(dt_server.Rows.Item(0).Item("shimebi")))
                     End If
-
-
+                    .lblshimebi.Text = shimebi
                     If IsDBNull(dt_server.Rows.Item(0).Item("souhasuu")) Then
                         .lblkeisanhouhou.Text = ""
                     Else
