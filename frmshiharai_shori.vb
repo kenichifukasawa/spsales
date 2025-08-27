@@ -66,7 +66,7 @@ Public Class frmshiharai_shori
 
         Dim id_busy = 2
         Dim s_no_busy = 4
-        Dim get_response_busy = get_settings(id:=id_busy, s_no:=s_no_busy)
+        Dim get_response_busy = get_settei(id:=id_busy, s_no:=s_no_busy) ' TODO : 削除 または get_settingsへ移行
         If get_response_busy = "" Then
             msg_go("ビジーの取得に失敗しました。")
             Exit Sub
@@ -77,7 +77,7 @@ Public Class frmshiharai_shori
                 Exit Sub
             End If
 
-            Dim update_response = update_settings(id:=id_busy, s_no:=s_no_busy, new_value:="1")
+            Dim update_response = update_settei(id:=id_busy, s_no:=s_no_busy, new_value:="1") ' TODO : 削除 または update_settingsへ移行
             If Not update_response Then
                 msg_go("ビジーの更新に失敗しました。")
                 Exit Sub
@@ -85,38 +85,22 @@ Public Class frmshiharai_shori
 
         End If
 
+        Dim table_name = "shukkin"
         Dim id = 1
         Dim s_no = 14
         Dim ketasuu = 8
-        Dim new_id = get_settings(id:=id, s_no:=s_no)
-        Dim next_id As String
-        If new_id = "" Then
-            msg_go("IDの取得に失敗しました。")
-            Exit Sub
-        ElseIf new_id = "0" Then
-            next_id = "2"
-            new_id = 1.ToString("D" + ketasuu.ToString)
-        Else
-            next_id = (CLng(new_id) + 1).ToString
-            new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-        End If
-
-        Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-        If Not response Then
-            msg_go("IDの更新に失敗しました。")
-            Exit Sub
-        End If
+        Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
         Try
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM shukkin"
+            Dim query = "SELECT TOP 1 * FROM " + table_name
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            Dim temp_table_name = "t_shukkin"
+            Dim temp_table_name = "t_" + table_name
             da.Fill(ds, temp_table_name)
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
             Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
@@ -183,7 +167,7 @@ Public Class frmshiharai_shori
 
         Next
 
-        Dim update_response_2 = update_settings(id:=id_busy, s_no:=s_no_busy, new_value:="0")
+        Dim update_response_2 = update_settei(id:=id_busy, s_no:=s_no_busy, new_value:="0") ' TODO : 削除 または update_settingsへ移行
         If Not update_response_2 Then
             msg_go("ビジーの更新に失敗しました。")
             Exit Sub

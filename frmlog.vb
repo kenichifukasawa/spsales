@@ -44,23 +44,6 @@ Public Class frmlog
             Dim s_no = 18
             Dim ketasuu = 10
             Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
-            Dim next_id As String
-            If new_id = "" Then
-                msg_go("IDの取得に失敗しました。")
-                Exit Sub
-            ElseIf new_id = "0" Then
-                next_id = "2"
-                new_id = 1.ToString("D" + ketasuu.ToString)
-            Else
-                next_id = (CLng(new_id) + 1).ToString
-                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-            End If
-
-            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-            If Not response Then
-                msg_go("IDの更新に失敗しました。")
-                Exit Sub
-            End If
 
             Try
 
@@ -90,7 +73,7 @@ Public Class frmlog
                 da.Update(ds, temp_table_name)
                 ds.Clear()
 
-                msg_go("データを登録しました。", 64)
+                msg_go("登録しました。", 64)
 
             Catch ex As Exception
                 msg_go(ex.Message)
@@ -136,6 +119,8 @@ Public Class frmlog
             End Try
 
         End If
+
+        msg_go("更新しました。", 64)
 
         log_main_set(tenpo_id)
 

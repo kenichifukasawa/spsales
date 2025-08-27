@@ -1881,38 +1881,24 @@ errsetting:
     Function hacchuushousai_touroku(s_hacchuushousai_count As Integer, s_hacchuushousai_data(,) As String) As Integer
 
         Try
+            Dim table_name = "hacchuushousai"
             Dim s_no = 3
             Dim id = 1
             Dim ketasuu = 10
-            Dim new_id = get_settings(id:=id, s_no:=s_no)
-            Dim next_id As String
-            If new_id = "" Then
-                msg_go("IDの取得に失敗しました。")
-                Exit Function
-            ElseIf new_id = "0" Then
-                next_id = "2"
-                new_id = 1.ToString("D" + ketasuu.ToString)
-            Else
-                next_id = (CLng(new_id) + s_hacchuushousai_count).ToString
-                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-            End If
-
-            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-            If Not response Then
-                msg_go("IDの更新に失敗しました。")
-                Exit Function
-            End If
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT TOP 1 * FROM hacchuushousai"
+            Dim query = "SELECT TOP 1 * FROM " + table_name
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            da.Fill(ds, "t_hacchuu")
+            Dim temp_table_name = "t_" + table_name
+            da.Fill(ds, temp_table_name)
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
-            Dim data_row As DataRow = ds.Tables("t_hacchuu").NewRow()
+            Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+
             For i = 0 To s_hacchuushousai_count - 1
 
                 data_row("hachuushousaiid") = new_id
@@ -1928,23 +1914,22 @@ errsetting:
                     data_row("keigen") = s_hacchuushousai_data(7, i)
                 End If
 
-                ds.Tables("t_hacchuu").Rows.Add(data_row)
+                ds.Tables(temp_table_name).Rows.Add(data_row)
             Next
 
-            da.Update(ds, "t_hacchuu")
+            da.Update(ds, temp_table_name)
             ds.Clear()
 
-            hacchuushousai_touroku = 1
-
+            Return 1
 
         Catch ex As Exception
             msg_go(ex.Message)
-            hacchuushousai_touroku = -1
+            Return -1
         End Try
 
     End Function
 
-    Function get_settings(id As Integer, s_no As Integer) As String
+    Function get_settei(id As Integer, s_no As Integer) As String ' TODO:移行後、削除し「get_settings」へ移行
 
         Try
 
@@ -1976,7 +1961,39 @@ errsetting:
 
     End Function
 
-    Function update_settings(id As Integer, s_no As Integer, new_value As String) As Boolean
+    Function get_settings(table_name As String) As String ' TODO:移行後、削除し「get_settings」へ移行
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM settings WHERE table_name = '" + table_name + "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_settings")
+            Dim dt_server As DataTable = ds_server.Tables("t_settings")
+
+            If dt_server.Rows.Count = 0 Then
+                Return ""
+            End If
+
+            Dim response = Trim(dt_server.Rows.Item(0).Item("next_id"))
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+            Return response
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return ""
+        End Try
+
+    End Function
+
+    Function update_settei(id As Integer, s_no As Integer, new_value As String) As Boolean ' TODO:移行後、削除し「update_settings」へ移行
 
         Try
 
@@ -1995,6 +2012,38 @@ errsetting:
             Dim cb As New SqlCommandBuilder
             cb.DataAdapter = da
             da.Update(ds, "t_settei")
+            ds.Clear()
+
+            Return True
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+    End Function
+
+    Function update_settings(table_name As String, new_value As String) As Boolean ' TODO:移行後、削除し「update_settings」へ移行
+
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM settings WHERE table_name = '" + table_name + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_settings"
+            da.Fill(ds, temp_table_name)
+
+            Dim data_row = ds.Tables(temp_table_name).Rows(0)
+            data_row("next_id") = new_value
+
+            Dim cb As New SqlCommandBuilder
+            cb.DataAdapter = da
+            da.Update(ds, temp_table_name)
             ds.Clear()
 
             Return True
@@ -2272,38 +2321,22 @@ errsetting:
             sonotoki = shiteibi
         End If
 
+        Dim table_name = "zaiko_log"
         Dim id = 2
         Dim s_no = 16
         Dim ketasuu = 10
-        Dim new_id = get_settings(id:=id, s_no:=s_no)
-        Dim next_id As String
-        If new_id = "" Then
-            msg_go("IDの取得に失敗しました。")
-            Return False
-        ElseIf new_id = "0" Then
-            next_id = "2"
-            new_id = 1.ToString("D" + ketasuu.ToString)
-        Else
-            next_id = (CLng(new_id) + 1).ToString
-            new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-        End If
-
-        Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-        If Not response Then
-            msg_go("IDの更新に失敗しました。")
-            Return False
-        End If
+        Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
         Try
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM zaiko_log"
+            Dim query = "SELECT TOP 1 * FROM " + table_name
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            Dim temp_table_name = "t_zaiko_log"
+            Dim temp_table_name = "t_" + table_name
             da.Fill(ds, temp_table_name)
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
             Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
@@ -2333,38 +2366,22 @@ errsetting:
 
         Dim sonotoki = Now.ToString("yyyyMMddHHmmss")
 
+        Dim table_name = "kurikoshi_log"
         Dim id = 1
         Dim s_no = 17
         Dim ketasuu = 10
-        Dim new_id = get_settings(id:=id, s_no:=s_no)
-        Dim next_id As String
-        If new_id = "" Then
-            msg_go("IDの取得に失敗しました。")
-            Return False
-        ElseIf new_id = "0" Then
-            next_id = "2"
-            new_id = 1.ToString("D" + ketasuu.ToString)
-        Else
-            next_id = (CLng(new_id) + 1).ToString
-            new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-        End If
-
-        Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-        If Not response Then
-            msg_go("IDの更新に失敗しました。")
-            Return False
-        End If
+        Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
         Try
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM kurikoshi_log"
+            Dim query = "SELECT * FROM " + table_name
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            Dim temp_table_name = "t_kurikoshi_log"
+            Dim temp_table_name = "t_" + table_name
             da.Fill(ds, temp_table_name)
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
             Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
