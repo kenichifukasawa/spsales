@@ -827,7 +827,7 @@ Partial Class frmmain
         '
         Me.btn_log_touroku.BackColor = System.Drawing.Color.MistyRose
         Me.btn_log_touroku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_log_touroku.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_log_touroku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.btn_log_touroku.Location = New System.Drawing.Point(534, 54)
         Me.btn_log_touroku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_log_touroku.Name = "btn_log_touroku"
