@@ -43,6 +43,7 @@ Partial Class frmmain
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button328 = New System.Windows.Forms.Button()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.chk_log_sakujozumi = New System.Windows.Forms.CheckBox()
         Me.btn_log_touroku = New System.Windows.Forms.Button()
         Me.dgv_log = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -798,6 +799,7 @@ Partial Class frmmain
         'GroupBox11
         '
         Me.GroupBox11.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox11.Controls.Add(Me.chk_log_sakujozumi)
         Me.GroupBox11.Controls.Add(Me.btn_log_touroku)
         Me.GroupBox11.Controls.Add(Me.dgv_log)
         Me.GroupBox11.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -808,7 +810,17 @@ Partial Class frmmain
         Me.GroupBox11.Size = New System.Drawing.Size(630, 108)
         Me.GroupBox11.TabIndex = 220
         Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "ログ情報（変更は、該当行をダブルクリック）"
+        Me.GroupBox11.Text = "ログ情報（変更・削除は該当行をダブルクリック）"
+        '
+        'chk_log_sakujozumi
+        '
+        Me.chk_log_sakujozumi.AutoSize = True
+        Me.chk_log_sakujozumi.Location = New System.Drawing.Point(532, 15)
+        Me.chk_log_sakujozumi.Name = "chk_log_sakujozumi"
+        Me.chk_log_sakujozumi.Size = New System.Drawing.Size(93, 18)
+        Me.chk_log_sakujozumi.TabIndex = 134
+        Me.chk_log_sakujozumi.Text = "削除も表示"
+        Me.chk_log_sakujozumi.UseVisualStyleBackColor = True
         '
         'btn_log_touroku
         '
@@ -6592,6 +6604,7 @@ Partial Class frmmain
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox11.PerformLayout()
         CType(Me.dgv_log, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         CType(Me.dgv_denpyou, System.ComponentModel.ISupportInitialize).EndInit()
@@ -7099,4 +7112,5 @@ Partial Class frmmain
     Friend WithEvents Button326 As Button
     Friend WithEvents Button327 As Button
     Friend WithEvents Button328 As Button
+    Friend WithEvents chk_log_sakujozumi As CheckBox
 End Class

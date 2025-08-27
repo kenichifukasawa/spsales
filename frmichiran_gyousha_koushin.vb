@@ -90,42 +90,27 @@ Public Class frmichiran_gyousha_koushin
             fuyou = "1"
         End If
 
+        Dim table_name = "gyousha"
         If Trim(btn_koushin.Text).IndexOf("登録") <> -1 Then
 
             Dim id = 1
             Dim s_no = 6
             Dim ketasuu = 3
-            Dim new_id = get_settings(id:=id, s_no:=s_no)
-            Dim next_id As String
-            If new_id = "" Then
-                msg_go("IDの取得に失敗しました。")
-                Exit Sub
-            ElseIf new_id = "0" Then
-                next_id = "2"
-                new_id = 1.ToString("D" + ketasuu.ToString)
-            Else
-                next_id = (CLng(new_id) + 1).ToString
-                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-            End If
-
-            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-            If Not response Then
-                msg_go("IDの更新に失敗しました。")
-                Exit Sub
-            End If
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
             Try
 
                 Dim cn_server As New SqlConnection
                 cn_server.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "SELECT * FROM gyousha"
+                Dim query = "SELECT TOP 1 * FROM " + table_name
 
                 Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
                 Dim ds As New DataSet
-                da.Fill(ds, "t_gyousha")
+                Dim temp_table_name = "t_" + table_name
+                da.Fill(ds, temp_table_name)
                 Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
-                Dim data_row As DataRow = ds.Tables("t_gyousha").NewRow()
+                Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
 
                 data_row("gyoushaid") = new_id
                 data_row("gyoushamei") = gyousha_mei
@@ -227,8 +212,8 @@ Public Class frmichiran_gyousha_koushin
                     data_row("tekikakubangou") = tekikaku_bangou
                 End If
 
-                ds.Tables("t_gyousha").Rows.Add(data_row)
-                da.Update(ds, "t_gyousha")
+                ds.Tables(temp_table_name).Rows.Add(data_row)
+                da.Update(ds, temp_table_name)
                 ds.Clear()
 
             Catch ex As Exception
@@ -236,7 +221,7 @@ Public Class frmichiran_gyousha_koushin
                 Exit Sub
             End Try
 
-            msg_go("業者を登録しました。", 64)
+            msg_go("登録しました。", 64)
 
         Else '変更
 
@@ -251,163 +236,164 @@ Public Class frmichiran_gyousha_koushin
                 Dim conn As New SqlConnection
                 conn.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "SELECT * FROM gyousha WHERE gyoushaid ='" + gyousha_id + "'"
+                Dim query = "SELECT * FROM " + table_name + " WHERE gyoushaid ='" + gyousha_id + "'"
 
                 Dim da As New SqlDataAdapter
                 da = New SqlDataAdapter(query, conn)
                 Dim ds As New DataSet
-                da.Fill(ds, "t_gyousha")
+                Dim temp_table_name = "t_" + table_name
+                da.Fill(ds, temp_table_name)
 
-                ds.Tables("t_gyousha").Rows(0)("gyoushamei") = gyousha_mei
-                ds.Tables("t_gyousha").Rows(0)("gyoushafurigana") = furigana
+                ds.Tables(temp_table_name).Rows(0)("gyoushamei") = gyousha_mei
+                ds.Tables(temp_table_name).Rows(0)("gyoushafurigana") = furigana
 
                 If yuubin_bangou = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("mailno") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("mailno") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("mailno") = yuubin_bangou
+                    ds.Tables(temp_table_name).Rows(0)("mailno") = yuubin_bangou
                 End If
 
                 If juusho_2 = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushaadress") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushaadress") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushaadress") = juusho_2
+                    ds.Tables(temp_table_name).Rows(0)("gyoushaadress") = juusho_2
                 End If
 
                 If tel = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushatel") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushatel") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushatel") = tel
+                    ds.Tables(temp_table_name).Rows(0)("gyoushatel") = tel
                 End If
 
                 If fax = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushafax") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushafax") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushafax") = fax
+                    ds.Tables(temp_table_name).Rows(0)("gyoushafax") = fax
                 End If
 
                 If tantousha = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushatantou") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushatantou") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushatantou") = tantousha
+                    ds.Tables(temp_table_name).Rows(0)("gyoushatantou") = tantousha
                 End If
 
                 If tel_keitai = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushakeitai") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushakeitai") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushakeitai") = tel_keitai
+                    ds.Tables(temp_table_name).Rows(0)("gyoushakeitai") = tel_keitai
                 End If
 
                 If daihyousha = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushadaihyou") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushadaihyou") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushadaihyou") = daihyousha
+                    ds.Tables(temp_table_name).Rows(0)("gyoushadaihyou") = daihyousha
                 End If
 
                 If bikou_1 = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushabikou") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushabikou") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushabikou") = bikou_1
+                    ds.Tables(temp_table_name).Rows(0)("gyoushabikou") = bikou_1
                 End If
 
                 If bikou_2 = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushabikou2") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushabikou2") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushabikou2") = bikou_2
+                    ds.Tables(temp_table_name).Rows(0)("gyoushabikou2") = bikou_2
                 End If
 
                 If bikou_3 = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushabikou3") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushabikou3") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushabikou3") = bikou_3
+                    ds.Tables(temp_table_name).Rows(0)("gyoushabikou3") = bikou_3
                 End If
 
                 If shimebi = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("gyoushashimebi") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("gyoushashimebi") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("gyoushashimebi") = shimebi
+                    ds.Tables(temp_table_name).Rows(0)("gyoushashimebi") = shimebi
                 End If
 
                 If shouhizei = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("shouhizei") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("shouhizei") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("shouhizei") = shouhizei
+                    ds.Tables(temp_table_name).Rows(0)("shouhizei") = shouhizei
                 End If
 
                 If hasuu = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("hasuu") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("hasuu") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("hasuu") = hasuu
+                    ds.Tables(temp_table_name).Rows(0)("hasuu") = hasuu
                 End If
 
                 If shiharai_houhou = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("shiharaihouhou") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("shiharaihouhou") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("shiharaihouhou") = shiharai_houhou
+                    ds.Tables(temp_table_name).Rows(0)("shiharaihouhou") = shiharai_houhou
                 End If
 
                 If shiharai_jouken = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("shiharaijouken") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("shiharaijouken") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("shiharaijouken") = shiharai_jouken
+                    ds.Tables(temp_table_name).Rows(0)("shiharaijouken") = shiharai_jouken
                 End If
 
                 If ginkou_mei = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("bankmei") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("bankmei") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("bankmei") = ginkou_mei
+                    ds.Tables(temp_table_name).Rows(0)("bankmei") = ginkou_mei
                 End If
 
                 If ginkou_type = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("bankshurui") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("bankshurui") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("bankshurui") = ginkou_type
+                    ds.Tables(temp_table_name).Rows(0)("bankshurui") = ginkou_type
                 End If
 
                 If shiten_mei = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("bankshitenmei") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("bankshitenmei") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("bankshitenmei") = shiten_mei
+                    ds.Tables(temp_table_name).Rows(0)("bankshitenmei") = shiten_mei
                 End If
 
                 If kouza_bangou = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("bankno") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("bankno") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("bankno") = kouza_bangou
+                    ds.Tables(temp_table_name).Rows(0)("bankno") = kouza_bangou
                 End If
 
                 If kouza_meigi = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("bankkouzamei") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("bankkouzamei") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("bankkouzamei") = kouza_meigi
+                    ds.Tables(temp_table_name).Rows(0)("bankkouzamei") = kouza_meigi
                 End If
 
                 If mail_user = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("usermei") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("usermei") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("usermei") = mail_user
+                    ds.Tables(temp_table_name).Rows(0)("usermei") = mail_user
                 End If
 
                 If mail_domain = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("domainname") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("domainname") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("domainname") = mail_domain
+                    ds.Tables(temp_table_name).Rows(0)("domainname") = mail_domain
                 End If
 
                 If fuyou = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("fuyou") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("fuyou") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("fuyou") = fuyou
+                    ds.Tables(temp_table_name).Rows(0)("fuyou") = fuyou
                 End If
 
                 If tekikaku_bangou = "" Then
-                    ds.Tables("t_gyousha").Rows(0)("tekikakubangou") = DBNull.Value
+                    ds.Tables(temp_table_name).Rows(0)("tekikakubangou") = DBNull.Value
                 Else
-                    ds.Tables("t_gyousha").Rows(0)("tekikakubangou") = tekikaku_bangou
+                    ds.Tables(temp_table_name).Rows(0)("tekikakubangou") = tekikaku_bangou
                 End If
 
                 Dim cb As New SqlCommandBuilder
                 cb.DataAdapter = da
-                da.Update(ds, "t_gyousha")
+                da.Update(ds, temp_table_name)
                 ds.Clear()
 
             Catch ex As Exception
@@ -415,11 +401,11 @@ Public Class frmichiran_gyousha_koushin
                 Exit Sub
             End Try
 
-            msg_go("業者情報を変更しました。", 64)
+            msg_go("更新しました。", 64)
 
         End If
 
-        ' TODO : 郵便番号登録
+        ' 郵便番号登録
         If yuubin_bangou <> "" Then
 
             Dim is_tourokuzumi = False
@@ -460,7 +446,7 @@ Public Class frmichiran_gyousha_koushin
                     Dim cn_server As New SqlConnection
                     cn_server.ConnectionString = connectionstring_sqlserver
 
-                    Dim query = "SELECT * FROM mailno_m"
+                    Dim query = "SELECT TOP 1 * FROM mailno_m"
 
                     Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
                     Dim ds As New DataSet

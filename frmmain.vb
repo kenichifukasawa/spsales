@@ -990,4 +990,8 @@ Public Class frmmain
         End With
 
     End Sub
+
+    Private Sub chk_log_sakujozumi_Click(sender As Object, e As EventArgs) Handles chk_log_sakujozumi.Click
+        log_main_set(Trim(lbltenpoid.Text))
+    End Sub
 End Class

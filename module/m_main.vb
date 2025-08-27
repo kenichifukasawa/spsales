@@ -678,8 +678,10 @@ Module m_main
             With frmmain.dgv_denpyou
 
                 .Rows.Clear()
+                .RowHeadersWidth = 4
                 .Columns.Clear()
                 .ColumnCount = 10
+
                 .Columns(0).Name = "納品日"
                 .Columns(1).Name = "伝票NO"
                 .Columns(2).Name = "金額"
@@ -714,7 +716,10 @@ Module m_main
 
                 '列ヘッダーの高さを変える
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                .ColumnHeadersHeight = 30
+                .ColumnHeadersHeight = 25
+
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
@@ -823,6 +828,7 @@ Module m_main
             With frmmain.dgv_seikyuusho
 
                 .Rows.Clear()
+                .RowHeadersWidth = 4
                 .Columns.Clear()
                 .ColumnCount = 7
 
@@ -850,7 +856,10 @@ Module m_main
 
                 '列ヘッダーの高さを変える
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                .ColumnHeadersHeight = 30
+                .ColumnHeadersHeight = 25
+
+                Dim currentFont As Font = .DefaultCellStyle.Font
+                .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
@@ -1103,7 +1112,7 @@ Module m_main
 
     End Sub
 
-    Sub log_main_set(tenpo_id As String, Optional s_del As String = "")
+    Sub log_main_set(tenpo_id As String)
 
         With frmmain.dgv_log
 
@@ -1118,10 +1127,10 @@ Module m_main
             .Columns(3).Name = "区分"
             .Columns(4).Name = "内容"
             .Columns(5).Name = "状況"
-            .Columns(6).Name = "削"
+            .Columns(6).Name = "削徐"
 
             .Columns(0).Width = 0
-            .Columns(1).Width = 120
+            .Columns(1).Width = 100
             .Columns(2).Width = 70
             .Columns(3).Width = 70
             .Columns(4).Width = 550
@@ -1138,7 +1147,7 @@ Module m_main
 
             ' 行の高さの指定
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-            .ColumnHeadersHeight = 40
+            .ColumnHeadersHeight = 25
 
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
@@ -1153,7 +1162,7 @@ Module m_main
             Dim query = "SELECT * FROM log LEFT JOIN shain ON log.shainid = shain.shainid"
 
             Dim query_where = " WHERE log.tenpoid ='" + tenpo_id + "'"
-            If s_del <> "1" Then
+            If Not frmmain.chk_log_sakujozumi.Checked Then
                 query_where += " AND log.del IS NULL"
             End If
 
@@ -1175,9 +1184,11 @@ Module m_main
                 mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("youken"))
                 mojiretsu(5) = LogStatus.GetNameById(Trim(dt_server.Rows.Item(i).Item("st_id")))
 
+                Dim db_del = dt_server.Rows.Item(i).Item("del")
                 Dim del = ""
-                If Not IsDBNull(dt_server.Rows.Item(i).Item("del")) Then
-                    del = "1"
+                If Not IsDBNull(db_del) Then
+                    del = Trim(db_del)
+                    del = "社員ID:" + Mid(del, 1, 2) + " " + ConvertYmdStringToYmdSlash(Mid(del, 3, 8)) + " " + ConvertHmsStringToHmsColon(Mid(del, 11))
                 End If
                 mojiretsu(6) = del
 
@@ -1198,18 +1209,9 @@ Module m_main
     Sub tenpo_henkou_set(s_tenpoid As String)
 
         With frmkojin
+
             .cmbshime.Items.Clear()
-            .cmbshime.Items.Add("５日")
-            .cmbshime.Items.Add("１０日")
-            .cmbshime.Items.Add("１５日")
-            .cmbshime.Items.Add("２０日")
-            .cmbshime.Items.Add("２５日")
-            .cmbshime.Items.Add("月末")
-            .cmbshime.Items.Add("随時")
-
-
-
-
+            .cmbshime.Items.AddRange(Deadline.Names)
 
         End With
 
@@ -1549,30 +1551,11 @@ Module m_main
                     Else
                         .lblurl.Text = Trim(dt_server.Rows.Item(0).Item("url"))
                     End If
-                    If IsDBNull(dt_server.Rows.Item(0).Item("shimebi")) Then
-                        .lblshimebi.Text = ""
-                    Else
-                        Select Case Trim(dt_server.Rows.Item(0).Item("shimebi"))
-                            Case "0"
-                                .lblshimebi.Text = "５日"
-                            Case "1"
-                                .lblshimebi.Text = "１０日"
-                            Case "2"
-                                .lblshimebi.Text = "１５日"
-                            Case "3"
-                                .lblshimebi.Text = "２０日"
-                            Case "4"
-                                .lblshimebi.Text = "２５日"
-                            Case "5"
-                                .lblshimebi.Text = "月末"
-                            Case "6"
-                                .lblshimebi.Text = "随時"
-                            Case Else
-                                .lblshimebi.Text = "エラー"
-                        End Select
+                    Dim shimebi = ""
+                    If Not IsDBNull(dt_server.Rows.Item(0).Item("shimebi")) Then
+                        shimebi = Deadline.GetNameById(Trim(dt_server.Rows.Item(0).Item("shimebi")))
                     End If
-
-
+                    .lblshimebi.Text = shimebi
                     If IsDBNull(dt_server.Rows.Item(0).Item("souhasuu")) Then
                         .lblkeisanhouhou.Text = ""
                     Else
@@ -1898,38 +1881,24 @@ errsetting:
     Function hacchuushousai_touroku(s_hacchuushousai_count As Integer, s_hacchuushousai_data(,) As String) As Integer
 
         Try
+            Dim table_name = "hacchuushousai"
             Dim s_no = 3
             Dim id = 1
             Dim ketasuu = 10
-            Dim new_id = get_settings(id:=id, s_no:=s_no)
-            Dim next_id As String
-            If new_id = "" Then
-                msg_go("IDの取得に失敗しました。")
-                Exit Function
-            ElseIf new_id = "0" Then
-                next_id = "2"
-                new_id = 1.ToString("D" + ketasuu.ToString)
-            Else
-                next_id = (CLng(new_id) + s_hacchuushousai_count).ToString
-                new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-            End If
-
-            Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-            If Not response Then
-                msg_go("IDの更新に失敗しました。")
-                Exit Function
-            End If
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT TOP 1 * FROM hacchuushousai"
+            Dim query = "SELECT TOP 1 * FROM " + table_name
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            da.Fill(ds, "t_hacchuu")
+            Dim temp_table_name = "t_" + table_name
+            da.Fill(ds, temp_table_name)
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
-            Dim data_row As DataRow = ds.Tables("t_hacchuu").NewRow()
+            Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+
             For i = 0 To s_hacchuushousai_count - 1
 
                 data_row("hachuushousaiid") = new_id
@@ -1945,23 +1914,22 @@ errsetting:
                     data_row("keigen") = s_hacchuushousai_data(7, i)
                 End If
 
-                ds.Tables("t_hacchuu").Rows.Add(data_row)
+                ds.Tables(temp_table_name).Rows.Add(data_row)
             Next
 
-            da.Update(ds, "t_hacchuu")
+            da.Update(ds, temp_table_name)
             ds.Clear()
 
-            hacchuushousai_touroku = 1
-
+            Return 1
 
         Catch ex As Exception
             msg_go(ex.Message)
-            hacchuushousai_touroku = -1
+            Return -1
         End Try
 
     End Function
 
-    Function get_settings(id As Integer, s_no As Integer) As String
+    Function get_settei(id As Integer, s_no As Integer) As String ' TODO:移行後、削除し「get_settings」へ移行
 
         Try
 
@@ -1993,7 +1961,39 @@ errsetting:
 
     End Function
 
-    Function update_settings(id As Integer, s_no As Integer, new_value As String) As Boolean
+    Function get_settings(table_name As String) As String ' TODO:移行後、削除し「get_settings」へ移行
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM settings WHERE table_name = '" + table_name + "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_settings")
+            Dim dt_server As DataTable = ds_server.Tables("t_settings")
+
+            If dt_server.Rows.Count = 0 Then
+                Return ""
+            End If
+
+            Dim response = Trim(dt_server.Rows.Item(0).Item("next_id"))
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+            Return response
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return ""
+        End Try
+
+    End Function
+
+    Function update_settei(id As Integer, s_no As Integer, new_value As String) As Boolean ' TODO:移行後、削除し「update_settings」へ移行
 
         Try
 
@@ -2022,6 +2022,166 @@ errsetting:
         End Try
 
     End Function
+
+    Function update_settings(table_name As String, new_value As String) As Boolean ' TODO:移行後、削除し「update_settings」へ移行
+
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM settings WHERE table_name = '" + table_name + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_settings"
+            da.Fill(ds, temp_table_name)
+
+            Dim data_row = ds.Tables(temp_table_name).Rows(0)
+            data_row("next_id") = new_value
+
+            Dim cb As New SqlCommandBuilder
+            cb.DataAdapter = da
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+            Return True
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+    End Function
+
+    Function get_and_update_settings( ' TODO:移行後、菅野が書き換え（※）
+                                  table_name As String,
+                                  id As Integer,
+                                  s_no As Integer,
+                                  ketasuu As Integer,
+                                  Optional extTran As SqlTransaction = Nothing
+                                  ) As String
+
+        Dim ownConnection As Boolean = False
+        Dim conn As SqlConnection = Nothing
+        Dim tran As SqlTransaction = extTran
+        Dim new_id As String = "" ' TODO:移行後削除
+        Dim new_id_2 As String = ""
+
+        Try
+            ' もし外部からトランザクションが渡されていなければ、ここで新規に開始
+            If tran Is Nothing Then
+                conn = New SqlConnection(connectionstring_sqlserver)
+                conn.Open()
+                tran = conn.BeginTransaction()
+                ownConnection = True
+            Else
+                conn = tran.Connection
+            End If
+
+            '=============================== ' TODO:移行後削除（※）
+            ' settei テーブル処理
+            '===============================
+            Dim query = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
+            Dim da As New SqlDataAdapter(query, conn)
+            da.SelectCommand.Transaction = tran
+
+            Dim ds As New DataSet()
+            Dim table_name_settei = "t_settei"
+            da.Fill(ds, table_name_settei)
+
+            If ds.Tables(table_name_settei).Rows.Count = 0 Then
+                Throw New Exception("IDが存在しません。")
+            End If
+
+            Dim row As DataRow = ds.Tables(table_name_settei).Rows(0)
+            Dim current_id_settei As String = Trim(row("s" & s_no.ToString).ToString())
+
+            Dim next_id As String = ""
+            If current_id_settei = "" Then
+                Throw New Exception("IDの取得に失敗しました。")
+            ElseIf current_id_settei = "0" Then
+                next_id = "2"
+                new_id = 1.ToString("D" & ketasuu.ToString())
+            Else
+                next_id = (CLng(current_id_settei) + 1).ToString()
+                new_id = current_id_settei.PadLeft(ketasuu, "0"c)
+            End If
+
+            row("s" & s_no.ToString) = next_id
+
+            Dim cb As New SqlCommandBuilder(da)
+            da.UpdateCommand = cb.GetUpdateCommand()
+            da.Update(ds, table_name_settei)
+
+            '===============================
+            ' settings テーブル処理
+            '===============================
+            ' テーブル存在確認
+            Dim existsQuery As String = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'settings'"
+            Using cmdExists As New SqlCommand(existsQuery, conn, tran)
+                Dim exists As Integer = Convert.ToInt32(cmdExists.ExecuteScalar())
+                If exists > 0 Then ' TODO:移行後、exists は削除する（※）
+
+                    Dim selQuery As String = "SELECT * FROM settings WHERE table_name = '" + table_name + "'"
+                    Dim da2 As New SqlDataAdapter(selQuery, conn)
+                    da2.SelectCommand.Transaction = tran
+
+                    Dim ds2 As New DataSet()
+                    Dim table_name_settings = "t_settings"
+                    da2.Fill(ds2, table_name_settings)
+
+                    If ds2.Tables(table_name_settings).Rows.Count > 0 Then
+
+                        Dim row2 As DataRow = ds2.Tables(table_name_settings).Rows(0)
+                        Dim current_id_settings As String = Trim(row2("next_id").ToString())
+
+                        Dim next_id_2 As String = ""
+                        If current_id_settings = "" Then
+                            Throw New Exception("IDの取得に失敗しました。")
+                        ElseIf current_id_settings = "0" Then
+                            next_id_2 = "2"
+                            new_id_2 = 1.ToString("D" & ketasuu.ToString())
+                        Else
+                            next_id_2 = (CLng(current_id_settings) + 1).ToString()
+                            new_id_2 = current_id_settings.PadLeft(ketasuu, "0"c)
+                        End If
+
+                        ' 同じタイミングで書き換え
+                        row2("next_id") = next_id ' TODO:next_id_2に変更する。（※）
+
+                        Dim cb2 As New SqlCommandBuilder(da2)
+                        da2.UpdateCommand = cb2.GetUpdateCommand()
+                        da2.Update(ds2, table_name_settings)
+
+                    End If
+
+                End If
+            End Using
+
+            '===============================
+            ' コミット
+            '===============================
+            If ownConnection Then
+                tran.Commit()
+            End If
+
+            Return new_id ' TODO:移行後、new_id_2（※）
+
+        Catch ex As Exception
+            If ownConnection AndAlso tran IsNot Nothing Then
+                tran.Rollback()
+            End If
+            msg_go(ex.Message)
+            Return ""
+        Finally
+            If ownConnection AndAlso conn IsNot Nothing Then
+                conn.Close()
+            End If
+        End Try
+    End Function
+
 
     Function output_csv_by_data_grid_view(filePath As String, dataGridView As DataGridView, Optional columnsToExport As String() = Nothing) As Boolean
 
@@ -2161,38 +2321,22 @@ errsetting:
             sonotoki = shiteibi
         End If
 
+        Dim table_name = "zaiko_log"
         Dim id = 2
         Dim s_no = 16
         Dim ketasuu = 10
-        Dim new_id = get_settings(id:=id, s_no:=s_no)
-        Dim next_id As String
-        If new_id = "" Then
-            msg_go("IDの取得に失敗しました。")
-            Return False
-        ElseIf new_id = "0" Then
-            next_id = "2"
-            new_id = 1.ToString("D" + ketasuu.ToString)
-        Else
-            next_id = (CLng(new_id) + 1).ToString
-            new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-        End If
-
-        Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-        If Not response Then
-            msg_go("IDの更新に失敗しました。")
-            Return False
-        End If
+        Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
         Try
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM zaiko_log"
+            Dim query = "SELECT TOP 1 * FROM " + table_name
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            Dim temp_table_name = "t_zaiko_log"
+            Dim temp_table_name = "t_" + table_name
             da.Fill(ds, temp_table_name)
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
             Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
@@ -2222,38 +2366,22 @@ errsetting:
 
         Dim sonotoki = Now.ToString("yyyyMMddHHmmss")
 
+        Dim table_name = "kurikoshi_log"
         Dim id = 1
         Dim s_no = 17
         Dim ketasuu = 10
-        Dim new_id = get_settings(id:=id, s_no:=s_no)
-        Dim next_id As String
-        If new_id = "" Then
-            msg_go("IDの取得に失敗しました。")
-            Return False
-        ElseIf new_id = "0" Then
-            next_id = "2"
-            new_id = 1.ToString("D" + ketasuu.ToString)
-        Else
-            next_id = (CLng(new_id) + 1).ToString
-            new_id = new_id.ToString.PadLeft(ketasuu, "0"c)
-        End If
-
-        Dim response = update_settings(id:=id, s_no:=s_no, new_value:=next_id)
-        If Not response Then
-            msg_go("IDの更新に失敗しました。")
-            Return False
-        End If
+        Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
         Try
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT * FROM kurikoshi_log"
+            Dim query = "SELECT * FROM " + table_name
 
             Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
             Dim ds As New DataSet
-            Dim temp_table_name = "t_kurikoshi_log"
+            Dim temp_table_name = "t_" + table_name
             da.Fill(ds, temp_table_name)
             Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
             Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
