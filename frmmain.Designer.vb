@@ -78,6 +78,7 @@ Partial Class frmmain
         Me.lblkubun = New System.Windows.Forms.Label()
         Me.lbldaihyousha = New System.Windows.Forms.Label()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.lbltorihikinashi = New System.Windows.Forms.Label()
         Me.lblbikou = New System.Windows.Forms.RichTextBox()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.lblsoufusaki = New System.Windows.Forms.Label()
@@ -496,7 +497,6 @@ Partial Class frmmain
         Me.btn_nouhinsho_clear = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
-        Me.lbltorihikinashi = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
@@ -1252,6 +1252,17 @@ Partial Class frmmain
         Me.GroupBox15.TabIndex = 90
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "備考"
+        '
+        'lbltorihikinashi
+        '
+        Me.lbltorihikinashi.BackColor = System.Drawing.Color.White
+        Me.lbltorihikinashi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbltorihikinashi.Location = New System.Drawing.Point(407, -5)
+        Me.lbltorihikinashi.Name = "lbltorihikinashi"
+        Me.lbltorihikinashi.Size = New System.Drawing.Size(34, 22)
+        Me.lbltorihikinashi.TabIndex = 86
+        Me.lbltorihikinashi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbltorihikinashi.Visible = False
         '
         'lblbikou
         '
@@ -6399,7 +6410,7 @@ Partial Class frmmain
         '
         Me.chk_nouhinsho_houkoku.AutoSize = True
         Me.chk_nouhinsho_houkoku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.chk_nouhinsho_houkoku.Location = New System.Drawing.Point(397, 60)
+        Me.chk_nouhinsho_houkoku.Location = New System.Drawing.Point(397, 58)
         Me.chk_nouhinsho_houkoku.Name = "chk_nouhinsho_houkoku"
         Me.chk_nouhinsho_houkoku.Size = New System.Drawing.Size(59, 20)
         Me.chk_nouhinsho_houkoku.TabIndex = 199
@@ -6434,7 +6445,7 @@ Partial Class frmmain
         Me.chk_nouhinsho_pc.Checked = True
         Me.chk_nouhinsho_pc.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chk_nouhinsho_pc.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.chk_nouhinsho_pc.Location = New System.Drawing.Point(288, 60)
+        Me.chk_nouhinsho_pc.Location = New System.Drawing.Point(288, 58)
         Me.chk_nouhinsho_pc.Name = "chk_nouhinsho_pc"
         Me.chk_nouhinsho_pc.Size = New System.Drawing.Size(80, 20)
         Me.chk_nouhinsho_pc.TabIndex = 197
@@ -6477,7 +6488,7 @@ Partial Class frmmain
         Me.txt_nouhinsho_no.Enabled = False
         Me.txt_nouhinsho_no.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.txt_nouhinsho_no.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txt_nouhinsho_no.Location = New System.Drawing.Point(98, 55)
+        Me.txt_nouhinsho_no.Location = New System.Drawing.Point(98, 57)
         Me.txt_nouhinsho_no.MaxLength = 50
         Me.txt_nouhinsho_no.Name = "txt_nouhinsho_no"
         Me.txt_nouhinsho_no.Size = New System.Drawing.Size(168, 23)
@@ -6522,7 +6533,7 @@ Partial Class frmmain
         '
         Me.Label17.BackColor = System.Drawing.Color.White
         Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label17.Location = New System.Drawing.Point(10, 58)
+        Me.Label17.Location = New System.Drawing.Point(10, 60)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(87, 16)
         Me.Label17.TabIndex = 188
@@ -6579,17 +6590,6 @@ Partial Class frmmain
         Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(651, 694)
         Me.dgv_nouhinsho.TabIndex = 67
-        '
-        'lbltorihikinashi
-        '
-        Me.lbltorihikinashi.BackColor = System.Drawing.Color.White
-        Me.lbltorihikinashi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbltorihikinashi.Location = New System.Drawing.Point(407, -5)
-        Me.lbltorihikinashi.Name = "lbltorihikinashi"
-        Me.lbltorihikinashi.Size = New System.Drawing.Size(34, 22)
-        Me.lbltorihikinashi.TabIndex = 86
-        Me.lbltorihikinashi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lbltorihikinashi.Visible = False
         '
         'frmmain
         '

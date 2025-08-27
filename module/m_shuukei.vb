@@ -353,6 +353,7 @@ Module m_shuukei
 
             For i = 0 To dt_server.Rows.Count - 1
                 Dim item_name = Trim(dt_server.Rows.Item(i).Item("shainid")) + "   " + Trim(dt_server.Rows.Item(i).Item("shainmei"))
+                Dim item_name2 = Trim(dt_server.Rows.Item(i).Item("shainid")) + "   " + Trim(dt_server.Rows.Item(i).Item("ryakumei"))
                 Select Case frm_no
                     Case 1
                         frmshuukei_hanbai.cbx_shain.Items.Add(item_name)
@@ -365,7 +366,7 @@ Module m_shuukei
                     Case 5
                         frmseikyuu_shuukin_hyou.cbx_shain.Items.Add(item_name)
                     Case 6
-                        frmmain.cbx_shain.Items.Add(item_name)
+                        frmmain.cbx_shain.Items.Add(item_name2)
                     Case 7
                         frmdenpyou.cbx_shain.Items.Add(item_name)
                 End Select
