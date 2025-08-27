@@ -37,12 +37,13 @@ Public Class frmlog
         Dim newitsu As String = DateTime.Now.ToString("yyyyMMdd")
         Dim newnanji As String = DateTime.Now.ToString("HHmmss")
 
+        Dim table_name = "log"
         If log_id = "" Then
 
             Dim id = 1
             Dim s_no = 18
             Dim ketasuu = 10
-            Dim new_id = get_settings(id:=id, s_no:=s_no)
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
             Dim next_id As String
             If new_id = "" Then
                 msg_go("IDの取得に失敗しました。")
@@ -66,7 +67,7 @@ Public Class frmlog
                 Dim sc As New SqlConnection
                 sc.ConnectionString = connectionstring_sqlserver
 
-                Dim query = "SELECT TOP 1 * FROM log"
+                Dim query = "SELECT TOP 1 * FROM " + table_name
 
                 Dim da As SqlDataAdapter = New SqlDataAdapter(query, sc)
                 Dim ds As New DataSet
@@ -103,7 +104,7 @@ Public Class frmlog
                 Dim sc As New SqlConnection
                 sc.ConnectionString = connectionstring_sqlserver
 
-                Sql = "SELECT * FROM log WHERE log_id = '" + log_id + "'"
+                Sql = "SELECT * FROM " + table_name + " WHERE log_id = '" + log_id + "'"
 
                 Dim sda As New SqlDataAdapter
                 sda = New SqlDataAdapter(Sql, sc)
