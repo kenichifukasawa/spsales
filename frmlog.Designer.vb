@@ -23,6 +23,7 @@ Partial Class frmlog
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btn_sakujo = New System.Windows.Forms.Button()
         Me.btn_touroku = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -42,6 +43,7 @@ Partial Class frmlog
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.btn_sakujo)
         Me.GroupBox1.Controls.Add(Me.btn_touroku)
         Me.GroupBox1.Controls.Add(Me.btn_modoru)
         Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -52,6 +54,19 @@ Partial Class frmlog
         Me.GroupBox1.Size = New System.Drawing.Size(617, 71)
         Me.GroupBox1.TabIndex = 79
         Me.GroupBox1.TabStop = False
+        '
+        'btn_sakujo
+        '
+        Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_sakujo.Location = New System.Drawing.Point(15, 18)
+        Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_sakujo.Name = "btn_sakujo"
+        Me.btn_sakujo.Size = New System.Drawing.Size(127, 44)
+        Me.btn_sakujo.TabIndex = 35
+        Me.btn_sakujo.Text = "削除"
+        Me.btn_sakujo.UseVisualStyleBackColor = True
+        Me.btn_sakujo.Visible = False
         '
         'btn_touroku
         '
@@ -230,4 +245,5 @@ Partial Class frmlog
     Friend WithEvents Label4 As Label
     Friend WithEvents lbl_log_id As Label
     Friend WithEvents lbl_del As Label
+    Friend WithEvents btn_sakujo As Button
 End Class

@@ -143,4 +143,72 @@ Public Class frmlog
 
     End Sub
 
+    Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
+
+        Dim frm = frmmain
+        Dim shain_id As String = Trim(frm.lblshokuinid.Text)
+        If shain_id = "" Then
+            msg_go("社員IDが取得できませんでした。")
+            Exit Sub
+        End If
+
+        Dim log_id As String = Trim(lbl_log_id.Text)
+        Dim youken As String = Trim(frm.dgv_log.CurrentRow.Cells(4).Value.ToString)
+
+        Dim result As String = MessageBox.Show("削除しますか？" + vbCrLf + vbCrLf + "【内容】" + vbCrLf + youken, "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If result = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT TOP 1 * FROM log WHERE log_id = '" + log_id + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_log"
+            da.Fill(ds, temp_table_name)
+
+            If ds.Tables(temp_table_name).Rows.Count = 0 Then
+                msg_go("該当する店舗が見つかりません")
+                ds.Clear()
+                Exit Sub
+            End If
+
+            Dim table = ds.Tables(temp_table_name)
+
+            table.Rows(0)("del") = shain_id + Now.ToString("yyyyMMddHHmmss")
+
+            Dim cb As New SqlCommandBuilder(da)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Sub
+        End Try
+
+        msg_go("削除しました。", 64)
+
+        log_main_set(Trim(frm.lbltenpoid.Text))
+
+        Me.Close() : Me.Dispose()
+
+    End Sub
+
+    Private Sub lbl_log_id_TextChanged(sender As Object, e As EventArgs) Handles lbl_log_id.TextChanged
+        If Trim(lbl_log_id.Text) <> "" Then
+            btn_sakujo.Visible = True
+        End If
+    End Sub
+
+    Private Sub lbl_del_TextChanged(sender As Object, e As EventArgs) Handles lbl_del.TextChanged
+        If Trim(lbl_del.Text) <> "" Then
+            btn_sakujo.Enabled = False
+        End If
+    End Sub
 End Class

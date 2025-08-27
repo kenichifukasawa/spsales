@@ -43,6 +43,7 @@ Partial Class frmmain
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button328 = New System.Windows.Forms.Button()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.chk_log_sakujozumi = New System.Windows.Forms.CheckBox()
         Me.btn_log_touroku = New System.Windows.Forms.Button()
         Me.dgv_log = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -496,8 +497,6 @@ Partial Class frmmain
         Me.btn_nouhinsho_clear = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
-        Me.chk_log_sakujozumi = New System.Windows.Forms.CheckBox()
-        Me.btn_log_sakujo = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
@@ -800,7 +799,6 @@ Partial Class frmmain
         'GroupBox11
         '
         Me.GroupBox11.BackColor = System.Drawing.SystemColors.Control
-        Me.GroupBox11.Controls.Add(Me.btn_log_sakujo)
         Me.GroupBox11.Controls.Add(Me.chk_log_sakujozumi)
         Me.GroupBox11.Controls.Add(Me.btn_log_touroku)
         Me.GroupBox11.Controls.Add(Me.dgv_log)
@@ -812,7 +810,17 @@ Partial Class frmmain
         Me.GroupBox11.Size = New System.Drawing.Size(630, 108)
         Me.GroupBox11.TabIndex = 220
         Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "ログ情報（変更は、該当行をダブルクリック）"
+        Me.GroupBox11.Text = "ログ情報（変更・削除は該当行をダブルクリック）"
+        '
+        'chk_log_sakujozumi
+        '
+        Me.chk_log_sakujozumi.AutoSize = True
+        Me.chk_log_sakujozumi.Location = New System.Drawing.Point(532, 15)
+        Me.chk_log_sakujozumi.Name = "chk_log_sakujozumi"
+        Me.chk_log_sakujozumi.Size = New System.Drawing.Size(93, 18)
+        Me.chk_log_sakujozumi.TabIndex = 134
+        Me.chk_log_sakujozumi.Text = "削除も表示"
+        Me.chk_log_sakujozumi.UseVisualStyleBackColor = True
         '
         'btn_log_touroku
         '
@@ -6580,29 +6588,6 @@ Partial Class frmmain
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(651, 694)
         Me.dgv_nouhinsho.TabIndex = 67
         '
-        'chk_log_sakujozumi
-        '
-        Me.chk_log_sakujozumi.AutoSize = True
-        Me.chk_log_sakujozumi.Location = New System.Drawing.Point(532, 0)
-        Me.chk_log_sakujozumi.Name = "chk_log_sakujozumi"
-        Me.chk_log_sakujozumi.Size = New System.Drawing.Size(93, 18)
-        Me.chk_log_sakujozumi.TabIndex = 134
-        Me.chk_log_sakujozumi.Text = "削除も表示"
-        Me.chk_log_sakujozumi.UseVisualStyleBackColor = True
-        '
-        'btn_log_sakujo
-        '
-        Me.btn_log_sakujo.BackColor = System.Drawing.Color.MistyRose
-        Me.btn_log_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_log_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_log_sakujo.Location = New System.Drawing.Point(534, 18)
-        Me.btn_log_sakujo.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_log_sakujo.Name = "btn_log_sakujo"
-        Me.btn_log_sakujo.Size = New System.Drawing.Size(89, 44)
-        Me.btn_log_sakujo.TabIndex = 135
-        Me.btn_log_sakujo.Text = "削　除"
-        Me.btn_log_sakujo.UseVisualStyleBackColor = False
-        '
         'frmmain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -7127,6 +7112,5 @@ Partial Class frmmain
     Friend WithEvents Button326 As Button
     Friend WithEvents Button327 As Button
     Friend WithEvents Button328 As Button
-    Friend WithEvents btn_log_sakujo As Button
     Friend WithEvents chk_log_sakujozumi As CheckBox
 End Class
