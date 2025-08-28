@@ -40,6 +40,8 @@ Partial Class frmseikyuu_sentaku
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btn_hakkou_pdf = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.chk_check_log = New System.Windows.Forms.CheckBox()
+        Me.chk_check_all = New System.Windows.Forms.CheckBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btn_check = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
@@ -241,6 +243,8 @@ Partial Class frmseikyuu_sentaku
         'GroupBox6
         '
         Me.GroupBox6.BackColor = System.Drawing.Color.White
+        Me.GroupBox6.Controls.Add(Me.chk_check_log)
+        Me.GroupBox6.Controls.Add(Me.chk_check_all)
         Me.GroupBox6.Controls.Add(Me.Label5)
         Me.GroupBox6.Controls.Add(Me.btn_check)
         Me.GroupBox6.Location = New System.Drawing.Point(188, 165)
@@ -248,6 +252,28 @@ Partial Class frmseikyuu_sentaku
         Me.GroupBox6.Size = New System.Drawing.Size(698, 147)
         Me.GroupBox6.TabIndex = 132
         Me.GroupBox6.TabStop = False
+        '
+        'chk_check_log
+        '
+        Me.chk_check_log.AutoSize = True
+        Me.chk_check_log.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.chk_check_log.Location = New System.Drawing.Point(225, 89)
+        Me.chk_check_log.Name = "chk_check_log"
+        Me.chk_check_log.Size = New System.Drawing.Size(213, 19)
+        Me.chk_check_log.TabIndex = 99
+        Me.chk_check_log.Text = "デスクトップのテキストに記録する"
+        Me.chk_check_log.UseVisualStyleBackColor = True
+        '
+        'chk_check_all
+        '
+        Me.chk_check_all.AutoSize = True
+        Me.chk_check_all.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.chk_check_all.Location = New System.Drawing.Point(225, 42)
+        Me.chk_check_all.Name = "chk_check_all"
+        Me.chk_check_all.Size = New System.Drawing.Size(264, 19)
+        Me.chk_check_all.TabIndex = 98
+        Me.chk_check_all.Text = "回避フラッグを無視し、全件をチェックする"
+        Me.chk_check_all.UseVisualStyleBackColor = True
         '
         'Label5
         '
@@ -294,6 +320,7 @@ Partial Class frmseikyuu_sentaku
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -318,4 +345,6 @@ Partial Class frmseikyuu_sentaku
     Friend WithEvents Label5 As Label
     Friend WithEvents btn_check As Button
     Friend WithEvents btn_seikyuusho_soushin_kanri As Button
+    Friend WithEvents chk_check_log As CheckBox
+    Friend WithEvents chk_check_all As CheckBox
 End Class
