@@ -1152,6 +1152,8 @@ Module m_main
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
         End With
 
         Try
@@ -2151,24 +2153,24 @@ errsetting:
                                   s_no As Integer,
                                   ketasuu As Integer,
                                   Optional henkasuu As Integer = 1, ' 親子関係のテーブルの登録の場合の子のテーブルの登録数。子テーブルの登録のFor文の中でnew_idを加算していく。
-                                  Optional extTran As SqlTransaction = Nothing
+                                  Optional extTrans As SqlTransaction = Nothing
                                   ) As String
 
         Dim ownConnection As Boolean = False
         Dim conn As SqlConnection = Nothing
-        Dim tran As SqlTransaction = extTran
+        Dim trans As SqlTransaction = extTrans
         Dim new_id As String = "" ' TODO:移行後削除
         Dim new_id_2 As String = ""
 
         Try
             ' もし外部からトランザクションが渡されていなければ、ここで新規に開始
-            If tran Is Nothing Then
+            If trans Is Nothing Then
                 conn = New SqlConnection(connectionstring_sqlserver)
                 conn.Open()
-                tran = conn.BeginTransaction()
+                trans = conn.BeginTransaction()
                 ownConnection = True
             Else
-                conn = tran.Connection
+                conn = trans.Connection
             End If
 
             '=============================== ' TODO:移行後削除（※）
@@ -2176,7 +2178,7 @@ errsetting:
             '===============================
             Dim query = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
             Dim da As New SqlDataAdapter(query, conn)
-            da.SelectCommand.Transaction = tran
+            da.SelectCommand.Transaction = trans
 
             Dim ds As New DataSet()
             Dim table_name_settei = "t_settei"
@@ -2211,13 +2213,13 @@ errsetting:
             '===============================
             ' テーブル存在確認
             Dim existsQuery As String = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'settings'"
-            Using cmdExists As New SqlCommand(existsQuery, conn, tran)
+            Using cmdExists As New SqlCommand(existsQuery, conn, trans)
                 Dim exists As Integer = Convert.ToInt32(cmdExists.ExecuteScalar())
                 If exists > 0 Then ' TODO:移行後、exists は削除する（※）
 
                     Dim selQuery As String = "SELECT * FROM settings WHERE table_name = '" + table_name + "'"
                     Dim da2 As New SqlDataAdapter(selQuery, conn)
-                    da2.SelectCommand.Transaction = tran
+                    da2.SelectCommand.Transaction = trans
 
                     Dim ds2 As New DataSet()
                     Dim table_name_settings = "t_settings"
@@ -2255,14 +2257,14 @@ errsetting:
             ' コミット
             '===============================
             If ownConnection Then
-                tran.Commit()
+                trans.Commit()
             End If
 
             Return new_id ' TODO:移行後、new_id_2（※）
 
         Catch ex As Exception
-            If ownConnection AndAlso tran IsNot Nothing Then
-                tran.Rollback()
+            If ownConnection AndAlso trans IsNot Nothing Then
+                trans.Rollback()
             End If
             msg_go(ex.Message)
             Return ""
@@ -2403,55 +2405,80 @@ errsetting:
 
     End Function
 
-    Function shouhin_zaiko_log(shainid As String, shouhinid As String, naiyou As Integer, new_atai As String, bikou As String, Optional shiteibi As String = "") As Boolean ' TODO : いずれ、「create_zaiko_log」に名称変更
+    Function shouhin_zaiko_log(shainid As String, shouhinid As String, naiyou As Integer, new_atai As String, bikou As String, Optional shiteibi As String = "",
+                               Optional extTrans As SqlTransaction = Nothing) As Boolean ' TODO : いずれ、「create_zaiko_log」に名称変更
 
-        Dim sonotoki = ""
-        If shiteibi = "" Then
-            sonotoki = Now.ToString("yyyyMMddHHmmss")
-        Else
-            sonotoki = shiteibi
-        End If
+        Dim sonotoki As String = If(String.IsNullOrEmpty(shiteibi), Now.ToString("yyyyMMddHHmmss"), shiteibi)
 
-        Dim table_name = "zaiko_log"
-        Dim id = 2
-        Dim s_no = 16
-        Dim ketasuu = 10
-        Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
+        Dim conn As SqlConnection = Nothing
+        Dim trans As SqlTransaction = extTrans
+        Dim localConn As Boolean = False
 
         Try
+            If trans Is Nothing Then
+                conn = New SqlConnection(connectionstring_sqlserver)
+                conn.Open()
+                trans = conn.BeginTransaction()
+                localConn = True
+            Else
+                conn = trans.Connection
+            End If
 
-            Dim cn_server As New SqlConnection
-            cn_server.ConnectionString = connectionstring_sqlserver
 
-            Dim query = "SELECT TOP 1 * FROM " + table_name
+            Dim table_name = "zaiko_log"
+            Dim id = 2
+            Dim s_no = 16
+            Dim ketasuu = 10
+            Dim new_id As String = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu, extTrans:=trans)
 
-            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
-            Dim ds As New DataSet
-            Dim temp_table_name = "t_" + table_name
-            da.Fill(ds, temp_table_name)
-            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
-            Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+            Dim query = "SELECT TOP 1 * FROM " & table_name
+            Using da As New SqlDataAdapter(query, conn)
+                da.SelectCommand.Transaction = trans
 
-            data_row("logid") = new_id
-            data_row("sonotoki") = sonotoki
-            data_row("shouhinid") = shouhinid
-            data_row("shainid") = shainid
-            data_row("naiyou") = naiyou.ToString("D2")
-            data_row("newatai") = new_atai
-            data_row("bikou") = bikou
+                Dim ds As New DataSet
+                Dim temp_table_name = "t_" & table_name
+                da.Fill(ds, temp_table_name)
 
-            ds.Tables(temp_table_name).Rows.Add(data_row)
-            da.Update(ds, temp_table_name)
-            ds.Clear()
+                Dim cb As New SqlCommandBuilder(da)
+
+                Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+                data_row("logid") = new_id
+                data_row("sonotoki") = sonotoki
+                data_row("shouhinid") = shouhinid
+                data_row("shainid") = shainid
+                data_row("naiyou") = naiyou.ToString("D2")
+                data_row("newatai") = new_atai
+                data_row("bikou") = bikou
+
+                ds.Tables(temp_table_name).Rows.Add(data_row)
+                da.Update(ds, temp_table_name)
+                ds.Clear()
+
+            End Using
+
+            If localConn Then
+                trans.Commit()
+            End If
+
+            Return True
 
         Catch ex As Exception
+            If localConn AndAlso trans IsNot Nothing Then
+                trans.Rollback()
+            End If
+
             msg_go(ex.Message)
             Return False
+
+        Finally
+            If localConn AndAlso conn IsNot Nothing Then
+                conn.Close()
+                conn.Dispose()
+            End If
         End Try
 
-        Return True
-
     End Function
+
 
     Function kurikoshi_log_edit(shainid As String, tenpoid As String, naiyou As Integer, new_atai As String, bikou As String) As String
 
