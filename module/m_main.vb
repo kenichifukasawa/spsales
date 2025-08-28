@@ -2429,7 +2429,7 @@ errsetting:
             Dim id = 2
             Dim s_no = 16
             Dim ketasuu = 10
-            Dim new_id As String = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
+            Dim new_id As String = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu, extTrans:=trans)
 
             Dim query = "SELECT TOP 1 * FROM " & table_name
             Using da As New SqlDataAdapter(query, conn)

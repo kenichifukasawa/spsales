@@ -84,6 +84,7 @@ Public Class frmcheck_kosuu_henkou
 
                                 Dim da As New SqlDataAdapter
                                 da = New SqlDataAdapter(query, conn)
+                                da.SelectCommand.Transaction = trans
                                 Dim ds As New DataSet
                                 da.Fill(ds, "t_shouhin")
 
@@ -110,7 +111,7 @@ Public Class frmcheck_kosuu_henkou
                             Dim shainid = "10"
                             Dim naiyou = 11
                             Dim new_atai = dbl_new_value.ToString
-                            If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou, , trans) = False Then
+                            If shouhin_zaiko_log(shainid:=shainid, shouhinid:=shouhin_id, naiyou:=naiyou, new_atai:=new_atai, bikou:=bikou, extTrans:=trans) = False Then
                                 trans.Rollback()
                                 msg_go("在庫ログ登録作業中にエラーが発生しました。")
                                 Exit Sub
@@ -585,7 +586,7 @@ Public Class frmcheck_kosuu_henkou
             Dim id = 1
             Dim s_no = 2
             Dim ketasuu = 8
-            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu, extTrans:=trans)
 
             Dim query = "SELECT TOP 1 * FROM " + table_name
 
