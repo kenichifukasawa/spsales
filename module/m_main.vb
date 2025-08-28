@@ -2150,7 +2150,7 @@ errsetting:
                                   id As Integer,
                                   s_no As Integer,
                                   ketasuu As Integer,
-                                  Optional henkasuu As Integer = 1,
+                                  Optional henkasuu As Integer = 1, ' 親子関係のテーブルの登録の場合の子のテーブルの登録数。子テーブルの登録のFor文の中でnew_idを加算していく。
                                   Optional extTran As SqlTransaction = Nothing
                                   ) As String
 
