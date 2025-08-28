@@ -1152,6 +1152,8 @@ Module m_main
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
         End With
 
         Try
