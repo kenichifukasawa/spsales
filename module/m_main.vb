@@ -1725,7 +1725,8 @@ Module m_main
         System.Windows.Forms.Application.DoEvents()
     End Sub
 
-    Function main_hontouroku(s_iraibi As String, s_goukei As String, s_shainid As String, s_tenpoid As String, s_nouhinshoid As String, s_dami As String) As Integer
+    Function main_hontouroku(s_iraibi As String, s_goukei As String, s_shainid As String, s_tenpoid As String, s_nouhinshoid As String, s_dami As String,
+                             s_inji As String, s_bikou1 As String, s_bikou2 As String) As Integer
 
         main_hontouroku = -1
 

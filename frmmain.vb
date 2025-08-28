@@ -547,6 +547,7 @@ Public Class frmmain
         cbx_shurui.Items.Add("委託")
 
 
+
     End Sub
 
 
@@ -705,7 +706,8 @@ Public Class frmmain
 
         Dim newnebiki2 As Integer = 0
 
-
+        Dim s_bikou1 As String = Trim(txtbikou1.Text)
+        Dim s_bikou2 As String = Trim(txtbikou2.Text)
 
         If chk_nouhinsho_pc.Checked = True Then
             newnouhinshokanriid = ""
@@ -747,14 +749,14 @@ Public Class frmmain
         wait_on("", "1")
 
 
-        If main_hontouroku(newiraibi, newgoukei, newshainid, newtenpoid, newnouhinshokanriid, dami3) = -1 Then
+        If main_hontouroku(newiraibi, newgoukei, newshainid, newtenpoid, newnouhinshokanriid, dami3, newinji, s_bikou1, s_bikou2) = -1 Then
 
 
         End If
-        '        tenpo_order_touroku2_10 newiraibi, newgoukei, newnebiki2, newshainid, newtenpoid, newnouhinshokanriid, dami3, s_pcname
 
 
         wait_off()
+
         '        nouhinsho_tourokuchu = 0
 
 
@@ -998,5 +1000,27 @@ Public Class frmmain
 
     Private Sub chk_log_sakujozumi_Click(sender As Object, e As EventArgs) Handles chk_log_sakujozumi.Click
         log_main_set(Trim(lbltenpoid.Text))
+    End Sub
+
+    Private Sub Button328_Click(sender As Object, e As EventArgs) Handles Button328.Click
+
+        Dim s_r As String = InputBox("R番号入力")
+        Dim s_g As String = InputBox("G番号入力")
+        Dim s_b As String = InputBox("B番号入力")
+
+        If s_r = "" Or s_g = "" Or s_b = "" Then
+            msg_go("値が不正です。")
+            Exit Sub
+        End If
+
+
+        GroupBox13.BackColor = Color.FromArgb(CInt(s_r), CInt(s_g), CInt(s_b))
+        GroupBox2.BackColor = Color.FromArgb(CInt(s_r), CInt(s_g), CInt(s_b))
+        GroupBox1.BackColor = Color.FromArgb(CInt(s_r), CInt(s_g), CInt(s_b))
+        GroupBox5.BackColor = Color.FromArgb(CInt(s_r), CInt(s_g), CInt(s_b))
+        GroupBox4.BackColor = Color.FromArgb(CInt(s_r), CInt(s_g), CInt(s_b))
+
+
+
     End Sub
 End Class
