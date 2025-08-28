@@ -2150,6 +2150,7 @@ errsetting:
                                   id As Integer,
                                   s_no As Integer,
                                   ketasuu As Integer,
+                                  Optional henkasuu As Integer = 1,
                                   Optional extTran As SqlTransaction = Nothing
                                   ) As String
 
@@ -2195,7 +2196,7 @@ errsetting:
                 next_id = "2"
                 new_id = 1.ToString("D" & ketasuu.ToString())
             Else
-                next_id = (CLng(current_id_settei) + 1).ToString()
+                next_id = (CLng(current_id_settei) + henkasuu).ToString()
                 new_id = current_id_settei.PadLeft(ketasuu, "0"c)
             End If
 
@@ -2234,7 +2235,7 @@ errsetting:
                             next_id_2 = "2"
                             new_id_2 = 1.ToString("D" & ketasuu.ToString())
                         Else
-                            next_id_2 = (CLng(current_id_settings) + 1).ToString()
+                            next_id_2 = (CLng(current_id_settings) + henkasuu).ToString()
                             new_id_2 = current_id_settings.PadLeft(ketasuu, "0"c)
                         End If
 
