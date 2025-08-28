@@ -118,10 +118,6 @@ Public Class frmcheck_kosuu_henkou
 
                         Next
 
-                        msg_go("テスト", 64)
-                        trans.Rollback()
-                        Exit Sub
-
                         trans.Commit()
 
                     Catch ex As Exception
