@@ -3,7 +3,102 @@
 Module m_shiire
 
 
+    Sub shiire_rireki_set(s_gyoushaid As String)
 
+
+
+        With frmshiire.dgvshiirerireki
+
+            .Rows.Clear()
+            .Columns.Clear()
+            .ColumnCount = 5
+
+            .Columns(0).Name = "仕入日"
+            .Columns(1).Name = "金額"
+            .Columns(2).Name = "仕入ID"
+            .Columns(3).Name = "伝票ID"
+            .Columns(4).Name = "備考"
+
+            .Columns(0).Width = 120
+            .Columns(1).Width = 100
+            .Columns(2).Width = 100
+            .Columns(3).Width = 100
+            .Columns(4).Width = 200
+
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+            .Columns(1).DefaultCellStyle.Format = "#,##0"
+
+            ' 行の高さの指定
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+            .ColumnHeadersHeight = 25
+
+            Dim currentFont As Font = .DefaultCellStyle.Font
+            .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+        End With
+
+        frmshiire.lblgyousha.Text = ""
+
+        Dim sum_goukei_gaku = 0
+
+            Try
+
+                Dim cn_server As New SqlConnection
+                cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT shiire.*,gyousha.gyoushamei" &
+                        " FROM shiire right join gyousha" &
+                        " on shiire.gyoushaid=gyousha.gyoushaid" &
+                        " where joukyou='0' and shiire.gyoushaid='" & s_gyoushaid & "'" &
+                        " ORDER BY shiirebi DESC,shiireid"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+                Dim ds_server As New DataSet
+                da_server.Fill(ds_server, "t_shiireshousai")
+                Dim dt_server As DataTable = ds_server.Tables("t_shiireshousai")
+
+            Dim mojiretsu(6) As String, s_kin As Double
+            For i = 0 To dt_server.Rows.Count - 1
+                mojiretsu(0) = Mid(Trim(dt_server.Rows.Item(0).Item("shiirebi")), 1, 4) & "/" & Mid(Trim(dt_server.Rows.Item(0).Item("shiirebi")), 5, 2) & "/" & Mid(Trim(dt_server.Rows.Item(0).Item("shiirebi")), 7, 2)
+
+                frmshiire.lblgyousha.Text = Trim(dt_server.Rows.Item(i).Item("gyoushamei"))
+
+                s_kin = dt_server.Rows.Item(i).Item("goukeikingaku")
+                mojiretsu(1) = s_kin.ToString("#,##0")
+                mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("shiireid"))
+
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("denban")) Then
+                    mojiretsu(3) = Trim(dt_server.Rows.Item(i).Item("denban"))
+                Else
+                    mojiretsu(3) = ""
+                End If
+
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou")) Then
+                    mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("bikou"))
+                Else
+                    mojiretsu(4) = ""
+                End If
+
+                frmshiire.dgvshiirerireki.Rows.Add(mojiretsu)
+
+            Next
+
+            dt_server.Clear()
+                ds_server.Clear()
+
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Sub
+            End Try
+
+    End Sub
 
     Sub set_shiire_rireki_shousai(dgv_count As Integer, shiire_id As String, hiduke As String, gyousha_mei As String)
 

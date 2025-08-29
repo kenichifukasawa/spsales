@@ -554,6 +554,7 @@ Public Class frmshiire
 
     Private Sub frmshiire_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        set_gyousha_cbx(4)
 
     End Sub
 
@@ -563,6 +564,16 @@ Public Class frmshiire
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+
+    End Sub
+
+    Private Sub cmdshiiiresaki_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmdshiiiresaki.SelectedIndexChanged
+
+        If cmdshiiiresaki.SelectedIndex <> -1 Then
+            Dim s_gyoushaid As String = Mid(Trim(cmdshiiiresaki.Text), 1, 3)
+            shiire_rireki_set(s_gyoushaid)
+
+        End If
 
     End Sub
 End Class

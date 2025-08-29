@@ -386,9 +386,7 @@ Module m_main
     Function shouhinkubun_shien_grid_set(no As Integer, Optional sentaku1id As String = "", Optional sentakuid2 As String = "") As Integer
 
 
-        Dim shouhinkubuncount As Integer, shouhinkubunGROW As Integer, cmdicmdi3 As Integer
 
-        Dim lngStyle As Long
 
         shouhinkubun_shien_grid_set = 0
 
