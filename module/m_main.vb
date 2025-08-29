@@ -2386,40 +2386,29 @@ errsetting:
 
     End Function
 
-    Function shouhin_zaiko_log(shainid As String, shouhinid As String, naiyou As Integer, new_atai As String, bikou As String, Optional shiteibi As String = "",
-                               Optional extTrans As SqlTransaction = Nothing) As Boolean ' TODO : いずれ、「create_zaiko_log」に名称変更
+    Function shouhin_zaiko_log(shainid As String, shouhinid As String, naiyou As Integer, new_atai As String, bikou As String, Optional shiteibi As String = "") As Boolean ' TODO : いずれ、「create_zaiko_log」に名称変更
 
         Dim sonotoki As String = If(String.IsNullOrEmpty(shiteibi), Now.ToString("yyyyMMddHHmmss"), shiteibi)
-
         Dim conn As SqlConnection = Nothing
-        Dim trans As SqlTransaction = extTrans
-        Dim localConn As Boolean = False
 
         Try
-            If trans Is Nothing Then
-                conn = New SqlConnection(connectionstring_sqlserver)
-                conn.Open()
-                trans = conn.BeginTransaction()
-                localConn = True
-            Else
-                conn = trans.Connection
-            End If
 
+            conn = New SqlConnection(connectionstring_sqlserver)
+            conn.Open()
 
             Dim table_name = "zaiko_log"
             Dim id = 2
             Dim s_no = 16
             Dim ketasuu = 10
-            Dim new_id As String = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu, extTrans:=trans)
+            Dim new_id As String = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
             Dim query = "SELECT TOP 1 * FROM " & table_name
+
             Using da As New SqlDataAdapter(query, conn)
-                da.SelectCommand.Transaction = trans
 
                 Dim ds As New DataSet
                 Dim temp_table_name = "t_" & table_name
                 da.Fill(ds, temp_table_name)
-
                 Dim cb As New SqlCommandBuilder(da)
 
                 Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
@@ -2437,28 +2426,20 @@ errsetting:
 
             End Using
 
-            If localConn Then
-                trans.Commit()
-            End If
-
             Return True
 
         Catch ex As Exception
-            If localConn AndAlso trans IsNot Nothing Then
-                trans.Rollback()
-            End If
-
             msg_go(ex.Message)
             Return False
-
         Finally
-            If localConn AndAlso conn IsNot Nothing Then
+            If conn IsNot Nothing Then
                 conn.Close()
                 conn.Dispose()
             End If
         End Try
 
     End Function
+
 
 
     Function kurikoshi_log_edit(shainid As String, tenpoid As String, naiyou As Integer, new_atai As String, bikou As String) As String
