@@ -35,9 +35,10 @@ Public Class frmseikyuu_sentaku
 
         ' TODO : 停止機能を作る
 
+        Dim folder_path = DESKTOP_PATH + "\"
         Dim log_flg = False
         If chk_check_log.Checked Then
-            write_log("請求前チェックの開始********************************************")
+            write_log("請求前チェックの開始********************************************", folder_path)
             log_flg = True
         End If
 
@@ -59,7 +60,7 @@ Public Class frmseikyuu_sentaku
             If count_1 = 0 Then
                 msg_go("チェックしたいデータが存在しません。")
                 If log_flg Then
-                    write_log(log_end_msg)
+                    write_log(log_end_msg, folder_path)
                 End If
                 Exit Sub
             End If
@@ -117,7 +118,7 @@ Public Class frmseikyuu_sentaku
                                     Dim error_msg As String = "[請求前チェック]データの繰越金額に差異があります。" + tenpo_id + Space(3) + tenpo_mei +
                                         "   請求書ID：" + seikyuushoid + "   前回請求金額：" + mae_data.ToString("#,0") + "円   今回請求金額：" + ato_data.ToString("#,0") + "円"
                                     If log_flg Then
-                                        write_log(error_msg)
+                                        write_log(error_msg, folder_path)
                                     Else
                                         msg_go(error_msg)
                                     End If
@@ -126,7 +127,7 @@ Public Class frmseikyuu_sentaku
                                         Dim error_msg As String = "[請求前チェック]データの繰越金額に差異があります。" + tenpo_id + Space(3) + tenpo_mei +
                                             "   請求書ID：" + seikyuushoid + "   前回請求金額：" + mae_data.ToString("#,0") + "円   今回請求金額：" + ato_data.ToString("#,0") + "円"
                                         If log_flg Then
-                                            write_log(error_msg)
+                                            write_log(error_msg, folder_path)
                                         Else
                                             msg_go(error_msg)
                                         End If
@@ -179,7 +180,7 @@ Public Class frmseikyuu_sentaku
                                     Dim error_msg As String = "[請求前チェック]データの最終繰越金額にエラーがあります。" + tenpo_id + Space(3) + tenpo_mei +
                                     "   請求書ID：" + seikyuushoid + "   金額：" + kingaku.ToString("#,0") + "円, " + seikyuukingaku.ToString("#,0") + "円"
                                     If log_flg Then
-                                        write_log(error_msg)
+                                        write_log(error_msg, folder_path)
                                     Else
                                         msg_go(error_msg)
                                     End If
@@ -192,7 +193,7 @@ Public Class frmseikyuu_sentaku
                             Catch ex As Exception
                                 msg_go(ex.Message)
                                 If log_flg Then
-                                    write_log(log_end_msg)
+                                    write_log(log_end_msg, folder_path)
                                 End If
                                 hide_shinkou_joukyou()
                                 Exit Sub
@@ -208,7 +209,7 @@ Public Class frmseikyuu_sentaku
                 Catch ex As Exception
                     msg_go(ex.Message)
                     If log_flg Then
-                        write_log(log_end_msg)
+                        write_log(log_end_msg, folder_path)
                     End If
                     hide_shinkou_joukyou()
                     Exit Sub
@@ -224,14 +225,14 @@ Public Class frmseikyuu_sentaku
         Catch ex As Exception
             msg_go(ex.Message)
             If log_flg Then
-                write_log(log_end_msg)
+                write_log(log_end_msg, folder_path)
             End If
             hide_shinkou_joukyou()
             Exit Sub
         End Try
 
         If log_flg Then
-            write_log(log_end_msg)
+            write_log(log_end_msg, folder_path)
         End If
 
         msg_go("チェック終了しました。", 64)

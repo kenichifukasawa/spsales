@@ -2514,17 +2514,22 @@ errsetting:
 
     End Function
 
-    Sub write_log(msg As String)
+    Sub write_log(msg As String, Optional folder_path As String = "")
 
         Dim day = Now.ToString("yyyyMMdd")
-        Dim path = log_path + "log_" + day + ".txt"
+        Dim txt_path = ""
+        If folder_path <> "" Then
+            txt_path = folder_path + "log_" + day + ".txt"
+        Else
+            txt_path = log_path + "log_" + day + ".txt"
+        End If
 
         Dim time = Now.ToString("HHmmss")
         Dim message = day + " " + time + " " + msg
 
         Dim encoding As Encoding = Encoding.UTF8
 
-        Using writer As New StreamWriter(path, True, encoding)
+        Using writer As New StreamWriter(file_path, True, encoding)
             writer.WriteLine(message)
         End Using
 
