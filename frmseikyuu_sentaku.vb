@@ -1,4 +1,6 @@
-﻿Public Class frmseikyuu_sentaku
+﻿Imports System.Data.SqlClient
+
+Public Class frmseikyuu_sentaku
     Private Sub btn_modoru_Click(sender As Object, e As EventArgs) Handles btn_modoru.Click
         Me.Close() : Me.Dispose()
     End Sub
@@ -31,155 +33,259 @@
 
     Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
 
+        Dim log_flg = False
+        If chk_check_log.Checked Then
+            write_log("請求前チェックの開始********************************************")
+            log_flg = True
+        End If
 
+        Dim log_end_msg = "請求前チェックの終了********************************************"
+        Try
 
-        ' ----------------------------------------------------------
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
 
-        'Dim rs_chk As New ADODB.Recordset
-        'Dim rs_saikyu2 As ADODB.Recordset
-        'Dim rs_chk2 As ADODB.Recordset
+            Dim query = "SELECT * FROM tenpo ORDER BY tenpoid"
 
-        'Dim log_flg = False
-        'If chklog.Checked Then
-        '    log_write("請求前チェックの開始********************************************")
-        '    log_flg = True
-        'End If
+            Dim data_adapter As SqlDataAdapter = New SqlDataAdapter(query, conn)
+            Dim data_set As New DataSet
+            Dim temp_table_name = "t_tenpo"
+            data_adapter.Fill(data_set, temp_table_name)
+            Dim data_table As DataTable = data_set.Tables(temp_table_name)
 
-        'Dim sql_chk As String = "select * from tenpo order by tenpoid"
+            Dim count_1 = data_table.Rows.Count
+            If count_1 = 0 Then
+                msg_go("チェックしたいデータが存在しません。")
+                If log_flg Then
+                    write_log(log_end_msg)
+                End If
+                Exit Sub
+            End If
 
-        'If FcSQlGet(1, rs_chk, sql_chk, WMsg) = False Then
-        '    msg_go("チェックしたいデータが存在しません。")
-        '    If log_flg Then
-        '        log_write("請求前チェックの終了********************************************")
-        '    End If
-        '    Exit Sub
-        'End If
+            show_shinkou_joukyou(count_1)
+            For i = 0 To count_1 - 1
 
-        'rs_chk.MoveFirst
-        'Do Until rs_chk.EOF
+                Dim item = data_table.Rows.Item(i)
+                Dim tenpo_id = Trim(item.Item("tenpoid"))
+                Dim tenpo_mei = Trim(item.Item("tenpomei"))
+                Dim kadou = Trim(item.Item("kadou"))
+                Dim kurikoshi = item.Item("kurikoshi")
 
-        '    'If tochuu_stop = 1 Then
-        '    '    log_write("請求前チェックのSTOP********************************************")
-        '    '    Exit Sub
-        '    'End If
+                Try
 
-        '    Dim sql_chk2 As String = "SELECT seikyuusho.*, tenpo.tenpomei, tenpo.tenpofurigana FROM tenpo RIGHT JOIN seikyuusho ON tenpo.tenpoid = seikyuusho.tenpoid" +
-        '        " WHERE seikyuusho.tenpoid = '" + rs_chk!tenpoid + "' AND seikyuusho.seikyuu_st = '0' ORDER BY seikyuusho.hiduke, tenpo.tenpofurigana"
+                    Dim conn_2 As New SqlConnection
+                    conn_2.ConnectionString = connectionstring_sqlserver
 
-        '    'Set rs_chk2 = New ADODB.Recordset
-        '    If FcSQlGet(0, rs_chk2, sql_chk2, WMsg) = True Then
+                    Dim query_2 = "SELECT seikyuusho.*, tenpo.tenpomei, tenpo.tenpofurigana FROM tenpo RIGHT JOIN seikyuusho ON tenpo.tenpoid = seikyuusho.tenpoid" +
+                " WHERE seikyuusho.tenpoid = '" + tenpo_id + "' AND seikyuusho.seikyuu_st = '0' ORDER BY seikyuusho.hiduke, tenpo.tenpofurigana"
 
-        '        rs_chk2.MoveFirst
+                    Dim data_adapter_2 As SqlDataAdapter = New SqlDataAdapter(query_2, conn_2)
+                    Dim data_set_2 As New DataSet
+                    Dim temp_table_name_2 = "t_seikyuusho"
+                    data_adapter_2.Fill(data_set_2, temp_table_name_2)
+                    Dim data_table_2 As DataTable = data_set_2.Tables(temp_table_name_2)
 
-        '        Dim iconter2 As Long = 1
-        '        Do Until rs_chk2.EOF
+                    Dim count = data_table_2.Rows.Count
+                    If count > 0 Then
 
-        '            Dim ato_data As Long
-        '            Dim mae_data As Long
-        '            If iconter2 = 1 Then
-        '                mae_data = rs_chk2!seikyuukingaku
-        '                ato_data = mae_data
-        '            Else
-        '                ato_data = rs_chk2!kuri
-        '            End If
+                        For j = 0 To data_table_2.Rows.Count - 1
 
-        '            If ato_data <> mae_data Then
+                            Dim item_2 = data_table_2.Rows.Item(j)
+                            Dim seikyuushoid = Trim(item_2.Item("seikyuushoid"))
+                            Dim seikyuukingaku As Integer = item_2.Item("seikyuukingaku")
 
-        '                Dim mae_nashi As String
-        '                If IsDBNull(rs_chk2!nashi) Then
-        '                    mae_nashi = ""
-        '                Else
-        '                    mae_nashi = Trim(rs_chk2!nashi)
-        '                End If
+                            Dim ato_data As Integer
+                            Dim mae_data As Integer
+                            If j = 0 Then
+                                mae_data = seikyuukingaku
+                                ato_data = mae_data
+                            Else
+                                ato_data = Trim(item_2.Item("kuri"))
+                            End If
 
-        '                If chkall.Checked Then
-        '                    Dim error_msg As String = "[請求前チェック]データの繰越金額に差異があります。" + rs_chk2!tenpoid + Space(3) + Trim(rs_chk2!tenpomei) +
-        '                        "   請求書ID：" + Trim(rs_chk2!seikyuushoid) + "   前回請求金額：" + mae_data + "円   今回請求金額：" + ato_data + "円"
-        '                    If log_flg Then
-        '                        log_write(error_msg)
-        '                    Else
-        '                        msg_go(error_msg)
-        '                    End If
-        '                Else
-        '                    If mae_nashi = "" Then
-        '                        Dim error_msg As String = "[請求前チェック]データの繰越金額に差異があります。" + rs_chk2!tenpoid + Space(3) + Trim(rs_chk2!tenpomei) +
-        '                            "   請求書ID：" + Trim(rs_chk2!seikyuushoid) + "   前回請求金額：" + mae_data + "円   今回請求金額：" + ato_data + "円"
-        '                        If log_flg Then
-        '                            log_write(error_msg)
-        '                        Else
-        '                            msg_go(error_msg)
-        '                        End If
-        '                    End If
-        '                End If
+                            If ato_data <> mae_data Then
 
-        '            End If
+                                Dim mae_nashi As String = ""
+                                Dim db_nashi = item_2.Item("kuri")
+                                If Not IsDBNull(db_nashi) Then
+                                    mae_nashi = Trim(db_nashi)
+                                End If
 
-        '            mae_data = rs_chk2!seikyuukingaku
-        '            iconter2 = iconter2 + 1
-        '            rs_chk2.MoveNext
+                                If chk_check_all.Checked Then
+                                    Dim error_msg As String = "[請求前チェック]データの繰越金額に差異があります。" + tenpo_id + Space(3) + tenpo_mei +
+                                        "   請求書ID：" + seikyuushoid + "   前回請求金額：" + mae_data.ToString("#,0") + "円   今回請求金額：" + ato_data.ToString("#,0") + "円"
+                                    If log_flg Then
+                                        write_log(error_msg)
+                                    Else
+                                        msg_go(error_msg)
+                                    End If
+                                Else
+                                    If mae_nashi = "" Then
+                                        Dim error_msg As String = "[請求前チェック]データの繰越金額に差異があります。" + tenpo_id + Space(3) + tenpo_mei +
+                                            "   請求書ID：" + seikyuushoid + "   前回請求金額：" + mae_data.ToString("#,0") + "円   今回請求金額：" + ato_data.ToString("#,0") + "円"
+                                        If log_flg Then
+                                            write_log(error_msg)
+                                        Else
+                                            msg_go(error_msg)
+                                        End If
+                                    End If
+                                End If
 
-        '        Loop
+                            End If
 
-        '        rs_chk2.MoveLast
+                            mae_data = seikyuukingaku
 
-        '        '次回発行時チェック
-        '        If rs_chk!kadou <> "1" Then
+                        Next
 
-        '            Dim sss_seikyuugaku As Long = rs_chk2!seikyuukingaku
-        '            Dim sql_seikyu2 As String = "SELECT SUM(seikyuukingaku) AS newnyuukingoukei FROM seikyuusho WHERE seikyuu_st = '1' AND tenpoid = '" + rs_chk!tenpoid + "' AND hiduke >= '" + rs_chk2!hiduke + "' AND joukyou IS NULL"
-        '            'Set rs_saikyu2 = New ADODB.Recordset
+                        '次回発行時チェック
+                        If kadou <> "1" Then
 
-        '            Dim sss_nyuukingaku As Long
-        '            If FcSQlGet(0, rs_saikyu2, sql_seikyu2, WMsg) = True Then
-        '                If IsDBNull(rs_saikyu2!newnyuukingoukei) Then
-        '                    sss_nyuukingaku = 0
-        '                Else
-        '                    sss_nyuukingaku = rs_saikyu2!newnyuukingoukei
-        '                End If
-        '            Else
-        '                sss_nyuukingaku = 0
-        '            End If
+                            Dim item_2 = data_table_2.Rows.Item(count - 1)
+                            Dim hiduke = Trim(item_2.Item("hiduke"))
 
-        '            Dim sss_kurikoshikingaku As Long
-        '            If IsDBNull(rs_chk!kurikoshi) Then
-        '                sss_kurikoshikingaku = 0
-        '            Else
-        '                sss_kurikoshikingaku = rs_chk!kurikoshi
-        '            End If
+                            Try
 
-        '            If sss_kurikoshikingaku + sss_nyuukingaku <> sss_seikyuugaku Then
+                                Dim conn_3 As New SqlConnection
+                                conn_3.ConnectionString = connectionstring_sqlserver
 
-        '                Dim s_kin As Long = sss_kurikoshikingaku + sss_nyuukingaku
-        '                Dim error_msg As String = "[請求前チェック]データの最終繰越金額にエラーがあります。" + rs_chk2!tenpoid + Space(3) + Trim(rs_chk2!tenpomei) +
-        '                    "   請求書ID：" + Trim(rs_chk2!seikyuushoid) + " 金額：" + CStr(s_kin) + "円," + sss_seikyuugaku + "円"
-        '                If log_flg Then
-        '                    log_write(error_msg)
-        '                Else
-        '                    msg_go(error_msg)
-        '                End If
+                                Dim query_3 = "SELECT SUM(seikyuukingaku) AS newnyuukingoukei FROM seikyuusho WHERE seikyuu_st = '1' AND tenpoid = '" + tenpo_id + "' AND hiduke >= '" + hiduke + "' AND joukyou IS NULL"
 
-        '            End If
-        '        End If
-        '        rs_chk2.Close
-        '    End If
+                                Dim data_adapter_3 As SqlDataAdapter = New SqlDataAdapter(query_3, conn_3)
+                                Dim data_set_3 As New DataSet
+                                Dim temp_table_name_3 = "t_"
+                                data_adapter_3.Fill(data_set_3, temp_table_name_3)
+                                Dim data_table_3 As DataTable = data_set_3.Tables(temp_table_name_3)
 
-        '    rs_chk.MoveNext
+                                Dim newnyuukingoukei As Integer = 0
+                                If data_table_3.Rows.Count > 0 Then
+                                    Dim db_newnyuukingoukei = data_table_3.Rows.Item(0).Item("newnyuukingoukei")
+                                    If Not IsDBNull(db_newnyuukingoukei) Then
+                                        newnyuukingoukei = db_newnyuukingoukei
+                                    End If
+                                End If
 
-        'Loop
+                                Dim l_kurikoshi As Integer = 0
+                                If Not IsDBNull(kurikoshi) Then
+                                    l_kurikoshi = kurikoshi
+                                End If
 
-        'rs_chk.Close
-        'cnn.Close
-        'msg_go("チェック終了しました。")
+                                Dim seikyuukingaku As Integer = item_2.Item("seikyuukingaku")
+                                If l_kurikoshi + newnyuukingoukei <> seikyuukingaku Then
 
-        'If log_flg Then
-        '    log_write("請求前チェックの終了********************************************")
-        'End If
+                                    Dim kingaku As Integer = l_kurikoshi + newnyuukingoukei
+                                    Dim seikyuushoid = Trim(item_2.Item("seikyuushoid"))
+                                    Dim error_msg As String = "[請求前チェック]データの最終繰越金額にエラーがあります。" + tenpo_id + Space(3) + tenpo_mei +
+                                    "   請求書ID：" + seikyuushoid + "   金額：" + kingaku.ToString("#,0") + "円, " + seikyuukingaku.ToString("#,0") + "円"
+                                    If log_flg Then
+                                        write_log(error_msg)
+                                    Else
+                                        msg_go(error_msg)
+                                    End If
+
+                                End If
+
+                                data_table_3.Clear()
+                                data_set_3.Clear()
+
+                            Catch ex As Exception
+                                msg_go(ex.Message)
+                                If log_flg Then
+                                    write_log(log_end_msg)
+                                End If
+                                hide_shinkou_joukyou()
+                                Exit Sub
+                            End Try
+
+                        End If
+
+                    End If
+
+                    data_table_2.Clear()
+                    data_set_2.Clear()
+
+                Catch ex As Exception
+                    msg_go(ex.Message)
+                    If log_flg Then
+                        write_log(log_end_msg)
+                    End If
+                    hide_shinkou_joukyou()
+                    Exit Sub
+                End Try
+
+                calculate_shinkou_joukyou(i + 1, count_1)
+
+            Next
+
+            data_table.Clear()
+            data_set.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            If log_flg Then
+                write_log(log_end_msg)
+            End If
+            hide_shinkou_joukyou()
+            Exit Sub
+        End Try
+
+        If log_flg Then
+            write_log(log_end_msg)
+        End If
+
+        msg_go("チェック終了しました。", 64)
+        hide_shinkou_joukyou()
 
     End Sub
 
     Private Sub btn_seikyuusho_soushin_kanri_Click(sender As Object, e As EventArgs) Handles btn_seikyuusho_soushin_kanri.Click
         Me.Close() : Me.Dispose()
         frmseikyuusho_soushin_ichi.ShowDialog()
+    End Sub
+
+    Private Sub show_shinkou_joukyou(max_count As Integer)
+
+        gbx_shinkou_joukyou.Visible = True
+        gbx_shinkou_joukyou.BringToFront()
+        Dim x As Integer = 275
+        Dim y As Integer = (ClientSize.Height - gbx_shinkou_joukyou.Height) \ 2
+        gbx_shinkou_joukyou.Location = New Point(x, y)
+        pgb_shinkou_joukyou.Minimum = 0
+        pgb_shinkou_joukyou.Maximum = max_count
+        pgb_shinkou_joukyou.Value = 0
+        gbx_check.Enabled = False
+        gbx_hakkou_insatsu.Enabled = False
+        gbx_hakkou_pdf.Enabled = False
+        gbx_modoru.Enabled = False
+        gbx_rireki.Enabled = False
+        gbx_seikyuusho_soushin_kanri.Enabled = False
+        gbx_shuukin_hyou.Enabled = False
+
+        System.Windows.Forms.Application.DoEvents()
+
+    End Sub
+
+    Private Sub hide_shinkou_joukyou()
+
+        gbx_check.Enabled = True
+        gbx_hakkou_insatsu.Enabled = True
+        gbx_hakkou_pdf.Enabled = True
+        gbx_modoru.Enabled = True
+        gbx_rireki.Enabled = True
+        gbx_seikyuusho_soushin_kanri.Enabled = True
+        gbx_shuukin_hyou.Enabled = True
+
+        gbx_shinkou_joukyou.Visible = False
+
+    End Sub
+
+    Private Sub calculate_shinkou_joukyou(counter As Integer, max_count As Integer)
+
+        lbl_shinkou_doai.Text = counter.ToString("#,0") + " / " + max_count.ToString("#,0")
+        lbl_shinkou_percent.Text = "" + (CDbl(counter) / CDbl(max_count) * 100).ToString(".00") + "%"
+        pgb_shinkou_joukyou.Value = counter
+
+        System.Windows.Forms.Application.DoEvents()
+
     End Sub
 
 End Class

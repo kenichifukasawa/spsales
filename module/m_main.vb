@@ -41,7 +41,6 @@ Module m_main
 
     Public result As DialogResult
 
-
     Public s_from As String
     Public s_dai As String
     Public s_honbun As String
@@ -2514,5 +2513,21 @@ errsetting:
         End Select
 
     End Function
+
+    Sub write_log(msg As String)
+
+        Dim day = Now.ToString("yyyyMMdd")
+        Dim path = log_path + "log_" + day + ".txt"
+
+        Dim time = Now.ToString("HHmmss")
+        Dim message = day + " " + time + " " + msg
+
+        Dim encoding As Encoding = Encoding.UTF8
+
+        Using writer As New StreamWriter(path, True, encoding)
+            writer.WriteLine(message)
+        End Using
+
+    End Sub
 
 End Module

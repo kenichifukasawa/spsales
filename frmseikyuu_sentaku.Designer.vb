@@ -22,46 +22,53 @@ Partial Class frmseikyuu_sentaku
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.gbx_modoru = New System.Windows.Forms.GroupBox()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.gbx_shuukin_hyou = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_shuukin_hyou = New System.Windows.Forms.Button()
-        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.gbx_hakkou_insatsu = New System.Windows.Forms.GroupBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.btn_hakkou_insatsu = New System.Windows.Forms.Button()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.gbx_rireki = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btn_rireki = New System.Windows.Forms.Button()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.gbx_seikyuusho_soushin_kanri = New System.Windows.Forms.GroupBox()
         Me.btn_seikyuusho_soushin_kanri = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.gbx_hakkou_pdf = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btn_hakkou_pdf = New System.Windows.Forms.Button()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.gbx_check = New System.Windows.Forms.GroupBox()
         Me.chk_check_log = New System.Windows.Forms.CheckBox()
         Me.chk_check_all = New System.Windows.Forms.CheckBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btn_check = New System.Windows.Forms.Button()
-        Me.GroupBox3.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox16.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
-        Me.GroupBox6.SuspendLayout()
+        Me.gbx_shinkou_joukyou = New System.Windows.Forms.GroupBox()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.lbl_shinkou_percent = New System.Windows.Forms.Label()
+        Me.pgb_shinkou_joukyou = New System.Windows.Forms.ProgressBar()
+        Me.lbl_shinkou_doai = New System.Windows.Forms.Label()
+        Me.gbx_modoru.SuspendLayout()
+        Me.gbx_shuukin_hyou.SuspendLayout()
+        Me.gbx_hakkou_insatsu.SuspendLayout()
+        Me.gbx_rireki.SuspendLayout()
+        Me.gbx_seikyuusho_soushin_kanri.SuspendLayout()
+        Me.gbx_hakkou_pdf.SuspendLayout()
+        Me.gbx_check.SuspendLayout()
+        Me.gbx_shinkou_joukyou.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox3
+        'gbx_modoru
         '
-        Me.GroupBox3.BackColor = System.Drawing.Color.White
-        Me.GroupBox3.Controls.Add(Me.btn_modoru)
-        Me.GroupBox3.Location = New System.Drawing.Point(716, 12)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(170, 147)
-        Me.GroupBox3.TabIndex = 130
-        Me.GroupBox3.TabStop = False
+        Me.gbx_modoru.BackColor = System.Drawing.Color.White
+        Me.gbx_modoru.Controls.Add(Me.btn_modoru)
+        Me.gbx_modoru.Location = New System.Drawing.Point(716, 12)
+        Me.gbx_modoru.Name = "gbx_modoru"
+        Me.gbx_modoru.Size = New System.Drawing.Size(170, 147)
+        Me.gbx_modoru.TabIndex = 130
+        Me.gbx_modoru.TabStop = False
         '
         'btn_modoru
         '
@@ -75,16 +82,16 @@ Partial Class frmseikyuu_sentaku
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'gbx_shuukin_hyou
         '
-        Me.GroupBox1.BackColor = System.Drawing.Color.White
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.btn_shuukin_hyou)
-        Me.GroupBox1.Location = New System.Drawing.Point(540, 12)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(170, 147)
-        Me.GroupBox1.TabIndex = 131
-        Me.GroupBox1.TabStop = False
+        Me.gbx_shuukin_hyou.BackColor = System.Drawing.Color.White
+        Me.gbx_shuukin_hyou.Controls.Add(Me.Label1)
+        Me.gbx_shuukin_hyou.Controls.Add(Me.btn_shuukin_hyou)
+        Me.gbx_shuukin_hyou.Location = New System.Drawing.Point(540, 12)
+        Me.gbx_shuukin_hyou.Name = "gbx_shuukin_hyou"
+        Me.gbx_shuukin_hyou.Size = New System.Drawing.Size(170, 147)
+        Me.gbx_shuukin_hyou.TabIndex = 131
+        Me.gbx_shuukin_hyou.TabStop = False
         '
         'Label1
         '
@@ -108,16 +115,16 @@ Partial Class frmseikyuu_sentaku
         Me.btn_shuukin_hyou.Text = "集金表"
         Me.btn_shuukin_hyou.UseVisualStyleBackColor = True
         '
-        'GroupBox16
+        'gbx_hakkou_insatsu
         '
-        Me.GroupBox16.BackColor = System.Drawing.Color.White
-        Me.GroupBox16.Controls.Add(Me.Label21)
-        Me.GroupBox16.Controls.Add(Me.btn_hakkou_insatsu)
-        Me.GroupBox16.Location = New System.Drawing.Point(12, 12)
-        Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(170, 147)
-        Me.GroupBox16.TabIndex = 129
-        Me.GroupBox16.TabStop = False
+        Me.gbx_hakkou_insatsu.BackColor = System.Drawing.Color.White
+        Me.gbx_hakkou_insatsu.Controls.Add(Me.Label21)
+        Me.gbx_hakkou_insatsu.Controls.Add(Me.btn_hakkou_insatsu)
+        Me.gbx_hakkou_insatsu.Location = New System.Drawing.Point(12, 12)
+        Me.gbx_hakkou_insatsu.Name = "gbx_hakkou_insatsu"
+        Me.gbx_hakkou_insatsu.Size = New System.Drawing.Size(170, 147)
+        Me.gbx_hakkou_insatsu.TabIndex = 129
+        Me.gbx_hakkou_insatsu.TabStop = False
         '
         'Label21
         '
@@ -141,16 +148,16 @@ Partial Class frmseikyuu_sentaku
         Me.btn_hakkou_insatsu.Text = "請求書発行" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "（印刷）"
         Me.btn_hakkou_insatsu.UseVisualStyleBackColor = True
         '
-        'GroupBox2
+        'gbx_rireki
         '
-        Me.GroupBox2.BackColor = System.Drawing.Color.White
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.btn_rireki)
-        Me.GroupBox2.Location = New System.Drawing.Point(188, 12)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(170, 147)
-        Me.GroupBox2.TabIndex = 130
-        Me.GroupBox2.TabStop = False
+        Me.gbx_rireki.BackColor = System.Drawing.Color.White
+        Me.gbx_rireki.Controls.Add(Me.Label2)
+        Me.gbx_rireki.Controls.Add(Me.btn_rireki)
+        Me.gbx_rireki.Location = New System.Drawing.Point(188, 12)
+        Me.gbx_rireki.Name = "gbx_rireki"
+        Me.gbx_rireki.Size = New System.Drawing.Size(170, 147)
+        Me.gbx_rireki.TabIndex = 130
+        Me.gbx_rireki.TabStop = False
         '
         'Label2
         '
@@ -174,16 +181,16 @@ Partial Class frmseikyuu_sentaku
         Me.btn_rireki.Text = "請求履歴"
         Me.btn_rireki.UseVisualStyleBackColor = True
         '
-        'GroupBox4
+        'gbx_seikyuusho_soushin_kanri
         '
-        Me.GroupBox4.BackColor = System.Drawing.Color.White
-        Me.GroupBox4.Controls.Add(Me.btn_seikyuusho_soushin_kanri)
-        Me.GroupBox4.Controls.Add(Me.Label3)
-        Me.GroupBox4.Location = New System.Drawing.Point(364, 12)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(170, 147)
-        Me.GroupBox4.TabIndex = 130
-        Me.GroupBox4.TabStop = False
+        Me.gbx_seikyuusho_soushin_kanri.BackColor = System.Drawing.Color.White
+        Me.gbx_seikyuusho_soushin_kanri.Controls.Add(Me.btn_seikyuusho_soushin_kanri)
+        Me.gbx_seikyuusho_soushin_kanri.Controls.Add(Me.Label3)
+        Me.gbx_seikyuusho_soushin_kanri.Location = New System.Drawing.Point(364, 12)
+        Me.gbx_seikyuusho_soushin_kanri.Name = "gbx_seikyuusho_soushin_kanri"
+        Me.gbx_seikyuusho_soushin_kanri.Size = New System.Drawing.Size(170, 147)
+        Me.gbx_seikyuusho_soushin_kanri.TabIndex = 130
+        Me.gbx_seikyuusho_soushin_kanri.TabStop = False
         '
         'btn_seikyuusho_soushin_kanri
         '
@@ -207,16 +214,16 @@ Partial Class frmseikyuu_sentaku
         Me.Label3.Text = "「TODO」情報の管理をします。"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'GroupBox5
+        'gbx_hakkou_pdf
         '
-        Me.GroupBox5.BackColor = System.Drawing.Color.White
-        Me.GroupBox5.Controls.Add(Me.Label4)
-        Me.GroupBox5.Controls.Add(Me.btn_hakkou_pdf)
-        Me.GroupBox5.Location = New System.Drawing.Point(12, 165)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(170, 147)
-        Me.GroupBox5.TabIndex = 130
-        Me.GroupBox5.TabStop = False
+        Me.gbx_hakkou_pdf.BackColor = System.Drawing.Color.White
+        Me.gbx_hakkou_pdf.Controls.Add(Me.Label4)
+        Me.gbx_hakkou_pdf.Controls.Add(Me.btn_hakkou_pdf)
+        Me.gbx_hakkou_pdf.Location = New System.Drawing.Point(12, 165)
+        Me.gbx_hakkou_pdf.Name = "gbx_hakkou_pdf"
+        Me.gbx_hakkou_pdf.Size = New System.Drawing.Size(170, 147)
+        Me.gbx_hakkou_pdf.TabIndex = 130
+        Me.gbx_hakkou_pdf.TabStop = False
         '
         'Label4
         '
@@ -240,18 +247,18 @@ Partial Class frmseikyuu_sentaku
         Me.btn_hakkou_pdf.Text = "請求書発行" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "（PDF）"
         Me.btn_hakkou_pdf.UseVisualStyleBackColor = True
         '
-        'GroupBox6
+        'gbx_check
         '
-        Me.GroupBox6.BackColor = System.Drawing.Color.White
-        Me.GroupBox6.Controls.Add(Me.chk_check_log)
-        Me.GroupBox6.Controls.Add(Me.chk_check_all)
-        Me.GroupBox6.Controls.Add(Me.Label5)
-        Me.GroupBox6.Controls.Add(Me.btn_check)
-        Me.GroupBox6.Location = New System.Drawing.Point(188, 165)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(698, 147)
-        Me.GroupBox6.TabIndex = 132
-        Me.GroupBox6.TabStop = False
+        Me.gbx_check.BackColor = System.Drawing.Color.White
+        Me.gbx_check.Controls.Add(Me.chk_check_log)
+        Me.gbx_check.Controls.Add(Me.chk_check_all)
+        Me.gbx_check.Controls.Add(Me.Label5)
+        Me.gbx_check.Controls.Add(Me.btn_check)
+        Me.gbx_check.Location = New System.Drawing.Point(188, 165)
+        Me.gbx_check.Name = "gbx_check"
+        Me.gbx_check.Size = New System.Drawing.Size(698, 147)
+        Me.gbx_check.TabIndex = 132
+        Me.gbx_check.TabStop = False
         '
         'chk_check_log
         '
@@ -297,54 +304,117 @@ Partial Class frmseikyuu_sentaku
         Me.btn_check.Text = "請求前チェック"
         Me.btn_check.UseVisualStyleBackColor = True
         '
+        'gbx_shinkou_joukyou
+        '
+        Me.gbx_shinkou_joukyou.BackColor = System.Drawing.Color.LightCyan
+        Me.gbx_shinkou_joukyou.Controls.Add(Me.GroupBox7)
+        Me.gbx_shinkou_joukyou.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.gbx_shinkou_joukyou.Location = New System.Drawing.Point(12, 433)
+        Me.gbx_shinkou_joukyou.Margin = New System.Windows.Forms.Padding(2)
+        Me.gbx_shinkou_joukyou.Name = "gbx_shinkou_joukyou"
+        Me.gbx_shinkou_joukyou.Padding = New System.Windows.Forms.Padding(2)
+        Me.gbx_shinkou_joukyou.Size = New System.Drawing.Size(307, 121)
+        Me.gbx_shinkou_joukyou.TabIndex = 224
+        Me.gbx_shinkou_joukyou.TabStop = False
+        Me.gbx_shinkou_joukyou.Text = "進行状況"
+        Me.gbx_shinkou_joukyou.Visible = False
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.BackColor = System.Drawing.Color.White
+        Me.GroupBox7.Controls.Add(Me.lbl_shinkou_percent)
+        Me.GroupBox7.Controls.Add(Me.pgb_shinkou_joukyou)
+        Me.GroupBox7.Controls.Add(Me.lbl_shinkou_doai)
+        Me.GroupBox7.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox7.Location = New System.Drawing.Point(20, 23)
+        Me.GroupBox7.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Padding = New System.Windows.Forms.Padding(2)
+        Me.GroupBox7.Size = New System.Drawing.Size(267, 82)
+        Me.GroupBox7.TabIndex = 222
+        Me.GroupBox7.TabStop = False
+        '
+        'lbl_shinkou_percent
+        '
+        Me.lbl_shinkou_percent.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_percent.Location = New System.Drawing.Point(20, 12)
+        Me.lbl_shinkou_percent.Name = "lbl_shinkou_percent"
+        Me.lbl_shinkou_percent.Size = New System.Drawing.Size(228, 15)
+        Me.lbl_shinkou_percent.TabIndex = 126
+        Me.lbl_shinkou_percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pgb_shinkou_joukyou
+        '
+        Me.pgb_shinkou_joukyou.Location = New System.Drawing.Point(20, 30)
+        Me.pgb_shinkou_joukyou.Name = "pgb_shinkou_joukyou"
+        Me.pgb_shinkou_joukyou.Size = New System.Drawing.Size(228, 23)
+        Me.pgb_shinkou_joukyou.TabIndex = 0
+        '
+        'lbl_shinkou_doai
+        '
+        Me.lbl_shinkou_doai.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_shinkou_doai.Location = New System.Drawing.Point(20, 56)
+        Me.lbl_shinkou_doai.Name = "lbl_shinkou_doai"
+        Me.lbl_shinkou_doai.Size = New System.Drawing.Size(228, 15)
+        Me.lbl_shinkou_doai.TabIndex = 125
+        Me.lbl_shinkou_doai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'frmseikyuu_sentaku
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(898, 321)
         Me.ControlBox = False
-        Me.Controls.Add(Me.GroupBox6)
-        Me.Controls.Add(Me.GroupBox5)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox4)
-        Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.GroupBox16)
+        Me.Controls.Add(Me.gbx_shinkou_joukyou)
+        Me.Controls.Add(Me.gbx_check)
+        Me.Controls.Add(Me.gbx_hakkou_pdf)
+        Me.Controls.Add(Me.gbx_rireki)
+        Me.Controls.Add(Me.gbx_seikyuusho_soushin_kanri)
+        Me.Controls.Add(Me.gbx_modoru)
+        Me.Controls.Add(Me.gbx_shuukin_hyou)
+        Me.Controls.Add(Me.gbx_hakkou_insatsu)
         Me.Name = "frmseikyuu_sentaku"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "請求管理"
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox16.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox6.ResumeLayout(False)
-        Me.GroupBox6.PerformLayout()
+        Me.gbx_modoru.ResumeLayout(False)
+        Me.gbx_shuukin_hyou.ResumeLayout(False)
+        Me.gbx_hakkou_insatsu.ResumeLayout(False)
+        Me.gbx_rireki.ResumeLayout(False)
+        Me.gbx_seikyuusho_soushin_kanri.ResumeLayout(False)
+        Me.gbx_hakkou_pdf.ResumeLayout(False)
+        Me.gbx_check.ResumeLayout(False)
+        Me.gbx_check.PerformLayout()
+        Me.gbx_shinkou_joukyou.ResumeLayout(False)
+        Me.GroupBox7.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents gbx_modoru As GroupBox
     Friend WithEvents btn_modoru As Button
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents gbx_shuukin_hyou As GroupBox
     Friend WithEvents Label1 As Label
     Friend WithEvents btn_shuukin_hyou As Button
-    Friend WithEvents GroupBox16 As GroupBox
+    Friend WithEvents gbx_hakkou_insatsu As GroupBox
     Friend WithEvents Label21 As Label
     Friend WithEvents btn_hakkou_insatsu As Button
-    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents gbx_rireki As GroupBox
     Friend WithEvents Label2 As Label
     Friend WithEvents btn_rireki As Button
-    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents gbx_seikyuusho_soushin_kanri As GroupBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents gbx_hakkou_pdf As GroupBox
     Friend WithEvents Label4 As Label
     Friend WithEvents btn_hakkou_pdf As Button
-    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents gbx_check As GroupBox
     Friend WithEvents Label5 As Label
     Friend WithEvents btn_check As Button
     Friend WithEvents btn_seikyuusho_soushin_kanri As Button
     Friend WithEvents chk_check_log As CheckBox
     Friend WithEvents chk_check_all As CheckBox
+    Friend WithEvents gbx_shinkou_joukyou As GroupBox
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents lbl_shinkou_percent As Label
+    Friend WithEvents pgb_shinkou_joukyou As ProgressBar
+    Friend WithEvents lbl_shinkou_doai As Label
 End Class
