@@ -2148,38 +2148,29 @@ errsetting:
     End Function
 
     Function get_and_update_settings( ' TODO:移行後、菅野が書き換え（※）
-                                  table_name As String,
-                                  id As Integer,
-                                  s_no As Integer,
-                                  ketasuu As Integer,
-                                  Optional henkasuu As Integer = 1, ' 親子関係のテーブルの登録の場合の子のテーブルの登録数。子テーブルの登録のFor文の中でnew_idを加算していく。
-                                  Optional extTrans As SqlTransaction = Nothing
-                                  ) As String
+                              table_name As String,
+                              id As Integer,
+                              s_no As Integer,
+                              ketasuu As Integer,
+                              Optional henkasuu As Integer = 1 ' 親子関係のテーブルの登録の場合の子のテーブルの登録数。子テーブルの登録のFor文の中でnew_idを加算していく。
+                              ) As String
 
-        Dim ownConnection As Boolean = False
         Dim conn As SqlConnection = Nothing
-        Dim trans As SqlTransaction = extTrans
         Dim new_id As String = "" ' TODO:移行後削除
         Dim new_id_2 As String = ""
 
         Try
-            ' もし外部からトランザクションが渡されていなければ、ここで新規に開始
-            If trans Is Nothing Then
-                conn = New SqlConnection(connectionstring_sqlserver)
-                conn.Open()
-                trans = conn.BeginTransaction()
-                ownConnection = True
-            Else
-                conn = trans.Connection
-            End If
 
             '=============================== ' TODO:移行後削除（※）
             ' settei テーブル処理
             '===============================
-            Dim query = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
-            Dim da As New SqlDataAdapter(query, conn)
-            da.SelectCommand.Transaction = trans
 
+            conn = New SqlConnection(connectionstring_sqlserver)
+            conn.Open()
+
+            Dim query = "SELECT * FROM settei WHERE id = '" + id.ToString + "'"
+
+            Dim da As New SqlDataAdapter(query, conn)
             Dim ds As New DataSet()
             Dim table_name_settei = "t_settei"
             da.Fill(ds, table_name_settei)
@@ -2189,8 +2180,8 @@ errsetting:
             End If
 
             Dim row As DataRow = ds.Tables(table_name_settei).Rows(0)
-            Dim current_id_settei As String = Trim(row("s" & s_no.ToString).ToString())
 
+            Dim current_id_settei As String = Trim(row("s" & s_no.ToString).ToString())
             Dim next_id As String = ""
             If current_id_settei = "" Then
                 Throw New Exception("IDの取得に失敗しました。")
@@ -2211,16 +2202,15 @@ errsetting:
             '===============================
             ' settings テーブル処理
             '===============================
+
             ' テーブル存在確認
             Dim existsQuery As String = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'settings'"
-            Using cmdExists As New SqlCommand(existsQuery, conn, trans)
+            Using cmdExists As New SqlCommand(existsQuery, conn)
                 Dim exists As Integer = Convert.ToInt32(cmdExists.ExecuteScalar())
                 If exists > 0 Then ' TODO:移行後、exists は削除する（※）
 
                     Dim selQuery As String = "SELECT * FROM settings WHERE table_name = '" + table_name + "'"
                     Dim da2 As New SqlDataAdapter(selQuery, conn)
-                    da2.SelectCommand.Transaction = trans
-
                     Dim ds2 As New DataSet()
                     Dim table_name_settings = "t_settings"
                     da2.Fill(ds2, table_name_settings)
@@ -2228,8 +2218,8 @@ errsetting:
                     If ds2.Tables(table_name_settings).Rows.Count > 0 Then
 
                         Dim row2 As DataRow = ds2.Tables(table_name_settings).Rows(0)
-                        Dim current_id_settings As String = Trim(row2("next_id").ToString())
 
+                        Dim current_id_settings As String = Trim(row2("next_id").ToString())
                         Dim next_id_2 As String = ""
                         If current_id_settings = "" Then
                             Throw New Exception("IDの取得に失敗しました。")
@@ -2241,7 +2231,6 @@ errsetting:
                             new_id_2 = current_id_settings.PadLeft(ketasuu, "0"c)
                         End If
 
-                        ' 同じタイミングで書き換え
                         row2("next_id") = next_id ' TODO:next_id_2に変更する。（※）
 
                         Dim cb2 As New SqlCommandBuilder(da2)
@@ -2253,27 +2242,19 @@ errsetting:
                 End If
             End Using
 
-            '===============================
-            ' コミット
-            '===============================
-            If ownConnection Then
-                trans.Commit()
-            End If
-
             Return new_id ' TODO:移行後、new_id_2（※）
 
         Catch ex As Exception
-            If ownConnection AndAlso trans IsNot Nothing Then
-                trans.Rollback()
-            End If
             msg_go(ex.Message)
             Return ""
         Finally
-            If ownConnection AndAlso conn IsNot Nothing Then
+            If conn IsNot Nothing Then
                 conn.Close()
             End If
         End Try
+
     End Function
+
 
 
     Function output_csv_by_data_grid_view(filePath As String, dataGridView As DataGridView, Optional columnsToExport As String() = Nothing) As Boolean
