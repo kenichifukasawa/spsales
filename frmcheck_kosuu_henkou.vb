@@ -35,106 +35,80 @@ Public Class frmcheck_kosuu_henkou
 
         Next
 
-        Try
-            Using conn As New SqlConnection(connectionstring_sqlserver)
-                conn.Open()
+        For i = 0 To dgv.Rows.Count - 1
 
-                Using trans = conn.BeginTransaction()
+            If dgv(10, i).Value <> "○" Then
+                Continue For
+            End If
 
-                    Try
+            Dim shouhin_id = dgv(0, i).Value
+            Dim int_new_henkou_suu = CInt(Trim(dgv(6, i).Value))
+            Dim int_old_henkou_suu = CInt(Trim(dgv(11, i).Value))
+            Dim chousei_suu = Trim(dgv(12, i).Value)
 
-                        For i = 0 To dgv.Rows.Count - 1
+            Dim dbl_new_value As Integer
+            Dim sagaku_suu = ""
 
-                            If Trim(dgv(10, i).Value) <> "○" Then
-                                Continue For
-                            End If
+            If chk_kouryo.Checked Then ' 考慮する場合
 
-                            Dim shouhin_id = dgv(0, i).Value
-                            Dim int_new_henkou_suu = CInt(Trim(dgv(6, i).Value))
-                            Dim int_old_henkou_suu = CInt(Trim(dgv(11, i).Value))
-                            Dim chousei_suu = Trim(dgv(12, i).Value)
+                Dim int_chousei_suu = 0
+                If chousei_suu <> "err" And chousei_suu <> "" And chousei_suu <> "0" Then
+                    int_chousei_suu = CInt(chousei_suu)
+                End If
 
-                            Dim dbl_new_value As Integer
-                            Dim sagaku_suu = ""
+                ' 現在庫 + 調整数 = 当時の在庫
+                Dim touji_suu = int_old_henkou_suu + int_chousei_suu
 
-                            If chk_kouryo.Checked Then ' 考慮する場合
+                ' 棚卸数 - 当時の在庫 = 差額
+                sagaku_suu = (touji_suu - int_new_henkou_suu).ToString
 
-                                Dim int_chousei_suu = 0
 
-                                If chousei_suu <> "err" And chousei_suu <> "" And chousei_suu <> "0" Then
-                                    int_chousei_suu = CInt(chousei_suu)
-                                End If
+                ' 最終数
+                dbl_new_value = int_new_henkou_suu - int_chousei_suu
 
-                                ' 現在庫 + 調整数 = 当時の在庫
-                                Dim touji_suu = int_old_henkou_suu + int_chousei_suu
+            Else ' 考慮しない場合
+                dbl_new_value = int_new_henkou_suu
+            End If
 
-                                ' 棚卸数 - 当時の在庫 = 差額
-                                sagaku_suu = (touji_suu - int_new_henkou_suu).ToString
+            Try
 
-                                ' 最終数
-                                dbl_new_value = int_new_henkou_suu - int_chousei_suu
+                Dim conn As New SqlConnection
+                conn.ConnectionString = connectionstring_sqlserver
 
-                            Else ' 考慮しない場合
-                                dbl_new_value = int_new_henkou_suu
-                            End If
+                Dim query = "SELECT * FROM shouhin WHERE shouhinid ='" + shouhin_id + "'"
 
-                            Try
+                Dim da As New SqlDataAdapter
+                da = New SqlDataAdapter(query, conn)
+                Dim ds As New DataSet
+                da.Fill(ds, "t_shouhin")
 
-                                Dim query = "SELECT * FROM shouhin WHERE shouhinid ='" + shouhin_id + "'"
+                ds.Tables("t_shouhin").Rows(0)("genzaikosuu") = dbl_new_value
 
-                                Dim da As New SqlDataAdapter
-                                da = New SqlDataAdapter(query, conn)
-                                da.SelectCommand.Transaction = trans
-                                Dim ds As New DataSet
-                                da.Fill(ds, "t_shouhin")
+                Dim cb As New SqlCommandBuilder
+                cb.DataAdapter = da
+                da.Update(ds, "t_shouhin")
+                ds.Clear()
 
-                                ds.Tables("t_shouhin").Rows(0)("genzaikosuu") = dbl_new_value
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Sub
+            End Try
 
-                                Dim cb As New SqlCommandBuilder
-                                cb.DataAdapter = da
-                                da.Update(ds, "t_shouhin")
-                                ds.Clear()
+            If create_hacchuu_and_hacchuushousai(shouhin_id, sagaku_suu) = False Then ' 本登録へ
+                msg_go("発注テーブルまたは発注詳細テーブルの更新でエラーが発生しました。")
+                Exit Sub
+            End If
 
-                            Catch ex As Exception
-                                trans.Rollback()
-                                msg_go(ex.Message)
-                                Exit Sub
-                            End Try
+            Dim bikou = "旧在庫：" & int_old_henkou_suu.ToString & " 新在庫：" & dbl_new_value.ToString
+            Dim shainid = "10"
+            Dim naiyou = 11
+            Dim new_atai = dbl_new_value.ToString
+            If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
+                msg_go("在庫ログ登録作業中にエラーが発生しました。")
+                Exit Sub
+            End If
 
-                            If create_hacchuu_and_hacchuushousai(shouhin_id, sagaku_suu, trans) = False Then
-                                trans.Rollback()
-                                msg_go("発注テーブルまたは発注詳細テーブルの更新でエラーが発生しました。")
-                                Exit Sub
-                            End If
-
-                            Dim bikou = "旧在庫：" & int_old_henkou_suu.ToString & " 新在庫：" & dbl_new_value.ToString
-                            Dim shainid = "10"
-                            Dim naiyou = 11
-                            Dim new_atai = dbl_new_value.ToString
-                            If shouhin_zaiko_log(shainid:=shainid, shouhinid:=shouhin_id, naiyou:=naiyou, new_atai:=new_atai, bikou:=bikou, extTrans:=trans) = False Then
-                                trans.Rollback()
-                                msg_go("在庫ログ登録作業中にエラーが発生しました。")
-                                Exit Sub
-                            End If
-
-                        Next
-
-                        trans.Commit()
-
-                    Catch ex As Exception
-                        trans.Rollback()
-                        msg_go(ex.Message)
-                        Exit Sub
-                    End Try
-
-                End Using
-
-            End Using
-
-        Catch ex As Exception
-            msg_go("DB接続エラー：" & ex.Message)
-            Exit Sub
-        End Try
+        Next
 
         msg_go("更新が完了しました。", 64)
         set_shouhin_ichiran()
@@ -562,110 +536,86 @@ Public Class frmcheck_kosuu_henkou
 
     End Function
 
-    Private Function create_hacchuu_and_hacchuushousai(shouhin_id As String, kosuu As String, Optional extTrans As SqlTransaction = Nothing) As Boolean
+    Private Function create_hacchuu_and_hacchuushousai(shouhin_id As String, kosuu As String) As Boolean
 
         If kosuu = "" Then
             Return True
         End If
 
-        Dim conn As SqlConnection = Nothing
-        Dim trans As SqlTransaction = extTrans
-        Dim localConn As Boolean = False
-
+        Dim new_hacchuu_id = ""
         Try
-            If trans Is Nothing Then
-                conn = New SqlConnection(connectionstring_sqlserver)
-                conn.Open()
-                trans = conn.BeginTransaction()
-                localConn = True
-            Else
-                conn = trans.Connection
-            End If
 
             Dim table_name = "hacchuu"
             Dim id = 1
             Dim s_no = 2
             Dim ketasuu = 8
-            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu, extTrans:=trans)
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
 
             Dim query = "SELECT TOP 1 * FROM " + table_name
 
-            Dim new_hacchuu_id = ""
-            Using da As New SqlDataAdapter(query, conn)
-                da.SelectCommand.Transaction = trans
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_" + table_name
+            da.Fill(ds, temp_table_name)
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
 
-                Dim ds As New DataSet
-                Dim temp_table_name = "t_" + table_name
-                da.Fill(ds, temp_table_name)
+            data_row("hacchuuid") = new_id
+            data_row("iraibi") = Now.ToString("yyyyMMdd")
+            data_row("shainid") = "00"
+            data_row("tenpoid") = "999999"
+            data_row("goukei") = 0
+            data_row("joukyou") = "0"
 
-                Dim cb As New SqlCommandBuilder(da)
-                Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+            ds.Tables(temp_table_name).Rows.Add(data_row)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
 
-                data_row("hacchuuid") = new_id
-                data_row("iraibi") = Now.ToString("yyyyMMdd")
-                data_row("shainid") = "00"
-                data_row("tenpoid") = "999999"
-                data_row("goukei") = 0
-                data_row("joukyou") = "0"
-
-                ds.Tables(temp_table_name).Rows.Add(data_row)
-
-                da.Update(ds, temp_table_name)
-                ds.Clear()
-
-                new_hacchuu_id = new_id
-            End Using
-
-            ' 発注詳細テーブル insert
-            table_name = "hacchuushousai"
-            id = 1
-            s_no = 3
-            ketasuu = 10
-            new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
-
-            query = "SELECT TOP 1 * FROM " + table_name
-
-            Using da As New SqlDataAdapter(query, conn)
-                da.SelectCommand.Transaction = trans
-
-                Dim ds As New DataSet
-                Dim temp_table_name = "t_" + table_name
-                da.Fill(ds, temp_table_name)
-
-                Dim cb As New SqlCommandBuilder(da)
-                Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
-
-                data_row("hachuushousaiid") = new_id
-                data_row("hacchuuid") = new_hacchuu_id
-                data_row("shouhinid") = shouhin_id
-                data_row("kosuu") = CInt(kosuu)
-
-                ds.Tables(temp_table_name).Rows.Add(data_row)
-
-                da.Update(ds, temp_table_name)
-                ds.Clear()
-            End Using
-
-            If localConn Then
-                trans.Commit()
-            End If
-
-            Return True
+            new_hacchuu_id = new_id
 
         Catch ex As Exception
-            If trans IsNot Nothing AndAlso localConn Then
-                trans.Rollback()
-            End If
-
             msg_go(ex.Message)
             Return False
-
-        Finally
-            If localConn AndAlso conn IsNot Nothing Then
-                conn.Close()
-                conn.Dispose()
-            End If
         End Try
+
+        Try
+
+            Dim table_name = "hacchuushousai"
+            Dim id = 1
+            Dim s_no = 3
+            Dim ketasuu = 10
+            Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM " + table_name
+
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_" + table_name
+            da.Fill(ds, temp_table_name)
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+
+            data_row("hachuushousaiid") = new_id
+            data_row("hacchuuid") = new_hacchuu_id
+            data_row("shouhinid") = shouhin_id
+            data_row("kosuu") = CInt(kosuu)
+
+            ds.Tables(temp_table_name).Rows.Add(data_row)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        End Try
+
+        Return True
 
     End Function
 

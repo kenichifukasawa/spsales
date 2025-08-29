@@ -113,14 +113,14 @@ Public Class frmlog
                 sda.Update(ds, temp_table_name)
                 ds.Clear()
 
+                msg_go("更新しました。", 64)
+
             Catch ex As Exception
                 msg_go(ex.Message)
                 Exit Sub
             End Try
 
         End If
-
-        msg_go("更新しました。", 64)
 
         log_main_set(tenpo_id)
 
