@@ -2528,9 +2528,9 @@ errsetting:
 
         Dim encoding As Encoding = Encoding.UTF8
 
-        Using writer As New StreamWriter(file_path, True, encoding)
-            writer.WriteLine(message)
-        End Using
+        'Using writer As New StreamWriter(file_path, True, encoding)
+        '    writer.WriteLine(message)
+        'End Using
 
     End Sub
 
