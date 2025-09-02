@@ -28,8 +28,6 @@ Public Class frmdenpyou
             da_server.Fill(ds_server, "t_shoukaii")
             Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
 
-            Dim mojiretsu(9) As String
-
             With dgv_nouhinsho
 
                 .Rows.Clear()
@@ -47,13 +45,13 @@ Public Class frmdenpyou
                 .Columns(7).Name = "確定"
                 .Columns(8).Name = "軽減税率"
 
-                .Columns(0).Width = 100
-                .Columns(1).Width = 100
+                .Columns(0).Width = 110
+                .Columns(1).Width = 110
                 .Columns(2).Width = 700
                 .Columns(3).Width = 60
-                .Columns(4).Width = 100
-                .Columns(5).Width = 100
-                .Columns(6).Width = 100
+                .Columns(4).Width = 80
+                .Columns(5).Width = 80
+                .Columns(6).Width = 150
                 .Columns(7).Width = 0
                 .Columns(8).Width = 50
 
@@ -80,6 +78,7 @@ Public Class frmdenpyou
 
             Dim s_kin As Decimal
             Dim s_sougaku As Integer = 0, s_10 As Integer = 0, s_8 As Integer = 0
+            Dim mojiretsu(9) As String
             For i = 0 To dt_server.Rows.Count - 1
 
                 Dim s_kakutei As Integer = 0

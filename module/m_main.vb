@@ -628,23 +628,12 @@ Module m_main
                 Else
                     mojiretsu(5) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
                 End If
+
                 If IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
                     mojiretsu(6) = ""
                 Else
-                    Select Case Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
-                        Case "0"
-                            mojiretsu(6) = "掛売"
-                        Case "1"
-                            mojiretsu(6) = "現金売"
-                        Case "2"
-                            mojiretsu(6) = "返品"
-                        Case "3"
-                            mojiretsu(6) = "返金"
-                        Case "4"
-                            mojiretsu(6) = "委託"
-                    End Select
+                    mojiretsu(6) = PrintCategory.GetNameById(Trim(dt_server.Rows.Item(i).Item("nouhinshoid")))
                 End If
-
 
                 If IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
                     mojiretsu(7) = ""

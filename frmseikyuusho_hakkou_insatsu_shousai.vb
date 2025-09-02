@@ -10,9 +10,9 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
         With dgv_kensakukekka
 
             .Rows.Clear()
-            .Columns.Clear()
-            .ColumnCount = 6
             .RowHeadersWidth = 4
+            .Columns.Clear()
+            .ColumnCount = 11
 
             .Columns(0).Name = "ID"
             .Columns(1).Name = "納品日"
@@ -20,6 +20,11 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
             .Columns(3).Name = "金額"
             .Columns(4).Name = "値引き"
             .Columns(5).Name = "納品NO"
+            .Columns(6).Name = "社員ID"
+            .Columns(7).Name = "プリント種類"
+            .Columns(8).Name = "ダミー2"
+            .Columns(9).Name = "備考1"
+            .Columns(10).Name = "備考2"
 
             .Columns(0).Width = 90
             .Columns(1).Width = 110
@@ -27,6 +32,11 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
             .Columns(3).Width = 90
             .Columns(4).Width = 90
             .Columns(5).Width = 100
+            .Columns(6).Width = 100
+            .Columns(7).Width = 100
+            .Columns(8).Width = 100
+            .Columns(9).Width = 100
+            .Columns(10).Width = 100
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -36,6 +46,11 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
             .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             .Columns(3).DefaultCellStyle.Format = "#,##0"
             .Columns(4).DefaultCellStyle.Format = "#,##0"
@@ -63,7 +78,7 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
             da_server.Fill(ds_server, temp_table_name)
             Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
 
-            Dim mojiretsu(5)
+            Dim mojiretsu(11)
             For i = 0 To dt_server.Rows.Count - 1
 
                 mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("hacchuuid"))
@@ -89,6 +104,32 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
                 End If
                 mojiretsu(5) = nouhinshoid
 
+                mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("shainid"))
+
+                Dim print_shurui = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
+                    print_shurui = Trim(dt_server.Rows.Item(i).Item("print_shurui"))
+                End If
+                mojiretsu(7) = print_shurui
+
+                Dim dami2 = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("dami2")) Then
+                    dami2 = Trim(dt_server.Rows.Item(i).Item("dami2"))
+                End If
+                mojiretsu(8) = dami2
+
+                Dim bikou1 = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
+                    bikou1 = Trim(dt_server.Rows.Item(i).Item("dabikou1mi2"))
+                End If
+                mojiretsu(9) = bikou1
+
+                Dim bikou2 = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou2")) Then
+                    bikou2 = Trim(dt_server.Rows.Item(i).Item("bikou2"))
+                End If
+                mojiretsu(10) = bikou2
+
                 dgv_kensakukekka.Rows.Add(mojiretsu)
 
             Next
@@ -111,8 +152,58 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
-        ' TODO:main画面に詳細が移動したため、保留
-        frmdenpyou.ShowDialog()
+        Dim dgv = dgv_kensakukekka
+        If dgv.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim current_row = dgv.CurrentRow
+        Dim hacchuuid As String = Trim(current_row.Cells(0).Value)
+        Dim hinichi As String = Trim(current_row.Cells(1).Value)
+        Dim nouhinsho_no As String = Trim(current_row.Cells(5).Value)
+        Dim bikou1 As String = Trim(current_row.Cells(9).Value)
+        Dim bikou2 As String = Trim(current_row.Cells(10).Value)
+        Dim print_shurui_id As String = Trim(current_row.Cells(7).Value)
+        Dim dami2 As String = Trim(current_row.Cells(8).Value)
+        Dim shain_id As String = Trim(current_row.Cells(6).Value)
+        Dim tenpo_mei = Trim(lbl_tenpo_mei.Text)
+
+        set_shain_cbx(7)
+
+        With frmdenpyou
+
+            .GroupBox5.Text += "　（ " + tenpo_mei + " )"
+
+            .cbx_shurui.Items.Clear()
+            .cbx_shurui.Items.AddRange(PrintCategory.Names)
+            .cbx_shurui.SelectedIndex = .cbx_shurui.FindStringExact(PrintCategory.GetNameById(print_shurui_id))
+
+            .DateTimePicker1.Text = hinichi
+            .txt_nouhinsho_no.Text = nouhinsho_no
+
+            If nouhinsho_no = "" Then
+                .chk_nouhinsho_pc.Checked = True
+                .txt_nouhinsho_no.Enabled = False
+            Else
+                .chk_nouhinsho_pc.Checked = False
+                .txt_nouhinsho_no.Enabled = True
+            End If
+
+            .txtbikou1.Text = bikou1
+            .txtbikou2.Text = bikou2
+            .cbx_shain.SelectedIndex = .cbx_shain.FindString(shain_id)
+
+            If dami2 = "1" Then
+                .chk_nouhinsho_houkoku.Checked = True
+            Else
+                .chk_nouhinsho_houkoku.Checked = False
+            End If
+
+            .lbl_hacchuuid.Text = hacchuuid
+
+            .ShowDialog()
+
+        End With
 
     End Sub
 
