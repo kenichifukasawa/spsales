@@ -220,12 +220,6 @@
     <Compile Include="frmnouhinsho_rireki.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmnouhinsho_rireki_shousai.Designer.vb">
-      <DependentUpon>frmnouhinsho_rireki_shousai.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmnouhinsho_rireki_shousai.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmnouhinsho_sentaku.Designer.vb">
       <DependentUpon>frmnouhinsho_sentaku.vb</DependentUpon>
     </Compile>
@@ -444,6 +438,7 @@
     <Compile Include="model\PaymentMethodsInvoice.vb" />
     <Compile Include="model\Deadline.vb" />
     <Compile Include="model\PaymentMethodsContractor.vb" />
+    <Compile Include="model\PrintCategory.vb" />
     <Compile Include="model\Rounding.vb" />
     <Compile Include="model\TagAndValue.vb" />
     <Compile Include="module\m_date_time.vb" />
@@ -542,9 +537,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmnouhinsho_rireki.resx">
       <DependentUpon>frmnouhinsho_rireki.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmnouhinsho_rireki_shousai.resx">
-      <DependentUpon>frmnouhinsho_rireki_shousai.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmnouhinsho_sentaku.resx">
       <DependentUpon>frmnouhinsho_sentaku.vb</DependentUpon>

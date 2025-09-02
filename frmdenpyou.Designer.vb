@@ -53,6 +53,7 @@ Partial Class frmdenpyou
         Me.txt_nouhinsho_no = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
+        Me.lbl_hacchuuid = New System.Windows.Forms.Label()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -63,6 +64,7 @@ Partial Class frmdenpyou
         'GroupBox5
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.White
+        Me.GroupBox5.Controls.Add(Me.lbl_hacchuuid)
         Me.GroupBox5.Controls.Add(Me.Button1)
         Me.GroupBox5.Controls.Add(Me.Button2)
         Me.GroupBox5.Controls.Add(Me.btn_kensaku)
@@ -427,6 +429,17 @@ Partial Class frmdenpyou
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(1426, 755)
         Me.dgv_nouhinsho.TabIndex = 67
         '
+        'lbl_hacchuuid
+        '
+        Me.lbl_hacchuuid.BackColor = System.Drawing.SystemColors.Control
+        Me.lbl_hacchuuid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_hacchuuid.Location = New System.Drawing.Point(748, -8)
+        Me.lbl_hacchuuid.Name = "lbl_hacchuuid"
+        Me.lbl_hacchuuid.Size = New System.Drawing.Size(89, 23)
+        Me.lbl_hacchuuid.TabIndex = 209
+        Me.lbl_hacchuuid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_hacchuuid.Visible = False
+        '
         'frmdenpyou
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -479,4 +492,5 @@ Partial Class frmdenpyou
     Friend WithEvents cbx_shurui As ComboBox
     Friend WithEvents Label30 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents lbl_hacchuuid As Label
 End Class

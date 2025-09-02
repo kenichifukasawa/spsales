@@ -575,34 +575,12 @@ Public Class frmmain
 
         With frmdenpyou
 
-            .GroupBox5.Text = "納品書　（ " & Trim(Me.lbltenpomei.Text) & " )"
+            .GroupBox5.Text = "納品書　（ " & Trim(lbltenpomei.Text) & " )"
 
             .cbx_shurui.Items.Clear()
-            .cbx_shurui.Items.Add("掛売")
-            .cbx_shurui.Items.Add("現金売")
-            .cbx_shurui.Items.Add("返品")
-            .cbx_shurui.Items.Add("返金")
-            .cbx_shurui.Items.Add("委託")
+            .cbx_shurui.Items.AddRange(PrintCategory.Names)
 
-
-            Select Case s_inji
-                Case "掛売"
-                    .cbx_shurui.SelectedIndex = 0
-                Case "現金売"
-                    .cbx_shurui.SelectedIndex = 1
-                Case "返品"
-                    .cbx_shurui.SelectedIndex = 2
-                Case "返金"
-                    .cbx_shurui.SelectedIndex = 3
-                Case "委託"
-                    .cbx_shurui.SelectedIndex = 4
-                Case Else
-                    .cbx_shurui.SelectedIndex = -1
-            End Select
-
-
-            tenpo_hacchuurireki_set2(s_shousaiid)
-
+            .cbx_shurui.SelectedIndex = .cbx_shurui.FindStringExact(s_inji)
 
             .DateTimePicker1.Text = s_hi
             .txt_nouhinsho_no.Text = s_nouhinshono
@@ -617,16 +595,20 @@ Public Class frmmain
             .txtbikou1.Text = s_bikou1
             .txtbikou2.Text = s_bikou2
             .cbx_shain.SelectedIndex = .cbx_shain.FindString(s_shain)
+
             If s_pri = "" Then
                 .cbx_shurui.SelectedIndex = -1
             Else
                 .cbx_shurui.SelectedIndex = CInt(s_pri)
             End If
+
             If s_dami2 = "1" Then
                 .chk_nouhinsho_houkoku.Checked = True
             Else
                 .chk_nouhinsho_houkoku.Checked = False
             End If
+
+            .lbl_hacchuuid.Text = s_shousaiid
 
             .ShowDialog()
 
