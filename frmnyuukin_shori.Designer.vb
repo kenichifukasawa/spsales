@@ -151,7 +151,7 @@ Partial Class frmnyuukin_shori
         'btn_denwachou
         '
         Me.btn_denwachou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_denwachou.Location = New System.Drawing.Point(476, 12)
         Me.btn_denwachou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denwachou.Name = "btn_denwachou"
@@ -280,7 +280,7 @@ Partial Class frmnyuukin_shori
         'btn_touroku
         '
         Me.btn_touroku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_touroku.Location = New System.Drawing.Point(1167, 31)
         Me.btn_touroku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_touroku.Name = "btn_touroku"
@@ -431,7 +431,7 @@ Partial Class frmnyuukin_shori
         'btn_sakujo
         '
         Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_sakujo.Location = New System.Drawing.Point(752, 721)
         Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_sakujo.Name = "btn_sakujo"
@@ -453,7 +453,7 @@ Partial Class frmnyuukin_shori
         'btn_henkou
         '
         Me.btn_henkou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_henkou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_henkou.Location = New System.Drawing.Point(621, 721)
         Me.btn_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_henkou.Name = "btn_henkou"
@@ -465,7 +465,7 @@ Partial Class frmnyuukin_shori
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(1179, 31)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"

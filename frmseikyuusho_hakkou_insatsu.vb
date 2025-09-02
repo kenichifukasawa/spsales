@@ -1352,16 +1352,16 @@ Public Class frmseikyuusho_hakkou_insatsu
             ' データチェック
             If seikyuu_moto_data(6, i) - seikyuu_moto_data(11, i) <> seikyuu_moto_data(13, i) Then
                 msg_go("繰越残高が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
-                'log_write("[請求書]繰越残高が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                write_log("[請求書]繰越残高が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
                 seikyuu_moto_data(27, i) = 1
             End If
             If seikyuu_moto_data(13, i) + seikyuu_moto_data(12, i) + seikyuu_moto_data(17, i) + seikyuu_moto_data(14, i) <> seikyuu_moto_data(15, i) Then
                 msg_go("総計が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
-                'log_write("[請求書]総計が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                write_log("[請求書]総計が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
                 seikyuu_moto_data(27, i) = 2
             End If
             If seikyuu_moto_data(6, i) <> seikyuu_moto_data(22, i) Then
-                'log_write("[請求書]前月の請求金額と今月の繰越金額の違いを修正しました。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                write_log("[請求書]前月の請求金額と今月の繰越金額の違いを修正しました。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
                 seikyuu_moto_data(6, i) = seikyuu_moto_data(22, i)
 
             End If

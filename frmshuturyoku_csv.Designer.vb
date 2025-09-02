@@ -140,7 +140,7 @@ Partial Class frmshuturyoku_csv
         'btn_csv
         '
         Me.btn_csv.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_csv.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_csv.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_csv.Location = New System.Drawing.Point(309, 87)
         Me.btn_csv.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_csv.Name = "btn_csv"
@@ -152,7 +152,7 @@ Partial Class frmshuturyoku_csv
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(440, 87)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"

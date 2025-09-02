@@ -99,7 +99,7 @@ Partial Class frmnouhinsho_idou
         'btn_denwachou
         '
         Me.btn_denwachou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_denwachou.Location = New System.Drawing.Point(425, 47)
         Me.btn_denwachou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denwachou.Name = "btn_denwachou"
@@ -127,19 +127,19 @@ Partial Class frmnouhinsho_idou
         'btn_idou
         '
         Me.btn_idou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_idou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_idou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_idou.Location = New System.Drawing.Point(375, 240)
         Me.btn_idou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_idou.Name = "btn_idou"
         Me.btn_idou.Size = New System.Drawing.Size(127, 44)
         Me.btn_idou.TabIndex = 209
-        Me.btn_idou.Text = "下の店舗に移動"
+        Me.btn_idou.Text = "下の店舗に" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "移動"
         Me.btn_idou.UseVisualStyleBackColor = True
         '
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(477, 466)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
@@ -184,7 +184,7 @@ Partial Class frmnouhinsho_idou
         'btn_denwachou_1
         '
         Me.btn_denwachou_1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_denwachou_1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_denwachou_1.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_denwachou_1.Location = New System.Drawing.Point(425, 47)
         Me.btn_denwachou_1.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denwachou_1.Name = "btn_denwachou_1"

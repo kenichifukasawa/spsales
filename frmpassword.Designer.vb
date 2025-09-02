@@ -54,11 +54,11 @@ Partial Class frmpassword
         'btn_ok
         '
         Me.btn_ok.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_ok.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_ok.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_ok.Location = New System.Drawing.Point(12, 83)
         Me.btn_ok.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_ok.Name = "btn_ok"
-        Me.btn_ok.Size = New System.Drawing.Size(184, 22)
+        Me.btn_ok.Size = New System.Drawing.Size(184, 29)
         Me.btn_ok.TabIndex = 194
         Me.btn_ok.Text = "OK"
         Me.btn_ok.UseVisualStyleBackColor = True
@@ -67,7 +67,7 @@ Partial Class frmpassword
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(210, 112)
+        Me.ClientSize = New System.Drawing.Size(210, 123)
         Me.ControlBox = False
         Me.Controls.Add(Me.btn_ok)
         Me.Controls.Add(Me.GroupBox3)

@@ -68,7 +68,7 @@ Partial Class frmcheck_kurikoshi_log
         'btn_denwa_chou
         '
         Me.btn_denwa_chou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_denwa_chou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_denwa_chou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.btn_denwa_chou.Location = New System.Drawing.Point(22, 28)
         Me.btn_denwa_chou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denwa_chou.Name = "btn_denwa_chou"
@@ -103,7 +103,7 @@ Partial Class frmcheck_kurikoshi_log
         'btn_kensaku
         '
         Me.btn_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.btn_kensaku.Location = New System.Drawing.Point(619, 47)
         Me.btn_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_kensaku.Name = "btn_kensaku"
@@ -139,7 +139,7 @@ Partial Class frmcheck_kurikoshi_log
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.btn_modoru.Location = New System.Drawing.Point(750, 47)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"

@@ -145,7 +145,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'btn_clear
         '
         Me.btn_clear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_clear.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_clear.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_clear.Location = New System.Drawing.Point(1225, 49)
         Me.btn_clear.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_clear.Name = "btn_clear"
@@ -186,7 +186,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         '
         Me.btn_denwachou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_denwachou.Enabled = False
-        Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_denwachou.Location = New System.Drawing.Point(929, 30)
         Me.btn_denwachou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denwachou.Name = "btn_denwachou"
@@ -350,7 +350,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'btn_shuukei
         '
         Me.btn_shuukei.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_shuukei.Location = New System.Drawing.Point(664, 30)
         Me.btn_shuukei.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shuukei.Name = "btn_shuukei"
@@ -386,7 +386,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'btn_seikyuusho_sakusei
         '
         Me.btn_seikyuusho_sakusei.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_seikyuusho_sakusei.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_seikyuusho_sakusei.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_seikyuusho_sakusei.Location = New System.Drawing.Point(1356, 49)
         Me.btn_seikyuusho_sakusei.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_seikyuusho_sakusei.Name = "btn_seikyuusho_sakusei"
@@ -398,7 +398,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'btn_shousai
         '
         Me.btn_shousai.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shousai.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_shousai.Location = New System.Drawing.Point(1094, 49)
         Me.btn_shousai.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shousai.Name = "btn_shousai"
@@ -410,7 +410,7 @@ Partial Class frmseikyuusho_hakkou_insatsu
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(1487, 49)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"

@@ -23,7 +23,6 @@ Partial Class frmseikyuu_shuukin_hyou
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
-        Me.btn_insatsu = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.lbl_kingaku = New System.Windows.Forms.Label()
@@ -31,12 +30,13 @@ Partial Class frmseikyuu_shuukin_hyou
         Me.Group1 = New System.Windows.Forms.GroupBox()
         Me.cbx_shain = New System.Windows.Forms.ComboBox()
         Me.btn_clear_shain = New System.Windows.Forms.Button()
+        Me.btn_insatsu = New System.Windows.Forms.Button()
         Me.gbx_shiharai_tsuki = New System.Windows.Forms.GroupBox()
         Me.cbx_shimebi = New System.Windows.Forms.ComboBox()
+        Me.btn_modoru = New System.Windows.Forms.Button()
         Me.btn_shuukei = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
-        Me.btn_modoru = New System.Windows.Forms.Button()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
@@ -59,18 +59,6 @@ Partial Class frmseikyuu_shuukin_hyou
         Me.gbx_main.Size = New System.Drawing.Size(637, 971)
         Me.gbx_main.TabIndex = 59
         Me.gbx_main.TabStop = False
-        '
-        'btn_insatsu
-        '
-        Me.btn_insatsu.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_insatsu.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_insatsu.Location = New System.Drawing.Point(307, 99)
-        Me.btn_insatsu.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_insatsu.Name = "btn_insatsu"
-        Me.btn_insatsu.Size = New System.Drawing.Size(127, 44)
-        Me.btn_insatsu.TabIndex = 203
-        Me.btn_insatsu.Text = "印刷"
-        Me.btn_insatsu.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -151,6 +139,18 @@ Partial Class frmseikyuu_shuukin_hyou
         Me.btn_clear_shain.Text = "クリア"
         Me.btn_clear_shain.UseVisualStyleBackColor = True
         '
+        'btn_insatsu
+        '
+        Me.btn_insatsu.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_insatsu.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_insatsu.Location = New System.Drawing.Point(307, 99)
+        Me.btn_insatsu.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_insatsu.Name = "btn_insatsu"
+        Me.btn_insatsu.Size = New System.Drawing.Size(127, 44)
+        Me.btn_insatsu.TabIndex = 203
+        Me.btn_insatsu.Text = "印刷"
+        Me.btn_insatsu.UseVisualStyleBackColor = True
+        '
         'gbx_shiharai_tsuki
         '
         Me.gbx_shiharai_tsuki.Controls.Add(Me.cbx_shimebi)
@@ -172,10 +172,22 @@ Partial Class frmseikyuu_shuukin_hyou
         Me.cbx_shimebi.Size = New System.Drawing.Size(93, 23)
         Me.cbx_shimebi.TabIndex = 132
         '
+        'btn_modoru
+        '
+        Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_modoru.Location = New System.Drawing.Point(452, 34)
+        Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_modoru.Name = "btn_modoru"
+        Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
+        Me.btn_modoru.TabIndex = 32
+        Me.btn_modoru.Text = "戻る"
+        Me.btn_modoru.UseVisualStyleBackColor = True
+        '
         'btn_shuukei
         '
         Me.btn_shuukei.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_shuukei.Location = New System.Drawing.Point(307, 34)
         Me.btn_shuukei.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shuukei.Name = "btn_shuukei"
@@ -207,18 +219,6 @@ Partial Class frmseikyuu_shuukin_hyou
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_kensakukekka.Size = New System.Drawing.Size(594, 747)
         Me.dgv_kensakukekka.TabIndex = 192
-        '
-        'btn_modoru
-        '
-        Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(452, 34)
-        Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_modoru.Name = "btn_modoru"
-        Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
-        Me.btn_modoru.TabIndex = 32
-        Me.btn_modoru.Text = "戻る"
-        Me.btn_modoru.UseVisualStyleBackColor = True
         '
         'frmseikyuu_shuukin_hyou
         '

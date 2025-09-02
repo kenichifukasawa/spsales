@@ -345,7 +345,7 @@ Partial Class frmkosuu
         'btn_hozon
         '
         Me.btn_hozon.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_hozon.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_hozon.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_hozon.Location = New System.Drawing.Point(669, 230)
         Me.btn_hozon.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_hozon.Name = "btn_hozon"
@@ -357,7 +357,7 @@ Partial Class frmkosuu
         'Button1
         '
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button1.Location = New System.Drawing.Point(669, 278)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
