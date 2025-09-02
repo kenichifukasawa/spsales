@@ -154,6 +154,7 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
 
         Dim dgv = dgv_kensakukekka
         If dgv.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 

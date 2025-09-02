@@ -78,7 +78,7 @@ Public Class frmdenpyou
 
             Dim s_kin As Decimal
             Dim s_sougaku As Integer = 0, s_10 As Integer = 0, s_8 As Integer = 0
-            Dim mojiretsu(9) As String
+            Dim mojiretsu(8) As String
             For i = 0 To dt_server.Rows.Count - 1
 
                 Dim s_kakutei As Integer = 0

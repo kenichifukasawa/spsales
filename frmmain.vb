@@ -553,6 +553,7 @@ Public Class frmmain
 
         Dim dgv = dgv_denpyou
         If dgv.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 

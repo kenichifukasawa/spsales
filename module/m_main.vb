@@ -632,7 +632,7 @@ Module m_main
                 If IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
                     mojiretsu(6) = ""
                 Else
-                    mojiretsu(6) = PrintCategory.GetNameById(Trim(dt_server.Rows.Item(i).Item("nouhinshoid")))
+                    mojiretsu(6) = PrintCategory.GetNameById(Trim(dt_server.Rows.Item(i).Item("print_shurui")))
                 End If
 
                 If IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
