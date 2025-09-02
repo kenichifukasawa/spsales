@@ -33,8 +33,6 @@ Public Class frmseikyuu_sentaku
 
     Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
 
-        ' TODO : 停止機能を作る
-
         Dim folder_path = DESKTOP_PATH + "\"
         Dim log_flg = False
         If chk_check_log.Checked Then
