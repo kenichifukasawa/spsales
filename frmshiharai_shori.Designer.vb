@@ -169,7 +169,7 @@ Partial Class frmshiharai_shori
         'btn_shiire_shousai
         '
         Me.btn_shiire_shousai.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shiire_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shiire_shousai.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_shiire_shousai.Location = New System.Drawing.Point(554, 165)
         Me.btn_shiire_shousai.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shiire_shousai.Name = "btn_shiire_shousai"
@@ -234,7 +234,7 @@ Partial Class frmshiharai_shori
         'btn_touroku
         '
         Me.btn_touroku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_touroku.Location = New System.Drawing.Point(554, 99)
         Me.btn_touroku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_touroku.Name = "btn_touroku"
@@ -348,7 +348,7 @@ Partial Class frmshiharai_shori
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(576, 18)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
@@ -373,7 +373,7 @@ Partial Class frmshiharai_shori
         'btn_shiharai_shousai
         '
         Me.btn_shiharai_shousai.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shiharai_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shiharai_shousai.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_shiharai_shousai.Location = New System.Drawing.Point(445, 18)
         Me.btn_shiharai_shousai.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shiharai_shousai.Name = "btn_shiharai_shousai"

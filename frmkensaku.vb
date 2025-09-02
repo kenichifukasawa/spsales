@@ -336,20 +336,27 @@ Public Class frmkensaku
 
                 Dim mojiretsu(5) As String
                 If .rippan.Checked = True Then
+
                     With Me.dgvkekka
 
                         .Rows.Clear()
                         .Columns.Clear()
                         .ColumnCount = 4
+
                         .Columns(0).Name = "ＩＤ"
                         .Columns(1).Name = "店舗名"
                         .Columns(2).Name = "メモ"
                         .Columns(3).Name = "住所"
+
                         .Columns(0).Width = 65
                         .Columns(1).Width = 400
                         .Columns(2).Width = 800
                         .Columns(3).Width = 300
+
+                        .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
                     End With
+
                 End If
 
                 Dim i As Integer

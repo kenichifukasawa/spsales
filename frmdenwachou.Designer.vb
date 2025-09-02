@@ -36,10 +36,10 @@ Partial Class frmdenwachou
         Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.lbl_button_no = New System.Windows.Forms.Label()
         Me.lbl_form_id = New System.Windows.Forms.Label()
         Me.lbl_annai = New System.Windows.Forms.Label()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.lbl_button_no = New System.Windows.Forms.Label()
         Me.tcl_denwachou.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,6 +199,17 @@ Partial Class frmdenwachou
         Me.GroupBox3.TabIndex = 193
         Me.GroupBox3.TabStop = False
         '
+        'lbl_button_no
+        '
+        Me.lbl_button_no.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.lbl_button_no.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_button_no.Location = New System.Drawing.Point(545, 919)
+        Me.lbl_button_no.Name = "lbl_button_no"
+        Me.lbl_button_no.Size = New System.Drawing.Size(113, 24)
+        Me.lbl_button_no.TabIndex = 199
+        Me.lbl_button_no.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_button_no.Visible = False
+        '
         'lbl_form_id
         '
         Me.lbl_form_id.BackColor = System.Drawing.Color.WhiteSmoke
@@ -224,7 +235,7 @@ Partial Class frmdenwachou
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(724, 911)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
@@ -232,17 +243,6 @@ Partial Class frmdenwachou
         Me.btn_modoru.TabIndex = 194
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
-        '
-        'lbl_button_no
-        '
-        Me.lbl_button_no.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.lbl_button_no.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_button_no.Location = New System.Drawing.Point(545, 919)
-        Me.lbl_button_no.Name = "lbl_button_no"
-        Me.lbl_button_no.Size = New System.Drawing.Size(113, 24)
-        Me.lbl_button_no.TabIndex = 199
-        Me.lbl_button_no.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lbl_button_no.Visible = False
         '
         'frmdenwachou
         '

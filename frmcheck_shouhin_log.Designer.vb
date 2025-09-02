@@ -22,8 +22,6 @@ Partial Class frmcheck_shouhin_log
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbx_main = New System.Windows.Forms.GroupBox()
         Me.btn_kensaku = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
@@ -65,7 +63,7 @@ Partial Class frmcheck_shouhin_log
         'btn_kensaku
         '
         Me.btn_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_kensaku.Location = New System.Drawing.Point(686, 99)
         Me.btn_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_kensaku.Name = "btn_kensaku"
@@ -88,23 +86,7 @@ Partial Class frmcheck_shouhin_log
         '
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgv_kensakukekka.Location = New System.Drawing.Point(6, 19)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
@@ -193,7 +175,7 @@ Partial Class frmcheck_shouhin_log
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(817, 99)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"

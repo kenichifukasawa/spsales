@@ -30,6 +30,7 @@ Partial Class frmseikyuu_rireki_shousai
         Me.btn_koushin = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.lbl_seikyuu_gaku = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -52,7 +53,6 @@ Partial Class frmseikyuu_rireki_shousai
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btn_modoru = New System.Windows.Forms.Button()
-        Me.Label14 = New System.Windows.Forms.Label()
         Me.gbx_main.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.dgv_kensakukekka, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,7 +125,7 @@ Partial Class frmseikyuu_rireki_shousai
         'btn_koushin
         '
         Me.btn_koushin.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_koushin.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_koushin.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_koushin.Location = New System.Drawing.Point(735, 18)
         Me.btn_koushin.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_koushin.Name = "btn_koushin"
@@ -173,6 +173,16 @@ Partial Class frmseikyuu_rireki_shousai
         Me.GroupBox1.Size = New System.Drawing.Size(1120, 82)
         Me.GroupBox1.TabIndex = 192
         Me.GroupBox1.TabStop = False
+        '
+        'Label14
+        '
+        Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label14.Location = New System.Drawing.Point(38, 22)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(113, 21)
+        Me.Label14.TabIndex = 56
+        Me.Label14.Text = "請求書発行日"
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label12
         '
@@ -403,7 +413,7 @@ Partial Class frmseikyuu_rireki_shousai
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(973, 114)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
@@ -411,16 +421,6 @@ Partial Class frmseikyuu_rireki_shousai
         Me.btn_modoru.TabIndex = 32
         Me.btn_modoru.Text = "戻る"
         Me.btn_modoru.UseVisualStyleBackColor = True
-        '
-        'Label14
-        '
-        Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label14.Location = New System.Drawing.Point(38, 22)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(113, 21)
-        Me.Label14.TabIndex = 56
-        Me.Label14.Text = "請求書発行日"
-        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frmseikyuu_rireki_shousai
         '

@@ -131,7 +131,7 @@ Partial Class frmichiran_yuubin_koushin
         'btn_koushin
         '
         Me.btn_koushin.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_koushin.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_koushin.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_koushin.Location = New System.Drawing.Point(12, 223)
         Me.btn_koushin.Margin = New System.Windows.Forms.Padding(4)
         Me.btn_koushin.Name = "btn_koushin"
@@ -143,7 +143,7 @@ Partial Class frmichiran_yuubin_koushin
         'btn_modoru
         '
         Me.btn_modoru.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(909, 223)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(4)
         Me.btn_modoru.Name = "btn_modoru"

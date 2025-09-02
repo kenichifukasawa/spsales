@@ -34,9 +34,64 @@ Public Class frmnouhinsho_rireki
 
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
-        ' TODO:main画面に詳細が移動したため、保留
-        msg_go("開発保留中")
-        frmnouhinsho_rireki_shousai.ShowDialog()
+        ' TODO:未テスト
+        msg_go("開発中")
+        Exit Sub
+
+        Dim dgv = dgv_kensakukekka
+        If dgv.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
+            Exit Sub
+        End If
+
+        Dim current_row = dgv.CurrentRow
+        Dim hacchuuid As String = Trim(current_row.Cells(0).Value)
+        Dim hinichi As String = Trim(current_row.Cells(1).Value)
+        Dim nouhinsho_no As String = Trim(current_row.Cells(5).Value)
+        Dim bikou1 As String = Trim(current_row.Cells(9).Value)
+        Dim bikou2 As String = Trim(current_row.Cells(10).Value)
+        Dim print_shurui_id As String = Trim(current_row.Cells(7).Value)
+        Dim dami2 As String = Trim(current_row.Cells(8).Value)
+        Dim shain_id As String = Trim(current_row.Cells(6).Value)
+        'Dim tenpo_mei = Trim(lbl_tenpo_mei.Text)
+        Dim tenpo_mei = ""
+
+        set_shain_cbx(7)
+
+        With frmdenpyou
+
+            .GroupBox5.Text += "　（ " + tenpo_mei + " )"
+
+            .cbx_shurui.Items.Clear()
+            .cbx_shurui.Items.AddRange(PrintCategory.Names)
+            .cbx_shurui.SelectedIndex = .cbx_shurui.FindStringExact(PrintCategory.GetNameById(print_shurui_id))
+
+            .DateTimePicker1.Text = hinichi
+            .txt_nouhinsho_no.Text = nouhinsho_no
+
+            If nouhinsho_no = "" Then
+                .chk_nouhinsho_pc.Checked = True
+                .txt_nouhinsho_no.Enabled = False
+            Else
+                .chk_nouhinsho_pc.Checked = False
+                .txt_nouhinsho_no.Enabled = True
+            End If
+
+            .txtbikou1.Text = bikou1
+            .txtbikou2.Text = bikou2
+            .cbx_shain.SelectedIndex = .cbx_shain.FindString(shain_id)
+
+            If dami2 = "1" Then
+                .chk_nouhinsho_houkoku.Checked = True
+            Else
+                .chk_nouhinsho_houkoku.Checked = False
+            End If
+
+            .lbl_hacchuuid.Text = hacchuuid
+
+            .ShowDialog()
+
+        End With
 
     End Sub
 
@@ -240,6 +295,8 @@ Public Class frmnouhinsho_rireki
 
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         End With
 

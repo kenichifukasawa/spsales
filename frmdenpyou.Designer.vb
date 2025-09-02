@@ -53,6 +53,7 @@ Partial Class frmdenpyou
         Me.txt_nouhinsho_no = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
+        Me.lbl_hacchuuid = New System.Windows.Forms.Label()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -63,6 +64,7 @@ Partial Class frmdenpyou
         'GroupBox5
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.White
+        Me.GroupBox5.Controls.Add(Me.lbl_hacchuuid)
         Me.GroupBox5.Controls.Add(Me.Button1)
         Me.GroupBox5.Controls.Add(Me.Button2)
         Me.GroupBox5.Controls.Add(Me.btn_kensaku)
@@ -82,7 +84,7 @@ Partial Class frmdenpyou
         'Button1
         '
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button1.Location = New System.Drawing.Point(1177, 30)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
@@ -95,7 +97,7 @@ Partial Class frmdenpyou
         '
         Me.Button2.BackColor = System.Drawing.SystemColors.Control
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button2.Location = New System.Drawing.Point(1307, 89)
         Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"
@@ -107,7 +109,7 @@ Partial Class frmdenpyou
         'btn_kensaku
         '
         Me.btn_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_kensaku.Location = New System.Drawing.Point(1177, 89)
         Me.btn_kensaku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_kensaku.Name = "btn_kensaku"
@@ -119,7 +121,7 @@ Partial Class frmdenpyou
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(1307, 30)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
@@ -427,6 +429,17 @@ Partial Class frmdenpyou
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(1426, 755)
         Me.dgv_nouhinsho.TabIndex = 67
         '
+        'lbl_hacchuuid
+        '
+        Me.lbl_hacchuuid.BackColor = System.Drawing.SystemColors.Control
+        Me.lbl_hacchuuid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_hacchuuid.Location = New System.Drawing.Point(748, -8)
+        Me.lbl_hacchuuid.Name = "lbl_hacchuuid"
+        Me.lbl_hacchuuid.Size = New System.Drawing.Size(89, 23)
+        Me.lbl_hacchuuid.TabIndex = 209
+        Me.lbl_hacchuuid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_hacchuuid.Visible = False
+        '
         'frmdenpyou
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -479,4 +492,5 @@ Partial Class frmdenpyou
     Friend WithEvents cbx_shurui As ComboBox
     Friend WithEvents Label30 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents lbl_hacchuuid As Label
 End Class

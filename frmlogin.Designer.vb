@@ -88,7 +88,7 @@ Partial Class frmlogin
         'btn_ninshou
         '
         Me.btn_ninshou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_ninshou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_ninshou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_ninshou.Location = New System.Drawing.Point(424, 31)
         Me.btn_ninshou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_ninshou.Name = "btn_ninshou"
@@ -100,7 +100,7 @@ Partial Class frmlogin
         'Button2
         '
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button2.Location = New System.Drawing.Point(424, 93)
         Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"

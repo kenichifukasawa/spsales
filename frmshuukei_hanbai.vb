@@ -78,6 +78,8 @@ Public Class frmshuukei_hanbai
                 Dim currentFont As Font = .DefaultCellStyle.Font
                 .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             End With
 
         End With
@@ -346,6 +348,8 @@ Public Class frmshuukei_hanbai
 
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         End With
 

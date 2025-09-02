@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmichiran_shain_koushin
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmichiran_shain_koushin
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btn_koushin = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
@@ -66,8 +66,8 @@ Partial Class frmichiran_shain_koushin
         'btn_koushin
         '
         Me.btn_koushin.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_koushin.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_koushin.Location = New System.Drawing.Point(12, 353)
+        Me.btn_koushin.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_koushin.Location = New System.Drawing.Point(12, 223)
         Me.btn_koushin.Margin = New System.Windows.Forms.Padding(4)
         Me.btn_koushin.Name = "btn_koushin"
         Me.btn_koushin.Size = New System.Drawing.Size(751, 46)
@@ -78,8 +78,8 @@ Partial Class frmichiran_shain_koushin
         'btn_modoru
         '
         Me.btn_modoru.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(771, 352)
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_modoru.Location = New System.Drawing.Point(771, 222)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(4)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(224, 46)

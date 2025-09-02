@@ -207,7 +207,7 @@ Partial Class frmshiire
         'Button1
         '
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button1.Location = New System.Drawing.Point(313, 74)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
@@ -219,7 +219,7 @@ Partial Class frmshiire
         'Button2
         '
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button2.Location = New System.Drawing.Point(423, 74)
         Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"
@@ -231,7 +231,7 @@ Partial Class frmshiire
         'Button4
         '
         Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button4.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button4.Location = New System.Drawing.Point(313, 119)
         Me.Button4.Margin = New System.Windows.Forms.Padding(2)
         Me.Button4.Name = "Button4"
@@ -243,7 +243,7 @@ Partial Class frmshiire
         'Button6
         '
         Me.Button6.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button6.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button6.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button6.Location = New System.Drawing.Point(423, 119)
         Me.Button6.Margin = New System.Windows.Forms.Padding(2)
         Me.Button6.Name = "Button6"
@@ -525,7 +525,7 @@ Partial Class frmshiire
         'Button9
         '
         Me.Button9.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button9.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button9.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button9.Location = New System.Drawing.Point(567, 119)
         Me.Button9.Margin = New System.Windows.Forms.Padding(2)
         Me.Button9.Name = "Button9"
@@ -577,7 +577,7 @@ Partial Class frmshiire
         'Button7
         '
         Me.Button7.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button7.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button7.Location = New System.Drawing.Point(453, 119)
         Me.Button7.Margin = New System.Windows.Forms.Padding(2)
         Me.Button7.Name = "Button7"
@@ -589,7 +589,7 @@ Partial Class frmshiire
         'Button8
         '
         Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button8.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button8.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button8.Location = New System.Drawing.Point(567, 71)
         Me.Button8.Margin = New System.Windows.Forms.Padding(2)
         Me.Button8.Name = "Button8"
@@ -707,7 +707,7 @@ Partial Class frmshiire
         'Button3
         '
         Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button3.Location = New System.Drawing.Point(345, 15)
         Me.Button3.Margin = New System.Windows.Forms.Padding(2)
         Me.Button3.Name = "Button3"
@@ -719,7 +719,7 @@ Partial Class frmshiire
         'Button5
         '
         Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button5.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button5.Location = New System.Drawing.Point(455, 15)
         Me.Button5.Margin = New System.Windows.Forms.Padding(2)
         Me.Button5.Name = "Button5"
@@ -1017,7 +1017,7 @@ Partial Class frmshiire
         '
         Me.Button15.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button15.Enabled = False
-        Me.Button15.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button15.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button15.Location = New System.Drawing.Point(455, 305)
         Me.Button15.Margin = New System.Windows.Forms.Padding(2)
         Me.Button15.Name = "Button15"

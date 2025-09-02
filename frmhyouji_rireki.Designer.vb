@@ -63,7 +63,7 @@ Partial Class frmhyouji_rireki
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(503, 19)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
@@ -89,7 +89,7 @@ Partial Class frmhyouji_rireki
         'btn_sakujo
         '
         Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_sakujo.Location = New System.Drawing.Point(372, 19)
         Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_sakujo.Name = "btn_sakujo"

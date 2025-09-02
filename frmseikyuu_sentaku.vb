@@ -33,8 +33,6 @@ Public Class frmseikyuu_sentaku
 
     Private Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
 
-        ' TODO : 停止機能を作る
-
         Dim folder_path = DESKTOP_PATH + "\"
         Dim log_flg = False
         If chk_check_log.Checked Then
@@ -62,11 +60,17 @@ Public Class frmseikyuu_sentaku
                 If log_flg Then
                     write_log(log_end_msg, folder_path)
                 End If
+                Me.Close() : Me.Dispose()
                 Exit Sub
             End If
 
             show_shinkou_joukyou(count_1)
             For i = 0 To count_1 - 1
+
+                If chk_check_chuushi.Checked Then
+                    hide_shinkou_joukyou()
+                    Exit Sub
+                End If
 
                 Dim item = data_table.Rows.Item(i)
                 Dim tenpo_id = Trim(item.Item("tenpoid"))
@@ -278,6 +282,8 @@ Public Class frmseikyuu_sentaku
         gbx_shuukin_hyou.Enabled = True
 
         gbx_shinkou_joukyou.Visible = False
+
+        Me.Close() : Me.Dispose()
 
     End Sub
 

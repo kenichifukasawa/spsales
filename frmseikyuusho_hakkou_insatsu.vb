@@ -484,7 +484,7 @@ Public Class frmseikyuusho_hakkou_insatsu
 
         Dim hinichi = nen + tsuki + hi
 
-        'log_write("請求書の抽出開始********************************************") ' TODO
+        write_log("請求書の抽出開始********************************************")
 
         With dgv_kensakukekka
 
@@ -577,6 +577,8 @@ Public Class frmseikyuusho_hakkou_insatsu
 
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         End With
 
@@ -1350,16 +1352,16 @@ Public Class frmseikyuusho_hakkou_insatsu
             ' データチェック
             If seikyuu_moto_data(6, i) - seikyuu_moto_data(11, i) <> seikyuu_moto_data(13, i) Then
                 msg_go("繰越残高が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
-                'log_write("[請求書]繰越残高が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                write_log("[請求書]繰越残高が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
                 seikyuu_moto_data(27, i) = 1
             End If
             If seikyuu_moto_data(13, i) + seikyuu_moto_data(12, i) + seikyuu_moto_data(17, i) + seikyuu_moto_data(14, i) <> seikyuu_moto_data(15, i) Then
                 msg_go("総計が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
-                'log_write("[請求書]総計が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                write_log("[請求書]総計が不正です。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
                 seikyuu_moto_data(27, i) = 2
             End If
             If seikyuu_moto_data(6, i) <> seikyuu_moto_data(22, i) Then
-                'log_write("[請求書]前月の請求金額と今月の繰越金額の違いを修正しました。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i)) ' TODO
+                write_log("[請求書]前月の請求金額と今月の繰越金額の違いを修正しました。" & seikyuu_moto_data(0, i) & Space(2) & seikyuu_moto_data(1, i))
                 seikyuu_moto_data(6, i) = seikyuu_moto_data(22, i)
 
             End If
@@ -1416,7 +1418,7 @@ Public Class frmseikyuusho_hakkou_insatsu
 
         hide_shinkou_joukyou()
 
-        'log_write("請求書の抽出終了********************************************") ' TODO
+        write_log("請求書の抽出終了********************************************")
 
         ' ---------------------------------------------------------- ' TODO:問題なければ削除
 

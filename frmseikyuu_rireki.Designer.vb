@@ -78,7 +78,7 @@ Partial Class frmseikyuu_rireki
         'btn_path
         '
         Me.btn_path.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_path.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_path.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_path.Location = New System.Drawing.Point(1179, 33)
         Me.btn_path.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_path.Name = "btn_path"
@@ -90,7 +90,7 @@ Partial Class frmseikyuu_rireki
         'btn_insatsu
         '
         Me.btn_insatsu.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_insatsu.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_insatsu.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_insatsu.Location = New System.Drawing.Point(1048, 33)
         Me.btn_insatsu.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_insatsu.Name = "btn_insatsu"
@@ -112,7 +112,7 @@ Partial Class frmseikyuu_rireki
         'btn_shousai
         '
         Me.btn_shousai.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shousai.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shousai.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_shousai.Location = New System.Drawing.Point(1048, 81)
         Me.btn_shousai.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shousai.Name = "btn_shousai"
@@ -173,7 +173,7 @@ Partial Class frmseikyuu_rireki
         'btn_denwachou
         '
         Me.btn_denwachou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_denwachou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_denwachou.Location = New System.Drawing.Point(476, 12)
         Me.btn_denwachou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_denwachou.Name = "btn_denwachou"
@@ -274,7 +274,7 @@ Partial Class frmseikyuu_rireki
         'btn_sakujo
         '
         Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_sakujo.Location = New System.Drawing.Point(917, 33)
         Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_sakujo.Name = "btn_sakujo"
@@ -321,7 +321,7 @@ Partial Class frmseikyuu_rireki
         'btn_shuukei
         '
         Me.btn_shuukei.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shuukei.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_shuukei.Location = New System.Drawing.Point(917, 81)
         Me.btn_shuukei.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shuukei.Name = "btn_shuukei"
@@ -333,7 +333,7 @@ Partial Class frmseikyuu_rireki
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(1179, 81)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"

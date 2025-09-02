@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmichiran_shain
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmichiran_shain
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.btn_sakujo = New System.Windows.Forms.Button()
@@ -36,8 +36,8 @@ Partial Class frmichiran_shain
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(1004, 18)
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_modoru.Location = New System.Drawing.Point(468, 18)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
@@ -48,8 +48,8 @@ Partial Class frmichiran_shain
         'btn_sakujo
         '
         Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_sakujo.Location = New System.Drawing.Point(873, 18)
+        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_sakujo.Location = New System.Drawing.Point(337, 18)
         Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_sakujo.Name = "btn_sakujo"
         Me.btn_sakujo.Size = New System.Drawing.Size(127, 44)
@@ -102,8 +102,8 @@ Partial Class frmichiran_shain
         'btn_touroku
         '
         Me.btn_touroku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_touroku.Location = New System.Drawing.Point(611, 18)
+        Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_touroku.Location = New System.Drawing.Point(75, 18)
         Me.btn_touroku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_touroku.Name = "btn_touroku"
         Me.btn_touroku.Size = New System.Drawing.Size(127, 44)
@@ -114,8 +114,8 @@ Partial Class frmichiran_shain
         'btn_henkou
         '
         Me.btn_henkou.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_henkou.Location = New System.Drawing.Point(742, 18)
+        Me.btn_henkou.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_henkou.Location = New System.Drawing.Point(206, 18)
         Me.btn_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_henkou.Name = "btn_henkou"
         Me.btn_henkou.Size = New System.Drawing.Size(127, 44)
