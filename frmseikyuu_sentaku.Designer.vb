@@ -49,6 +49,7 @@ Partial Class frmseikyuu_sentaku
         Me.lbl_shinkou_percent = New System.Windows.Forms.Label()
         Me.pgb_shinkou_joukyou = New System.Windows.Forms.ProgressBar()
         Me.lbl_shinkou_doai = New System.Windows.Forms.Label()
+        Me.chk_check_chuushi = New System.Windows.Forms.CheckBox()
         Me.gbx_modoru.SuspendLayout()
         Me.gbx_shuukin_hyou.SuspendLayout()
         Me.gbx_hakkou_insatsu.SuspendLayout()
@@ -307,6 +308,7 @@ Partial Class frmseikyuu_sentaku
         'gbx_shinkou_joukyou
         '
         Me.gbx_shinkou_joukyou.BackColor = System.Drawing.Color.LightCyan
+        Me.gbx_shinkou_joukyou.Controls.Add(Me.chk_check_chuushi)
         Me.gbx_shinkou_joukyou.Controls.Add(Me.GroupBox7)
         Me.gbx_shinkou_joukyou.Font = New System.Drawing.Font("MS UI Gothic", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.gbx_shinkou_joukyou.Location = New System.Drawing.Point(12, 433)
@@ -359,11 +361,22 @@ Partial Class frmseikyuu_sentaku
         Me.lbl_shinkou_doai.TabIndex = 125
         Me.lbl_shinkou_doai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'chk_check_chuushi
+        '
+        Me.chk_check_chuushi.AutoSize = True
+        Me.chk_check_chuushi.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.chk_check_chuushi.Location = New System.Drawing.Point(222, 4)
+        Me.chk_check_chuushi.Name = "chk_check_chuushi"
+        Me.chk_check_chuushi.Size = New System.Drawing.Size(80, 19)
+        Me.chk_check_chuushi.TabIndex = 100
+        Me.chk_check_chuushi.Text = "中止する"
+        Me.chk_check_chuushi.UseVisualStyleBackColor = True
+        '
         'frmseikyuu_sentaku
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(898, 321)
+        Me.ClientSize = New System.Drawing.Size(898, 323)
         Me.ControlBox = False
         Me.Controls.Add(Me.gbx_shinkou_joukyou)
         Me.Controls.Add(Me.gbx_check)
@@ -385,6 +398,7 @@ Partial Class frmseikyuu_sentaku
         Me.gbx_check.ResumeLayout(False)
         Me.gbx_check.PerformLayout()
         Me.gbx_shinkou_joukyou.ResumeLayout(False)
+        Me.gbx_shinkou_joukyou.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -417,4 +431,5 @@ Partial Class frmseikyuu_sentaku
     Friend WithEvents lbl_shinkou_percent As Label
     Friend WithEvents pgb_shinkou_joukyou As ProgressBar
     Friend WithEvents lbl_shinkou_doai As Label
+    Friend WithEvents chk_check_chuushi As CheckBox
 End Class
