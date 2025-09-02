@@ -90,6 +90,21 @@ Public Class frminfo
             End Using
         End If
 
+        '職員にdamiを追加
+        Dim result4 As String = MessageBox.Show("shokuinテーブルに「nouhinsho_dami」を追加しますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+
+        If result4 = DialogResult.Yes Then
+            ' 接続文字列を環境に合わせて修正してください
+            ' Dim connectionString As String = "Server=サーバー名;Database=データベース名;User Id=ユーザー名;Password=パスワード;"
+            Using cn As New SqlConnection(connectionstring_sqlserver)
+                cn.Open()
+                Dim sql As String = "ALTER TABLE shain ADD nouhinsho_dami nchar(1) NULL;"
+                Using cmd As New SqlCommand(sql, cn)
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+        End If
+
         '発注に備考１２を追加
         Dim result2 As String = MessageBox.Show("hacchuuテーブルに「bikou1,2」を追加しますか？", "EzManager", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 

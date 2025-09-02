@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmichiran_shain_koushin
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmichiran_shain_koushin
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btn_koushin = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
@@ -44,6 +44,10 @@ Partial Class frmichiran_shain_koushin
         Me.lbl_shain_ryaku_mei = New System.Windows.Forms.Label()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.lbl_shain_mei = New System.Windows.Forms.Label()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.lbldami = New System.Windows.Forms.Label()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.chkdami = New System.Windows.Forms.CheckBox()
         Me.gbx_shin.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -55,6 +59,8 @@ Partial Class frmichiran_shain_koushin
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
         Me.SuspendLayout()
         '
         'btn_koushin
@@ -84,14 +90,15 @@ Partial Class frmichiran_shain_koushin
         'gbx_shin
         '
         Me.gbx_shin.BackColor = System.Drawing.Color.White
+        Me.gbx_shin.Controls.Add(Me.GroupBox11)
         Me.gbx_shin.Controls.Add(Me.GroupBox5)
         Me.gbx_shin.Controls.Add(Me.GroupBox4)
         Me.gbx_shin.Controls.Add(Me.GroupBox3)
         Me.gbx_shin.Controls.Add(Me.GroupBox2)
         Me.gbx_shin.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.gbx_shin.Location = New System.Drawing.Point(12, 117)
+        Me.gbx_shin.Location = New System.Drawing.Point(12, 182)
         Me.gbx_shin.Name = "gbx_shin"
-        Me.gbx_shin.Size = New System.Drawing.Size(983, 99)
+        Me.gbx_shin.Size = New System.Drawing.Size(983, 161)
         Me.gbx_shin.TabIndex = 163
         Me.gbx_shin.TabStop = False
         Me.gbx_shin.Text = "新社員詳細"
@@ -190,6 +197,7 @@ Partial Class frmichiran_shain_koushin
         'gbx_kyuu
         '
         Me.gbx_kyuu.BackColor = System.Drawing.Color.White
+        Me.gbx_kyuu.Controls.Add(Me.GroupBox6)
         Me.gbx_kyuu.Controls.Add(Me.GroupBox1)
         Me.gbx_kyuu.Controls.Add(Me.GroupBox7)
         Me.gbx_kyuu.Controls.Add(Me.GroupBox8)
@@ -198,7 +206,7 @@ Partial Class frmichiran_shain_koushin
         Me.gbx_kyuu.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.gbx_kyuu.Location = New System.Drawing.Point(12, 12)
         Me.gbx_kyuu.Name = "gbx_kyuu"
-        Me.gbx_kyuu.Size = New System.Drawing.Size(983, 99)
+        Me.gbx_kyuu.Size = New System.Drawing.Size(983, 161)
         Me.gbx_kyuu.TabIndex = 194
         Me.gbx_kyuu.TabStop = False
         Me.gbx_kyuu.Text = "旧社員詳細"
@@ -313,11 +321,55 @@ Partial Class frmichiran_shain_koushin
         Me.lbl_shain_mei.TabIndex = 172
         Me.lbl_shain_mei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'GroupBox6
+        '
+        Me.GroupBox6.BackColor = System.Drawing.Color.White
+        Me.GroupBox6.Controls.Add(Me.lbldami)
+        Me.GroupBox6.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox6.Location = New System.Drawing.Point(53, 87)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(139, 60)
+        Me.GroupBox6.TabIndex = 195
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "納品書ダミー"
+        '
+        'lbldami
+        '
+        Me.lbldami.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.lbldami.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbldami.Location = New System.Drawing.Point(21, 24)
+        Me.lbldami.Name = "lbldami"
+        Me.lbldami.Size = New System.Drawing.Size(99, 21)
+        Me.lbldami.TabIndex = 170
+        Me.lbldami.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.BackColor = System.Drawing.Color.White
+        Me.GroupBox11.Controls.Add(Me.chkdami)
+        Me.GroupBox11.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox11.Location = New System.Drawing.Point(53, 95)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(139, 60)
+        Me.GroupBox11.TabIndex = 194
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "納品書ダミー"
+        '
+        'chkdami
+        '
+        Me.chkdami.AutoSize = True
+        Me.chkdami.Location = New System.Drawing.Point(19, 26)
+        Me.chkdami.Name = "chkdami"
+        Me.chkdami.Size = New System.Drawing.Size(86, 19)
+        Me.chkdami.TabIndex = 188
+        Me.chkdami.Text = "使用可能"
+        Me.chkdami.UseVisualStyleBackColor = True
+        '
         'frmichiran_shain_koushin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1003, 281)
+        Me.ClientSize = New System.Drawing.Size(1003, 406)
         Me.ControlBox = False
         Me.Controls.Add(Me.gbx_kyuu)
         Me.Controls.Add(Me.btn_koushin)
@@ -341,6 +393,9 @@ Partial Class frmichiran_shain_koushin
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox11.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -367,4 +422,8 @@ Partial Class frmichiran_shain_koushin
     Friend WithEvents txtpw As TextBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents lblpw As Label
+    Friend WithEvents GroupBox11 As GroupBox
+    Friend WithEvents chkdami As CheckBox
+    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents lbldami As Label
 End Class

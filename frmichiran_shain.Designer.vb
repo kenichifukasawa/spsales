@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmichiran_shain
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmichiran_shain
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.btn_sakujo = New System.Windows.Forms.Button()
@@ -68,7 +68,7 @@ Partial Class frmichiran_shain
         Me.dgv_kensakukekka.ReadOnly = True
         Me.dgv_kensakukekka.RowTemplate.Height = 24
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(582, 658)
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(1118, 658)
         Me.dgv_kensakukekka.TabIndex = 0
         '
         'GroupBox1
@@ -85,14 +85,14 @@ Partial Class frmichiran_shain
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(609, 761)
+        Me.GroupBox1.Size = New System.Drawing.Size(1152, 761)
         Me.GroupBox1.TabIndex = 50
         Me.GroupBox1.TabStop = False
         '
         'chk_sakujo
         '
         Me.chk_sakujo.AutoSize = True
-        Me.chk_sakujo.Location = New System.Drawing.Point(518, 738)
+        Me.chk_sakujo.Location = New System.Drawing.Point(1054, 738)
         Me.chk_sakujo.Name = "chk_sakujo"
         Me.chk_sakujo.Size = New System.Drawing.Size(77, 18)
         Me.chk_sakujo.TabIndex = 189
@@ -127,7 +127,7 @@ Partial Class frmichiran_shain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(632, 781)
+        Me.ClientSize = New System.Drawing.Size(1174, 781)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmichiran_shain"
