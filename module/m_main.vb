@@ -547,6 +547,7 @@ Module m_main
                 .Rows.Clear()
                 .Columns.Clear()
                 .ColumnCount = 9
+
                 .Columns(0).Name = "納品詳細ID"
                 .Columns(1).Name = "商品ID"
                 .Columns(2).Name = "商品名"
@@ -556,6 +557,7 @@ Module m_main
                 .Columns(6).Name = "摘要"
                 .Columns(7).Name = "確定"
                 .Columns(8).Name = "軽減税率"
+
                 .Columns(0).Width = 100
                 .Columns(1).Width = 100
                 .Columns(2).Width = 700
@@ -582,6 +584,8 @@ Module m_main
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             End With
 
@@ -971,6 +975,7 @@ Module m_main
             .Rows.Clear()
             .Columns.Clear()
             .ColumnCount = 11
+
             .Columns(0).Name = "No"
             .Columns(1).Name = "商品ID"
             .Columns(2).Name = "商品名"
@@ -982,6 +987,7 @@ Module m_main
             .Columns(8).Name = ""
             .Columns(9).Name = ""
             .Columns(10).Name = ""
+
             .Columns(0).Width = 40
             .Columns(1).Width = 0
             .Columns(2).Width = 250
@@ -993,7 +999,6 @@ Module m_main
             .Columns(8).Width = 0
             .Columns(9).Width = 0
             .Columns(10).Width = 0
-
 
             .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
@@ -1022,7 +1027,6 @@ Module m_main
             .Columns(9).ReadOnly = True
             .Columns(10).ReadOnly = True
             .EditMode = DataGridViewEditMode.EditOnEnter
-
 
             ' すべての列ヘッダーが中央揃え
             .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -1511,7 +1515,6 @@ Module m_main
 
             '    .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             'End With
-
 
             Dim mojiretsu(3) As String
 

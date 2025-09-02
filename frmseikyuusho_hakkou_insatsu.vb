@@ -484,7 +484,7 @@ Public Class frmseikyuusho_hakkou_insatsu
 
         Dim hinichi = nen + tsuki + hi
 
-        'log_write("請求書の抽出開始********************************************") ' TODO
+        write_log("請求書の抽出開始********************************************")
 
         With dgv_kensakukekka
 
@@ -577,6 +577,8 @@ Public Class frmseikyuusho_hakkou_insatsu
 
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         End With
 
@@ -1416,7 +1418,7 @@ Public Class frmseikyuusho_hakkou_insatsu
 
         hide_shinkou_joukyou()
 
-        'log_write("請求書の抽出終了********************************************") ' TODO
+        write_log("請求書の抽出終了********************************************")
 
         ' ---------------------------------------------------------- ' TODO:問題なければ削除
 

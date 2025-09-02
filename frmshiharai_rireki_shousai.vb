@@ -38,6 +38,8 @@ Public Class frmshiharai_rireki_shousai
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
         End With
 
         Dim sum_goukei_gaku = 0

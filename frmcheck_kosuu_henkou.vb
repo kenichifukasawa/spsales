@@ -302,6 +302,8 @@ Public Class frmcheck_kosuu_henkou
                 End If
             Next
 
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
         End With
 
         If can_set = False Then

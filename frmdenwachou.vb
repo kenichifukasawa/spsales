@@ -50,7 +50,6 @@ Public Class frmdenwachou
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
-
             Dim newtabsize As Integer = (Me.tcl_denwachou.Height - 10) / 10
 
             'タブのサイズを変更できるようにする
@@ -58,6 +57,7 @@ Public Class frmdenwachou
             'タブのサイズを 80x30 にする
             Me.tcl_denwachou.ItemSize = New Size(newtabsize, 25)
 
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         End With
 
