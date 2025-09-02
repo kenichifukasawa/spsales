@@ -199,6 +199,9 @@ Module m_main
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
 
+                ' すべての列ヘッダーが中央揃え
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             End With
         ElseIf s_no = "1" Then
             With frmshiire.dgv_shien
@@ -227,6 +230,9 @@ Module m_main
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+                ' すべての列ヘッダーが中央揃え
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             End With
         End If
@@ -310,7 +316,8 @@ Module m_main
             '.Columns(6).ReadOnly = True
             .EditMode = DataGridViewEditMode.EditOnEnter
 
-
+            ' すべての列ヘッダーが中央揃え
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         End With
 
         frmshiire.lblshiiresuu.Text = "0"
@@ -724,6 +731,9 @@ Module m_main
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
 
+                ' すべての列ヘッダーが中央揃え
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             End With
 
             Dim s_kin As Decimal
@@ -881,6 +891,8 @@ Module m_main
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
 
+                ' すべての列ヘッダーが中央揃え
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End With
 
             Dim mojiretsu(7) As String, s_dami As Integer
@@ -1012,6 +1024,8 @@ Module m_main
             .EditMode = DataGridViewEditMode.EditOnEnter
 
 
+            ' すべての列ヘッダーが中央揃え
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         End With
 
@@ -1150,7 +1164,7 @@ Module m_main
             .Columns(1).Width = 100
             .Columns(2).Width = 70
             .Columns(3).Width = 70
-            .Columns(4).Width = 550
+            .Columns(4).Width = 300
             .Columns(5).Width = 60
             .Columns(6).Width = 50
 
@@ -1170,6 +1184,9 @@ Module m_main
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
+            ' すべての列ヘッダーが中央揃え
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         End With
 

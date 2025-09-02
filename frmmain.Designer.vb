@@ -847,7 +847,7 @@ Partial Class frmmain
         Me.dgv_log.Name = "dgv_log"
         Me.dgv_log.ReadOnly = True
         Me.dgv_log.RowTemplate.Height = 24
-        Me.dgv_log.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_log.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_log.Size = New System.Drawing.Size(514, 86)
         Me.dgv_log.TabIndex = 66
         '
@@ -904,7 +904,7 @@ Partial Class frmmain
         Me.dgv_denpyou.Name = "dgv_denpyou"
         Me.dgv_denpyou.ReadOnly = True
         Me.dgv_denpyou.RowTemplate.Height = 24
-        Me.dgv_denpyou.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_denpyou.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_denpyou.Size = New System.Drawing.Size(514, 131)
         Me.dgv_denpyou.TabIndex = 66
         '
@@ -947,7 +947,7 @@ Partial Class frmmain
         Me.dgv_seikyuusho.Name = "dgv_seikyuusho"
         Me.dgv_seikyuusho.ReadOnly = True
         Me.dgv_seikyuusho.RowTemplate.Height = 24
-        Me.dgv_seikyuusho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_seikyuusho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_seikyuusho.Size = New System.Drawing.Size(514, 122)
         Me.dgv_seikyuusho.TabIndex = 66
         '
@@ -1692,7 +1692,7 @@ Partial Class frmmain
         Me.dgv_shien.Name = "dgv_shien"
         Me.dgv_shien.ReadOnly = True
         Me.dgv_shien.RowTemplate.Height = 24
-        Me.dgv_shien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_shien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_shien.Size = New System.Drawing.Size(547, 724)
         Me.dgv_shien.TabIndex = 68
         '

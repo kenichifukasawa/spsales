@@ -42,6 +42,8 @@ Module m_shiire
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
 
+            ' すべての列ヘッダーが中央揃え
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         End With
 
         frmshiire.lblgyousha.Text = ""
