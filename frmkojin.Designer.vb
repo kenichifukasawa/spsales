@@ -112,7 +112,7 @@ Partial Class frmkojin
         '
         Me.Button2.BackColor = System.Drawing.SystemColors.Control
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button2.Location = New System.Drawing.Point(648, 764)
         Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"
@@ -125,7 +125,7 @@ Partial Class frmkojin
         '
         Me.b_koushin.BackColor = System.Drawing.SystemColors.Control
         Me.b_koushin.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.b_koushin.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.b_koushin.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.b_koushin.Location = New System.Drawing.Point(24, 764)
         Me.b_koushin.Margin = New System.Windows.Forms.Padding(2)
         Me.b_koushin.Name = "b_koushin"

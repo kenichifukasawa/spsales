@@ -540,13 +540,7 @@ Public Class frmmain
         End If
 
         cbx_shurui.Items.Clear()
-        cbx_shurui.Items.Add("掛売")
-        cbx_shurui.Items.Add("現金売")
-        cbx_shurui.Items.Add("返品")
-        cbx_shurui.Items.Add("返金")
-        cbx_shurui.Items.Add("委託")
-
-
+        cbx_shurui.Items.AddRange(PrintCategory.Names)
 
     End Sub
 
@@ -557,56 +551,38 @@ Public Class frmmain
 
     Private Sub btn_denpyou_henkou_Click(sender As Object, e As EventArgs) Handles btn_denpyou_henkou.Click
 
-        If dgv_denpyou.Rows.Count = 0 Then
+        Dim dgv = dgv_denpyou
+        If dgv.Rows.Count = 0 Then
+            msg_go("項目が表示されていません。")
             Exit Sub
         End If
 
-        Dim s_shousaiid As String = Trim(dgv_denpyou.CurrentRow.Cells(1).Value)
-        Dim s_hi As String = Trim(dgv_denpyou.CurrentRow.Cells(0).Value)
-        Dim s_nouhinshono As String = Trim(dgv_denpyou.CurrentRow.Cells(5).Value)
-        Dim s_inji As String = Trim(dgv_denpyou.CurrentRow.Cells(6).Value)
-        Dim s_bikou1 As String = Trim(dgv_denpyou.CurrentRow.Cells(7).Value)
-        Dim s_bikou2 As String = Trim(dgv_denpyou.CurrentRow.Cells(8).Value)
-        Dim s_pri As String = Trim(dgv_denpyou.CurrentRow.Cells(9).Value)
-        Dim s_dami2 As String = Trim(dgv_denpyou.CurrentRow.Cells(10).Value)
-        Dim s_shain As String = Mid(Trim(dgv_denpyou.CurrentRow.Cells(3).Value), 1, 2)
+        Dim current_row = dgv.CurrentRow
+        Dim hacchuuid As String = Trim(current_row.Cells(1).Value)
+        Dim hinichi As String = Trim(current_row.Cells(0).Value)
+        Dim nouhinsho_no As String = Trim(current_row.Cells(5).Value)
+        Dim inji As String = Trim(current_row.Cells(6).Value)
+        Dim bikou1 As String = Trim(current_row.Cells(7).Value)
+        Dim bikou2 As String = Trim(current_row.Cells(8).Value)
+        Dim print As String = Trim(current_row.Cells(9).Value)
+        Dim dami2 As String = Trim(current_row.Cells(10).Value)
+        Dim shain_id As String = Mid(Trim(current_row.Cells(3).Value), 1, 2)
+        Dim tenpo_mei = Trim(lbltenpomei.Text)
 
         set_shain_cbx(7)
 
         With frmdenpyou
 
-            .GroupBox5.Text = "納品書　（ " & Trim(Me.lbltenpomei.Text) & " )"
+            .GroupBox5.Text += "　（ " + tenpo_mei + " )"
 
             .cbx_shurui.Items.Clear()
-            .cbx_shurui.Items.Add("掛売")
-            .cbx_shurui.Items.Add("現金売")
-            .cbx_shurui.Items.Add("返品")
-            .cbx_shurui.Items.Add("返金")
-            .cbx_shurui.Items.Add("委託")
+            .cbx_shurui.Items.AddRange(PrintCategory.Names)
+            .cbx_shurui.SelectedIndex = .cbx_shurui.FindStringExact(inji)
 
+            .DateTimePicker1.Text = hinichi
+            .txt_nouhinsho_no.Text = nouhinsho_no
 
-            Select Case s_inji
-                Case "掛売"
-                    .cbx_shurui.SelectedIndex = 0
-                Case "現金売"
-                    .cbx_shurui.SelectedIndex = 1
-                Case "返品"
-                    .cbx_shurui.SelectedIndex = 2
-                Case "返金"
-                    .cbx_shurui.SelectedIndex = 3
-                Case "委託"
-                    .cbx_shurui.SelectedIndex = 4
-                Case Else
-                    .cbx_shurui.SelectedIndex = -1
-            End Select
-
-
-            tenpo_hacchuurireki_set2(s_shousaiid)
-
-
-            .DateTimePicker1.Text = s_hi
-            .txt_nouhinsho_no.Text = s_nouhinshono
-            If s_nouhinshono = "" Then
+            If nouhinsho_no = "" Then
                 .chk_nouhinsho_pc.Checked = True
                 .txt_nouhinsho_no.Enabled = False
             Else
@@ -614,19 +590,17 @@ Public Class frmmain
                 .txt_nouhinsho_no.Enabled = True
             End If
 
-            .txtbikou1.Text = s_bikou1
-            .txtbikou2.Text = s_bikou2
-            .cbx_shain.SelectedIndex = .cbx_shain.FindString(s_shain)
-            If s_pri = "" Then
-                .cbx_shurui.SelectedIndex = -1
-            Else
-                .cbx_shurui.SelectedIndex = CInt(s_pri)
-            End If
-            If s_dami2 = "1" Then
+            .txtbikou1.Text = bikou1
+            .txtbikou2.Text = bikou2
+            .cbx_shain.SelectedIndex = .cbx_shain.FindString(shain_id)
+
+            If dami2 = "1" Then
                 .chk_nouhinsho_houkoku.Checked = True
             Else
                 .chk_nouhinsho_houkoku.Checked = False
             End If
+
+            .lbl_hacchuuid.Text = hacchuuid
 
             .ShowDialog()
 

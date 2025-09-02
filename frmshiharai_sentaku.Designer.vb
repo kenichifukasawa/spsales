@@ -48,7 +48,7 @@ Partial Class frmshiharai_sentaku
         'btn_modoru
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(13, 89)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
@@ -81,7 +81,7 @@ Partial Class frmshiharai_sentaku
         'btn_rireki
         '
         Me.btn_rireki.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_rireki.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_rireki.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_rireki.Location = New System.Drawing.Point(13, 89)
         Me.btn_rireki.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_rireki.Name = "btn_rireki"
@@ -114,7 +114,7 @@ Partial Class frmshiharai_sentaku
         'btn_shori
         '
         Me.btn_shori.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_shori.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn_shori.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_shori.Location = New System.Drawing.Point(13, 89)
         Me.btn_shori.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_shori.Name = "btn_shori"

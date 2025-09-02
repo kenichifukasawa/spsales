@@ -145,8 +145,6 @@ Module m_seikyuu
                 .AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
                 .Columns(1).DefaultCellStyle.WrapMode = DataGridViewTriState.True
 
-
-
                 ' .Columns(0).ReadOnly = True
                 .Columns(1).ReadOnly = True
                 .Columns(2).ReadOnly = True
@@ -159,8 +157,10 @@ Module m_seikyuu
 
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
 
-
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             End With
 
             Dim mojiretsu(20) As String, jitsucount2 As Integer = 0

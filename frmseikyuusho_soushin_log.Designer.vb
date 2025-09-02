@@ -52,7 +52,7 @@ Partial Class frmseikyuusho_soushin_log
         '
         'Button1
         '
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button1.Location = New System.Drawing.Point(519, 410)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(111, 43)

@@ -127,6 +127,8 @@ Module m_kubun
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
 
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             End With
 
 
@@ -229,6 +231,8 @@ Module m_kubun
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
 
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             End With
 
             frmshouhinkubun.cmbkubun1.Items.Clear()
@@ -303,6 +307,8 @@ Module m_kubun
 
                 ' 奇数行の既定セル・スタイルの背景色を設定
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue
+
+                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             End With
 
