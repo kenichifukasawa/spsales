@@ -189,25 +189,33 @@ Public Class frmkojin
 
         '新規登録
         If tenpoid = "" Then
-            Dim newid As String, newid2 As String, settei2_res As String
 
-            newid = Trim(setting2(7, 0, "1", ""))
-            If newid = "-1" Then
-                msg_go("IDの取得に失敗しました。再度実行してください。")
-                Exit Sub
-            ElseIf newid = "0" Then
-                newid2 = "2"
-                newid = "000001"
-            Else
-                newid2 = (CInt(newid) + 1).ToString
-                newid = newid.ToString.PadLeft(6, "0"c)
-            End If
+            Dim table_name As String = "tenpo"
+            Dim s_no = 7
+            Dim id = 1
+            Dim ketasuu = 6
+            Dim newid = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
 
-            settei2_res = setting2(7, 1, "1", newid2)
-            If settei2_res = "-1" Then
-                msg_go("IDの更新に失敗しました。再度実行してください。")
-                Exit Sub
-            End If
+
+            'Dim newid As String, newid2 As String, settei2_res As String
+
+            'newid = Trim(setting2(7, 0, "1", ""))
+            'If newid = "-1" Then
+            '    msg_go("IDの取得に失敗しました。再度実行してください。")
+            '    Exit Sub
+            'ElseIf newid = "0" Then
+            '    newid2 = "2"
+            '    newid = "000001"
+            'Else
+            '    newid2 = (CInt(newid) + 1).ToString
+            '    newid = newid.ToString.PadLeft(6, "0"c)
+            'End If
+
+            'settei2_res = setting2(7, 1, "1", newid2)
+            'If settei2_res = "-1" Then
+            '    msg_go("IDの更新に失敗しました。再度実行してください。")
+            '    Exit Sub
+            'End If
 
 
             Try

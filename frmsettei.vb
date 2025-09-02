@@ -241,34 +241,70 @@ Public Class frmsettei
 
 
         '経理担当者
-        settei_res = Trim(setting2(19, 0, "2", ""))
-        If settei_res = "0" Then
+        Dim s_no = 19
+        Dim id = 2
+        Dim get_response = get_settei(id:=id, s_no:=s_no) ' TODO : 削除 または get_settingsへ移行
+        If get_response = "" Then
             txtkeiritantou.Text = ""
         Else
-            txtkeiritantou.Text = settei_res
+            txtkeiritantou.Text = get_response
         End If
+
+
+        'settei_res = Trim(setting2(19, 0, "2", ""))
+        'If settei_res = "0" Then
+        '    txtkeiritantou.Text = ""
+        'Else
+        '    txtkeiritantou.Text = settei_res
+        'End If
 
         '適格登録番号
-        settei_res = Trim(setting2(20, 0, "2", ""))
-        If settei_res = "0" Then
+
+        Dim s_no_2 = 20
+        Dim id_2 = 2
+        Dim get_response_2 = get_settei(id:=id_2, s_no:=s_no_2) ' TODO : 削除 または get_settingsへ移行
+        If get_response_2 = "" Then
             txttekikakubangou.Text = ""
         Else
-            txttekikakubangou.Text = settei_res
+            txttekikakubangou.Text = get_response_2
         End If
-
-        settei_res = Trim(setting2(17, 0, "2", ""))
-        If settei_res = "0" Then
+        Dim s_no_3 = 17
+        Dim id_3 = 2
+        Dim get_response_3 = get_settei(id:=id_3, s_no:=s_no_3) ' TODO : 削除 または get_settingsへ移行
+        If get_response_3 = "" Then
             chknouhinsho.Checked = False
         Else
             chknouhinsho.Checked = True
         End If
-
-        settei_res = Trim(setting2(18, 0, "2", ""))
-        If settei_res = "0" Then
+        Dim s_no_4 = 18
+        Dim id_4 = 2
+        Dim get_response_4 = get_settei(id:=id_4, s_no:=s_no_4) ' TODO : 削除 または get_settingsへ移行
+        If get_response_4 = "" Then
             chkseikyuusho.Checked = False
         Else
             chkseikyuusho.Checked = True
         End If
+
+        'settei_res = Trim(setting2(20, 0, "2", ""))
+        'If settei_res = "0" Then
+        '    txttekikakubangou.Text = ""
+        'Else
+        '    txttekikakubangou.Text = settei_res
+        'End If
+
+        'settei_res = Trim(setting2(17, 0, "2", ""))
+        'If settei_res = "0" Then
+        '    chknouhinsho.Checked = False
+        'Else
+        '    chknouhinsho.Checked = True
+        'End If
+
+        'settei_res = Trim(setting2(18, 0, "2", ""))
+        'If settei_res = "0" Then
+        '    chkseikyuusho.Checked = False
+        'Else
+        '    chkseikyuusho.Checked = True
+        'End If
 
 
 
@@ -519,11 +555,20 @@ Public Class frmsettei
         Else
             s_new_str = Trim(txtkeiritantou.Text)
         End If
-        settei_res = Trim(setting2(19, 1, "2", s_new_str))
-        If settei_res = "-1" Then
+        Dim s_no = 19
+        Dim id = 2
+        Dim update_response = update_settei(id:=id, s_no:=s_no, new_value:=s_new_str) ' TODO : 削除 または update_settingsへ移行
+        If Not update_response Then
             msg_go("設定の更新に失敗しました。経理担当者 :" & s_new_str)
             Exit Sub
         End If
+
+
+        'settei_res = Trim(setting2(19, 1, "2", s_new_str))
+        'If settei_res = "-1" Then
+        '    msg_go("設定の更新に失敗しました。経理担当者 :" & s_new_str)
+        '    Exit Sub
+        'End If
 
         '適格登録番号
         If Trim(txttekikakubangou.Text) = "" Then
@@ -531,33 +576,59 @@ Public Class frmsettei
         Else
             s_new_str = Trim(txttekikakubangou.Text)
         End If
-        settei_res = Trim(setting2(20, 1, "2", s_new_str))
-        If settei_res = "-1" Then
+        Dim s_no_2 = 20
+        Dim id_2 = 2
+        Dim update_response_2 = update_settei(id:=id_2, s_no:=s_no_2, new_value:=s_new_str) ' TODO : 削除 または update_settingsへ移行
+        If Not update_response_2 Then
             msg_go("設定の更新に失敗しました。適格登録番号 :" & s_new_str)
             Exit Sub
         End If
+
+
+        'settei_res = Trim(setting2(20, 1, "2", s_new_str))
+        'If settei_res = "-1" Then
+        '    msg_go("設定の更新に失敗しました。適格登録番号 :" & s_new_str)
+        '    Exit Sub
+        'End If
 
         If chknouhinsho.Checked = False Then
             s_new_str = "0"
         Else
             s_new_str = "1"
         End If
-        settei_res = Trim(setting2(17, 1, "2", s_new_str))
-        If settei_res = "-1" Then
+        Dim s_no_3 = 17
+        Dim id_3 = 2
+        Dim update_response_3 = update_settei(id:=id_3, s_no:=s_no_3, new_value:=s_new_str) ' TODO : 削除 または update_settingsへ移行
+        If Not update_response_3 Then
             msg_go("設定の更新に失敗しました。納品書対応 :" & s_new_str)
             Exit Sub
         End If
+
+
+        'settei_res = Trim(setting2(17, 1, "2", s_new_str))
+        'If settei_res = "-1" Then
+        '    msg_go("設定の更新に失敗しました。納品書対応 :" & s_new_str)
+        '    Exit Sub
+        'End If
 
         If chkseikyuusho.Checked = False Then
             s_new_str = "0"
         Else
             s_new_str = "1"
         End If
-        settei_res = Trim(setting2(18, 1, "2", s_new_str))
-        If settei_res = "-1" Then
+        Dim s_no_4 = 18
+        Dim id_4 = 2
+        Dim update_response_4 = update_settei(id:=id_4, s_no:=s_no_4, new_value:=s_new_str) ' TODO : 削除 または update_settingsへ移行
+        If Not update_response_4 Then
             msg_go("設定の更新に失敗しました。chkseikyuusho :" & s_new_str)
             Exit Sub
         End If
+
+        'settei_res = Trim(setting2(18, 1, "2", s_new_str))
+        'If settei_res = "-1" Then
+        '    msg_go("設定の更新に失敗しました。chkseikyuusho :" & s_new_str)
+        '    Exit Sub
+        'End If
 
 
         msg_go("更新しました。一度終了します。", 64)
