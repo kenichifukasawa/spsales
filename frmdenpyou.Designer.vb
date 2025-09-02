@@ -147,11 +147,11 @@ Partial Class frmdenpyou
         '
         Me.cbx_shurui.BackColor = System.Drawing.Color.White
         Me.cbx_shurui.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbx_shurui.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cbx_shurui.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_shurui.FormattingEnabled = True
-        Me.cbx_shurui.Location = New System.Drawing.Point(573, 18)
+        Me.cbx_shurui.Location = New System.Drawing.Point(573, 21)
         Me.cbx_shurui.Name = "cbx_shurui"
-        Me.cbx_shurui.Size = New System.Drawing.Size(129, 27)
+        Me.cbx_shurui.Size = New System.Drawing.Size(129, 24)
         Me.cbx_shurui.TabIndex = 203
         '
         'Label30
@@ -169,11 +169,11 @@ Partial Class frmdenpyou
         '
         Me.cbx_shain.BackColor = System.Drawing.Color.White
         Me.cbx_shain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbx_shain.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cbx_shain.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.cbx_shain.FormattingEnabled = True
-        Me.cbx_shain.Location = New System.Drawing.Point(315, 18)
+        Me.cbx_shain.Location = New System.Drawing.Point(315, 21)
         Me.cbx_shain.Name = "cbx_shain"
-        Me.cbx_shain.Size = New System.Drawing.Size(192, 27)
+        Me.cbx_shain.Size = New System.Drawing.Size(192, 24)
         Me.cbx_shain.TabIndex = 195
         '
         'Label19
@@ -200,10 +200,10 @@ Partial Class frmdenpyou
         '
         'DateTimePicker1
         '
-        Me.DateTimePicker1.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.DateTimePicker1.Location = New System.Drawing.Point(66, 20)
+        Me.DateTimePicker1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.DateTimePicker1.Location = New System.Drawing.Point(66, 22)
         Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(188, 26)
+        Me.DateTimePicker1.Size = New System.Drawing.Size(188, 23)
         Me.DateTimePicker1.TabIndex = 192
         '
         'GroupBox8

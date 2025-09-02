@@ -54,11 +54,10 @@ Partial Class frmshiire
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.lblgoukei = New System.Windows.Forms.Label()
         Me.lblshiiresuu = New System.Windows.Forms.Label()
-        Me.Button10 = New System.Windows.Forms.Button()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.cmbkubun1 = New System.Windows.Forms.ComboBox()
+        Me.cmdshiiiresaki = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.Button7 = New System.Windows.Forms.Button()
@@ -71,10 +70,34 @@ Partial Class frmshiire
         Me.Label15 = New System.Windows.Forms.Label()
         Me.dgv_shiire = New System.Windows.Forms.DataGridView()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.lblgyousha = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
-        Me.ggg = New System.Windows.Forms.DataGridView()
+        Me.dgvshiirerireki = New System.Windows.Forms.DataGridView()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cbx_shouhin_kubun_1 = New System.Windows.Forms.ComboBox()
+        Me.cbx_shouhin_kubun_2 = New System.Windows.Forms.ComboBox()
+        Me.cbx_gyousha_kubun = New System.Windows.Forms.ComboBox()
+        Me.cmbhikazei = New System.Windows.Forms.CheckBox()
+        Me.chkkeigenzeiritsu = New System.Windows.Forms.CheckBox()
+        Me.txtshouhinfurigana = New System.Windows.Forms.TextBox()
+        Me.txtshouhinmei = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtshouhinbarcode = New System.Windows.Forms.TextBox()
+        Me.txtshouhingenka = New System.Windows.Forms.TextBox()
+        Me.txtshouhinkihonkakaku = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Button15 = New System.Windows.Forms.Button()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.dgv_shien, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,8 +105,9 @@ Partial Class frmshiire
         Me.GroupBox3.SuspendLayout()
         CType(Me.dgv_shiire, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ggg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvshiirerireki, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox5.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -94,7 +118,7 @@ Partial Class frmshiire
         Me.GroupBox1.Controls.Add(Me.dgv_shien)
         Me.GroupBox1.Controls.Add(Me.chkhaiban)
         Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 8)
+        Me.GroupBox1.Location = New System.Drawing.Point(594, 7)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(576, 980)
         Me.GroupBox1.TabIndex = 0
@@ -201,7 +225,7 @@ Partial Class frmshiire
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(110, 44)
         Me.Button2.TabIndex = 213
-        Me.Button2.Text = "商品"
+        Me.Button2.Text = "商品登録"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button4
@@ -225,7 +249,7 @@ Partial Class frmshiire
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(110, 44)
         Me.Button6.TabIndex = 211
-        Me.Button6.Text = "原価"
+        Me.Button6.Text = "商品修正"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'txtbikou
@@ -435,7 +459,7 @@ Partial Class frmshiire
         Me.GroupBox2.Controls.Add(Me.GroupBox3)
         Me.GroupBox2.Controls.Add(Me.dgv_shiire)
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(594, 8)
+        Me.GroupBox2.Location = New System.Drawing.Point(1176, 7)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(714, 980)
         Me.GroupBox2.TabIndex = 1
@@ -446,11 +470,10 @@ Partial Class frmshiire
         '
         Me.GroupBox3.Controls.Add(Me.lblgoukei)
         Me.GroupBox3.Controls.Add(Me.lblshiiresuu)
-        Me.GroupBox3.Controls.Add(Me.Button10)
         Me.GroupBox3.Controls.Add(Me.CheckBox2)
         Me.GroupBox3.Controls.Add(Me.Button9)
         Me.GroupBox3.Controls.Add(Me.Label4)
-        Me.GroupBox3.Controls.Add(Me.cmbkubun1)
+        Me.GroupBox3.Controls.Add(Me.cmdshiiiresaki)
         Me.GroupBox3.Controls.Add(Me.Label3)
         Me.GroupBox3.Controls.Add(Me.DateTimePicker1)
         Me.GroupBox3.Controls.Add(Me.Button7)
@@ -487,18 +510,6 @@ Partial Class frmshiire
         Me.lblshiiresuu.TabIndex = 220
         Me.lblshiiresuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button10
-        '
-        Me.Button10.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button10.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button10.Location = New System.Drawing.Point(567, 20)
-        Me.Button10.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(110, 44)
-        Me.Button10.TabIndex = 219
-        Me.Button10.Text = "バーコード"
-        Me.Button10.UseVisualStyleBackColor = True
-        '
         'CheckBox2
         '
         Me.CheckBox2.AutoSize = True
@@ -534,16 +545,16 @@ Partial Class frmshiire
         Me.Label4.Text = "円"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'cmbkubun1
+        'cmdshiiiresaki
         '
-        Me.cmbkubun1.BackColor = System.Drawing.Color.White
-        Me.cmbkubun1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbkubun1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmbkubun1.FormattingEnabled = True
-        Me.cmbkubun1.Location = New System.Drawing.Point(103, 45)
-        Me.cmbkubun1.Name = "cmbkubun1"
-        Me.cmbkubun1.Size = New System.Drawing.Size(430, 24)
-        Me.cmbkubun1.TabIndex = 215
+        Me.cmdshiiiresaki.BackColor = System.Drawing.Color.White
+        Me.cmdshiiiresaki.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmdshiiiresaki.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmdshiiiresaki.FormattingEnabled = True
+        Me.cmdshiiiresaki.Location = New System.Drawing.Point(103, 45)
+        Me.cmdshiiiresaki.Name = "cmdshiiiresaki"
+        Me.cmdshiiiresaki.Size = New System.Drawing.Size(430, 24)
+        Me.cmdshiiiresaki.TabIndex = 215
         '
         'Label3
         '
@@ -671,23 +682,33 @@ Partial Class frmshiire
         'GroupBox4
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.White
+        Me.GroupBox4.Controls.Add(Me.lblgyousha)
         Me.GroupBox4.Controls.Add(Me.Button3)
         Me.GroupBox4.Controls.Add(Me.Button5)
-        Me.GroupBox4.Controls.Add(Me.DataGridView3)
-        Me.GroupBox4.Controls.Add(Me.ggg)
+        Me.GroupBox4.Controls.Add(Me.dgvshiirerireki)
         Me.GroupBox4.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(1314, 8)
+        Me.GroupBox4.Location = New System.Drawing.Point(12, 375)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(576, 980)
+        Me.GroupBox4.Size = New System.Drawing.Size(576, 612)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "伝票"
+        '
+        'lblgyousha
+        '
+        Me.lblgyousha.BackColor = System.Drawing.SystemColors.Control
+        Me.lblgyousha.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblgyousha.Location = New System.Drawing.Point(15, 21)
+        Me.lblgyousha.Name = "lblgyousha"
+        Me.lblgyousha.Size = New System.Drawing.Size(316, 35)
+        Me.lblgyousha.TabIndex = 215
+        Me.lblgyousha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Button3
         '
         Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.Location = New System.Drawing.Point(343, 200)
+        Me.Button3.Location = New System.Drawing.Point(345, 15)
         Me.Button3.Margin = New System.Windows.Forms.Padding(2)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(110, 44)
@@ -699,7 +720,7 @@ Partial Class frmshiire
         '
         Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button5.Location = New System.Drawing.Point(453, 200)
+        Me.Button5.Location = New System.Drawing.Point(455, 15)
         Me.Button5.Margin = New System.Windows.Forms.Padding(2)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(110, 44)
@@ -707,35 +728,303 @@ Partial Class frmshiire
         Me.Button5.Text = "削除"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'DataGridView3
+        'dgvshiirerireki
         '
-        Me.DataGridView3.AllowUserToAddRows = False
-        Me.DataGridView3.AllowUserToDeleteRows = False
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Location = New System.Drawing.Point(16, 21)
-        Me.DataGridView3.Margin = New System.Windows.Forms.Padding(2)
-        Me.DataGridView3.MultiSelect = False
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.ReadOnly = True
-        Me.DataGridView3.RowTemplate.Height = 24
-        Me.DataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView3.Size = New System.Drawing.Size(547, 174)
-        Me.DataGridView3.TabIndex = 72
+        Me.dgvshiirerireki.AllowUserToAddRows = False
+        Me.dgvshiirerireki.AllowUserToDeleteRows = False
+        Me.dgvshiirerireki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvshiirerireki.Location = New System.Drawing.Point(14, 66)
+        Me.dgvshiirerireki.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgvshiirerireki.MultiSelect = False
+        Me.dgvshiirerireki.Name = "dgvshiirerireki"
+        Me.dgvshiirerireki.ReadOnly = True
+        Me.dgvshiirerireki.RowTemplate.Height = 24
+        Me.dgvshiirerireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgvshiirerireki.Size = New System.Drawing.Size(547, 542)
+        Me.dgvshiirerireki.TabIndex = 72
         '
-        'ggg
+        'GroupBox5
         '
-        Me.ggg.AllowUserToAddRows = False
-        Me.ggg.AllowUserToDeleteRows = False
-        Me.ggg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ggg.Location = New System.Drawing.Point(16, 248)
-        Me.ggg.Margin = New System.Windows.Forms.Padding(2)
-        Me.ggg.MultiSelect = False
-        Me.ggg.Name = "ggg"
-        Me.ggg.ReadOnly = True
-        Me.ggg.RowTemplate.Height = 24
-        Me.ggg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.ggg.Size = New System.Drawing.Size(547, 717)
-        Me.ggg.TabIndex = 71
+        Me.GroupBox5.BackColor = System.Drawing.Color.White
+        Me.GroupBox5.Controls.Add(Me.GroupBox7)
+        Me.GroupBox5.Controls.Add(Me.Button15)
+        Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.GroupBox5.Location = New System.Drawing.Point(12, 11)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(576, 358)
+        Me.GroupBox5.TabIndex = 3
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "商品"
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.Controls.Add(Me.Label23)
+        Me.GroupBox7.Controls.Add(Me.Label22)
+        Me.GroupBox7.Controls.Add(Me.Label5)
+        Me.GroupBox7.Controls.Add(Me.Label2)
+        Me.GroupBox7.Controls.Add(Me.cbx_shouhin_kubun_1)
+        Me.GroupBox7.Controls.Add(Me.cbx_shouhin_kubun_2)
+        Me.GroupBox7.Controls.Add(Me.cbx_gyousha_kubun)
+        Me.GroupBox7.Controls.Add(Me.cmbhikazei)
+        Me.GroupBox7.Controls.Add(Me.chkkeigenzeiritsu)
+        Me.GroupBox7.Controls.Add(Me.txtshouhinfurigana)
+        Me.GroupBox7.Controls.Add(Me.txtshouhinmei)
+        Me.GroupBox7.Controls.Add(Me.Label6)
+        Me.GroupBox7.Controls.Add(Me.Label16)
+        Me.GroupBox7.Controls.Add(Me.Label17)
+        Me.GroupBox7.Controls.Add(Me.txtshouhinbarcode)
+        Me.GroupBox7.Controls.Add(Me.txtshouhingenka)
+        Me.GroupBox7.Controls.Add(Me.txtshouhinkihonkakaku)
+        Me.GroupBox7.Controls.Add(Me.Label18)
+        Me.GroupBox7.Controls.Add(Me.Label19)
+        Me.GroupBox7.Controls.Add(Me.Label20)
+        Me.GroupBox7.Controls.Add(Me.Label21)
+        Me.GroupBox7.Location = New System.Drawing.Point(6, 21)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(559, 273)
+        Me.GroupBox7.TabIndex = 215
+        Me.GroupBox7.TabStop = False
+        '
+        'Label22
+        '
+        Me.Label22.BackColor = System.Drawing.Color.White
+        Me.Label22.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label22.Location = New System.Drawing.Point(289, 237)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(73, 16)
+        Me.Label22.TabIndex = 236
+        Me.Label22.Text = "区分２"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label5
+        '
+        Me.Label5.BackColor = System.Drawing.Color.White
+        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label5.Location = New System.Drawing.Point(11, 235)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(73, 16)
+        Me.Label5.TabIndex = 235
+        Me.Label5.Text = "区分１"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label2
+        '
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label2.Location = New System.Drawing.Point(11, 199)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(73, 16)
+        Me.Label2.TabIndex = 234
+        Me.Label2.Text = "業者区分"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'cbx_shouhin_kubun_1
+        '
+        Me.cbx_shouhin_kubun_1.BackColor = System.Drawing.Color.White
+        Me.cbx_shouhin_kubun_1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shouhin_kubun_1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cbx_shouhin_kubun_1.FormattingEnabled = True
+        Me.cbx_shouhin_kubun_1.Location = New System.Drawing.Point(100, 233)
+        Me.cbx_shouhin_kubun_1.Name = "cbx_shouhin_kubun_1"
+        Me.cbx_shouhin_kubun_1.Size = New System.Drawing.Size(175, 24)
+        Me.cbx_shouhin_kubun_1.TabIndex = 128
+        '
+        'cbx_shouhin_kubun_2
+        '
+        Me.cbx_shouhin_kubun_2.BackColor = System.Drawing.Color.White
+        Me.cbx_shouhin_kubun_2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_shouhin_kubun_2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cbx_shouhin_kubun_2.FormattingEnabled = True
+        Me.cbx_shouhin_kubun_2.Location = New System.Drawing.Point(368, 234)
+        Me.cbx_shouhin_kubun_2.Name = "cbx_shouhin_kubun_2"
+        Me.cbx_shouhin_kubun_2.Size = New System.Drawing.Size(175, 24)
+        Me.cbx_shouhin_kubun_2.TabIndex = 128
+        '
+        'cbx_gyousha_kubun
+        '
+        Me.cbx_gyousha_kubun.BackColor = System.Drawing.Color.White
+        Me.cbx_gyousha_kubun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_gyousha_kubun.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cbx_gyousha_kubun.FormattingEnabled = True
+        Me.cbx_gyousha_kubun.Location = New System.Drawing.Point(100, 196)
+        Me.cbx_gyousha_kubun.Name = "cbx_gyousha_kubun"
+        Me.cbx_gyousha_kubun.Size = New System.Drawing.Size(175, 24)
+        Me.cbx_gyousha_kubun.TabIndex = 128
+        '
+        'cmbhikazei
+        '
+        Me.cmbhikazei.AutoSize = True
+        Me.cmbhikazei.Location = New System.Drawing.Point(466, 175)
+        Me.cmbhikazei.Name = "cmbhikazei"
+        Me.cmbhikazei.Size = New System.Drawing.Size(71, 19)
+        Me.cmbhikazei.TabIndex = 233
+        Me.cmbhikazei.Text = "非課税"
+        Me.cmbhikazei.UseVisualStyleBackColor = True
+        '
+        'chkkeigenzeiritsu
+        '
+        Me.chkkeigenzeiritsu.AutoSize = True
+        Me.chkkeigenzeiritsu.Location = New System.Drawing.Point(323, 175)
+        Me.chkkeigenzeiritsu.Name = "chkkeigenzeiritsu"
+        Me.chkkeigenzeiritsu.Size = New System.Drawing.Size(116, 19)
+        Me.chkkeigenzeiritsu.TabIndex = 231
+        Me.chkkeigenzeiritsu.Text = "軽減税率対応"
+        Me.chkkeigenzeiritsu.UseVisualStyleBackColor = True
+        '
+        'txtshouhinfurigana
+        '
+        Me.txtshouhinfurigana.BackColor = System.Drawing.Color.White
+        Me.txtshouhinfurigana.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtshouhinfurigana.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtshouhinfurigana.Location = New System.Drawing.Point(100, 88)
+        Me.txtshouhinfurigana.MaxLength = 50
+        Me.txtshouhinfurigana.Name = "txtshouhinfurigana"
+        Me.txtshouhinfurigana.Size = New System.Drawing.Size(450, 23)
+        Me.txtshouhinfurigana.TabIndex = 226
+        '
+        'txtshouhinmei
+        '
+        Me.txtshouhinmei.BackColor = System.Drawing.Color.White
+        Me.txtshouhinmei.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtshouhinmei.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtshouhinmei.Location = New System.Drawing.Point(100, 52)
+        Me.txtshouhinmei.MaxLength = 50
+        Me.txtshouhinmei.Name = "txtshouhinmei"
+        Me.txtshouhinmei.Size = New System.Drawing.Size(450, 23)
+        Me.txtshouhinmei.TabIndex = 225
+        '
+        'Label6
+        '
+        Me.Label6.BackColor = System.Drawing.Color.White
+        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label6.Location = New System.Drawing.Point(471, 131)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(30, 16)
+        Me.Label6.TabIndex = 219
+        Me.Label6.Text = "円"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label16
+        '
+        Me.Label16.BackColor = System.Drawing.Color.White
+        Me.Label16.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label16.Location = New System.Drawing.Point(210, 131)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(30, 16)
+        Me.Label16.TabIndex = 216
+        Me.Label16.Text = "円"
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label17
+        '
+        Me.Label17.BackColor = System.Drawing.Color.White
+        Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label17.Location = New System.Drawing.Point(11, 91)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(73, 16)
+        Me.Label17.TabIndex = 214
+        Me.Label17.Text = "フリガナ"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'txtshouhinbarcode
+        '
+        Me.txtshouhinbarcode.BackColor = System.Drawing.Color.White
+        Me.txtshouhinbarcode.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtshouhinbarcode.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtshouhinbarcode.Location = New System.Drawing.Point(100, 160)
+        Me.txtshouhinbarcode.MaxLength = 50
+        Me.txtshouhinbarcode.Name = "txtshouhinbarcode"
+        Me.txtshouhinbarcode.Size = New System.Drawing.Size(185, 23)
+        Me.txtshouhinbarcode.TabIndex = 210
+        '
+        'txtshouhingenka
+        '
+        Me.txtshouhingenka.BackColor = System.Drawing.Color.White
+        Me.txtshouhingenka.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtshouhingenka.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtshouhingenka.Location = New System.Drawing.Point(368, 124)
+        Me.txtshouhingenka.MaxLength = 50
+        Me.txtshouhingenka.Name = "txtshouhingenka"
+        Me.txtshouhingenka.Size = New System.Drawing.Size(97, 23)
+        Me.txtshouhingenka.TabIndex = 209
+        '
+        'txtshouhinkihonkakaku
+        '
+        Me.txtshouhinkihonkakaku.BackColor = System.Drawing.Color.White
+        Me.txtshouhinkihonkakaku.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtshouhinkihonkakaku.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txtshouhinkihonkakaku.Location = New System.Drawing.Point(100, 124)
+        Me.txtshouhinkihonkakaku.MaxLength = 50
+        Me.txtshouhinkihonkakaku.Name = "txtshouhinkihonkakaku"
+        Me.txtshouhinkihonkakaku.Size = New System.Drawing.Size(97, 23)
+        Me.txtshouhinkihonkakaku.TabIndex = 208
+        '
+        'Label18
+        '
+        Me.Label18.BackColor = System.Drawing.Color.White
+        Me.Label18.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label18.Location = New System.Drawing.Point(11, 163)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(73, 16)
+        Me.Label18.TabIndex = 189
+        Me.Label18.Text = "バーコード"
+        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label19
+        '
+        Me.Label19.BackColor = System.Drawing.Color.White
+        Me.Label19.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label19.Location = New System.Drawing.Point(276, 127)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(73, 16)
+        Me.Label19.TabIndex = 188
+        Me.Label19.Text = "基本原価"
+        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label20
+        '
+        Me.Label20.BackColor = System.Drawing.Color.White
+        Me.Label20.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label20.Location = New System.Drawing.Point(11, 127)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(73, 16)
+        Me.Label20.TabIndex = 187
+        Me.Label20.Text = "基本価格"
+        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label21
+        '
+        Me.Label21.BackColor = System.Drawing.Color.White
+        Me.Label21.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label21.Location = New System.Drawing.Point(11, 55)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(73, 16)
+        Me.Label21.TabIndex = 186
+        Me.Label21.Text = "商品名"
+        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Button15
+        '
+        Me.Button15.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button15.Enabled = False
+        Me.Button15.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button15.Location = New System.Drawing.Point(455, 305)
+        Me.Button15.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(110, 44)
+        Me.Button15.TabIndex = 212
+        Me.Button15.Text = "登録"
+        Me.Button15.UseVisualStyleBackColor = True
+        '
+        'Label23
+        '
+        Me.Label23.BackColor = System.Drawing.SystemColors.Control
+        Me.Label23.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label23.Location = New System.Drawing.Point(100, 17)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(175, 22)
+        Me.Label23.TabIndex = 237
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmshiire
         '
@@ -743,6 +1032,7 @@ Partial Class frmshiire
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1902, 994)
         Me.ControlBox = False
+        Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -759,8 +1049,10 @@ Partial Class frmshiire
         Me.GroupBox3.PerformLayout()
         CType(Me.dgv_shiire, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ggg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvshiirerireki, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -802,20 +1094,43 @@ Partial Class frmshiire
     Friend WithEvents Label15 As Label
     Friend WithEvents dgv_shiire As DataGridView
     Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents ggg As DataGridView
     Friend WithEvents Label3 As Label
     Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents Button10 As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents cmbkubun1 As ComboBox
+    Friend WithEvents cmdshiiiresaki As ComboBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Button5 As Button
-    Friend WithEvents DataGridView3 As DataGridView
+    Friend WithEvents dgvshiirerireki As DataGridView
     Friend WithEvents btn_jouken_kensaku As Button
     Friend WithEvents txtsentakugyou As TextBox
     Friend WithEvents txtsentakutanka As TextBox
     Friend WithEvents lblshiiresuu As Label
     Friend WithEvents lblgoukei As Label
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents lblgyousha As Label
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents cmbhikazei As CheckBox
+    Friend WithEvents chkkeigenzeiritsu As CheckBox
+    Friend WithEvents txtshouhinfurigana As TextBox
+    Friend WithEvents txtshouhinmei As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents txtshouhinbarcode As TextBox
+    Friend WithEvents txtshouhingenka As TextBox
+    Friend WithEvents txtshouhinkihonkakaku As TextBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Button15 As Button
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents cbx_shouhin_kubun_1 As ComboBox
+    Friend WithEvents cbx_shouhin_kubun_2 As ComboBox
+    Friend WithEvents cbx_gyousha_kubun As ComboBox
+    Friend WithEvents Label23 As Label
 End Class

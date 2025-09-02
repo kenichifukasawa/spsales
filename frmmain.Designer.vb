@@ -622,7 +622,7 @@ Partial Class frmmain
         '
         'GroupBox1
         '
-        Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GroupBox1.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox1.Controls.Add(Me.Button327)
         Me.GroupBox1.Controls.Add(Me.Button326)
         Me.GroupBox1.Controls.Add(Me.lblshokuinmei)
@@ -764,7 +764,7 @@ Partial Class frmmain
         '
         'GroupBox2
         '
-        Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox2.Controls.Add(Me.Button328)
         Me.GroupBox2.Controls.Add(Me.GroupBox11)
         Me.GroupBox2.Controls.Add(Me.btn_tenpo_shinki)
@@ -847,7 +847,7 @@ Partial Class frmmain
         Me.dgv_log.Name = "dgv_log"
         Me.dgv_log.ReadOnly = True
         Me.dgv_log.RowTemplate.Height = 24
-        Me.dgv_log.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_log.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_log.Size = New System.Drawing.Size(514, 86)
         Me.dgv_log.TabIndex = 66
         '
@@ -904,7 +904,7 @@ Partial Class frmmain
         Me.dgv_denpyou.Name = "dgv_denpyou"
         Me.dgv_denpyou.ReadOnly = True
         Me.dgv_denpyou.RowTemplate.Height = 24
-        Me.dgv_denpyou.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_denpyou.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_denpyou.Size = New System.Drawing.Size(514, 131)
         Me.dgv_denpyou.TabIndex = 66
         '
@@ -947,13 +947,13 @@ Partial Class frmmain
         Me.dgv_seikyuusho.Name = "dgv_seikyuusho"
         Me.dgv_seikyuusho.ReadOnly = True
         Me.dgv_seikyuusho.RowTemplate.Height = 24
-        Me.dgv_seikyuusho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_seikyuusho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_seikyuusho.Size = New System.Drawing.Size(514, 122)
         Me.dgv_seikyuusho.TabIndex = 66
         '
         'GroupBox13
         '
-        Me.GroupBox13.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GroupBox13.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox13.Controls.Add(Me.Label6)
         Me.GroupBox13.Controls.Add(Me.lblhasuu)
         Me.GroupBox13.Controls.Add(Me.Label61)
@@ -1479,7 +1479,7 @@ Partial Class frmmain
         '
         'GroupBox4
         '
-        Me.GroupBox4.BackColor = System.Drawing.Color.Thistle
+        Me.GroupBox4.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox4.Controls.Add(Me.TabControl1)
         Me.GroupBox4.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(1, 84)
@@ -1692,7 +1692,7 @@ Partial Class frmmain
         Me.dgv_shien.Name = "dgv_shien"
         Me.dgv_shien.ReadOnly = True
         Me.dgv_shien.RowTemplate.Height = 24
-        Me.dgv_shien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgv_shien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgv_shien.Size = New System.Drawing.Size(547, 724)
         Me.dgv_shien.TabIndex = 68
         '
@@ -6321,7 +6321,7 @@ Partial Class frmmain
         '
         'GroupBox5
         '
-        Me.GroupBox5.BackColor = System.Drawing.Color.Plum
+        Me.GroupBox5.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox5.Controls.Add(Me.GroupBox7)
         Me.GroupBox5.Controls.Add(Me.dgv_nouhinsho)
         Me.GroupBox5.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))

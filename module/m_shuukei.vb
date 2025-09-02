@@ -9,6 +9,8 @@ Module m_shuukei
                 frmshuukei_shouhin.cbx_gyousha_kubun.Items.Clear()
             Case 1
                 frmshuukei_hanbai.cbx_gyousha_kubun.Items.Clear()
+            Case 2
+                frmshiire.cbx_gyousha_kubun.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -33,6 +35,8 @@ Module m_shuukei
                         frmshuukei_shouhin.cbx_gyousha_kubun.Items.Add(item_name)
                     Case 1
                         frmshuukei_hanbai.cbx_gyousha_kubun.Items.Add(item_name)
+                    Case 2
+                        frmshiire.cbx_gyousha_kubun.Items.Add(item_name)
                 End Select
             Next
 
@@ -68,6 +72,9 @@ Module m_shuukei
             Case 4
                 frmcheck_kosuu_henkou.cbx_shouhin_kubun_1.Items.Clear()
                 frmcheck_kosuu_henkou.cbx_shouhin_kubun_2.Items.Clear()
+            Case 5
+                frmshiire.cbx_shouhin_kubun_1.Items.Clear()
+                frmshiire.cbx_shouhin_kubun_2.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -98,6 +105,8 @@ Module m_shuukei
                         frmcheck_shouhin_log.cbx_shouhin_kubun_1.Items.Add(item_name)
                     Case 4
                         frmcheck_kosuu_henkou.cbx_shouhin_kubun_1.Items.Add(item_name)
+                    Case 5
+                        frmshiire.cbx_shouhin_kubun_1.Items.Add(item_name)
                 End Select
             Next
 
@@ -124,6 +133,8 @@ Module m_shuukei
                 frmcheck_shouhin_log.cbx_shouhin_kubun_2.Items.Clear()
             Case 4
                 frmcheck_kosuu_henkou.cbx_shouhin_kubun_2.Items.Clear()
+            Case 5
+                frmshiire.cbx_shouhin_kubun_2.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -154,6 +165,8 @@ Module m_shuukei
                         frmcheck_shouhin_log.cbx_shouhin_kubun_2.Items.Add(item_name)
                     Case 4
                         frmcheck_kosuu_henkou.cbx_shouhin_kubun_2.Items.Add(item_name)
+                    Case 5
+                        frmshiire.cbx_shouhin_kubun_2.Items.Add(item_name)
                 End Select
             Next
 
@@ -391,6 +404,8 @@ Module m_shuukei
                 frmshiharai_rireki.cbx_gyousha.Items.Clear()
             Case 3
                 frmshiharai_shori.cbx_gyousha.Items.Clear()
+            Case 4
+                frmshiire.cmdshiiiresaki.Items.Clear()
             Case Else
                 msg_go("frm_no取得エラー")
                 Exit Sub
@@ -424,6 +439,8 @@ Module m_shuukei
                         frmshiharai_rireki.cbx_gyousha.Items.Add(item_name)
                     Case 3
                         frmshiharai_shori.cbx_gyousha.Items.Add(item_name)
+                    Case 4
+                        frmshiire.cmdshiiiresaki.Items.Add(item_name)
                 End Select
             Next
 
