@@ -160,7 +160,7 @@ Public Class frmdenpyou
 
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub btn_sakujo_Click(sender As Object, e As EventArgs) Handles btn_sakujo.Click
 
     End Sub
 End Class

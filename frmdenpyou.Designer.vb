@@ -25,7 +25,7 @@ Partial Class frmdenpyou
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.lbl_hacchuuid = New System.Windows.Forms.Label()
         Me.btn_sumi = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btn_sakujo = New System.Windows.Forms.Button()
         Me.btn_shuusei = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
@@ -66,7 +66,7 @@ Partial Class frmdenpyou
         Me.GroupBox5.BackColor = System.Drawing.Color.White
         Me.GroupBox5.Controls.Add(Me.lbl_hacchuuid)
         Me.GroupBox5.Controls.Add(Me.btn_sumi)
-        Me.GroupBox5.Controls.Add(Me.Button2)
+        Me.GroupBox5.Controls.Add(Me.btn_sakujo)
         Me.GroupBox5.Controls.Add(Me.btn_shuusei)
         Me.GroupBox5.Controls.Add(Me.btn_modoru)
         Me.GroupBox5.Controls.Add(Me.GroupBox10)
@@ -105,18 +105,18 @@ Partial Class frmdenpyou
         Me.btn_sumi.Text = "済み"
         Me.btn_sumi.UseVisualStyleBackColor = False
         '
-        'Button2
+        'btn_sakujo
         '
-        Me.Button2.BackColor = System.Drawing.SystemColors.Control
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
-        Me.Button2.Location = New System.Drawing.Point(1307, 89)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(127, 44)
-        Me.Button2.TabIndex = 209
-        Me.Button2.Text = "削除"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.btn_sakujo.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_sakujo.Location = New System.Drawing.Point(1307, 89)
+        Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_sakujo.Name = "btn_sakujo"
+        Me.btn_sakujo.Size = New System.Drawing.Size(127, 44)
+        Me.btn_sakujo.TabIndex = 209
+        Me.btn_sakujo.Text = "削除"
+        Me.btn_sakujo.UseVisualStyleBackColor = False
         '
         'btn_shuusei
         '
@@ -471,7 +471,7 @@ Partial Class frmdenpyou
     Friend WithEvents Label18 As Label
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents GroupBox8 As GroupBox
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btn_sakujo As Button
     Friend WithEvents lbl_shouhizei_8_percent As Label
     Friend WithEvents Label28 As Label
     Friend WithEvents Label29 As Label
