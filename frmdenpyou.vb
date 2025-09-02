@@ -13,6 +13,54 @@ Public Class frmdenpyou
 
     Private Sub tenpo_hacchuurireki_set2(s_hacchuuid As String)
 
+        With dgv_nouhinsho
+
+            .Rows.Clear()
+            .RowHeadersWidth = 4
+            .Columns.Clear()
+            .ColumnCount = 9
+
+            .Columns(0).Name = "納品詳細ID"
+            .Columns(1).Name = "商品ID"
+            .Columns(2).Name = "商品名"
+            .Columns(3).Name = "数量"
+            .Columns(4).Name = "単価"
+            .Columns(5).Name = "小計"
+            .Columns(6).Name = "摘要"
+            .Columns(7).Name = "確定"
+            .Columns(8).Name = "軽減税率"
+
+            .Columns(0).Width = 110
+            .Columns(1).Width = 110
+            .Columns(2).Width = 700
+            .Columns(3).Width = 60
+            .Columns(4).Width = 80
+            .Columns(5).Width = 80
+            .Columns(6).Width = 150
+            .Columns(7).Width = 0
+            .Columns(8).Width = 50
+
+            .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+            '列ヘッダーの高さを変える
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+            .ColumnHeadersHeight = 25
+
+            ' 奇数行の既定セル・スタイルの背景色を設定
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
+
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        End With
+
         Try
 
             Dim conn As New SqlConnection
@@ -23,104 +71,59 @@ Public Class frmdenpyou
                 " LEFT JOIN hacchuu ON hacchuushousai.hacchuuid = hacchuu.hacchuuid" +
                 " WHERE hacchuushousai.hacchuuid = '" + s_hacchuuid + "'"
 
-            Dim da_server As SqlDataAdapter = New SqlDataAdapter(query, conn)
-            Dim ds_server As New DataSet
-            da_server.Fill(ds_server, "t_shoukaii")
-            Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
-
-            With dgv_nouhinsho
-
-                .Rows.Clear()
-                .RowHeadersWidth = 4
-                .Columns.Clear()
-                .ColumnCount = 9
-
-                .Columns(0).Name = "納品詳細ID"
-                .Columns(1).Name = "商品ID"
-                .Columns(2).Name = "商品名"
-                .Columns(3).Name = "数量"
-                .Columns(4).Name = "単価"
-                .Columns(5).Name = "小計"
-                .Columns(6).Name = "摘要"
-                .Columns(7).Name = "確定"
-                .Columns(8).Name = "軽減税率"
-
-                .Columns(0).Width = 110
-                .Columns(1).Width = 110
-                .Columns(2).Width = 700
-                .Columns(3).Width = 60
-                .Columns(4).Width = 80
-                .Columns(5).Width = 80
-                .Columns(6).Width = 150
-                .Columns(7).Width = 0
-                .Columns(8).Width = 50
-
-                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-
-                '列ヘッダーの高さを変える
-                .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-                .ColumnHeadersHeight = 25
-
-                ' 奇数行の既定セル・スタイルの背景色を設定
-                .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
-
-                .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-            End With
+            Dim data_adapter As SqlDataAdapter = New SqlDataAdapter(query, conn)
+            Dim data_set As New DataSet
+            data_adapter.Fill(data_set, "t_shoukaii")
+            Dim data_table As DataTable = data_set.Tables("t_shoukaii")
 
             Dim s_kin As Decimal
             Dim s_sougaku As Integer = 0, s_10 As Integer = 0, s_8 As Integer = 0
             Dim mojiretsu(8) As String
-            For i = 0 To dt_server.Rows.Count - 1
+            For i = 0 To data_table.Rows.Count - 1
 
-                Dim s_kakutei As Integer = 0
-                mojiretsu(0) = Trim(dt_server.Rows.Item(i).Item("hachuushousaiid"))
-                mojiretsu(1) = Trim(dt_server.Rows.Item(i).Item("shouhinid"))
-                mojiretsu(2) = Trim(dt_server.Rows.Item(i).Item("shouhinmei"))
+                Dim item = data_table.Rows.Item(i)
 
-                s_kin = dt_server.Rows.Item(i).Item("kosuu")
+                mojiretsu(0) = Trim(item("hachuushousaiid"))
+                mojiretsu(1) = Trim(item("shouhinid"))
+                mojiretsu(2) = Trim(item("shouhinmei"))
+
+                s_kin = item("kosuu")
                 mojiretsu(3) = s_kin.ToString("#,##0")
 
-                s_kin = dt_server.Rows.Item(i).Item("tanka")
+                s_kin = item("tanka")
                 mojiretsu(4) = s_kin.ToString("#,##0")
 
-                s_kin = dt_server.Rows.Item(i).Item("kei")
+                s_kin = item("kei")
 
                 Dim s_konkai As Integer = s_kin
-                s_sougaku = s_sougaku + s_kin
+                s_sougaku += s_kin
 
                 mojiretsu(5) = s_kin.ToString("#,##0")
 
-                If IsDBNull(dt_server.Rows.Item(i).Item("tekiyou")) Then
+                If IsDBNull(item("tekiyou")) Then
                     mojiretsu(6) = ""
                 Else
-                    mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("tekiyou"))
+                    mojiretsu(6) = Trim(item("tekiyou"))
                 End If
-                If IsDBNull(dt_server.Rows.Item(i).Item("kakutei")) Then
+
+                Dim s_kakutei As Integer = 0
+                If IsDBNull(item("kakutei")) Then
                     mojiretsu(7) = ""
                 Else
-                    mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("kakutei"))
+                    mojiretsu(7) = Trim(item("kakutei"))
                     '色の判定
-                    If Trim(dt_server.Rows.Item(i).Item("kakutei")) = "1" Then
+                    If Trim(item("kakutei")) = "1" Then
                         s_kakutei = 1
                     End If
                 End If
-                If IsDBNull(dt_server.Rows.Item(i).Item("keigen")) Then
+                If IsDBNull(item("keigen")) Then
                     mojiretsu(8) = ""
                 Else
-                    mojiretsu(8) = Trim(dt_server.Rows.Item(i).Item("keigen"))
+                    mojiretsu(8) = Trim(item("keigen"))
                 End If
 
-                If IsDBNull(dt_server.Rows.Item(i).Item("hikazei")) Then
-                    If IsDBNull(dt_server.Rows.Item(i).Item("keigen")) Then
+                If IsDBNull(item("hikazei")) Then
+                    If IsDBNull(item("keigen")) Then
                         s_10 += s_konkai
                     Else
                         s_8 += s_konkai
@@ -136,8 +139,8 @@ Public Class frmdenpyou
 
             Next i
 
-            dt_server.Clear()
-            ds_server.Clear()
+            data_table.Clear()
+            data_set.Clear()
 
             lbl_shouhizei_10_percent.Text = s_10.ToString("#,0")
             lbl_shouhizei_8_percent.Text = s_8.ToString("#,0")
@@ -149,4 +152,15 @@ Public Class frmdenpyou
 
     End Sub
 
+    Private Sub btn_shuusei_Click(sender As Object, e As EventArgs) Handles btn_shuusei.Click
+
+    End Sub
+
+    Private Sub btn_sumi_Click(sender As Object, e As EventArgs) Handles btn_sumi.Click
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+    End Sub
 End Class
