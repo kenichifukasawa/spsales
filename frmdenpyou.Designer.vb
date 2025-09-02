@@ -23,6 +23,7 @@ Partial Class frmdenpyou
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.lbl_hacchuuid = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.btn_kensaku = New System.Windows.Forms.Button()
@@ -53,7 +54,6 @@ Partial Class frmdenpyou
         Me.txt_nouhinsho_no = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
-        Me.lbl_hacchuuid = New System.Windows.Forms.Label()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -81,8 +81,20 @@ Partial Class frmdenpyou
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "納品書"
         '
+        'lbl_hacchuuid
+        '
+        Me.lbl_hacchuuid.BackColor = System.Drawing.SystemColors.Control
+        Me.lbl_hacchuuid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_hacchuuid.Location = New System.Drawing.Point(748, -8)
+        Me.lbl_hacchuuid.Name = "lbl_hacchuuid"
+        Me.lbl_hacchuuid.Size = New System.Drawing.Size(89, 23)
+        Me.lbl_hacchuuid.TabIndex = 209
+        Me.lbl_hacchuuid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_hacchuuid.Visible = False
+        '
         'Button1
         '
+        Me.Button1.BackColor = System.Drawing.SystemColors.Control
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.Button1.Location = New System.Drawing.Point(1177, 30)
@@ -91,7 +103,7 @@ Partial Class frmdenpyou
         Me.Button1.Size = New System.Drawing.Size(127, 44)
         Me.Button1.TabIndex = 210
         Me.Button1.Text = "済み"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -108,6 +120,7 @@ Partial Class frmdenpyou
         '
         'btn_kensaku
         '
+        Me.btn_kensaku.BackColor = System.Drawing.SystemColors.Control
         Me.btn_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_kensaku.Location = New System.Drawing.Point(1177, 89)
@@ -116,10 +129,11 @@ Partial Class frmdenpyou
         Me.btn_kensaku.Size = New System.Drawing.Size(127, 44)
         Me.btn_kensaku.TabIndex = 205
         Me.btn_kensaku.Text = "修正"
-        Me.btn_kensaku.UseVisualStyleBackColor = True
+        Me.btn_kensaku.UseVisualStyleBackColor = False
         '
         'btn_modoru
         '
+        Me.btn_modoru.BackColor = System.Drawing.SystemColors.Control
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(1307, 30)
@@ -128,7 +142,7 @@ Partial Class frmdenpyou
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
         Me.btn_modoru.TabIndex = 204
         Me.btn_modoru.Text = "戻る"
-        Me.btn_modoru.UseVisualStyleBackColor = True
+        Me.btn_modoru.UseVisualStyleBackColor = False
         '
         'GroupBox10
         '
@@ -428,17 +442,6 @@ Partial Class frmdenpyou
         Me.dgv_nouhinsho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(1426, 755)
         Me.dgv_nouhinsho.TabIndex = 67
-        '
-        'lbl_hacchuuid
-        '
-        Me.lbl_hacchuuid.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl_hacchuuid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_hacchuuid.Location = New System.Drawing.Point(748, -8)
-        Me.lbl_hacchuuid.Name = "lbl_hacchuuid"
-        Me.lbl_hacchuuid.Size = New System.Drawing.Size(89, 23)
-        Me.lbl_hacchuuid.TabIndex = 209
-        Me.lbl_hacchuuid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lbl_hacchuuid.Visible = False
         '
         'frmdenpyou
         '
