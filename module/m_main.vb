@@ -670,14 +670,14 @@ Module m_main
             da_server.Fill(ds_server, "t_shoukaii")
             Dim dt_server As DataTable = ds_server.Tables("t_shoukaii")
 
-            Dim mojiretsu(11) As String
+            Dim mojiretsu(12) As String
 
             With frmmain.dgv_denpyou
 
                 .Rows.Clear()
                 .RowHeadersWidth = 4
                 .Columns.Clear()
-                .ColumnCount = 10
+                .ColumnCount = 11
 
                 .Columns(0).Name = "納品日"
                 .Columns(1).Name = "伝票NO"
@@ -685,20 +685,22 @@ Module m_main
                 .Columns(3).Name = "社員名"
                 .Columns(4).Name = "印刷"
                 .Columns(5).Name = "納品書ID"
-                .Columns(6).Name = "備考1"
-                .Columns(7).Name = "備考2"
-                .Columns(8).Name = "Print"
-                .Columns(9).Name = "ダミー"
+                .Columns(6).Name = "印字"
+                .Columns(7).Name = "備考1"
+                .Columns(8).Name = "備考2"
+                .Columns(9).Name = "Print"
+                .Columns(10).Name = "ダミー"
                 .Columns(0).Width = 90
-                .Columns(1).Width = 90
-                .Columns(2).Width = 90
-                .Columns(3).Width = 80
+                .Columns(1).Width = 80
+                .Columns(2).Width = 80
+                .Columns(3).Width = 75
                 .Columns(4).Width = 45
-                .Columns(5).Width = 100
-                .Columns(6).Width = 0
+                .Columns(5).Width = 80
+                .Columns(6).Width = 45
                 .Columns(7).Width = 0
                 .Columns(8).Width = 0
                 .Columns(9).Width = 0
+                .Columns(10).Width = 0
 
                 .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -710,6 +712,7 @@ Module m_main
                 .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
 
                 '列ヘッダーの高さを変える
                 .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
@@ -752,29 +755,46 @@ Module m_main
                 Else
                     mojiretsu(5) = Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
                 End If
-
-                If IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
+                If IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
                     mojiretsu(6) = ""
                 Else
-                    mojiretsu(6) = Trim(dt_server.Rows.Item(i).Item("bikou1"))
+                    Select Case Trim(dt_server.Rows.Item(i).Item("nouhinshoid"))
+                        Case "0"
+                            mojiretsu(6) = "掛売"
+                        Case "1"
+                            mojiretsu(6) = "現金売"
+                        Case "2"
+                            mojiretsu(6) = "返品"
+                        Case "3"
+                            mojiretsu(6) = "返金"
+                        Case "4"
+                            mojiretsu(6) = "委託"
+                    End Select
+                End If
+
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
+                    mojiretsu(7) = ""
+                Else
+                    mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("bikou1"))
                 End If
 
                 If IsDBNull(dt_server.Rows.Item(i).Item("bikou2")) Then
-                    mojiretsu(7) = ""
+                    mojiretsu(8) = ""
                 Else
-                    mojiretsu(7) = Trim(dt_server.Rows.Item(i).Item("bikou2"))
+                    mojiretsu(8) = Trim(dt_server.Rows.Item(i).Item("bikou2"))
                 End If
 
                 If IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
-                    mojiretsu(8) = ""
+                    mojiretsu(9) = ""
                 Else
-                    mojiretsu(8) = Trim(dt_server.Rows.Item(i).Item("print_shurui"))
+                    mojiretsu(9) = Trim(dt_server.Rows.Item(i).Item("print_shurui"))
                 End If
 
                 If IsDBNull(dt_server.Rows.Item(i).Item("dami2")) Then
-                    mojiretsu(9) = ""
+                    mojiretsu(10) = ""
                 Else
-                    mojiretsu(9) = Trim(dt_server.Rows.Item(i).Item("dami2"))
+                    mojiretsu(10) = Trim(dt_server.Rows.Item(i).Item("dami2"))
                 End If
 
                 '色の判定
@@ -812,7 +832,7 @@ Module m_main
 
         Try
 
-            Sql = "SELECT * FROM seikyuusho WHERE tenpoid = '" & s_tenpoid & "' ORDER BY hiduke DESC, seikyuushoid DESC"
+            Sql = "Select * FROM seikyuusho WHERE tenpoid = '" & s_tenpoid & "' ORDER BY hiduke DESC, seikyuushoid DESC"
 
             Dim cn_server As New SqlConnection
             cn_server.ConnectionString = connectionstring_sqlserver

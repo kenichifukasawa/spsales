@@ -554,6 +554,10 @@ Public Class frmshiire
 
     Private Sub frmshiire_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        set_gyousha_kubun_cbx(2)
+
+        set_shouhin_kubun_1_cbx(5)
+
         set_gyousha_cbx(4)
 
     End Sub
@@ -577,4 +581,33 @@ Public Class frmshiire
 
     End Sub
 
+    Private Sub cbx_shouhin_kubun_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_shouhin_kubun_1.SelectedIndexChanged
+
+        Dim shouhin_kubun_1_id = Mid(Trim(cbx_shouhin_kubun_1.Text), 1, 2)
+
+        set_shouhin_kubun_2_cbx(5, shouhin_kubun_1_id)
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        With Me
+            .txtshouhinmei.Text = ""
+            .txtshouhinfurigana.Text = ""
+            .txtshouhinkihonkakaku.Text = ""
+            .txtshouhingenka.Text = ""
+            .txtshouhinbarcode.Text = ""
+            .chkhaiban.Checked = False
+            .chkkeigenzeiritsu.Checked = False
+            .cbx_gyousha_kubun.SelectedIndex = -1
+            .cbx_shouhin_kubun_1.SelectedIndex = -1
+            .cbx_shouhin_kubun_2.SelectedIndex = -1
+
+            .Button15.Text = "登録"
+            .Button15.Enabled = True
+
+            .txtshouhinmei.Focus()
+
+        End With
+    End Sub
 End Class

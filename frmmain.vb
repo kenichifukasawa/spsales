@@ -564,10 +564,11 @@ Public Class frmmain
         Dim s_shousaiid As String = Trim(dgv_denpyou.CurrentRow.Cells(1).Value)
         Dim s_hi As String = Trim(dgv_denpyou.CurrentRow.Cells(0).Value)
         Dim s_nouhinshono As String = Trim(dgv_denpyou.CurrentRow.Cells(5).Value)
-        Dim s_bikou1 As String = Trim(dgv_denpyou.CurrentRow.Cells(6).Value)
-        Dim s_bikou2 As String = Trim(dgv_denpyou.CurrentRow.Cells(7).Value)
-        Dim s_pri As String = Trim(dgv_denpyou.CurrentRow.Cells(8).Value)
-        Dim s_dami2 As String = Trim(dgv_denpyou.CurrentRow.Cells(9).Value)
+        Dim s_inji As String = Trim(dgv_denpyou.CurrentRow.Cells(6).Value)
+        Dim s_bikou1 As String = Trim(dgv_denpyou.CurrentRow.Cells(7).Value)
+        Dim s_bikou2 As String = Trim(dgv_denpyou.CurrentRow.Cells(8).Value)
+        Dim s_pri As String = Trim(dgv_denpyou.CurrentRow.Cells(9).Value)
+        Dim s_dami2 As String = Trim(dgv_denpyou.CurrentRow.Cells(10).Value)
         Dim s_shain As String = Mid(Trim(dgv_denpyou.CurrentRow.Cells(3).Value), 1, 2)
 
         set_shain_cbx(7)
@@ -582,6 +583,23 @@ Public Class frmmain
             .cbx_shurui.Items.Add("返品")
             .cbx_shurui.Items.Add("返金")
             .cbx_shurui.Items.Add("委託")
+
+
+            Select Case s_inji
+                Case "掛売"
+                    .cbx_shurui.SelectedIndex = 0
+                Case "現金売"
+                    .cbx_shurui.SelectedIndex = 1
+                Case "返品"
+                    .cbx_shurui.SelectedIndex = 2
+                Case "返金"
+                    .cbx_shurui.SelectedIndex = 3
+                Case "委託"
+                    .cbx_shurui.SelectedIndex = 4
+                Case Else
+                    .cbx_shurui.SelectedIndex = -1
+            End Select
+
 
             tenpo_hacchuurireki_set2(s_shousaiid)
 
