@@ -22,8 +22,6 @@ Partial Class frmichiran_shain
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.btn_sakujo = New System.Windows.Forms.Button()
         Me.dgv_kensakukekka = New System.Windows.Forms.DataGridView()
@@ -39,7 +37,7 @@ Partial Class frmichiran_shain
         '
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_modoru.Location = New System.Drawing.Point(468, 18)
+        Me.btn_modoru.Location = New System.Drawing.Point(1004, 18)
         Me.btn_modoru.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_modoru.Name = "btn_modoru"
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
@@ -51,7 +49,7 @@ Partial Class frmichiran_shain
         '
         Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_sakujo.Location = New System.Drawing.Point(337, 18)
+        Me.btn_sakujo.Location = New System.Drawing.Point(873, 18)
         Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_sakujo.Name = "btn_sakujo"
         Me.btn_sakujo.Size = New System.Drawing.Size(127, 44)
@@ -63,30 +61,14 @@ Partial Class frmichiran_shain
         '
         Me.dgv_kensakukekka.AllowUserToAddRows = False
         Me.dgv_kensakukekka.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_kensakukekka.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_kensakukekka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgv_kensakukekka.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgv_kensakukekka.Location = New System.Drawing.Point(13, 76)
         Me.dgv_kensakukekka.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv_kensakukekka.Name = "dgv_kensakukekka"
         Me.dgv_kensakukekka.ReadOnly = True
         Me.dgv_kensakukekka.RowTemplate.Height = 24
         Me.dgv_kensakukekka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv_kensakukekka.Size = New System.Drawing.Size(582, 658)
+        Me.dgv_kensakukekka.Size = New System.Drawing.Size(1118, 658)
         Me.dgv_kensakukekka.TabIndex = 0
         '
         'GroupBox1
@@ -103,14 +85,14 @@ Partial Class frmichiran_shain
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(609, 761)
+        Me.GroupBox1.Size = New System.Drawing.Size(1152, 761)
         Me.GroupBox1.TabIndex = 50
         Me.GroupBox1.TabStop = False
         '
         'chk_sakujo
         '
         Me.chk_sakujo.AutoSize = True
-        Me.chk_sakujo.Location = New System.Drawing.Point(518, 738)
+        Me.chk_sakujo.Location = New System.Drawing.Point(1054, 738)
         Me.chk_sakujo.Name = "chk_sakujo"
         Me.chk_sakujo.Size = New System.Drawing.Size(77, 18)
         Me.chk_sakujo.TabIndex = 189
@@ -121,7 +103,7 @@ Partial Class frmichiran_shain
         '
         Me.btn_touroku.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_touroku.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_touroku.Location = New System.Drawing.Point(75, 18)
+        Me.btn_touroku.Location = New System.Drawing.Point(611, 18)
         Me.btn_touroku.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_touroku.Name = "btn_touroku"
         Me.btn_touroku.Size = New System.Drawing.Size(127, 44)
@@ -133,7 +115,7 @@ Partial Class frmichiran_shain
         '
         Me.btn_henkou.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_henkou.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn_henkou.Location = New System.Drawing.Point(206, 18)
+        Me.btn_henkou.Location = New System.Drawing.Point(742, 18)
         Me.btn_henkou.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_henkou.Name = "btn_henkou"
         Me.btn_henkou.Size = New System.Drawing.Size(127, 44)
@@ -145,7 +127,7 @@ Partial Class frmichiran_shain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(632, 781)
+        Me.ClientSize = New System.Drawing.Size(1174, 781)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmichiran_shain"

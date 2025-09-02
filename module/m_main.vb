@@ -1761,8 +1761,9 @@ Module m_main
         System.Windows.Forms.Application.DoEvents()
     End Sub
 
+
     Function main_hontouroku(s_iraibi As String, s_goukei As String, s_shainid As String, s_tenpoid As String, s_nouhinshoid As String, s_dami As String,
-                             s_inji As String, s_bikou1 As String, s_bikou2 As String) As Integer
+                             s_inji As String, s_bikou1 As String, s_bikou2 As String, s_pcname As String) As Integer
 
         main_hontouroku = -1
 
@@ -1792,10 +1793,188 @@ Module m_main
 
         wait_msg("保存情報を書き込み中・・", 2)
 
-        'If create_hacchuu_and_hacchuushousai(shouhin_id, sagaku_suu) = False Then ' 本登録へ
-        '    msg_go("発注テーブルまたは発注詳細テーブルの更新でエラーが発生しました。")
-        '    Exit Sub
-        'End If
+        ' 本登録へ
+        Dim s_no_busy = 2
+        Dim id_busy = 2
+        Dim get_response_busy = get_settei(id:=id_busy, s_no:=s_no_busy) ' TODO : 削除 または get_settingsへ移行
+        If get_response_busy = "" Then
+            msg_go("ビジーの取得に失敗しました。")
+            Exit Function
+        Else
+
+            If get_response_busy <> "0" Then
+                msg_go("サーバがビジーです。少ししてから再度実行してください。")
+                Exit Function
+            End If
+
+            Dim update_response = update_settei(id:=id_busy, s_no:=s_no_busy, new_value:="1") ' TODO : 削除 または update_settingsへ移行
+            If Not update_response Then
+                msg_go("ビジーの更新に失敗しました。")
+                Exit Function
+            End If
+
+        End If
+
+        Dim table_name = "hacchuu"
+        Dim s_no = 2
+        Dim id = 1
+        Dim ketasuu = 8
+        Dim new_id = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu)
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT TOP 1 * FROM " + table_name
+
+            Dim da As SqlDataAdapter = New SqlDataAdapter(query, cn_server)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_" + table_name
+            da.Fill(ds, temp_table_name)
+            Dim cb As SqlClient.SqlCommandBuilder = New SqlClient.SqlCommandBuilder(da)
+            Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+
+            data_row("hacchuuid") = new_id
+            data_row("iraibi") = s_iraibi
+            data_row("shainid") = s_shainid
+            data_row("tenpoid") = s_tenpoid
+            data_row("goukei") = s_goukei
+            data_row("joukyou") = "0"
+
+            If s_nouhinshoid <> "" Then
+                data_row("nouhinshoid") = s_nouhinshoid
+                data_row("shutsu") = "1"
+            End If
+
+            'If bikou <> "" Then
+            '    data_row("nebiki") = bikou
+            'End If
+
+            If s_dami <> "" Then
+                data_row("dami2") = s_dami
+            End If
+
+            If s_bikou1 <> "" Then
+                data_row("bikou1") = s_bikou1
+            End If
+
+            If s_bikou2 <> "" Then
+                data_row("bikou2") = s_bikou2
+            End If
+
+            If s_inji <> "" Then
+                data_row("print_shurui") = s_inji
+            End If
+
+            ds.Tables(temp_table_name).Rows.Add(data_row)
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Exit Function
+        End Try
+
+        wait_msg("保存情報を書き込み中・・", 3)
+
+        Try
+
+            Dim conn As New SqlConnection
+            conn.ConnectionString = connectionstring_sqlserver
+
+            Dim query = "SELECT * FROM hacchuushousai WHERE hacchuuid = '" + s_pcname + "'"
+
+            Dim da As New SqlDataAdapter
+            da = New SqlDataAdapter(query, conn)
+            Dim ds As New DataSet
+            Dim temp_table_name = "t_shiire"
+            da.Fill(ds, temp_table_name)
+
+            Dim table = ds.Tables(temp_table_name)
+
+            For Each row As DataRow In table.Rows
+                row("hacchuuid") = new_id
+            Next
+
+            Dim cb As New SqlCommandBuilder
+            cb.DataAdapter = da
+            da.Update(ds, temp_table_name)
+            ds.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+                Exit Function
+            End Try
+
+        wait_msg("保存情報を書き込み中・・", 4)
+
+
+        '在庫数の調整
+        Dim n_count As Integer
+        Dim n_bunbo As Integer
+
+        n_bunbo = kari_touroku_suu / 5
+
+
+        For i = 0 To kari_touroku_suu - 1
+
+            Dim shouhin_id = karitourokudata(0, i)
+
+            Try
+
+                Dim conn As New SqlConnection
+                conn.ConnectionString = connectionstring_sqlserver
+
+                Dim query = "SELECT * FROM shouhin WHERE shouhinid ='" + shouhin_id + "'"
+
+                Dim da As New SqlDataAdapter
+                da = New SqlDataAdapter(query, conn)
+                Dim ds As New DataSet
+                Dim temp_table_name = "t_shouhin"
+                da.Fill(ds, temp_table_name)
+
+                Dim kyuu_suu = ds.Tables(temp_table_name).Rows(0)("genzaikosuu")
+                Dim isuu = karitourokudata(1, i)
+                Dim shin_suu = kyuu_suu - isuu
+
+                ds.Tables(temp_table_name).Rows(0)("genzaikosuu") = shin_suu
+
+                Dim bikou = "旧在庫：" & kyuu_suu.ToString & " 新在庫：" & shin_suu.ToString
+                Dim shainid = "10"
+                Dim naiyou = 8
+                Dim new_atai = isuu.ToString
+                If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
+                    msg_go("在庫ログ登録作業中にエラーが発生しました。")
+                    ds.Clear()
+                    Exit Function
+                End If
+
+                Dim cb As New SqlCommandBuilder
+                cb.DataAdapter = da
+                da.Update(ds, temp_table_name)
+                ds.Clear()
+
+            Catch ex As Exception
+                msg_go(ex.Message)
+                Exit Function
+            End Try
+
+            If n_bunbo > 0 Then
+                n_count = (i / n_bunbo) + 5
+            ElseIf n_bunbo = 0 Then
+                n_count = 6
+            End If
+
+            If n_count >= 10 Then
+                n_count = 10
+            End If
+
+            wait_msg("保存情報を書き込み中・・", n_count)
+        Next
+
+
+        msg_go("登録しました。", 64)
 
 
 

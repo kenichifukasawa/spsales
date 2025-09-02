@@ -767,15 +767,24 @@ Public Class frmmain
         wait_on("", "1")
 
 
-        If main_hontouroku(newiraibi, newgoukei, newshainid, newtenpoid, newnouhinshokanriid, dami3, newinji, s_bikou1, s_bikou2) = -1 Then
-
-
+        If main_hontouroku(newiraibi, newgoukei, newshainid, newtenpoid, newnouhinshokanriid, dami3, newinji, s_bikou1, s_bikou2, s_pcname) = -1 Then
+            msg_go("本登録に失敗しました。")
+            Exit Sub
         End If
 
+        wait_msg("保存情報を初期化中・・", 10)
+
+
+        tenpo_hacchuurireki_set(newtenpoid)
+
+        tenpo_orderchu_set_10()
+
+        Me.txt_nouhinsho_no.Text = ""
+        Me.chk_nouhinsho_pc.Checked = True
+        Me.txtbikou1.Text = ""
+        Me.txtbikou2.Text = ""
 
         wait_off()
-
-        '        nouhinsho_tourokuchu = 0
 
 
     End Sub

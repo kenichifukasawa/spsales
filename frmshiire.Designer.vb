@@ -76,6 +76,7 @@ Partial Class frmshiire
         Me.dgvshiirerireki = New System.Windows.Forms.DataGridView()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -97,7 +98,6 @@ Partial Class frmshiire
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Button15 = New System.Windows.Forms.Button()
-        Me.Label23 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.dgv_shien, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -785,6 +785,16 @@ Partial Class frmshiire
         Me.GroupBox7.TabIndex = 215
         Me.GroupBox7.TabStop = False
         '
+        'Label23
+        '
+        Me.Label23.BackColor = System.Drawing.SystemColors.Control
+        Me.Label23.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label23.Location = New System.Drawing.Point(100, 17)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(175, 22)
+        Me.Label23.TabIndex = 237
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Label22
         '
         Me.Label22.BackColor = System.Drawing.Color.White
@@ -1015,16 +1025,6 @@ Partial Class frmshiire
         Me.Button15.TabIndex = 212
         Me.Button15.Text = "登録"
         Me.Button15.UseVisualStyleBackColor = True
-        '
-        'Label23
-        '
-        Me.Label23.BackColor = System.Drawing.SystemColors.Control
-        Me.Label23.Font = New System.Drawing.Font("MS UI Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label23.Location = New System.Drawing.Point(100, 17)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(175, 22)
-        Me.Label23.TabIndex = 237
-        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmshiire
         '

@@ -20,21 +20,28 @@ Public Class frmichiran_shain_koushin
         End If
 
         Dim shain_pw = Trim(txtpw.Text)
+        Dim shain_pw_moto = Trim(lblpw.Text)
         If shain_pw = "" Then
             msg_go("パスワードを入力してください。")
             Exit Sub
         Else
-            '既に登録されているのかのチェック
-            If shain_pw_chk(shain_pw) <> "" Then
-                msg_go("入力したパスワードはすでに使用済です。違うパスワードを入力してください。")
-                Exit Sub
+            If shain_pw <> shain_pw_moto Then
+                '既に登録されているのかのチェック
+                If shain_pw_chk(shain_pw) <> "" Then
+                    msg_go("入力したパスワードはすでに使用済です。違うパスワードを入力してください。")
+                    Exit Sub
+                End If
             End If
-
         End If
 
         Dim zaishoku = "1"
         If chk_zaishoku.Checked Then
             zaishoku = "0"
+        End If
+
+        Dim s_dami = ""
+        If chkdami.Checked Then
+            s_dami = "1"
         End If
 
         Dim table_name = "shain"
@@ -71,6 +78,10 @@ Public Class frmichiran_shain_koushin
 
                 If zaishoku <> "" Then
                     data_row("zaishoku") = zaishoku
+                End If
+
+                If s_dami <> "" Then
+                    data_row("nouhinsho_dami") = s_dami
                 End If
 
                 data_row("password") = shain_pw
@@ -119,6 +130,12 @@ Public Class frmichiran_shain_koushin
                     ds.Tables(temp_table_name).Rows(0)("zaishoku") = DBNull.Value
                 Else
                     ds.Tables(temp_table_name).Rows(0)("zaishoku") = zaishoku
+                End If
+
+                If s_dami = "" Then
+                    ds.Tables(temp_table_name).Rows(0)("nouhinsho_dami") = DBNull.Value
+                Else
+                    ds.Tables(temp_table_name).Rows(0)("nouhinsho_dami") = s_dami
                 End If
 
                 ds.Tables(temp_table_name).Rows(0)("password") = shain_pw
