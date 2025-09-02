@@ -748,6 +748,8 @@ Public Class frmmain
 
 
         If chk_nouhinsho_houkoku.Checked = True Then
+
+
             'If user_check(6) = False Then
             '    msg_go("ダミーは使用できません。")
             '    nouhinsho_tourokuchu = 0
