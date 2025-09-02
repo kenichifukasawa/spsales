@@ -33,6 +33,7 @@ Public Class frmichiran_shain
         Dim ryaku_mei = Trim(dgv_kensakukekka.CurrentRow.Cells(2).Value)
         Dim zaishoku = Trim(dgv_kensakukekka.CurrentRow.Cells(3).Value)
         Dim pw = Trim(dgv_kensakukekka.CurrentRow.Cells(4).Value)
+        Dim dami = Trim(dgv_kensakukekka.CurrentRow.Cells(5).Value)
 
         With frmichiran_shain_koushin
             .Text = "変更"
@@ -50,6 +51,15 @@ Public Class frmichiran_shain
             If zaishoku = "○" Then
                 .chk_zaishoku.Checked = True
             End If
+
+            If dami = "○" Then
+                .chkdami.Checked = True
+                .lbldami.Text = "可能"
+            Else
+                .chkdami.Checked = False
+                .lbldami.Text = "不可"
+            End If
+
             .ShowDialog()
         End With
 
@@ -190,19 +200,21 @@ Public Class frmichiran_shain
 
                 .Rows.Clear()
                 .Columns.Clear()
-                .ColumnCount = 5
+                .ColumnCount = 6
 
                 .Columns(0).Name = "社員ID"
                 .Columns(1).Name = "社員名"
                 .Columns(2).Name = "略名"
                 .Columns(3).Name = "在職"
                 .Columns(4).Name = "パスワード"
+                .Columns(5).Name = "納品書ダミー"
 
                 .Columns(0).Width = 75
                 .Columns(1).Width = 160
                 .Columns(2).Width = 110
                 .Columns(3).Width = 75
                 .Columns(4).Width = 90
+                .Columns(5).Width = 75
 
                 .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -211,6 +223,7 @@ Public Class frmichiran_shain
                 .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
                 Dim currentFont As Font = .DefaultCellStyle.Font
                 .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
@@ -251,6 +264,17 @@ Public Class frmichiran_shain
                 Else
                     mojiretsu(4) = Trim(dt_server.Rows.Item(i).Item("password"))
                 End If
+
+                If IsDBNull(dt_server.Rows.Item(i).Item("nouhinsho_dami")) Then
+                    mojiretsu(5) = ""
+                Else
+                    If Trim(dt_server.Rows.Item(i).Item("nouhinsho_dami")) = "1" Then
+                        mojiretsu(5) = "○"
+                    Else
+                        mojiretsu(5) = ""
+                    End If
+                End If
+
 
                 dgv_kensakukekka.Rows.Add(mojiretsu)
 
