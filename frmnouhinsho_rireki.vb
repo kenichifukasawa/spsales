@@ -35,8 +35,6 @@ Public Class frmnouhinsho_rireki
     Private Sub btn_shousai_Click(sender As Object, e As EventArgs) Handles btn_shousai.Click
 
         ' TODO:未テスト
-        msg_go("開発中")
-        Exit Sub
 
         Dim dgv = dgv_kensakukekka
         If dgv.Rows.Count = 0 Then
@@ -45,16 +43,15 @@ Public Class frmnouhinsho_rireki
         End If
 
         Dim current_row = dgv.CurrentRow
-        Dim hacchuuid As String = Trim(current_row.Cells(0).Value)
-        Dim hinichi As String = Trim(current_row.Cells(1).Value)
-        Dim nouhinsho_no As String = Trim(current_row.Cells(5).Value)
-        Dim bikou1 As String = Trim(current_row.Cells(9).Value)
-        Dim bikou2 As String = Trim(current_row.Cells(10).Value)
-        Dim print_shurui_id As String = Trim(current_row.Cells(7).Value)
-        Dim dami2 As String = Trim(current_row.Cells(8).Value)
-        Dim shain_id As String = Trim(current_row.Cells(6).Value)
-        'Dim tenpo_mei = Trim(lbl_tenpo_mei.Text)
-        Dim tenpo_mei = ""
+        Dim hacchuuid As String = Trim(current_row.Cells(3).Value)
+        Dim hinichi As String = Trim(current_row.Cells(2).Value)
+        Dim nouhinsho_no As String = Trim(current_row.Cells(4).Value)
+        Dim bikou1 As String = Trim(current_row.Cells(13).Value)
+        Dim bikou2 As String = Trim(current_row.Cells(14).Value)
+        Dim print_shurui_id As String = Trim(current_row.Cells(11).Value)
+        Dim dami2 As String = Trim(current_row.Cells(12).Value)
+        Dim shain_id As String = Trim(current_row.Cells(10).Value)
+        Dim tenpo_mei = Trim(current_row.Cells(5).Value)
 
         set_shain_cbx(7)
 
@@ -253,30 +250,41 @@ Public Class frmnouhinsho_rireki
         With dgv_kensakukekka
 
             .Rows.Clear()
+            .RowHeadersWidth = 4
             .Columns.Clear()
-            .ColumnCount = 10
+            .ColumnCount = 15
 
             .Columns(0).Name = ""
             .Columns(1).Name = "NO"
             .Columns(2).Name = "納品日"
             .Columns(3).Name = "伝票NO"
-            .Columns(4).Name = "納品書ID"
+            .Columns(4).Name = "納品書NO"
             .Columns(5).Name = "店舗名"
             .Columns(6).Name = "金額"
-            .Columns(7).Name = "発行社員名"
+            .Columns(7).Name = "発行" + vbCrLf + "社員名"
             .Columns(8).Name = "発行状況"
             .Columns(9).Name = "確認状況"
+            .Columns(10).Name = "社員ID"
+            .Columns(11).Name = "プリント種類"
+            .Columns(12).Name = "ダミー2"
+            .Columns(13).Name = "備考1"
+            .Columns(14).Name = "備考2"
 
             .Columns(0).Width = 30
-            .Columns(1).Width = 75
+            .Columns(1).Width = 55
             .Columns(2).Width = 110
             .Columns(3).Width = 100
             .Columns(4).Width = 110
-            .Columns(5).Width = 275
+            .Columns(5).Width = 300
             .Columns(6).Width = 90
             .Columns(7).Width = 100
             .Columns(8).Width = 100
             .Columns(9).Width = 100
+            .Columns(10).Width = 0
+            .Columns(11).Width = 0
+            .Columns(12).Width = 0
+            .Columns(13).Width = 0
+            .Columns(14).Width = 0
 
             .AlternatingRowsDefaultCellStyle.BackColor = Color.MistyRose
 
@@ -290,11 +298,19 @@ Public Class frmnouhinsho_rireki
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(13).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(14).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             .Columns(6).DefaultCellStyle.Format = "#,##0"
 
             Dim currentFont As Font = .DefaultCellStyle.Font
             .DefaultCellStyle.Font = New Font(currentFont.FontFamily, 11.25F, currentFont.Style)
+
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+            .ColumnHeadersHeight = 50
 
             .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
@@ -337,7 +353,7 @@ Public Class frmnouhinsho_rireki
             Dim dt_server As DataTable = ds_server.Tables(temp_table_name)
 
             kensuu = dt_server.Rows.Count
-            Dim mojiretsu(9)
+            Dim mojiretsu(14)
             For i = 0 To kensuu - 1
 
                 mojiretsu(0) = ""
@@ -373,6 +389,32 @@ Public Class frmnouhinsho_rireki
                     kakunin = "確認済み"
                 End If
                 mojiretsu(9) = kakunin
+
+                mojiretsu(10) = Trim(dt_server.Rows.Item(i).Item("shainid"))
+
+                Dim print_shurui = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
+                    print_shurui = PrintCategory.GetNameById(Trim(dt_server.Rows.Item(i).Item("print_shurui")))
+                End If
+                mojiretsu(11) = print_shurui
+
+                Dim dami2 = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("dami2")) Then
+                    dami2 = Trim(dt_server.Rows.Item(i).Item("dami2"))
+                End If
+                mojiretsu(12) = dami2
+
+                Dim bikou1 = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
+                    bikou1 = Trim(dt_server.Rows.Item(i).Item("bikou1"))
+                End If
+                mojiretsu(13) = bikou1
+
+                Dim bikou2 = ""
+                If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou2")) Then
+                    bikou2 = Trim(dt_server.Rows.Item(i).Item("bikou2"))
+                End If
+                mojiretsu(14) = bikou2
 
                 dgv_kensakukekka.Rows.Add(mojiretsu)
 

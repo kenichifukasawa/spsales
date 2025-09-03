@@ -1645,7 +1645,6 @@ Module m_main
             karitourokudata(6, i) = Trim(frmmain.dgv_shien.CurrentRow.Cells(9).Value.ToString)
         Next
 
-
         wait_msg("保存情報を書き込み中・・", 2)
 
         ' 本登録へ
@@ -1767,15 +1766,16 @@ Module m_main
 
         '在庫数の調整
         Dim n_count As Integer
-        Dim n_bunbo As Integer
+        Dim n_bunbo As Integer = kari_touroku_suu / 5
 
-        n_bunbo = kari_touroku_suu / 5
-
-
+        Dim shouhin_id_list(kari_touroku_suu - 1) As String
+        Dim bikou_list(kari_touroku_suu - 1) As String
+        Dim shainid = "10"
+        Dim naiyou = 8
+        Dim new_atai_list(kari_touroku_suu - 1) As String
         For i = 0 To kari_touroku_suu - 1
 
             Dim shouhin_id = karitourokudata(0, i)
-
             Dim kyuu_suu As Integer, isuu As Integer, shin_suu As Integer
 
             Try
@@ -1797,27 +1797,19 @@ Module m_main
 
                 ds.Tables(temp_table_name).Rows(0)("genzaikosuu") = shin_suu
 
-
-
                 Dim cb As New SqlCommandBuilder
                 cb.DataAdapter = da
                 da.Update(ds, temp_table_name)
                 ds.Clear()
-
 
             Catch ex As Exception
                 msg_go(ex.Message)
                 Exit Function
             End Try
 
-            Dim bikou = "旧在庫：" & kyuu_suu.ToString & " 新在庫：" & shin_suu.ToString
-            Dim shainid = "10"
-            Dim naiyou = 8
-            Dim new_atai = isuu.ToString
-            If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
-                msg_go("在庫ログ登録作業中にエラーが発生しました。")
-                Exit Function
-            End If
+            shouhin_id_list(i) = shouhin_id
+            bikou_list(i) = "旧在庫：" & kyuu_suu.ToString & " 新在庫：" & shin_suu.ToString
+            new_atai_list(i) = isuu.ToString
 
             If n_bunbo > 0 Then
                 n_count = (i / n_bunbo) + 5
@@ -1832,7 +1824,10 @@ Module m_main
             wait_msg("保存情報を書き込み中・・", n_count)
         Next
 
-
+        If shouhin_zaiko_log_by_list(shainid, shouhin_id_list, naiyou, new_atai_list, bikou_list) = False Then
+            msg_go("在庫ログ登録作業中にエラーが発生しました。")
+            Exit Function
+        End If
 
         Dim update_response_2 = update_settei(id:=id_busy, s_no:=s_no_busy, new_value:="0") ' TODO : 削除 または update_settingsへ移行
         If Not update_response_2 Then
@@ -1840,11 +1835,7 @@ Module m_main
             Exit Function
         End If
 
-
         msg_go("登録しました。", 64)
-
-
-
 
     End Function
 
@@ -2566,7 +2557,65 @@ errsetting:
 
     End Function
 
+    Function shouhin_zaiko_log_by_list(shainid As String, shouhinid_list As String(), naiyou As Integer, new_atai_list As String(), bikou_list As String(), Optional shiteibi As String = "") As Boolean ' TODO : いずれ、「create_zaiko_log」に名称変更
 
+        Dim sonotoki As String = If(String.IsNullOrEmpty(shiteibi), Now.ToString("yyyyMMddHHmmss"), shiteibi)
+        Dim conn As SqlConnection = Nothing
+        Dim data_count = shouhinid_list.Length
+        Try
+
+            conn = New SqlConnection(connectionstring_sqlserver)
+            conn.Open()
+
+            Dim table_name = "zaiko_log"
+            Dim id = 2
+            Dim s_no = 16
+            Dim ketasuu = 10
+            Dim new_id As String = get_and_update_settings(table_name:=table_name, id:=id, s_no:=s_no, ketasuu:=ketasuu, henkasuu:=data_count)
+
+            Dim query = "SELECT TOP 1 * FROM " & table_name
+
+            Using da As New SqlDataAdapter(query, conn)
+
+                Dim ds As New DataSet
+                Dim temp_table_name = "t_" & table_name
+                da.Fill(ds, temp_table_name)
+                Dim cb As New SqlCommandBuilder(da)
+
+                For i = 0 To data_count - 1
+
+                    Dim data_row As DataRow = ds.Tables(temp_table_name).NewRow()
+                    data_row("logid") = new_id
+                    data_row("sonotoki") = sonotoki
+                    data_row("shouhinid") = shouhinid_list(i)
+                    data_row("shainid") = shainid
+                    data_row("naiyou") = naiyou.ToString("D2")
+                    data_row("newatai") = new_atai_list(i)
+                    data_row("bikou") = bikou_list(i)
+                    ds.Tables(temp_table_name).Rows.Add(data_row)
+
+                    new_id = (CInt(new_id) + 1).ToString("D" + ketasuu.ToString)
+
+                Next
+
+                da.Update(ds, temp_table_name)
+                ds.Clear()
+
+            End Using
+
+            Return True
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+            Return False
+        Finally
+            If conn IsNot Nothing Then
+                conn.Close()
+                conn.Dispose()
+            End If
+        End Try
+
+    End Function
 
     Function kurikoshi_log_edit(shainid As String, tenpoid As String, naiyou As Integer, new_atai As String, bikou As String) As String
 

@@ -19,7 +19,7 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
             .Columns(2).Name = "社員"
             .Columns(3).Name = "金額"
             .Columns(4).Name = "値引き"
-            .Columns(5).Name = "納品NO"
+            .Columns(5).Name = "納品書NO"
             .Columns(6).Name = "社員ID"
             .Columns(7).Name = "プリント種類"
             .Columns(8).Name = "ダミー2"
@@ -108,7 +108,7 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
 
                 Dim print_shurui = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
-                    print_shurui = Trim(dt_server.Rows.Item(i).Item("print_shurui"))
+                    print_shurui = PrintCategory.GetNameById(Trim(dt_server.Rows.Item(i).Item("print_shurui")))
                 End If
                 mojiretsu(7) = print_shurui
 
@@ -120,7 +120,7 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
 
                 Dim bikou1 = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
-                    bikou1 = Trim(dt_server.Rows.Item(i).Item("dabikou1mi2"))
+                    bikou1 = Trim(dt_server.Rows.Item(i).Item("bikou1"))
                 End If
                 mojiretsu(9) = bikou1
 

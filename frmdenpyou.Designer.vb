@@ -23,9 +23,10 @@ Partial Class frmdenpyou
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.btn_kensaku = New System.Windows.Forms.Button()
+        Me.lbl_hacchuuid = New System.Windows.Forms.Label()
+        Me.btn_sumi = New System.Windows.Forms.Button()
+        Me.btn_sakujo = New System.Windows.Forms.Button()
+        Me.btn_shuusei = New System.Windows.Forms.Button()
         Me.btn_modoru = New System.Windows.Forms.Button()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.cbx_shurui = New System.Windows.Forms.ComboBox()
@@ -53,7 +54,6 @@ Partial Class frmdenpyou
         Me.txt_nouhinsho_no = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.dgv_nouhinsho = New System.Windows.Forms.DataGridView()
-        Me.lbl_hacchuuid = New System.Windows.Forms.Label()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -65,9 +65,9 @@ Partial Class frmdenpyou
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.White
         Me.GroupBox5.Controls.Add(Me.lbl_hacchuuid)
-        Me.GroupBox5.Controls.Add(Me.Button1)
-        Me.GroupBox5.Controls.Add(Me.Button2)
-        Me.GroupBox5.Controls.Add(Me.btn_kensaku)
+        Me.GroupBox5.Controls.Add(Me.btn_sumi)
+        Me.GroupBox5.Controls.Add(Me.btn_sakujo)
+        Me.GroupBox5.Controls.Add(Me.btn_shuusei)
         Me.GroupBox5.Controls.Add(Me.btn_modoru)
         Me.GroupBox5.Controls.Add(Me.GroupBox10)
         Me.GroupBox5.Controls.Add(Me.GroupBox8)
@@ -81,45 +81,59 @@ Partial Class frmdenpyou
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "納品書"
         '
-        'Button1
+        'lbl_hacchuuid
         '
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
-        Me.Button1.Location = New System.Drawing.Point(1177, 30)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(127, 44)
-        Me.Button1.TabIndex = 210
-        Me.Button1.Text = "済み"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.lbl_hacchuuid.BackColor = System.Drawing.SystemColors.Control
+        Me.lbl_hacchuuid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl_hacchuuid.Location = New System.Drawing.Point(748, -8)
+        Me.lbl_hacchuuid.Name = "lbl_hacchuuid"
+        Me.lbl_hacchuuid.Size = New System.Drawing.Size(89, 23)
+        Me.lbl_hacchuuid.TabIndex = 209
+        Me.lbl_hacchuuid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbl_hacchuuid.Visible = False
         '
-        'Button2
+        'btn_sumi
         '
-        Me.Button2.BackColor = System.Drawing.SystemColors.Control
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
-        Me.Button2.Location = New System.Drawing.Point(1307, 89)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(127, 44)
-        Me.Button2.TabIndex = 209
-        Me.Button2.Text = "削除"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.btn_sumi.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_sumi.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_sumi.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_sumi.Location = New System.Drawing.Point(1177, 30)
+        Me.btn_sumi.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_sumi.Name = "btn_sumi"
+        Me.btn_sumi.Size = New System.Drawing.Size(127, 44)
+        Me.btn_sumi.TabIndex = 210
+        Me.btn_sumi.Text = "済み"
+        Me.btn_sumi.UseVisualStyleBackColor = False
         '
-        'btn_kensaku
+        'btn_sakujo
         '
-        Me.btn_kensaku.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_kensaku.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
-        Me.btn_kensaku.Location = New System.Drawing.Point(1177, 89)
-        Me.btn_kensaku.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_kensaku.Name = "btn_kensaku"
-        Me.btn_kensaku.Size = New System.Drawing.Size(127, 44)
-        Me.btn_kensaku.TabIndex = 205
-        Me.btn_kensaku.Text = "修正"
-        Me.btn_kensaku.UseVisualStyleBackColor = True
+        Me.btn_sakujo.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_sakujo.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_sakujo.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_sakujo.Location = New System.Drawing.Point(1307, 89)
+        Me.btn_sakujo.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_sakujo.Name = "btn_sakujo"
+        Me.btn_sakujo.Size = New System.Drawing.Size(127, 44)
+        Me.btn_sakujo.TabIndex = 209
+        Me.btn_sakujo.Text = "削除"
+        Me.btn_sakujo.UseVisualStyleBackColor = False
+        '
+        'btn_shuusei
+        '
+        Me.btn_shuusei.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_shuusei.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_shuusei.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
+        Me.btn_shuusei.Location = New System.Drawing.Point(1177, 89)
+        Me.btn_shuusei.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_shuusei.Name = "btn_shuusei"
+        Me.btn_shuusei.Size = New System.Drawing.Size(127, 44)
+        Me.btn_shuusei.TabIndex = 205
+        Me.btn_shuusei.Text = "修正"
+        Me.btn_shuusei.UseVisualStyleBackColor = False
         '
         'btn_modoru
         '
+        Me.btn_modoru.BackColor = System.Drawing.SystemColors.Control
         Me.btn_modoru.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_modoru.Font = New System.Drawing.Font("MS UI Gothic", 12.75!, System.Drawing.FontStyle.Bold)
         Me.btn_modoru.Location = New System.Drawing.Point(1307, 30)
@@ -128,7 +142,7 @@ Partial Class frmdenpyou
         Me.btn_modoru.Size = New System.Drawing.Size(127, 44)
         Me.btn_modoru.TabIndex = 204
         Me.btn_modoru.Text = "戻る"
-        Me.btn_modoru.UseVisualStyleBackColor = True
+        Me.btn_modoru.UseVisualStyleBackColor = False
         '
         'GroupBox10
         '
@@ -429,17 +443,6 @@ Partial Class frmdenpyou
         Me.dgv_nouhinsho.Size = New System.Drawing.Size(1426, 755)
         Me.dgv_nouhinsho.TabIndex = 67
         '
-        'lbl_hacchuuid
-        '
-        Me.lbl_hacchuuid.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl_hacchuuid.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl_hacchuuid.Location = New System.Drawing.Point(748, -8)
-        Me.lbl_hacchuuid.Name = "lbl_hacchuuid"
-        Me.lbl_hacchuuid.Size = New System.Drawing.Size(89, 23)
-        Me.lbl_hacchuuid.TabIndex = 209
-        Me.lbl_hacchuuid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lbl_hacchuuid.Visible = False
-        '
         'frmdenpyou
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -468,7 +471,7 @@ Partial Class frmdenpyou
     Friend WithEvents Label18 As Label
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents GroupBox8 As GroupBox
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btn_sakujo As Button
     Friend WithEvents lbl_shouhizei_8_percent As Label
     Friend WithEvents Label28 As Label
     Friend WithEvents Label29 As Label
@@ -487,10 +490,10 @@ Partial Class frmdenpyou
     Friend WithEvents txt_nouhinsho_no As TextBox
     Friend WithEvents Label17 As Label
     Friend WithEvents dgv_nouhinsho As DataGridView
-    Friend WithEvents btn_kensaku As Button
+    Friend WithEvents btn_shuusei As Button
     Friend WithEvents btn_modoru As Button
     Friend WithEvents cbx_shurui As ComboBox
     Friend WithEvents Label30 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btn_sumi As Button
     Friend WithEvents lbl_hacchuuid As Label
 End Class
