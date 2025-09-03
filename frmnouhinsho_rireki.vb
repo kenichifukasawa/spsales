@@ -394,7 +394,7 @@ Public Class frmnouhinsho_rireki
 
                 Dim print_shurui = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("print_shurui")) Then
-                    print_shurui = Trim(dt_server.Rows.Item(i).Item("print_shurui"))
+                    print_shurui = PrintCategory.GetNameById(Trim(dt_server.Rows.Item(i).Item("print_shurui")))
                 End If
                 mojiretsu(11) = print_shurui
 
@@ -406,7 +406,7 @@ Public Class frmnouhinsho_rireki
 
                 Dim bikou1 = ""
                 If Not IsDBNull(dt_server.Rows.Item(i).Item("bikou1")) Then
-                    bikou1 = Trim(dt_server.Rows.Item(i).Item("dabikou1mi2"))
+                    bikou1 = Trim(dt_server.Rows.Item(i).Item("bikou1"))
                 End If
                 mojiretsu(13) = bikou1
 
