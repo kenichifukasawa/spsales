@@ -634,20 +634,19 @@ Public Class frmmain
 
         Dim newshainid As String, newtenpoid As String, newnouhinshokanriid As String, dami3 As String
 
-        Dim s_pcname As String
 
-        s_pcname = Trim(lblpcname.Text)
+
+        Dim s_pcname As String = Trim(lblpcname.Text)
         If s_pcname = "" Then
             msg_go("ユーザー名を登録してから再度実行してください。")
             Exit Sub
         End If
 
-
-        '        If nouhinsho_tourokuchu = 1 Then
-        '            Exit Sub
-        '        End If
-
-        '        nouhinsho_tourokuchu = 1
+        Dim s_userid As String = Trim(lblshokuinid.Text)
+        If s_userid = "" Then
+            msg_go("ユーザーIDが不正です。")
+            Exit Sub
+        End If
 
         If Me.dgv_nouhinsho.Rows.Count = 0 Then
             msg_go("納品書に仮登録されていません。")
@@ -656,8 +655,7 @@ Public Class frmmain
 
 
         If Me.lbltorihikinashi.Text = "1" Then
-            ret = MsgBox("取引のない店舗の伝票の登録はできません。店舗情報の設定を変更してから再度実行してください。", 16, "総合管理システム「SPSALES」")
-            ' nouhinsho_tourokuchu = 0
+            msg_go("取引のない店舗の伝票の登録はできません。店舗情報の設定を変更してから再度実行してください。")
             Exit Sub
         End If
 
@@ -665,7 +663,6 @@ Public Class frmmain
             newshainid = Mid(Trim(cbx_shain.Text), 1, 2)
         Else
             msg_go("納品書の社員が選択されていません。")
-            ' nouhinsho_tourokuchu = 0
             Exit Sub
         End If
 
@@ -674,14 +671,12 @@ Public Class frmmain
             newinji = Me.cbx_shurui.SelectedIndex.ToString
         Else
             msg_go("納品書の備考印字が選択されていません。")
-            ' nouhinsho_tourokuchu = 0
             Exit Sub
         End If
 
         newtenpoid = Trim(Me.lbltenpoid.Text)
         If newtenpoid = "" Then
             msg_go("店舗が選択されていません。")
-            ' nouhinsho_tourokuchu = 0
             Exit Sub
         End If
 
@@ -691,8 +686,7 @@ Public Class frmmain
         Dim newgoukei As String = Trim(Me.lbl_nouhinsho_goukei.Text)
 
         If newgoukei = "" Then
-            msg_go("合計金額が表示されていません。再度実行してください。No4",)
-            '  nouhinsho_tourokuchu = 0
+            msg_go("合計金額が表示されていません。再度実行してください。No4")
             Exit Sub
         End If
 
@@ -715,20 +709,18 @@ Public Class frmmain
                 newnouhinshokanriid = newdata & "00" & newnouhinshokanriid
             Else
                 msg_go("納品書IDが正確に入力されていません。３桁以下です。")
-                '7 nouhinsho_tourokuchu = 0
                 Exit Sub
             End If
         End If
 
 
         If chk_nouhinsho_houkoku.Checked = True Then
-
-
-            'If user_check(6) = False Then
-            '    msg_go("ダミーは使用できません。")
-            '    nouhinsho_tourokuchu = 0
-            '    Exit Sub
-            'End If
+            If kengen_chk(0, s_userid) = False Then
+                'If user_check(6) = False Then
+                msg_go("ダミーを作成する権限がないため、使用できません。")
+                '    nouhinsho_tourokuchu = 0
+                Exit Sub
+            End If
 
             dami3 = "1"
         Else
