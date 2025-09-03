@@ -631,10 +631,7 @@ Public Class frmmain
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-
         Dim newshainid As String, newtenpoid As String, newnouhinshokanriid As String, dami3 As String
-
-
 
         Dim s_pcname As String = Trim(lblpcname.Text)
         If s_pcname = "" Then
@@ -652,7 +649,6 @@ Public Class frmmain
             msg_go("納品書に仮登録されていません。")
             Exit Sub
         End If
-
 
         If Me.lbltorihikinashi.Text = "1" Then
             msg_go("取引のない店舗の伝票の登録はできません。店舗情報の設定を変更してから再度実行してください。")
@@ -681,8 +677,6 @@ Public Class frmmain
         End If
 
         Dim newiraibi As String = Trim(Me.DateTimePicker1.Value.ToString("yyyyMMdd"))
-
-
         Dim newgoukei As String = Trim(Me.lbl_nouhinsho_goukei.Text)
 
         If newgoukei = "" Then
@@ -691,7 +685,6 @@ Public Class frmmain
         End If
 
         Dim newnebiki2 As Integer = 0
-
         Dim s_bikou1 As String = Trim(txtbikou1.Text)
         Dim s_bikou2 As String = Trim(txtbikou2.Text)
 
@@ -713,7 +706,6 @@ Public Class frmmain
             End If
         End If
 
-
         If chk_nouhinsho_houkoku.Checked = True Then
             If kengen_chk(0, s_userid) = False Then
                 'If user_check(6) = False Then
@@ -727,13 +719,8 @@ Public Class frmmain
             dami3 = ""
         End If
 
-
-
-
         '仮登録状態から本登録へ
-
         wait_on("", "1")
-
 
         If main_hontouroku(newiraibi, newgoukei, newshainid, newtenpoid, newnouhinshokanriid, dami3, newinji, s_bikou1, s_bikou2, s_pcname) = -1 Then
             msg_go("本登録に失敗しました。")
@@ -742,9 +729,7 @@ Public Class frmmain
 
         wait_msg("保存情報を初期化中・・", 10)
 
-
         tenpo_hacchuurireki_set(newtenpoid)
-
         tenpo_orderchu_set_10()
 
         Me.txt_nouhinsho_no.Text = ""
@@ -753,7 +738,6 @@ Public Class frmmain
         Me.txtbikou2.Text = ""
 
         wait_off()
-
 
     End Sub
 
@@ -830,12 +814,13 @@ Public Class frmmain
 
                 Dim cb As New SqlCommandBuilder(da)
                 da.Update(ds, "t_gyousha")
-                ds.Clear()
 
                 msg_go("削除しました。", 64)
             Else
                 msg_go("該当する仮登録情報が見つかりません。")
             End If
+
+            ds.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)
@@ -907,12 +892,13 @@ Public Class frmmain
 
                 Dim cb As New SqlCommandBuilder(da)
                 da.Update(ds, "t_gyousha")
-                ds.Clear()
 
                 ' msg_go("削除しました。", 64)
             Else
                 msg_go("該当する仮登録情報が見つかりません。")
             End If
+
+            ds.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)

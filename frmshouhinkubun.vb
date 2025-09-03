@@ -138,12 +138,13 @@ Public Class frmshouhinkubun
 
                 Dim cb As New SqlCommandBuilder(da)
                 da.Update(ds, "t_gyousha")
-                ds.Clear()
 
                 msg_go("削除しました。", 64)
             Else
                 msg_go("該当する業者区分が見つかりません。")
             End If
+
+            ds.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)

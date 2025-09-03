@@ -166,12 +166,13 @@ Public Class frmichiran_shain
 
                 Dim cb As New SqlCommandBuilder(da)
                 da.Update(ds, "t_shain")
-                ds.Clear()
 
                 msg_go("削除しました。", 64)
             Else
                 msg_go("該当する社員が見つかりません。")
             End If
+
+            ds.Clear()
 
         Catch ex As Exception
             msg_go(ex.Message)
