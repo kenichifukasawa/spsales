@@ -19,7 +19,7 @@ Public Class frmseikyuusho_hakkou_insatsu_shousai
             .Columns(2).Name = "社員"
             .Columns(3).Name = "金額"
             .Columns(4).Name = "値引き"
-            .Columns(5).Name = "納品NO"
+            .Columns(5).Name = "納品書NO"
             .Columns(6).Name = "社員ID"
             .Columns(7).Name = "プリント種類"
             .Columns(8).Name = "ダミー2"
