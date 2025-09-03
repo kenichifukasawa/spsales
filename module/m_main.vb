@@ -1755,8 +1755,8 @@ Module m_main
 
         Catch ex As Exception
             msg_go(ex.Message)
-                Exit Function
-            End Try
+            Exit Function
+        End Try
 
         wait_msg("保存情報を書き込み中・・", 4)
 
@@ -1772,6 +1772,8 @@ Module m_main
 
             Dim shouhin_id = karitourokudata(0, i)
 
+            Dim kyuu_suu As Integer, isuu As Integer, shin_suu As Integer
+
             Try
 
                 Dim conn As New SqlConnection
@@ -1785,31 +1787,33 @@ Module m_main
                 Dim temp_table_name = "t_shouhin"
                 da.Fill(ds, temp_table_name)
 
-                Dim kyuu_suu = ds.Tables(temp_table_name).Rows(0)("genzaikosuu")
-                Dim isuu = karitourokudata(1, i)
-                Dim shin_suu = kyuu_suu - isuu
+                kyuu_suu = ds.Tables(temp_table_name).Rows(0)("genzaikosuu")
+                isuu = karitourokudata(1, i)
+                shin_suu = kyuu_suu - isuu
 
                 ds.Tables(temp_table_name).Rows(0)("genzaikosuu") = shin_suu
 
-                Dim bikou = "旧在庫：" & kyuu_suu.ToString & " 新在庫：" & shin_suu.ToString
-                Dim shainid = "10"
-                Dim naiyou = 8
-                Dim new_atai = isuu.ToString
-                If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
-                    msg_go("在庫ログ登録作業中にエラーが発生しました。")
-                    ds.Clear()
-                    Exit Function
-                End If
+
 
                 Dim cb As New SqlCommandBuilder
                 cb.DataAdapter = da
                 da.Update(ds, temp_table_name)
                 ds.Clear()
 
+
             Catch ex As Exception
                 msg_go(ex.Message)
                 Exit Function
             End Try
+
+            Dim bikou = "旧在庫：" & kyuu_suu.ToString & " 新在庫：" & shin_suu.ToString
+            Dim shainid = "10"
+            Dim naiyou = 8
+            Dim new_atai = isuu.ToString
+            If shouhin_zaiko_log(shainid, shouhin_id, naiyou, new_atai, bikou) = False Then
+                msg_go("在庫ログ登録作業中にエラーが発生しました。")
+                Exit Function
+            End If
 
             If n_bunbo > 0 Then
                 n_count = (i / n_bunbo) + 5
@@ -1825,12 +1829,65 @@ Module m_main
         Next
 
 
+
+        Dim update_response_2 = update_settei(id:=id_busy, s_no:=s_no_busy, new_value:="0") ' TODO : 削除 または update_settingsへ移行
+        If Not update_response_2 Then
+            msg_go("ビジーの更新に失敗しました。")
+            Exit Function
+        End If
+
+
         msg_go("登録しました。", 64)
 
 
 
 
     End Function
+
+    Function kengen_chk(no As Integer, shainid As String) As Boolean
+
+
+        kengen_chk = False
+
+        Try
+
+            Dim cn_server As New SqlConnection
+            cn_server.ConnectionString = connectionstring_sqlserver
+
+            Dim s_sql As String = "SELECT * FROM shain WHERE shainid ='" + shainid + "'"
+
+            Dim da_server As SqlDataAdapter = New SqlDataAdapter(s_sql, cn_server)
+            Dim ds_server As New DataSet
+            da_server.Fill(ds_server, "t_set_shain_ichiran")
+            Dim dt_server As DataTable = ds_server.Tables("t_set_shain_ichiran")
+
+            If dt_server.Rows.Count > 0 Then
+
+                Select Case no
+                    Case 0 '納品書ダミー
+                        If IsDBNull(dt_server.Rows.Item(0).Item("nouhinsho_dami")) Then
+                        Else
+                            If Trim(dt_server.Rows.Item(0).Item("nouhinsho_dami")) = "1" Then
+                                kengen_chk = True
+                            End If
+                        End If
+
+                End Select
+
+            End If
+
+
+
+            dt_server.Clear()
+            ds_server.Clear()
+
+        Catch ex As Exception
+            msg_go(ex.Message)
+        End Try
+
+
+    End Function
+
 
     Public Function SendMail(s_from As String, ByVal strMailAdr() As String,
                             Optional ByVal strMailCC() As String = Nothing,
