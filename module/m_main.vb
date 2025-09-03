@@ -56,6 +56,10 @@ Module m_main
 
     Public STARTED_YEAR As Integer = 2006
 
+    Public heder_data(15) As String
+    Public s_tourokubangou As String = ""
+
+
     Sub system_check(s_versionup_path As String)
 
         Dim s_verfile_path As String = s_versionup_path & "\spsales.exe"
