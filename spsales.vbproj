@@ -48,6 +48,46 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GrapeCity.ActiveReports.Chart.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Chart.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Design.Win.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Design.Win.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Diagnostics.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Diagnostics.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Document.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Document.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Image.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Export.Image.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Pdf.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Export.Pdf.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Rdf.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Export.Rdf.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Extensibility.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Extensibility.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.v12.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Viewer.Win.v12, Version=12.5.18851.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>api\GrapeCity.ActiveReports.Viewer.Win.v12.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -464,6 +504,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="print\rp_seikyuusho.Designer.vb">
+      <DependentUpon>rp_seikyuusho.vb</DependentUpon>
+    </Compile>
+    <Compile Include="print\rp_seikyuusho.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="print\rp_seikyuusho2.Designer.vb">
+      <DependentUpon>rp_seikyuusho2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="print\rp_seikyuusho2.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmbarcode.resx">
@@ -643,11 +695,18 @@
     <EmbeddedResource Include="frmshuukei_uriage.resx">
       <DependentUpon>frmshuukei_uriage.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="print\rp_seikyuusho.resx">
+      <DependentUpon>rp_seikyuusho.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="print\rp_seikyuusho2.resx">
+      <DependentUpon>rp_seikyuusho2.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -661,6 +720,18 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="api\GrapeCity.ActiveReports.Chart.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.Design.Win.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.Diagnostics.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.Document.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.Export.Image.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.Export.Pdf.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.Export.Rdf.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.Extensibility.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.v12.dll" />
+    <Content Include="api\GrapeCity.ActiveReports.Viewer.Win.v12.dll" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
